@@ -1,0 +1,13 @@
+.heroHome {
+  display: flex;
+  align-items: center;
+  gap: 5.1rem;
+  & > section {
+    & > div {
+      max-width: 38.2rem;
+      & > p {
+        margin: 3.2rem 0rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@use "../globels" as color;
+
+a {
+  text-decoration: none;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.font_family_glory {
+  font-family: "Glory";
+}
+
+.color_primary {
+  color: color.$primary;
+}
+
+.color_secondry {
+  color: color.$secondry;
+}
+
+.color_white {
+  color: #ffffff;
+}

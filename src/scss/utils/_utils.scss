@@ -1,0 +1,9 @@
+@use "../globels" as color;
+
+.bg_primary {
+  background-color: color.$primary;
+}
+
+.bg_tertiary {
+  background-color: color.$tertiary;
+}

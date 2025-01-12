@@ -1,0 +1,13 @@
+.container_ {
+  &main {
+    max-width: 136.6rem;
+    margin: auto;
+    padding: 0rem 10.9rem;
+  }
+  &mainLeft {
+    max-width: 136.6rem;
+    margin: auto;
+    padding-left: 10.9rem;
+    overflow: hidden;
+  }
+}

@@ -1,50 +1,31 @@
 import { FC } from "react";
-import Component from "..";
-import { FaFacebookF, FaGithub } from "react-icons/fa";
-import { FaXTwitter, FaInstagram } from "react-icons/fa6";
+import Heading from "./Heading";
+import Text from "./Text";
+import Image from "next/image";
+import { BrownCollan, WhiteCollan } from "@/assets/common";
 
 interface TeamCardProps {
   image: string;
   name: string;
   role: string;
-  facebook?: string;
-  x?: string;
-  insta?: string;
-  github?: string;
+  detail: string;
 }
 
-const TeamCard: FC<TeamCardProps> = ({
-  image,
-  name,
-  role,
-  facebook,
-  x,
-  insta,
-  github,
-}) => {
+const TeamCard: FC<TeamCardProps> = ({ image, name, role, detail }) => {
   return (
-    <div className="teamCard">
-      <img src={image} alt="profile" />
-      <Component.Feature.Heading className="medium">
-        {name}
-      </Component.Feature.Heading>
-      <Component.Feature.Text className="small color_gray">
-        {role}
-      </Component.Feature.Text>
-      <section>
-        <a href={facebook}>
-          <FaFacebookF />
-        </a>
-        <a href={x}>
-          <FaXTwitter />
-        </a>
-        <a href={insta}>
-          <FaInstagram />
-        </a>
-        <a href={github}>
-          <FaGithub />
-        </a>
-      </section>
+    <div className='teamCard'>
+      <header>
+        <div>
+          <Image src={image} alt='profile' height={90} width={90} />
+          <Heading className='medium'>{name}</Heading>
+          <Text className='small color_gray'>{role}</Text>
+        </div>
+        <div>
+          <BrownCollan />
+          <WhiteCollan />
+        </div>
+      </header>
+      <Text>{detail}</Text>
     </div>
   );
 };

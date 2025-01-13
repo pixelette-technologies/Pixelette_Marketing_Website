@@ -19,17 +19,17 @@ const Accordion: FC<AccordionProps> = ({
   isOpen,
   onToggle,
   animation,
-  duration,
+  duration
 }) => {
   return (
     <div
-      className="accordion"
+      className='accordion'
       style={{ backgroundColor: isOpen ? "#00233a" : "rgba(1, 47, 77, 1)" }}
       data-aos={animation}
       data-aos-duration={duration}
     >
       <header onClick={onToggle} style={{ cursor: "pointer" }}>
-        <Component.Feature.Text className="medium">
+        <Component.Feature.Text className='medium'>
           <BsQuestionCircle />
           {question}
         </Component.Feature.Text>
@@ -37,7 +37,7 @@ const Accordion: FC<AccordionProps> = ({
       </header>
       {isOpen && (
         <section>
-          <Component.Feature.Text className="small color_gray">
+          <Component.Feature.Text className='small color_gray'>
             {answer}
           </Component.Feature.Text>
         </section>

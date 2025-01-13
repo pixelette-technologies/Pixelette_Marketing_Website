@@ -1,0 +1,19 @@
+.growthSection {
+  margin-top: 5.9rem;
+  & > header {
+    & > div {
+      margin-top: 2.4rem;
+      border-radius: 0.8rem;
+      padding: 2.4rem 3.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 11.5rem;
+      & > div {
+        flex: 1 1 calc(25% - 11.5rem);
+        & > h1 {
+          margin-bottom: 0.7rem;
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,13 @@ import React from "react";
 
 const Jira = () => {
   return (
-    <svg width='77' height='26' viewBox='0 0 77 26' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='77'
+      height='26'
+      viewBox='0 0 77 26'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <g clip-path='url(#clip0_620_1112)'>
         <path
           d='M39.0423 3.24976H41.8423V17.2498C41.8423 20.9498 40.1423 23.5498 36.2423 23.5498C34.7423 23.5498 33.6423 23.3498 32.8423 23.0498V20.3498C33.7423 20.6498 34.7423 20.8498 35.7423 20.8498C38.1423 20.8498 38.9423 19.4498 38.9423 17.4498V3.24976H39.0423Z'
@@ -35,7 +41,12 @@ const Jira = () => {
       </g>
       <defs>
         <clipPath id='clip0_620_1112'>
-          <rect width='76' height='25' fill='white' transform='translate(0.14209 0.149658)' />
+          <rect
+            width='76'
+            height='25'
+            fill='white'
+            transform='translate(0.14209 0.149658)'
+          />
         </clipPath>
       </defs>
     </svg>

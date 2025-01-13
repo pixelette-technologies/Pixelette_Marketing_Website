@@ -1,6 +1,12 @@
 const Buffer = () => {
   return (
-    <svg width='84' height='21' viewBox='0 0 84 21' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='84'
+      height='21'
+      viewBox='0 0 84 21'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <g clip-path='url(#clip0_620_1159)'>
         <path
           fill-rule='evenodd'
@@ -11,7 +17,12 @@ const Buffer = () => {
       </g>
       <defs>
         <clipPath id='clip0_620_1159'>
-          <rect width='82.7568' height='20.4' fill='white' transform='translate(0.487305 0.449707)' />
+          <rect
+            width='82.7568'
+            height='20.4'
+            fill='white'
+            transform='translate(0.487305 0.449707)'
+          />
         </clipPath>
       </defs>
     </svg>

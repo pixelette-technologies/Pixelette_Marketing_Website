@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
-    "format": "prettier --write \"src/**/*.{js,jsx}\""
+    "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "next": "15.1.4",

@@ -17,27 +17,27 @@ const BlogCard: FC<BlogCardProps> = ({
   author,
   name,
   detail,
-  link,
+  link
 }) => {
   return (
-    <div className="blogCard">
-      <img src={image} alt="blogProfile" />
+    <div className='blogCard'>
+      <img src={image} alt='blogProfile' />
       <section>
         <div>
-          <Component.Feature.Text className="medium color_gray">
+          <Component.Feature.Text className='medium color_gray'>
             {date}
           </Component.Feature.Text>
-          <Component.Feature.Text className="medium color_gray">
+          <Component.Feature.Text className='medium color_gray'>
             By {author}
           </Component.Feature.Text>
         </div>
-        <Component.Feature.Heading className="small">
+        <Component.Feature.Heading className='small'>
           {name}
         </Component.Feature.Heading>
-        <Component.Feature.Text className="small color_gray">
+        <Component.Feature.Text className='small color_gray'>
           {detail}
         </Component.Feature.Text>
-        <a className="color_red" href={link}>
+        <a className='color_red' href={link}>
           read more <IoIosArrowForward />
         </a>
       </section>

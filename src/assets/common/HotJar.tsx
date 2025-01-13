@@ -1,6 +1,12 @@
 const HotJar = () => {
   return (
-    <svg width='99' height='27' viewBox='0 0 99 27' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='99'
+      height='27'
+      viewBox='0 0 99 27'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <g clip-path='url(#clip0_645_1500)'>
         <mask
           id='mask0_645_1500'
@@ -11,7 +17,10 @@ const HotJar = () => {
           width='99'
           height='27'
         >
-          <path d='M98.8581 0.752686H0.894043V26.0523H98.8581V0.752686Z' fill='white' />
+          <path
+            d='M98.8581 0.752686H0.894043V26.0523H98.8581V0.752686Z'
+            fill='white'
+          />
         </mask>
         <g mask='url(#mask0_645_1500)'>
           <path
@@ -50,7 +59,12 @@ const HotJar = () => {
       </g>
       <defs>
         <clipPath id='clip0_645_1500'>
-          <rect width='98' height='25.2996' fill='white' transform='translate(0.85791 0.752686)' />
+          <rect
+            width='98'
+            height='25.2996'
+            fill='white'
+            transform='translate(0.85791 0.752686)'
+          />
         </clipPath>
       </defs>
     </svg>

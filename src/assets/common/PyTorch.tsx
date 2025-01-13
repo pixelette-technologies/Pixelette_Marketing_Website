@@ -1,6 +1,12 @@
 const PyTorch = () => {
   return (
-    <svg width='117' height='29' viewBox='0 0 117 29' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='117'
+      height='29'
+      viewBox='0 0 117 29'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <g clip-path='url(#clip0_620_1125)'>
         <path
           d='M15.02 6.87744L13.4489 8.44854C16.0198 11.0194 16.0198 15.1615 13.4489 17.6847C10.878 20.2556 6.73598 20.2556 4.21268 17.6847C1.64178 15.1138 1.64178 10.9718 4.21268 8.44854L8.28328 4.37795L8.85459 3.80664V0.73584L2.71299 6.87744C-0.714877 10.3053 -0.714877 15.828 2.71299 19.2558C6.14086 22.6837 11.6635 22.6837 15.02 19.2558C18.4479 15.8042 18.4479 10.3053 15.02 6.87744Z'
@@ -41,7 +47,12 @@ const PyTorch = () => {
       </g>
       <defs>
         <clipPath id='clip0_620_1125'>
-          <rect width='116' height='28.5894' fill='white' transform='translate(0.14209 0.35498)' />
+          <rect
+            width='116'
+            height='28.5894'
+            fill='white'
+            transform='translate(0.14209 0.35498)'
+          />
         </clipPath>
       </defs>
     </svg>

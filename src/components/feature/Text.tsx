@@ -13,7 +13,7 @@ const Text: FC<TextProps> = ({
   animation,
   duration,
   id,
-  children,
+  children
 }) => {
   return (
     <p

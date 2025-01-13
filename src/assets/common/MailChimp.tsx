@@ -1,6 +1,12 @@
 const MailChimp = () => {
   return (
-    <svg width='106' height='29' viewBox='0 0 106 29' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width='106'
+      height='29'
+      viewBox='0 0 106 29'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <g clip-path='url(#clip0_620_1161)'>
         <path
           fill-rule='evenodd'
@@ -65,7 +71,12 @@ const MailChimp = () => {
       </g>
       <defs>
         <clipPath id='clip0_620_1161'>
-          <rect width='104.898' height='28.2069' fill='white' transform='translate(0.244141 0.546387)' />
+          <rect
+            width='104.898'
+            height='28.2069'
+            fill='white'
+            transform='translate(0.244141 0.546387)'
+          />
         </clipPath>
       </defs>
     </svg>

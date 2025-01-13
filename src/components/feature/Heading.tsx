@@ -9,9 +9,20 @@ interface HeadingProps {
   dataAos?: string;
 }
 
-const Heading: FC<HeadingProps> = ({ className = "", animation, duration, id, children }) => {
+const Heading: FC<HeadingProps> = ({
+  className = "",
+  animation,
+  duration,
+  id,
+  children
+}) => {
   return (
-    <h1 className={`heading_${className}`} data-aos={animation} data-aos-duration={duration} id={id}>
+    <h1
+      className={`heading_${className}`}
+      data-aos={animation}
+      data-aos-duration={duration}
+      id={id}
+    >
       {children}
     </h1>
   );

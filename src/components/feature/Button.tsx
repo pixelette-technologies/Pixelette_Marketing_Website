@@ -9,7 +9,13 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
-const Button: FC<ButtonProps> = ({ to, className, onClick, type = "button", children }) => {
+const Button: FC<ButtonProps> = ({
+  to,
+  className,
+  onClick,
+  type = "button",
+  children
+}) => {
   return to ? (
     <Link href={to} className={`btn btn_${className}`}>
       {children}

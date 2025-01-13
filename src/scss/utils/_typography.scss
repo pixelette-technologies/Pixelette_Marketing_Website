@@ -19,6 +19,13 @@ a {
 .color_secondry {
   color: color.$secondry;
 }
+.color_secondry--light {
+  color: color.$secondry--light;
+}
+
+.color_gray {
+  color: color.$gray;
+}
 
 .color_white {
   color: #ffffff;

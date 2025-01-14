@@ -1,0 +1,17 @@
+@use "../../globels" as color;
+
+.web3marketingCard {
+  padding: 2.4rem;
+  border-radius: 1.2rem;
+  text-align: center;
+  & > img {
+    border-radius: 1rem;
+  }
+  & > h6 {
+    margin-top: 2.4rem;
+    margin-bottom: 1.2rem;
+    & > span {
+      color: color.$primary;
+    }
+  }
+}

@@ -1,4 +1,8 @@
-import { TeamSection, TrustedBrands } from "@/components/common";
+import {
+  ContactSection,
+  TeamSection,
+  TrustedBrands
+} from "@/components/common";
 import {
   DynamicMarket,
   EngagementStalls,
@@ -6,17 +10,22 @@ import {
   HomeHero,
   RangeOfMarket
 } from "@/components/ui/home";
+import { talkBusinessData } from "@/data";
 
 export default function Home() {
   return (
     <>
       <HomeHero />
-      <TrustedBrands header='Trusted by' heading='Leading Brands' />
+      {/* <TrustedBrands header='Trusted by' heading='Leading Brands' /> */}
       <GrowthSection />
       <EngagementStalls />
       <DynamicMarket />
       <RangeOfMarket />
       <TeamSection />
+      <ContactSection
+        heading={`let's <span> talk business <span/>`}
+        data={talkBusinessData}
+      />
     </>
   );
 }

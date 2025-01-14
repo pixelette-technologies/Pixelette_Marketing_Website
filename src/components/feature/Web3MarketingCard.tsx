@@ -15,9 +15,12 @@ const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
 }) => {
   return (
     <div className='web3marketingCard  bg_white'>
-      <Image src={image} alt='Card Profile' />
-      <Text>{heading}</Text>
-      <Text>{summary}</Text>
+      <Image src={image} alt='Card Profile' width={324} height={175} />
+      <h6
+        className='text_secondry--semibold'
+        dangerouslySetInnerHTML={{ __html: heading }}
+      />
+      <Text className='tertiary color_gray--light'>{summary}</Text>
     </div>
   );
 };

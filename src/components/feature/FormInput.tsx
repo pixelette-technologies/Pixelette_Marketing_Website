@@ -16,12 +16,11 @@ const FormInput: FC<FormInputProps> = ({
   className = "",
   ...props
 }) => {
-    
   const [field, meta] = useField(props);
   const [value, setValue] = useState<string>("");
 
   return (
-    <div className='forminput' data-aos='fade-up' data-aos-duration='500'>
+    <div className='forminput'>
       <label
         htmlFor={field.name}
         className={`form-label ${value !== "" ? "form-label-input-value" : ""}`}

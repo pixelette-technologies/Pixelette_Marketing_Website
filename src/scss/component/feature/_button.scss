@@ -16,76 +16,17 @@ button {
     border-radius: 0.8rem;
     background-color: color.$primary;
     line-height: 2.2rem;
-
-    // &:hover {
-    //   -moz-transform: rotate(0deg);
-    //   -webkit-transform: rotate(0deg);
-    //   -o-transform: rotate(0deg);
-    //   -ms-transform: rotate(0deg);
-    //   transform: rotate(0deg);
-    //   -moz-transform: scale(1.1);
-    //   -webkit-transform: scale(1.1);
-    //   -o-transform: scale(1.1);
-    //   -ms-transform: scale(1.1);
-    //   transform: scale(1.1);
-    //   background-color: $secondry;
-    //   box-shadow: 0.4rem 0.4rem $light_red;
-    //   color: $light_red;
-    // }
   }
-  // &_secondry {
-  //   font-size: 2.147rem;
-  //   font-weight: 400;
-  //   padding: 1.2rem 1.8rem;
-  //   border: 2px solid $secondry;
-  //   line-height: 2.21rem;
-  //   display: flex;
-  //   align-items: center;
-  //   gap: 0.7rem;
-  //   color: $secondry;
-  //   background-color: transparent;
-  //   &:hover {
-  //     background-color: $secondry;
-  //     color: $primary;
-  //     box-shadow: 0.4rem 0.4rem $light_red;
-  //     -moz-transform: scale(1.1);
-  //     -webkit-transform: scale(1.1);
-  //     -o-transform: scale(1.1);
-  //     -ms-transform: scale(1.1);
-  //     transform: scale(1.1);
-  //   }
-  //   & > * {
-  //     &:last-child {
-  //       &:hover {
-  //       }
-  //     }
-  //   }
-  // }
-  // &_secondry--red {
-  //   font-size: 2.147rem;
-  //   font-weight: 400;
-  //   padding: 1.2rem 1.8rem;
-  //   border: 2px solid $secondry;
-  //   line-height: 2.21rem;
-  //   display: flex;
-  //   align-items: center;
-  //   gap: 0.7rem;
-  //   color: $secondry;
-  //   background-color: $light_red;
-  //   &:hover {
-  //     -moz-transform: rotate(0deg);
-  //     -webkit-transform: rotate(0deg);
-  //     -o-transform: rotate(0deg);
-  //     -ms-transform: rotate(0deg);
-  //     transform: rotate(0deg);
-  //     -moz-transform: scale(1.1);
-  //     -webkit-transform: scale(1.1);
-  //     -o-transform: scale(1.1);
-  //     -ms-transform: scale(1.1);
-  //     transform: scale(1.1);
-  //     background-color: $secondry;
-  //     box-shadow: 0.4rem 0.4rem $light_red;
-  //     color: $light_red;
-  //   }
-  // }
+  &_primary-full {
+    display: block;
+    font-size: 1.6rem;
+    color: white;
+    font-weight: 500;
+    padding: 1.45rem 3.45rem;
+    border: none;
+    border-radius: 0.8rem;
+    background-color: color.$primary;
+    line-height: 2.2rem;
+    width: 100%;
+  }
 }

@@ -5,8 +5,15 @@ import { Formik, Form, FormikHelpers } from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
 import { Button, FormInput, FormTextArea, Heading } from "../feature";
 
-const ContactUsForm = () => {
-  const initialValues = {
+interface FormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  description: string;
+}
+
+const ContactUsForm: React.FC = () => {
+  const initialValues: FormValues = {
     firstName: "",
     lastName: "",
     email: "",
@@ -14,16 +21,18 @@ const ContactUsForm = () => {
   };
 
   const handleSubmit = (
-    values: typeof initialValues,
-    { resetForm }: FormikHelpers<typeof initialValues>
+    values: FormValues,
+    { resetForm }: FormikHelpers<FormValues>
   ) => {
     console.log("Form Submitted", values);
     resetForm();
   };
 
   return (
-    <div className='contactUsForm'>
-      <Heading>Contact Us</Heading>
+    <div className='contactUsForm bg_white'>
+      <Heading className='secondry font_family_glory uppercase'>
+        book a call with us
+      </Heading>
       <Formik
         initialValues={initialValues}
         validationSchema={contactUSvalidationSchema}
@@ -31,16 +40,18 @@ const ContactUsForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <FormInput
-              label='First Name'
-              name='firstName'
-              place='Enter your first name'
-            />
-            <FormInput
-              label='Last Name'
-              name='lastName'
-              place='Enter your last name'
-            />
+            <div className='contactUsFormFlex'>
+              <FormInput
+                label='First Name'
+                name='firstName'
+                place='Enter your first name'
+              />
+              <FormInput
+                label='Last Name'
+                name='lastName'
+                place='Enter your last name'
+              />
+            </div>
             <FormInput
               label='Email'
               name='email'
@@ -50,10 +61,10 @@ const ContactUsForm = () => {
             <FormTextArea
               label='Description'
               name='description'
-              place='Enter your message'
+              place='Write your query here'
             />
-            <Button type='submit' className='submit-button'>
-              {isSubmitting ? "Submitting..." : "Submit"}
+            <Button type='submit' className='primary-full'>
+              {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
           </Form>
         )}

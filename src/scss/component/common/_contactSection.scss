@@ -1,0 +1,48 @@
+@use "../../globels" as color;
+
+.contactUsSection {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  padding: 5.2rem 0rem;
+  & > section {
+    width: 65%;
+
+    & > h2 {
+      margin-bottom: 2.4rem;
+      & > span {
+        color: color.$primary;
+      }
+    }
+
+    & > div {
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: 0.8rem;
+        }
+      }
+      & > blockquote {
+        display: flex;
+        align-items: center;
+        gap: 3.2rem;
+        padding: 2.4rem;
+        border-radius: 1.5rem;
+        & > section {
+          & > svg {
+            height: 2.4rem;
+            width: 2.65rem;
+          }
+        }
+        & > div {
+          & > h1 {
+            margin-bottom: 1.6rem;
+          }
+        }
+      }
+    }
+  }
+  & > div {
+    margin-top: 2.4rem;
+    width: 40%;
+  }
+}

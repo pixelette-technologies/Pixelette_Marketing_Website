@@ -1,0 +1,38 @@
+@use "../../globels" as color;
+
+.formtextArea {
+  margin-top: 1.2rem;
+  z-index: -1000000;
+  margin-bottom: 1.5rem;
+  & > label {
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+  & > textarea {
+    margin-top: 0.1rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    padding-left: 1.2rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    border: 1px solid color.$gray--light;
+    background-color: transparent;
+    border-radius: 0.7rem;
+    width: 100%;
+    font-family: "Poppins";
+    color: color.$secondry;
+    resize: vertical;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: 1.4rem;
+    }
+  }
+
+  & > div {
+    margin-top: 0.6rem;
+    color: rgba(255, 0, 0, 0.589);
+    font-size: 1.4rem;
+  }
+}

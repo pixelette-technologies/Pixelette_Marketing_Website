@@ -1,0 +1,16 @@
+.industriesHero {
+  display: flex;
+  align-items: center;
+  gap: 5.6rem;
+  padding: 4.4rem 0rem;
+  & > img {
+    border-radius: 1.5rem;
+  }
+
+  & > div {
+    & > p {
+      margin-top: 2.4rem;
+      margin-bottom: 2.4rem;
+    }
+  }
+}

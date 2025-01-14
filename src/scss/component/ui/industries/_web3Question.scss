@@ -1,0 +1,23 @@
+.web3Question {
+  padding: 2.4rem 0rem;
+
+  & > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3.2rem;
+    & > p {
+      width: 55.6rem;
+      text-align: right;
+    }
+  }
+  & > section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    & > div {
+      flex: 1 1 calc(33.3% - 1.6rem);
+    }
+  }
+}

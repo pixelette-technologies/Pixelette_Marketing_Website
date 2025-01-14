@@ -1,0 +1,16 @@
+@use "../../globels" as color;
+
+.questionAndAnswer {
+  width: 49rem;
+  margin: auto;
+  padding: 4.2rem 0rem;
+  & > h2 {
+    & > span {
+      color: color.$primary;
+    }
+  }
+  & > p {
+    margin-top: 1.2rem;
+    margin-bottom: 2.4rem;
+  }
+}

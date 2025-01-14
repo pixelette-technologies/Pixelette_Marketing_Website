@@ -1,0 +1,16 @@
+.contactUsForm {
+  padding: 2.4rem 1.6rem;
+  border-radius: 1.5rem;
+  & > h1 {
+    margin-bottom: 2rem;
+  }
+}
+.contactUsFormFlex {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  & > div {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}

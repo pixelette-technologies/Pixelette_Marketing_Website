@@ -12,9 +12,9 @@ interface FormTextAreaProps extends FieldHookConfig<string> {
 const FormTextArea: React.FC<FormTextAreaProps> = ({
   label,
   place,
-  name,
   ...props
 }) => {
+  // Ensure only Formik-related props are passed to useField
   const [field, meta] = useField(props);
 
   return (
@@ -26,10 +26,9 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
         placeholder={place}
         id={field.name}
         className={`form-text ${meta.touched && meta.error ? "is-invalid" : ""}`}
-        {...field}
-        {...props}
+        {...field} // Spread only Formik-related props
         autoComplete='off'
-        name={name}
+        rows={4}
         style={{
           border:
             meta.touched && meta.error ? "1px solid red" : "1px solid #ccc"

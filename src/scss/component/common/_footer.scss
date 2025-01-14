@@ -1,0 +1,16 @@
+footer {
+  padding: 3.35rem 0rem;
+  & > div {
+    & > section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      & > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.45rem;
+      }
+    }
+  }
+}

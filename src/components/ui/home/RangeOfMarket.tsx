@@ -12,7 +12,8 @@ import {
   PyTorch,
   Semrush,
   Sprout,
-  Buffer
+  Buffer,
+  MailChimp
 } from "@/assets/common";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
@@ -32,7 +33,7 @@ const RangeOfMarket = () => {
             <Grammerly />
             <Loom />
           </header>
-          <center>
+          <center className='text_align_center'>
             <Heading className='secondry--semibold color_white'>
               Our range of marketing tech and platforms
             </Heading>
@@ -48,6 +49,7 @@ const RangeOfMarket = () => {
             <Apollo />
             <Sprout />
             <Buffer />
+            <MailChimp />
           </div>
         </section>
       </Container>

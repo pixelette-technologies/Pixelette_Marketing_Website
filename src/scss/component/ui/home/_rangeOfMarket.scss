@@ -1,0 +1,14 @@
+.rangeOfMarket {
+  padding: 2.97rem 0rem;
+  & > header,
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5.6rem;
+  }
+  & > center {
+    margin-top: 10.2rem;
+    margin-bottom: 13.7rem;
+  }
+}

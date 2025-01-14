@@ -4,10 +4,18 @@
   background-color: color.$primary;
 }
 
+.bg_secondry {
+  background-color: color.$secondry;
+}
+
 .bg_tertiary {
   background-color: color.$tertiary;
 }
 
 .bg_tertiary--dark {
   background-color: color.$tertiary--dark;
+}
+
+.bg_white {
+  background-color: white;
 }

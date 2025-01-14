@@ -28,51 +28,63 @@ export default function GrowthSection() {
             </div>
           </header>
           <section>
-            <Heading>work we are proud of</Heading>
+            {/* <Heading>work we are proud of</Heading> */}
             <div>
               <section>
-                <Image
-                  src='/home/g_1.webp'
-                  alt='Growth Icons'
-                  width={125}
-                  height={112}
-                />
-                <Image
-                  src='/home/g_2.webp'
-                  alt='Growth Icons'
-                  width={191}
-                  height={48}
-                />
-                <Image
-                  src='/home/g_3.webp'
-                  alt='Growth Icons'
-                  width={247}
-                  height={70}
-                />
-                <Image
-                  src='/home/g_4.webp'
-                  alt='Growth Icons'
-                  width={150}
-                  height={150}
-                />
-                <Image
-                  src='/home/g_5.webp'
-                  alt='Growth Icons'
-                  width={191}
-                  height={162}
-                />
-                <Image
-                  src='/home/g_6.webp'
-                  alt='Growth Icons'
-                  width={205}
-                  height={86}
-                />
+                <div>
+                  <Image
+                    src='/home/g_1.webp'
+                    alt='Growth Icons'
+                    width={125}
+                    height={112}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src='/home/g_2.webp'
+                    alt='Growth Icons'
+                    width={191}
+                    height={48}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src='/home/g_3.webp'
+                    alt='Growth Icons'
+                    width={247}
+                    height={70}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src='/home/g_4.webp'
+                    alt='Growth Icons'
+                    width={150}
+                    height={150}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src='/home/g_5.webp'
+                    alt='Growth Icons'
+                    width={191}
+                    height={162}
+                  />
+                </div>
+                <div>
+                  <Image
+                    src='/home/g_6.webp'
+                    alt='Growth Icons'
+                    width={205}
+                    height={86}
+                  />
+                </div>
               </section>
               <Image
                 src='/home/growthBanner.webp'
                 alt='Growth Banner'
                 width={538}
-                height={719}
+                height={527}
               />
             </div>
           </section>

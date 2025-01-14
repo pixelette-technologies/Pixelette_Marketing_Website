@@ -32,18 +32,42 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ header, heading }) => {
           </Heading>
           <section>
             <Marquee>
-              <Jira />
-              <LinkedIn />
-              <PyTorch />
-              <Apollo />
-              <Sprout />
-              <Buffer />
-              <Jira />
-              <LinkedIn />
-              <PyTorch />
-              <Apollo />
-              <Sprout />
-              <Buffer />
+              <div style={{ marginRight: "5rem" }}>
+                <Jira />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <LinkedIn />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <PyTorch />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Apollo />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Sprout />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Buffer />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Jira />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <LinkedIn />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <PyTorch />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Apollo />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Sprout />
+              </div>
+              <div style={{ marginRight: "5rem" }}>
+                <Buffer />
+              </div>
             </Marquee>
           </section>
         </Container>

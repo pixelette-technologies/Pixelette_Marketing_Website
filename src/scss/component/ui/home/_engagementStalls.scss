@@ -1,0 +1,37 @@
+.engagementStalls {
+  display: flex;
+  align-items: start;
+  padding-top: 3.2rem;
+  gap: 4rem;
+
+  & > div {
+    width: 30.6rem;
+    & > * {
+      &:first-child {
+        margin-bottom: 0.9rem;
+      }
+    }
+    & > p {
+      margin-top: 3.2rem;
+    }
+  }
+  & > section {
+    border-radius: 3.2rem;
+    max-width: 80.2rem;
+
+    padding-top: 4rem;
+    padding-left: 3.2rem;
+    padding-right: 3.2rem;
+    padding-bottom: 49rem;
+    display: flex;
+    align-items: start;
+    gap: 5rem;
+    & > div {
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: 3.8rem;
+        }
+      }
+    }
+  }
+}

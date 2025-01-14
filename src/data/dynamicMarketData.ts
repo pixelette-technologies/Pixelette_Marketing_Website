@@ -28,11 +28,6 @@ const dynamicMarketData = [
     mainHeading: "Startup ",
     subHeading: "Marketing",
     text: "Turn your big startup into a market leader with agile, results-driven strategies that deliver visibility, traction and growth where it matters most"
-  },
-  {
-    mainHeading: "",
-    subHeading: "",
-    text: ""
   }
 ];
 

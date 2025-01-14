@@ -4,3 +4,6 @@ export { default as Button } from "./Button";
 export { default as Marquee } from "./Marquee";
 export { default as ArrowCard } from "./ArrowCard";
 export { default as TeamCard } from "./TeamCard";
+export { default as Web3MarketingCard } from "./Web3MarketingCard";
+export { default as FormInput } from "./FormInput";
+export { default as FormTextArea } from "./FormTextArea";

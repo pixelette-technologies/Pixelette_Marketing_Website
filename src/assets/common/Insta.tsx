@@ -20,8 +20,8 @@ const Insta = () => {
           y2='21.0002'
           gradientUnits='userSpaceOnUse'
         >
-          <stop offset='0.0625' stop-color='white' />
-          <stop offset='1' stop-color='white' />
+          <stop offset='0.0625' stopColor='white' />
+          <stop offset='1' stopColor='white' />
         </linearGradient>
       </defs>
     </svg>

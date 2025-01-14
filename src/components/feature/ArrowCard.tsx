@@ -22,22 +22,42 @@ const ArrowCard: FC<ArrowCardProps> = ({
       className='arrowCard'
       style={{ textAlign: textfloat ? "right" : "left" }}
     >
-      <header>
-        {textfloat ? "" : <ArrowLeft />}
-        <div>
-          <Text className='primary--semiBold color_primary'>{mainHeading}</Text>
+      <section
+        style={{ justifyContent: textfloat ? "flex-end" : "flex-start" }}
+      >
+        {textfloat ? (
+          ""
+        ) : (
+          <div>
+            <ArrowLeft />
+          </div>
+        )}
+        <header>
+          <section>
+            <Text className='primary--semiBold color_primary'>
+              {mainHeading}
+            </Text>
+            <Text
+              className={`primary--semiBold  ${theme ? "color_white" : "color_secondry"} `}
+            >
+              {subHeading}
+            </Text>
+          </section>
           <Text
-            className={`primary--semiBold  ${theme ? "color_white" : "color_secondry"} `}
+            className={`tertiary ${theme ? "color_gray" : "color_secondry"} `}
           >
-            {subHeading}
+            {summary}
           </Text>
-        </div>
-        {textfloat ? <ArrowRight /> : ""}
-        <ArrowRight />
-      </header>
-      <Text className={`tertiary ${theme ? "color_white" : "color_secondry"} `}>
-        {summary}
-      </Text>
+        </header>
+
+        {textfloat ? (
+          <div>
+            <ArrowRight />
+          </div>
+        ) : (
+          ""
+        )}
+      </section>
     </div>
   );
 };

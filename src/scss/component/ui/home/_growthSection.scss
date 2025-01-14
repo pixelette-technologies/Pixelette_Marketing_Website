@@ -16,4 +16,26 @@
       }
     }
   }
+
+  & > section {
+    margin-top: 1rem;
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+
+      & > section {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        & > div {
+          flex: 1 1 calc(50% - 2.5rem);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }
 }

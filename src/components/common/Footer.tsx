@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className='bg_primary'>
       <Container className='main'>
         <section>
-          <Text className='pirmary color_white'>
+          <Text className='secondry color_white'>
             © 2024 Pixelette Marketing. All rights reserved.
           </Text>
           <div>

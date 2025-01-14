@@ -13,19 +13,19 @@ interface TeamCardProps {
 
 const TeamCard: FC<TeamCardProps> = ({ image, name, role, detail }) => {
   return (
-    <div className='teamCard'>
+    <div className='teamCard bg_white'>
+      <div>
+        <WhiteCollan />
+      </div>
+      <div>
+        <BrownCollan />
+      </div>
       <header>
-        <div>
-          <Image src={image} alt='profile' height={90} width={90} />
-          <Heading className='medium'>{name}</Heading>
-          <Text className='small color_gray'>{role}</Text>
-        </div>
-        <div>
-          <BrownCollan />
-          <WhiteCollan />
-        </div>
+        <Image src={image} alt='profile' height={90} width={90} />
+        <Heading className='secondry--boldLight'>{name}</Heading>
+        <Text className='secondry--semibold'>{role}</Text>
       </header>
-      <Text>{detail}</Text>
+      <Text className='tertiary--light'>{detail}</Text>
     </div>
   );
 };

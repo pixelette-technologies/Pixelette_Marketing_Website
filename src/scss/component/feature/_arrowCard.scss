@@ -1,0 +1,18 @@
+.arrowCard {
+  padding: 1rem;
+  & > section {
+    gap: 1.2rem;
+    display: flex;
+    & > div {
+      width: 8rem;
+      & > * {
+        margin-top: 1rem;
+      }
+    }
+    & > header {
+      & > section {
+        margin-bottom: 1.6rem;
+      }
+    }
+  }
+}

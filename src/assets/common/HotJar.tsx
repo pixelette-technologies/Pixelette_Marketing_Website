@@ -7,10 +7,10 @@ const HotJar = () => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <g clip-path='url(#clip0_645_1500)'>
+      <g clipPath='url(#clip0_645_1500)'>
         <mask
           id='mask0_645_1500'
-          style='mask-type:luminance'
+          style={{ maskType: "luminance" }}
           maskUnits='userSpaceOnUse'
           x='0'
           y='0'

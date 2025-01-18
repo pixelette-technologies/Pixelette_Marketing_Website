@@ -5,7 +5,7 @@ import ContactUsForm from "./ContactUsForm";
 
 interface ContactData {
   icon: ComponentType;
-  heading: string;
+  heading?: string;
   text: string;
 }
 
@@ -35,7 +35,9 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
                     <el.icon />
                   </section>
                   <div>
-                    <Text className='primary--bolder'>{el.heading}</Text>
+                    {el.heading && (
+                      <Text className='primary--bolder'>{el.heading}</Text>
+                    )}
                     <Text className='tertiary'>{el.text}</Text>
                   </div>
                 </blockquote>

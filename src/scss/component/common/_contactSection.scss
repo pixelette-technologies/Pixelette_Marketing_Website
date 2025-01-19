@@ -9,12 +9,14 @@
     width: 65%;
 
     & > h2 {
-      margin-bottom: 2.4rem;
+      margin-bottom: 2rem;
       & > span {
         color: color.$primary;
       }
     }
-
+    & > p {
+      margin-bottom: 1.6rem;
+    }
     & > div {
       & > * {
         &:not(:last-child) {

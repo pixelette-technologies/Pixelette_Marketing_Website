@@ -1,0 +1,11 @@
+.heroSectionAbout {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  padding: 4rem 0rem;
+  & > div {
+    & > p {
+      margin: 2.4rem 0rem;
+    }
+  }
+}

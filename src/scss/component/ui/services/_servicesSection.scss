@@ -1,0 +1,31 @@
+.servicesSection {
+  margin: 3rem 0rem;
+  & > header {
+    padding: 3.2rem 0rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    & > h1 {
+      width: 46.4rem;
+    }
+
+    & > div {
+      max-width: 58.6rem;
+      & > h1 {
+        width: 27.1rem;
+        margin-bottom: 1.6rem;
+      }
+    }
+  }
+
+  & > section {
+    & > * {
+      &:nth-child(odd) {
+        background-color: rgba(240, 233, 228, 1);
+      }
+      &:nth-child(even) {
+        background-color: white;
+      }
+    }
+  }
+}

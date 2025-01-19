@@ -1,0 +1,47 @@
+.howItworks {
+  padding: 2.4rem 0rem;
+  & > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3.2rem;
+    & > section {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      & > div {
+        display: flex;
+        align-items: center;
+        gap: 1.6rem;
+        & > svg {
+          width: 2.4rem;
+          height: 2.4rem;
+        }
+      }
+    }
+  }
+
+  & > section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.4rem;
+    & > blockquote {
+      flex: 1 1 calc(33.3% - 2.4rem);
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+      padding: 2.2rem 0.8rem;
+      background-color: rgba(42, 44, 46, 1);
+      border-radius: 1rem;
+      & > section {
+        height: 5.6rem;
+        width: 5.6rem;
+      }
+      & > div {
+        & > h1 {
+          margin-bottom: 1rem;
+        }
+      }
+    }
+  }
+}

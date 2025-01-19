@@ -9,9 +9,11 @@ const OurServices = () => {
       <Container className='main'>
         <div className='ourServices'>
           <header>
-            <Text>Industries we service</Text>
-            <Heading>We succeed where it matters most today</Heading>
-            <Text>
+            <Text className='primary color_primary'>Industries we service</Text>
+            <Heading className='secondry--light color_secondry'>
+              We succeed where it matters most today
+            </Heading>
+            <Text className='secondry color_secondry'>
               Navigating the complexities of fast-evolving industries requires a
               deep understanding and agility. We specialize in marketing for
               web3, SaaS, fintech, technology, startups and AI products.

@@ -1,0 +1,45 @@
+.navdropDown {
+  position: relative;
+
+  & > section {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    & > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & > * {
+        font-size: 1.4rem;
+        color: white;
+      }
+    }
+  }
+  & > div {
+    background-color: rgb(15, 15, 15);
+    border: 1px solid rgba(255, 255, 255, 0.336);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    top: 3.7rem;
+    z-index: 1000;
+    width: 29rem;
+    padding: 2rem 1.5rem;
+    border-radius: 0.6rem;
+
+    & > a {
+      text-decoration: none;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: white;
+      padding: 1.2rem 1rem;
+      border-radius: 0.3rem;
+      &:hover {
+        background-color: #282828;
+      }
+    }
+  }
+}

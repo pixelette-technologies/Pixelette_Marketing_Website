@@ -9,7 +9,6 @@ import Text from "./Text";
 interface SubMenus {
   route: string;
   title: string;
-  id: number;
 }
 
 interface NavbarDropDownProps {
@@ -38,9 +37,9 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({ name, data }) => {
   }, []);
 
   return (
-    <div ref={dropdownRef} className='dropdown-container'>
+    <div ref={dropdownRef} className='navdropDown'>
       <section onClick={() => setActive(!active)}>
-        <Text>{name}</Text>
+        <Text className='secondry color_white'>{name}</Text>
         <motion.div
           animate={
             active
@@ -59,10 +58,10 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({ name, data }) => {
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {data.map(el => (
+          {data.map((el, index) => (
             <Link
-              key={el.id}
-              href={el.route}
+              key={index}
+              href={`/services/${el.route}`}
               passHref
               onClick={() => setActive(false)}
             >

@@ -15,7 +15,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
           className='heading_secondry--light color_white'
         ></h2>
         <Text className='secondry color_white'>{text}</Text>
-        <Button className='primary'>{"Book A Consultant - Its On Us!"}</Button>
+        <Button className='primary'>Book A Consultant - Its On Us!</Button>
       </div>
     </section>
   );

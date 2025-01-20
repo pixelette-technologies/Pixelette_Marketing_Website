@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <TrustedBrands heading='Trusted Brands' />
+      <TrustedBrands header='Trusted Brands' heading='Leading Brands' />
       <GrowthSection />
       <EngagementStalls />
       <DynamicMarket />

@@ -1,3 +1,5 @@
+@use "../../../globels" as color;
+
 .web3Question {
   padding: 2.4rem 0rem;
 
@@ -7,8 +9,16 @@
     justify-content: space-between;
     gap: 2rem;
     margin-bottom: 3.2rem;
+
+    & > h2 {
+      max-width: 38rem;
+      line-height: 2.8rem;
+      & > span {
+        color: color.$primary;
+      }
+    }
     & > p {
-      width: 55.6rem;
+      max-width: 55.6rem;
       text-align: right;
     }
   }

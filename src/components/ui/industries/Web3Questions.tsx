@@ -1,30 +1,34 @@
+import { FC } from "react";
 import { Container } from "@/components/common";
-import { Heading, Text, Web3MarketingCard } from "@/components/feature";
-import { web3MarketingData } from "@/data";
-import React from "react";
+import { Text, Web3MarketingCard } from "@/components/feature";
 
-const Web3Questions = () => {
+interface Web3CardsProps {
+  image?: string;
+  heading?: string;
+  text?: string;
+}
+
+interface Web3QuestionsProps {
+  heading?: string;
+  text?: string;
+  data?: Web3CardsProps[];
+}
+
+const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
   return (
     <div className='bg_tertiary'>
       <Container className='main'>
         <section className='web3Question'>
           <header>
-            <Heading className='secondry--light'>
-              We solve web3{" "}
-              <span className='color_primary'>
-                marketing’s <br /> toughest questions
-              </span>
-            </Heading>
-            <Text className='secondry'>
-              Crypto brands often face hurdles like low visibility, user
-              adoption gaps, and community engagement. Here’s how companies
-              availing our web3 marketing services have transformed their pain
-              points into measurable growth.
-            </Text>
+            <h2
+              dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
+              className='heading_secondry--light color_secondry'
+            ></h2>
+            <Text className='secondry'>{text}</Text>
           </header>
 
           <section>
-            {web3MarketingData.map((el, index) => (
+            {data?.map((el, index) => (
               <Web3MarketingCard
                 key={index}
                 image={el.image}

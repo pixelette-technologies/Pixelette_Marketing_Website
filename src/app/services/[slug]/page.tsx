@@ -42,7 +42,7 @@ export default async function Page({ params }: PageProps) {
         mainHeading={pageData?.mainHeading}
         subHeading={pageData?.subHeading}
         text={pageData?.summary}
-        image={pageData?.image || "/services/heroImageSErv"}
+        image={pageData?.image || "/services/heroImageServices.webp"}
       />
 
       <ResearchSection

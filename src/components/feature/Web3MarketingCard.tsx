@@ -3,9 +3,9 @@ import { FC } from "react";
 import Text from "./Text";
 
 interface Web3MarketingCardProps {
-  image: string;
-  heading: string;
-  summary: string;
+  image?: string;
+  heading?: string;
+  summary?: string;
 }
 
 const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
@@ -15,10 +15,15 @@ const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
 }) => {
   return (
     <div className='web3marketingCard  bg_white'>
-      <Image src={image} alt='Card Profile' width={324} height={175} />
+      <Image
+        src={image || "/industries/mq_1.webp"}
+        alt='Card Profile'
+        width={324}
+        height={175}
+      />
       <h6
         className='text_secondry--semibold'
-        dangerouslySetInnerHTML={{ __html: heading }}
+        dangerouslySetInnerHTML={{ __html: heading || "" }}
       />
       <Text className='tertiary color_gray--light'>{summary}</Text>
     </div>

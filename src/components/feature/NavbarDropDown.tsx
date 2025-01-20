@@ -13,10 +13,15 @@ interface SubMenus {
 
 interface NavbarDropDownProps {
   name: string;
+  mainRoute: string;
   data: SubMenus[];
 }
 
-const NavbarDropDown: React.FC<NavbarDropDownProps> = ({ name, data }) => {
+const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
+  name,
+  data,
+  mainRoute
+}) => {
   const [active, setActive] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -61,7 +66,7 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({ name, data }) => {
           {data.map((el, index) => (
             <Link
               key={index}
-              href={`/services/${el.route}`}
+              href={`/${mainRoute}/${el.route}`}
               passHref
               onClick={() => setActive(false)}
             >

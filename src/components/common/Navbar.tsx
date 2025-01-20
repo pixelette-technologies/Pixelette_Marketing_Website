@@ -3,6 +3,7 @@ import Container from "./Container";
 import Link from "next/link";
 import { NavbarDropDown } from "../feature";
 import { servicesData } from "@/data/services/servicesData";
+import { industriesData } from "@/data/industries/industriesData";
 
 export default function Navbar() {
   return (
@@ -14,7 +15,16 @@ export default function Navbar() {
           </Link>
           <div>
             <Link href={"/"}>Home</Link>
-            <NavbarDropDown name='Services' data={servicesData} />
+            <NavbarDropDown
+              name='Services'
+              mainRoute='services'
+              data={servicesData}
+            />
+            <NavbarDropDown
+              name='Industries'
+              mainRoute='industries'
+              data={industriesData}
+            />
             <Link href={"/aboutus"}>About Us</Link>
             <Link href={"/contactus"}>Contact Us</Link>
           </div>

@@ -1,5 +1,6 @@
 import {
   ContactSection,
+  ContentDisplaySection,
   QuestionAndAnswer,
   TeamSection
 } from "@/components/common";
@@ -36,6 +37,8 @@ export default async function Page({ params }: PageProps) {
 
   const reviewsData = pageData?.review;
 
+  const marketingServicesData = pageData?.marketingServices;
+
   return (
     <>
       <ServicesHero
@@ -68,6 +71,13 @@ export default async function Page({ params }: PageProps) {
         heading={serviceData?.heading}
         text={serviceData?.text}
         data={serviceData?.data || []}
+      />
+
+      <ContentDisplaySection
+        title={marketingServicesData?.title}
+        heading={marketingServicesData?.heading}
+        detail={marketingServicesData?.detail}
+        data={marketingServicesData?.data || []}
       />
 
       <TeamSection

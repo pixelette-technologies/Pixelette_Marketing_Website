@@ -14,14 +14,14 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ header, heading }) => {
     <div className='trustedBrands'>
       <Container className='main'>
         {header && (
-          <Heading className='primary color_secondry font_family_glory'>
+          <Heading className='primary color_secondry font_family_glory uppercase'>
             {header}
           </Heading>
         )}
       </Container>
       <section className='bg_primary'>
         <Container className='mainLeft'>
-          <Heading className='primary color_white font_family_glory'>
+          <Heading className='primary color_white font_family_glory uppercase'>
             {heading}
           </Heading>
           <section>

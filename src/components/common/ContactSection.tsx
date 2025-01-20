@@ -12,7 +12,7 @@ interface ContactData {
 interface ContactSectionProps {
   heading?: string;
   text?: string;
-  data: ContactData[];
+  data?: ContactData[];
 }
 
 const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
@@ -24,12 +24,12 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
             {heading && (
               <h2
                 className='heading_primary font_family_glory uppercase'
-                dangerouslySetInnerHTML={{ __html: heading  }}
+                dangerouslySetInnerHTML={{ __html: heading }}
               ></h2>
             )}
             {text && <Text className='secondry'>{text}</Text>}
             <div>
-              {data.map((el, index) => (
+              {data?.map((el, index) => (
                 <blockquote className='bg_white' key={index}>
                   <section>
                     <el.icon />

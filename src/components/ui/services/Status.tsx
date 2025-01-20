@@ -3,13 +3,13 @@ import { Text, Heading } from "@/components/feature";
 import { FC } from "react";
 
 interface CardProps {
-  value: number;
-  detail: string;
+  value?: number;
+  detail?: string;
 }
 interface StatusProps {
-  heading: string;
-  text: string;
-  data: CardProps[];
+  heading?: string;
+  text?: string;
+  data?: CardProps[];
 }
 
 const Status: FC<StatusProps> = ({ heading, text, data }) => {
@@ -22,7 +22,7 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
             <Text className='secondry color_white'>{text}</Text>
           </header>
           <section>
-            {data.map((el, index) => (
+            {data?.map((el, index) => (
               <div key={index}>
                 <Text className='primary color_white'>
                   <span>{el.value}</span>

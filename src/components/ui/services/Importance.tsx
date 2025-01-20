@@ -4,16 +4,16 @@ import Image from "next/image";
 import { FC } from "react";
 
 interface CardProps {
-  role: string;
-  name: string;
-  summary: string;
+  role?: string;
+  name?: string;
+  summary?: string;
   image: string;
 }
 
 interface ImportanceProps {
-  mainheading: string;
-  subHeading: string;
-  data: CardProps[];
+  mainheading?: string;
+  subHeading?: string;
+  data?: CardProps[];
 }
 
 const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
@@ -30,7 +30,7 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
             </Heading>
           </center>
           <section>
-            {data.map((el, index) => (
+            {data?.map((el, index) => (
               <div key={index} className='bg_primary'>
                 <section>
                   <Text className='tertiary color_white'>{el.summary}</Text>

@@ -2,8 +2,8 @@ import { FC } from "react";
 import { Text, Button } from "../feature";
 
 interface QuestionAndAnswerProps {
-  heading: string;
-  text: string;
+  heading?: string;
+  text?: string;
 }
 
 const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
@@ -11,7 +11,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
     <section className='bg_secondry--light'>
       <div className='questionAndAnswer  text_align_center'>
         <h2
-          dangerouslySetInnerHTML={{ __html: heading }}
+          dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
           className='heading_secondry--light color_white'
         ></h2>
         <Text className='secondry color_white'>{text}</Text>

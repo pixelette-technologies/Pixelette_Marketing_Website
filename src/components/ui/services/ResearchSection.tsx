@@ -3,16 +3,16 @@ import { Heading, Text } from "@/components/feature";
 import { FC } from "react";
 
 interface CardProps {
-  value: number;
-  message: string;
-  source: string;
+  value?: number;
+  message?: string;
+  source?: string;
 }
 
 interface ResearchSectionProps {
-  mainHeading: string;
-  subHeading: string;
-  detail: string;
-  data: CardProps[];
+  mainHeading?: string;
+  subHeading?: string;
+  detail?: string;
+  data?: CardProps[];
 }
 
 const ResearchSection: FC<ResearchSectionProps> = ({
@@ -37,7 +37,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
         </header>
 
         <section className='bg_gray--light'>
-          {data.map((el, index) => (
+          {data?.map((el, index) => (
             <div key={index}>
               <Heading className='primary color_primary font_family_glory '>
                 {el.value}%

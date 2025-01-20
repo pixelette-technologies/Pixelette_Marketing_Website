@@ -4,9 +4,9 @@ import Image from "next/image";
 import { FC } from "react";
 
 interface ServicesHeroProps {
-  mainHeading: string;
-  subHeading: string;
-  text: string;
+  mainHeading?: string;
+  subHeading?: string;
+  text?: string;
   image: string;
 }
 

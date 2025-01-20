@@ -40,48 +40,48 @@ export default function Page({ params }: PageProps) {
   return (
     <>
       <ServicesHero
-        mainHeading={pageData.mainHeading}
-        subHeading={pageData.subHeading}
-        text={pageData.summary}
-        image={pageData.image}
+        mainHeading={pageData?.mainHeading}
+        subHeading={pageData?.subHeading}
+        text={pageData?.summary}
+        image={pageData?.image}
       />
 
       <ResearchSection
-        mainHeading={researchData.mainHeading}
-        subHeading={researchData.subHeading}
-        detail={researchData.detail}
-        data={researchData.data}
+        mainHeading={researchData?.mainHeading}
+        subHeading={researchData?.subHeading}
+        detail={researchData?.detail}
+        data={researchData?.data}
       />
 
       <Importance
-        mainheading={importanceData.mainHeading}
-        subHeading={importanceData.subHeading}
-        data={importanceData.data}
+        mainheading={importanceData?.mainHeading}
+        subHeading={importanceData?.subHeading}
+        data={importanceData?.data}
       />
 
       <Status
-        heading={statusData.heading}
-        text={statusData.text}
-        data={statusData.data}
+        heading={statusData?.heading}
+        text={statusData?.text}
+        data={statusData?.data}
       />
 
       <ServicesSection
-        heading={serviceData.heading}
-        text={serviceData.text}
-        data={serviceData.data}
+        heading={serviceData?.heading}
+        text={serviceData?.text}
+        data={serviceData?.data}
       />
 
       <TeamSection
-        mainHeading={reviewsData.mainHeading}
+        mainHeading={reviewsData?.mainHeading}
         subHeading={reviewsData?.subHeading}
         details={reviewsData?.details}
       />
 
-      <ContactSection heading={contactData.heading} data={contactData.data} />
+      <ContactSection heading={contactData?.heading} data={contactData?.data} />
 
       <QuestionAndAnswer
-        heading={questionAndAnswer.question}
-        text={questionAndAnswer.answer}
+        heading={questionAndAnswer?.question}
+        text={questionAndAnswer?.answer}
       />
     </>
   );

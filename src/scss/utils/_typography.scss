@@ -23,6 +23,11 @@ a {
 .color_secondry {
   color: color.$secondry;
 }
+
+.color_tertiary {
+  color: color.$tertiary;
+}
+
 .color_secondry--light {
   color: color.$secondry--light;
 }
@@ -33,6 +38,10 @@ a {
 
 .color_gray {
   color: color.$gray;
+}
+
+.color_gray-dark {
+  color: color.$gray-dark;
 }
 
 .color_white {

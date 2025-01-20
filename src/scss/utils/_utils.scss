@@ -23,3 +23,11 @@
 .bg_white {
   background-color: white;
 }
+
+.bg_gray--light {
+  background-color: color.$gray--light;
+}
+
+.bg_gray--lighter {
+  background-color: color.$gray--lighter;
+}

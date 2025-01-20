@@ -1,0 +1,64 @@
+.whoWeAre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0rem;
+  & > section {
+    flex: 1 1 calc(50% - 0rem);
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 3.2rem;
+    padding-right: 3.2rem;
+    & > div {
+      max-width: 54.2rem;
+      & > header {
+        background: linear-gradient(
+          90deg,
+          #ffffff 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        padding: 1rem 1.6rem;
+      }
+      & > h1 {
+        margin: 1.6rem 0rem;
+        line-height: 3.1rem;
+      }
+    }
+  }
+
+  & > * {
+    &:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      & > div {
+        & > div {
+          & > * {
+            &:first-child {
+              margin-bottom: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+
+    &:last-child {
+      & > div {
+        & > ul {
+          margin-top: 1.6rem;
+          & > * {
+            &:not(:last-child) {
+              margin-bottom: 1.6rem;
+            }
+          }
+          & > li {
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 2rem;
+            color: white;
+            margin-left: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

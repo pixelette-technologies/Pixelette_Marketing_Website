@@ -1,0 +1,41 @@
+.researchSection {
+  padding: 2.4rem 0rem;
+  & > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2rem;
+    padding-bottom: 2.4rem;
+
+    & > div {
+      max-width: 29rem;
+    }
+    & > p {
+      width: 55.3rem;
+      text-align: right;
+    }
+  }
+
+  & > section {
+    padding: 2.4rem 2.8rem;
+    display: flex;
+    align-items: start;
+    gap: 5.6rem;
+    flex-wrap: wrap;
+    border-radius: 0.6rem;
+    & > div {
+      flex: 1 1 calc(33.3% - 5.6rem);
+      & > h1 {
+        margin-bottom: 0.6rem;
+      }
+      & > p {
+        margin-bottom: 2rem;
+      }
+      & > blockquote {
+        display: inline-block;
+        padding: 0.4rem 1.2rem;
+        border-radius: 0.3rem;
+      }
+    }
+  }
+}

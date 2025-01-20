@@ -9,29 +9,37 @@ const HowItWork = () => {
       <Container className='main'>
         <div className='howItworks'>
           <header>
-            <Text>Here’s how it works</Text>
+            <Heading className='secondry--light color_white'>
+              Here’s how it works
+            </Heading>
             <section>
               <div>
                 <MailIcon />
-                <Text>sales@pixelettemarketing.com</Text>
+                <Text className='primary color_white'>
+                  sales@pixelettemarketing.com
+                </Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text>+44 2045188226</Text>
+                <Text className='primary color_white'>+44 2045188226</Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text>+1 7732709034</Text>
+                <Text className='primary color_white'>+1 7732709034</Text>
               </div>
             </section>
           </header>
           <section>
             {howItWorkData.map((el, index) => (
               <blockquote key={index}>
-                <el.icon />
+                <section>
+                  <el.icon />
+                </section>
                 <div>
-                  <Heading>{el.heading}</Heading>
-                  <Text>{el.text}</Text>
+                  <Heading className='secondry--boldLight color_white'>
+                    {el.heading}
+                  </Heading>
+                  <Text className='tertiary--light color_white'>{el.text}</Text>
                 </div>
               </blockquote>
             ))}

@@ -12,7 +12,7 @@ button {
     color: white;
     font-weight: 500;
     padding: 1.45rem 3.45rem;
-    border: none;
+    border: 1px solid color.$primary;
     border-radius: 0.8rem;
     background-color: color.$primary;
     line-height: 2.2rem;
@@ -23,10 +23,18 @@ button {
     color: white;
     font-weight: 500;
     padding: 1.45rem 3.45rem;
-    border: none;
+    border: 1px solid color.$primary;
     border-radius: 0.8rem;
     background-color: color.$primary;
     line-height: 2.2rem;
     width: 100%;
+  }
+  &_secondry-full {
+    font-size: 1.6rem;
+    font-weight: 500;
+    padding: 1.45rem 3.45rem;
+    border-radius: 0.8rem;
+    width: 100%;
+    line-height: 2.2rem;
   }
 }

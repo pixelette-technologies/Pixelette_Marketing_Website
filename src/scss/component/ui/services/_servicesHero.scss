@@ -1,0 +1,16 @@
+.servicesHero {
+  display: flex;
+  align-items: center;
+  gap: 5.6rem;
+
+  & > div {
+    & > p {
+      padding: 2.4rem 0rem;
+    }
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+  }
+}

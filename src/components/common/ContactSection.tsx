@@ -29,8 +29,8 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
             )}
             {text && <Text className='secondry'>{text}</Text>}
             <div>
-              {data.map(el => (
-                <blockquote className='bg_white' key={el.heading}>
+              {data.map((el, index) => (
+                <blockquote className='bg_white' key={index}>
                   <section>
                     <el.icon />
                   </section>

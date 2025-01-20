@@ -1,0 +1,31 @@
+@use "../../../globels" as color;
+
+.located {
+  padding: 3.2rem 0rem;
+
+  & > h1 {
+    margin-bottom: 1.2rem;
+  }
+  & > section {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    & > blockquote {
+      flex: 1 1 calc(50% - 1.6rem);
+      display: flex;
+      align-items: center;
+      padding: 2.4rem;
+      border-radius: 1.6rem;
+      gap: 3.2rem;
+      & > div {
+        & > h2 {
+          margin-bottom: 1.6rem;
+          & > span {
+            color: color.$primary;
+          }
+        }
+      }
+    }
+  }
+}

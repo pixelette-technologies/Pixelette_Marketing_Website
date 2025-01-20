@@ -1,6 +1,6 @@
 import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
 
-const servicesData = [
+export const servicesData = [
   {
     id: 1,
     title: "Social Media",
@@ -18,7 +18,7 @@ const servicesData = [
       data: [
         {
           value: 73,
-          meassage:
+          message:
             "of brands post identical content across multiple platforms, ignoring each platform's unique audience, or even image dimensions.",
           source: "Sprout Social, 2022"
         },
@@ -56,7 +56,7 @@ const servicesData = [
         },
         {
           role: "CEO of Tesla and SpaceX",
-          name: "ElonMusK",
+          name: "Elon Musk",
           summary:
             "Twitter’s reach and influence are massive for launching and promoting ideas. Tesla has never spent a dime on traditional advertising; our social media presence drives our brand",
           image: "/services/elon.webp"
@@ -341,7 +341,7 @@ const servicesData = [
       ]
     },
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -384,19 +384,19 @@ const servicesData = [
       data: [
         {
           value: 55,
-          meassage:
+          message:
             "of marketers still rely on generic email templates, leading to lower engagement and reduced open rates.",
           source: "HubSpot, 2023"
         },
         {
           value: 40,
-          meassage:
+          message:
             "of brands fail to segment their email lists, losing out on personalized communication that could increase revenue by 760%.",
           source: "Campaign Monitor, 202"
         },
         {
           value: 69,
-          meassage:
+          message:
             "of recipients unsubscribe from emails due to irrelevant content, which is a direct result of poor strategy and lack of data utilization.",
           source: "Litmus, 2023"
         }
@@ -755,19 +755,19 @@ const servicesData = [
       data: [
         {
           value: 75,
-          meassage:
+          message:
             "of websites suffer from poor search engine optimization, leading to missed ranking opportunities",
           source: "Search Engine Journal, 2023"
         },
         {
           value: 40,
-          meassage:
+          message:
             "of businesses fail to adapt their SEO strategies to search engine algorithm updates.",
           source: "HubSpot, 2023"
         },
         {
           value: 68,
-          meassage:
+          message:
             "of marketers admit they lack a clear SEO keyword strategy, resulting in low organic traffic.",
           source: "SEMrush, 2023"
         }
@@ -1072,19 +1072,19 @@ const servicesData = [
       data: [
         {
           value: 67,
-          meassage:
+          message:
             "of businesses struggle to establish trust due to inconsistent messaging and poor public relations strategies.",
           source: "HubSpot 2023"
         },
         {
           value: 50,
-          meassage:
+          message:
             "fewer positive brand mentions compared to their competitors in companies lacking a strong PR strategy. ",
           source: "PR News 2023"
         },
         {
           value: 73,
-          meassage:
+          message:
             "of consumers hesitate to engage with brands they perceive as untrustworthy or disconnected from their audience.",
           source: " Edelman Trust Barometer 2023"
         }
@@ -1423,19 +1423,19 @@ const servicesData = [
       data: [
         {
           value: 70,
-          meassage:
+          message:
             "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
           source: "HubSpot 2023"
         },
         {
           value: 55,
-          meassage:
+          message:
             "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
           source: "Nielsen, 202"
         },
         {
           value: 55,
-          meassage:
+          message:
             "of businesses admit to underestimating the potential of influencer marketing, resulting in missed ROI opportunities.",
           source: "Edelman Trust Barometer 2023"
         }
@@ -1701,19 +1701,19 @@ const servicesData = [
       data: [
         {
           value: 70,
-          meassage:
+          message:
             "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
           source: " HubSpot 2023"
         },
         {
           value: 55,
-          meassage:
+          message:
             "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
           source: "Nielsen, 202"
         },
         {
           value: 55,
-          meassage:
+          message:
             "of businesses admit to underestimating the potential of influencer marketing, resulting in missed ROI opportunities.",
           source: "Edelman Trust Barometer 2023"
         }
@@ -1954,19 +1954,19 @@ const servicesData = [
       data: [
         {
           value: 45,
-          meassage:
+          message:
             " of businesses fail to optimize their PPC campaigns, resulting in wasted budgets.",
           source: "WordStream, 2023"
         },
         {
           value: 70,
-          meassage:
+          message:
             "higher conversion rate in companies that use retargeting ads compared to those that don’t",
           source: "HubSpot, 2022"
         },
         {
           value: 60,
-          meassage:
+          message:
             " lower click-through rates due to poor ad audience targeting.",
           source: "SEMrush, 2023"
         }
@@ -2319,19 +2319,19 @@ const servicesData = [
       data: [
         {
           value: 67,
-          meassage:
+          message:
             "A lack of effective reporting leads to 67% of leaders failing to gain critical insights into their performance metrics.",
           source: "Forrester, 2022"
         },
         {
           value: 30,
-          meassage:
+          message:
             "Poor analytics lead to a 30% higher cost-per-acquisition for most digital campaigns",
           source: "SEMrush, 2023"
         },
         {
           value: 79,
-          meassage:
+          message:
             "of marketers struggle with attributing revenue to specific campaigns.",
           source: "HubSpot, 2023"
         }
@@ -2720,19 +2720,19 @@ const servicesData = [
       data: [
         {
           value: 50,
-          meassage:
+          message:
             "fewer leads in companies without a structured lead generation strategy compared to competitors.",
           source: "Marketing Insights, 2023"
         },
         {
           value: 79,
-          meassage:
+          message:
             "drop in conversions from initial contact to sale for businesses that fail to nurture leads",
           source: "LeadGen Journal, 2023"
         },
         {
           value: 30,
-          meassage:
+          message:
             "lower conversion rates in companies that don’t automate lead management.",
           source: "Automation Trends, 2022"
         }
@@ -3078,5 +3078,3 @@ const servicesData = [
     }
   }
 ];
-
-export default servicesData;

@@ -1,0 +1,27 @@
+.servicesCard {
+  padding: 2.4rem 1.6rem;
+  border-radius: 0.2rem;
+
+  & > h1 {
+    max-width: 26.2rem;
+    margin-bottom: 1.8rem;
+  }
+  & > section {
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+
+    & > div {
+      padding: 1.6rem;
+      border-radius: 1rem;
+      flex: 1 1 calc(33.3% - 1.6rem);
+      background-color: rgba(250, 246, 243, 1);
+      & > * {
+        &:first-child {
+          max-width: 20.7rem;
+          margin-bottom: 1.6rem;
+        }
+      }
+    }
+  }
+}

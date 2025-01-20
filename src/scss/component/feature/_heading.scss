@@ -35,4 +35,30 @@
     font-weight: 800;
     line-height: 3.5rem;
   }
+  &tertiary--medium {
+    font-size: 3.2rem;
+    font-weight: 600;
+    line-height: 3.5rem;
+  }
+  &tertiary--light {
+    font-size: 3.2rem;
+    font-weight: 400;
+    line-height: 3.5rem;
+  }
+
+  &ImportanceCardheading {
+    font-size: 4.8rem;
+    font-weight: 600;
+    line-height: 4.808rem;
+  }
+  &small {
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+  &large {
+    font-size: 9.17rem;
+    font-weight: 800;
+    line-height: 7.514rem;
+  }
 }

@@ -1,3 +1,6 @@
+"use server";
+
+
 const ProposalIcon = () => {
   return (
     <svg

@@ -1,15 +1,4 @@
-import {
-  ContactSection,
-  QuestionAndAnswer,
-  TeamSection
-} from "@/components/common";
-import {
-  Importance,
-  ResearchSection,
-  ServicesHero,
-  ServicesSection,
-  Status
-} from "@/components/ui/services";
+import { ServicesHero } from "@/components/ui/services";
 import { servicesData } from "@/data/services/servicesData";
 
 interface PageProps {
@@ -19,23 +8,9 @@ interface PageProps {
 }
 
 export default function Page({ params }: PageProps) {
-  const slug = params.slug;
+  const { slug } = params;
 
   const pageData = servicesData.find(item => item.route === slug);
-
-  const researchData = pageData?.research;
-
-  const importanceData = pageData?.importance;
-
-  const statusData = pageData?.status;
-
-  const serviceData = pageData?.services;
-
-  const contactData = pageData?.howWeWork;
-
-  const questionAndAnswer = pageData?.questionAndAnswer;
-
-  const reviewsData = pageData?.review;
 
   return (
     <>
@@ -44,44 +19,6 @@ export default function Page({ params }: PageProps) {
         subHeading={pageData?.subHeading}
         text={pageData?.summary}
         image={pageData?.image}
-      />
-
-      <ResearchSection
-        mainHeading={researchData?.mainHeading}
-        subHeading={researchData?.subHeading}
-        detail={researchData?.detail}
-        data={researchData?.data}
-      />
-
-      <Importance
-        mainheading={importanceData?.mainHeading}
-        subHeading={importanceData?.subHeading}
-        data={importanceData?.data}
-      />
-
-      <Status
-        heading={statusData?.heading}
-        text={statusData?.text}
-        data={statusData?.data}
-      />
-
-      <ServicesSection
-        heading={serviceData?.heading}
-        text={serviceData?.text}
-        data={serviceData?.data}
-      />
-
-      <TeamSection
-        mainHeading={reviewsData?.mainHeading}
-        subHeading={reviewsData?.subHeading}
-        details={reviewsData?.details}
-      />
-
-      <ContactSection heading={contactData?.heading} data={contactData?.data} />
-
-      <QuestionAndAnswer
-        heading={questionAndAnswer?.question}
-        text={questionAndAnswer?.answer}
       />
     </>
   );

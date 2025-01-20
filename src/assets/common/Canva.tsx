@@ -1,3 +1,6 @@
+"use server";
+
+
 const Canva = () => {
   return (
     <svg

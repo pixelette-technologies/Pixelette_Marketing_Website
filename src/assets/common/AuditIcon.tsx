@@ -1,3 +1,5 @@
+"use server";
+
 const AuditIcon = () => {
   return (
     <svg

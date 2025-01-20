@@ -1,3 +1,5 @@
+"use server";
+
 const Sprout = () => {
   return (
     <svg

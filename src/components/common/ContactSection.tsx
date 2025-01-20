@@ -24,7 +24,7 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
             {heading && (
               <h2
                 className='heading_primary font_family_glory uppercase'
-                dangerouslySetInnerHTML={{ __html: heading }}
+                dangerouslySetInnerHTML={{ __html: heading  }}
               ></h2>
             )}
             {text && <Text className='secondry'>{text}</Text>}

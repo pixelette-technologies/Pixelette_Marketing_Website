@@ -1,3 +1,5 @@
+"use server";
+
 const ArrowRight = () => {
   return (
     <svg

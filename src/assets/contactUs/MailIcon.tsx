@@ -1,3 +1,5 @@
+"use server";
+
 const MailIcon = () => {
   return (
     <svg

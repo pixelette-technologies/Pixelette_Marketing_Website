@@ -11,11 +11,11 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
     <section className='bg_secondry--light'>
       <div className='questionAndAnswer  text_align_center'>
         <h2
-          dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
+          dangerouslySetInnerHTML={{ __html: heading || "" }}
           className='heading_secondry--light color_white'
         ></h2>
         <Text className='secondry color_white'>{text}</Text>
-        <Button className='primary'>{"Book A Consultant - It's On Us!"}</Button>
+        <Button className='primary'>{"Book A Consultant - Its On Us!"}</Button>
       </div>
     </section>
   );

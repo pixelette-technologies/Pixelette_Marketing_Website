@@ -1,14 +1,8 @@
 import { FC } from "react";
 import Container from "./Container";
 import { Heading, Marquee } from "../feature";
-import {
-  Buffer,
-  Apollo,
-  Jira,
-  LinkedIn,
-  PyTorch,
-  Sprout
-} from "@/assets/common";
+import { brandsData } from "@/data";
+import Image from "next/image";
 
 interface TrustedBrandsProps {
   header?: string;
@@ -32,42 +26,16 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ header, heading }) => {
           </Heading>
           <section>
             <Marquee>
-              <div style={{ marginRight: "5rem" }}>
-                <Jira />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <LinkedIn />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <PyTorch />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Apollo />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Sprout />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Buffer />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Jira />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <LinkedIn />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <PyTorch />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Apollo />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Sprout />
-              </div>
-              <div style={{ marginRight: "5rem" }}>
-                <Buffer />
-              </div>
+              {brandsData.map((el, index) => (
+                <div key={index} style={{ marginRight: "5rem" }}>
+                  <Image
+                    src={el.icon}
+                    height={el.height}
+                    width={el.width}
+                    alt='icons'
+                  />
+                </div>
+              ))}
             </Marquee>
           </section>
         </Container>

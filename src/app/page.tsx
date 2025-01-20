@@ -1,4 +1,8 @@
-import { ContactSection, TeamSection } from "@/components/common";
+import {
+  ContactSection,
+  TeamSection,
+  TrustedBrands
+} from "@/components/common";
 import {
   DynamicMarket,
   EngagementStalls,
@@ -12,6 +16,7 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      <TrustedBrands heading='Trusted Brands' />
       <GrowthSection />
       <EngagementStalls />
       <DynamicMarket />

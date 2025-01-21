@@ -1,6 +1,7 @@
 import { IndustriesHero, Web3Questions } from "@/components/ui/industries";
 import {
   ContactSection,
+  ContentDisplaySection,
   QuestionAndAnswer,
   TeamSection
 } from "@/components/common";
@@ -23,6 +24,8 @@ export default async function Page({ params }: PageProps) {
 
   const questionAndAnswer = pageData?.questionAndAnswer;
 
+  const marketingServicesData = pageData?.marketingServices;
+
   return (
     <>
       <IndustriesHero
@@ -35,6 +38,12 @@ export default async function Page({ params }: PageProps) {
         heading={ourSolutionData?.heading}
         text={ourSolutionData?.text}
         data={ourSolutionData?.data || []}
+      />
+      <ContentDisplaySection
+        title={marketingServicesData?.title}
+        heading={marketingServicesData?.heading}
+        detail={marketingServicesData?.detail}
+        data={marketingServicesData?.data || []}
       />
       <ContactSection
         heading={contactData?.heading}

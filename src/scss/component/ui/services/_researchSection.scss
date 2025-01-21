@@ -23,6 +23,7 @@
     gap: 5.6rem;
     flex-wrap: wrap;
     border-radius: 0.6rem;
+    background-color: rgba(240, 233, 228, 1);
     & > div {
       flex: 1 1 calc(33.3% - 5.6rem);
       & > h1 {

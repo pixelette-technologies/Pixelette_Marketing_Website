@@ -36,7 +36,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
           <Text className='secondry'>{detail}</Text>
         </header>
 
-        <section className='bg_gray--light'>
+        <section className=''>
           {data?.map((el, index) => (
             <div key={index}>
               <Heading className='primary color_primary font_family_glory '>

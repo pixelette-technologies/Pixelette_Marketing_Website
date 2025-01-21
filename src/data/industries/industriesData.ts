@@ -109,7 +109,7 @@ export const industriesData = [
       title: "",
       heading: `Our web3 <span>marketing services  </span> `,
       detail:
-        "We partner with you to create powerful crypto marketing campaigns that maximize your business’ potential and set you up for long-term success.",
+        "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
       data: [
         {
           heading: "Crypto Content Marketing",
@@ -259,8 +259,9 @@ export const industriesData = [
     ],
     marketingServices: {
       title: "",
-      heading: ` <span>  </span> `,
-      detail: "",
+      heading: `<span> Our fintech </span> marketing services   `,
+      detail:
+        "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
       data: [
         {
           heading: "Crypto Content Marketing",
@@ -409,8 +410,9 @@ export const industriesData = [
     ],
     marketingServices: {
       title: "",
-      heading: ` <span>  </span> `,
-      detail: "",
+      heading: ` <span> Our tech </span>  marketing services `,
+      detail:
+        "We collaborate with you to design impactful tech marketing campaigns that bring your  new solutions to the forefront and set the stage for long-term success.",
       data: [
         {
           heading: "Crypto Content Marketing",
@@ -560,8 +562,9 @@ export const industriesData = [
     ],
     marketingServices: {
       title: "",
-      heading: ` <span>  </span> `,
-      detail: "",
+      heading: ` <span> Our SaaS </span>   marketing services`,
+      detail:
+        "We collaborate with you to design SaaS marketing campaigns that drive adoption, improve retention and position your product for long-term success.",
       data: [
         {
           heading: "Crypto Content Marketing",
@@ -711,8 +714,9 @@ export const industriesData = [
     ],
     marketingServices: {
       title: "",
-      heading: ` <span>  </span> `,
-      detail: "",
+      heading: ` <span> Our marketing services </span>  for AI companies `,
+      detail:
+        "We design and execute AI marketing campaigns that bridge the gap between innovation and adoption, ensuring your solutions reach their full market potential.",
       data: [
         {
           heading: "Crypto Content Marketing",

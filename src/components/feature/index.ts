@@ -8,3 +8,4 @@ export { default as Web3MarketingCard } from "./Web3MarketingCard";
 export { default as FormInput } from "./FormInput";
 export { default as FormTextArea } from "./FormTextArea";
 export { default as NavbarDropDown } from "./NavbarDropDown";
+export { default as BlogCard } from "./BlogCard";

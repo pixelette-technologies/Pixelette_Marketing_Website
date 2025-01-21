@@ -1,0 +1,13 @@
+.blogCard {
+  padding: 1.6rem;
+  border-radius: 1.6rem;
+  & > svg {
+    margin-bottom: 1.6rem;
+  }
+  & > div {
+    background-color: rgba(165, 121, 106, 1);
+    border-radius: 1.6rem;
+    height: 16rem;
+    margin-bottom: 1rem;
+  }
+}

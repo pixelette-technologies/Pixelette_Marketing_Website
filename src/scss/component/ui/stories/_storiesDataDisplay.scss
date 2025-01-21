@@ -1,0 +1,47 @@
+@use "../../../globels" as color;
+
+.storiesDataDisplay {
+  margin: 3.2rem 0rem;
+  & > header {
+    margin-bottom: 3.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+    padding-bottom: 0.5rem;
+    &::-webkit-scrollbar {
+      width: 0.7rem;
+      height: 0.6rem;
+    }
+    &::-webkit-scrollbar-track {
+      margin-bottom: 2rem;
+      background-color: color.$gray;
+      border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: color.$primary;
+      border-radius: 1rem;
+      cursor: grabbing;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: color.$primary;
+      border-radius: 1rem;
+    }
+    & > div {
+      font-size: 1.2rem;
+      font-weight: 400;
+      border: 1px solid rgba(199, 199, 199, 1);
+      border-radius: 0.5rem;
+      padding: 1.2rem 3.9rem;
+    }
+    & > * {
+      &:first-child {
+        background-color: color.$primary;
+        border: 1px solid color.$primary;
+        color: white;
+      }
+    }
+  }
+}

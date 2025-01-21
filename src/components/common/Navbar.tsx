@@ -25,6 +25,7 @@ export default function Navbar() {
               mainRoute='industries'
               data={industriesData}
             />
+            <Link href={"/success_stories"}>Stories</Link>
             <Link href={"/aboutus"}>About Us</Link>
             <Link href={"/contactus"}>Contact Us</Link>
           </div>

@@ -1,0 +1,26 @@
+.storiesCardGrid {
+  padding: 2.4rem;
+  border-radius: 1.6rem;
+  & > header {
+    margin-bottom: 0.9rem;
+    display: flex;
+    gap: 0.9rem;
+
+    & > * {
+      &:first-child {
+        width: 60%;
+      }
+      &:last-child {
+        width: 40%;
+      }
+    }
+  }
+  & > section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    & > div {
+      flex: 1 1 calc(33.3% - 0.9rem);
+    }
+  }
+}

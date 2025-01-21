@@ -7,7 +7,7 @@ const BlogCardGrid = () => {
       {storiesData.map((story, index) => (
         <BlogCard
           key={`section-story-${index}`}
-          icon={true}
+          icon={false}
           title={story.title}
           summary={story.summary}
         />

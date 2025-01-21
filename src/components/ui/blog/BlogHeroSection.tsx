@@ -14,8 +14,8 @@ const BlogHeroSection = () => {
         />
         <section>
           <Heading className='tertiary font_family_glory uppercase'>
-            Pixelette Stories of
-            <span className='color_primary'>Marketing Blog</span>
+            Pixelette
+            <span className='color_primary'> Marketing Blog</span>
           </Heading>
           <Text className='primary color_secondry'>
             Your marketing knowlege repository for emerging industries

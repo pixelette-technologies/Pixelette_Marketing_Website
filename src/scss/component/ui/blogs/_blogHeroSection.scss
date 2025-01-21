@@ -1,0 +1,11 @@
+.blogHeroSection {
+  display: flex;
+  align-items: center;
+  gap: 5.6rem;
+  padding: 4rem 0rem;
+  & > section {
+    & > h1 {
+      margin-bottom: 2.4rem;
+    }
+  }
+}

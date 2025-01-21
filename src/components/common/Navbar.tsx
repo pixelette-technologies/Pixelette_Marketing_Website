@@ -26,6 +26,7 @@ export default function Navbar() {
               data={industriesData}
             />
             <Link href={"/success_stories"}>Stories</Link>
+            <Link href={"/blogs"}>Blogs</Link>
             <Link href={"/aboutus"}>About Us</Link>
             <Link href={"/contactus"}>Contact Us</Link>
           </div>

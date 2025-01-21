@@ -1,0 +1,13 @@
+.blogDataDisplay {
+  display: flex;
+  gap: 1.6rem;
+  margin-bottom: 2rem;
+  & > * {
+    &:first-child {
+      width: 23.8rem;
+    }
+    &:last-child {
+      width: calc(100% - 25.4rem);
+    }
+  }
+}

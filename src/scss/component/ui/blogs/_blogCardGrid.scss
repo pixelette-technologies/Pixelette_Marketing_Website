@@ -1,0 +1,10 @@
+.blogCardGrid {
+  padding: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  border-radius: 1.6rem;
+  & > div {
+    flex: 1 1 calc(33.3% - 1.6rem);
+  }
+}

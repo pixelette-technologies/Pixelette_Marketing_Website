@@ -5,7 +5,7 @@
   gap: 4rem;
 
   & > div {
-    width: 30.6rem;
+    max-width: 30.6rem;
     & > * {
       &:first-child {
         margin-bottom: 0.9rem;
@@ -22,7 +22,7 @@
     padding-top: 4rem;
     padding-left: 3.2rem;
     padding-right: 3.2rem;
-    padding-bottom: 49rem;
+    padding-bottom: 28rem;
     display: flex;
     align-items: start;
     gap: 5rem;

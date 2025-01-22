@@ -1,23 +1,41 @@
+@use "../../globels/" as breakPoint;
+
 .text_ {
   &primary {
     font-size: 1.6rem;
     font-weight: 400;
     line-height: 2.4rem;
+    @media only screen and (max-width: 700px) {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
   &primary--semiBold {
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.8rem;
+    @media only screen and (max-width: 700px) {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
   &primary--bold {
     font-size: 1.6rem;
     font-weight: 600;
     line-height: 2rem;
+    @media only screen and (max-width: 700px) {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
   &primary--bolder {
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 2.4rem;
+    @media only screen and (max-width: 700px) {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
   }
 
   &secondry {
@@ -34,6 +52,10 @@
     font-size: 1.2rem;
     font-weight: 400;
     line-height: 1.6rem;
+    @media only screen and (max-width: 1200px) {
+      font-size: 1.4rem;
+      line-height: 1.9rem;
+    }
   }
   &tertiary--light {
     font-size: 1.2rem;

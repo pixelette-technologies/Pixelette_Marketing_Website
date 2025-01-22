@@ -27,8 +27,7 @@ export default function GrowthSection() {
               ))}
             </div>
           </header>
-          <section>
-            {/* <Heading>work we are proud of</Heading> */}
+          {/* <section>
             <div>
               <section>
                 <div>
@@ -79,6 +78,10 @@ export default function GrowthSection() {
                     height={86}
                   />
                 </div>
+                <Heading>
+                  work <br /> we are <br />
+                  proud of
+                </Heading>
               </section>
               <Image
                 src='/home/growthBanner.webp'
@@ -87,7 +90,7 @@ export default function GrowthSection() {
                 height={527}
               />
             </div>
-          </section>
+          </section> */}
         </div>
       </Container>
     </>

@@ -37,7 +37,7 @@ const RangeOfMarket = () => {
             <Heading className='secondry--semibold color_white'>
               Our range of marketing tech and platforms
             </Heading>
-            <Text className='primary--bold color_white'>
+            <Text className='primary color_white'>
               Pixelette Marketing utilizes a diverse range of platforms to drive
               engagement, generate leads and boost your ROI
             </Text>

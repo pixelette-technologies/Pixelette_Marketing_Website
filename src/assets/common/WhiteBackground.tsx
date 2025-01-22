@@ -4,7 +4,7 @@ const WhiteBackground = () => {
   return (
     <svg
       width='1366'
-      height='695'
+      height='665'
       viewBox='0 0 1366 665'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'

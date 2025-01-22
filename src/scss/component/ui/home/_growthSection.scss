@@ -1,5 +1,10 @@
+@use "../../../globels" as color;
+
 .growthSection {
   margin-top: 5.9rem;
+  @media only screen and (max-width: 600px) {
+    margin-top: 3rem;
+  }
   & > header {
     & > div {
       margin-top: 2.4rem;
@@ -8,8 +13,22 @@
       display: flex;
       flex-wrap: wrap;
       gap: 11.5rem;
+      @media only screen and (max-width: 850px) {
+        gap: 6rem;
+      }
+      @media only screen and (max-width: 700px) {
+        gap: 3.5rem;
+      }
+      @media only screen and (max-width: 600px) {
+        gap: 2.5rem;
+        padding: 1.4rem 2.2rem;
+      }
+
       & > div {
         flex: 1 1 calc(25% - 11.5rem);
+        @media only screen and (max-width: 600px) {
+          flex: 1 1 calc(50% - 2.5rem);
+        }
         & > h1 {
           margin-bottom: 0.7rem;
         }
@@ -29,11 +48,27 @@
         display: flex;
         flex-wrap: wrap;
         gap: 2.5rem;
+        position: relative;
         & > div {
           flex: 1 1 calc(50% - 2.5rem);
           display: flex;
           align-items: center;
           justify-content: center;
+          & > img {
+            z-index: 100;
+          }
+        }
+
+        & > h1 {
+          font-size: 11.5rem;
+          color: color.$tertiary;
+          line-height: 9.5rem;
+          text-transform: uppercase;
+          position: absolute;
+          font-family: "Glory";
+          font-weight: 900;
+          top: 10rem;
+          left: 10rem;
         }
       }
     }

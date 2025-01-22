@@ -11,10 +11,10 @@ const EngagementStalls = () => {
       <Container className='main '>
         <section className='engagementStalls'>
           <div>
-            <Heading className='primary color_primary'>
+            <Heading className='primary color_primary uppercase font_family_glory'>
               Engagement stalls without strategy
             </Heading>
-            <Heading className='primary color_secondry'>
+            <Heading className='primary color_secondry uppercase font_family_glory'>
               We drive it forward
             </Heading>
             <Text className='secondry'>
@@ -36,7 +36,7 @@ const EngagementStalls = () => {
                 />
               ))}
             </div>
-            <div>
+            <blockquote>
               {remainingItems.map((el, index) => (
                 <ArrowCard
                   key={index + 5}
@@ -47,7 +47,19 @@ const EngagementStalls = () => {
                   textfloat={true}
                 />
               ))}
-            </div>
+            </blockquote>
+            <section>
+              {remainingItems.map((el, index) => (
+                <ArrowCard
+                  key={index + 5}
+                  mainHeading={el.mainHeading}
+                  subHeading={el.subHeading}
+                  summary={el.text}
+                  theme={true}
+                  textfloat={false}
+                />
+              ))}
+            </section>
           </section>
         </section>
       </Container>

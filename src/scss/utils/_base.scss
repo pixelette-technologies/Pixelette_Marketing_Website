@@ -16,20 +16,18 @@ body {
   font-family: "Poppins";
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background: rgba(248, 245, 243, 1);
+  background-color: rgba(248, 245, 243, 1);
 }
 
 html {
-  // This defines what 1rem is
-  font-size: 62.5%; //1 rem = 10px; 10px/16px = 62.5%
-  // @include breakPoint.respond(tab-port) {
-  //   // width < 900?
-  //   font-size: 45%; //1 rem = 8px, 8/16 = 50%
-  // }
-  // @include breakPoint.respond(laptop) {
-  //   font-size: 50%;
-  // }
-  // @include breakPoint.respond(big-desktop) {
-  //   font-size: 55%; //1rem = 12, 12/16
-  // }
+  font-size: 62.5%;
+  @include breakPoint.respond(tab-port) {
+    font-size: 45%;
+  }
+  @media only screen and (max-width: 850px) {
+    font-size: 52%;
+  }
+  @include breakPoint.respond(tab-land) {
+    font-size: 57%;
+  }
 }

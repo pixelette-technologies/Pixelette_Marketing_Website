@@ -1,11 +1,21 @@
 .engagementStalls {
   display: flex;
-  align-items: start;
   padding-top: 3.2rem;
   gap: 4rem;
+  @media only screen and (max-width: 900px) {
+    gap: 1.3rem;
+  }
+
+  @media only screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 2rem;
+  }
 
   & > div {
-    max-width: 30.6rem;
+    max-width: 306px;
+    @media only screen and (max-width: 600px) {
+      max-width: 100%;
+    }
     & > * {
       &:first-child {
         margin-bottom: 0.9rem;
@@ -13,24 +23,64 @@
     }
     & > p {
       margin-top: 3.2rem;
+      @media only screen and (max-width: 700px) {
+        margin-top: 1.5rem;
+      }
     }
   }
   & > section {
     border-radius: 3.2rem;
-    max-width: 80.2rem;
-
+    max-width: 802px;
     padding-top: 4rem;
     padding-left: 3.2rem;
     padding-right: 3.2rem;
-    padding-bottom: 28rem;
+    padding-bottom: 75rem;
     display: flex;
     align-items: start;
     gap: 5rem;
-    & > div {
+    @media only screen and (max-width: 1200px) {
+      padding-bottom: 75rem;
+      margin-bottom: 5rem;
+      gap: 3rem;
+    }
+    @media only screen and (max-width: 900px) {
+      padding-left: 1.6rem;
+      padding-right: 1.6rem;
+      padding-top: 2rem;
+      gap: 1.5rem;
+    }
+
+    // @media only screen and (max-width: 530px) {
+    //   padding-bottom: 70rem;
+    // }
+
+    & > * {
       & > * {
         &:not(:last-child) {
           margin-bottom: 3.8rem;
+          @media only screen and (max-width: 530px) {
+            margin-bottom: 1rem;
+          }
         }
+      }
+    }
+    & > section {
+      display: none;
+    }
+
+    @media only screen and (max-width: 850px) {
+      gap: 2rem;
+      padding-left: 1.8rem;
+      padding-right: 1.8rem;
+      padding-top: 2rem;
+    }
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+      & > section {
+        display: block;
+      }
+      & > blockquote {
+        display: none;
       }
     }
   }

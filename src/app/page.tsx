@@ -1,12 +1,11 @@
-import { ContactSection, TeamSection } from "@/components/common";
 import {
-  DynamicMarket,
-  EngagementStalls,
-  GrowthSection,
   HomeHero,
+  GrowthSection,
+  EngagementStalls,
+  DynamicMarket,
   RangeOfMarket
 } from "@/components/ui/home";
-import { talkBusinessData } from "@/data";
+import { TeamSection } from "@/components/common";
 
 export default function Home() {
   return (
@@ -16,10 +15,9 @@ export default function Home() {
       <EngagementStalls />
       <DynamicMarket />
       <RangeOfMarket />
-      <TeamSection />
-      <ContactSection
-        heading={`let's <span> talk business <span/>`}
-        data={talkBusinessData}
+      <TeamSection
+        mainHeading='From zero to impact'
+        subHeading='We deliver results that matter'
       />
     </>
   );

@@ -1,10 +1,29 @@
 .arrowCard {
   padding: 1rem;
+  @media only screen and (max-width: 900px) {
+    padding: 0.5rem;
+  }
   & > section {
     gap: 1.2rem;
     display: flex;
+    @media only screen and (max-width: 900px) {
+      gap: 1rem;
+    }
+
     & > div {
       width: 8rem;
+      @media only screen and (max-width: 900px) {
+        width: 4rem;
+        & > svg {
+          width: 4rem;
+          @media only screen and (max-width: 700px) {
+            width: 6rem;
+          }
+        }
+      }
+      @media only screen and (max-width: 700px) {
+        width: 6rem;
+      }
       & > * {
         margin-top: 1rem;
       }
@@ -12,6 +31,9 @@
     & > header {
       & > section {
         margin-bottom: 1.6rem;
+        @media only screen and (max-width: 700px) {
+          margin-bottom: 0.6rem;
+        }
       }
     }
   }

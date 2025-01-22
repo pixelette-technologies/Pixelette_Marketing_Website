@@ -26,7 +26,7 @@
     }
   }
   @if $breakpoint == big-desktop {
-    @media only screen and (min-width: 87.6em) {
+    @media only screen and (min-width: 85.375em) {
       @content;
     }
   }

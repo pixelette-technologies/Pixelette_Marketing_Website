@@ -1,11 +1,13 @@
 .navdropDown {
   position: relative;
-
   & > section {
     display: flex;
     align-items: center;
     gap: 0.4rem;
     cursor: pointer;
+    @media only screen and (max-width: 750px) {
+      justify-content: space-between;
+    }
     & > div {
       display: flex;
       align-items: center;
@@ -14,6 +16,9 @@
       & > * {
         font-size: 1.4rem;
         color: white;
+        @media only screen and (max-width: 750px) {
+          font-size: 1.6rem;
+        }
       }
     }
   }
@@ -29,6 +34,10 @@
     width: 29rem;
     padding: 2rem 1.5rem;
     border-radius: 0.6rem;
+    @media only screen and (max-width: 750px) {
+      width: 100%;
+      top: 3rem;
+    }
 
     & > a {
       text-decoration: none;
@@ -39,6 +48,9 @@
       border-radius: 0.3rem;
       &:hover {
         background-color: #282828;
+      }
+      @media only screen and (max-width: 750px) {
+        padding: 0.7rem 0.4rem;
       }
     }
   }

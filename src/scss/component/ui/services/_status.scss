@@ -3,10 +3,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+    align-items: start;
+  }
   & > header {
     max-width: 60rem;
+    @media only screen and (max-width: 750px) {
+      max-width: 100%;
+    }
     & > h1 {
       margin-bottom: 3.2rem;
+      @media only screen and (max-width: 750px) {
+        margin-bottom: 1.3rem;
+      }
     }
   }
 
@@ -15,6 +26,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 3.2rem;
+    @media only screen and (max-width: 750px) {
+      margin: auto;
+    }
     & > div {
       flex: 1 1 calc(50% - 3.2rem);
     }

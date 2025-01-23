@@ -5,12 +5,22 @@
     display: flex;
     gap: 2rem;
     justify-content: space-between;
+    @media only screen and (max-width: 960px) {
+      flex-direction: column;
+    }
+
     & > h1 {
-      width: 46.4rem;
+      max-width: 46.4rem;
     }
 
     & > div {
       max-width: 58.6rem;
+      @media only screen and (max-width: 1067px) {
+        max-width: 48rem;
+      }
+      @media only screen and (max-width: 960px) {
+        max-width: 100%;
+      }
       & > h1 {
         width: 27.1rem;
         margin-bottom: 1.6rem;

@@ -5,6 +5,9 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media only screen and (max-width: 750px) {
+    padding: 2rem 0rem;
+  }
 
   & > svg {
     width: 12.9rem;
@@ -15,10 +18,47 @@ nav {
     display: flex;
     align-items: center;
     gap: 2rem;
+    @media only screen and (max-width: 750px) {
+      display: none;
+    }
     & > a {
       font-size: 1.4rem;
       font-weight: 400;
       color: white;
+    }
+  }
+
+  & > figure {
+    display: none;
+    & > * {
+      font-size: 3.5rem;
+      color: white;
+    }
+    @media only screen and (max-width: 750px) {
+      display: block;
+    }
+  }
+}
+
+.navbarMobileMenu {
+  position: absolute;
+  z-index: 1000000;
+  width: 70%;
+  right: 0rem;
+  padding: 5rem 3rem;
+  height: calc(100% - 8.1rem);
+  & > div {
+    width: 100%;
+    & > a {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: white;
+    }
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 2.5rem;
+      }
     }
   }
 }

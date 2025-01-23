@@ -1,7 +1,6 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { growthStartsData } from "@/data";
-import Image from "next/image";
 export default function GrowthSection() {
   return (
     <>
@@ -27,70 +26,6 @@ export default function GrowthSection() {
               ))}
             </div>
           </header>
-          <section>
-            <div>
-              <section>
-                <div>
-                  <Image
-                    src='/home/g_1.webp'
-                    alt='Growth Icons'
-                    width={125}
-                    height={112}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src='/home/g_2.webp'
-                    alt='Growth Icons'
-                    width={191}
-                    height={48}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src='/home/g_3.webp'
-                    alt='Growth Icons'
-                    width={247}
-                    height={70}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src='/home/g_4.webp'
-                    alt='Growth Icons'
-                    width={150}
-                    height={150}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src='/home/g_5.webp'
-                    alt='Growth Icons'
-                    width={191}
-                    height={162}
-                  />
-                </div>
-                <div>
-                  <Image
-                    src='/home/g_6.webp'
-                    alt='Growth Icons'
-                    width={205}
-                    height={86}
-                  />
-                </div>
-                <Heading>
-                  work <br /> we are <br />
-                  proud of
-                </Heading>
-              </section>
-              <Image
-                src='/home/growthBanner.webp'
-                alt='Growth Banner'
-                width={538}
-                height={527}
-              />
-            </div>
-          </section>
         </div>
       </Container>
     </>

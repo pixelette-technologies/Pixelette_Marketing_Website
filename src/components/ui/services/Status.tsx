@@ -13,6 +13,7 @@ interface StatusProps {
 }
 
 const Status: FC<StatusProps> = ({ heading, text, data }) => {
+
   return (
     <div className='bg_primary'>
       <Container className='main'>

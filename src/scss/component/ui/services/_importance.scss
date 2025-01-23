@@ -1,5 +1,6 @@
 .importance {
   padding-top: 2.4rem;
+  max-width: 1060px;
   & > center {
     text-align: center;
     margin-bottom: 10rem;
@@ -7,20 +8,85 @@
 
   & > section {
     display: flex;
-    gap: 2.6rem;
+    gap: 4.6rem;
     flex-wrap: wrap;
+    justify-content: space-between;
+    @media only screen and (max-width: 1317px) {
+      justify-content: center;
+      gap: 12rem;
+      padding-bottom: 6rem;
+    }
+    @media only screen and (max-width: 1017px) {
+      gap: 10rem;
+    }
+    @media only screen and (max-width: 630px) {
+      gap: 2rem;
+    }
     & > div {
-      flex: 1 1 calc(33.3% - 2.6rem);
-      display: flex;
-      border-top-left-radius: 1.3rem;
-      padding: 1rem;
-      & > img {
-        background-color: green;
+      flex: 1 1 calc(33.3% - 4.6rem);
+      max-width: calc(28.3% - 4.6rem);
+      @media only screen and (max-width: 1317px) {
+        flex: 1 1 calc(42.3% - 12rem);
+        max-width: calc(37.3% - 12rem);
       }
-      & > section {
-        z-index: 100;
-        & > p {
-          margin-bottom: 1.5rem;
+      @media only screen and (max-width: 1017px) {
+        flex: 1 1 calc(86.3% - 10rem);
+        max-width: calc(86.3% - 10rem);
+      }
+      @media only screen and (max-width: 630px) {
+        flex: 1 1 calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
+      }
+      & > div {
+        border-top-left-radius: 1.3rem;
+        padding-left: 1rem;
+        padding-top: 1rem;
+        height: 270px;
+        overflow: visible;
+        display: flex;
+        position: relative;
+        padding-right: -13rem;
+        @media only screen and (max-width: 1317px) {
+          border-bottom-left-radius: 1.3rem;
+          padding-bottom: 1rem;
+        }
+        @media only screen and (max-width: 1017px) {
+          border-radius: 1rem;
+        }
+        @media only screen and (max-width: 630px) {
+          padding: 1rem;
+        }
+        & > img {
+          position: absolute;
+          right: -14rem;
+          top: -14.1rem;
+          @media only screen and (max-width: 1317px) {
+            right: -13rem;
+          }
+          @media only screen and (max-width: 1200px) {
+            top: -15.4rem;
+            right: -15.5rem;
+          }
+          @media only screen and (max-width: 1017px) {
+            right: -6.5rem;
+          }
+          @media only screen and (max-width: 630px) {
+            display: none;
+          }
+        }
+        & > section {
+          z-index: 100;
+          display: flex;
+          align-items: start;
+          justify-content: space-between;
+          flex-direction: column;
+          height: 100%;
+          & > p {
+            width: 70%;
+            @media only screen and (max-width: 630px) {
+              width: 100%;
+            }
+          }
         }
       }
     }

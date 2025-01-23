@@ -774,7 +774,7 @@ export const servicesData = [
           name: "Kristopher Jones",
           summary:
             "No matter how niche or mainstream your market is, great content remains a significant focus for SEO (search engine optimization).",
-          image: "/services/david.webp"
+          image: "/services/kristopher.webp"
         }
       ]
     },
@@ -1073,14 +1073,14 @@ export const servicesData = [
           name: "Richard Edelman",
           summary:
             "Crisis management in public relations isn't optional; it's the backbone of a resilient brand.",
-          image: "/services/richard.webp"
+          image: "/services/rand.webp"
         },
         {
           role: "PR Strategist",
           name: "Sarah Evans",
           summary:
             "Great PR campaigns don’t just amplify your message; they connect your brand to a larger conversation.",
-          image: "/services/sarah.webp"
+          image: "/services/kristopher.webp"
         }
       ]
     },
@@ -1373,273 +1373,6 @@ export const servicesData = [
     image: "/services/heroImageServices.webp",
     research: {
       subHeading: "marketing can cost you money",
-      mainHeading: "Why overlooking influencer",
-      detail:
-        "Many brands struggle with navigating the complexities of social media influencer marketing. Challenges like identifying authentic influencers, managing contracts and tracking performance can derail even the best campaigns. At Pixelette Marketing, we specialize in streamlining these processes, ensuring your influencer advertising is efficient, impactful and only driven by results.",
-      data: [
-        {
-          value: 70,
-          message:
-            "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
-          source: "HubSpot 2023"
-        },
-        {
-          value: 55,
-          message:
-            "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
-          source: "Nielsen, 202"
-        },
-        {
-          value: 55,
-          message:
-            "of businesses admit to underestimating the potential of influencer marketing, resulting in missed ROI opportunities.",
-          source: "Edelman Trust Barometer 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important social media really is,",
-      subHeading: "according to leaders of billion dollar brands",
-      data: [
-        {
-          role: "Content Marketing Expert",
-          name: "Gary Vaynerchuk",
-          summary:
-            "Brands that integrate influencer marketing into their strategies consistently outperform their competitors in audience engagement.",
-          image: "/services/gray.webp"
-        },
-        {
-          role: "Founder of Ubersuggest",
-          name: "Neil Patel",
-          summary:
-            "Influencer marketing is a powerful tool that, when used correctly, creates enduring relationships between brands and their audiences.",
-          image: "/services/neil.webp"
-        },
-        {
-          role: "Founder of Girlboss",
-          name: "Sophia Amoruso",
-          summary:
-            "A strategic influencer marketing campaign can turn an unknown startup into a household name overnight.",
-          image: "/services/sophia.webp"
-        }
-      ]
-    },
-    status: {
-      heading:
-        "Our influencer marketing services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we’ve helped clients unlock these opportunities through purpose built influencer marketing campaigns that deliver precise influencer targeting and impactful results.",
-      data: [
-        {
-          value: 60,
-          detail:
-            "growth delivered in influencer-driven brand visibility within the first six months."
-        },
-        {
-          value: 45,
-          detail:
-            "boost in engagement rates achieved for campaigns in the first quarter."
-        },
-        {
-          value: 25,
-          detail:
-            "rise in conversion rates and increase in client ROI through strategic collabs."
-        },
-        {
-          value: 30,
-          detail:
-            "uplift in audience retention secured across influencer-led campaigns within the first quarter."
-        }
-      ]
-    },
-    services: {
-      heading: "Our influencer marketing services",
-      text: "We are a top influencer marketing agency because we specialize in connecting brands with the right voices to amplify their message authentically. Our services include everything from identifying and vetting influencers to creating campaigns and analyzing results. With us handling the influencer strategy and building meaningful connections with your audience, you can finally focus on other aspects of growing your business.",
-      data: [
-        {
-          heading: "Influencer Strategy & Planning Services",
-          data: [
-            {
-              title: "Influencer Campaign Strategy Development",
-              text: "Our influencer campaign strategy service starts with creating a strategy personalized to your goals. From identifying the right audience to selecting platforms and crafting campaign objectives, we ensure every element aligns with your brand vision."
-            }
-          ]
-        },
-        {
-          heading: "Content Creation for Influencer Marketing Services",
-          data: [
-            {
-              title: "Influencer Content Collaboration & Creation",
-              text: "Our influencer content creation services include collaborating with influencers to create engaging content that resonates with their audiences while promoting your brand. This includes blog posts, videos, reels, and more."
-            }
-          ]
-        },
-        {
-          heading: "Outreach & Engagement Services",
-          data: [
-            {
-              title: "Influencer Outreach & Collaboration",
-              text: "Our influencer outreach services connect your brand with influencers whose audiences size up with your goals. We help facilitate authentic collaborations that drive engagement."
-            },
-            {
-              title: "Influencer Relationship Management",
-              text: "Our influencer agency specializes in building and maintaining strong relationships with influencers to maintain loyalty and long-term collaborations."
-            },
-            {
-              title: "Ambassadorship Program Management",
-              text: "Our influencer marketing agency develops and manages influencer ambassadorship programs to build ongoing relationships with influencers who embody your brand values."
-            },
-            {
-              title: "Event Promotion & Live Coverage",
-              text: "Our event promotion and live coverage services involve collaborating with influencers to drive real-time engagement during key events."
-            }
-          ]
-        },
-        {
-          heading: "Paid Influencer Campaign Services",
-          data: [
-            {
-              title: "Paid Influencer Content & Placements",
-              text: "Our influencer advertising services include boosting influencer-created content through paid channels to maximize visibility and engagement."
-            },
-            {
-              title: "Influencer Product Seeding & Gifting Campaigns",
-              text: "Our influencer gifting and product seeding services include designing gifting campaigns to create buzz and generate authentic product reviews from influencers."
-            }
-          ]
-        },
-        {
-          heading: "Influencer Negotiation & Legal Services",
-          data: [
-            {
-              title: "Influencer Contract Negotiation & Management",
-              text: "Our influencer contract services streamline the negotiation process, saving you time and effort. We handle all aspects of influencer agreements, ensuring compliance, clarity and mutual benefit."
-            },
-            {
-              title: "Influencer Compliance and Legal Guidance",
-              text: "Our influencer compliance and legal guidance services ensure every influencer campaign adheres to platform regulations and legal standards. From disclosure agreements to intellectual property rights, we handle every detail to protect your brand while ensuring seamless collaborations."
-            }
-          ]
-        }
-      ]
-    },
-
-    review: {
-      mainHeading:
-        "When you partner with Pixelette Marketing for influencer marketing services, ",
-      subHeading: "expect campaigns that spark connections and drive impact",
-      details: [
-        "Expand your reach through authentic influencer collaborations.",
-        "Build trust with content that resonates with targeted audiences.",
-        "Boost engagement through platform-specific strategies.",
-        "Achieve measurable results with data-driven insights."
-      ],
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
-      ]
-    },
-
-    questionAndAnswer: {
-      question: `  Don’t let missed  <span> connections cost you growth  </span>`,
-      answer:
-        "Failing to make use of influencer marketing means losing out on authentic reach and real engagement. Partner with Pixelette Marketing, the best influencer marketing agency, to produce campaigns that resonate, drive measurable results and position your brand at the forefront of your industry.",
-      btnText: "Book a consultation – it’s on us!"
-    },
-    marketingServices: {
-      title: "",
-      heading: `Industry-focused <span> PR services </span>`,
-      detail:
-        "Emerging industries demand strategic and adaptable PR approaches, and we thrive on understanding their complexities. Our experience helps your public relations efforts overcome the unique challenges of fast-changing, competitive markets — positioning your brand to stand out, connect with the right audience and achieve lasting success in a crowded digital landscape.",
-      data: [
-        {
-          heading: "Crypto Content Marketing",
-          detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
-        },
-        {
-          heading: "Fintech Social Media Marketing",
-          detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
-        },
-        {
-          heading: "Startup Social Media Marketing",
-          detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
-        },
-        {
-          heading: "SaaS Social Media Marketing",
-          detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
-        },
-        {
-          heading: "AI/ML Digital Marketing",
-          detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
-        },
-        {
-          heading: "Tech Social Media Marketing",
-          detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
-        }
-      ]
-    },
-    howWeWork: {
-      heading: `How  <span> we work </span>,`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Set up a consultation that fits your schedule. Share details about your current influencer collaborations or marketing goals to help us prepare."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "We’ll review your target audience, existing influencer partnerships and campaign objectives. Our team will analyze performance gaps and identify areas for growth."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "You’ll receive a customized influencer marketing strategy that outlines potential influencers, platforms and campaign timelines. This includes a content roadmap and measurable KPIs."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "From influencer outreach to campaign management, we handle every detail. Watch your brand connect authentically and achieve measurable success through our streamlined process."
-        }
-      ]
-    }
-  },
-
-  {
-    id: 5,
-    title: "Influencer Marketing",
-    route: "influencer_marketing",
-    mainHeading: "From influencer trust to sustained success,",
-    subHeading: "we’re the influencer marketing agency for GROWTH",
-    summary:
-      "Pixelette Marketing is the best influencer marketing agency for brands looking to connect authentically and achieve measurable results. Our influencer marketing services help you find the right influencers, build impactful campaigns and create meaningful engagement—all personalized to your goals.",
-    image: "/services/heroImageServices.webp",
-    research: {
-      subHeading: "marketing can cost you money",
       mainHeading: "Why overlooking influencer ",
       detail:
         "Many brands struggle with navigating the complexities of social media influencer marketing. Challenges like identifying authentic influencers, managing contracts and tracking performance can derail even the best campaigns. At Pixelette Marketing, we specialize in streamlining these processes, ensuring your influencer advertising is efficient, impactful and only driven by results.",
@@ -1673,7 +1406,7 @@ export const servicesData = [
           name: "Gary Vaynerchuk",
           summary:
             "Brands that integrate influencer marketing into their strategies consistently outperform their competitors in audience engagement.",
-          image: "/services/gray.webp"
+          image: "/services/rand.webp"
         },
         {
           role: "Founder of Ubersuggest",
@@ -1687,7 +1420,7 @@ export const servicesData = [
           name: "Sophia Amoruso",
           summary:
             "A strategic influencer marketing campaign can turn an unknown startup into a household name overnight.",
-          image: "/services/sophia.webp"
+          image: "/services/kristopher.webp"
         }
       ]
     },
@@ -1915,20 +1648,20 @@ export const servicesData = [
           name: "Sheryl Sandberg",
           summary:
             "With 2 billion Facebook users, every business has a potential audience. Success comes to those who use our tools to reach the right people with the right message.",
-          image: "/services/sheryl.webp"
+          image: "/services/rand.webp"
         },
         {
           role: "Social Media Expert",
           name: "Mari Smith",
           summary:
             "Social media ads are not just about visibility; they're about building relationships and sparking conversations.",
-          image: "/services/meri.webp"
+          image: "/services/neil.webp"
         },
         {
           role: "Founder of WordStream",
           name: "Larry Kim",
           summary: "A well-executed PPC strategy is a game-changer for ROI.",
-          image: "/services/sarah.webp"
+          image: "/services/kristopher.webp"
         }
       ]
     },
@@ -2269,14 +2002,14 @@ export const servicesData = [
           name: "Carly Fiorina",
           summary:
             "The goal is to turn data into information, and information into insight.",
-          image: "/services/sheryl.webp"
+          image: "/services/rand.webp"
         },
         {
           role: "Data Science Pioneer",
           name: "Clive Humby",
           summary:
             "Data is the new oil; those who harness it effectively will drive innovation.",
-          image: "/services/meri.webp"
+          image: "/services/neil.webp"
         },
         {
           role: "CEO of Tesla and SpaceX",
@@ -2659,14 +2392,14 @@ export const servicesData = [
           name: "Bill Gates",
           summary:
             "Lead generation isn't just a marketing task; it's the foundation of sustainable growth. The more you know about your customers, the better you can serve them.",
-          image: "/services/sheryl.webp"
+          image: "/services/rand.webp"
         },
         {
           role: "Founder of Amazon",
           name: "Jeff Bezos",
           summary:
             "In the world of business, leads are the lifeblood. Without a steady flow of quality leads, even the best product can fail.",
-          image: "/services/meri.webp"
+          image: "/services/neil.webp"
         },
         {
           role: "Entrepreneur and Investor",

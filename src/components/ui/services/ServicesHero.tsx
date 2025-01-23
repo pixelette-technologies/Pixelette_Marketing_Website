@@ -24,6 +24,8 @@ const ServicesHero: FC<ServicesHeroProps> = ({
           alt='hero image for services'
           height={288}
           width={626}
+          priority
+          
         />
         <div>
           <Heading className='tertiary color_primary uppercase font_family_glory'>

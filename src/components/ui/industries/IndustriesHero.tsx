@@ -19,7 +19,13 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
   return (
     <Container className='main'>
       <section className='industriesHero'>
-        <Image src={image} alt='Hero Section' width={500} height={280} />
+        <Image
+          src={image}
+          alt='Hero Section'
+          priority
+          width={500}
+          height={280}
+        />
         <div>
           <Heading className='tertiary color_primary font_family_glory uppercase'>
             {mainHeading}

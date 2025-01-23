@@ -9,10 +9,16 @@
     justify-content: space-between;
     gap: 2rem;
     margin-bottom: 3.2rem;
+    @media only screen and (max-width: 750px) {
+      flex-direction: column;
+    }
 
     & > h2 {
       max-width: 38rem;
       line-height: 2.8rem;
+      @media only screen and (max-width: 750px) {
+        text-align: center;
+      }
       & > span {
         color: color.$primary;
       }
@@ -20,14 +26,26 @@
     & > p {
       max-width: 55.6rem;
       text-align: right;
+      @media only screen and (max-width: 750px) {
+        text-align: center;
+      }
     }
   }
   & > section {
     display: flex;
     flex-wrap: wrap;
     gap: 1.6rem;
+    justify-content: center;
     & > div {
       flex: 1 1 calc(33.3% - 1.6rem);
+      @media only screen and (max-width: 900px) {
+        flex: 1 1 calc(47% - 1.6rem);
+        max-width: calc(47% - 1.6rem);
+      }
+      @media only screen and (max-width: 600px) {
+        flex: 1 1 calc(400px - 1.6rem);
+        max-width: calc(400px - 1.6rem);
+      }
     }
   }
 }

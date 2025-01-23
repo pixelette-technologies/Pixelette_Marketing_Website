@@ -3,14 +3,30 @@
   align-items: center;
   gap: 5.6rem;
   padding: 4.4rem 0rem;
+  @media only screen and (max-width: 900px) {
+    gap: 2rem;
+  }
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+  }
   & > img {
     border-radius: 1.5rem;
+    @media only screen and (max-width: 900px) {
+      max-width: 55%;
+      height: 250px;
+    }
+    @media only screen and (max-width: 750px) {
+      max-width: 100%;
+      height: auto;
+    }
   }
 
   & > div {
     & > p {
-      margin-top: 2.4rem;
-      margin-bottom: 2.4rem;
+      margin: 2.4rem 0rem;
+      @media only screen and (max-width: 900px) {
+        margin: 1.2rem 0rem;
+      }
     }
   }
 }

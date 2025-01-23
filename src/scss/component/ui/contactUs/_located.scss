@@ -11,6 +11,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1.6rem;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+    }
     & > blockquote {
       flex: 1 1 calc(50% - 1.6rem);
       display: flex;
@@ -18,6 +21,19 @@
       padding: 2.4rem;
       border-radius: 1.6rem;
       gap: 3.2rem;
+      @media only screen and (max-width: 1110px) {
+        flex-direction: column;
+        align-items: start;
+        & > img {
+          width: 100%;
+          height: 35rem;
+        }
+      }
+      @media only screen and (max-width: 1110px) {
+        & > img {
+          height: 26rem;
+        }
+      }
       & > div {
         & > h2 {
           margin-bottom: 1.6rem;

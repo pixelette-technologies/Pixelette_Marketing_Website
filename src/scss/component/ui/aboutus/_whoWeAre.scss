@@ -4,12 +4,22 @@
   gap: 0rem;
   & > section {
     flex: 1 1 calc(50% - 0rem);
+    @media only screen and (max-width: 750px) {
+      flex: 1 1 calc(100% - 0rem);
+    }
     padding-top: 4rem;
     padding-bottom: 4rem;
     padding-left: 3.2rem;
     padding-right: 3.2rem;
+    @media only screen and (max-width: 750px) {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
     & > div {
       max-width: 54.2rem;
+      @media only screen and (max-width: 750px) {
+        max-width: 100%;
+      }
       & > header {
         background: linear-gradient(
           90deg,

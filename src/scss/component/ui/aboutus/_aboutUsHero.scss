@@ -3,9 +3,38 @@
   align-items: center;
   gap: 5rem;
   padding: 4rem 0rem;
+
+  @media only screen and (max-width: 1000px) {
+    gap: 1rem;
+    & > img {
+      max-width: 60%;
+      height: auto;
+    }
+  }
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+    gap: 4rem;
+    & > img {
+      max-width: 80%;
+    }
+  }
+  @media only screen and (max-width: 550px) {
+    & > img {
+      max-width: 90%;
+    }
+  }
+  @media only screen and (max-width: 430px) {
+    & > img {
+      width: 100%;
+    }
+  }
+
   & > div {
     & > p {
       margin: 2.4rem 0rem;
+      @media only screen and (max-width: 750px) {
+        margin: 1.4rem 0rem;
+      }
     }
   }
 }

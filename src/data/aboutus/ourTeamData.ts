@@ -12,8 +12,8 @@ const ourTeamData = [
     role: "Community",
     profile: "/aboutUs/at_2.webp",
     bgColor: "rgba(202, 213, 212, 1)",
-    width: 229,
-    height: 234
+    width: 209,
+    height: 180
   },
   {
     name: "Hashim Aqib ",
@@ -28,8 +28,8 @@ const ourTeamData = [
     role: "Content",
     profile: "/aboutUs/at_4.webp",
     bgColor: "rgba(255, 202, 49, 1)",
-    width: 229,
-    height: 190
+    width: 209,
+    height: 180
   },
   {
     name: "Ghulam Mustafa",

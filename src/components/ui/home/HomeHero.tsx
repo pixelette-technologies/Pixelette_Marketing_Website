@@ -10,6 +10,7 @@ export default function HomeHero() {
           src='/home/heroImageHome.webp'
           alt='Hero Section Banner'
           width={662}
+          priority
           height={601}
         />
         <section>

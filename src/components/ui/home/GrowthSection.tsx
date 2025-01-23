@@ -27,7 +27,7 @@ export default function GrowthSection() {
               ))}
             </div>
           </header>
-          {/* <section>
+          <section>
             <div>
               <section>
                 <div>
@@ -90,7 +90,7 @@ export default function GrowthSection() {
                 height={527}
               />
             </div>
-          </section> */}
+          </section>
         </div>
       </Container>
     </>

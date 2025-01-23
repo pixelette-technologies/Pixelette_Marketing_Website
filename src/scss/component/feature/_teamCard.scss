@@ -6,6 +6,7 @@
   position: relative;
   border: 1px solid color.$borderColor;
   color: color.$brown;
+  transition: 0.3s ease-in-out;
   & > header {
     & > img {
       border-radius: 50%;
@@ -13,14 +14,30 @@
     }
   }
 
-  & > div {
+  & > div,
+  section {
     position: absolute;
     right: 3rem;
     top: 0rem;
   }
 
+  & > div {
+    display: none;
+  }
+
   & > p {
     margin-top: 0.7rem;
     margin-bottom: 2rem;
+  }
+
+  &:hover {
+    background-color: color.$primary;
+    color: white;
+    & > section {
+      display: none;
+    }
+    & > div {
+      display: block;
+    }
   }
 }

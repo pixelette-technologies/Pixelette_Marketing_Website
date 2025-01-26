@@ -54,7 +54,6 @@ export default function GrowthSection() {
           </div>
         </header>
 
-        {/* <Heading>work we are proud of</Heading> */}
         <section>
           <div>
             <section>
@@ -72,6 +71,8 @@ export default function GrowthSection() {
                   />
                 </div>
               ))}
+
+              {/* <Heading>work we are proud of</Heading> */}
             </section>
             <div data-aos='fade-up' data-aos-duration='2000'>
               <Image

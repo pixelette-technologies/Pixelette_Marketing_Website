@@ -43,6 +43,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
+      @media only screen and (max-width: 760px) {
+        flex-direction: column;
+      }
 
       & > section {
         display: flex;
@@ -56,6 +59,8 @@
           justify-content: center;
           & > img {
             z-index: 100;
+            width: 100%;
+            object-fit: contain;
           }
         }
 
@@ -69,6 +74,18 @@
           font-weight: 900;
           top: 10rem;
           left: 10rem;
+        }
+      }
+
+      & > div {
+        & > img {
+          @media only screen and (max-width: 978px) {
+            max-width: 470px;
+            height: auto;
+          }
+          @media only screen and (max-width: 550px) {
+            max-width: 90%;
+          }
         }
       }
     }

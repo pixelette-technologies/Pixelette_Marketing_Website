@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { FC } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
@@ -20,6 +23,25 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   detail,
   data
 }) => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (section) {
+        const { top } = section.getBoundingClientRect();
+        const totalItems = data.length;
+        const children = section.children;
+        Array.from(children).forEach((child, index) => {
+          const speedFactor = 0.8 + totalItems * 0.8;
+          const offset = (index / totalItems) * speedFactor - top * speedFactor;
+          (child as HTMLElement).style.transform = `translateY(${offset}px)`;
+        });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [data]);
+
   return (
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
@@ -46,13 +68,9 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
               {detail}
             </Text>
           </header>
-          <section>
+          <section ref={sectionRef}>
             {data?.map((el, index) => (
-              <div
-                key={index}
-                data-aos='fade-up'
-                data-aos-duration={`${1000 + index * 200}`}
-              >
+              <div key={index}>
                 <Text className='primary--bold'>{el.heading}</Text>
                 <Text className='tertiary'>{el.detail}</Text>
               </div>

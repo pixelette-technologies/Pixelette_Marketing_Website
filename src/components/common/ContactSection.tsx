@@ -17,7 +17,7 @@ interface ContactSectionProps {
 
 const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
   return (
-    <div className='bg_tertiary'>
+    <div className='bg_tertiary' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
@@ -25,12 +25,19 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
               <h2
                 className='heading_primary font_family_glory uppercase'
                 dangerouslySetInnerHTML={{ __html: heading }}
+                data-aos='fade-up'
+                data-aos-duration='1200'
               ></h2>
             )}
             {text && <Text className='secondry'>{text}</Text>}
             <div>
               {data?.map((el, index) => (
-                <blockquote className='bg_white' key={index}>
+                <blockquote
+                  className='bg_white'
+                  key={index}
+                  data-aos='fade-up'
+                  data-aos-duration={`${1000 + index * 200}`}
+                >
                   <section>
                     <el.icon />
                   </section>

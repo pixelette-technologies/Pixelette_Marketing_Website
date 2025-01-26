@@ -11,12 +11,21 @@ const StoriesHeroSection = () => {
           alt='Hero Image'
           height={288}
           width={626}
+          data-aos='fade-up'
         />
         <section>
-          <Heading className='tertiary font_family_glory uppercase'>
+          <Heading
+            className='tertiary font_family_glory uppercase'
+            animation='fade-up'
+            duration='1200'
+          >
             Stories of <span className='color_primary'>growth and impact</span>
           </Heading>
-          <Text className='primary color_secondry'>
+          <Text
+            className='primary color_secondry'
+            animation='fade-up'
+            duration='1400'
+          >
             Explore the success stories of brands we’ve helped scale. Covering
             everything from strategy to execution, discover how Pixelette
             Marketing’s expertise drives results and inspires innovation.

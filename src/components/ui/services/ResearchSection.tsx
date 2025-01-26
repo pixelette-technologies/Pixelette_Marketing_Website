@@ -26,19 +26,33 @@ const ResearchSection: FC<ResearchSectionProps> = ({
       <div className='researchSection'>
         <header>
           <div>
-            <Heading className='secondry color_secondry font_family_glory uppercase'>
+            <Heading
+              className='secondry color_secondry font_family_glory uppercase'
+              animation='fade-up'
+              duration='1200'
+            >
               {mainHeading}
             </Heading>
-            <Heading className='secondry color_primary font_family_glory uppercase'>
+            <Heading
+              className='secondry color_primary font_family_glory uppercase'
+              animation='fade-up'
+              duration='1400'
+            >
               {subHeading}
             </Heading>
           </div>
-          <Text className='secondry'>{detail}</Text>
+          <Text className='secondry' animation='fade-up' duration='1600'>
+            {detail}
+          </Text>
         </header>
 
-        <section className=''>
+        <section data-aos='fade-up' data-aos-duration='1200'>
           {data?.map((el, index) => (
-            <div key={index}>
+            <div
+              key={index}
+              data-aos='fade-up'
+              data-aos-duration={`${1000 + index * 200}`}
+            >
               <Heading className='primary color_primary font_family_glory '>
                 {el.value}%
               </Heading>

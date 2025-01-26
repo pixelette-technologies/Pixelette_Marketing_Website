@@ -22,7 +22,7 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
   name,
   data,
   mainRoute,
-  onLinkClick,
+  onLinkClick
 }) => {
   const [active, setActive] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -43,14 +43,14 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
   }, []);
 
   return (
-    <div ref={dropdownRef} className="navdropDown">
+    <div ref={dropdownRef} className='navdropDown'>
       <section onClick={() => setActive(!active)}>
-        <Text className="secondry color_white">{name}</Text>
+        <Text className='secondry color_white'>{name}</Text>
         <motion.div
           animate={
             active
               ? {
-                  rotate: -180,
+                  rotate: -180
                 }
               : { rotate: 0 }
           }

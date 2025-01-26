@@ -1,11 +1,44 @@
 .arrowCard {
   padding: 1rem;
+  transition: 0.6s ease-in-out;
+  border-radius: 1rem;
+  border: 1px solid transparent;
   @media only screen and (max-width: 900px) {
     padding: 0.5rem;
   }
   & > section {
     gap: 1.2rem;
     display: flex;
+
+    & > header {
+      & > section {
+        margin-bottom: 1.6rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        @media only screen and (max-width: 700px) {
+          margin-bottom: 0.6rem;
+        }
+
+        & > a {
+          display: none;
+          border-radius: 1rem;
+          color: white;
+          font-size: 1.2rem;
+          font-weight: 400;
+          padding: 0.7rem 0rem;
+          width: 9rem;
+          transition: 0.4s ease-in-out;
+        }
+      }
+
+      & > p {
+        transition: 0.6s ease-in-out;
+      }
+    }
+
     @media only screen and (max-width: 900px) {
       gap: 1rem;
     }
@@ -16,6 +49,7 @@
         width: 4rem;
         & > svg {
           width: 4rem;
+
           @media only screen and (max-width: 700px) {
             width: 6rem;
           }
@@ -26,13 +60,93 @@
       }
       & > * {
         margin-top: 1rem;
+        height: 2rem;
+        transition:
+          width 0.6s,
+          transform 0.6s;
       }
     }
+  }
+}
+
+.hover_black_arrowCard:hover {
+  background-color: rgba(255, 47, 91, 0.05);
+  border: 1px solid rgba(255, 47, 92, 0.61);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  & > section {
     & > header {
       & > section {
-        margin-bottom: 1.6rem;
-        @media only screen and (max-width: 700px) {
-          margin-bottom: 0.6rem;
+        & > a {
+          display: block;
+          background-color: rgba(255, 47, 91, 0.2);
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          &:hover {
+            border: 1px solid rgba(255, 47, 92, 0.61);
+          }
+        }
+      }
+      & > p {
+        color: white;
+      }
+    }
+    & > div {
+      & > svg {
+        transform: rotateZ(-360deg);
+        width: 2.5rem;
+        height: 2rem;
+        & > path {
+          fill: white;
+        }
+      }
+    }
+  }
+}
+
+.hover_white_arrowCard:hover {
+  background-color: rgba(165, 121, 106, 1);
+  border: 1px solid rgb(155, 126, 117);
+  -ms-transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  & > section {
+    & > header {
+      & > section {
+        & > header {
+          & > * {
+            &:last-child {
+              color: white;
+            }
+          }
+        }
+        & > a {
+          display: block;
+          background-color: rgba(104, 71, 68, 0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          &:hover {
+            border: 1px solid rgb(155, 126, 117);
+          }
+        }
+      }
+      & > p {
+        color: white;
+      }
+    }
+    & > div {
+      & > svg {
+        transform: rotateZ(-360deg);
+        width: 2.5rem;
+        height: 2rem;
+        & > path {
+          fill: white;
         }
       }
     }

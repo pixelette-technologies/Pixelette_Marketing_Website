@@ -1,5 +1,6 @@
 .trustedBrands {
   margin-top: 5.9rem;
+
   & > div {
     margin-bottom: 1.2rem;
   }
@@ -9,30 +10,20 @@
       display: flex;
       align-items: center;
       gap: 15.4rem;
+
       & > h1 {
         width: 19.9rem;
       }
 
       & > section {
-        & > * {
-          &:first-child {
-            & > div {
-              & > div {
-                & > div {
-                  & > div {
-                    margin-right: 5.6rem;
-                  }
-                }
-              }
-            }
-          }
-        }
-        &:last-child {
-          & > div {
-            & > div {
-              margin-right: 5.6rem;
-            }
-          }
+        overflow: hidden;
+
+        & > div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 5rem;
+          animation: scrollX 40s linear infinite;
         }
       }
     }

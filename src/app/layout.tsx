@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../scss/main.scss";
-import { Footer, Navbar } from "@/components/common";
+import { AnimationsLayout, Footer, Navbar } from "@/components/common";
 
 export const metadata: Metadata = {
   title: "Pixelette Marketing",
@@ -18,9 +18,11 @@ export default function RootLayout({
         <link rel='icon' href='/favicon.svg' />
       </head>
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <AnimationsLayout>
+          <Navbar />
+          {children}
+          <Footer />
+        </AnimationsLayout>
       </body>
     </html>
   );

@@ -15,19 +15,39 @@ const TeamSection: FC<TeamSectionProps> = ({
   details
 }) => {
   return (
-    <div className='bg_tertiary--dark '>
+    <div
+      className='bg_tertiary--dark '
+      data-aos='fade-up'
+      data-aos-duration='1000'
+    >
       <Container className='main'>
         <section className='teamSection'>
           <header>
-            <Heading className='secondry--boldLight color_primary'>
+            <Heading
+              className='secondry--boldLight color_primary'
+              animation='fade-up'
+              duration='1200'
+            >
               {mainHeading}
             </Heading>
-            <Heading className='secondry--boldLight'>{subHeading}</Heading>
+            <Heading
+              className='secondry--boldLight'
+              animation='fade-up'
+              duration='1400'
+            >
+              {subHeading}
+            </Heading>
           </header>
           {details && (
             <ul>
               {details.map((el, index) => (
-                <li key={index}>{el}</li>
+                <li
+                  key={index}
+                  data-aos='fade-up'
+                  data-aos-duration={`${1000 + index * 200}`}
+                >
+                  {el}
+                </li>
               ))}
             </ul>
           )}
@@ -40,6 +60,8 @@ const TeamSection: FC<TeamSectionProps> = ({
                 name={el.name}
                 role={el.role}
                 detail={el.detail}
+                animation='fade-up'
+                duration={`${1000 + index * 200}`}
               />
             ))}
           </section>

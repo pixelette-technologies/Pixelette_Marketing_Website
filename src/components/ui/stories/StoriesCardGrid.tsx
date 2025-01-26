@@ -13,6 +13,8 @@ const StoriesCardGrid = () => {
             icon={true}
             title={story.title}
             summary={story.summary}
+            animation='fade-up'
+            duration={`${1000 + index * 300}`}
           />
         ))}
       </header>
@@ -23,6 +25,8 @@ const StoriesCardGrid = () => {
             icon={true}
             title={story.title}
             summary={story.summary}
+            animation='fade-up'
+            duration={`${1000 + index * 300}`}
           />
         ))}
       </section>

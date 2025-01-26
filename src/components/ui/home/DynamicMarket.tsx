@@ -6,19 +6,27 @@ import { dynamicMarketData } from "@/data";
 const DynamicMarket = () => {
   return (
     <>
-      <div className='dynamicMarket '>
+      <div className='dynamicMarket'>
         <div>
           <Container className='main'>
             <header>
               <div>
-                <Heading className='primary color_secondry uppercase font_family_glory'>
+                <Heading
+                  className='primary color_secondry uppercase font_family_glory'
+                  animation='fade-up'
+                  duration='1200'
+                >
                   growing in dynamic <br /> markets is tough
                 </Heading>
-                <Heading className='primary color_primary uppercase font_family_glory'>
+                <Heading
+                  className='primary color_primary uppercase font_family_glory'
+                  animation='fade-up'
+                  duration='1400'
+                >
                   we make it achievable
                 </Heading>
               </div>
-              <Text className='primary'>
+              <Text className='primary' animation='fade-up' duration='1600'>
                 The right strategy makes all the difference. Our
                 industry-focused approach simplifies the journey, offering
                 customized solutions that drive real, measurable success
@@ -33,12 +41,15 @@ const DynamicMarket = () => {
                   summary={el.text}
                   theme={false}
                   textfloat={false}
+                  className='hover_white_arrowCard'
+                  animation='fade-up'
+                  duration={`${1000 + index * 200}`}
                 />
               ))}
             </section>
           </Container>
         </div>
-        <section>
+        <section data-aos='fade-up' data-aos-duration='1200'>
           <WhiteBackground />
         </section>
       </div>

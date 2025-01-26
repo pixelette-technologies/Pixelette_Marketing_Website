@@ -7,18 +7,25 @@ interface FormTextAreaProps extends FieldHookConfig<string> {
   label: string;
   place?: string;
   name: string;
+  animation?: string;
+  duration?: string;
 }
 
 const FormTextArea: React.FC<FormTextAreaProps> = ({
   label,
   place,
+  animation,
+  duration,
   ...props
 }) => {
-  // Ensure only Formik-related props are passed to useField
   const [field, meta] = useField(props);
 
   return (
-    <div className='formtextArea'>
+    <div
+      className='formtextArea'
+      data-aos={animation}
+      data-aos-duration={duration}
+    >
       <label htmlFor={field.name} className='form-label'>
         {label}
       </label>
@@ -26,7 +33,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
         placeholder={place}
         id={field.name}
         className={`form-text ${meta.touched && meta.error ? "is-invalid" : ""}`}
-        {...field} // Spread only Formik-related props
+        {...field}
         autoComplete='off'
         rows={4}
         style={{

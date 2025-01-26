@@ -18,7 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className='bg_secondry'>
+    <div className='bg_secondry' data-aos='fade-down'>
       <Container className='main'>
         <div className='main_nav'>
           <nav>

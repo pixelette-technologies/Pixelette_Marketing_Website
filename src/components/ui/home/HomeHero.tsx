@@ -12,27 +12,37 @@ export default function HomeHero() {
           width={662}
           priority
           height={601}
+          data-aos='fade-up'
         />
         <section>
           <div>
-            <Heading className='hero color_primary font_family_glory uppercase'>
+            <Heading
+              className='hero color_primary font_family_glory uppercase'
+              animation='fade-up'
+              duration='1200'
+            >
               Marketing That Matters
             </Heading>
-            <Heading className='hero color_secondry font_family_glory uppercase'>
+            <Heading
+              className='hero color_secondry font_family_glory uppercase'
+              animation='fade-up'
+              duration='1400'
+            >
               to Your Bottom Line
             </Heading>
-            <Text className='primary'>
+            <Text className='primary' animation='fade-up' duration='1600'>
               Pixelette Marketing delivers precision driven marketing for
               Fintech, SaaS, Web3, tech products and platforms, and more. We
               believe your industry deserves strategies as innovative as your
               solutions. Take the guesswork out of growth by requesting your a
               strategy proposal today and
               <span className=' text_primary--bold color_primary'>
-                {" "}
                 start achieving ROI you can see!
               </span>
             </Text>
-            <Button className='primary'>Book A Call</Button>
+            <Button className='primary' animation='fade-up' duration='1800'>
+              Book A Call
+            </Button>
           </div>
         </section>
       </div>

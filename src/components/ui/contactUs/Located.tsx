@@ -6,13 +6,25 @@ import React from "react";
 
 const Located = () => {
   return (
-    <div className='bg_tertiary--dark'>
+    <div
+      className='bg_tertiary--dark'
+      data-aos='fade-up'
+      data-aos-duration='1000'
+    >
       <Container className='main'>
         <section className='located'>
-          <Heading className='secondry--light color_secondry'>
+          <Heading
+            className='secondry--light color_secondry'
+            animation='fade-up'
+            duration='1200'
+          >
             We’re stationed all around the globe
           </Heading>
-          <Text className='secondry color_secondry'>
+          <Text
+            className='secondry color_secondry'
+            animation='fade-up'
+            duration='1400'
+          >
             Show locations in a different way, not really happy with how it’s
             currently done here. Maybe turn it into a slider or a drop down,
             collapsible thing so that it doesn’t take up too much space. Show
@@ -20,7 +32,12 @@ const Located = () => {
           </Text>
           <section>
             {locatedData.map((el, index) => (
-              <blockquote key={index} className='bg_white'>
+              <blockquote
+                key={index}
+                className='bg_white'
+                data-aos='fade-up'
+                data-aos-duration={`${1000 + index * 300}`}
+              >
                 <Image
                   src={el.img}
                   alt='City Profile'

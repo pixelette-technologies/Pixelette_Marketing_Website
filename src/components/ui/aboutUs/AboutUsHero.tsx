@@ -11,18 +11,29 @@ const AboutUsHero = () => {
           alt='Hero About Us Page'
           width={626}
           height={288}
+          data-aos='fade-up'
         />
         <div>
-          <Heading className='tertiary color_primary uppercase font_family_glory'>
+          <Heading
+            className='tertiary color_primary uppercase font_family_glory'
+            animation='fade-up'
+            duration='1200'
+          >
             Redefining growth
             <span className='color_secondry'> with purpose</span>
           </Heading>
-          <Text className='secondry color_secondry'>
+          <Text
+            className='secondry color_secondry'
+            animation='fade-up'
+            duration='1400'
+          >
             At Pixelette Marketing, we bring a thoughtful, collaborative
             approach to help brands achieve their goals. Our marketing services
             are built on trust, creativity and delivering results that matter.
           </Text>
-          <Button className='primary'>Get in touch</Button>
+          <Button className='primary' animation='fade-up' duration='1600'>
+            Get in touch
+          </Button>
         </div>
       </section>
     </Container>

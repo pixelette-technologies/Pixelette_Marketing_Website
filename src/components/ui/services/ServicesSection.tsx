@@ -19,18 +19,30 @@ const ServicesSection: FC<ServicesSectionProps> = ({
   data = []
 }) => {
   return (
-    <div className='bg_gray--lighter'>
+    <div
+      className='bg_gray--lighter'
+      data-aos='fade-up'
+      data-aos-duration='1000'
+    >
       <Container className='main'>
         <div className='servicesSection'>
           <header>
-            <Heading className='large font_family_glory color_tertiary uppercase'>
+            <Heading
+              className='large font_family_glory color_tertiary uppercase'
+              animation='fade-up'
+              duration='1200'
+            >
               We manage You grow
             </Heading>
             <div>
-              <Heading className='secondry font_family_glory color_secondry uppercase'>
+              <Heading
+                className='secondry font_family_glory color_secondry uppercase'
+                animation='fade-up'
+                duration='1400'
+              >
                 {heading || "No Heading Provided"}
               </Heading>
-              <Text className='secondry'>
+              <Text className='secondry' animation='fade-up' duration='1600'>
                 {text || "No description available."}
               </Text>
             </div>

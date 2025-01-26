@@ -5,13 +5,18 @@ import {
   DynamicMarket,
   RangeOfMarket
 } from "@/components/ui/home";
-import { ContactSection, TeamSection } from "@/components/common";
+import {
+  ContactSection,
+  TeamSection,
+  TrustedBrands
+} from "@/components/common";
 import { talkBusinessData } from "@/data";
 
 export default function Home() {
   return (
     <>
       <HomeHero />
+      <TrustedBrands heading='Leading Brands' />
       <GrowthSection />
       <EngagementStalls />
       <DynamicMarket />

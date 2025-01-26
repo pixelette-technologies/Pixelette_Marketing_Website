@@ -17,39 +17,86 @@ import {
 } from "@/assets/common";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
+import { FC } from "react";
 
-const RangeOfMarket = () => {
+type IconComponent = FC;
+
+type RenderIconsProps = {
+  icons: IconComponent[];
+};
+
+const renderIcons = ({ icons }: RenderIconsProps) => {
+  return icons.map((Icon, index) => (
+    <div key={index} className='icon-wrapper'>
+      <Icon />
+    </div>
+  ));
+};
+
+const RangeOfMarket: FC = () => {
+  const iconsGroup1: IconComponent[] = [
+    Ahrefs,
+    Calendly,
+    CoSchedule,
+    Canva,
+    HotJar,
+    Semrush,
+    Grammerly,
+    Loom
+  ];
+
+  const iconsGroup2: IconComponent[] = [
+    Jira,
+    LinkedIn,
+    PyTorch,
+    Apollo,
+    Sprout,
+    Buffer,
+    MailChimp
+  ];
+
   return (
-    <div className='bg_primary'>
+    <div className='bg_primary' data-aos='fade-up' data-aos-duration='1200'>
       <Container className='main'>
         <section className='rangeOfMarket'>
-          <header>
-            <Ahrefs />
-            <Calendly />
-            <CoSchedule />
-            <Canva />
-            <HotJar />
-            <Semrush />
-            <Grammerly />
-            <Loom />
+          <header data-aos='fade-up' data-aos-duration='1400'>
+            {renderIcons({
+              icons: [
+                ...iconsGroup1,
+                ...iconsGroup1,
+                ...iconsGroup1,
+                ...iconsGroup1
+              ]
+            })}
           </header>
+
           <center className='text_align_center'>
-            <Heading className='secondry--semibold color_white'>
+            <Heading
+              className='secondry--semibold color_white'
+              animation='fade-up'
+              duration='1600'
+            >
               Our range of marketing tech and platforms
             </Heading>
-            <Text className='primary color_white'>
+            <Text
+              className='primary color_white'
+              animation='fade-up'
+              duration='1800'
+            >
               Pixelette Marketing utilizes a diverse range of platforms to drive
               engagement, generate leads and boost your ROI
             </Text>
           </center>
-          <div>
-            <Jira />
-            <LinkedIn />
-            <PyTorch />
-            <Apollo />
-            <Sprout />
-            <Buffer />
-            <MailChimp />
+
+          <div data-aos='fade-up' data-aos-duration='2000'>
+            {renderIcons({
+              icons: [
+                ...iconsGroup2,
+                ...iconsGroup2,
+                ...iconsGroup2,
+                ...iconsGroup2
+              ]
+            })}
           </div>
         </section>
       </Container>

@@ -5,27 +5,35 @@
   padding: 7rem 0rem;
   @media only screen and (max-width: 1140px) {
     gap: 3rem;
-    & > img {
-      max-width: 55%;
+    & > section {
+      & > img {
+        max-width: 55%;
+      }
     }
   }
   @media only screen and (max-width: 980px) {
     gap: 1.5rem;
-    & > img {
-      max-width: 55%;
-      height: auto;
+    & > section {
+      & > img {
+        max-width: 55%;
+        height: auto;
+      }
     }
   }
   @media only screen and (max-width: 750px) {
     flex-direction: column;
     gap: 5rem;
-    & > img {
-      max-width: 80%;
+    & > section {
+      & > img {
+        max-width: 80%;
+      }
     }
   }
   @media only screen and (max-width: 550px) {
-    & > img {
-      width: 100%;
+    & > section {
+      & > img {
+        width: 100%;
+      }
     }
   }
 

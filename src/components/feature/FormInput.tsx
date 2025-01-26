@@ -8,19 +8,27 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   place: string;
   className?: string;
   name: string;
+  animation?: string;
+  duration?: string;
 }
 
 const FormInput: FC<FormInputProps> = ({
   label,
   place,
   className = "",
+  animation,
+  duration,
   ...props
 }) => {
   const [field, meta] = useField(props);
   const [value, setValue] = useState<string>("");
 
   return (
-    <div className='forminput'>
+    <div
+      className='forminput'
+      data-aos={animation}
+      data-aos-duration={duration}
+    >
       <label
         htmlFor={field.name}
         className={`form-label ${value !== "" ? "form-label-input-value" : ""}`}

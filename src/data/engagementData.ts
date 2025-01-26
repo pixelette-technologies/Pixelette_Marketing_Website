@@ -9,15 +9,16 @@ const engagementData = [
     subHeading: "Marketing",
     text: "Deliver campaigns that cut through the noise to nurture leads and drive action with impactful emails at every stage of the funnel"
   },
-  {
-    mainHeading: "Influencer",
-    subHeading: "Marketing",
-    text: "Use globally trusted faces for your brand’s reach and credibility"
-  },
+
   {
     mainHeading: "Lead",
     subHeading: "Generation Management",
     text: "Streamline your pipeline with strategies that attract, qualify and convert leads into loyal customers, efficiently and effectively"
+  },
+  {
+    mainHeading: "Influencer",
+    subHeading: "Marketing",
+    text: "Use globally trusted faces for your brand’s reach and credibility"
   },
   {
     mainHeading: "Community",

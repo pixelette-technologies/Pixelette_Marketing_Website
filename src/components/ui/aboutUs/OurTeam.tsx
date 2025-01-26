@@ -5,15 +5,29 @@ import Image from "next/image";
 
 const OurTeam = () => {
   return (
-    <div className='bg_secondry'>
+    <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
         <section className='ourTeam'>
           <header>
-            <Text className='primary color_primary'>Our team</Text>
-            <Heading className='secondry--light color_white'>
+            <Text
+              className='primary color_primary'
+              animation='fade-up'
+              duration='1200'
+            >
+              Our team
+            </Text>
+            <Heading
+              className='secondry--light color_white'
+              animation='fade-up'
+              duration='1400'
+            >
               Your partners in growth
             </Heading>
-            <Text className='secondry color_gray--light'>
+            <Text
+              className='secondry color_gray--light'
+              animation='fade-up'
+              duration='1600'
+            >
               At Pixelette Marketing, our team of passionate marketers is
               dedicated to helping your brand not just get noticed but also
               adopted.
@@ -22,7 +36,12 @@ const OurTeam = () => {
 
           <section>
             {ourTeamData.map((el, index) => (
-              <div style={{ backgroundColor: el.bgColor }} key={index}>
+              <div
+                style={{ backgroundColor: el.bgColor }}
+                key={index}
+                data-aos='fade-up'
+                data-aos-duration={`${1000 + index * 300}`}
+              >
                 <center>
                   <Text>{el.name}</Text>
                   <Text>{el.role}</Text>

@@ -6,11 +6,23 @@ interface BlogCardProps {
   icon?: boolean;
   title?: string;
   summary?: string;
+  animation?: string;
+  duration?: string;
 }
 
-const BlogCard: FC<BlogCardProps> = ({ icon, title, summary }) => {
+const BlogCard: FC<BlogCardProps> = ({
+  icon,
+  title,
+  summary,
+  animation,
+  duration
+}) => {
   return (
-    <div className='blogCard bg_gray--lightness'>
+    <div
+      className='blogCard bg_gray--lightness'
+      data-aos={animation}
+      data-aos-duration={duration}
+    >
       {icon && <LogoBlack />}
 
       <div></div>

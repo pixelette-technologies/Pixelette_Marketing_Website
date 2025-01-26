@@ -1,12 +1,20 @@
 .rangeOfMarket {
   padding: 2.97rem 0rem;
+  overflow-x: hidden;
   & > header,
   div {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5.6rem;
+    gap: 5rem;
+    animation: scrollX 30s linear infinite;
   }
+
+  & > div {
+    animation-direction: reverse;
+    animation-delay: -3s;
+  }
+
   & > center {
     margin-top: 10.2rem;
     margin-bottom: 13.7rem;

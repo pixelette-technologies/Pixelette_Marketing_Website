@@ -7,3 +7,4 @@ export { default as ContactSection } from "./ContactSection";
 export { default as QuestionAndAnswer } from "./QuestionAndAnswer";
 export { default as ServicesCards } from "./ServicesCards";
 export { default as ContentDisplaySection } from "./ContentDisplaySection";
+export { default as AnimationsLayout } from "./AnimationsLayout";

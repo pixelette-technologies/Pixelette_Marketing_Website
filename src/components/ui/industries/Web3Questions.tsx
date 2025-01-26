@@ -16,15 +16,19 @@ interface Web3QuestionsProps {
 
 const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
   return (
-    <div className='bg_tertiary'>
+    <div className='bg_tertiary' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
         <section className='web3Question'>
           <header>
             <h2
               dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
               className='heading_secondry--light color_secondry'
+              data-aos='fade-up'
+              data-aos-duration='1200'
             ></h2>
-            <Text className='secondry'>{text}</Text>
+            <Text className='secondry' animation='fade-up' duration='1400'>
+              {text}
+            </Text>
           </header>
 
           <section>
@@ -34,6 +38,8 @@ const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
                 image={el.image}
                 heading={el.heading}
                 summary={el.text}
+                animation='fade-up'
+                duration={`${1000 + index * 300}`}
               />
             ))}
           </section>

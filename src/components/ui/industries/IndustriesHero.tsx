@@ -25,16 +25,33 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
           priority
           width={500}
           height={280}
+          data-aos='fade-up'
         />
         <div>
-          <Heading className='tertiary color_primary font_family_glory uppercase'>
+          <Heading
+            className='tertiary color_primary font_family_glory uppercase'
+            animation='fade-up'
+            duration='1200'
+          >
             {mainHeading}
           </Heading>
-          <Heading className='tertiary color_secondry font_family_glory uppercase'>
+          <Heading
+            className='tertiary color_secondry font_family_glory uppercase'
+            animation='fade-up'
+            duration='1400'
+          >
             {subHeading}
           </Heading>
-          <Text className='secondry color_secondry--light'>{text}</Text>
-          <Button className='primary'>Book a consultation</Button>
+          <Text
+            className='secondry color_secondry--light'
+            animation='fade-up'
+            duration='1600'
+          >
+            {text}
+          </Text>
+          <Button className='primary' animation='fade-up' duration='1800'>
+            Book a consultation
+          </Button>
         </div>
       </section>
     </Container>

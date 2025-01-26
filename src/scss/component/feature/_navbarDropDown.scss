@@ -28,6 +28,7 @@
     position: absolute;
     display: flex;
     flex-direction: column;
+    z-index: 10000;
     gap: 0.2rem;
     top: 3.7rem;
     z-index: 1000;

@@ -5,25 +5,33 @@ import { howItWorkData } from "@/data/contactUs";
 
 const HowItWork = () => {
   return (
-    <div className='bg_secondry--light'>
+    <div
+      className='bg_secondry--light'
+      data-aos='fade-up'
+      data-aos-duration='1000'
+    >
       <Container className='main'>
         <div className='howItworks'>
           <header>
-            <Heading className='secondry--light color_white'>
+            <Heading
+              className='secondry--light color_white'
+              animation='fade-up'
+              duration='1200'
+            >
               Here’s how it works
             </Heading>
             <section>
-              <div>
+              <div data-aos='fade-up' data-aos-duration='1200'>
                 <MailIcon />
                 <Text className='primary color_white'>
                   sales@pixelettemarketing.com
                 </Text>
               </div>
-              <div>
+              <div data-aos='fade-up' data-aos-duration='1300'>
                 <PhoneIcon />
                 <Text className='primary color_white'>+44 2045188226</Text>
               </div>
-              <div>
+              <div data-aos='fade-up' data-aos-duration='1400'>
                 <PhoneIcon />
                 <Text className='primary color_white'>+1 7732709034</Text>
               </div>
@@ -31,7 +39,11 @@ const HowItWork = () => {
           </header>
           <section>
             {howItWorkData.map((el, index) => (
-              <blockquote key={index}>
+              <blockquote
+                key={index}
+                data-aos='fade-up'
+                data-aos-duration={`${1000 + index * 300}`}
+              >
                 <section>
                   <el.icon />
                 </section>

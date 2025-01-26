@@ -19,25 +19,48 @@ const ServicesHero: FC<ServicesHeroProps> = ({
   return (
     <Container className='main'>
       <section className='servicesHero'>
-        <Image
-          src={image}
-          alt='hero image for services'
-          height={288}
-          width={626}
-          priority
-          
-        />
+        <section data-aos='fade-up'>
+          <Image
+            src={image}
+            alt='hero image for services'
+            height={288}
+            width={626}
+            priority
+          />
+        </section>
         <div>
-          <Heading className='tertiary color_primary uppercase font_family_glory'>
+          <Heading
+            className='tertiary color_primary uppercase font_family_glory'
+            animation='fade-up'
+            duration='1000'
+          >
             {mainHeading}
           </Heading>
-          <Heading className='tertiary color_secondry uppercase font_family_glory'>
+          <Heading
+            className='tertiary color_secondry uppercase font_family_glory'
+            animation='fade-up'
+            duration='1200'
+          >
             {subHeading}
           </Heading>
-          <Text className='secondry'>{text}</Text>
+          <Text className='secondry' animation='fade-up' duration='1400'>
+            {text}
+          </Text>
           <div>
-            <Button className='primary-full'>Book a call</Button>
-            <Button className='secondry-full'>Get a proposal</Button>
+            <Button
+              className='primary-full'
+              animation='fade-up'
+              duration='1600'
+            >
+              Book a call
+            </Button>
+            <Button
+              className='secondry-full'
+              animation='fade-up'
+              duration='1800'
+            >
+              Get a proposal
+            </Button>
           </div>
         </div>
       </section>

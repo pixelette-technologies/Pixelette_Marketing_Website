@@ -1,33 +1,89 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { growthStartsData } from "@/data";
+import Image from "next/image";
+
+type GrowthData = {
+  value: string;
+  detail: string;
+};
+
 export default function GrowthSection() {
+  const images = [
+    { src: "/home/g_1.webp", width: 125, height: 112 },
+    { src: "/home/g_2.webp", width: 191, height: 48 },
+    { src: "/home/g_3.webp", width: 247, height: 70 },
+    { src: "/home/g_4.webp", width: 150, height: 150 },
+    { src: "/home/g_5.webp", width: 191, height: 162 },
+    { src: "/home/g_6.webp", width: 205, height: 86 }
+  ];
+
   return (
-    <>
-      <Container className='main'>
-        <div className='growthSection'>
-          <header>
-            <Heading className='primary color_primary font_family_glory uppercase'>
-              Growth starts here
-            </Heading>
-            <Heading className='primary color_secondry font_family_glory uppercase'>
-              We ensure that
-            </Heading>
-            <div className='bg_tertiary'>
-              {growthStartsData.map((el, index) => (
-                <div key={index}>
-                  <Heading className='primary color_primary font_family_glory uppercase'>
-                    {el.value}
-                  </Heading>
-                  <Text className='secondry color_secondry--light font_family_glory'>
-                    {el.detail}
-                  </Text>
+    <Container className='main'>
+      <div className='growthSection'>
+        <header>
+          <Heading
+            className='secondary color_primary font_family_glory uppercase'
+            animation='fade-up'
+            duration='1200'
+          >
+            Growth starts here
+          </Heading>
+          <Heading
+            className='secondary color_secondary font_family_glory uppercase'
+            animation='fade-up'
+            duration='1400'
+          >
+            We ensure that
+          </Heading>
+          <div
+            className='bg_tertiary'
+            data-aos='fade-up'
+            data-aos-duration='1600'
+          >
+            {growthStartsData.map((el: GrowthData, index: number) => (
+              <div key={index}>
+                <Heading className='primary color_primary font_family_glory uppercase'>
+                  {el.value}
+                </Heading>
+                <Text className='secondary color_secondary--light font_family_glory'>
+                  {el.detail}
+                </Text>
+              </div>
+            ))}
+          </div>
+        </header>
+
+        {/* <Heading>work we are proud of</Heading> */}
+        <section>
+          <div>
+            <section>
+              {images.map((image, index) => (
+                <div
+                  key={index}
+                  data-aos='fade-up'
+                  data-aos-duration={1000 + index * 200}
+                >
+                  <Image
+                    src={image.src}
+                    alt='Growth Icons'
+                    width={image.width}
+                    height={image.height}
+                  />
                 </div>
               ))}
+            </section>
+            <div data-aos='fade-up' data-aos-duration='2000'>
+              <Image
+                src='/home/growthBanner.webp'
+                alt='Growth Banner'
+                width={538}
+                height={527}
+              />
             </div>
-          </header>
-        </div>
-      </Container>
-    </>
+          </div>
+        </section>
+      </div>
+    </Container>
   );
 }

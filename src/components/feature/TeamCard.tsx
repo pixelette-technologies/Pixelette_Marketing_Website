@@ -9,11 +9,24 @@ interface TeamCardProps {
   name: string;
   role: string;
   detail: string;
+  animation?: string;
+  duration?: string;
 }
 
-const TeamCard: FC<TeamCardProps> = ({ image, name, role, detail }) => {
+const TeamCard: FC<TeamCardProps> = ({
+  image,
+  name,
+  role,
+  detail,
+  animation,
+  duration
+}) => {
   return (
-    <div className='teamCard bg_white'>
+    <div
+      className='teamCard bg_white'
+      data-aos={animation}
+      data-aos-duration={duration}
+    >
       <div>
         <WhiteCollan />
       </div>

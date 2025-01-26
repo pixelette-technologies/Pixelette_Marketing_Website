@@ -5,15 +5,33 @@ import React from "react";
 
 const OurServices = () => {
   return (
-    <div className='bg_tertiary--dark'>
+    <div
+      className='bg_tertiary--dark'
+      data-aos='fade-up'
+      data-aos-duration='1200'
+    >
       <Container className='main'>
         <div className='ourServices'>
           <header>
-            <Text className='primary color_primary'>Industries we service</Text>
-            <Heading className='secondry--light color_secondry'>
+            <Text
+              className='primary color_primary'
+              animation='fade-up'
+              duration='1200'
+            >
+              Industries we service
+            </Text>
+            <Heading
+              className='secondry--light color_secondry'
+              animation='fade-up'
+              duration='1400'
+            >
               We succeed where it matters most today
             </Heading>
-            <Text className='secondry color_secondry'>
+            <Text
+              className='secondry color_secondry'
+              animation='fade-up'
+              duration='1600'
+            >
               Navigating the complexities of fast-evolving industries requires a
               deep understanding and agility. We specialize in marketing for
               web3, SaaS, fintech, technology, startups and AI products.
@@ -30,6 +48,8 @@ const OurServices = () => {
                 summary={el.text}
                 theme={false}
                 textfloat={false}
+                animation='fade-up'
+                duration={`${1000 + index * 200}`}
               />
             ))}
           </section>

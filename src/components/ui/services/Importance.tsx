@@ -18,20 +18,32 @@ interface ImportanceProps {
 
 const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
   return (
-    <div className='bg_secondry'>
+    <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1200'>
       <Container className='main'>
         <div className='importance'>
           <center>
-            <Heading className='tertiary--medium color_primary'>
+            <Heading
+              className='tertiary--medium color_primary'
+              animation='fade-up'
+              duration='1200'
+            >
               {mainheading}
             </Heading>
-            <Heading className='tertiary--light color_white'>
+            <Heading
+              className='tertiary--light color_white'
+              animation='fade-up'
+              duration='1400'
+            >
               {subHeading}
             </Heading>
           </center>
           <section>
             {data?.map((el, index) => (
-              <div key={index}>
+              <div
+                key={index}
+                data-aos='fade-up'
+                data-aos-duration={`${1000 + index * 200}`}
+              >
                 <div className='bg_primary'>
                   <section>
                     <Text className='tertiary color_white'>{el.summary}</Text>

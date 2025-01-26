@@ -4,7 +4,11 @@ import StoriesCardGrid from "./StoriesCardGrid";
 const StoriesDataDisplay = () => {
   return (
     <Container className='main'>
-      <div className='storiesDataDisplay'>
+      <div
+        className='storiesDataDisplay'
+        data-aos='fade-up'
+        data-aos-duration='1200'
+      >
         <header>
           <div>All</div>
           <div>All</div>

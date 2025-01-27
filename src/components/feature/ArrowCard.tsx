@@ -43,7 +43,6 @@ const ArrowCard: FC<ArrowCardProps> = ({
             <ArrowLeft />
           </div>
         )}
-
         <header>
           <section>
             {to && (
@@ -62,8 +61,9 @@ const ArrowCard: FC<ArrowCardProps> = ({
                 {subHeading}
               </Text>
             </header>
-
-            {textfloat ? "" : <Link href={to || "/"}> View More</Link>}
+            {to && (
+              <>{textfloat ? "" : <Link href={to || "/"}> View More</Link>}</>
+            )}
           </section>
 
           <Text

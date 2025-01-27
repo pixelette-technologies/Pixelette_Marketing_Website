@@ -47,6 +47,7 @@ const EngagementStalls = () => {
                   mainHeading={el.mainHeading}
                   subHeading={el.subHeading}
                   summary={el.text}
+                  to={`/services/${el.route}`}
                   theme={true}
                   textfloat={false}
                   className='hover_black_arrowCard'
@@ -62,6 +63,7 @@ const EngagementStalls = () => {
                   mainHeading={el.mainHeading}
                   subHeading={el.subHeading}
                   summary={el.text}
+                  to={`/services/${el.route}`}
                   theme={true}
                   textfloat={true}
                   className='hover_black_arrowCard'
@@ -78,6 +80,7 @@ const EngagementStalls = () => {
                   subHeading={el.subHeading}
                   summary={el.text}
                   theme={true}
+                  to={`/services/${el.route}`}
                   textfloat={false}
                   className='hover_black_arrowCard'
                   animation='fade-up'

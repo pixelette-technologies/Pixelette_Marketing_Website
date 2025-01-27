@@ -46,7 +46,10 @@ const ArrowCard: FC<ArrowCardProps> = ({
 
         <header>
           <section>
-            {textfloat ? <Link href={to || "/"}> View More</Link> : ""}
+            {to && (
+              <>{textfloat ? <Link href={to || "/"}> View More</Link> : ""}</>
+            )}
+
             <header
               style={{ alignItems: textfloat ? "flex-end" : "flex-start" }}
             >
@@ -59,6 +62,7 @@ const ArrowCard: FC<ArrowCardProps> = ({
                 {subHeading}
               </Text>
             </header>
+
             {textfloat ? "" : <Link href={to || "/"}> View More</Link>}
           </section>
 

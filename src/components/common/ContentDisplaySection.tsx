@@ -71,12 +71,15 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
             </div>
           </header>
           <section ref={sectionRef}>
-            {data?.map((el, index) => (
-              <div key={index}>
-                <Text className='primary--bold'>{el.heading}</Text>
-                <Text className='tertiary'>{el.detail}</Text>
-              </div>
-            ))}
+            {data
+              ?.slice()
+              .reverse()
+              .map((el, index) => (
+                <div key={index}>
+                  <Text className='primary--bold'>{el.heading}</Text>
+                  <Text className='tertiary'>{el.detail}</Text>
+                </div>
+              ))}
           </section>
         </div>
       </Container>

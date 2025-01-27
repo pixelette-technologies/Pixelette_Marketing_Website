@@ -43,9 +43,13 @@ const ArrowCard: FC<ArrowCardProps> = ({
             <ArrowLeft />
           </div>
         )}
+
         <header>
           <section>
-            <header>
+            {textfloat ? <Link href={to || "/"}> View More</Link> : ""}
+            <header
+              style={{ alignItems: textfloat ? "flex-end" : "flex-start" }}
+            >
               <Text className='primary--semiBold color_primary'>
                 {mainHeading}
               </Text>
@@ -55,8 +59,9 @@ const ArrowCard: FC<ArrowCardProps> = ({
                 {subHeading}
               </Text>
             </header>
-            <Link href={to || "/"}> View More</Link>
+            {textfloat ? "" : <Link href={to || "/"}> View More</Link>}
           </section>
+
           <Text
             className={`tertiary ${theme ? "color_gray" : "color_secondry"} `}
           >

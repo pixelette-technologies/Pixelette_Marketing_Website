@@ -14,7 +14,7 @@ export default function HomeHero() {
           height={601}
           data-aos='fade-up'
         />
-        <section>
+        <section className='bg_tertiary'>
           <div>
             <Heading
               className='hero color_primary font_family_glory uppercase'

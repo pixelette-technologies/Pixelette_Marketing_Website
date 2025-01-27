@@ -16,5 +16,11 @@
     margin: auto;
     padding-left: 10.9rem;
     overflow: hidden;
+    @media only screen and (max-width: 1250px) {
+      padding-left: 5rem;
+    }
+    @media only screen and (max-width: 800px) {
+      padding-left: 2rem;
+    }
   }
 }

@@ -9,15 +9,24 @@
     & > div {
       display: flex;
       align-items: center;
-      gap: 15.4rem;
-
+      gap: 15rem;
+      @media only screen and (max-width: 850px) {
+        gap: 10rem;
+      }
+      @media only screen and (max-width: 650px) {
+        gap: 6rem;
+      }
+      @media only screen and (max-width: 500px) {
+        gap: 3rem;
+      }
       & > h1 {
         width: 19.9rem;
+        z-index: 1000;
       }
 
       & > section {
+        max-width: 1000px;
         overflow: hidden;
-
         & > div {
           display: flex;
           align-items: center;

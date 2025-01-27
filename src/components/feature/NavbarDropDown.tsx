@@ -63,7 +63,6 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
           initial={{ y: "-6rem", opacity: 0 }}
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{ zIndex: 999999999999 }}
         >
           {data.map((el, index) => (
             <Link
@@ -73,10 +72,9 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
               onClick={() => {
                 setActive(false);
                 if (onLinkClick) {
-                  onLinkClick(el.route); // Call the function if provided
+                  onLinkClick(el.route);
                 }
               }}
-           
             >
               {el.title}
             </Link>

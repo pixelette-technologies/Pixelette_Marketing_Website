@@ -46,7 +46,8 @@ nav {
   width: 70%;
   right: 0rem;
   padding: 5rem 3rem;
-  height: calc(100% - 8.1rem);
+  min-height: calc(100vh - 8.1rem);
+
   & > div {
     width: 100%;
     & > a {

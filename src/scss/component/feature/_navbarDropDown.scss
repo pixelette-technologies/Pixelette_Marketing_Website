@@ -23,15 +23,14 @@
     }
   }
   & > div {
+    z-index: 999999 !important;
     background-color: rgb(15, 15, 15);
     border: 1px solid rgba(255, 255, 255, 0.336);
     position: absolute;
     display: flex;
     flex-direction: column;
-    z-index: 10000;
     gap: 0.2rem;
     top: 3.7rem;
-    z-index: 1000;
     width: 29rem;
     padding: 2rem 1.5rem;
     border-radius: 0.6rem;

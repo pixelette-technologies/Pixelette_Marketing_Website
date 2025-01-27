@@ -18,81 +18,83 @@ export default function Navbar() {
   };
 
   return (
-    <div className='bg_secondry' data-aos='fade-down'>
-      <Container className='main'>
-        <div className='main_nav'>
-          <nav>
-            <Link href={"/"}>
-              <Logo />
-            </Link>
-            <div>
-              <Link href={"/"}>Home</Link>
-              <NavbarDropDown
-                name='Services'
-                mainRoute='services'
-                data={servicesData}
-              />
-              <NavbarDropDown
-                name='Industries'
-                mainRoute='industries'
-                data={industriesData}
-              />
-              <Link href={"/success_stories"}>Stories</Link>
-              <Link href={"/blogs"}>Blogs</Link>
-              <Link href={"/aboutus"}>About Us</Link>
-              <Link href={"/contactus"}>Contact Us</Link>
-            </div>
-            {isMenuOpen ? (
-              <figure onClick={toggleMenu} style={{ cursor: "pointer" }}>
-                <IoClose />
-              </figure>
-            ) : (
-              <figure onClick={toggleMenu} style={{ cursor: "pointer" }}>
-                <IoMenuOutline />
-              </figure>
-            )}
-          </nav>
-
-          {isMenuOpen && (
-            <motion.div
-              initial={{ x: "0rem", opacity: 0 }}
-              animate={{ x: "0rem", opacity: 1 }}
-              className='navbarMobileMenu bg_secondry'
-              style={{ zIndex: 999999999999 }}
-            >
-              <div className=''>
-                <Link href={"/"} onClick={toggleMenu}>
-                  Home
-                </Link>
+    <div style={{ position: "sticky", zIndex: 9999 }}>
+      <div className='bg_secondry' data-aos='fade-down'>
+        <Container className='main'>
+          <div className='main_nav'>
+            <nav>
+              <Link href={"/"}>
+                <Logo />
+              </Link>
+              <div>
+                <Link href={"/"}>Home</Link>
                 <NavbarDropDown
                   name='Services'
                   mainRoute='services'
                   data={servicesData}
-                  onLinkClick={toggleMenu}
                 />
                 <NavbarDropDown
                   name='Industries'
                   mainRoute='industries'
                   data={industriesData}
-                  onLinkClick={toggleMenu}
                 />
-                <Link href={"/success_stories"} onClick={toggleMenu}>
-                  Stories
-                </Link>
-                <Link href={"/blogs"} onClick={toggleMenu}>
-                  Blogs
-                </Link>
-                <Link href={"/aboutus"} onClick={toggleMenu}>
-                  About Us
-                </Link>
-                <Link href={"/contactus"} onClick={toggleMenu}>
-                  Contact Us
-                </Link>
+                <Link href={"/success_stories"}>Stories</Link>
+                <Link href={"/blogs"}>Blogs</Link>
+                <Link href={"/aboutus"}>About Us</Link>
+                <Link href={"/contactus"}>Contact Us</Link>
               </div>
-            </motion.div>
-          )}
-        </div>
-      </Container>
+              {isMenuOpen ? (
+                <figure onClick={toggleMenu} style={{ cursor: "pointer" }}>
+                  <IoClose />
+                </figure>
+              ) : (
+                <figure onClick={toggleMenu} style={{ cursor: "pointer" }}>
+                  <IoMenuOutline />
+                </figure>
+              )}
+            </nav>
+
+            {isMenuOpen && (
+              <motion.div
+                initial={{ x: "0rem", opacity: 0 }}
+                animate={{ x: "0rem", opacity: 1 }}
+                className='navbarMobileMenu bg_secondry'
+                style={{ zIndex: 999999999999 }}
+              >
+                <div className=''>
+                  <Link href={"/"} onClick={toggleMenu}>
+                    Home
+                  </Link>
+                  <NavbarDropDown
+                    name='Services'
+                    mainRoute='services'
+                    data={servicesData}
+                    onLinkClick={toggleMenu}
+                  />
+                  <NavbarDropDown
+                    name='Industries'
+                    mainRoute='industries'
+                    data={industriesData}
+                    onLinkClick={toggleMenu}
+                  />
+                  <Link href={"/success_stories"} onClick={toggleMenu}>
+                    Stories
+                  </Link>
+                  <Link href={"/blogs"} onClick={toggleMenu}>
+                    Blogs
+                  </Link>
+                  <Link href={"/aboutus"} onClick={toggleMenu}>
+                    About Us
+                  </Link>
+                  <Link href={"/contactus"} onClick={toggleMenu}>
+                    Contact Us
+                  </Link>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </Container>
+      </div>
     </div>
   );
 }

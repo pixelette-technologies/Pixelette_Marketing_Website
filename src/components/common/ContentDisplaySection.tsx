@@ -24,49 +24,51 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   data
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      if (section) {
-        const { top } = section.getBoundingClientRect();
-        const totalItems = data.length;
-        const children = section.children;
-        Array.from(children).forEach((child, index) => {
-          const speedFactor = 0.8 + totalItems * 0.8;
-          const offset = (index / totalItems) * speedFactor - top * speedFactor;
-          (child as HTMLElement).style.transform = `translateY(${offset}px)`;
-        });
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [data]);
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const section = sectionRef.current;
+  //     if (section) {
+  //       const { top } = section.getBoundingClientRect();
+  //       const totalItems = data.length;
+  //       const children = section.children;
+  //       Array.from(children).forEach((child, index) => {
+  //         const speedFactor = 0.8 + totalItems * 0.8;
+  //         const offset = (index / totalItems) * speedFactor - top * speedFactor;
+  //         (child as HTMLElement).style.transform = `translateY(${offset}px)`;
+  //       });
+  //     }
+  //   };
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, [data]);
 
   return (
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
         <div className='contentDisplaySection'>
           <header>
-            <Text
-              className='primary color_white'
-              animation='fade-up'
-              duration='1400'
-            >
-              {title}
-            </Text>
-            <h2
-              dangerouslySetInnerHTML={{ __html: heading || "" }}
-              className='heading_secondry--light color_white'
-              data-aos='fade-up'
-              data-aos-duration='1200'
-            ></h2>
-            <Text
-              className='secondry color_gray'
-              animation='fade-up'
-              duration='1600'
-            >
-              {detail}
-            </Text>
+            <div>
+              <Text
+                className='primary color_white'
+                animation='fade-up'
+                duration='1400'
+              >
+                {title}
+              </Text>
+              <h2
+                dangerouslySetInnerHTML={{ __html: heading || "" }}
+                className='heading_secondry--light color_white'
+                data-aos='fade-up'
+                data-aos-duration='1200'
+              ></h2>
+              <Text
+                className='secondry color_gray'
+                animation='fade-up'
+                duration='1600'
+              >
+                {detail}
+              </Text>
+            </div>
           </header>
           <section ref={sectionRef}>
             {data?.map((el, index) => (

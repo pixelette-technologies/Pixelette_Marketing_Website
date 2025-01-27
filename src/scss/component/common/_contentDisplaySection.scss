@@ -4,31 +4,41 @@
   display: flex;
   padding-top: 2rem;
   justify-content: space-between;
-  align-items: center;
+  // align-items: ;
+  padding-bottom: 20px;
   @media only screen and (max-width: 750px) {
     flex-direction: column;
   }
   & > header {
     max-width: 50.2rem;
+    position: sticky;
+    top: 20px;
+    max-height: 55rem;
+    min-height: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     @media only screen and (max-width: 750px) {
       text-align: center;
       margin-bottom: 3rem;
     }
-    & > h2 {
-      margin-top: 1.6rem;
-      margin-bottom: 3.2rem;
-      @media only screen and (max-width: 750px) {
-        margin-bottom: 1rem;
-      }
-      & > span {
-        color: color.$primary;
+    & > div {
+      & > h2 {
+        margin-top: 1.6rem;
+        margin-bottom: 3.2rem;
+        @media only screen and (max-width: 750px) {
+          margin-bottom: 1rem;
+        }
+        & > span {
+          color: color.$primary;
+        }
       }
     }
   }
 
   & > section {
     max-width: 55.7rem;
-    height: 100vh;
+    // height: 100vh;
     overflow: hidden;
     position: relative;
     padding-right: 0.5rem;

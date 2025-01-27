@@ -1,5 +1,9 @@
 @use "../../globels/" as breakPoint;
 
+h1 {
+  z-index: -10;
+}
+
 .heading_ {
   &hero {
     font-weight: 800;

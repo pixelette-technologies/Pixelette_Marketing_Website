@@ -13,8 +13,9 @@ export default function HomeHero() {
           priority
           height={601}
           data-aos='fade-up'
+          style={{ zIndex: 99 }}
         />
-        <section className='bg_tertiary'>
+        <section className='bg_tertiary' data-aos='fade-up'>
           <div>
             <Heading
               className='hero color_primary font_family_glory uppercase'

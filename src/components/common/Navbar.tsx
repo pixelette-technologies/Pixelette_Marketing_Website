@@ -58,6 +58,7 @@ export default function Navbar() {
               initial={{ x: "0rem", opacity: 0 }}
               animate={{ x: "0rem", opacity: 1 }}
               className='navbarMobileMenu bg_secondry'
+              style={{ zIndex: 999999999999 }}
             >
               <div className=''>
                 <Link href={"/"} onClick={toggleMenu}>

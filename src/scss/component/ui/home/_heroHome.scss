@@ -5,23 +5,17 @@
   align-items: center;
   gap: 5.1rem;
   padding: 4rem 0rem;
-  @media only screen and (max-width: 1050px) {
-    & > img {
-      max-width: 60%;
-      height: auto;
-    }
-  }
   @media only screen and (max-width: 850px) {
     & > img {
       max-width: 52%;
       height: auto;
     }
   }
-  @media only screen and (max-width: 686px) {
+  @media only screen and (max-width: 1050px) {
     flex-direction: column;
     gap: 3rem;
     & > img {
-      max-width: 75%;
+      max-width: 85%;
       height: auto;
     }
   }
@@ -41,13 +35,50 @@
     border-top-right-radius: 3rem;
     border-bottom-right-radius: 3rem;
 
+    @media only screen and (max-width: 1325px) {
+      padding-right: 3rem;
+    }
+    @media only screen and (max-width: 1200px) {
+      margin-left: -24rem;
+      margin-bottom: -15rem;
+    }
+    @media only screen and (max-width: 1150px) {
+      margin-bottom: -12.5rem;
+    }
+    @media only screen and (max-width: 1080px) {
+      margin-bottom: -10.5rem;
+    }
+    @media only screen and (max-width: 1050px) {
+      margin-bottom: 0rem;
+      padding-left: 5.3rem;
+      padding-right: 5.3rem;
+      margin-left: 0rem;
+      width: auto;
+      padding-top: 3.8rem;
+      border-radius: 3rem;
+    }
+    @media only screen and (max-width: 500px) {
+      padding: 3.5rem 4rem;
+    }
+
     & > div {
       max-width: 38.2rem;
-      @media only screen and (max-width: 700px) {
-        max-width: 100%;
+      @media only screen and (max-width: 1050px) {
+        max-width: 400px;
       }
+      @media only screen and (max-width: 1325px) {
+        & > h1 {
+          font-size: 4.8rem;
+          line-height: 4.5rem;
+        }
+      }
+
       & > p {
         margin: 3.2rem 0rem;
+        @media only screen and (max-width: 1325px) {
+          margin: 2rem 0rem;
+        }
+
         @media only screen and (max-width: 850px) {
           margin: 1.5rem 0rem;
         }

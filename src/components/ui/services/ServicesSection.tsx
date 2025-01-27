@@ -26,7 +26,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
     >
       <Container className='main'>
         <div className='servicesSection'>
-          <header>
+          <header className='bg_gray--lighter'>
             <Heading
               className='large font_family_glory color_tertiary uppercase'
               animation='fade-up'

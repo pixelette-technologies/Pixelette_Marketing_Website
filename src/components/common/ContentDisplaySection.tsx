@@ -24,23 +24,23 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   data
 }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const section = sectionRef.current;
-  //     if (section) {
-  //       const { top } = section.getBoundingClientRect();
-  //       const totalItems = data.length;
-  //       const children = section.children;
-  //       Array.from(children).forEach((child, index) => {
-  //         const speedFactor = 0.8 + totalItems * 0.8;
-  //         const offset = (index / totalItems) * speedFactor - top * speedFactor;
-  //         (child as HTMLElement).style.transform = `translateY(${offset}px)`;
-  //       });
-  //     }
-  //   };
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [data]);
+  useEffect(() => {
+    const handleScroll = () => {
+      const section = sectionRef.current;
+      if (section) {
+        const { top } = section.getBoundingClientRect();
+        const totalItems = data.length - 1;
+        const children = section.children;
+        Array.from(children).forEach((child, index) => {
+          const speedFactor = 0.8 + totalItems * 0.8;
+          const offset = (index / totalItems) * speedFactor - top * speedFactor;
+          (child as HTMLElement).style.transform = `translateY(${offset}px)`;
+        });
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [data]);
 
   return (
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>

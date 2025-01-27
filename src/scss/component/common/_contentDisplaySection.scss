@@ -5,16 +5,16 @@
   padding-top: 2rem;
   justify-content: space-between;
   // align-items: ;
-  padding-bottom: 20px;
+  padding-bottom: 2rem;
   @media only screen and (max-width: 750px) {
     flex-direction: column;
   }
   & > header {
     max-width: 50.2rem;
     position: sticky;
-    top: 20px;
+    top: 2rem;
     max-height: 55rem;
-    min-height: max-content;
+    // min-height: max-content;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,7 +38,6 @@
 
   & > section {
     max-width: 55.7rem;
-    // height: 100vh;
     overflow: hidden;
     position: relative;
     padding-right: 0.5rem;

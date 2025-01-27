@@ -29,11 +29,11 @@
       padding-top: 3rem;
       flex-direction: column;
       overflow: hidden;
+
       @media only screen and (max-width: 1190px) {
         flex: 1 1 calc(33.3% - 2rem);
         border-radius: 4rem;
         max-width: calc(33% - 2rem);
-
         & > img {
           height: 25rem;
           width: auto;
@@ -67,6 +67,13 @@
         margin-top: 3.6rem;
         @media only screen and (max-width: 1190px) {
           margin-top: 0rem;
+        }
+
+        & > img {
+          margin-top: 1.85rem;
+          @media only screen and (max-width: 1190px) {
+            margin-top: 0rem;
+          }
         }
       }
     }

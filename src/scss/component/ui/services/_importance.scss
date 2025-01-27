@@ -46,6 +46,7 @@
         display: flex;
         position: relative;
         padding-right: -13rem;
+        background: linear-gradient(180deg, #b3063c 0%, #4d031a 100%);
         @media only screen and (max-width: 1317px) {
           border-bottom-left-radius: 1.3rem;
           padding-bottom: 1rem;
@@ -85,6 +86,31 @@
             width: 70%;
             @media only screen and (max-width: 630px) {
               width: 100%;
+            }
+          }
+          & > blockquote {
+            & > p {
+              margin-top: -11rem;
+            }
+            & > div {
+              position: relative;
+              & > h1 {
+                position: absolute;
+                z-index: 100;
+                font-weight: 800;
+              }
+
+              & > * {
+                &:nth-child(1) {
+                  color: transparent;
+                  -webkit-text-stroke: 0.5px white;
+                }
+                &:nth-child(2) {
+                  color: white;
+                  -webkit-text-stroke: 0.5px white;
+                  animation: animate 8s ease-in-out infinite;
+                }
+              }
             }
           }
         }

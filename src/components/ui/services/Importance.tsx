@@ -44,14 +44,19 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
                 data-aos='fade-up'
                 data-aos-duration={`${1000 + index * 200}`}
               >
-                <div className='bg_primary'>
+                <div>
                   <section>
                     <Text className='tertiary color_white'>{el.summary}</Text>
                     <blockquote>
                       <Text className='small color_white'>{el.role}</Text>
-                      <Heading className='ImportanceCardheading uppercase color_white'>
-                        {el.name}
-                      </Heading>
+                      <div>
+                        <Heading className='ImportanceCardheading uppercase '>
+                          {el.name}
+                        </Heading>
+                        <Heading className='ImportanceCardheading uppercase '>
+                          {el.name}
+                        </Heading>
+                      </div>
                     </blockquote>
                   </section>
                   <Image

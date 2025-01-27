@@ -4,8 +4,8 @@ const ourTeamData = [
     role: "Strategy",
     profile: "/aboutUs/at_1.webp",
     bgColor: "rgba(255, 185, 206, 1)",
-    width: 218,
-    height: 227
+    width: 220,
+    height: 235
   },
   {
     name: "Amjad Nazir",
@@ -21,7 +21,7 @@ const ourTeamData = [
     profile: "/aboutUs/at_3.webp",
     bgColor: "rgba(228, 220, 211, 1)",
     width: 192,
-    height: 234
+    height: 235
   },
   {
     name: "Sinwan Zahid",
@@ -37,7 +37,7 @@ const ourTeamData = [
     profile: "/aboutUs/at_5.webp",
     bgColor: "rgba(187, 255, 226, 1)",
     width: 218,
-    height: 234
+    height: 235
   }
 ];
 

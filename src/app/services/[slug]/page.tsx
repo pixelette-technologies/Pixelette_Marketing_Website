@@ -2,7 +2,8 @@ import {
   ContactSection,
   ContentDisplaySection,
   QuestionAndAnswer,
-  TeamSection
+  TeamSection,
+  TrustedBrands
 } from "@/components/common";
 import {
   Importance,
@@ -47,6 +48,7 @@ export default async function Page({ params }: PageProps) {
         text={pageData?.summary}
         image={pageData?.image || "/services/heroImageServices.webp"}
       />
+      <TrustedBrands heading='Trusted by ' />
 
       <ResearchSection
         mainHeading={researchData?.mainHeading}

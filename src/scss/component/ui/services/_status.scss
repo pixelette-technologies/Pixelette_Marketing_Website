@@ -31,6 +31,12 @@
     }
     & > div {
       flex: 1 1 calc(50% - 3.2rem);
+      & > p {
+        & > span {
+          font-size: 2.8rem;
+          font-weight: 600;
+        }
+      }
     }
   }
 }

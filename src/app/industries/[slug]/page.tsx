@@ -2,8 +2,7 @@ import { IndustriesHero, Web3Questions } from "@/components/ui/industries";
 import {
   ContactSection,
   ContentDisplaySection,
-  QuestionAndAnswer,
-  TeamSection
+  QuestionAndAnswer
 } from "@/components/common";
 import { industriesData } from "@/data/industries/industriesData";
 
@@ -49,7 +48,6 @@ export default async function Page({ params }: PageProps) {
         heading={contactData?.heading}
         data={contactData?.data || []}
       />
-      <TeamSection />
 
       <QuestionAndAnswer
         heading={questionAndAnswer?.question}

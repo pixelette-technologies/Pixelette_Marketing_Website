@@ -46,9 +46,11 @@ const OurServices = () => {
                 mainHeading={el.mainHeading}
                 subHeading={el.subHeading}
                 summary={el.text}
+                to={el.route}
                 theme={false}
                 textfloat={false}
                 animation='fade-up'
+                className='hover_white_arrowCard'
                 duration={`${1000 + index * 200}`}
               />
             ))}

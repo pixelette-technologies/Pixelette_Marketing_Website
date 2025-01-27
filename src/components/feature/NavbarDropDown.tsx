@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
@@ -15,42 +15,32 @@ interface NavbarDropDownProps {
   name: string;
   mainRoute: string;
   data: SubMenus[];
-  onLinkClick?: (route: string) => void; // Optional function prop
+  onLinkClick?: (route: string) => void;
 }
 
 const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
   name,
   data,
   mainRoute,
-  onLinkClick
+  onLinkClick,
 }) => {
   const [active, setActive] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setActive(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div ref={dropdownRef} className='navdropDown'>
-      <section onClick={() => setActive(!active)}>
-        <Text className='secondry color_white'>{name}</Text>
+    <div
+      ref={dropdownRef}
+      className="navdropDown"
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      <section>
+        <Text className="secondry color_white">{name}</Text>
         <motion.div
           animate={
             active
               ? {
-                  rotate: -180
+                  rotate: -180,
                 }
               : { rotate: 0 }
           }
@@ -63,6 +53,7 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
           initial={{ y: "-6rem", opacity: 0 }}
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
+          className="dropdown-content"
         >
           {data.map((el, index) => (
             <Link

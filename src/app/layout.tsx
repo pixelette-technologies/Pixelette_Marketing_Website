@@ -22,7 +22,7 @@ export default function RootLayout({
           <div
             style={{
               display: "flex",
-              position: "relative",
+              // position: "relative",
               flexDirection: "column"
             }}
           >

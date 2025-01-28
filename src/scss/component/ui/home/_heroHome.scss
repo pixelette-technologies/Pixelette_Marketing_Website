@@ -3,35 +3,103 @@
 .heroHome {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 5.1rem;
   padding: 4rem 0rem;
-  @media only screen and (max-width: 850px) {
-    & > img {
-      max-width: 52%;
-      height: auto;
+
+  & > div {
+    width: 1000px;
+    padding-top: 23rem;
+    z-index: 1000;
+    & > section {
+      position: relative;
+      max-width: 662px;
+      height: 410px;
+      margin-left: 12rem;
+      & > img {
+        position: absolute;
+        transition: 0.3s ease-in-out;
+      }
+
+      &:hover {
+        & > * {
+          &:first-child {
+            transform: rotate(-4deg);
+            // & > img {
+            // }
+          }
+          &:nth-child(2) {
+            transform: rotate(-7deg);
+          }
+          &:nth-child(3) {
+            -ms-transform: scale(1.2); /* IE 9 */
+            -webkit-transform: scale(1.2); /* Safari 3-8 */
+            transform: scale(1.2);
+          }
+          &:nth-child(4) {
+            transform: rotate(-7deg);
+          }
+          &:nth-child(5) {
+            transform: rotate(7deg);
+          }
+        }
+      }
+
+      & > * {
+        &:first-child {
+          z-index: 1000 !important;
+          // & > img {
+          // }
+        }
+        &:nth-child(2) {
+          top: 4.5rem;
+          left: -11rem;
+          z-index: 80;
+        }
+        &:nth-child(3) {
+          top: -6rem;
+          left: 3rem;
+        }
+        &:nth-child(4) {
+          left: 34rem;
+          top: 16rem;
+          z-index: 80;
+        }
+        &:nth-child(5) {
+          left: 30rem;
+          top: -22rem;
+        }
+      }
     }
   }
-  @media only screen and (max-width: 1050px) {
-    flex-direction: column;
-    gap: 3rem;
-    & > img {
-      max-width: 85%;
-      height: auto;
-    }
-  }
-  @include breakPoint.respond(mobile) {
-    & > img {
-      max-width: 90%;
-    }
-  }
+
+  // @media only screen and (max-width: 850px) {
+  //   & > img {
+  //     max-width: 52%;
+  //     height: auto;
+  //   }
+  // }
+  // @media only screen and (max-width: 1050px) {
+  //   flex-direction: column;
+  //   gap: 3rem;
+  //   & > img {
+  //     max-width: 85%;
+  //     height: auto;
+  //   }
+  // }
+  // @include breakPoint.respond(mobile) {
+  //   & > img {
+  //     max-width: 90%;
+  //   }
+  // }
   & > section {
     width: 100%;
     padding-top: 3.8rem;
     padding-bottom: 3.8rem;
     padding-right: 5.3rem;
     padding-left: 23rem;
-    margin-left: -23rem;
-    margin-bottom: -5rem;
+    margin-left: -0rem;
+    margin-bottom: -8.7rem;
     border-top-right-radius: 3rem;
     border-bottom-right-radius: 3rem;
 

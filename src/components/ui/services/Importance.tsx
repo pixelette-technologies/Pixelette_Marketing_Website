@@ -62,8 +62,8 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
                   <Image
                     src={el.image}
                     alt='Profile'
-                    height={450}
-                    width={360}
+                    height={310}
+                    width={287}
                   />
                 </div>
               </div>

@@ -3,7 +3,7 @@ import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
 export const industriesData = [
   {
     id: 1,
-    title: "Web 3",
+    title: "Web 3 Marketing",
     route: "web_3",
     mainHeading: "We’re a web3 marketing agency",
     subHeading: "turning blocks into breakthroughs",
@@ -156,7 +156,7 @@ export const industriesData = [
   },
   {
     id: 2,
-    title: "Fintech",
+    title: "Fintech Marketing",
     route: "fintech",
     mainHeading: "We’re a fintech marketing agency",
     subHeading: "converting prospects into assets",
@@ -308,7 +308,7 @@ export const industriesData = [
   },
   {
     id: 3,
-    title: "Tech",
+    title: "Tech Marketing",
     route: "tech",
     mainHeading: "We’re a tech marketing agency ",
     subHeading: "connecting innovation to the world",
@@ -459,7 +459,7 @@ export const industriesData = [
   },
   {
     id: 4,
-    title: "Saas",
+    title: "Saas Marketing",
     route: "saas",
     mainHeading: "We’re a SaaS marketing agency ",
     subHeading: "transforming software into market success",
@@ -611,7 +611,7 @@ export const industriesData = [
   },
   {
     id: 5,
-    title: "AI",
+    title: "AI Marketing",
     route: "ai",
     mainHeading: "We’re an AI marketing agency",
     subHeading: "transforming intelligence into influence",

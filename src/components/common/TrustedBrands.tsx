@@ -10,11 +10,7 @@ import {
   Buffer,
   MailChimp
 } from "@/assets/common";
-
-interface TrustedBrandsProps {
-  header?: string;
-  heading?: string;
-}
+import ArrowRed from "@/assets/common/ArrowLeft";
 
 type IconComponent = FC;
 
@@ -22,7 +18,7 @@ type RenderIconsProps = {
   icons: IconComponent[];
 };
 
-const TrustedBrands: FC<TrustedBrandsProps> = ({ header, heading }) => {
+const TrustedBrands = () => {
   const iconsGroup: IconComponent[] = [
     Jira,
     LinkedIn,
@@ -44,16 +40,15 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ header, heading }) => {
   return (
     <div className='trustedBrands' data-aos='fade-up' data-aos-duration='1800'>
       <Container className='main'>
-        {header && (
-          <Heading className='primary color_secondry font_family_glory uppercase'>
-            {header}
-          </Heading>
-        )}
+        <Heading className='primary color_secondry font_family_glory uppercase'>
+          Trusted by
+          <ArrowRed />
+        </Heading>
       </Container>
       <section className='bg_primary'>
         <Container className='mainLeft'>
           <Heading className='primary color_white font_family_glory uppercase'>
-            {heading}
+            Leading Brands
           </Heading>
           <section>
             <div>

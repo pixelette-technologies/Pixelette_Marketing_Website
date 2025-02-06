@@ -1,3 +1,4 @@
+import ArrowRed from "@/assets/common/ArrowLeft";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { growthStartsData } from "@/data";
@@ -28,13 +29,14 @@ export default function GrowthSection() {
             duration='1200'
           >
             Growth starts here
+            <ArrowRed />
           </Heading>
           <Heading
             className='secondary color_secondary font_family_glory uppercase'
             animation='fade-up'
             duration='1400'
           >
-            We ensure that
+            SUCCESS FOLLOWS NEXT.
           </Heading>
           <div
             className='bg_tertiary'

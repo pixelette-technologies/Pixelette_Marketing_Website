@@ -3,6 +3,11 @@
 
   & > div {
     margin-bottom: 1.2rem;
+    & > h1 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
   }
   & > section {
     padding: 1.2rem 0rem;

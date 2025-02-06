@@ -35,13 +35,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
               duration='1200'
             >
               {mainHeading}
-            </Heading>
-            <Heading
-              className='secondry color_primary font_family_glory uppercase'
-              animation='fade-up'
-              duration='1400'
-            >
-              {subHeading}
+              <span> {subHeading}</span>
             </Heading>
           </div>
           <Text className='secondry' animation='fade-up' duration='1600'>

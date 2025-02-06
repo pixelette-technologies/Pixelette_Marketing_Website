@@ -74,7 +74,7 @@ export const servicesData = [
         },
         {
           value: 45,
-          detail: " growth in social media followers"
+          detail: " growth in social media followers in the first six months"
         },
         {
           value: 35,
@@ -234,10 +234,10 @@ export const servicesData = [
         "When you partner with Pixelette Marketing for social media solutions,",
       subHeading: "Expect content that connects and converts",
       details: [
-        "Grow your brand visibility and engagement across platforms",
-        "Drive meaningful conversations that build trust with your audience",
-        "Deliver results with data-driven content strategies",
-        "Turn followers into loyal customers with custom campaigns"
+        "Grow your brand visibility and engagement across platforms.",
+        "Drive meaningful conversations that build trust with your audience.",
+        "Deliver results with data-driven content strategies.",
+        "Turn followers into loyal customers with custom campaigns."
       ],
       data: [
         {
@@ -525,23 +525,7 @@ export const servicesData = [
             }
           ]
         },
-        {
-          heading: "Social Media Analytics & Reporting Services",
-          data: [
-            {
-              title: "Performance Tracking",
-              text: "Our performance tracking services include monitoring key metrics and providing actionable insights to optimize your social media strategy."
-            },
-            {
-              title: "Monthly/ Quarterly Reporting",
-              text: "Our monthly/quarterly reporting services include delivering detailed reports with insights and recommendations to improve your social media performance."
-            },
-            {
-              title: "Sentiment Analysis",
-              text: "Our social media sentiment analysis services include evaluating audience feedback to help you understand and improve your brand’s perception."
-            }
-          ]
-        },
+
         {
           heading: "Email Analytics & Reporting Services",
           data: [
@@ -615,10 +599,10 @@ export const servicesData = [
         "When you partner with Pixelate Marketing for email marketing services,",
       subHeading: "expect content that connects and converts",
       details: [
-        "Increase open rates and drive higher engagement with campaigns",
-        "Build lasting relationships through personalized, value-driven email content",
-        "Optimize performance with data-backed email strategies that deliver results",
-        "Turn leads into loyal customers with strategic email funnels"
+        "Increase open rates and drive higher engagement with campaigns.",
+        "Build lasting relationships through personalized, value-driven email content.",
+        "Optimize performance with data-backed email strategies that deliver results.",
+        "Turn leads into loyal customers with strategic email funnels."
       ],
       data: [
         {
@@ -922,10 +906,10 @@ export const servicesData = [
         "When you partner with Pixelette Marketing for SEO solutions, ",
       subHeading: "expect content that ranks and converts",
       details: [
-        "Grow search visibility with strategies suited to your audience only",
-        "Drive meaningful engagement through optimized content and keywords",
-        "Deliver measurable results with data-driven SEO insights",
-        "Turn website visitors into loyal customers with actionable improvements"
+        "Grow search visibility with strategies suited to your audience only.",
+        "Drive meaningful engagement through optimized content and keywords.",
+        "Deliver measurable results with data-driven SEO insights.",
+        "Turn website visitors into loyal customers with actionable improvements."
       ],
       data: [
         {
@@ -1441,7 +1425,8 @@ export const servicesData = [
         },
         {
           value: 25,
-          detail: "rise in conversion rates and increase in client ROI thro"
+          detail:
+            "rise in conversion rates and increase in client ROI through strategic collabs."
         },
         {
           value: 30,
@@ -1528,10 +1513,10 @@ export const servicesData = [
         "When you partner with Pixelette Marketing for influencer marketing services,",
       subHeading: "expect campaigns that spark connections and drive impact",
       details: [
-        "Grow your brand visibility and engagement across platforms",
-        "Drive meaningful conversations that build trust with your audience",
-        "Deliver results with data-driven content strategies",
-        "Turn followers into loyal customers with custom campaigns"
+        "Grow your brand visibility and engagement across platforms.",
+        "Drive meaningful conversations that build trust with your audience.",
+        "Deliver results with data-driven content strategies.",
+        "Turn followers into loyal customers with custom campaigns."
       ],
       data: [
         {
@@ -1599,6 +1584,31 @@ export const servicesData = [
           heading: "Tech Social Media Marketing",
           detail:
             "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+        }
+      ]
+    },
+    howWeWork: {
+      heading: `How  <span> we work </span>`,
+      data: [
+        {
+          icon: BookIcon,
+          heading: "Book",
+          text: "Set up a consultation that fits your schedule. Share details about your current influencer collaborations or marketing goals to help us prepare."
+        },
+        {
+          icon: AuditIcon,
+          heading: "Audit",
+          text: "We’ll review your target audience, existing influencer partnerships and campaign objectives. Our team will analyze performance gaps and identify areas for growth."
+        },
+        {
+          icon: PlainIcon,
+          heading: "Plan",
+          text: "You’ll receive a customized influencer marketing strategy that outlines potential influencers, platforms and campaign timelines. This includes a content roadmap and measurable KPIs."
+        },
+        {
+          icon: ExecuteIcon,
+          heading: "Execute",
+          text: "From influencer outreach to campaign management, we handle every detail. Watch your brand connect authentically and achieve measurable success through our streamlined process."
         }
       ]
     }
@@ -2212,7 +2222,7 @@ export const servicesData = [
           ]
         },
         {
-          heading: "",
+          heading: "Marketing Analytics Reporting Services",
           data: [
             {
               title: "Monthly/Quarterly Marketing Reporting",
@@ -2248,7 +2258,7 @@ export const servicesData = [
         "When you partner with Pixelette Marketing for marketing analytics services,",
       subHeading: "expect data that turns into measurable growth",
       details: [
-        "Gain deeper insights into campaign performance with advanced digital analytics services",
+        "Gain deeper insights into campaign performance with advanced digital analytics services.",
         "Reduce acquisition costs by identifying inefficiencies in real time.",
         "Align marketing spend with the metrics that matter most to your business.",
         "Improve lead conversion rates by using predictive analytics and customer behavior insights."

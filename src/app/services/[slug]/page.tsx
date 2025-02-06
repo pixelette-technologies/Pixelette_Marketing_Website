@@ -48,7 +48,7 @@ export default async function Page({ params }: PageProps) {
         text={pageData?.summary}
         image={pageData?.image || "/services/heroImageServices.webp"}
       />
-      <TrustedBrands heading='Trusted by ' />
+      <TrustedBrands  />
 
       <ResearchSection
         mainHeading={researchData?.mainHeading}

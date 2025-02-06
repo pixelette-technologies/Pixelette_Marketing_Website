@@ -38,7 +38,7 @@ export default function Navbar() {
                   mainRoute='industries'
                   data={industriesData}
                 />
-                <Link href={"/success_stories"}>Stories</Link>
+                <Link href={"/success_stories"}>Portfolio</Link>
                 <Link href={"/blogs"}>Blogs</Link>
                 <Link href={"/aboutus"}>About Us</Link>
                 <Link href={"/contactus"}>Contact Us</Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
                     onLinkClick={toggleMenu}
                   />
                   <Link href={"/success_stories"} onClick={toggleMenu}>
-                    Stories
+                    Portfolio
                   </Link>
                   <Link href={"/blogs"} onClick={toggleMenu}>
                     Blogs

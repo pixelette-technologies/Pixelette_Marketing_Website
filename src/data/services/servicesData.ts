@@ -3,8 +3,8 @@ import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
 export const servicesData = [
   {
     id: 1,
-    title: "Social Media",
-    route: "social_media",
+    title: "Social Media Marketing",
+    route: "social_media_marketing",
     mainHeading: "From starting out to standing out,",
     subHeading: "we’re the social media marketing agency for GROWTH",
     summary:
@@ -690,7 +690,7 @@ export const servicesData = [
       ]
     },
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -997,7 +997,7 @@ export const servicesData = [
       btnText: "Book a consultation – it’s on us!"
     },
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -1336,7 +1336,7 @@ export const servicesData = [
       ]
     },
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -1931,7 +1931,7 @@ export const servicesData = [
     },
 
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -2323,7 +2323,7 @@ export const servicesData = [
       ]
     },
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,
@@ -2686,7 +2686,7 @@ export const servicesData = [
     },
 
     howWeWork: {
-      heading: `How  <span> we work </span>,`,
+      heading: `How  <span> we work </span>`,
       data: [
         {
           icon: BookIcon,

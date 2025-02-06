@@ -28,7 +28,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
           {text}
         </Text>
         <Button className='primary' animation='fade-up' duration='1600'>
-          Book a consultant - its on us!
+          {"Book a consultant - it's on us!"}
         </Button>
       </div>
     </section>

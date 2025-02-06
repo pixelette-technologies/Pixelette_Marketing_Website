@@ -91,14 +91,21 @@
     padding-top: 3.8rem;
     padding-bottom: 3.8rem;
     padding-right: 5.3rem;
-    padding-left: 23rem;
+    padding-left: 22rem;
     margin-left: -0rem;
     margin-bottom: -8.7rem;
     border-top-right-radius: 3rem;
     border-bottom-right-radius: 3rem;
 
+    @media only screen and (max-width: 1346px) {
+      padding-left: 20rem;
+    }
     @media only screen and (max-width: 1325px) {
       padding-right: 3rem;
+      padding-left: 19rem;
+    }
+    @media only screen and (max-width: 1280px) {
+      padding-left: 21rem;
     }
     @media only screen and (max-width: 1200px) {
       margin-left: -24rem;
@@ -137,6 +144,7 @@
 
       & > p {
         margin: 3.2rem 0rem;
+        z-index: 999999;
         @media only screen and (max-width: 1325px) {
           margin: 2rem 0rem;
         }

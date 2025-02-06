@@ -1,3 +1,4 @@
+@use "../../../globels" as color;
 .servicesHero {
   display: flex;
   align-items: center;
@@ -38,6 +39,11 @@
   }
 
   & > div {
+    & > h1 {
+      & > span {
+        color: color.$secondry;
+      }
+    }
     & > p {
       padding: 2.4rem 0rem;
       @media only screen and (max-width: 980px) {

@@ -164,7 +164,7 @@ export const industriesData = [
       "Partner with Pixelette Marketing to position your goals with marketing strategies designed to drive growth, build trust and create a lasting footprint in the fintech industry.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `We solve <span> fintech marketing’stoughest questions</span>`,
+      heading: `We solve <span> fintech marketing’s toughest questions</span>`,
       text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here’s how our fintech marketing solutions have turned these challenges into measurable success stories.",
       data: [
         {
@@ -316,7 +316,7 @@ export const industriesData = [
       "Partner with Pixelette Marketing to connect your technology product and platform solutions with the right audience, as well as drive growth, build trust, and position your company as an industry leader.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `We solve tech <span> marketing’stoughest questions</span>`,
+      heading: `We solve tech <span> marketing’s toughest questions</span>`,
       text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here’s how our tech marketing strategies have helped companies overcome these challenges.",
       data: [
         {
@@ -467,7 +467,7 @@ export const industriesData = [
       "Partner with Pixelette Marketing to connect your SaaS solutions with the right audience, driving growth, building trust and establishing your company as a market leader.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `We solve SaaS <span> marketing’stoughest questions </span>`,
+      heading: `We solve SaaS <span> marketing’s toughest questions </span>`,
       text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here’s how our SaaS marketing strategies have delivered results.",
       data: [
         {
@@ -619,7 +619,7 @@ export const industriesData = [
       "Partner with Pixelette Marketing to bridge the gap between your AI innovations and their transformative impact, reaching the right audience to drive adoption, establish trust and solidify your leadership in the AI industry.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `We solve <span> AI marketing’stoughest questions </span>`,
+      heading: `We solve <span> AI marketing’s toughest questions </span>`,
       text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here’s how our strategic marketing turns these challenges into measurable success.",
       data: [
         {

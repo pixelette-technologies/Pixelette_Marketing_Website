@@ -24,14 +24,14 @@ const TeamSection: FC<TeamSectionProps> = ({
         <section className='teamSection'>
           <header>
             <Heading
-              className='secondry--boldLight color_primary'
+              className='secondry--boldLight color_primary font_family_glory uppercase'
               animation='fade-up'
               duration='1200'
             >
               {mainHeading}
             </Heading>
             <Heading
-              className='secondry--boldLight'
+              className='secondry--boldLight font_family_glory uppercase'
               animation='fade-up'
               duration='1400'
             >

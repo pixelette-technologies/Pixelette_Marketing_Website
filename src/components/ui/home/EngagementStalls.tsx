@@ -14,27 +14,29 @@ const EngagementStalls = () => {
     >
       <Container className='main '>
         <section className='engagementStalls'>
-          <div>
-            <Heading
-              className='primary color_primary uppercase font_family_glory'
-              animation='fade-up'
-              duration='1200'
-            >
-              Engagement stalls without strategy
-            </Heading>
-            <Heading
-              className='primary color_secondry uppercase font_family_glory'
-              animation='fade-up'
-              duration='1400'
-            >
-              We drive it forward
-            </Heading>
-            <Text className='secondry' animation='fade-up' duration='1600'>
-              Simplify your marketing efforts with our end-to-end digital
-              solutions. We create strategies that attract, engage and convert
-              your audience at every step.
-            </Text>
-          </div>
+          <header>
+            <div>
+              <Heading
+                className='primary color_primary uppercase font_family_glory'
+                animation='fade-up'
+                duration='1200'
+              >
+                Engagement stalls without strategy
+              </Heading>
+              <Heading
+                className='primary color_secondry uppercase font_family_glory'
+                animation='fade-up'
+                duration='1400'
+              >
+                We drive it forward
+              </Heading>
+              <Text className='secondry' animation='fade-up' duration='1600'>
+                Simplify your marketing efforts with our end-to-end digital
+                solutions. We create strategies that attract, engage and convert
+                your audience at every step.
+              </Text>
+            </div>
+          </header>
           <section
             className='bg_secondry'
             data-aos='fade-up'

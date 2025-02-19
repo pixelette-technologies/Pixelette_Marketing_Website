@@ -21,19 +21,11 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1200'>
       <Container className='main'>
         <div className='importance'>
-          <center>
-            <Heading
-              className='tertiary--medium color_primary'
-              animation='fade-up'
-              duration='1200'
-            >
+          <center data-aos='fade-right' data-aos-duration='1200'>
+            <Heading className='tertiary--medium color_primary'>
               {mainheading}
             </Heading>
-            <Heading
-              className='tertiary--light color_white'
-              animation='fade-up'
-              duration='1400'
-            >
+            <Heading className='tertiary--light color_white'>
               {subHeading}
             </Heading>
           </center>

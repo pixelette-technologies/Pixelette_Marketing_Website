@@ -29,7 +29,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
           <header className='bg_gray--lighter'>
             <Heading
               className='large font_family_glory color_tertiary uppercase'
-              animation='fade-up'
+              animation='fade-right'
               duration='1200'
             >
               We manage You grow
@@ -37,12 +37,12 @@ const ServicesSection: FC<ServicesSectionProps> = ({
             <div>
               <Heading
                 className='secondry font_family_glory color_secondry uppercase'
-                animation='fade-up'
-                duration='1400'
+                animation='fade-left'
+                duration='1600'
               >
                 {heading || "No Heading Provided"}
               </Heading>
-              <Text className='secondry' animation='fade-up' duration='1600'>
+              <Text className='secondry' animation='fade-left' duration='1600'>
                 {text || "No description available."}
               </Text>
             </div>

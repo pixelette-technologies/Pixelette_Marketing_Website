@@ -25,15 +25,15 @@ export default function GrowthSection() {
         <header>
           <Heading
             className='secondary color_primary font_family_glory uppercase'
-            animation='fade-up'
-            duration='1200'
+            animation='fade-right'
+            duration='1400'
           >
             Growth starts here
             <ArrowRed />
           </Heading>
           <Heading
             className='secondary color_secondary font_family_glory uppercase'
-            animation='fade-up'
+            animation='fade-right'
             duration='1400'
           >
             SUCCESS FOLLOWS NEXT.
@@ -58,13 +58,9 @@ export default function GrowthSection() {
 
         <section>
           <div>
-            <section>
+            <section data-aos='fade-right' data-aos-duration={1300}>
               {images.map((image, index) => (
-                <div
-                  key={index}
-                  data-aos='fade-up'
-                  data-aos-duration={1000 + index * 200}
-                >
+                <div key={index}>
                   <Image
                     src={image.src}
                     alt='Growth Icons'
@@ -76,7 +72,7 @@ export default function GrowthSection() {
 
               {/* <Heading>work we are proud of</Heading> */}
             </section>
-            <div data-aos='fade-up' data-aos-duration='2000'>
+            <div data-aos='fade-left' data-aos-duration='2000'>
               <Image
                 src='/home/growthBanner.webp'
                 alt='Growth Banner'

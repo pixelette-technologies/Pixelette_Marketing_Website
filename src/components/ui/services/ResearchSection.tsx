@@ -31,14 +31,14 @@ const ResearchSection: FC<ResearchSectionProps> = ({
           <div>
             <Heading
               className='secondry color_secondry font_family_glory uppercase'
-              animation='fade-up'
+              animation='fade-right'
               duration='1200'
             >
               {mainHeading}
               <span> {subHeading}</span>
             </Heading>
           </div>
-          <Text className='secondry' animation='fade-up' duration='1600'>
+          <Text className='secondry' animation='fade-left' duration='1600'>
             {detail}
           </Text>
         </header>

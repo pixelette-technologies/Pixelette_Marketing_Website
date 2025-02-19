@@ -11,7 +11,7 @@ interface AnimationsLayoutProps {
 const AnimationsLayout: FC<AnimationsLayoutProps> = ({ children }) => {
   useEffect(() => {
     AOS.init({
-      duration: 1600,
+      duration: 2000,
       offset: 120,
       easing: "ease-in-out",
       delay: 100

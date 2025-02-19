@@ -40,6 +40,10 @@ export default function HomeHero() {
               width={342}
               priority
               height={362}
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px)`,
+                transition: "transform 0.5s ease-out"
+              }}
             />
             {/* Back ground round */}
             <Image
@@ -48,6 +52,10 @@ export default function HomeHero() {
               width={353}
               priority
               height={354}
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px)`,
+                transition: "transform 0.4s ease-out"
+              }}
             />
             {/* Laptop */}
             <Image
@@ -56,6 +64,10 @@ export default function HomeHero() {
               width={199}
               priority
               height={218}
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px)`,
+                transition: "transform 0.5s ease-out"
+              }}
             />
             {/* Clock tower */}
             <Image
@@ -64,6 +76,10 @@ export default function HomeHero() {
               width={162}
               priority
               height={628}
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px)`,
+                transition: "transform 0.5s ease-out"
+              }}
             />
           </section>
         </div>

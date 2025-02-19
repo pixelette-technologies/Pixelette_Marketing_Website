@@ -25,7 +25,7 @@ const TeamSection: FC<TeamSectionProps> = ({
           <header>
             <Heading
               className='secondry--boldLight color_primary font_family_glory uppercase'
-              animation='fade-up'
+              animation='fade-down'
               duration='1200'
             >
               {mainHeading}

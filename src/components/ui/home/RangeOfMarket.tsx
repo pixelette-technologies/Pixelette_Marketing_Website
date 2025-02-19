@@ -59,7 +59,7 @@ const RangeOfMarket: FC = () => {
     <div className='bg_primary' data-aos='fade-up' data-aos-duration='1200'>
       <Container className='main'>
         <section className='rangeOfMarket'>
-          <header data-aos='fade-up' data-aos-duration='1400'>
+          <header data-aos='fade-left' data-aos-duration='1400'>
             {renderIcons({
               icons: [
                 ...iconsGroup1,
@@ -73,14 +73,14 @@ const RangeOfMarket: FC = () => {
           <center className='text_align_center'>
             <Heading
               className='secondry--semibold color_white'
-              animation='fade-up'
+              animation='fade-left'
               duration='1600'
             >
               Our range of marketing tech and platforms
             </Heading>
             <Text
               className='primary color_white'
-              animation='fade-up'
+              animation='fade-right'
               duration='1800'
             >
               Pixelette Marketing utilizes a diverse range of platforms to drive
@@ -88,7 +88,7 @@ const RangeOfMarket: FC = () => {
             </Text>
           </center>
 
-          <div data-aos='fade-up' data-aos-duration='2000'>
+          <div data-aos='fade-right' data-aos-duration='2000'>
             {renderIcons({
               icons: [
                 ...iconsGroup2,

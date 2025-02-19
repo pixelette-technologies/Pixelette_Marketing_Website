@@ -25,19 +25,14 @@ const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
               <h2
                 className='heading_primary font_family_glory uppercase'
                 dangerouslySetInnerHTML={{ __html: heading }}
-                data-aos='fade-up'
+                data-aos='fade-right'
                 data-aos-duration='1200'
               ></h2>
             )}
             {text && <Text className='secondry'>{text}</Text>}
-            <div>
+            <div data-aos='fade-up'>
               {data?.map((el, index) => (
-                <blockquote
-                  className='bg_white'
-                  key={index}
-                  data-aos='fade-up'
-                  data-aos-duration={`${1000 + index * 200}`}
-                >
+                <blockquote className='bg_white' key={index}>
                   <section>
                     <el.icon />
                   </section>

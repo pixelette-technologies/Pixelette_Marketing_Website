@@ -31,14 +31,10 @@ const ContactUsForm: React.FC = () => {
   return (
     <div
       className='contactUsForm bg_white'
-      data-aos='fade-up'
+      data-aos='fade-left'
       data-aos-duration='1000'
     >
-      <Heading
-        className='secondry font_family_glory uppercase'
-        animation='fade-up'
-        duration='1200'
-      >
+      <Heading className='secondry font_family_glory uppercase'>
         book a call with us
       </Heading>
       <Formik
@@ -48,11 +44,7 @@ const ContactUsForm: React.FC = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div
-              className='contactUsFormFlex'
-              data-aos='fade-up'
-              data-aos-duration='1400'
-            >
+            <div className='contactUsFormFlex'>
               <FormInput
                 label='First Name'
                 name='firstName'
@@ -69,22 +61,13 @@ const ContactUsForm: React.FC = () => {
               name='email'
               place='Enter your email'
               type='email'
-              animation='fade-up'
-              duration='1600'
             />
             <FormTextArea
               label='Description'
               name='description'
               place='Write your query here'
-              animation='fade-up'
-              duration='1800'
             />
-            <Button
-              type='submit'
-              className='primary-full'
-              animation='fade-up'
-              duration='2000'
-            >
+            <Button type='submit' className='primary-full'>
               {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
           </Form>

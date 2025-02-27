@@ -265,24 +265,41 @@ export const servicesData = [
     },
     faqs: [
       {
-        question: "Alright, but what exactly do you do?",
+        question: " What social media platforms do you offer services for?",
         answer:
-          "As a creative agency we work with you to develop solutions to address your brand needs. That includes various aspects of brand planning and strategy, marketing and design."
+          "We specialize in all major platforms, including Facebook, Instagram, Twitter, LinkedIn, TikTok, YouTube, and Pinterest."
       },
       {
-        question: "Alright, but what exactly do you do?",
+        question: "Do you offer organic or paid social media marketing?",
         answer:
-          "As a creative agency we work with you to develop solutions to address your brand needs. That includes various aspects of brand planning and strategy, marketing and design."
+          "We offer both organic and paid social media marketing strategies, tailored to your specific needs and budget."
       },
       {
-        question: "Alright, but what exactly do you do?",
+        question: "How do you measure the success of social media campaigns?",
         answer:
-          "As a creative agency we work with you to develop solutions to address your brand needs. That includes various aspects of brand planning and strategy, marketing and design."
+          "We track key metrics like engagement, reach, conversions, and ROI to measure campaign effectiveness."
       },
       {
-        question: "Alright, but what exactly do you do?",
+        question:
+          "What is the typical turnaround time for a social media campaign?",
         answer:
-          "As a creative agency we work with you to develop solutions to address your brand needs. That includes various aspects of brand planning and strategy, marketing and design."
+          "Turnaround times vary depending on campaign scope and complexity. We'll provide you with a realistic timeline during your consultation."
+      },
+      {
+        question: "Do you provide content creation services?",
+        answer:
+          "Yes, we offer a full range of content creation services, including but not limited to:",
+        list: [
+          "Engaging captions",
+          "High-quality visuals (photos and videos)",
+          "Compelling video scripts"
+        ]
+      },
+      {
+        question:
+          " How do I get started with social media marketing services from Pixelette Marketing?",
+        answer:
+          "Simply contact us for a free consultation. We'll discuss your business goals and develop a customized strategy."
       }
     ],
     questionAndAnswer: {
@@ -298,14 +315,14 @@ export const servicesData = [
         "Emerging industries demand innovative and agile solutions, and we’ve dedicated ourselves to mastering the nuances of each. Our expertise ensures your social media campaigns address the unique challenges of fast-paced and competitive markets – helping your brand stay relevant, stand out and grow amidst countless others vying for the same spotlight.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Social Media Marketing ",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks. "
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Social Media Marketing ",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers. "
         },
         {
           heading: "Startup Social Media Marketing",
@@ -315,17 +332,17 @@ export const servicesData = [
         {
           heading: "SaaS Social Media Marketing",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back. "
         },
         {
           heading: "AI/ML Digital Marketing",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand. "
         },
         {
           heading: "Tech Social Media Marketing",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it. "
         }
       ]
     },
@@ -642,37 +659,72 @@ export const servicesData = [
         "In today’s fast-evolving industries, well thought out email marketing strategies are key to standing out. Our expertise in crafting email campaigns for diverse sectors ensures your brand’s messages resonate, drive engagement and deliver results, no matter how competitive the market.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Email Marketing",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our crypto email marketing solutions help your brand cut through the noise of the blockchain world. With our carefully planned email campaigns, we engage crypto enthusiasts and drive conversions through the latest strategies."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Email Marketing",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Our fintech email marketing services help simplify complex financial products for your audience. We craft clear, compelling email content that builds trust, boosts engagement, and drives customer acquisition in the competitive fintech landscape."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup Email Marketing",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "For startups aiming to make an impact, our startup email marketing strategies are designed to drive awareness, engage early adopters and accelerate growth. We create dynamic campaigns that foster loyalty and turn prospects into long-term customers."
+        },
+
+        {
+          heading: "SaaS Email Marketing",
+          detail:
+            "Our SaaS email marketing campaigns focus on nurturing leads and converting them into loyal users. We use targeted, data-driven strategies to keep your audience engaged and elevate your brand’s presence in the SaaS space."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "AI/ML Email Marketing",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "For AI and machine learning brands, our email marketing strategies connect your innovations with the right audience. We craft personalized, data-backed campaigns that simplify complex technologies and build trust with decision-makers."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "Tech Email Marketing",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
-        },
-        {
-          heading: "Tech Social Media Marketing",
-          detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Our tech email marketing services deliver the right message to the right audience. Whether you're in hardware, software, or IT services, we create email campaigns that drive engagement, foster relationships, and promote growth in the tech industry."
         }
       ]
     },
+
+    faqs: [
+      {
+        question: "What type of email marketing services do you offer?",
+        answer:
+          "We offer a comprehensive range of services, including email list building, campaign design and execution, A/B testing, and performance analysis."
+      },
+      {
+        question: "How do you ensure email deliverability?",
+        answer:
+          "We follow best practices to maintain high deliverability rates, such as list hygiene, proper email formatting, and using reputable email service providers (ESPs)."
+      },
+      {
+        question: " What is your approach to email list building?",
+        answer:
+          "We employ ethical and effective methods for list building, including website forms, social media contests, and targeted advertising."
+      },
+      {
+        question: "Do you create email templates?",
+        answer:
+          "Yes, we design visually appealing and responsive email templates that are optimized for mobile and desktop devices."
+      },
+      {
+        question: " How do you track the performance of email campaigns?",
+        answer:
+          "We track key metrics such as open rates, click-through rates, conversion rates, and bounce rates to measure campaign success."
+      },
+      {
+        question:
+          "How do I get started with email marketing services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our team to discuss your email marketing goals and explore our services."
+      }
+    ],
     howWeWork: {
       heading: `How  <span> we work </span>`,
       data: [
@@ -943,37 +995,71 @@ export const servicesData = [
         "Emerging industries require dynamic and adaptive SEO strategies, and we specialize in understanding the complexities of each. Our expertise ensures your SEO efforts tackle the unique challenges of fast-evolving and competitive markets – helping your brand climb search rankings, attract the right audience and achieve sustainable growth in a crowded digital landscape.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto SEO ",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our crypto SEO strategies are created only for blockchain and cryptocurrency markets. From targeted keyword strategies to creating content for crypto forums and niche platforms, we ensure your brand captures the attention of the right audience and become a search engine leader in the blockchain industry."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech SEO ",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Use our fintech SEO services to connect with the modern digital finance user. We simplify complex financial jargon into relatable, optimized content that drives trust and engagement, ensuring your brand thrives in the fintech ecosystem."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup SEO ",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Launching a new venture? Our startup SEO services build your online presence from scratch. From keyword planning to content creation, we set your brand on a trajectory for fast and sustainable growth."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS SEO ",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "Our SaaS SEO services focus on improving customer retention and acquisition through keyword-rich content and site optimization. We specialize in turning SaaS product features into searchable, engaging user-centric content."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI/ML SEO ",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our AI/ML SEO services enhance visibility for artificial intelligence and machine learning platforms by showcasing technical innovations in user-friendly formats. Through targeted campaigns, we bridge the gap between new age technology and its ideal audience."
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech SEO ",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Our tech SEO services spotlight any and all IT products and platforms. We design strategies that showcase your innovations, making sure your audience understands the transformative impact of your offerings."
         }
       ]
     },
+
+    faqs: [
+      {
+        question: "What SEO services do you offer?",
+        answer:
+          "We offer a wide range of SEO services, including keyword research, on-page optimization, off-page optimization, technical SEO, and 1 local SEO.  "
+      },
+      {
+        question: "How long does it take to see results from SEO?",
+        answer:
+          "SEO is an ongoing process. Results can vary, but you should start seeing improvements in your search engine rankings within a few months of consistent effort."
+      },
+      {
+        question: "What is your approach to keyword research?",
+        answer:
+          "We conduct in-depth keyword research to identify the most relevant and high-volume keywords for your target audience."
+      },
+      {
+        question: "Do you provide any guarantees for SEO results?",
+        answer:
+          "We use proven strategies and track your progress closely to ensure you see significant improvements in your search engine visibility."
+      },
+      {
+        question: "How do you stay updated on the latest SEO trends?",
+        answer:
+          "Our team stays abreast of the latest algorithm updates and industry best practices through continuous learning and industry events."
+      },
+      {
+        question:
+          "How do I get started with SEO services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our SEO experts to discuss your business goals and receive a customized SEO strategy."
+      }
+    ],
     questionAndAnswer: {
       question: `Lost rankings equal <span> lost customers </span>`,
       answer:
@@ -1288,37 +1374,66 @@ export const servicesData = [
         "Emerging industries demand strategic and adaptable PR approaches, and we thrive on understanding their complexities. Our experience helps your public relations efforts overcome the unique challenges of fast-changing, competitive markets — positioning your brand to stand out, connect with the right audience and achieve lasting success in a crowded digital landscape.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto PR ",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our Crypto PR services focus on driving visibility for blockchain brands, including DeFi platforms, crypto wallets and more. We create press releases targeting platforms like CoinDesk and CryptoSlate, form partnerships with industry influencers and execute campaigns that resonate with cryptocurrency investors and enthusiasts."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech PR",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Our Fintech PR services are designed to bridge the gap between complex financial technology and customer understanding. From crafting targeted campaigns for online banks to securing coverage in media outlets frequented by your target audience, we help your fintech solutions gain trust and engagement among end users and stakeholders."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup PR",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Our startup PR services cater to emerging businesses across various sectors, helping them secure coverage from top media outlets. We write compelling founder stories, build brand personas and craft pitches that attract not just early adopters, but also VCs."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS PR ",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "With SaaS PR services, we transform your software's features into engaging narratives. By collaborating with tech influencers and gaining visibility in publications, we help SaaS companies increase adoption rates and build lasting customer relationships."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI PR",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our public relations services for AI companies and startups focus on simplifying complex technologies like predictive analytics and neural networks for mainstream audiences. We position brands as thought leaders by organizing interviews in AI-focused outlets and developing engaging thought leadership content for executives. "
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech PR ",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "We specialize in Tech PR services for all sectors that come under tech like martech, healthtech, greentech, IT, biotech and more. By connecting with influential voices in media platforms and engaging with niche forums, we create public relations campaigns that showcase your tech solutions and strengthen your position in the market. "
         }
       ]
     },
+
+    faqs: [
+      {
+        question: "What PR and outreach services do you offer?",
+        answer:
+          " We offer a range of services, including press release distribution, media relations, influencer marketing, crisis communication, and event planning."
+      },
+      {
+        question: "How do you build media relationships?",
+        answer:
+          "We cultivate strong relationships with journalists, bloggers, and influencers through consistent communication, personalized pitches, and by providing valuable information."
+      },
+      {
+        question: "How do you measure the success of PR campaigns?",
+        answer:
+          "We track key metrics such as media mentions, social media shares, website traffic, and brand sentiment to measure campaign effectiveness."
+      },
+      {
+        question: "Do you offer crisis communication services?",
+        answer:
+          "Yes, we can help you develop and execute a crisis communication plan to protect your brand's reputation in case of unexpected events."
+      },
+      {
+        question:
+          "How do I get started with PR and outreach services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our PR and outreach specialists to discuss your specific needs and explore our services."
+      }
+    ],
     howWeWork: {
       heading: `How  <span> we work </span>`,
       data: [
@@ -1551,42 +1666,71 @@ export const servicesData = [
     },
     marketingServices: {
       title: "",
-      heading: `Industry-focused <span> PR services </span>`,
+      heading: `Industry-focused <span> influencer marketing solutions </span>`,
       detail:
-        "Emerging industries demand strategic and adaptable PR approaches, and we thrive on understanding their complexities. Our experience helps your public relations efforts overcome the unique challenges of fast-changing, competitive markets — positioning your brand to stand out, connect with the right audience and achieve lasting success in a crowded digital landscape.",
+        "In an age where authenticity drives decisions, industry-focused influencer marketing services are essential to connecting with your audience meaningfully. We specialize in personalizing campaigns to the unique demands of each sector, ensuring your brand partners with influencers who truly resonate with your market. Our expertise helps you stand out, build trust and drive impactful engagement in even the most competitive industries.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Influencer Marketing ",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our influencer marketing services for crypto brands focus on building trust in a niche industry. We partner with influencers specializing in blockchain/web3 to create educational content, host live AMA sessions and promote your platform on leading channels like YouTube and Twitter."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Influencer Marketing ",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Our fintech influencer marketing services connect your brand with influencers who simplify complex financial concepts. We create engaging content such as tutorials, reviews, and social posts that resonate with tech-savvy finance enthusiasts and professional audiences."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup Influencer Marketing ",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Our startup influencer marketing services help emerging businesses make a splash in competitive markets. We identify engaging influencers who align with your mission, creating campaigns that highlight your unique value proposition and attract early adopters."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS Influencer Marketing  ",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "Our SaaS influencer marketing services highlight the functionality and benefits of your software through collaborations with influencers who specialize in tech reviews and professional productivity tools. Our campaigns are known to drive subscriptions and boost user engagement."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI Influencer Marketing ",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our influencer marketing services for AI companies and products focus on bridging the gap between complex AI products and everyday users. We work with influencers to produce content that demonstrates the practical benefits of AI solutions, including tutorials, case studies and interactive demos."
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech Influencer Marketing  ",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "We collaborate with tech enthusiasts and industry thought leaders to showcase your brand’s innovations. From detailed product demonstrations to explainer videos on platforms like YouTube and TikTok, we ensure your technology reaches the right audience."
         }
       ]
     },
+    faqs: [
+      {
+        question: " What influencer marketing services do you offer?",
+        answer:
+          "We help you identify, select, and collaborate with relevant influencers to reach your target audience. This includes campaign strategy, influencer outreach, content creation, performance tracking, and budget management."
+      },
+      {
+        question: "How do you select the right influencers for my brand?",
+        answer:
+          "We carefully analyze influencer profiles, audience demographics, engagement rates, and brand alignment to ensure they are a good fit for your campaign goals."
+      },
+      {
+        question: "What types of influencer campaigns do you run?",
+        answer:
+          "We can execute various campaigns, including sponsored posts, giveaways, product reviews, live streams, and influencer takeovers."
+      },
+      {
+        question:
+          "How do you measure the success of influencer marketing campaigns?",
+        answer:
+          "We track key metrics such as reach, engagement, conversions, website traffic, and brand mentions to assess campaign performance."
+      },
+      {
+        question:
+          "How do I get started with influencer marketing services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our influencer marketing experts to discuss your campaign goals and explore our services."
+      }
+    ],
     howWeWork: {
       heading: `How  <span> we work </span>`,
       data: [
@@ -1908,37 +2052,65 @@ export const servicesData = [
         "Each industry has unique challenges and opportunities when it comes to advertising, and our social media ads & PPC ad strategies are built to address them. By understanding the specific demands of your sector, we create campaigns that effectively reach your target audience, optimize ad spend and drive meaningful results, helping your business thrive in a competitive market.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Ads & PPC",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our Crypto ads & PPC services are only for the blockchain and cryptocurrency markets. We help your brand gain visibility and trust within the crypto community by using carefully studied and planned ad campaigns as well as advanced competitor analysis on search engines. "
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Ads & PPC",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Our Fintech ads & PPC services are crafted to engage decision-makers in the financial technology space. By making use of our ad copywriting and precise audience targeting service, you can position your brand as a leader in the fintech industry and on search results."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup Ads & PPC",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Our Startup ads & PPC services boost visibility for new, innovative businesses. We provide ad copywriting and implement scalable PPC campaign management strategies that deliver fast, measurable growth to set your startup on the path to success."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS Ads & PPC",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "Our SaaS ads & PPC services drive user acquisition and retention for software-as-a-service companies. With compelling ad copywriting and round-the-clock ad monitoring, we ensure your campaigns lead to measurable subscriptions and long-term success."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI Ads & PPC ",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our ads & PPC services for AI companies and platforms connect your brand with an audience that is eager to embrace AI solutions, they only need to be connected with you – and that we do with paid social ads and PPC campaigns. "
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Our Tech ads & PPC services empower technology companies to highlight their coolest solutions. By developing captivating ad creatives and implementing focused targeting strategies, we help you connect with the right audience and solidify your industry leadership."
         }
       ]
     },
+    faqs: [
+      {
+        question: "What PPC platforms do you specialize in?",
+        answer:
+          "We specialize in all major PPC platforms, including Google Ads, Microsoft Advertising (formerly Bing Ads), Facebook Ads, Instagram Ads, and LinkedIn Ads."
+      },
+      {
+        question: "Do you offer a range of ad formats?",
+        answer:
+          "Yes, we work with a variety of ad formats, including search ads, display ads, video ads, social media ads, and remarketing ads."
+      },
+      {
+        question: "How do you optimize PPC campaigns for maximum ROI?",
+        answer:
+          "We use data-driven strategies, continuous A/B testing, and ongoing campaign monitoring and optimization to maximize your return on investment."
+      },
+      {
+        question: "What is your approach to keyword research for PPC?",
+        answer:
+          "We conduct in-depth keyword research to identify the most relevant and high-performing keywords for your target audience."
+      },
+      {
+        question:
+          "How do I get started with PPC services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our PPC experts to discuss your campaign goals and receive a customized strategy."
+      }
+    ],
 
     howWeWork: {
       heading: `How  <span> we work </span>`,
@@ -2301,37 +2473,66 @@ export const servicesData = [
         "Our expertise lies in addressing the complexities of industry-specific data to uncover opportunities that fuel targeted growth. From analyzing niche markets to refining performance metrics, we help your business remain competitive, engage the right audience and achieve impactful results in change-oriented markets.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Marketing Analytics",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "With our crypto marketing analytics services, we uncover the unique behaviors of blockchain audiences. Applying our specialized digital marketing analytics technique, we create strategies to improve engagement and visibility across cryptocurrency platforms."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Marketing Analytics",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "Our fintech marketing analytics services make sure that financial technology companies maintain compliance while driving customer satisfaction. Our advanced market analytics solutions simplify complex financial data, enabling better decision-making and customer-focused strategies."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup Marketing Analytics",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Our startup marketing analytics services help early-stage businesses with everything from identifying growth opportunities to optimizing budget allocation. We guide startups toward efficient customer acquisition and sustainable scaling. "
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS Marketing Analytics",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "Enhance customer retention and lifetime value through our SaaS marketing analytics services. Our team delivers actionable insights that shape user experiences and drive long-term success."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI Marketing Analytics",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Our marketing analytics and reporting services for AI companies and platforms are designed to measure the performance of all marketing campaigns. Using customized analytics marketing solutions, we optimize efforts to demonstrate the real-world benefits of artificial intelligence products."
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech Marketing Analytics",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "We focus on managing complex buying cycles in the technology sector by employing precise web marketing analytics and custom attribution models. "
         }
       ]
     },
+
+    faqs: [
+      {
+        question: "What marketing analytics services do you offer?",
+        answer:
+          "We provide comprehensive marketing analytics and reporting services, including website traffic analysis, social media performance tracking, campaign ROI analysis, and competitor analysis."
+      },
+      {
+        question: "What data sources do you analyze?",
+        answer:
+          "We analyze data from various sources, including Google Analytics, social media platforms, CRM systems, and other relevant platforms."
+      },
+      {
+        question: "How do you present your marketing reports?",
+        answer:
+          "We present our findings in clear, concise, and easy-to-understand reports, often including visualizations such as charts and graphs."
+      },
+      {
+        question: " How often will I receive marketing reports?",
+        answer:
+          "The frequency of reporting can be customized to your needs. We can provide weekly, monthly, or quarterly reports."
+      },
+      {
+        question:
+          " How do I get started with marketing analytics and reporting services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our analytics experts to discuss your reporting requirements and explore our services."
+      }
+    ],
     howWeWork: {
       heading: `How  <span> we work </span>`,
       data: [
@@ -2663,38 +2864,66 @@ export const servicesData = [
         "Lead generation in today’s dynamic markets demands precision and agility, and we’ve mastered the art of connecting your business with the right audience. Our strategies help you overcome competitive challenges, ensuring your brand grows and thrives in a crowded landscape.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Crypto Lead Generation",
           detail:
-            "Our crypto digital marketing expertise bridges the gap between innovation and visibility, putting your brand ahead in the blockchain game. We do this through creating a decisive crypto marketing strategy that doesn’t just target traditional social networks, but also crypto social networks."
+            "Our lead generation strategies for crypto projects ensure your blockchain solutions reach the right potential leads. With a focus on content creation services and crypto-specific lead magnets, we capture attention and drive adoption."
         },
         {
-          heading: "Fintech Social Media Marketing",
+          heading: "Fintech Lead Generation",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialize in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers."
+            "By combining our PPC leads and LinkedIn lead generation services, we connect you with decision-makers in the fintech space. Our customized approach enhances lead qualification and maximizes advertising ROI."
         },
         {
-          heading: "Startup Social Media Marketing",
+          heading: "Startup Lead Generation",
           detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "Our lead generation advertising is designed to help startups build a solid customer base. With audience persona research and lead magnet creation services, we ensure sustainable growth."
         },
         {
-          heading: "SaaS Social Media Marketing",
+          heading: "SaaS Lead Generation",
           detail:
-            "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back."
+            "Drive subscriptions and free trials with targeted sales marketing strategies for SaaS. From lead nurturing services to retargeting ad campaigns, we focus on delivering high-quality leads for your growth."
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI Lead Generation ",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalized campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand."
+            "Position your AI solutions as industry-leading with our LinkedIn strategies, targeted retargeting ads and an optimized lead collection process designed specifically for AI products and platforms."
         },
         {
-          heading: "Tech Social Media Marketing",
+          heading: "Tech Lead Generation",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "We combine Google Ads lead generation with landing page design and conversion rate optimization to effectively reach and engage tech-savvy buyers and strategic partners."
         }
       ]
     },
-
+    faqs: [
+      {
+        question: "What lead generation services do you offer?",
+        answer:
+          " We offer a variety of lead generation services, including PPC advertising, content marketing, social media marketing, email marketing, and landing page optimization."
+      },
+      {
+        question: "How do you ensure high-quality leads?",
+        answer:
+          "We focus on targeted campaigns that attract qualified prospects who are genuinely interested in your products or services."
+      },
+      {
+        question: "How do you track lead generation performance?",
+        answer:
+          "We track key metrics such as conversion rates, cost per lead (CPL), and customer lifetime value (CLTV) to measure the effectiveness of our lead generation campaigns."
+      },
+      {
+        question:
+          "What industries do you have experience generating leads for?",
+        answer:
+          "We have experience generating leads for businesses across various industries, including e-commerce, technology, healthcare, education, and more."
+      },
+      {
+        question:
+          "How do I get started with lead generation services from Pixelette Marketing?",
+        answer:
+          "Schedule a free consultation with our lead generation experts to discuss your business goals and explore our services."
+      }
+    ],
     howWeWork: {
       heading: `How  <span> we work </span>`,
       data: [

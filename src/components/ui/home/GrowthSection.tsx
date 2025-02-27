@@ -1,27 +1,29 @@
 import ArrowRed from "@/assets/common/ArrowLeft";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import { growthStartsData } from "@/data";
+// import { growthStartsData } from "@/data";
 import Image from "next/image";
 
-type GrowthData = {
-  value: string;
-  detail: string;
-};
+// type GrowthData = {
+//   value: string;
+//   detail: string;
+// };
 
 export default function GrowthSection() {
   return (
     <Container className='main'>
       <div className='growthSection'>
-        <header>
-          <Heading
-            className='secondary color_primary font_family_glory uppercase'
-            animation='fade-right'
-            duration='1400'
-          >
-            Growth starts here
-            <ArrowRed />
-          </Heading>
+        <Heading
+          className='primary color_secondry font_family_glory uppercase'
+          animation='fade-right'
+          duration='1400'
+        >
+          Growth <span className='color_primary'>starts</span> here
+          <ArrowRed />
+        </Heading>
+
+        {/* <header>
+         
           <Heading
             className='secondary color_secondary font_family_glory uppercase'
             animation='fade-right'
@@ -45,7 +47,7 @@ export default function GrowthSection() {
               </div>
             ))}
           </div>
-        </header>
+        </header> */}
 
         <section>
           <div>
@@ -94,8 +96,8 @@ export default function GrowthSection() {
               <Image
                 src='/home/growthBanner.webp'
                 alt='Growth Banner'
-                width={538}
-                height={527}
+                width={663}
+                height={649}
               />
             </div>
           </div>

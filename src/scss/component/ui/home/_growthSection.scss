@@ -5,43 +5,49 @@
   @media only screen and (max-width: 600px) {
     margin-top: 3rem;
   }
-  & > header {
-    & > * {
-      &:first-child {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-      }
-    }
+  // & > header {
+  //   & > * {
+  //     &:first-child {
+  //       display: flex;
+  //       align-items: center;
+  //       gap: 1rem;
+  //     }
+  //   }
 
-    & > div {
-      margin-top: 2.4rem;
-      border-radius: 0.8rem;
-      padding: 2.4rem 3.2rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 11.5rem;
-      @media only screen and (max-width: 850px) {
-        gap: 6rem;
-      }
-      @media only screen and (max-width: 700px) {
-        gap: 3.5rem;
-      }
-      @media only screen and (max-width: 600px) {
-        gap: 2.5rem;
-        padding: 1.4rem 2.2rem;
-      }
+  //   & > div {
+  //     margin-top: 2.4rem;
+  //     border-radius: 0.8rem;
+  //     padding: 2.4rem 3.2rem;
+  //     display: flex;
+  //     flex-wrap: wrap;
+  //     gap: 11.5rem;
+  //     @media only screen and (max-width: 850px) {
+  //       gap: 6rem;
+  //     }
+  //     @media only screen and (max-width: 700px) {
+  //       gap: 3.5rem;
+  //     }
+  //     @media only screen and (max-width: 600px) {
+  //       gap: 2.5rem;
+  //       padding: 1.4rem 2.2rem;
+  //     }
 
-      & > div {
-        flex: 1 1 calc(25% - 11.5rem);
-        @media only screen and (max-width: 600px) {
-          flex: 1 1 calc(50% - 2.5rem);
-        }
-        & > h1 {
-          margin-bottom: 0.7rem;
-        }
-      }
-    }
+  //     & > div {
+  //       flex: 1 1 calc(25% - 11.5rem);
+  //       @media only screen and (max-width: 600px) {
+  //         flex: 1 1 calc(50% - 2.5rem);
+  //       }
+  //       & > h1 {
+  //         margin-bottom: 0.7rem;
+  //       }
+  //     }
+  //   }
+  // }
+
+  & > h1 {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   & > section {
@@ -66,18 +72,18 @@
           max-width: 186px;
           & > div {
             & > h1 {
-              margin-bottom: 1.2rem;
+              margin-bottom: -0.3rem;
             }
           }
           & > * {
             &:not(:last-child) {
-              margin-bottom: 6.9rem;
+              margin-bottom: 10.9rem;
             }
           }
         }
         & > * {
           &:last-child {
-            margin-top: 13rem;
+            margin-top: 19rem;
           }
         }
 
@@ -96,13 +102,14 @@
 
       & > div {
         & > img {
-          @media only screen and (max-width: 978px) {
-            max-width: 470px;
-            height: auto;
-          }
-          @media only screen and (max-width: 550px) {
-            max-width: 90%;
-          }
+          margin-bottom: -1rem;
+          // @media only screen and (max-width: 978px) {
+          //   max-width: 470px;
+          //   height: auto;
+          // }
+          // @media only screen and (max-width: 550px) {
+          //   max-width: 90%;
+          // }
         }
       }
     }

@@ -4,11 +4,16 @@ import { Heading } from "../feature";
 import ArrowRed from "@/assets/common/ArrowLeft";
 import Image from "next/image";
 
+interface TrustedBrandsProps {
+  topHeading?: boolean;
+  heading?: string;
+}
+
 type RenderIconsProps = {
   icons: string[]; // Change type to string[]
 };
 
-const TrustedBrands: FC = () => {
+const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
   const imagesArray = [
     "/common/blockGold.svg",
     "/common/fusio.svg",
@@ -29,16 +34,27 @@ const TrustedBrands: FC = () => {
   return (
     <div className='trustedBrands' data-aos='fade-up' data-aos-duration='1800'>
       <Container className='main'>
-        <Heading className='primary color_secondry font_family_glory uppercase'>
-          Trusted by
-          <ArrowRed />
-        </Heading>
+        {topHeading ? (
+          ""
+        ) : (
+          <Heading className='primary color_secondry font_family_glory uppercase'>
+            Trusted by
+            <ArrowRed />
+          </Heading>
+        )}
       </Container>
       <section className='bg_primary'>
         <Container className='mainLeft'>
-          <Heading className='primary color_white font_family_glory uppercase'>
-            Leading Brands
-          </Heading>
+          {heading ? (
+            <Heading className='primary color_white font_family_glory uppercase'>
+              {heading}
+            </Heading>
+          ) : (
+            <Heading className='primary color_white font_family_glory uppercase'>
+              Leading Brands
+            </Heading>
+          )}
+
           <section>
             <div>
               {renderIcons({

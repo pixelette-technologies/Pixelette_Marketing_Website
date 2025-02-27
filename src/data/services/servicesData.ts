@@ -77,7 +77,7 @@ export const servicesData = [
           detail: " growth in social media followers in the first six months"
         },
         {
-          value: 35,
+          value: 30,
           detail: "increase in user acquisition within the first quarter"
         },
         {

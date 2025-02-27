@@ -11,12 +11,9 @@
     flex-direction: column;
     gap: 2rem;
   }
-  position: relative;
 
   & > header {
     & > div {
-      position: sticky;
-      top: 0rem;
       max-width: 306px;
       @media only screen and (max-width: 600px) {
         max-width: 100%;

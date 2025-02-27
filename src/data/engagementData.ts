@@ -44,8 +44,8 @@ const engagementData = [
   },
   {
     route: "marketing_analytics_and_reporting",
-    mainHeading: "Advanced ",
-    subHeading: "Analytics & Reporting",
+    mainHeading: "Advanced Analytics",
+    subHeading: " & Reporting",
     text: "Analyse performance across Web2 and Web3 platforms with integrated analytics real-time optimisation and transparent reporting with blockchain-backed metrics"
   },
   {

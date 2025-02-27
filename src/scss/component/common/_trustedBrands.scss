@@ -1,12 +1,11 @@
 .trustedBrands {
-  margin-top: 5.9rem;
-
   & > div {
     margin-bottom: 1.2rem;
     & > h1 {
       display: flex;
       align-items: center;
       gap: 1rem;
+      margin-top: 5.9rem;
     }
   }
   & > section {

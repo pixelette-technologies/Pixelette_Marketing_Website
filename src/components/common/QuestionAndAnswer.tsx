@@ -5,9 +5,14 @@ import Link from "next/link";
 interface QuestionAndAnswerProps {
   heading?: string;
   text?: string;
+  subheading?: boolean;
 }
 
-const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
+const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
+  heading,
+  text,
+  subheading
+}) => {
   return (
     <section
       className='bg_secondry--light'
@@ -15,6 +20,14 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
       data-aos-duration='1000'
     >
       <div className='questionAndAnswer  text_align_center'>
+        {subheading ? (
+          <header>
+            <Text className='primary color_primary'>Become a partner</Text>
+          </header>
+        ) : (
+          ""
+        )}
+
         <h2
           dangerouslySetInnerHTML={{ __html: heading || "" }}
           className='heading_secondry--light color_white'

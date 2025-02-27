@@ -3,9 +3,9 @@
 const BrownCollan = () => {
   return (
     <svg
-      width='110'
-      height='77'
-      viewBox='0 0 110 77'
+      width='107'
+      height='69'
+      viewBox='0 0 107 69'
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >

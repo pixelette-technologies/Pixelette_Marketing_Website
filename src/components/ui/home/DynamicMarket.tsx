@@ -44,7 +44,7 @@ const DynamicMarket = () => {
                   className='hover_white_arrowCard'
                   animation='fade-up'
                   duration={`${1000 + index * 200}`}
-                  to={el.route}
+                  to={`industries/${el.route}`}
                 />
               ))}
             </section>

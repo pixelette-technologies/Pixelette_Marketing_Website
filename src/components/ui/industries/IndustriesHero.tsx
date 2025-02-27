@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import { FC } from "react";
+import Link from "next/link";
 
 interface IndustriesHeroProps {
   mainHeading?: string;
@@ -49,9 +50,11 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
           >
             {text}
           </Text>
-          <Button className='primary' animation='fade-up' duration='1800'>
-            Book a consultation
-          </Button>
+          <Link href='/contactus'>
+            <Button className='primary' animation='fade-up' duration='1800'>
+              Book a consultation
+            </Button>
+          </Link>
         </div>
       </section>
     </Container>

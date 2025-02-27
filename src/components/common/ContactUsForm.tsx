@@ -4,6 +4,7 @@ import React from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
 import { Button, FormInput, FormTextArea, Heading } from "../feature";
+import Link from "next/link";
 
 interface FormValues {
   firstName: string;
@@ -67,9 +68,12 @@ const ContactUsForm: React.FC = () => {
               name='description'
               place='Write your query here'
             />
-            <Button type='submit' className='primary-full'>
-              {isSubmitting ? "Submitting..." : "Book A Call"}
-            </Button>
+
+            <Link href='/contactus'>
+              <Button type='submit' className='primary-full'>
+                {isSubmitting ? "Submitting..." : "Book A Call"}
+              </Button>
+            </Link>
           </Form>
         )}
       </Formik>

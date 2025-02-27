@@ -1,6 +1,7 @@
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 
 interface ServicesHeroProps {
@@ -41,20 +42,24 @@ const ServicesHero: FC<ServicesHeroProps> = ({
             {text}
           </Text>
           <div>
-            <Button
-              className='primary-full'
-              animation='fade-up'
-              duration='1600'
-            >
-              Book a call
-            </Button>
-            <Button
-              className='secondry-full'
-              animation='fade-up'
-              duration='1800'
-            >
-              Get a proposal
-            </Button>
+            <Link href='/contactus'>
+              <Button
+                className='primary-full'
+                animation='fade-up'
+                duration='1600'
+              >
+                Book a call
+              </Button>
+            </Link>
+            <Link href='/contactus'>
+              <Button
+                className='secondry-full'
+                animation='fade-up'
+                duration='1800'
+              >
+                Get a proposal
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

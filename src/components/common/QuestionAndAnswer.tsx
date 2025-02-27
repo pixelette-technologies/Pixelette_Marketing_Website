@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Text, Button } from "../feature";
+import Link from "next/link";
 
 interface QuestionAndAnswerProps {
   heading?: string;
@@ -27,9 +28,11 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({ heading, text }) => {
         >
           {text}
         </Text>
-        <Button className='primary' animation='fade-up' duration='1600'>
-          {"Book a consultant - it's on us!"}
-        </Button>
+        <Link href='/contactus'>
+          <Button className='primary' animation='fade-up' duration='1600'>
+            {"Book a consultant - it's on us!"}
+          </Button>
+        </Link>
       </div>
     </section>
   );

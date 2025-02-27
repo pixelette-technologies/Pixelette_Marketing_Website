@@ -1,6 +1,7 @@
 import { Container } from "@/components/common";
 import { Text, Heading, Button } from "@/components/feature";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutUsHero = () => {
   return (
@@ -31,9 +32,11 @@ const AboutUsHero = () => {
             approach to help brands achieve their goals. Our marketing services
             are built on trust, creativity and delivering results that matter.
           </Text>
-          <Button className='primary' animation='fade-up' duration='1600'>
-            Get in touch
-          </Button>
+          <Link href='contactus'>
+            <Button className='primary' animation='fade-up' duration='1600'>
+              Get in touch
+            </Button>
+          </Link>
         </div>
       </section>
     </Container>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomeHero() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
@@ -110,9 +111,11 @@ export default function HomeHero() {
                 start achieving ROI you can see!
               </span>
             </Text>
-            <Button className='primary' animation='fade-up' duration='1800'>
-              Book A Call
-            </Button>
+            <Link href='/contactus'>
+              <Button className='primary' animation='fade-up' duration='1800'>
+                Book A Call
+              </Button>
+            </Link>
           </div>
         </section>
       </div>

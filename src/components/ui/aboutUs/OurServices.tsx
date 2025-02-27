@@ -46,7 +46,7 @@ const OurServices = () => {
                 mainHeading={el.mainHeading}
                 subHeading={el.subHeading}
                 summary={el.text}
-                to={el.route}
+                to={`/industries/${el.route}`}
                 theme={false}
                 textfloat={false}
                 animation='fade-up'

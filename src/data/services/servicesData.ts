@@ -232,7 +232,7 @@ export const servicesData = [
     review: {
       mainHeading:
         "When you partner with Pixelette Marketing for social media solutions,",
-      subHeading: "Expect content that connects and converts",
+      subHeading: "expect campaigns  that connects and converts",
       details: [
         "Grow your brand visibility and engagement across platforms.",
         "Drive meaningful conversations that build trust with your audience.",
@@ -597,7 +597,7 @@ export const servicesData = [
     review: {
       mainHeading:
         "When you partner with Pixelate Marketing for email marketing services,",
-      subHeading: "expect content that connects and converts",
+      subHeading: "expect campaigns  that connects and converts",
       details: [
         "Increase open rates and drive higher engagement with campaigns.",
         "Build lasting relationships through personalized, value-driven email content.",
@@ -904,7 +904,7 @@ export const servicesData = [
     review: {
       mainHeading:
         "When you partner with Pixelette Marketing for SEO solutions, ",
-      subHeading: "expect content that ranks and converts",
+      subHeading: "expect campaigns  that ranks and converts",
       details: [
         "Grow search visibility with strategies suited to your audience only.",
         "Drive meaningful engagement through optimized content and keywords.",

@@ -10,15 +10,6 @@ type GrowthData = {
 };
 
 export default function GrowthSection() {
-  const images = [
-    { src: "/home/g_1.webp", width: 125, height: 112 },
-    { src: "/home/g_2.webp", width: 191, height: 48 },
-    { src: "/home/g_3.webp", width: 247, height: 70 },
-    { src: "/home/g_4.webp", width: 150, height: 150 },
-    { src: "/home/g_5.webp", width: 191, height: 162 },
-    { src: "/home/g_6.webp", width: 205, height: 86 }
-  ];
-
   return (
     <Container className='main'>
       <div className='growthSection'>
@@ -58,19 +49,46 @@ export default function GrowthSection() {
 
         <section>
           <div>
+            {/* <Heading>Success Follows Next</Heading> */}
             <section data-aos='fade-right' data-aos-duration={1300}>
-              {images.map((image, index) => (
-                <div key={index}>
-                  <Image
-                    src={image.src}
-                    alt='Growth Icons'
-                    width={image.width}
-                    height={image.height}
-                  />
+              <div>
+                <div>
+                  <Heading className='primary font_family_glory color_primary'>
+                    300%
+                  </Heading>
+                  <Text className='secondry font_family_glory'>
+                    growth in 1 month in community membership for a Web3
+                    platform
+                  </Text>
                 </div>
-              ))}
-
-              {/* <Heading>work we are proud of</Heading> */}
+                <div>
+                  <Heading className='primary font_family_glory color_primary'>
+                    40%
+                  </Heading>
+                  <Text className='secondry font_family_glory'>
+                    lead conversion increase in Fintech app over six months
+                  </Text>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <Heading className='primary font_family_glory color_primary'>
+                    2.5x
+                  </Heading>
+                  <Text className='secondry font_family_glory'>
+                    ROI on PPC campaigns for a SaaS company
+                  </Text>
+                </div>
+                <div>
+                  <Heading className='primary font_family_glory color_primary'>
+                    120%
+                  </Heading>
+                  <Text className='secondry font_family_glory'>
+                    increase in qualified social media leads for an AI startup
+                    in 60 days
+                  </Text>
+                </div>
+              </div>
             </section>
             <div data-aos='fade-left' data-aos-duration='2000'>
               <Image

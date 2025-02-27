@@ -58,31 +58,40 @@
       & > section {
         display: flex;
         flex-wrap: wrap;
-        gap: 2.5rem;
+        align-items: center;
+        gap: 6.9rem;
         position: relative;
         & > div {
-          flex: 1 1 calc(50% - 2.5rem);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          & > img {
-            z-index: 100;
-            width: 100%;
-            object-fit: contain;
+          flex: 1 1 calc(50% - 6.9rem);
+          max-width: 186px;
+          & > div {
+            & > h1 {
+              margin-bottom: 1.2rem;
+            }
+          }
+          & > * {
+            &:not(:last-child) {
+              margin-bottom: 6.9rem;
+            }
+          }
+        }
+        & > * {
+          &:last-child {
+            margin-top: 13rem;
           }
         }
 
-        & > h1 {
-          font-size: 11.5rem;
-          color: color.$tertiary;
-          line-height: 9.5rem;
-          text-transform: uppercase;
-          position: absolute;
-          font-family: "Glory";
-          font-weight: 900;
-          top: 10rem;
-          left: 10rem;
-        }
+        // & > h1 {
+        //   font-size: 11.5rem;
+        //   color: color.$tertiary;
+        //   line-height: 9.5rem;
+        //   text-transform: uppercase;
+        //   position: absolute;
+        //   font-family: "Glory";
+        //   font-weight: 900;
+        //   top: 10rem;
+        //   left: 10rem;
+        // }
       }
 
       & > div {

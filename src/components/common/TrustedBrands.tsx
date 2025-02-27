@@ -1,38 +1,27 @@
 import { FC } from "react";
 import Container from "./Container";
 import { Heading } from "../feature";
-import {
-  Apollo,
-  Jira,
-  LinkedIn,
-  PyTorch,
-  Sprout,
-  Buffer,
-  MailChimp
-} from "@/assets/common";
 import ArrowRed from "@/assets/common/ArrowLeft";
-
-type IconComponent = FC;
+import Image from "next/image";
 
 type RenderIconsProps = {
-  icons: IconComponent[];
+  icons: string[]; // Change type to string[]
 };
 
-const TrustedBrands = () => {
-  const iconsGroup: IconComponent[] = [
-    Jira,
-    LinkedIn,
-    PyTorch,
-    Apollo,
-    Sprout,
-    Buffer,
-    MailChimp
+const TrustedBrands: FC = () => {
+  const imagesArray = [
+    "/common/blockGold.svg",
+    "/common/fusio.svg",
+    "/common/digitalAssests.svg",
+    "/common/bigInvonation.svg",
+    "/common/fantacyFusio.svg",
+    "/common/webBooking.svg"
   ];
 
   const renderIcons = ({ icons }: RenderIconsProps) => {
-    return icons.map((Icon, index) => (
+    return icons.map((icon, index) => (
       <div key={index} className='icon-wrapper'>
-        <Icon />
+        <Image src={icon} alt={`Brand Logo ${index}`} width={200} height={50} />
       </div>
     ));
   };
@@ -54,10 +43,10 @@ const TrustedBrands = () => {
             <div>
               {renderIcons({
                 icons: [
-                  ...iconsGroup,
-                  ...iconsGroup,
-                  ...iconsGroup,
-                  ...iconsGroup
+                  ...imagesArray,
+                  ...imagesArray,
+                  ...imagesArray,
+                  ...imagesArray
                 ]
               })}
             </div>

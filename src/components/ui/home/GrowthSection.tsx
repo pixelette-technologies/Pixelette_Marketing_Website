@@ -52,7 +52,7 @@ export default function GrowthSection() {
         <section>
           <div>
             <header>
-              <Heading animation='fade-right' duration={1300}>
+              <Heading animation='fade-right' duration={"1300"}>
                 Success Follows Next
               </Heading>
               <section data-aos='fade-right' data-aos-duration={1300}>

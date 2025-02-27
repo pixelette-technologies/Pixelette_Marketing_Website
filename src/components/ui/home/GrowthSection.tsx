@@ -51,47 +51,50 @@ export default function GrowthSection() {
 
         <section>
           <div>
-            {/* <Heading>Success Follows Next</Heading> */}
-            <section data-aos='fade-right' data-aos-duration={1300}>
-              <div>
+            <header>
+              <Heading>Success Follows Next</Heading>
+              <section data-aos='fade-right' data-aos-duration={1300}>
                 <div>
-                  <Heading className='primary font_family_glory color_primary'>
-                    300%
-                  </Heading>
-                  <Text className='secondry font_family_glory'>
-                    growth in 1 month in community membership for a Web3
-                    platform
-                  </Text>
+                  <div>
+                    <Heading className='primary font_family_glory color_primary'>
+                      300%
+                    </Heading>
+                    <Text className='secondry font_family_glory'>
+                      growth in 1 month in community membership for a Web3
+                      platform
+                    </Text>
+                  </div>
+                  <div>
+                    <Heading className='primary font_family_glory color_primary'>
+                      40%
+                    </Heading>
+                    <Text className='secondry font_family_glory'>
+                      lead conversion increase in Fintech app over six months
+                    </Text>
+                  </div>
                 </div>
                 <div>
-                  <Heading className='primary font_family_glory color_primary'>
-                    40%
-                  </Heading>
-                  <Text className='secondry font_family_glory'>
-                    lead conversion increase in Fintech app over six months
-                  </Text>
+                  <div>
+                    <Heading className='primary font_family_glory color_primary'>
+                      2.5x
+                    </Heading>
+                    <Text className='secondry font_family_glory'>
+                      ROI on PPC campaigns for a SaaS company
+                    </Text>
+                  </div>
+                  <div>
+                    <Heading className='primary font_family_glory color_primary'>
+                      120%
+                    </Heading>
+                    <Text className='secondry font_family_glory'>
+                      increase in qualified social media leads for an AI startup
+                      in 60 days
+                    </Text>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <div>
-                  <Heading className='primary font_family_glory color_primary'>
-                    2.5x
-                  </Heading>
-                  <Text className='secondry font_family_glory'>
-                    ROI on PPC campaigns for a SaaS company
-                  </Text>
-                </div>
-                <div>
-                  <Heading className='primary font_family_glory color_primary'>
-                    120%
-                  </Heading>
-                  <Text className='secondry font_family_glory'>
-                    increase in qualified social media leads for an AI startup
-                    in 60 days
-                  </Text>
-                </div>
-              </div>
-            </section>
+              </section>
+            </header>
+
             <div data-aos='fade-left' data-aos-duration='2000'>
               <Image
                 src='/home/growthBanner.webp'

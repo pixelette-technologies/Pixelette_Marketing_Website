@@ -56,60 +56,63 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      // gap: 1rem;
       @media only screen and (max-width: 760px) {
         flex-direction: column;
       }
 
-      & > section {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 6.9rem;
+      & > header {
         position: relative;
-        & > div {
-          flex: 1 1 calc(50% - 6.9rem);
-          max-width: 186px;
+        & > h1 {
+          font-size: 14.5rem;
+          color: color.$tertiary;
+          line-height: 13.8rem;
+          text-transform: uppercase;
+          position: absolute;
+          font-family: "Glory";
+          font-weight: 900;
+          top: -7rem;
+          left: 0rem;
+        }
+        & > section {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+          gap: 5.9rem;
+          position: relative;
+          margin-top: -10rem;
+          padding: 0rem 3rem;
           & > div {
-            & > h1 {
-              margin-bottom: -0.3rem;
+            flex: 1 1 calc(50% - 5.9rem);
+            & > div {
+              & > h1 {
+                margin-bottom: -0.3rem;
+              }
+            }
+            & > * {
+              &:not(:last-child) {
+                margin-bottom: 10.9rem;
+              }
             }
           }
           & > * {
-            &:not(:last-child) {
-              margin-bottom: 10.9rem;
+            &:last-child {
+              margin-top: 19rem;
             }
           }
         }
-        & > * {
-          &:last-child {
-            margin-top: 19rem;
-          }
-        }
-
-        // & > h1 {
-        //   font-size: 11.5rem;
-        //   color: color.$tertiary;
-        //   line-height: 9.5rem;
-        //   text-transform: uppercase;
-        //   position: absolute;
-        //   font-family: "Glory";
-        //   font-weight: 900;
-        //   top: 10rem;
-        //   left: 10rem;
-        // }
       }
 
       & > div {
         & > img {
           margin-bottom: -1rem;
-          // @media only screen and (max-width: 978px) {
-          //   max-width: 470px;
-          //   height: auto;
-          // }
-          // @media only screen and (max-width: 550px) {
-          //   max-width: 90%;
-          // }
+          @media only screen and (max-width: 978px) {
+            max-width: 470px;
+            height: auto;
+          }
+          @media only screen and (max-width: 550px) {
+            max-width: 90%;
+          }
         }
       }
     }

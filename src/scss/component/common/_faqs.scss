@@ -1,0 +1,8 @@
+.faqs {
+  padding: 3.2rem 0rem;
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: 1.2rem;
+    }
+  }
+}

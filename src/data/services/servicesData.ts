@@ -714,7 +714,7 @@ export const servicesData = [
           "Yes, we design visually appealing and responsive email templates that are optimized for mobile and desktop devices."
       },
       {
-        question: " How do you track the performance of email campaigns?",
+        question: "How do you track the performance of email campaigns?",
         answer:
           "We track key metrics such as open rates, click-through rates, conversion rates, and bounce rates to measure campaign success."
       },

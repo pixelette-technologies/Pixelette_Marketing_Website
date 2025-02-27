@@ -1,0 +1,32 @@
+.accordion {
+  padding: 2.4rem;
+  border-radius: 1.2rem;
+  background-color: white;
+  & > header {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+    justify-content: space-between;
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+    }
+    & > blockquote {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      & > * {
+        font-size: 1.3rem;
+        margin-left: 0.2rem;
+      }
+    }
+  }
+  & > section {
+    margin-top: 1rem;
+    padding: 0rem 4.4rem;
+  }
+}

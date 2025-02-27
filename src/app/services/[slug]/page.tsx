@@ -1,10 +1,12 @@
 import {
   ContactSection,
   ContentDisplaySection,
+  Faqs,
   QuestionAndAnswer,
   TeamSection,
   TrustedBrands
 } from "@/components/common";
+
 import {
   Importance,
   ResearchSection,
@@ -40,6 +42,8 @@ export default async function Page({ params }: PageProps) {
 
   const marketingServicesData = pageData?.marketingServices;
 
+  const faqData = pageData?.faqs;
+
   return (
     <>
       <ServicesHero
@@ -48,7 +52,7 @@ export default async function Page({ params }: PageProps) {
         text={pageData?.summary}
         image={pageData?.image || "/services/heroImageServices.webp"}
       />
-      <TrustedBrands  />
+      <TrustedBrands />
 
       <ResearchSection
         mainHeading={researchData?.mainHeading}
@@ -97,6 +101,8 @@ export default async function Page({ params }: PageProps) {
         heading={questionAndAnswer?.question}
         text={questionAndAnswer?.answer}
       />
+
+      <Faqs data={faqData} />
     </>
   );
 }

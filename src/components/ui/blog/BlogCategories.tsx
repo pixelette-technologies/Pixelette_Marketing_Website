@@ -1,7 +1,14 @@
-import { Heading, Text } from "@/components/feature";
+import { Heading } from "@/components/feature";
+import blogsData from "@/data/blogs/blogsData";
+import Link from "next/link";
+import { FC } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 
-const BlogCategories = () => {
+interface BlogId {
+  currentId?: number;
+}
+
+const BlogCategories: FC<BlogId> = ({ currentId }) => {
   return (
     <>
       <div
@@ -22,63 +29,21 @@ const BlogCategories = () => {
         </div>
 
         <section>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>All</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>B2B Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Branding</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Community Management</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Crypto Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>DeFi Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Design</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Digital Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Ecommerce Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Email Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Fintech Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>ICO Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>IDO Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Influencer Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>Lead Generation</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>NFT Marketing</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>PPC</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>PR</Text>
-          </div>
-          <div data-aos='fade-up' data-aos-duration='1000'>
-            <Text className='tertiary'>SaaS Marketing</Text>
-          </div>
+          {blogsData.map((el, index) => (
+            <Link
+              href={`/blogs/${el.id}`}
+              data-aos='fade-up'
+              data-aos-duration='1000'
+              key={index}
+              className={
+                currentId === el.id
+                  ? "bg_primary color_white"
+                  : "color_secondry"
+              }
+            >
+              {el.title}
+            </Link>
+          ))}
         </section>
       </div>
     </>

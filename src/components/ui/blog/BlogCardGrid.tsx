@@ -1,14 +1,23 @@
-import { storiesData } from "@/data/storiesData/storiesData";
 import { BlogCard } from "@/components/feature";
+import React from "react";
 
-const BlogCardGrid = () => {
+type BlogPost = {
+  title?: string;
+  summary?: string;
+};
+
+type BlogDataDisplayProps = {
+  data?: BlogPost[];
+};
+
+const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
   return (
     <div
       className='blogCardGrid bg_white'
       data-aos='fade-up'
       data-aos-duration='1000'
     >
-      {storiesData.map((story, index) => (
+      {data?.map((story, index) => (
         <BlogCard
           key={`section-story-${index}`}
           icon={false}

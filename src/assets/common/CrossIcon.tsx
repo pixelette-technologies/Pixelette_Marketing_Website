@@ -1,0 +1,28 @@
+const CrossIcon = () => {
+  return (
+    <svg
+      width='17'
+      height='17'
+      viewBox='0 0 17 17'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect
+        x='0.132812'
+        y='0.195312'
+        width='16'
+        height='16'
+        rx='8'
+        fill='#B3063C'
+      />
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M10.0184 6.78015L9.54703 6.30874L8.13281 7.72296L6.7186 6.30874L6.24719 6.78015L7.66141 8.19436L6.24719 9.60858L6.7186 10.08L8.13281 8.66577L9.54703 10.08L10.0184 9.60858L8.60422 8.19436L10.0184 6.78015Z'
+        fill='white'
+      />
+    </svg>
+  );
+};
+
+export default CrossIcon;

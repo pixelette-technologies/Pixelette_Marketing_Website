@@ -1,7 +1,6 @@
 import { FC } from "react";
-import { FaPlus } from "react-icons/fa6";
-import { FaMinus } from "react-icons/fa6";
 import Text from "./Text";
+import Image from "next/image";
 
 interface AccordionProps {
   question?: string;
@@ -25,9 +24,10 @@ const Accordion: FC<AccordionProps> = ({
   return (
     <div
       className='accordion'
-      // style={{ backgroundColor: isOpen ? "#00233a" : "rgba(1, 47, 77, 1)" }}
       data-aos={animation}
       data-aos-duration={duration}
+      onClick={onToggle}
+      style={{ cursor: "pointer" }}
     >
       <header>
         <div>
@@ -38,15 +38,21 @@ const Accordion: FC<AccordionProps> = ({
           </Text>
           <Text className='primary--bolder'>{question}</Text>
         </div>
-        <blockquote
-          onClick={onToggle}
-          className={isOpen ? "bg_primary" : "bg_tertiary"}
-          style={{ cursor: "pointer" }}
-        >
+        <blockquote>
           {isOpen ? (
-            <FaMinus style={{ color: "white" }} />
+            <Image
+              src='/common/crossIcon.svg'
+              height={19}
+              width={19}
+              alt='icon'
+            />
           ) : (
-            <FaPlus style={{ color: "black" }} />
+            <Image
+              src='/common/plusIcon.svg'
+              height={19}
+              width={19}
+              alt='icon'
+            />
           )}
         </blockquote>
       </header>

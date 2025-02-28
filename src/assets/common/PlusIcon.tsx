@@ -1,0 +1,21 @@
+const PlusIcon = () => {
+  return (
+    <svg
+      width='16'
+      height='16'
+      viewBox='0 0 16 16'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <rect width='16' height='16' rx='8' fill='#F8F5F3' />
+      <path
+        fill-rule='evenodd'
+        clip-rule='evenodd'
+        d='M8.33366 5.66602H7.66699V7.66602H5.66699V8.33268H7.66699V10.3327H8.33366V8.33268H10.3337V7.66602H8.33366V5.66602Z'
+        fill='black'
+      />
+    </svg>
+  );
+};
+
+export default PlusIcon;

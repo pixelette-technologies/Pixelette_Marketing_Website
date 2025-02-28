@@ -1,7 +1,20 @@
+import React from "react";
 import { Container } from "@/components/common";
 import StoriesCardGrid from "./StoriesCardGrid";
+import blogsData from "@/data/blogs/blogsData";
+import Link from "next/link";
 
-const StoriesDataDisplay = () => {
+type BlogPost = {
+  title?: string;
+  summary?: string;
+};
+
+type BlogDataDisplayProps = {
+  id?: number;
+  data?: BlogPost[];
+};
+
+const StoriesDataDisplay: React.FC<BlogDataDisplayProps> = ({ data, id }) => {
   return (
     <Container className='main'>
       <div
@@ -10,29 +23,24 @@ const StoriesDataDisplay = () => {
         data-aos-duration='1200'
       >
         <header>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
-          <div>All</div>
+          <div>
+            {blogsData.map((el, index) => (
+              <Link
+                href={`/success_stories/${el.id}`}
+                data-aos='fade-up'
+                data-aos-duration='1000'
+                key={index}
+                className={
+                  id === el.id ? "bg_primary color_white" : "color_secondry"
+                }
+              >
+                {el.title}
+              </Link>
+            ))}
+          </div>
         </header>
         <section>
-          <StoriesCardGrid />
+          <StoriesCardGrid data={data} />
         </section>
       </div>
     </Container>

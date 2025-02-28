@@ -1,4 +1,8 @@
-import { BlogDataDisplay, BlogHeroSection } from "@/components/ui/blog";
+import {
+  StoriesDataDisplay,
+  StoriesHeroSection
+} from "@/components/ui/stories";
+
 import blogsData from "@/data/blogs/blogsData";
 
 type PageProps = {
@@ -7,7 +11,8 @@ type PageProps = {
   };
 };
 
-export default function Page({ params }: PageProps) {
+export default function page({ params }: PageProps) {
+
   const id = Number(params.id);
 
   const blogListData = blogsData.find(item => item.id === id);
@@ -15,10 +20,11 @@ export default function Page({ params }: PageProps) {
   const dataList = blogListData?.data;
   const dataId = blogListData?.id;
 
+
   return (
-    <>
-      <BlogHeroSection />
-      <BlogDataDisplay data={dataList} id={dataId} />
-    </>
+    <div className=''>
+      <StoriesHeroSection />
+      <StoriesDataDisplay data={dataList} id={dataId}   />
+    </div>
   );
 }

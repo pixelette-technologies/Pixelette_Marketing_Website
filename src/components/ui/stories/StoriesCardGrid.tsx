@@ -1,13 +1,21 @@
 import { BlogCard } from "@/components/feature";
-import { storiesData } from "@/data/storiesData/storiesData";
 
-const StoriesCardGrid = () => {
-  const headerData = storiesData.slice(0, 2);
-  const sectionData = storiesData.slice(2);
+type BlogPost = {
+  title?: string;
+  summary?: string;
+};
+
+type BlogDataDisplayProps = {
+  data?: BlogPost[];
+};
+
+const StoriesCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
+  const headerData = data?.slice(0, 2);
+  const sectionData = data?.slice(2);
   return (
     <div className='storiesCardGrid  bg_white'>
       <header>
-        {headerData.map((story, index) => (
+        {headerData?.map((story, index) => (
           <BlogCard
             key={`header-story-${index}`}
             icon={true}
@@ -19,7 +27,7 @@ const StoriesCardGrid = () => {
         ))}
       </header>
       <section>
-        {sectionData.map((story, index) => (
+        {sectionData?.map((story, index) => (
           <BlogCard
             key={`section-story-${index}`}
             icon={true}

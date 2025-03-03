@@ -7,7 +7,7 @@ const OurValues = () => {
       <section className='ourValues'>
         <Text
           className='primary color_primary'
-          animation='fade-up'
+          animation='fade-right'
           duration='1000'
         >
           Our values
@@ -15,8 +15,8 @@ const OurValues = () => {
         <header>
           <Heading
             className='secondry--light color_secondry'
-            animation='fade-up'
-            duration='1200'
+            animation='fade-right'
+            duration='1000'
           >
             What defines us
           </Heading>

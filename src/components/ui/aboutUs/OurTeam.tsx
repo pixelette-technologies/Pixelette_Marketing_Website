@@ -11,15 +11,15 @@ const OurTeam = () => {
           <header>
             <Text
               className='primary color_primary'
-              animation='fade-up'
+              animation='fade-right'
               duration='1200'
             >
               Our team
             </Text>
             <Heading
               className='secondry--light color_white'
-              animation='fade-up'
-              duration='1400'
+              animation='fade-right'
+              duration='1200'
             >
               Your partners in growth
             </Heading>

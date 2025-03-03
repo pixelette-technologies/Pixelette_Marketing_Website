@@ -15,15 +15,15 @@ const OurServices = () => {
           <header>
             <Text
               className='primary color_primary'
-              animation='fade-up'
+              animation='fade-right'
               duration='1200'
             >
               Industries we service
             </Text>
             <Heading
               className='secondry--light color_secondry'
-              animation='fade-up'
-              duration='1400'
+              animation='fade-right'
+              duration='1200'
             >
               We succeed where it matters most today
             </Heading>

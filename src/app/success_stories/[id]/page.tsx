@@ -6,25 +6,25 @@ import {
 import blogsData from "@/data/blogs/blogsData";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function page({ params }: PageProps) {
+export default async function page({ params }: PageProps) {
+  const { id } = await params;
 
-  const id = Number(params.id);
+  const currentId = Number(id);
 
-  const blogListData = blogsData.find(item => item.id === id);
+  const blogListData = blogsData.find(item => item.id === currentId);
 
   const dataList = blogListData?.data;
   const dataId = blogListData?.id;
 
-
   return (
     <div className=''>
       <StoriesHeroSection />
-      <StoriesDataDisplay data={dataList} id={dataId}   />
+      <StoriesDataDisplay data={dataList} id={dataId} />
     </div>
   );
 }

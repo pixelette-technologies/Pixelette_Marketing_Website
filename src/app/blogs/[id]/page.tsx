@@ -2,15 +2,17 @@ import { BlogDataDisplay, BlogHeroSection } from "@/components/ui/blog";
 import blogsData from "@/data/blogs/blogsData";
 
 type PageProps = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
-export default function Page({ params }: PageProps) {
-  const id = Number(params.id);
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
 
-  const blogListData = blogsData.find(item => item.id === id);
+  const currentId = Number(id);
+
+  const blogListData = blogsData.find(item => item.id === currentId);
 
   const dataList = blogListData?.data;
   const dataId = blogListData?.id;

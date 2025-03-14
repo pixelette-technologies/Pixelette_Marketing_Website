@@ -1,5 +1,4 @@
 
-"use server";
 
 const ArrowRed = () => {
   return (

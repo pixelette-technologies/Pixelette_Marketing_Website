@@ -1,4 +1,3 @@
-"use server";
 
 const ArrowRight = () => {
   return (

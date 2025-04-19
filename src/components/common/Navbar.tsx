@@ -62,7 +62,7 @@ export default function Navbar() {
                 style={{ zIndex: 999999999999 }}
               >
                 <div className=''>
-                  <Link href={"/"} onClick={toggleMenu}>
+                  <Link href='/' onClick={toggleMenu}>
                     Home
                   </Link>
                   <NavbarDropDown
@@ -83,10 +83,10 @@ export default function Navbar() {
                   <Link href={"/blogs"} onClick={toggleMenu}>
                     Blogs
                   </Link> */}
-                  <Link href={"/aboutus"} onClick={toggleMenu}>
+                  <Link href='/aboutus' onClick={toggleMenu}>
                     About Us
                   </Link>
-                  <Link href={"/contactus"} onClick={toggleMenu}>
+                  <Link href='/contactus' onClick={toggleMenu}>
                     Contact Us
                   </Link>
                 </div>

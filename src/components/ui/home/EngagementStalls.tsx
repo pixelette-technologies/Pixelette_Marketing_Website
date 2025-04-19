@@ -80,7 +80,6 @@ const EngagementStalls = () => {
                     theme={true}
                     textfloat={false}
                     className='hover_black_arrowCard transition-opacity duration-500 opacity-100'
-                    style={{ opacity: index === 0 ? 0.2 : 1 }}
                   />
                 ))}
             </div>
@@ -97,7 +96,6 @@ const EngagementStalls = () => {
                     theme={true}
                     textfloat={true}
                     className='hover_black_arrowCard transition-opacity duration-500 opacity-100'
-                    style={{ opacity: index === 0 ? 0.2 : 1 }}
                   />
                 ))}
             </blockquote>

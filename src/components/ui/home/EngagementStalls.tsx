@@ -101,6 +101,21 @@ const EngagementStalls = () => {
                   />
                 ))}
             </blockquote>
+
+            <section>
+              {engagementData.map((el, index) => (
+                <ArrowCard
+                  key={index}
+                  mainHeading={el.mainHeading}
+                  subHeading={el.subHeading}
+                  summary={el.text}
+                  to={`/services/${el.route}`}
+                  theme={true}
+                  textfloat={false}
+                  className='hover_black_arrowCard transition-opacity duration-500 opacity-100'
+                />
+              ))}
+            </section>
           </section>
         </section>
       </Container>

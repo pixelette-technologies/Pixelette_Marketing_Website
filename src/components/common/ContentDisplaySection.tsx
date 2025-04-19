@@ -81,6 +81,14 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
                 </div>
               ))}
           </section>
+          <div>
+            {data.map((el, index) => (
+              <div key={index}>
+                <Text className='primary--bold'>{el.heading}</Text>
+                <Text className='tertiary'>{el.detail}</Text>
+              </div>
+            ))}
+          </div>
         </div>
       </Container>
     </div>

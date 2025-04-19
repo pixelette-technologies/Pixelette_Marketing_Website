@@ -11,6 +11,9 @@
     @media only screen and (max-width: 960px) {
       flex-direction: column;
     }
+    @media only screen and (max-width: 800px) {
+      position: relative;
+    }
 
     & > h1 {
       max-width: 46.4rem;

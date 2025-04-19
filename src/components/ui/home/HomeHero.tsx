@@ -85,6 +85,13 @@ export default function HomeHero() {
           </section>
         </div>
 
+        <Image
+          src='/home/heroImageForMobile.png'
+          alt='Background image for mobile responsive '
+          height={480}
+          width={520}
+        />
+
         <section className='bg_tertiary' data-aos='fade-up'>
           <div>
             <Heading

@@ -1,0 +1,13 @@
+.mainLayoutForAnimation {
+  & > section {
+    @media only screen and (max-width: 650px) {
+      display: none;
+    }
+  }
+  & > div {
+    display: none;
+    @media only screen and (max-width: 650px) {
+      display: block;
+    }
+  }
+}

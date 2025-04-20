@@ -1,13 +1,7 @@
 import ArrowRed from "@/assets/common/ArrowLeft";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-// import { growthStartsData } from "@/data";
 import Image from "next/image";
-
-// type GrowthData = {
-//   value: string;
-//   detail: string;
-// };
 
 export default function GrowthSection() {
   return (
@@ -21,33 +15,6 @@ export default function GrowthSection() {
           Growth <span className='color_primary'>starts</span> here
           <ArrowRed />
         </Heading>
-
-        {/* <header>
-         
-          <Heading
-            className='secondary color_secondary font_family_glory uppercase'
-            animation='fade-right'
-            duration='1400'
-          >
-            SUCCESS FOLLOWS NEXT.
-          </Heading>
-          <div
-            className='bg_tertiary'
-            data-aos='fade-up'
-            data-aos-duration='1600'
-          >
-            {growthStartsData.map((el: GrowthData, index: number) => (
-              <div key={index}>
-                <Heading className='primary color_primary font_family_glory uppercase'>
-                  {el.value}
-                </Heading>
-                <Text className='secondary color_secondary--light font_family_glory'>
-                  {el.detail}
-                </Text>
-              </div>
-            ))}
-          </div>
-        </header> */}
 
         <section>
           <div>

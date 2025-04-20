@@ -69,11 +69,9 @@ const ContactUsForm: React.FC = () => {
               place='Write your query here'
             />
 
-            <Link href='/contactus'>
-              <Button type='submit' className='primary-full'>
-                {isSubmitting ? "Submitting..." : "Book A Call"}
-              </Button>
-            </Link>
+            <Button type='submit' className='primary-full'>
+              {isSubmitting ? "Submitting..." : "Book A Call"}
+            </Button>
           </Form>
         )}
       </Formik>

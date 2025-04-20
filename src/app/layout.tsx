@@ -19,17 +19,9 @@ export default function RootLayout({
       </head>
       <body>
         <AnimationsLayout>
-          <div
-            style={{
-              display: "flex",
-              // position: "relative",
-              flexDirection: "column"
-            }}
-          >
-            <Navbar />
-            <div>{children}</div>
-            <Footer />
-          </div>
+          <Navbar />
+          <div>{children}</div>
+          <Footer />
         </AnimationsLayout>
       </body>
     </html>

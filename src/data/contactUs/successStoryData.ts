@@ -12,7 +12,7 @@ const successStoryData = [
   },
   {
     icon: MonitorIcon,
-    text: "Get a firsthand look at how we deliver scalable, impactful strategies for businesses like yours"
+    text: "Get a first-hand look at how we deliver scalable, impactful strategies for businesses like yours"
   },
   {
     icon: PeopleIcon,

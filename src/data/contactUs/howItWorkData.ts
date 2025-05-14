@@ -4,7 +4,7 @@ const howItWorkData = [
   {
     icon: PhoneIcon,
     heading: "Intro call",
-    text: "e sign an NDA to protect your idea/s, chat about your project scope, requirements, timeline and budget."
+    text: "We sign an NDA to protect your idea/s, chat about your project scope, requirements, timeline and budget."
   },
   {
     icon: ProposalIcon,

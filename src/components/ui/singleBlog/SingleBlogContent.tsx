@@ -1,7 +1,10 @@
+"use client";
+
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 
 interface SingleBlogContentDataProps {
   id: number;
@@ -21,6 +24,8 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
   description,
   data
 }) => {
+  const [showSidebar, setShowSidebar] = useState(true);
+
   const generateId = (title: string) =>
     title.replace(/\s+/g, "-").toLowerCase();
 
@@ -46,48 +51,71 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
         </div>
 
         <section>
-          <div>
-            <div className='bg_primary'>
-              <Heading>Table of content</Heading>
-              <ul>
-                {data.map((el, index) => (
-                  <li key={el.id}>
-                    <a href={`#${generateId(el.titleOne)}`}>
-                      {index + 1}. {el.titleOne}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          {showSidebar ? (
+            <blockquote
+              className='bg_primary'
+              onClick={() => setShowSidebar(false)}
+              style={{ cursor: "pointer" }}
+            >
+              <MdKeyboardArrowRight />
+            </blockquote>
+          ) : (
+            <blockquote
+              className='bg_primary'
+              onClick={() => setShowSidebar(true)}
+              style={{ cursor: "pointer" }}
+            >
+              <MdKeyboardArrowLeft />
+            </blockquote>
+          )}
 
-            <section>
-              <h3>Share this</h3>
-              <a href='http://facebook.com' target='_blank'>
-                <Image
-                  src='/blogs/facebookIcon.svg'
-                  alt='FacebookIcon'
-                  height={35}
-                  width={35}
-                />
-              </a>
-              <a href='http://facebook.com' target='_blank'>
-                <Image
-                  src='/blogs/twitterIcon.svg'
-                  alt='TwitterIcon'
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <a href='http://facebook.com' target='_blank'>
-                <Image
-                  src='/blogs/instacon.svg'
-                  alt='InstagramIcon'
-                  height={35}
-                  width={35}
-                />
-              </a>
-            </section>
-          </div>
+          {showSidebar && (
+            <div>
+              <div className='bg_primary'>
+                <Heading>Table of content</Heading>
+                <ul>
+                  {data.map((el, index) => (
+                    <li key={el.id}>
+                      <a
+                        href={`#${generateId(el.titleOne)}`}
+                        onClick={() => setShowSidebar(false)}
+                      >
+                        {index + 1}. {el.titleOne}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <section>
+                <h3>Share this</h3>
+                <a href='http://facebook.com' target='_blank'>
+                  <Image
+                    src='/blogs/facebookIcon.svg'
+                    alt='FacebookIcon'
+                    height={35}
+                    width={35}
+                  />
+                </a>
+                <a href='http://facebook.com' target='_blank'>
+                  <Image
+                    src='/blogs/twitterIcon.svg'
+                    alt='TwitterIcon'
+                    height={40}
+                    width={40}
+                  />
+                </a>
+                <a href='http://facebook.com' target='_blank'>
+                  <Image
+                    src='/blogs/instacon.svg'
+                    alt='InstagramIcon'
+                    height={35}
+                    width={35}
+                  />
+                </a>
+              </section>
+            </div>
+          )}
         </section>
       </div>
     </Container>

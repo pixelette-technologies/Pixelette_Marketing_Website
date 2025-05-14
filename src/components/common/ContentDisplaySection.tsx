@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { FC } from "react";
+import { FC, useState, useEffect, useRef, useCallback } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
 
@@ -23,24 +22,48 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   detail,
   data
 }) => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [position, setPosition] = useState(0);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number | undefined>(undefined);
+  const lastTimeRef = useRef<number>(0);
+  const speed = 0.1; // Reduced speed for smoother movement
+
+  const animate = useCallback((timestamp: number) => {
+    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+    const deltaTime = timestamp - lastTimeRef.current;
+    lastTimeRef.current = timestamp;
+
+    if (!isHovered) {
+      setPosition(prev => {
+        const newPosition = prev + (speed * (deltaTime / 16)); // Normalize by 60fps
+        // Reset position when it reaches 50% (half of the content)
+        return newPosition >= 50 ? 0 : newPosition;
+      });
+    }
+    animationRef.current = requestAnimationFrame(animate);
+  }, [isHovered]);
+
   useEffect(() => {
-    const handleScroll = () => {
-      const section = sectionRef.current;
-      if (section) {
-        const { top } = section.getBoundingClientRect();
-        const totalItems = data.length - 1;
-        const children = section.children;
-        Array.from(children).forEach((child, index) => {
-          const speedFactor = 0.8 + totalItems * 0.8;
-          const offset = (index / totalItems) * speedFactor - top * speedFactor;
-          (child as HTMLElement).style.transform = `translateY(${offset}px)`;
-        });
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [data]);
+  }, [animate]);
+
+  const renderCard = (el: CardProps, index: number, key: string) => (
+    <div 
+      key={key}
+      className="marquee-card"
+    >
+      <div className="card-content">
+        <Text className='primary--bold'>{el.heading}</Text>
+        <Text className='tertiary'>{el.detail}</Text>
+      </div>
+    </div>
+  );
 
   return (
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
@@ -70,24 +93,30 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
               </Text>
             </div>
           </header>
-          <section ref={sectionRef}>
-            {data
-              ?.slice()
-              .reverse()
-              .map((el, index) => (
-                <div key={index}>
-                  <Text className='primary--bold'>{el.heading}</Text>
-                  <Text className='tertiary'>{el.detail}</Text>
-                </div>
-              ))}
+          <section 
+            className="marquee-section"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div
+              ref={marqueeRef}
+              className="marquee-content"
+              style={{
+                transform: `translateY(-${position}%)`,
+                transition: isHovered ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+              }}
+            >
+              {/* First set of items */}
+              {data.map((el, index) => renderCard(el, index, `first-${index}`))}
+              {/* Duplicate set for seamless loop */}
+              {data.map((el, index) => renderCard(el, index, `second-${index}`))}
+              {/* Third set to ensure seamless loop */}
+              {data.map((el, index) => renderCard(el, index, `third-${index}`))}
+            </div>
           </section>
-          <div>
-            {data.map((el, index) => (
-              <div key={index}>
-                <Text className='primary--bold'>{el.heading}</Text>
-                <Text className='tertiary'>{el.detail}</Text>
-              </div>
-            ))}
+          {/* Mobile view */}
+          <div className="mobile-view">
+            {data.map((el, index) => renderCard(el, index, `mobile-${index}`))}
           </div>
         </div>
       </Container>

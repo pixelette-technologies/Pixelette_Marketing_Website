@@ -4,6 +4,9 @@ export const servicesData = [
   {
     id: 1,
     title: "Social Media Marketing",
+    metaTitle: "Social Media Marketing Agency | Pixelette Marketing",
+    metaDescription: "Grow your audience with social media marketing services that turn scrolls into action. Designed for reach, relevance and results. Let's talk strategy today!",
+    metaKeywords: "social media marketing agency, social media marketing services, social media solutions",
     route: "social_media_marketing",
     mainHeading: "From starting out to standing out,",
     subHeading: "we’re the social media marketing agency for GROWTH",
@@ -377,11 +380,14 @@ export const servicesData = [
     id: 2,
     title: "Email Marketing",
     route: "email_marketing",
+    metaTitle: "Email Marketing Agency | Pixelette Marketing",
+    metaDescription: "Our Email Marketing Services are built around strategy, segmentation & scalable results – backed by email automation. Get in touch for a consultation 📞",
+    metaKeywords: "email marketing agency, email marketing services, email automation, email solutions",
     mainHeading: "From connection to conversion,",
     subHeading: "we’re the top email marketing agency for GROWTH",
     summary:
       "Pixelette Marketing delivers powerful email marketing strategies that drive results. Our purpose-driven email campaigns make sure every email builds relationships, increases engagement and powers your brand’s journey to success.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/email-marketing.png",
     research: {
       subHeading: "mistakes can cost millions",
       mainHeading: "In email marketing,",
@@ -755,12 +761,16 @@ export const servicesData = [
   {
     id: 3,
     title: "SEO & Content Marketing",
+    metaTitle: "Technical + Content SEO Agency | Pixelette Marketing",
+    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to increase your business' visibility and growth. Let's talk some SEO strategy!",
+    metaKeywords: "seo agency, seo services, seo management services",
+    
     route: "seo_and_content_marketing",
     mainHeading: "From upticks in traffic to dominating search rankings, ",
     subHeading: "we’re the SEO agency for GROWTH",
     summary:
       "Pixelette Marketing specializes in crafting effective SEO strategies that drive tangible growth. Whether you’re aiming for local SEO visibility or global outreach, our professional SEO services ensure your business stands out in a competitive digital landscape.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/seo-marketing.png",
     research: {
       mainHeading: "There’s no universal",
       subHeading: "formula for success in SEO",
@@ -1095,12 +1105,16 @@ export const servicesData = [
   {
     id: 4,
     title: "PR",
+    metaTitle: "Public Relations Agency for Next-Gen Companies",
+    metaDescription: "Pixelette Marketing's Public Relations Services focus on strategic outreach, credible storytelling & lasting visibility. 200+ stories out and counting. Let's talk!",
+    metaKeywords: "public relations agency, public relations services, pr outreach service",
+    
     route: "pr",
     mainHeading: "From buzz to brand authority,",
     subHeading: "we’re the best digital PR agency for GROWTH",
     summary:
       "Pixelette Marketing’s PR services specialize in creating impactful narratives that resonate with your target audience and establish your brand as an industry leader. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency ensures your story reaches the right audience, every time.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/pr-marketing.png",
     research: {
       subHeading: "PR is costly to businesses",
       mainHeading: "Why not investing in good",
@@ -1469,7 +1483,7 @@ export const servicesData = [
     subHeading: "we’re the influencer marketing agency for GROWTH",
     summary:
       "Pixelette Marketing is the best influencer marketing agency for brands looking to connect authentically and achieve measurable results. Our influencer marketing services help you find the right influencers, build impactful campaigns and create meaningful engagement—all personalized to your goals.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/influencer-marketing.png",
     research: {
       subHeading: "marketing can cost you money",
       mainHeading: "Why overlooking influencer ",
@@ -1761,12 +1775,16 @@ export const servicesData = [
   {
     id: 6,
     title: "Ads & PPC",
+    metaTitle: "Paid Social Advertising Agency | Pay Per Click (PPC) Agency",
+    metaDescription: "We're a world-renowned Paid Ads Agency that creates high-performance campaigns across Google, Meta, LinkedIn, Twitter, etc to maximize ROIs.",
+    metaKeywords: "paid social advertising agency, paid ads agency, pay per click agency, ppc agency, paid ads services",
+    
     route: "ads_ppc",
     mainHeading: "From clicks to conversions, ",
     subHeading: "we’re the Ads & PPC management agency for GROWTH",
     summary:
       "Pixelette Marketing maximizes your ad spend with precision-targeted campaigns that deliver measurable results. From keyword strategy and creative ad images to performance optimization, our social media ads & PPC services drive higher click-through rates, stronger conversions and unbeatable ROI.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/ads-marketing.png",
     research: {
       subHeading: "digital advertising",
       mainHeading: "The higher cost of ignoring ",
@@ -2142,13 +2160,16 @@ export const servicesData = [
   {
     id: 7,
     title: "Marketing Analytics & Reporting",
+    metaTitle: "Marketing Analytics Agency | Pixelette Marketing",
+    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth. Avail a free consultation with us today.",
+    metaKeywords: "marketing analytics agency, marketing analytics services, analytics agency",
     route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
     subHeading:
       "we’re the best marketing analytics and reporting agency for GROWTH",
     summary:
       "Pixelette Marketing’s analytics services for marketing turn complex data into actionable insights. From digital marketing analytics solutions to real-time web marketing analytics, we help businesses unlock their full potential through precise reporting and strategy optimization.",
-    image: "/services/heroImageServices.webp",
+    image: "/services/marketing-analytics.png",
     research: {
       subHeading: "world isn’t recommended",
       mainHeading: "Flying blind in a data-driven",
@@ -2563,11 +2584,14 @@ export const servicesData = [
   {
     id: 8,
     title: "Lead Generation",
+    metaTitle: "Lead Generation Services for B2B & Beyond",
+    metaDescription: "Partner with Pixelette Marketing, a Lead Generation Agency that fills your pipeline with qualified prospects & sales-ready leads. 1st consultation is on us! 🤙🏼",
+    metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
     route: "lead_genration",
     mainHeading: " From prospects to loyal customers,",
     subHeading: "  we’re the best lead generation agency for GROWTH",
     summary: "",
-    image: "/services/heroImageServices.webp",
+    image: "/services/lead-generation.png",
     research: {
       subHeading: "stalls business success",
       mainHeading: "A broken lead pipeline ",

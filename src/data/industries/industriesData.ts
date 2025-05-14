@@ -4,6 +4,9 @@ export const industriesData = [
   {
     id: 1,
     title: "Web 3 Marketing",
+    metaTitle: "Leading Web3 Marketing Agency | Pixelette Marketing",
+    metaDescription: "Build community. Drive demand. Go global. Our Web3 Digital Marketing Services are custom-made for projects shaping the next internet. Book a call ☎️",
+    metaKeywords: "web3 marketing, web3 digital marketing services, web3 marketing agency",
     route: "web_3",
     mainHeading: "We’re a web3 marketing agency",
     subHeading: "turning blocks into breakthroughs",
@@ -92,17 +95,37 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "Alright, but what exactly do you do?",
+        question: "What makes Pixelette Marketing different from other crypto marketing agencies?",
         answer:
-          "As a creative agency we work with you to develop solutions to address your brand needs. That includes various aspects of brand planning and strategy, marketing and design."
+          "Pixelette Marketing offers specialized, data-driven strategies for web3/blockchain/crypto projects, combining years of industry expertise with marketing solutions to unlock growth for new and existing web3 businesses."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "How much does crypto marketing cost?",
+        answer: "The cost varies based on the scope of services and project needs. The best thing about working with Pixelette Marketing for your crypto project is that we provide customized packages and engagement models to fit your budget and marketing goals."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "Can you help with tokenomics consulting?",
+        answer: "Absolutely, we offer tokenomics consulting to help structure your token model for sustainable growth and investor engagement."
+      },
+      {
+        question: "How is crypto marketing different from traditional marketing?",
+        answer: "Crypto marketing requires targeting a niche, tech-savvy audience by using community-driven platforms like Telegram, Discord and blockchain-specific tools. It’s not everyone’s cup of tea, with our exception, of course."
+      },
+      {
+        question: "What Web3 industries do you cover in your crypto marketing services?",
+        answer: "We cover DeFi, NFTs, DAOs, metaverse projects, crypto exchanges and several other web3 industries."
+      },
+      {
+        question: "What kind of crypto marketing services does Pixelette Marketing provide?",
+        answer: "Our services include crypto community management, crypto influencer outreach and marketing, crypto PR, web3 content marketing, web3 paid ads, token sale strategies and a lot more."
+      },
+      {
+        question: "Do your services cover Discord and Telegram management and crypto community building?",
+        answer: "Yes, we specialize in managing and growing communities on platforms like Discord and Telegram for a web3 brand’s engagement and loyalty."
+      },
+      {
+        question: "How do you approach Token Sale Marketing?",
+        answer: "We create token sale marketing campaigns suited only to your brand, targeting investors through community engagement, influencer partnerships and data-driven advertising."
       }
     ],
     marketingServices: {
@@ -157,12 +180,15 @@ export const industriesData = [
   {
     id: 2,
     title: "Fintech Marketing",
+    metaTitle: "Fintech Digital Marketing Agency | Pixelette Marketing",
+    metaDescription: "Launching in fintech means pressure from day 1. Our Fintech Marketing Services help prove value & earn users in the toughest financial markets.",
+    metaKeywords: "fintech marketing, fintech digital marketing agency, fintech marketing services",
     route: "fintech",
     mainHeading: "We’re a fintech marketing agency",
     subHeading: "converting prospects into assets",
     summary:
       "Partner with Pixelette Marketing to position your goals with marketing strategies designed to drive growth, build trust and create a lasting footprint in the fintech industry.",
-    image: "/industries/industriesHero.webp",
+    image: "/industries/fintech.png",
     ourSolutions: {
       heading: `We solve <span> fintech marketing’s toughest questions</span>`,
       text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here’s how our fintech marketing solutions have turned these challenges into measurable success stories.",
@@ -245,16 +271,26 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What Fintech marketing services do you offer?",
+        answer: "We specialize in marketing for Fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "How do you approach marketing for the Fintech industry?",
+        answer: "We understand the unique challenges and opportunities within the Fintech sector. Our approach emphasizes data-driven strategies, innovative marketing tactics, and a deep understanding of financial regulations."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "How do you ensure compliance with financial regulations?",
+        answer: "We work closely with legal and compliance teams to ensure all marketing activities adhere to relevant regulations and industry best practices."
+      }
+      ,
+      {
+        question: "How do you build trust and credibility in the Fintech space?",
+        answer: "We focus on building trust and credibility through transparent communication, clear and concise messaging, and showcasing strong security measures."
+      }
+      ,
+      {
+        question: "How do I get started with Fintech marketing services from Pixelette Marketing?",
+        answer: "Schedule a free consultation with our Fintech marketing experts to discuss your business goals and explore our tailored solutions."
       }
     ],
     marketingServices: {
@@ -309,12 +345,15 @@ export const industriesData = [
   {
     id: 3,
     title: "Tech Marketing",
+    metaTitle: "B2B & B2C Tech Marketing Agency | Pixelette Marketing",
+    metaDescription: "Tech Marketing Services built for complexity. We help tech companies of all sizes turn technical products into market-ready brands. Let's connect!",
+    metaKeywords: "tech marketing agency, b2b tech marketing agency, tech marketing services",
     route: "tech",
     mainHeading: "We’re a tech marketing agency ",
     subHeading: "connecting innovation to the world",
     summary:
       "Partner with Pixelette Marketing to connect your technology product and platform solutions with the right audience, as well as drive growth, build trust, and position your company as an industry leader.",
-    image: "/industries/industriesHero.webp",
+    image: "/industries/tech.png",
     ourSolutions: {
       heading: `We solve tech <span> marketing’s toughest questions</span>`,
       text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here’s how our tech marketing strategies have helped companies overcome these challenges.",
@@ -396,16 +435,31 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What is Tech Customer Education & Onboarding?",
+        answer: "We help you guide your customers through their journey with your tech products or services."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "How do you help with Tech Customer Education & Onboarding?",
+        answer: "We create engaging resources like tutorials, guides, and webinars. We also provide personalized support and onboarding resources to ensure a smooth customer experience."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What are Tech Webinars & Virtual Events?",
+        answer: "We plan and execute webinars and virtual events such as product demos, industry insights, and Q&A sessions with experts."
+      }
+      ,
+      {
+        question: "What are the benefits of Tech Webinars & Virtual Events?",
+        answer: "These events educate your audience, build brand awareness, and generate leads."
+      }
+      ,
+      {
+        question: "What platforms do you focus on for Tech Advertising & PPC?",
+        answer: "We manage campaigns across search engines, social media, and display networks."
+      }
+      ,
+      {
+        question: "How do you ensure success in PPC?",
+        answer: "We optimize bids, track performance, and use data-driven strategies to maximize your return on investment."
       }
     ],
     marketingServices: {
@@ -460,12 +514,15 @@ export const industriesData = [
   {
     id: 4,
     title: "Saas Marketing",
+    metaTitle: "SaaS Marketing Agency | Pixelette Marketing",
+    metaDescription: "Convert users, reduce churn and increase MRR with our SaaS Marketing Services built for every stage of the funnel. Book a discovery call (it's on us).",
+    metaKeywords: "saas marketing agency, saas marketing services, digital marketing for saas companies",
     route: "saas",
     mainHeading: "We’re a SaaS marketing agency ",
     subHeading: "transforming software into market success",
     summary:
       "Partner with Pixelette Marketing to connect your SaaS solutions with the right audience, driving growth, building trust and establishing your company as a market leader.",
-    image: "/industries/industriesHero.webp",
+    image: "/industries/saas.png",
     ourSolutions: {
       heading: `We solve SaaS <span> marketing’s toughest questions </span>`,
       text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here’s how our SaaS marketing strategies have delivered results.",
@@ -548,16 +605,26 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What is SaaS Marketing?",
+        answer: "SaaS Marketing focuses on promoting Software as a Service (SaaS) solutions to businesses and individuals. It involves strategies to acquire new customers, increase revenue, and build brand loyalty."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What SaaS Marketing services do you offer?",
+        answer: "We offer a range of services, including demand generation, content marketing, account-based marketing (ABM), paid advertising, and sales enablement."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "How do you help SaaS companies grow?",
+        answer: "We develop and execute targeted campaigns that attract qualified leads, nurture them through the sales funnel, and drive customer acquisition."
+      }
+      ,
+      {
+        question: "How do you measure the success of SaaS marketing campaigns?",
+        answer: "We track key metrics such as customer acquisition cost (CAC), customer lifetime value (CLTV), website traffic, and conversion rates to assess campaign performance."
+      }
+      ,
+      {
+        question: "How do I get started with SaaS Marketing services from Pixelette Marketing?",
+        answer: "Schedule a free consultation with our SaaS marketing experts to discuss your business goals and explore our tailored solutions."
       }
     ],
     marketingServices: {
@@ -612,12 +679,15 @@ export const industriesData = [
   {
     id: 5,
     title: "AI Marketing",
+    metaTitle: "AI Digital Marketing Agency | Pixelette Marketing",
+    metaDescription: "Got the tech but struggling to sell? Our AI Marketing Solutions help cut through the noise, earn trust & convert visitors into committed users. Let’s connect.",
+    metaKeywords: "ai digital marketing agency, ai marketing solutions",
     route: "ai",
     mainHeading: "We’re an AI marketing agency",
     subHeading: "transforming intelligence into influence",
     summary:
       "Partner with Pixelette Marketing to bridge the gap between your AI innovations and their transformative impact, reaching the right audience to drive adoption, establish trust and solidify your leadership in the AI industry.",
-    image: "/industries/industriesHero.webp",
+    image: "/industries/ai.png",
     ourSolutions: {
       heading: `We solve <span> AI marketing’s toughest questions </span>`,
       text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here’s how our strategic marketing turns these challenges into measurable success.",
@@ -700,16 +770,51 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What is AI Startup Social Media Marketing?",
+        answer: "We specialize in developing and executing targeted social media campaigns to help AI startups reach their target audience and build brand awareness."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What is Email Marketing for AI Products?",
+        answer: "We craft compelling email campaigns to nurture leads, drive conversions, and build customer relationships for AI product companies."
       },
       {
-        question: "Question",
-        answer: "Answer"
+        question: "What is AI Company Search Engine Optimization (SEO)?",
+        answer: "We optimize your AI company's website and content to improve search engine rankings and drive organic traffic."
+      }
+      ,
+      {
+        question: "What are Outreach and PR Services for AI Companies?",
+        answer: "We help AI companies secure media coverage, build relationships with influencers, and manage their public relations efforts."
+      }
+      ,
+      {
+        question: "What are Community Management Services for AI Companies?",
+        answer: "We manage your online communities, engage with your audience, and build a strong online presence for your AI company."
+      }
+      ,
+      {
+        question: "What is AI Startup Content Writing?",
+        answer: "We create high-quality, informative content like blog posts, articles, and white papers to educate your target audience about your AI solutions."
+      }
+      ,
+      {
+        question: "What are Ads and PPC for AI Products?",
+        answer: "We manage paid advertising campaigns on platforms like Google Ads, Facebook Ads, and LinkedIn Ads to drive traffic, generate leads, and increase conversions for your AI products."
+      }
+      ,
+      {
+        question: "What are AI Webinars & Virtual Event Services?",
+        answer: "We plan and execute engaging webinars and virtual events to showcase your AI solutions, educate your audience, and generate leads."
+      }
+      ,
+      {
+        question: "What are AI Company Case Studies & Applications Services?",
+        answer: "We develop compelling case studies and application examples to showcase the value and impact of your AI solutions."
+      }
+      ,
+      {
+        question: "What are AI Company Branding Services?",
+        answer: "We help AI companies develop and refine their brand identity, messaging, and visual presence to differentiate themselves in the market."
       }
     ],
     marketingServices: {

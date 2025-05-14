@@ -16,6 +16,7 @@ const WhoWeAre = () => {
             className='secondry--light color_white'
             animation='fade-up'
             duration='1300'
+            level={2}
           >
             Bridging the gap in marketing for emerging industries
           </Heading>
@@ -58,6 +59,7 @@ const WhoWeAre = () => {
             className='secondry--light color_white'
             animation='fade-up'
             duration='1300'
+            level={2}
           >
             Your vision, our blueprint
           </Heading>

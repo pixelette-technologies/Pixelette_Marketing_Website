@@ -4,7 +4,7 @@
   flex-wrap: wrap;
   gap: 1.6rem;
   border-radius: 1.6rem;
-  & > div {
+  & > a {
     flex: 1 1 calc(33.3% - 1.6rem);
     @media only screen and (max-width: 1000px) {
       flex: 1 1 calc(50% - 1.6rem);

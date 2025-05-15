@@ -1,4 +1,5 @@
 import { BlogCard } from "@/components/feature";
+import Link from "next/link";
 import React from "react";
 
 type BlogPost = {
@@ -18,14 +19,15 @@ const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
       data-aos-duration='1000'
     >
       {data?.map((story, index) => (
-        <BlogCard
-          key={`section-story-${index}`}
-          icon={false}
-          title={story.title}
-          summary={story.summary}
-          animation='fade-up'
-          duration={`${1000 + index * 200}`}
-        />
+        <Link key={`section-story-${index}`} href='/singleblog'>
+          <BlogCard
+            icon={false}
+            title={story.title}
+            summary={story.summary}
+            animation='fade-up'
+            duration={`${1000 + index * 200}`}
+          />
+        </Link>
       ))}
     </div>
   );

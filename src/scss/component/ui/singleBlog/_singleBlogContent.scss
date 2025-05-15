@@ -44,6 +44,11 @@
 
   & > section {
     width: 100%;
+
+    & > blockqoute {
+      display: none;
+    }
+
     @media only screen and (max-width: 800px) {
       position: fixed;
       width: 100%;

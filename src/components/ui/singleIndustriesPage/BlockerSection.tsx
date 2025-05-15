@@ -1,3 +1,4 @@
+import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { FC } from "react";
 
@@ -8,10 +9,14 @@ interface BlockerSectionProps {
 
 const BlockerSection: FC<BlockerSectionProps> = ({ heading, description }) => {
   return (
-    <div className='blockerSection'>
-      <Heading>{heading}</Heading>
-      <Text>{description}</Text>
-    </div>
+    <Container className='main'>
+      <div className='blockerSection'>
+        <Heading className='primary--light font_family_glory'>
+          {heading}
+        </Heading>
+        <Text className='primary'>{description}</Text>
+      </div>
+    </Container>
   );
 };
 

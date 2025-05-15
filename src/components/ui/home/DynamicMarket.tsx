@@ -15,6 +15,7 @@ const DynamicMarket = () => {
                   className='primary color_secondry uppercase font_family_glory'
                   animation='fade-right'
                   duration='1200'
+                  level={2}
                 >
                   growing in dynamic <br /> markets is tough
                 </Heading>
@@ -22,6 +23,7 @@ const DynamicMarket = () => {
                   className='primary color_primary uppercase font_family_glory'
                   animation='fade-right'
                   duration='1400'
+                  level={3}
                 >
                   we make it achievable
                 </Heading>

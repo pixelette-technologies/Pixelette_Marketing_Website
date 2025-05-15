@@ -12,6 +12,13 @@ export const metadata: Metadata = {
   title: 'About Us | Your Digital Marketing Partners',
   description: 'At Pixelette Marketing, we’re more than a team. We’re your digital marketing solutions partner on the path from 0 to 1. Let’s build something big.',
   keywords: ['digital marketing solutions', 'digital marketing agency'],
+  alternates: {
+    canonical: 'https://pixelettemarketing.com/aboutus',
+  },
+  openGraph: {
+    title: 'About Us | Your Digital Marketing Partners',
+    description: 'At Pixelette Marketing, we’re more than a team. We’re your digital marketing solutions partner on the path from 0 to 1. Let’s build something big.',
+  },
 }
 
 export default function AboutUs() {

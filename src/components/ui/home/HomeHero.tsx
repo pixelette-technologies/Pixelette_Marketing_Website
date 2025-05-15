@@ -98,6 +98,7 @@ export default function HomeHero() {
               className='hero color_primary font_family_glory uppercase'
               animation='fade-up'
               duration='1200'
+              level={1}
             >
               Marketing That Matters
             </Heading>
@@ -105,6 +106,7 @@ export default function HomeHero() {
               className='hero color_secondry font_family_glory uppercase'
               animation='fade-up'
               duration='1400'
+              level={2}
             >
               to Your Bottom Line
             </Heading>

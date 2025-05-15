@@ -1478,6 +1478,8 @@ export const servicesData = [
   {
     id: 5,
     title: "Influencer Marketing",
+    metaTitle: "Influencer Marketing Agency for B2C & B2B Brands",
+    metaDescription: "End-to-end influencer marketing services built for brands that want more than likes. Drive leads and scale campaigns across top social platforms. ⚡️",
     route: "influencer_marketing",
     mainHeading: "From influencer trust to sustained success,",
     subHeading: "we’re the influencer marketing agency for GROWTH",

@@ -75,6 +75,7 @@ const RangeOfMarket: FC = () => {
               className='secondry--semibold color_white'
               animation='fade-left'
               duration='1600'
+              level={2}
             >
               Our range of marketing tech and platforms
             </Heading>

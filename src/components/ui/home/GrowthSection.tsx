@@ -11,6 +11,7 @@ export default function GrowthSection() {
           className='primary color_secondry font_family_glory uppercase'
           animation='fade-right'
           duration='1400'
+          level={2}
         >
           Growth <span className='color_primary'>starts</span> here
           <ArrowRed />
@@ -19,13 +20,13 @@ export default function GrowthSection() {
         <section>
           <div>
             <header>
-              <Heading animation='fade-right' duration={"1300"}>
+              <Heading animation='fade-right' duration={"1300"} level={3}>
                 Success Follows Next
               </Heading>
               <section data-aos='fade-right' data-aos-duration={1300}>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary'>
+                    <Heading className='primary font_family_glory color_primary' level={4}>
                       300%
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -34,7 +35,7 @@ export default function GrowthSection() {
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary'>
+                    <Heading className='primary font_family_glory color_primary' level={4}>
                       40%
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -44,7 +45,7 @@ export default function GrowthSection() {
                 </div>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary'>
+                    <Heading className='primary font_family_glory color_primary' level={4}>
                       2.5x
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -52,7 +53,7 @@ export default function GrowthSection() {
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary'>
+                    <Heading className='primary font_family_glory color_primary' level={4}>
                       120%
                     </Heading>
                     <Text className='secondry font_family_glory'>

@@ -144,6 +144,7 @@ const EngagementStalls = () => {
               className='primary color_primary uppercase font_family_glory'
               animation='fade-up'
               duration='1200'
+              level={2}
             >
               Engagement stalls without strategy
             </Heading>
@@ -151,6 +152,7 @@ const EngagementStalls = () => {
               className='primary color_secondry uppercase font_family_glory'
               animation='fade-up'
               duration='1400'
+              level={3}
             >
               We drive it forward
             </Heading>

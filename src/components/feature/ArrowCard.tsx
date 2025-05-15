@@ -4,7 +4,7 @@ import Text from "./Text";
 import Link from "next/link";
 
 interface ArrowCardProps {
-  mainHeading: string;
+  mainHeading?: string;
   subHeading: string;
   summary: string;
   theme: boolean;

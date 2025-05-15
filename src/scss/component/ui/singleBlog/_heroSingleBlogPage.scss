@@ -1,0 +1,46 @@
+.heroSingleBlogPage {
+  padding-top: 6.7rem;
+  margin-bottom: 5.6rem;
+
+  & > img {
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    @media only screen and (max-width: 700px) {
+      height: 260px;
+    }
+  }
+  & > section {
+    display: flex;
+    align-items: center;
+    @media only screen and (max-width: 600px) {
+      flex-direction: column;
+    }
+
+    & > div {
+      display: flex;
+      align-items: center;
+      & > p {
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
+      & > img {
+        margin: 0rem 1rem;
+      }
+    }
+
+    & > * {
+      &:first-child {
+        border-right: 1px solid black;
+        padding-right: 0.8rem;
+        margin-right: 0.8rem;
+
+        @media only screen and (max-width: 600px) {
+          border: none;
+          padding-right: 0rem;
+          margin-right: 0rem;
+        }
+      }
+    }
+  }
+}

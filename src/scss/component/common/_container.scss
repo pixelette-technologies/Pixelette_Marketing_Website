@@ -3,9 +3,10 @@
     max-width: 1366px;
     margin: auto;
     padding: 0rem 10.9rem;
+    overflow: hidden;
 
     @media only screen and (max-width: 1286px) {
-      padding: 0rem 7rem;
+      padding: 0rem 6rem;
     }
     @media only screen and (max-width: 1156px) {
       padding: 0rem 5rem;
@@ -15,9 +16,6 @@
     }
     @media only screen and (max-width: 800px) {
       padding: 0rem 2rem;
-    }
-    @media only screen and (max-width: 750px) {
-      overflow-x: hidden;
     }
   }
   &mainLeft {

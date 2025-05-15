@@ -1,0 +1,123 @@
+.singleBlogContent {
+  display: flex;
+  gap: 3.6rem;
+  padding-bottom: 6rem;
+  position: relative;
+  @media only screen and (max-width: 960px) {
+    gap: 2rem;
+  }
+
+  & > div {
+    max-width: 750px;
+    flex-shrink: 0;
+    @media only screen and (max-width: 1300px) {
+      max-width: 650px;
+    }
+    @media only screen and (max-width: 1060px) {
+      max-width: 580px;
+    }
+    @media only screen and (max-width: 960px) {
+      max-width: 57%;
+    }
+    @media only screen and (max-width: 800px) {
+      max-width: 100%;
+    }
+    & > header {
+      margin-bottom: 2.4rem;
+      & > h1 {
+        margin-bottom: 2.4rem;
+      }
+    }
+    & > section {
+      & > div {
+        & > h1 {
+          margin-bottom: 1.6rem;
+        }
+      }
+      & > * {
+        &:not(:first-child) {
+          padding-top: 2.4rem;
+        }
+      }
+    }
+  }
+
+  & > section {
+    width: 100%;
+
+    & > blockqoute {
+      display: none;
+    }
+
+    @media only screen and (max-width: 800px) {
+      position: fixed;
+      width: 100%;
+      top: 20%;
+      right: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.8rem;
+      z-index: 1000;
+      & > blockquote {
+        height: 35px;
+        width: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        float: left;
+        & > * {
+          color: white;
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    & > div {
+      z-index: 1000;
+      & > div {
+        padding: 3.3rem;
+        border-radius: 0.8rem;
+        @media only screen and (max-width: 800px) {
+          padding: 2rem;
+        }
+        & > h1 {
+          font-size: 2.4rem;
+          font-weight: 700;
+          margin-bottom: 2.4rem;
+          color: white;
+          @media only screen and (max-width: 800px) {
+            margin-bottom: 1.2rem;
+          }
+        }
+        & > ul {
+          list-style: none;
+          & > li {
+            font-size: 1.8rem;
+            font-weight: 400;
+            color: white;
+            & > a {
+              color: white;
+            }
+          }
+          & > * {
+            &:not(:last-child) {
+              margin-bottom: 1.2rem;
+            }
+          }
+        }
+      }
+      & > section {
+        margin-top: 2.6rem;
+        display: flex;
+        align-items: center;
+
+        gap: 1rem;
+        & > h3 {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

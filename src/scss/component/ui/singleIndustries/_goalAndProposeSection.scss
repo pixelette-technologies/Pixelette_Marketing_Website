@@ -1,0 +1,25 @@
+.goalAndProposedSection {
+  padding-top: 6rem;
+  padding-bottom: 8rem;
+  display: flex;
+  align-items: start;
+  padding-left: 4rem;
+  padding-right: 4rem;
+  @media only screen and (max-width: 850px) {
+    padding-left: 0rem;
+    padding-right: 0rem;
+  }
+  @media only screen and (max-width: 750px) {
+    flex-direction: column;
+  }
+  gap: 2rem;
+  & > section {
+    width: 50%;
+    @media only screen and (max-width: 750px) {
+      width: 100%;
+    }
+    & > h1 {
+      margin-bottom: 2rem;
+    }
+  }
+}

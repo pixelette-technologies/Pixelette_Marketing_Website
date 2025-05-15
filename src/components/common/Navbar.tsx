@@ -38,8 +38,8 @@ export default function Navbar() {
                   mainRoute='industries'
                   data={industriesData}
                 />
-                {/* <Link href={"/success_stories/1"}>Portfolio</Link>
-                <Link href={"/blogs/1"}>Blogs</Link> */}
+                <Link href={"/success_stories/1"}>Portfolio</Link>
+                <Link href={"/blogs/1"}>Blogs</Link>
                 <Link href={"/aboutus"}>About Us</Link>
                 <Link href={"/contactus"}>Contact Us</Link>
               </div>

@@ -5,6 +5,7 @@ import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
 import React from "react";
 import dynamic from "next/dynamic";
+import NewWhiteBackground from "@/assets/common/NewWhiteBackground";
 
 const Slider = dynamic(() => import("react-slick"), {
   ssr: false
@@ -69,7 +70,7 @@ const FinalResult: React.FC<FinalResultProps> = ({
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 0
+          initialSlide: 1
         }
       },
       {
@@ -77,7 +78,7 @@ const FinalResult: React.FC<FinalResultProps> = ({
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 0
+          initialSlide: 1
         }
       }
     ]
@@ -121,12 +122,7 @@ const FinalResult: React.FC<FinalResultProps> = ({
 
           <section>
             <div>
-              <Image
-                alt='background of white color'
-                src='/singleIndustries/background_white_wave.svg'
-                height={844}
-                width={1366}
-              />
+              <NewWhiteBackground />
             </div>
 
             <section>

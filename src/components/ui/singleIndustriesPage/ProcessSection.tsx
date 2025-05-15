@@ -20,7 +20,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
   description,
   data
 }) => {
-  const [activeIndex, setActiveIndex] = useState(0); // Default to first index
+  const [activeIndex, setActiveIndex] = useState(0);
 
   return (
     <Container className='main'>

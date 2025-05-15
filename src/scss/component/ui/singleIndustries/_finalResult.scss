@@ -3,11 +3,13 @@
   padding-top: 3.5rem;
   & > div {
     & > section {
-      position: relative;
       & > header {
         max-width: 952px;
         margin: auto;
         padding-bottom: 14rem;
+        @media only screen and (max-width: 700px) {
+          width: 100%;
+        }
         & > div {
           margin-bottom: 6.5rem;
           & > h1 {
@@ -17,35 +19,60 @@
             color: white;
           }
         }
-
         & > section {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin-bottom: 1rem;
+          display: none;
         }
       }
 
       & > section {
         background-color: white;
-        height: 480px;
+        position: relative;
+        min-height: 420px;
+        @media only screen and (max-width: 950px) {
+          min-height: 480px;
+        }
+        @media only screen and (max-width: 480px) {
+          min-height: 520px;
+        }
+
         & > div {
-          & > img {
+          & > * {
             width: 100%;
-            margin-top: -13rem;
             position: absolute;
-            z-index: 800;
-            height: auto;
+            top: -20rem;
+            z-index: 99;
+            @media only screen and (max-width: 1200px) {
+              top: -25rem;
+            }
+            @media only screen and (max-width: 970px) {
+              top: -30rem;
+            }
+            @media only screen and (max-width: 700px) {
+              top: -35rem;
+            }
+            @media only screen and (max-width: 540px) {
+              top: -38rem;
+            }
           }
         }
         & > section {
-          z-index: 1000;
+          z-index: 9999;
           position: absolute;
+
           & > div {
             width: 85%;
             margin: auto;
+            @media only screen and (max-width: 1050px) {
+              width: 90%;
+              margin: auto;
+            }
             & > h1 {
               margin-bottom: 1.6rem;
+              z-index: 1000;
             }
             & > section {
               margin-top: 4.8rem;
@@ -53,26 +80,50 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
+              gap: 1.5rem;
+              @media only screen and (max-width: 950px) {
+                flex-direction: column;
+                justify-content: center;
+              }
+              @media only screen and (max-width: 700px) {
+                max-width: 400px;
+                margin: auto;
+                padding-top: 3rem;
+              }
+              @media only screen and (max-width: 435px) {
+                max-width: 330px;
+              }
               & > header {
                 max-width: 266px;
+                @media only screen and (max-width: 950px) {
+                  text-align: center;
+                }
                 & > h1 {
                   font-size: 7rem;
                   line-height: 7.6rem;
                   margin-bottom: 0.6rem;
+                  z-index: 999;
                 }
                 & > p {
                   font-size: 1.4rem;
+                  z-index: 999;
                 }
               }
 
               & > section {
                 max-width: 650px;
+                @media only screen and (max-width: 760px) {
+                  width: 90%;
+                }
                 & > header {
                   & > div {
                     margin-top: 2rem;
                     display: flex;
                     align-items: center;
                     gap: 1.5rem;
+                    @media only screen and (max-width: 950px) {
+                      justify-content: center;
+                    }
                     & > button {
                       background-color: transparent;
                       border: none;
@@ -93,7 +144,6 @@
   padding: 1.8rem 2rem;
   border-radius: 0.6rem;
   background-color: #f5f5f5;
-  width: 80%;
   & > h4 {
     font-size: 1.6rem;
     font-weight: 600;

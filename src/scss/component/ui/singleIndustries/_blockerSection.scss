@@ -1,6 +1,9 @@
 .blockerSection {
-  margin-top: 4.2rem;
+  margin-top: 11.2rem;
   margin-bottom: 10rem;
+  @media only screen and (max-width: 750px) {
+    margin-top: 7rem;
+  }
   & > h1 {
     margin-bottom: 1.6rem;
   }

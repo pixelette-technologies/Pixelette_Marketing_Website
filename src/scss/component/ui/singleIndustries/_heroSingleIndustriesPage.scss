@@ -3,8 +3,11 @@
   & > img {
     position: absolute;
     width: 100%;
-    height: 650px;
+    height: 720px;
     z-index: -10;
+    @media only screen and (max-width: 550px) {
+      height: 800px;
+    }
   }
   & > div {
     & > section {
@@ -13,27 +16,81 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @media only screen and (max-width: 750px) {
+          flex-direction: column;
+        }
         & > div {
-          max-width: 533px;
           background-color: #f0e9e4;
           padding-top: 3.5rem;
           padding-left: 5.8rem;
           padding-bottom: 3.5rem;
           padding-right: 30rem;
           max-width: 891px;
+          @media only screen and (max-width: 950px) {
+            padding-right: 25rem;
+          }
+          @media only screen and (max-width: 800px) {
+            padding-left: 2.8rem;
+            padding-top: 2rem;
+          }
+          @media only screen and (max-width: 750px) {
+            padding-top: 2rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            padding-bottom: 20rem;
+          }
+          & > img {
+            @media only screen and (max-width: 950px) {
+              height: 50px;
+              width: 160px;
+            }
+          }
           & > section {
             & > h1 {
               margin: 2.4rem 0rem;
               font-weight: 600;
               font-size: 3.6rem;
+              @media only screen and (max-width: 950px) {
+                font-size: 3rem;
+              }
+              @media only screen and (max-width: 800px) {
+                margin: 1.4rem 0rem;
+              }
             }
             & > p {
               font-size: 1.4rem;
             }
           }
         }
+
         & > img {
           margin-left: -20rem;
+          @media only screen and (max-width: 1050px) {
+            height: 230px;
+            width: 400px;
+          }
+          @media only screen and (max-width: 750px) {
+            margin-left: 0rem;
+            margin-top: -15rem;
+          }
+          @media only screen and (max-width: 550px) {
+            margin-top: -17rem;
+          }
+          @media only screen and (max-width: 450px) {
+            width: 90%;
+            height: auto;
+          }
+        }
+      }
+      & > blockquote {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        padding-top: 2.5rem;
+        padding-bottom: 3rem;
+        @media only screen and (max-width: 550px) {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
     }

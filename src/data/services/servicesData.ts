@@ -415,7 +415,7 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is, ",
+      mainHeading: "How important email marketing really is, ",
       subHeading: "according to leaders of billion dollar brands",
       data: [
         {
@@ -798,7 +798,7 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is, ",
+      mainHeading: "How important SEO services really is, ",
       subHeading: "according to leaders of billion dollar brands",
       data: [
         {
@@ -826,8 +826,8 @@ export const servicesData = [
     },
     status: {
       heading:
-        "Our email marketing services are widely sought after by various emerging brands",
-      text: "Email marketing solutions delivered by the Pixelette Marketing team are trusted by growing brands seeking impactful audience engagement and measurable results.",
+        "Our SEO services are widely sought after by various emerging brands",
+      text: "SEO solutions delivered by the Pixelette Marketing team are built to understand search intent and drive measurable growth from the moment we begin optimizing a brand's online presence.",
       data: [
         {
           value: 70,
@@ -1142,7 +1142,7 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is,",
+      mainHeading: "How important PR and communication really is,",
       subHeading: "according to leaders of billion dollar brands",
       data: [
         {
@@ -1513,8 +1513,8 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is,",
-      subHeading: "according to leaders of billion dollar brands",
+      mainHeading: "How important search engine optimization really is,",
+      subHeading: "according to major company founders and leaders",
       data: [
         {
           role: "Content Marketing Expert",
@@ -1814,8 +1814,8 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is, ",
-      subHeading: "according to leaders of billion dollar brands",
+      mainHeading: "How important ads & PPC really is, ",
+      subHeading: "according to major business leaders",
       data: [
         {
           role: "COO of Meta",
@@ -2199,8 +2199,8 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is, ",
-      subHeading: "according to leaders of billion dollar brands",
+      mainHeading: "How important marketing analytics really is, ",
+      subHeading: "according to major business leaders and scholars",
       data: [
         {
           role: "Former CEO of Hewlett-Packard",
@@ -2621,8 +2621,8 @@ export const servicesData = [
       ]
     },
     importance: {
-      mainHeading: "How important social media really is,",
-      subHeading: "according to leaders of billion dollar brands",
+      mainHeading: "How important marketing analytics is,",
+      subHeading: "according to major business leaders and scholars",
       data: [
         {
           role: " Co-founder of Microsoft",

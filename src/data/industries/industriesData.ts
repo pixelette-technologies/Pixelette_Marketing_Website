@@ -300,44 +300,50 @@ export const industriesData = [
         "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Fintech Social Media Marketing",
           detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
+            "Enhance your brand’s presence and reach potential customers through our fintech social media marketing services. With data-driven content and campaigns, we help you promote trust, increase visibility and drive engagement on platforms where your audience is most active."
         },
         {
-          heading: "Crypto Community Management",
+          heading: "Fintech Community Management",
           detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
+            "Strong communities drive trust and advocacy in fintech. Our community management services for fintech focus on promoting vibrant and engaged communities on platforms like LinkedIn and Twitter to spread out your message and deepen user connections."
         },
         {
-          heading: "Crypto PR Marketing",
+          heading: "Fintech PR Marketing",
           detail:
-            "Our crypto PR services tap into media relationships to craft a positive image, enhancing your project’s reputation within the crypto community through thoughtfully crafted news and media coverage."
+            "Shape public perception and elevate your brand’s credibility with our fintech PR services. We craft compelling narratives and secure media coverage to position your company as a trusted leader in the industry."
         },
         {
-          heading: "Crypto SEO Services",
+          heading: "Fintech SEO Services",
           detail:
-            "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+            "Stay ahead of the competition with our fintech-focused SEO strategies. From keyword optimization to technical audits, we help your platform climb search rankings and attract high-quality, organic traffic."
         },
         {
-          heading: "Crypto Influencer Marketing",
+          heading: "Fintech Influencer Marketing",
           detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
+            "Reach your target audience with our fintech influencer marketing services. By collaborating with influencers in finance, tech and lifestyle niches, we help you build credibility and expand your reach."
         },
         {
-          heading: "Crypto Paid Ads & PPC",
+          heading: "Fintech Paid Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Drive targeted traffic and scale user acquisition with our fintech advertising solutions. Whether through Google Ads, LinkedIn Ads or Meta Ads, we create high-performance campaigns that deliver measurable results."
         },
         {
-          heading: "Web3 Email Marketing",
+          heading: "Fintech Email Marketing",
           detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
+            "Use our email marketing expertise to engage users and build loyalty. From onboarding sequences to product updates, our fintech email campaigns drive higher engagement rates and boost conversions while staying cost-efficient."
         },
         {
-          heading: "Crypto Brand Building",
+          heading: "Fintech Marketing Analytics",
           detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
+            "Stay informed and optimize your strategies with our fintech marketing analytics and reporting services. Gain insights into campaign performance and user behavior to make data-driven decisions that enhance return on your investment."
+        }
+        ,
+        {
+          heading: "Fintech Lead Generation",
+          detail:
+            "Generate high-quality leads with our tailored lead generation campaigns. Using data-driven insights, we help you identify, engage, and convert potential customers across the fintech ecosystem."
         }
       ]
     }
@@ -469,44 +475,50 @@ export const industriesData = [
         "We collaborate with you to design impactful tech marketing campaigns that bring your  new solutions to the forefront and set the stage for long-term success.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "Tech Social Media Marketing",
           detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
+            "Strengthen your brand’s recognition and connect with decision-makers and users through our tech social media marketing services. We create platform-specific content that builds authority and increases your influence."
         },
         {
-          heading: "Crypto Community Management",
+          heading: "Tech Community Management",
           detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
+            "Build meaningful connections and nurture engaged communities on platforms like LinkedIn and Twitter. Our tech community management services strengthen your message and drive impactful user interactions."
         },
         {
-          heading: "Crypto PR Marketing",
+          heading: "Tech PR Marketing",
           detail:
-            "Our crypto PR services tap into media relationships to craft a positive image, enhancing your project’s reputation within the crypto community through thoughtfully crafted news and media coverage."
+            "Build credibility and generate buzz with our tech PR services. We create compelling narratives and secure media coverage to establish your company as a trusted voice in the tech industry."
         },
         {
-          heading: "Crypto SEO Services",
+          heading: "Tech SEO Services",
           detail:
-            "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+            "Carve out a place for your brand at the top of search results with targeted SEO strategies. From keyword research to content optimization, our tech SEO services help your company attract high-quality traffic and increase visibility."
         },
         {
-          heading: "Crypto Influencer Marketing",
+          heading: "Tech Influencer Marketing",
           detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
+            "Collaborate with industry influencers to showcase your solutions. Our influencer marketing services for tech companies connect your brand with the right voices to build trust and drive awareness."
         },
         {
-          heading: "Crypto Paid Ads & PPC",
+          heading: "Tech Paid Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Drive targeted traffic and generate measurable results with paid advertising. From Google Ads to LinkedIn campaigns, we design cost-effective ads that scale your tech company’s growth."
         },
         {
-          heading: "Web3 Email Marketing",
+          heading: "Tech Email Marketing",
           detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
+            "Use email marketing to nurture leads, announce new products, and build loyalty. Our email marketing services for tech companies deliver personalized campaigns that drive conversions and retention."
         },
         {
-          heading: "Crypto Brand Building",
+          heading: "Tech Marketing Analytics",
           detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
+            "Gain valuable perspectives on your campaigns with our analytics and reporting services. Track key performance metrics, fine-tune strategies and drive growth that is measurable."
+        }
+        ,
+        {
+          heading: "Tech Lead Generation",
+          detail:
+            "Identify, engage, and convert high-quality leads with our data-driven lead generation services. We help you build a solid sales pipeline suited to your tech solutions."
         }
       ]
     }
@@ -634,44 +646,50 @@ export const industriesData = [
         "We collaborate with you to design SaaS marketing campaigns that drive adoption, improve retention and position your product for long-term success.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "SaaS Social Media Marketing",
           detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
+            "Engage with your ideal audience through our bespoke SaaS social media services that build trust and showcase your product’s strengths. From thought leadership posts to interactive campaigns, we create content suited to your SaaS solution."
         },
         {
-          heading: "Crypto Community Management",
+          heading: "SaaS Community Management",
           detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
+            "Strengthen your connection with users by cultivating vibrant communities. Whether on LinkedIn, Twitter, or niche platforms, our SaaS community management services make sure your brand promotes meaningful interactions and user advocacy."
         },
         {
-          heading: "Crypto PR Marketing",
+          heading: "SaaS PR Marketing",
           detail:
-            "Our crypto PR services tap into media relationships to craft a positive image, enhancing your project’s reputation within the crypto community through thoughtfully crafted news and media coverage."
+            "Shape the narrative around your SaaS brand with strategic PR efforts. Our SaaS PR Services help you secure impactful media placements and craft compelling stories that highlight your unique value proposition."
         },
         {
-          heading: "Crypto SEO Services",
+          heading: "SaaS SEO Services",
           detail:
-            "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+            "Secure your spot at the top of search results with precision-driven SEO campaigns. We optimize your digital presence with deep keyword research, authoritative content and technical expertise to attract and convert your target users."
         },
         {
-          heading: "Crypto Influencer Marketing",
+          heading: "SaaS Influencer Marketing",
           detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
+            "Make use of trusted voices in the tech space to amplify your SaaS product’s reach. Our SaaS influencer marketing services connect you with influencers who resonate with your target audience and align with your brand values."
         },
         {
-          heading: "Crypto Paid Ads & PPC",
+          heading: "SaaS Paid Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Increase trial sign-ups and lead generation with targeted paid campaigns. Whether on Google, LinkedIn or social platforms, we design cost-efficient ads that deliver measurable outcomes."
         },
         {
-          heading: "Web3 Email Marketing",
+          heading: "SaaS Email Marketing",
           detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
+            "Drive meaningful engagement and nurture user loyalty with expertly designed email campaigns. From onboarding sequences to personalized upsell offers, our SaaS email marketing services help you connect with users at every stage of their journey."
         },
         {
-          heading: "Crypto Brand Building",
+          heading: "SaaS Marketing Analytics",
           detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
+            "Transform data into actionable strategies with our SaaS marketing analytics services. Track campaign performance, gain clear insights and refine your approach to achieve continuous growth."
+        }
+        ,
+        {
+          heading: "SaaS Lead Generation",
+          detail:
+            "Fuel your sales pipeline with personalized SaaS lead generation campaigns. We help you attract, engage and convert high-value prospects, ensuring sustainable business growth."
         }
       ]
     }
@@ -824,44 +842,50 @@ export const industriesData = [
         "We design and execute AI marketing campaigns that bridge the gap between innovation and adoption, ensuring your solutions reach their full market potential.",
       data: [
         {
-          heading: "Crypto Content Marketing",
+          heading: "AI Social Media Marketing",
           detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
+            "Expand your AI brand’s presence and connect with decision-makers and users through our social media services for AI platforms and products. We create content that simplifies complex AI concepts and builds engagement."
         },
         {
-          heading: "Crypto Community Management",
+          heading: "AI Community Management",
           detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
+            "Build and nurture thriving communities around your AI brand. From encouraging meaningful discussions to managing platforms like LinkedIn and Discord, we ensure your users feel engaged and valued, turning audiences into advocates."
         },
         {
-          heading: "Crypto PR Marketing",
+          heading: "AI PR Marketing",
           detail:
-            "Our crypto PR services tap into media relationships to craft a positive image, enhancing your project’s reputation within the crypto community through thoughtfully crafted news and media coverage."
+            "Build trust and credibility with our PR services for AI companies. We come up with compelling stories about your AI/ML solutions and secure media coverage to position your company as a leading innovator and thought leader."
         },
         {
-          heading: "Crypto SEO Services",
+          heading: "AI SEO Services",
           detail:
-            "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimize your digital presence to attract organic traffic and generate high-quality leads that keep coming in the long-term."
         },
         {
-          heading: "Crypto Influencer Marketing",
+          heading: "AI Influencer Marketing",
           detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
+            "Collaborate with top influencer voices in the AI industry to expand your reach. As part of our AI influencer marketing services, we connect you with credible voices to build trust and drive awareness for your solutions."
         },
         {
-          heading: "Crypto Paid Ads & PPC",
+          heading: "AI Paid Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Drive measurable results with targeted paid advertising. From Google Ads to social media campaigns, we help AI companies scale adoption and increase visibility."
         },
         {
-          heading: "Web3 Email Marketing",
+          heading: "AI Email Marketing",
           detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
+            "Opt for our AI email marketing services to nurture leads, provide updates and drive engagement to subscribers. From launch announcements to product tutorials, our campaigns turn email lists into loyal customers."
         },
         {
-          heading: "Crypto Brand Building",
+          heading: "AI Marketing Analytics",
           detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
+            "Gain meaningful perspectives into your AI marketing campaigns with our analytics and reporting service. Understand your audience, refine strategies and maximize ROI to stay ahead in the AI market."
+        }
+        ,
+        {
+          heading: "AI Lead Generation",
+          detail:
+            "Identify and convert high-value leads with our data-driven lead generation campaigns for AI platforms. We help build a pipeline of engaged prospects ready to adopt various AI/ML solutions."
         }
       ]
     }

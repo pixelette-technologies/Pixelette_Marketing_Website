@@ -1,26 +1,59 @@
 .storiesCardGrid {
   padding: 2.4rem;
   border-radius: 1.6rem;
+  @media only screen and (max-width: 420px) {
+    padding: 0.8rem;
+  }
   & > header {
     margin-bottom: 0.9rem;
     display: flex;
     gap: 0.9rem;
+    @media only screen and (max-width: 620px) {
+      flex-direction: column;
+    }
+
+    & > a {
+      border-radius: 1.6rem;
+    }
 
     & > * {
       &:first-child {
         width: 60%;
+        @media only screen and (max-width: 750px) {
+          width: 50%;
+        }
+        @media only screen and (max-width: 620px) {
+          width: 100%;
+        }
       }
       &:last-child {
         width: 40%;
+        @media only screen and (max-width: 750px) {
+          width: 50%;
+        }
+        @media only screen and (max-width: 620px) {
+          width: 100%;
+        }
       }
     }
   }
   & > section {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.9rem;
-    & > div {
-      flex: 1 1 calc(33.3% - 0.9rem);
+    justify-content: space-between;
+    @media only screen and (max-width: 750px) {
+      justify-content: center;
+    }
+    gap: 0.7rem;
+    & > a {
+      width: calc(33.3333333333% - 0.7rem);
+      border-radius: 1.6rem;
+      @media only screen and (max-width: 750px) {
+        width: calc(50% - 0.7rem);
+      }
+      @media only screen and (max-width: 620px) {
+        width: calc(100% - 0.7rem);
+      }
     }
   }
 }

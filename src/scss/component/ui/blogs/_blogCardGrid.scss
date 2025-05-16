@@ -5,9 +5,13 @@
   gap: 1.6rem;
   border-radius: 1.6rem;
   & > a {
+    border-radius: 1.6rem;
     flex: 1 1 calc(33.3% - 1.6rem);
     @media only screen and (max-width: 1000px) {
       flex: 1 1 calc(50% - 1.6rem);
+    }
+    @media only screen and (max-width: 750px) {
+      flex: 1 1 calc(100% - 1.6rem);
     }
   }
 }

@@ -1,20 +1,23 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { Container } from "@/components/common";
 import StoriesCardGrid from "./StoriesCardGrid";
-import blogsData from "@/data/blogs/blogsData";
-import Link from "next/link";
+import { storiesData } from "@/data/storiesData/storiesData";
 
-type BlogPost = {
-  title?: string;
-  summary?: string;
-};
+const StoriesDataDisplay = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-type BlogDataDisplayProps = {
-  id?: number;
-  data?: BlogPost[];
-};
+  const matchedData =
+    selectedCategory === "All"
+      ? storiesData.flatMap(category => category.data)
+      : storiesData.find(category => category.title === selectedCategory)
+          ?.data || [];
 
-const StoriesDataDisplay: React.FC<BlogDataDisplayProps> = ({ data, id }) => {
+  const chunkedData = Array.from({
+    length: Math.ceil(matchedData.length / 5)
+  }).map((_, index) => matchedData.slice(index * 5, index * 5 + 5));
+
   return (
     <Container className='main'>
       <div
@@ -24,23 +27,35 @@ const StoriesDataDisplay: React.FC<BlogDataDisplayProps> = ({ data, id }) => {
       >
         <header>
           <div>
-            {blogsData.map((el, index) => (
-              <Link
-                href={`/success_stories/${el.id}`}
-                data-aos='fade-up'
-                data-aos-duration='1000'
+            <button
+              onClick={() => setSelectedCategory("All")}
+              className={
+                selectedCategory === "All"
+                  ? "bg_primary color_white"
+                  : "color_secondary"
+              }
+            >
+              All
+            </button>
+            {storiesData.map((el, index) => (
+              <button
                 key={index}
+                onClick={() => setSelectedCategory(el.title)}
                 className={
-                  id === el.id ? "bg_primary color_white" : "color_secondry"
+                  selectedCategory === el.title
+                    ? "bg_primary color_white"
+                    : "color_secondary"
                 }
               >
                 {el.title}
-              </Link>
+              </button>
             ))}
           </div>
         </header>
         <section>
-          <StoriesCardGrid data={data} />
+          {chunkedData.map((chunk, index) => (
+            <StoriesCardGrid key={index} data={chunk} />
+          ))}
         </section>
       </div>
     </Container>

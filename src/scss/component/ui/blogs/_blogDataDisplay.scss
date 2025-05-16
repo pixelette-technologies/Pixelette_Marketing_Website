@@ -2,12 +2,27 @@
   display: flex;
   gap: 1.6rem;
   margin-bottom: 2rem;
-  & > * {
-    &:first-child {
-      width: 23.8rem;
+  @media only screen and (max-width: 550px) {
+    flex-direction: column;
+  }
+
+  & > section {
+    width: 23.8rem;
+    @media only screen and (max-width: 550px) {
+      display: none;
     }
-    &:last-child {
-      width: calc(100% - 25.4rem);
+  }
+  & > blockquote {
+    display: none;
+    @media only screen and (max-width: 550px) {
+      display: block;
+    }
+  }
+  & > div {
+    width: calc(100% - 25.4rem);
+    @media only screen and (max-width: 550px) {
+      width: 100%;
+      margin-bottom: 3rem;
     }
   }
 }

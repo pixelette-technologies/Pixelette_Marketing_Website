@@ -2,9 +2,12 @@
   display: flex;
   gap: 3.6rem;
   padding-bottom: 6rem;
-  position: relative;
   @media only screen and (max-width: 960px) {
     gap: 2rem;
+  }
+
+  @media only screen and (max-width: 850px) {
+    flex-direction: column-reverse;
   }
 
   & > div {
@@ -19,7 +22,7 @@
     @media only screen and (max-width: 960px) {
       max-width: 57%;
     }
-    @media only screen and (max-width: 800px) {
+    @media only screen and (max-width: 850px) {
       max-width: 100%;
     }
     & > header {
@@ -45,64 +48,51 @@
   & > section {
     width: 100%;
 
-    & > blockqoute {
-      display: none;
-    }
-
-    @media only screen and (max-width: 800px) {
-      position: fixed;
-      width: 100%;
-      top: 20%;
-      right: 1rem;
-      display: flex;
-      justify-content: flex-end;
-      gap: 1.8rem;
-      z-index: 1000;
-      & > blockquote {
-        height: 35px;
-        width: 35px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        float: left;
-        & > * {
-          color: white;
-          font-size: 2.5rem;
-        }
-      }
-    }
-
     & > div {
-      z-index: 1000;
       & > div {
-        padding: 3.3rem;
+        padding: 2.5rem 2.5rem;
         border-radius: 0.8rem;
         @media only screen and (max-width: 800px) {
           padding: 2rem;
         }
-        & > h1 {
-          font-size: 2.4rem;
-          font-weight: 700;
-          margin-bottom: 2.4rem;
-          color: white;
-          @media only screen and (max-width: 800px) {
-            margin-bottom: 1.2rem;
-          }
-        }
-        & > ul {
-          list-style: none;
-          & > li {
+
+        & > header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          cursor: pointer;
+          & > h2 {
             font-size: 1.8rem;
-            font-weight: 400;
             color: white;
-            & > a {
+          }
+
+          & > div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & > * {
+              font-size: 1.6rem;
               color: white;
             }
           }
-          & > * {
-            &:not(:last-child) {
-              margin-bottom: 1.2rem;
+        }
+
+        & > div {
+          & > ul {
+            list-style: none;
+            padding-top: 2rem;
+            & > li {
+              font-size: 1.6rem;
+              font-weight: 400;
+              color: white;
+              & > a {
+                color: white;
+              }
+            }
+            & > * {
+              &:not(:last-child) {
+                margin-bottom: 1.2rem;
+              }
             }
           }
         }

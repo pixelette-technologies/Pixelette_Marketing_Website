@@ -1,24 +1,35 @@
+"use client";
+
 import { Container } from "@/components/common";
 import BlogCategories from "./BlogCategories";
 import BlogCardGrid from "./BlogCardGrid";
-import React from "react";
+import React, { useState } from "react";
+import blogsData from "@/data/blogs/blogsData";
+import BlogCategoriesDropDown from "./BlogCategoriesDropDown";
 
-type BlogPost = {
-  title?: string;
-  summary?: string;
-};
+const BlogDataDisplay = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-type BlogDataDisplayProps = {
-  id?: number;
-  data?: BlogPost[];
-};
+  const matchedData =
+    selectedCategory === "All"
+      ? blogsData.flatMap(category => category.data)
+      : blogsData.find(category => category.title === selectedCategory)?.data ||
+        [];
 
-const BlogDataDisplay: React.FC<BlogDataDisplayProps> = ({ data, id }) => {
   return (
     <Container className='main'>
       <div className='blogDataDisplay'>
-        <BlogCategories currentId={id} />
-        <BlogCardGrid data={data} />
+        <BlogCategories
+          data={blogsData}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
+        <BlogCategoriesDropDown
+          data={blogsData}
+          selectedCategory={selectedCategory}
+          onSelectCategory={setSelectedCategory}
+        />
+        <BlogCardGrid data={matchedData} />
       </div>
     </Container>
   );

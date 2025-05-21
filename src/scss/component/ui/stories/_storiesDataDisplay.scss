@@ -17,6 +17,7 @@
       margin-bottom: 2rem;
       background-color: color.$gray;
       border-radius: 1rem;
+      display: none;
     }
     &::-webkit-scrollbar-thumb {
       background: color.$primary;
@@ -28,24 +29,25 @@
       border-radius: 1rem;
     }
     & > div {
-      width: 1500px;
+      width: 1140px;
       display: flex;
       align-items: center;
       gap: 1rem;
-      & > a {
+      & > button {
         font-size: 1.2rem;
         font-weight: 400;
         border: 1px solid rgba(199, 199, 199, 1);
         border-radius: 0.5rem;
         padding: 1.2rem 3.9rem;
+        border: none;
       }
     }
-    // & > * {
-    //   &:first-child {
-    //     background-color: color.$primary;
-    //     border: 1px solid color.$primary;
-    //     color: white;
-    //   }
-    // }
+  }
+  & > section {
+    & > * {
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
   }
 }

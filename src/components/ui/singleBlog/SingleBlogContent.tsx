@@ -4,7 +4,8 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
 import React, { useState } from "react";
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
+import { motion } from "framer-motion";
+import { IoIosArrowDown } from "react-icons/io";
 
 interface SingleBlogContentDataProps {
   id: number;
@@ -24,10 +25,10 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
   description,
   data
 }) => {
-  const [showSidebar, setShowSidebar] = useState(true);
-
   const generateId = (title: string) =>
     title.replace(/\s+/g, "-").toLowerCase();
+
+  const [active, setActive] = useState(false);
 
   return (
     <Container className='main'>
@@ -51,71 +52,70 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
         </div>
 
         <section>
-          {showSidebar ? (
-            <blockquote
-              className='bg_primary'
-              onClick={() => setShowSidebar(false)}
-              style={{ cursor: "pointer" }}
-            >
-              <MdKeyboardArrowRight />
-            </blockquote>
-          ) : (
-            <blockquote
-              className='bg_primary'
-              onClick={() => setShowSidebar(true)}
-              style={{ cursor: "pointer" }}
-            >
-              <MdKeyboardArrowLeft />
-            </blockquote>
-          )}
-
-          {showSidebar && (
-            <div>
-              <div className='bg_primary'>
-                <Heading>Table of content</Heading>
-                <ul>
-                  {data.map((el, index) => (
-                    <li key={el.id}>
-                      <a
-                        href={`#${generateId(el.titleOne)}`}
-                        onClick={() => setShowSidebar(false)}
-                      >
-                        {index + 1}. {el.titleOne}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <section>
-                <h3>Share this</h3>
-                <a href='http://facebook.com' target='_blank'>
-                  <Image
-                    src='/blogs/facebookIcon.svg'
-                    alt='FacebookIcon'
-                    height={35}
-                    width={35}
-                  />
-                </a>
-                <a href='http://facebook.com' target='_blank'>
-                  <Image
-                    src='/blogs/twitterIcon.svg'
-                    alt='TwitterIcon'
-                    height={40}
-                    width={40}
-                  />
-                </a>
-                <a href='http://facebook.com' target='_blank'>
-                  <Image
-                    src='/blogs/instacon.svg'
-                    alt='InstagramIcon'
-                    height={35}
-                    width={35}
-                  />
-                </a>
-              </section>
+          <div>
+            <div className='bg_primary'>
+              <header onClick={() => setActive(!active)}>
+                <h2>Table of content</h2>
+                <motion.div
+                  animate={
+                    active
+                      ? {
+                          rotate: -180
+                        }
+                      : { rotate: 0 }
+                  }
+                >
+                  <IoIosArrowDown />
+                </motion.div>
+              </header>
+              {active && (
+                <motion.div
+                  initial={{ y: "-6rem", opacity: 0 }}
+                  animate={{ y: "0rem", opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className='dropdown-content'
+                >
+                  <ul>
+                    {data.map((el, index) => (
+                      <li key={el.id}>
+                        <a href={`#${generateId(el.titleOne)}`}>
+                          {index + 1}. {el.titleOne}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              )}
             </div>
-          )}
+
+            <section>
+              <h3>Share this</h3>
+              <a href='http://facebook.com' target='_blank'>
+                <Image
+                  src='/blogs/facebookIcon.svg'
+                  alt='FacebookIcon'
+                  height={35}
+                  width={35}
+                />
+              </a>
+              <a href='http://facebook.com' target='_blank'>
+                <Image
+                  src='/blogs/twitterIcon.svg'
+                  alt='TwitterIcon'
+                  height={40}
+                  width={40}
+                />
+              </a>
+              <a href='http://facebook.com' target='_blank'>
+                <Image
+                  src='/blogs/instacon.svg'
+                  alt='InstagramIcon'
+                  height={35}
+                  width={35}
+                />
+              </a>
+            </section>
+          </div>
         </section>
       </div>
     </Container>

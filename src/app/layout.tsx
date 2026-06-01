@@ -3,6 +3,7 @@ import "../scss/main.scss";
 import { AnimationsLayout, Footer, Navbar } from "@/components/common";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.pixelettemarketing.com"),
   title: "Pixelette Marketing",
   description: "Pixelette Marketing Website"
 };

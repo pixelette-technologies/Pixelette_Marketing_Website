@@ -8,13 +8,14 @@ import { talkBusinessData } from "@/data";
 import { storiesData } from "@/data/storiesData/storiesData";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function SingleIndustriesPage({ params }: PageProps) {
-  const storyId = parseInt(params.id, 10);
+export default async function SingleIndustriesPage({ params }: PageProps) {
+  const { id } = await params;
+  const storyId = parseInt(id, 10);
   const allStories = storiesData.flatMap(category => category.data);
   const story = allStories.find(item => item.id === storyId);
 

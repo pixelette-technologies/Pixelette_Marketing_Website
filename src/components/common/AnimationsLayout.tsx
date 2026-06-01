@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect } from "react";
 import AOS from "aos";
 
 interface AnimationsLayoutProps {
@@ -8,12 +8,12 @@ interface AnimationsLayoutProps {
 }
 
 const AnimationsLayout: FC<AnimationsLayoutProps> = ({ children }) => {
-  const [isReady, setIsReady] = useState(false);
-
   useEffect(() => {
-    const width = window.innerWidth;
-
-    if (width > 650) {
+    // AOS is a progressive enhancement only. Initialise it after mount,
+    // but NEVER gate rendering on it. Gating (the old `if (!isReady) return null`)
+    // returned null during SSR and disabled server-side rendering for the
+    // whole site, leaving crawlers and AI assistants an empty page.
+    if (window.innerWidth > 650) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.href = "https://unpkg.com/aos@2.3.4/dist/aos.css";
@@ -26,17 +26,9 @@ const AnimationsLayout: FC<AnimationsLayoutProps> = ({ children }) => {
           easing: "ease-in-out",
           delay: 100
         });
-        setIsReady(true);
       };
-    } else {
-      // Skip AOS entirely for small screens
-      setIsReady(true);
     }
   }, []);
-
-  if (!isReady) {
-    return null; // or you can return a loader/spinner
-  }
 
   return <div>{children}</div>;
 };

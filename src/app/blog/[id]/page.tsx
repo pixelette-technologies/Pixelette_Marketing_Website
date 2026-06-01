@@ -5,13 +5,14 @@ import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
 import blogsData from "@/data/blogs/blogsData";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default function SingleBlogPage({ params }: PageProps) {
-  const blogId = parseInt(params.id, 10);
+export default async function SingleBlogPage({ params }: PageProps) {
+  const { id } = await params;
+  const blogId = parseInt(id, 10);
   const allBlogs = blogsData.flatMap(category => category.data);
   const blog = allBlogs.find(item => item.id === blogId);
 

@@ -2,6 +2,8 @@
 
 import type { FC } from "react";
 import dynamic from "next/dynamic";
+import type SlickSlider from "react-slick";
+import type { Settings } from "react-slick";
 import Link from "next/link";
 import React from "react";
 import { MdArrowForward } from "react-icons/md";
@@ -11,7 +13,9 @@ import Image from "next/image";
 
 const Slider = dynamic(() => import("react-slick"), {
   ssr: false
-});
+}) as unknown as React.ForwardRefExoticComponent<
+  Settings & React.RefAttributes<SlickSlider> & { children?: React.ReactNode }
+>;
 
 type ContentSliderDataProps = {
   subheading: string;
@@ -26,7 +30,7 @@ type ContentSliderProps = {
 };
 
 const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
-  const slider = React.useRef<Slider | null>(null);
+  const slider = React.useRef<SlickSlider | null>(null);
 
   const settings = {
     dots: false,

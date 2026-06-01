@@ -33,6 +33,7 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
             className='tertiary color_primary font_family_glory uppercase'
             animation='fade-up'
             duration='1200'
+            level={1}
           >
             {mainHeading}
           </Heading>

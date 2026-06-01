@@ -13,21 +13,28 @@ interface ContactSectionProps {
   heading?: string;
   text?: string;
   data?: ContactData[];
+  headingLevel?: 1 | 2;
 }
 
-const ContactSection: FC<ContactSectionProps> = ({ heading, text, data }) => {
+const ContactSection: FC<ContactSectionProps> = ({
+  heading,
+  text,
+  data,
+  headingLevel = 2
+}) => {
+  const HeadingTag = headingLevel === 1 ? "h1" : "h2";
   return (
     <div className='bg_tertiary' data-aos='fade-up' data-aos-duration='1000'>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
             {heading && (
-              <h2
+              <HeadingTag
                 className='heading_primary font_family_glory uppercase'
                 dangerouslySetInnerHTML={{ __html: heading }}
                 data-aos='fade-right'
                 data-aos-duration='1200'
-              ></h2>
+              ></HeadingTag>
             )}
             {text && <Text className='secondry'>{text}</Text>}
             <div data-aos='fade-up'>

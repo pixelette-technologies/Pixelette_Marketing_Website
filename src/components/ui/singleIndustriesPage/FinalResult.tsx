@@ -137,9 +137,9 @@ const FinalResult: React.FC<FinalResultProps> = ({
                 <Text className='primary'>{description}</Text>
                 <section>
                   <header>
-                    <h1 className='font_family_glory'>
+                    <h3 className='font_family_glory'>
                       {data[currentIndex]?.values ?? "N/A"}
-                    </h1>
+                    </h3>
                     <p>
                       {data[currentIndex]?.summary ?? "No summary available"}
                     </p>

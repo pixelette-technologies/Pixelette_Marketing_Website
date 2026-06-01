@@ -18,6 +18,7 @@ const StoriesHeroSection = () => {
             className='tertiary font_family_glory uppercase'
             animation='fade-up'
             duration='1200'
+            level={1}
           >
             Stories of <span className='color_primary'>growth and impact</span>
           </Heading>

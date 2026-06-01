@@ -8,7 +8,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://pixelettemarketing.com/sitemap.xml",
-    host: "https://pixelettemarketing.com"
+    sitemap: "https://www.pixelettemarketing.com/sitemap.xml",
+    host: "https://www.pixelettemarketing.com"
   };
 }

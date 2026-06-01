@@ -7,7 +7,6 @@ import {
 } from "@/components/common";
 import { industriesData } from "@/data/industries/industriesData";
 import { Metadata } from "next";
-import Script from "next/script";
 
 type PageProps = {
   params: Promise<{
@@ -18,7 +17,7 @@ type PageProps = {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const pageData = industriesData.find(item => item.route === slug);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pixelettemarketing.com';
+  const baseUrl = "https://www.pixelettemarketing.com";
 
   return {
     title: pageData?.metaTitle || "Services",
@@ -67,7 +66,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
   const pageData = industriesData.find(item => item.route === slug);
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://pixelettemarketing.com';
+  const baseUrl = "https://www.pixelettemarketing.com";
 
   const ourSolutionData = pageData?.ourSolutions;
   const contactData = pageData?.howWeWork;
@@ -113,19 +112,17 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      {/* Breadcrumb Schema */}
-      <Script
-        id="breadcrumb-schema"
+      {/* Breadcrumb Schema (server-rendered) */}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(breadcrumbSchema)
         }}
       />
 
-      {/* FAQ Schema */}
+      {/* FAQ Schema (server-rendered) */}
       {faqSchema && faqSchema.length > 0 && (
-        <Script
-          id="faq-schema"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({

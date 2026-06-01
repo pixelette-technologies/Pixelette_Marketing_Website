@@ -5,7 +5,14 @@ export const metadata: Metadata = {
   title: "Blog | Pixelette Marketing",
   description:
     "Marketing insights, guides and trends for Fintech, SaaS, Web3 and technology brands from the Pixelette Marketing team.",
-  alternates: { canonical: "https://www.pixelettemarketing.com/blog-list" }
+  alternates: { canonical: "https://www.pixelettemarketing.com/blog-list" },
+  openGraph: {
+    title: "Blog | Pixelette Marketing",
+    description:
+      "Marketing insights, guides and trends for Fintech, SaaS, Web3 and technology brands from the Pixelette Marketing team.",
+    url: "https://www.pixelettemarketing.com/blog-list",
+    type: "website"
+  }
 };
 
 export default function Page() {

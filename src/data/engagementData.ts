@@ -13,7 +13,7 @@ const engagementData = [
   },
 
   {
-    route: "lead_genration",
+    route: "lead_generation",
     mainHeading: "Lead",
     subHeading: "Generation Management",
     text: "Streamline your pipeline with strategies that attract, qualify and convert leads into loyal customers, efficiently and effectively"

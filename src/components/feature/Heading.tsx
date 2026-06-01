@@ -3,7 +3,7 @@ interface HeadingProps {
   children: React.ReactNode;
   animation?: string;
   duration?: string;
-  level?: 1 | 2 | 3 | 4 | 5 | 6; // Optional, defaults to 1
+  level?: 1 | 2 | 3 | 4 | 5 | 6; // Optional, defaults to 2 (h1 reserved for the page hero title)
 }
 
 const tagMap = {
@@ -20,7 +20,7 @@ const Heading = ({
   children,
   animation,
   duration,
-  level = 1
+  level = 2
 }: HeadingProps) => {
   const Tag = tagMap[level];
 

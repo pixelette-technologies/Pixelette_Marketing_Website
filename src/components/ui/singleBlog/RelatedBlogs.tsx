@@ -105,7 +105,7 @@ const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
                   alt={`${el.title}`}
                 />
                 <h5>{el.subheading}</h5>
-                <h1>{el.title}</h1>
+                <h3>{el.title}</h3>
                 {el.link && (
                   <Link href={el.link} className='color_gradient'>
                     Read Blog

@@ -19,6 +19,7 @@ const AboutUsHero = () => {
             className='tertiary color_primary uppercase font_family_glory'
             animation='fade-up'
             duration='1200'
+            level={1}
           >
             Redefining growth
             <span className='color_secondry'> with purpose</span>

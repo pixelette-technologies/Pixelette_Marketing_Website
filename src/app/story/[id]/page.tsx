@@ -6,11 +6,40 @@ import HeroSingleIndustriesPage from "@/components/ui/singleIndustriesPage/HeroS
 import ProcessSection from "@/components/ui/singleIndustriesPage/ProcessSection";
 import { talkBusinessData } from "@/data";
 import { storiesData } from "@/data/storiesData/storiesData";
+import type { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{
     id: string;
   }>;
+}
+
+const SITE = "https://www.pixelettemarketing.com";
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const story = storiesData.flatMap(c => c.data).find(item => item.id === parseInt(id, 10));
+  if (!story) {
+    return {
+      title: "Success Story | Pixelette Marketing",
+      alternates: { canonical: `${SITE}/story/${id}` }
+    };
+  }
+  const desc =
+    typeof story.summary === "string"
+      ? story.summary.replace(/<[^>]*>/g, "").trim().slice(0, 160)
+      : "";
+  return {
+    title: `${story.title} | Pixelette Marketing`,
+    description: desc || `Case study: ${story.title} by Pixelette Marketing.`,
+    alternates: { canonical: `${SITE}/story/${id}` },
+    openGraph: {
+      title: `${story.title}`,
+      description: desc || undefined,
+      url: `${SITE}/story/${id}`,
+      type: "article"
+    }
+  };
 }
 
 export default async function SingleIndustriesPage({ params }: PageProps) {

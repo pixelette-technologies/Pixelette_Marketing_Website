@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description:
     "Marketing insights, guides and trends for Fintech, SaaS, Web3 and technology brands from the Pixelette Marketing team.",
   alternates: { canonical: "https://www.pixelettemarketing.com/blog-list" },
+  // INTERIM: blog posts are placeholder. Remove this robots block when real content lands - see content brief.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Blog | Pixelette Marketing",
     description:

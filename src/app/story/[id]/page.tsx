@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${story.title} | Pixelette Marketing`,
     description: desc || `Case study: ${story.title} by Pixelette Marketing.`,
     alternates: { canonical: `${SITE}/story/${id}` },
+    // INTERIM: success stories are placeholder/duplicate. Remove this robots block when real content lands - see content brief.
+    robots: { index: false, follow: true },
     openGraph: {
       title: `${story.title}`,
       description: desc || undefined,

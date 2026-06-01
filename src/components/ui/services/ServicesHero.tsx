@@ -34,6 +34,7 @@ const ServicesHero: FC<ServicesHeroProps> = ({
             className='tertiary color_primary uppercase font_family_glory'
             animation='fade-up'
             duration='1000'
+            level={1}
           >
             {mainHeading} <span> {subHeading}</span>
           </Heading>

@@ -52,8 +52,30 @@ export default async function SingleIndustriesPage({ params }: PageProps) {
     return <div>Blog not found</div>;
   }
 
+  const storyDesc =
+    typeof story.summary === "string"
+      ? story.summary.replace(/<[^>]*>/g, "").trim().slice(0, 200)
+      : "";
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: story.title,
+    description: storyDesc || undefined,
+    author: { "@type": "Organization", name: "Pixelette Marketing", url: SITE },
+    publisher: {
+      "@type": "Organization",
+      name: "Pixelette Marketing",
+      logo: { "@type": "ImageObject", url: `${SITE}/favicon.svg` }
+    },
+    mainEntityOfPage: `${SITE}/story/${id}`
+  };
+
   return (
     <>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <HeroSingleIndustriesPage
         heading={story.title}
         description={story.summary}

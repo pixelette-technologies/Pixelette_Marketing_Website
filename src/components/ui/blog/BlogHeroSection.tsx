@@ -18,6 +18,7 @@ const BlogHeroSection = () => {
             className='tertiary font_family_glory uppercase'
             animation='fade-up'
             duration='1200'
+            level={1}
           >
             Pixelette
             <span className='color_primary'> Marketing Blog</span>

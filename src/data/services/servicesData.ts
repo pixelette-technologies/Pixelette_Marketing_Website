@@ -2589,7 +2589,7 @@ export const servicesData = [
     metaTitle: "Lead Generation Services for B2B & Beyond",
     metaDescription: "Partner with Pixelette Marketing, a Lead Generation Agency that fills your pipeline with qualified prospects & sales-ready leads. 1st consultation is on us! 🤙🏼",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
-    route: "lead_genration",
+    route: "lead_generation",
     mainHeading: " From prospects to loyal customers,",
     subHeading: "  we’re the best lead generation agency for GROWTH",
     summary: "",

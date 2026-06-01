@@ -35,7 +35,7 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
       <div className='singleBlogContent'>
         <div>
           <header>
-            <Heading className='primary color_primary'>{heading}</Heading>
+            <Heading className='primary color_primary' level={1}>{heading}</Heading>
             <Text className='primary'>{description}</Text>
           </header>
 

@@ -49,8 +49,37 @@ export default async function SingleBlogPage({ params }: PageProps) {
     return <div>Blog not found</div>;
   }
 
+  const blogDesc =
+    typeof blog.description === "string"
+      ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 200)
+      : "";
+  const blogImg =
+    typeof blog.image === "string"
+      ? blog.image.startsWith("http")
+        ? blog.image
+        : `${SITE}${blog.image}`
+      : undefined;
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: blog.heading,
+    description: blogDesc || undefined,
+    image: blogImg,
+    author: { "@type": "Organization", name: "Pixelette Marketing", url: SITE },
+    publisher: {
+      "@type": "Organization",
+      name: "Pixelette Marketing",
+      logo: { "@type": "ImageObject", url: `${SITE}/favicon.svg` }
+    },
+    mainEntityOfPage: `${SITE}/blog/${id}`
+  };
+
   return (
     <div className='bg_tertiary'>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       <HeroSingleBlogPage
         image={blog.image}
         profile={blog.authorProfile}

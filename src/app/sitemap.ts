@@ -1,21 +1,30 @@
 import type { MetadataRoute } from "next";
+import { servicesData } from "@/data/services/servicesData";
+import { industriesData } from "@/data/industries/industriesData";
+import blogsData from "@/data/blogs/blogsData";
+import { storiesData } from "@/data/storiesData/storiesData";
 
 // Generates /sitemap.xml at build time (Next.js App Router metadata route).
-// The live site currently returns 404 for /sitemap.xml; this fixes that.
-const BASE = "https://pixelettemarketing.com";
+// Lists every public route, including the dynamic service/industry/blog/story pages.
+const BASE = "https://www.pixelettemarketing.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Static routes that exist in src/app.
+  const now = new Date();
+
   const staticRoutes = ["", "/aboutus", "/contactus", "/blog-list", "/success_stories"];
+  const services = servicesData.map(s => `/services/${s.route}`);
+  const industries = industriesData.map(i => `/industries/${i.route}`);
+  const blogs = blogsData.flatMap(c => c.data).map(b => `/blog/${b.id}`);
+  const stories = storiesData.flatMap(c => c.data).map(s => `/story/${s.id}`);
 
-  // TODO (dynamic routes): append entries by mapping the data sources for
-  //   /services/[slug], /industries/[slug], /blog/[id], /story/[id]
-  // e.g. ...services.map((s) => ({ url: `${BASE}/services/${s.slug}`, ... }))
+  const paths = Array.from(
+    new Set([...staticRoutes, ...services, ...industries, ...blogs, ...stories])
+  );
 
-  return staticRoutes.map((path) => ({
+  return paths.map(path => ({
     url: `${BASE}${path}`,
-    lastModified: new Date(),
+    lastModified: now,
     changeFrequency: "weekly" as const,
-    priority: path === "" ? 1 : 0.8
+    priority: path === "" ? 1 : 0.7
   }));
 }

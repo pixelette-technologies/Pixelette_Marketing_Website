@@ -90,6 +90,7 @@ export default function HomeHero() {
           alt='Background image for mobile responsive '
           height={480}
           width={520}
+          priority
         />
 
         <section className='bg_tertiary' data-aos='fade-up'>

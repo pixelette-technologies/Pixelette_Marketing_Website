@@ -17,11 +17,11 @@
 
       & > header {
         width: 450px;
+        margin-top: 2rem;
         @media only screen and (max-width: 750px) {
           width: 100%;
         }
 
-        margin-top: 2rem;
         & > * {
           &:not(:last-child) {
             margin-bottom: 1rem;

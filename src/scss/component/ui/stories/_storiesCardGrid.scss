@@ -41,10 +41,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 0.7rem;
     @media only screen and (max-width: 750px) {
       justify-content: center;
     }
-    gap: 0.7rem;
     & > a {
       width: calc(33.3333333333% - 0.7rem);
       border-radius: 1.6rem;

@@ -42,15 +42,15 @@ nav {
 
 .navbarMobileMenu {
   display: none;
-  @media only screen and (max-width: 750px) {
-    display: block;
-  }
   position: absolute;
   z-index: 1000000;
   width: 70%;
   right: 0rem;
   padding: 5rem 3rem;
   min-height: calc(100vh - 8.1rem);
+  @media only screen and (max-width: 750px) {
+    display: block;
+  }
 
   & > div {
     width: 100%;

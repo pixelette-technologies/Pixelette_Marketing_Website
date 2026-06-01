@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   description:
     "Real results and case studies from Pixelette Marketing's work with Fintech, SaaS, Web3 and technology clients.",
   alternates: { canonical: "https://www.pixelettemarketing.com/success_stories" },
+  // INTERIM: success stories are placeholder/duplicate. Remove this robots block when real content lands - see content brief.
+  robots: { index: false, follow: true },
   openGraph: {
     title: "Success Stories | Pixelette Marketing",
     description:

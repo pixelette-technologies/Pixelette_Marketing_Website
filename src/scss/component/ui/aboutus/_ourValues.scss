@@ -20,11 +20,11 @@
     }
     & > div {
       flex: 1 1 calc(50% - 1.6rem);
+      border-radius: 0.8rem;
+      padding: 1.6rem;
       @media only screen and (max-width: 500px) {
         flex: 1 1 calc(50% - 0.8rem);
       }
-      border-radius: 0.8rem;
-      padding: 1.6rem;
       & > * {
         &:first-child {
           margin-bottom: 0.7rem;

@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "aos/dist/aos.css";
+import Script from "next/script";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -52,6 +54,16 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Script
+          src='https://www.googletagmanager.com/gtag/js?id=G-1HGJEBFGRW'
+          strategy='afterInteractive'
+        />
+        <Script id='ga4' strategy='afterInteractive'>
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-1HGJEBFGRW');`}
+        </Script>
         <AnimationsLayout>
           <Navbar />
           <div>{children}</div>

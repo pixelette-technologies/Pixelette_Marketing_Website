@@ -17,7 +17,7 @@ const web3Services = [
   {
     heading: "Crypto SEO Services",
     detail:
-      "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+      "Search engine optimisation can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
   },
   {
     heading: "Crypto Influencer Marketing",

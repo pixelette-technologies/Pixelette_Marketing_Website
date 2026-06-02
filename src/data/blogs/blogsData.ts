@@ -58,7 +58,7 @@ const blogsData = [
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             title:
-              "Understanding Color Contrast in Gold Mining Design — A Designer’s Expert Guide",
+              "Understanding Color Contrast in Gold Mining Design, A Designer’s Expert Guide",
             link: "/"
           },
           {
@@ -71,7 +71,7 @@ const blogsData = [
           {
             id: 4,
             title:
-              "Optimize Your Gold Mining Website for Maximum Investment Appeal.",
+              "Optimise Your Gold Mining Website for Maximum Investment Appeal.",
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             link: "/"
@@ -134,7 +134,7 @@ const blogsData = [
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             title:
-              "Understanding Color Contrast in Gold Mining Design — A Designer’s Expert Guide",
+              "Understanding Color Contrast in Gold Mining Design, A Designer’s Expert Guide",
             link: "/"
           },
           {
@@ -147,7 +147,7 @@ const blogsData = [
           {
             id: 4,
             title:
-              "Optimize Your Gold Mining Website for Maximum Investment Appeal.",
+              "Optimise Your Gold Mining Website for Maximum Investment Appeal.",
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             link: "/"
@@ -210,7 +210,7 @@ const blogsData = [
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             title:
-              "Understanding Color Contrast in Gold Mining Design — A Designer’s Expert Guide",
+              "Understanding Color Contrast in Gold Mining Design, A Designer’s Expert Guide",
             link: "/"
           },
           {
@@ -223,7 +223,7 @@ const blogsData = [
           {
             id: 4,
             title:
-              "Optimize Your Gold Mining Website for Maximum Investment Appeal.",
+              "Optimise Your Gold Mining Website for Maximum Investment Appeal.",
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             link: "/"
@@ -291,7 +291,7 @@ const blogsData = [
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             title:
-              "Understanding Color Contrast in Gold Mining Design — A Designer’s Expert Guide",
+              "Understanding Color Contrast in Gold Mining Design, A Designer’s Expert Guide",
             link: "/"
           },
           {
@@ -304,7 +304,7 @@ const blogsData = [
           {
             id: 4,
             title:
-              "Optimize Your Gold Mining Website for Maximum Investment Appeal.",
+              "Optimise Your Gold Mining Website for Maximum Investment Appeal.",
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             link: "/"
@@ -367,7 +367,7 @@ const blogsData = [
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             title:
-              "Understanding Color Contrast in Gold Mining Design — A Designer’s Expert Guide",
+              "Understanding Color Contrast in Gold Mining Design, A Designer’s Expert Guide",
             link: "/"
           },
           {
@@ -380,7 +380,7 @@ const blogsData = [
           {
             id: 4,
             title:
-              "Optimize Your Gold Mining Website for Maximum Investment Appeal.",
+              "Optimise Your Gold Mining Website for Maximum Investment Appeal.",
             subheading: "UI Interface",
             image: "/blogs/blogSinglePage.png",
             link: "/"

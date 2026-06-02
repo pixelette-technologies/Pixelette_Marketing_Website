@@ -3,7 +3,7 @@ const engagementData = [
     route: "social_media",
     mainHeading: "Social Media",
     subHeading: "Marketing",
-    text: "Build authentic connections and expand your brand's reach with customized strategies that engage, excite and convert audiences on every platform"
+    text: "Build authentic connections and expand your brand's reach with customised strategies that engage, excite and convert audiences on every platform"
   },
   {
     route: "email_marketing",
@@ -40,7 +40,7 @@ const engagementData = [
     route: "seo_and_content_marketing",
     mainHeading: "SEO & Content ",
     subHeading: "Marketing",
-    text: "Dominate search results and attract qualified traffic with optimized on-page and off-page strategies that grow your visibility and authority"
+    text: "Dominate search results and attract qualified traffic with optimised on-page and off-page strategies that grow your visibility and authority"
   },
   {
     route: "marketing_analytics_and_reporting",
@@ -52,7 +52,7 @@ const engagementData = [
     route: "ads_ppc",
     mainHeading: " Ads",
     subHeading: "& PPC",
-    text: "Achieve fast, measurable growth with pay-per-click campaigns customized to boost clicks, conversions, and revenue"
+    text: "Achieve fast, measurable growth with pay-per-click campaigns customised to boost clicks, conversions, and revenue"
   }
 ];
 

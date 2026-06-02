@@ -14,7 +14,7 @@ const talkBusinessData = [
   {
     icon: PlainIcon,
     heading: "Plan",
-    text: "Next up? You’ll get a marketing strategy proposal with an in-depth analysis of your current marketing efforts, insights on your industry's latest trends and opportunities, a customized growth strategy for your business along with transparent pricing and timelines for implementation"
+    text: "Next up? You’ll get a marketing strategy proposal with an in-depth analysis of your current marketing efforts, insights on your industry's latest trends and opportunities, a customised growth strategy for your business along with transparent pricing and timelines for implementation"
   },
   {
     icon: ExecuteIcon,

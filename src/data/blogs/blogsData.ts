@@ -4,7 +4,7 @@ const blogsData = [
     data: [
       {
         id: 1,
-        image: "/blogs/singleBlogBannerImage.png",
+        image: "/blogs/blog-fintech-banner.webp",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
         updateDate: "Jun 2, 2026",
@@ -75,7 +75,7 @@ const blogsData = [
       },
       {
         id: 2,
-        image: "/blogs/singleBlogBannerImage.png",
+        image: "/blogs/blog-web3-banner.webp",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Temur Khan",
         updateDate: "Jun 2, 2026",
@@ -146,7 +146,7 @@ const blogsData = [
       },
       {
         id: 3,
-        image: "/blogs/singleBlogBannerImage.png",
+        image: "/blogs/blog-saas-banner.webp",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
         updateDate: "Jun 2, 2026",

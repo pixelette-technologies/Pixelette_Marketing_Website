@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../scss/main.scss";
-import { AnimationsLayout, Footer, Navbar } from "@/components/common";
+import { AnimationsLayout, CookieConsent, Footer, Navbar } from "@/components/common";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pixelettemarketing.com"),
@@ -62,6 +62,14 @@ export default function RootLayout({
         <Script id='ga4' strategy='afterInteractive'>
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+try { if (localStorage.getItem('pmw-consent') === 'granted') { gtag('consent', 'update', { analytics_storage: 'granted' }); } } catch (e) {}
 gtag('js', new Date());
 gtag('config', 'G-1HGJEBFGRW');`}
         </Script>
@@ -70,6 +78,7 @@ gtag('config', 'G-1HGJEBFGRW');`}
           <div>{children}</div>
           <Footer />
         </AnimationsLayout>
+        <CookieConsent />
       </body>
     </html>
   );

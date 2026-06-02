@@ -11,7 +11,7 @@ const BASE = "https://www.pixelettemarketing.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticRoutes = ["", "/aboutus", "/contactus", "/blog-list"];
+  const staticRoutes = ["", "/aboutus", "/contactus", "/blog-list", "/cookie-policy"];
   const services = servicesData.map(s => `/services/${s.route}`);
   const industries = industriesData.map(i => `/industries/${i.route}`);
   const blogs = blogsData.flatMap(c => c.data).map(b => `/blog/${b.id}`);

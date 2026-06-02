@@ -9,3 +9,4 @@ export { default as ServicesCards } from "./ServicesCards";
 export { default as ContentDisplaySection } from "./ContentDisplaySection";
 export { default as AnimationsLayout } from "./AnimationsLayout";
 export { default as Faqs } from "./Faqs";
+export { default as CookieConsent } from "./CookieConsent";

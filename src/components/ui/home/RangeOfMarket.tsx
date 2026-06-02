@@ -84,7 +84,7 @@ const RangeOfMarket: FC = () => {
               animation='fade-right'
               duration='1800'
             >
-              Pixelette Marketing utilizes a diverse range of platforms to drive
+              Pixelette Marketing utilises a diverse range of platforms to drive
               engagement, generate leads and boost your ROI
             </Text>
           </center>

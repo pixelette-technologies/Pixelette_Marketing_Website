@@ -9,6 +9,7 @@ export { default as Grammerly } from "./Grammerly";
 export { default as HotJar } from "./HotJar";
 export { default as Jira } from "./Jira";
 export { default as LinkedIn } from "./LinkedIn";
+export { default as LinkedInIcon } from "./LinkedInIcon";
 export { default as Loom } from "./Loom";
 export { default as MailChimp } from "./MailChimp";
 export { default as PyTorch } from "./PyTorch";

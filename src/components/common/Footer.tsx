@@ -1,4 +1,4 @@
-import { Facebook, Insta, LinkedIn } from "@/assets/common";
+import { Facebook, Insta, LinkedInIcon } from "@/assets/common";
 import { Text } from "../feature";
 import Container from "./Container";
 
@@ -24,7 +24,7 @@ export default function Footer() {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <LinkedIn />
+            <LinkedInIcon />
           </a>
           <a
             href='https://www.facebook.com/p/Pixelette-Marketing-100095390971622/'

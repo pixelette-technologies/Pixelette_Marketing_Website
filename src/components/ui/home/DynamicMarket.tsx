@@ -31,7 +31,7 @@ const DynamicMarket = () => {
               <Text className='primary' animation='fade-left' duration='1600'>
                 The right strategy makes all the difference. Our
                 industry-focused approach simplifies the journey, offering
-                customized solutions that drive real, measurable success
+                customised solutions that drive real, measurable success
               </Text>
             </header>
             <section>

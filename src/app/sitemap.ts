@@ -2,23 +2,22 @@ import type { MetadataRoute } from "next";
 import { servicesData } from "@/data/services/servicesData";
 import { industriesData } from "@/data/industries/industriesData";
 import blogsData from "@/data/blogs/blogsData";
-import { storiesData } from "@/data/storiesData/storiesData";
 
 // Generates /sitemap.xml at build time (Next.js App Router metadata route).
-// Lists every public route, including the dynamic service/industry/blog/story pages.
+// Lists every public, indexable route. /success_stories and /story/[id] are excluded:
+// they are noindex legacy content (Portfolio hidden 2 Jun 2026), so they must not be advertised here.
 const BASE = "https://www.pixelettemarketing.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticRoutes = ["", "/aboutus", "/contactus", "/blog-list", "/success_stories"];
+  const staticRoutes = ["", "/aboutus", "/contactus", "/blog-list"];
   const services = servicesData.map(s => `/services/${s.route}`);
   const industries = industriesData.map(i => `/industries/${i.route}`);
   const blogs = blogsData.flatMap(c => c.data).map(b => `/blog/${b.id}`);
-  const stories = storiesData.flatMap(c => c.data).map(s => `/story/${s.id}`);
 
   const paths = Array.from(
-    new Set([...staticRoutes, ...services, ...industries, ...blogs, ...stories])
+    new Set([...staticRoutes, ...services, ...industries, ...blogs])
   );
 
   return paths.map(path => ({

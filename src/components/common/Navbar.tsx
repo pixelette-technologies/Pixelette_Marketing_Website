@@ -38,7 +38,7 @@ export default function Navbar() {
                   mainRoute='industries'
                   data={industriesData}
                 />
-                <Link href={"/success_stories"}>Portfolio</Link>
+                {/* Portfolio hidden 2 Jun 2026: /success_stories currently serves legacy Pixelette Technologies content. Restore this link when real Pixelette Marketing case studies are published. */}
                 <Link href={"/blog-list"}>Blogs</Link>
                 <Link href={"/aboutus"}>About Us</Link>
                 <Link href={"/contactus"}>Contact Us</Link>

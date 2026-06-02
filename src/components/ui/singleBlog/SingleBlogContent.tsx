@@ -3,6 +3,7 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
@@ -29,6 +30,12 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
     title.replace(/\s+/g, "-").toLowerCase();
 
   const [active, setActive] = useState(false);
+
+  const pathname = usePathname();
+  const shareUrl = encodeURIComponent(
+    `https://www.pixelettemarketing.com${pathname}`
+  );
+  const shareTitle = encodeURIComponent(heading);
 
   return (
     <Container className='main'>
@@ -90,26 +97,41 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
 
             <section>
               <h3>Share this</h3>
-              <a href='http://facebook.com' target='_blank'>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Share on Facebook'
+              >
                 <Image
                   src='/blogs/facebookIcon.svg'
-                  alt='FacebookIcon'
+                  alt='Share on Facebook'
                   height={35}
                   width={35}
                 />
               </a>
-              <a href='http://facebook.com' target='_blank'>
+              <a
+                href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Share on X'
+              >
                 <Image
                   src='/blogs/twitterIcon.svg'
-                  alt='TwitterIcon'
+                  alt='Share on X (Twitter)'
                   height={40}
                   width={40}
                 />
               </a>
-              <a href='http://facebook.com' target='_blank'>
+              <a
+                href='https://www.instagram.com/pixelettemarketing'
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label='Pixelette Marketing on Instagram'
+              >
                 <Image
                   src='/blogs/instacon.svg'
-                  alt='InstagramIcon'
+                  alt='Pixelette Marketing on Instagram'
                   height={35}
                   width={35}
                 />

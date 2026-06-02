@@ -30,8 +30,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${blog.heading} | Pixelette Marketing`,
     description: desc || `Read "${blog.heading}" on the Pixelette Marketing blog.`,
     alternates: { canonical: `${SITE}/blog/${id}` },
-    // INTERIM: blog bodies are placeholder (Lorem ipsum). Remove this robots block when real content lands - see content brief.
-    robots: { index: false, follow: true },
     openGraph: {
       title: `${blog.heading}`,
       description: desc || undefined,

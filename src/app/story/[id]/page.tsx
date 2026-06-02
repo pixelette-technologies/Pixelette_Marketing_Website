@@ -7,6 +7,7 @@ import ProcessSection from "@/components/ui/singleIndustriesPage/ProcessSection"
 import { talkBusinessData } from "@/data";
 import { storiesData } from "@/data/storiesData/storiesData";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{
@@ -51,7 +52,7 @@ export default async function SingleIndustriesPage({ params }: PageProps) {
   const story = allStories.find(item => item.id === storyId);
 
   if (!story) {
-    return <div>Blog not found</div>;
+    notFound();
   }
 
   const storyDesc =

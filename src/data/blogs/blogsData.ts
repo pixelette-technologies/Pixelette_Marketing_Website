@@ -59,14 +59,14 @@ const blogsData = [
           {
             id: 2,
             subheading: "Web3",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
             link: "/blog/2"
           },
           {
             id: 3,
             subheading: "SaaS",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
             link: "/blog/3"
@@ -130,14 +130,14 @@ const blogsData = [
           {
             id: 1,
             subheading: "Fintech",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
             link: "/blog/1"
           },
           {
             id: 3,
             subheading: "SaaS",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
             link: "/blog/3"
@@ -202,14 +202,14 @@ const blogsData = [
           {
             id: 1,
             subheading: "Fintech",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
             link: "/blog/1"
           },
           {
             id: 2,
             subheading: "Web3",
-            image: "/blogs/blogSinglePage.png",
+            image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
             link: "/blog/2"
           }

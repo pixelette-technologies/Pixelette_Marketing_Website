@@ -4,6 +4,7 @@ import { ContactUsHero } from "@/components/ui/contactUs";
 import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
 import blogsData from "@/data/blogs/blogsData";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{
@@ -46,7 +47,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
   const blog = allBlogs.find(item => item.id === blogId);
 
   if (!blog) {
-    return <div>Blog not found</div>;
+    notFound();
   }
 
   const blogDesc =

@@ -33,7 +33,7 @@ const OurServices = () => {
               duration='1600'
             >
               Navigating the complexities of fast-evolving industries requires a
-              deep understanding and agility. We specialize in marketing for
+              deep understanding and agility. We specialise in marketing for
               web3, SaaS, fintech, technology, startups and AI products.
               Partnering with us means getting marketing strategies fit to your
               industry and business that actually work.

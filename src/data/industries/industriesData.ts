@@ -48,7 +48,7 @@ export const industriesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "We’ll hop on a call to talk about your web3 project’s vision, target community and unique challenges. We’ll review your digital presence, analyze competitor strategies and also assess current and predicted market conditions to identify growth opportunities."
+          text: "We’ll hop on a call to talk about your web3 project’s vision, target community and unique challenges. We’ll review your digital presence, analyse competitor strategies and also assess current and predicted market conditions to identify growth opportunities."
         },
         {
           icon: PlainIcon,
@@ -58,7 +58,7 @@ export const industriesData = [
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "With your approval, we’ll get to work. We’ll manage every aspect of your web3 marketing, including launching influencer partnerships to optimizing campaigns for token adoption and community growth so that your project truly shines in the blockchain ecosystem."
+          text: "With your approval, we’ll get to work. We’ll manage every aspect of your web3 marketing, including launching influencer partnerships to optimising campaigns for token adoption and community growth so that your project truly shines in the blockchain ecosystem."
         }
       ]
     },
@@ -97,11 +97,11 @@ export const industriesData = [
       {
         question: "What makes Pixelette Marketing different from other crypto marketing agencies?",
         answer:
-          "Pixelette Marketing offers specialized, data-driven strategies for web3/blockchain/crypto projects, combining years of industry expertise with marketing solutions to unlock growth for new and existing web3 businesses."
+          "Pixelette Marketing offers specialised, data-driven strategies for web3/blockchain/crypto projects, combining years of industry expertise with marketing solutions to unlock growth for new and existing web3 businesses."
       },
       {
         question: "How much does crypto marketing cost?",
-        answer: "The cost varies based on the scope of services and project needs. The best thing about working with Pixelette Marketing for your crypto project is that we provide customized packages and engagement models to fit your budget and marketing goals."
+        answer: "The cost varies based on the scope of services and project needs. The best thing about working with Pixelette Marketing for your crypto project is that we provide customised packages and engagement models to fit your budget and marketing goals."
       },
       {
         question: "Can you help with tokenomics consulting?",
@@ -121,7 +121,7 @@ export const industriesData = [
       },
       {
         question: "Do your services cover Discord and Telegram management and crypto community building?",
-        answer: "Yes, we specialize in managing and growing communities on platforms like Discord and Telegram for a web3 brand’s engagement and loyalty."
+        answer: "Yes, we specialise in managing and growing communities on platforms like Discord and Telegram for a web3 brand’s engagement and loyalty."
       },
       {
         question: "How do you approach Token Sale Marketing?",
@@ -152,7 +152,7 @@ export const industriesData = [
         {
           heading: "Crypto SEO Services",
           detail:
-            "Search engine optimization can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
+            "Search engine optimisation can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
         },
         {
           heading: "Crypto Influencer Marketing",
@@ -203,7 +203,7 @@ export const industriesData = [
           image: "/industries/mq_2.webp",
           heading:
             "Is your fintech platform facing challenges in scaling user acquisition?",
-          text: "Boosted conversions by 300% for a neobank launch using targeted paid ad campaigns and optimized funnels."
+          text: "Boosted conversions by 300% for a neobank launch using targeted paid ad campaigns and optimised funnels."
         },
         {
           image: "/industries/mq_3.webp",
@@ -224,12 +224,12 @@ export const industriesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "Our team will review your digital presence, assess competitor strategies and analyze market trends to write down any growth opportunities suited to your fintech solution."
+          text: "Our team will review your digital presence, assess competitor strategies and analyse market trends to write down any growth opportunities suited to your fintech solution."
         },
         {
           icon: PlainIcon,
           heading: "Plan",
-          text: "We’ll deliver a detailed fintech marketing strategy customized to your goals. This includes platform recommendations, content ideas, audience targeting tactics and a clear execution roadmap with transparent pricing."
+          text: "We’ll deliver a detailed fintech marketing strategy customised to your goals. This includes platform recommendations, content ideas, audience targeting tactics and a clear execution roadmap with transparent pricing."
         },
         {
           icon: ExecuteIcon,
@@ -272,11 +272,11 @@ export const industriesData = [
     faqs: [
       {
         question: "What Fintech marketing services do you offer?",
-        answer: "We specialize in marketing for Fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
+        answer: "We specialise in marketing for Fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
       },
       {
         question: "How do you approach marketing for the Fintech industry?",
-        answer: "We understand the unique challenges and opportunities within the Fintech sector. Our approach emphasizes data-driven strategies, innovative marketing tactics, and a deep understanding of financial regulations."
+        answer: "We understand the unique challenges and opportunities within the Fintech sector. Our approach emphasises data-driven strategies, innovative marketing tactics, and a deep understanding of financial regulations."
       },
       {
         question: "How do you ensure compliance with financial regulations?",
@@ -317,7 +317,7 @@ export const industriesData = [
         {
           heading: "Fintech SEO Services",
           detail:
-            "Stay ahead of the competition with our fintech-focused SEO strategies. From keyword optimization to technical audits, we help your platform climb search rankings and attract high-quality, organic traffic."
+            "Stay ahead of the competition with our fintech-focused SEO strategies. From keyword optimisation to technical audits, we help your platform climb search rankings and attract high-quality, organic traffic."
         },
         {
           heading: "Fintech Influencer Marketing",
@@ -337,7 +337,7 @@ export const industriesData = [
         {
           heading: "Fintech Marketing Analytics",
           detail:
-            "Stay informed and optimize your strategies with our fintech marketing analytics and reporting services. Gain insights into campaign performance and user behavior to make data-driven decisions that enhance return on your investment."
+            "Stay informed and optimise your strategies with our fintech marketing analytics and reporting services. Gain insights into campaign performance and user behaviour to make data-driven decisions that enhance return on your investment."
         }
         ,
         {
@@ -394,7 +394,7 @@ export const industriesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "Our team will analyze your digital presence, assess competitors and explore market trends for growth opportunities suited to your tech business."
+          text: "Our team will analyse your digital presence, assess competitors and explore market trends for growth opportunities suited to your tech business."
         },
         {
           icon: PlainIcon,
@@ -446,7 +446,7 @@ export const industriesData = [
       },
       {
         question: "How do you help with Tech Customer Education & Onboarding?",
-        answer: "We create engaging resources like tutorials, guides, and webinars. We also provide personalized support and onboarding resources to ensure a smooth customer experience."
+        answer: "We create engaging resources like tutorials, guides, and webinars. We also provide personalised support and onboarding resources to ensure a smooth customer experience."
       },
       {
         question: "What are Tech Webinars & Virtual Events?",
@@ -465,7 +465,7 @@ export const industriesData = [
       ,
       {
         question: "How do you ensure success in PPC?",
-        answer: "We optimize bids, track performance, and use data-driven strategies to maximize your return on investment."
+        answer: "We optimise bids, track performance, and use data-driven strategies to maximise your return on investment."
       }
     ],
     marketingServices: {
@@ -492,7 +492,7 @@ export const industriesData = [
         {
           heading: "Tech SEO Services",
           detail:
-            "Carve out a place for your brand at the top of search results with targeted SEO strategies. From keyword research to content optimization, our tech SEO services help your company attract high-quality traffic and increase visibility."
+            "Carve out a place for your brand at the top of search results with targeted SEO strategies. From keyword research to content optimisation, our tech SEO services help your company attract high-quality traffic and increase visibility."
         },
         {
           heading: "Tech Influencer Marketing",
@@ -507,7 +507,7 @@ export const industriesData = [
         {
           heading: "Tech Email Marketing",
           detail:
-            "Use email marketing to nurture leads, announce new products, and build loyalty. Our email marketing services for tech companies deliver personalized campaigns that drive conversions and retention."
+            "Use email marketing to nurture leads, announce new products, and build loyalty. Our email marketing services for tech companies deliver personalised campaigns that drive conversions and retention."
         },
         {
           heading: "Tech Marketing Analytics",
@@ -570,7 +570,7 @@ export const industriesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "Our team will analyze your digital presence, assess competitors, and explore market trends to uncover growth opportunities tailored to your SaaS business."
+          text: "Our team will analyse your digital presence, assess competitors, and explore market trends to uncover growth opportunities tailored to your SaaS business."
         },
         {
           icon: PlainIcon,
@@ -663,7 +663,7 @@ export const industriesData = [
         {
           heading: "SaaS SEO Services",
           detail:
-            "Secure your spot at the top of search results with precision-driven SEO campaigns. We optimize your digital presence with deep keyword research, authoritative content and technical expertise to attract and convert your target users."
+            "Secure your spot at the top of search results with precision-driven SEO campaigns. We optimise your digital presence with deep keyword research, authoritative content and technical expertise to attract and convert your target users."
         },
         {
           heading: "SaaS Influencer Marketing",
@@ -678,7 +678,7 @@ export const industriesData = [
         {
           heading: "SaaS Email Marketing",
           detail:
-            "Drive meaningful engagement and nurture user loyalty with expertly designed email campaigns. From onboarding sequences to personalized upsell offers, our SaaS email marketing services help you connect with users at every stage of their journey."
+            "Drive meaningful engagement and nurture user loyalty with expertly designed email campaigns. From onboarding sequences to personalised upsell offers, our SaaS email marketing services help you connect with users at every stage of their journey."
         },
         {
           heading: "SaaS Marketing Analytics",
@@ -689,7 +689,7 @@ export const industriesData = [
         {
           heading: "SaaS Lead Generation",
           detail:
-            "Fuel your sales pipeline with personalized SaaS lead generation campaigns. We help you attract, engage and convert high-value prospects, ensuring sustainable business growth."
+            "Fuel your sales pipeline with personalised SaaS lead generation campaigns. We help you attract, engage and convert high-value prospects, ensuring sustainable business growth."
         }
       ]
     }
@@ -741,7 +741,7 @@ export const industriesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "Our team will analyze your digital presence, assess competitors and explore industry trends to find opportunities suited to your AI company."
+          text: "Our team will analyse your digital presence, assess competitors and explore industry trends to find opportunities suited to your AI company."
         },
         {
           icon: PlainIcon,
@@ -789,15 +789,15 @@ export const industriesData = [
     faqs: [
       {
         question: "What is AI Startup Social Media Marketing?",
-        answer: "We specialize in developing and executing targeted social media campaigns to help AI startups reach their target audience and build brand awareness."
+        answer: "We specialise in developing and executing targeted social media campaigns to help AI startups reach their target audience and build brand awareness."
       },
       {
         question: "What is Email Marketing for AI Products?",
         answer: "We craft compelling email campaigns to nurture leads, drive conversions, and build customer relationships for AI product companies."
       },
       {
-        question: "What is AI Company Search Engine Optimization (SEO)?",
-        answer: "We optimize your AI company's website and content to improve search engine rankings and drive organic traffic."
+        question: "What is AI Company Search Engine Optimisation (SEO)?",
+        answer: "We optimise your AI company's website and content to improve search engine rankings and drive organic traffic."
       }
       ,
       {
@@ -859,7 +859,7 @@ export const industriesData = [
         {
           heading: "AI SEO Services",
           detail:
-            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimize your digital presence to attract organic traffic and generate high-quality leads that keep coming in the long-term."
+            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimise your digital presence to attract organic traffic and generate high-quality leads that keep coming in the long-term."
         },
         {
           heading: "AI Influencer Marketing",
@@ -879,7 +879,7 @@ export const industriesData = [
         {
           heading: "AI Marketing Analytics",
           detail:
-            "Gain meaningful perspectives into your AI marketing campaigns with our analytics and reporting service. Understand your audience, refine strategies and maximize ROI to stay ahead in the AI market."
+            "Gain meaningful perspectives into your AI marketing campaigns with our analytics and reporting service. Understand your audience, refine strategies and maximise ROI to stay ahead in the AI market."
         }
         ,
         {

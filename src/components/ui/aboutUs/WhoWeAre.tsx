@@ -78,7 +78,7 @@ const WhoWeAre = () => {
               backed by actionable insights.
             </li>
             <li data-aos='fade-up' data-aos-duration='1530'>
-              No one-size-fits-all solutions here. Every campaign is customized
+              No one-size-fits-all solutions here. Every campaign is customised
               to fit the unique voice and goals of your brand.
             </li>
             <li data-aos='fade-up' data-aos-duration='1630'>

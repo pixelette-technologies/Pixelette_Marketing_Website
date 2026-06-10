@@ -41,8 +41,7 @@ function buildEmailHtml(opts: {
 
         <!-- Header -->
         <tr><td style="background-color:#6d1239; background-image:linear-gradient(135deg,#3d0a22,#a3123f); border-radius:16px 16px 0 0; padding:34px 32px; text-align:center;">
-          <span style="display:inline-block; color:#ffffff; font-size:24px; font-weight:700; letter-spacing:3px;">PIXELETTE</span>
-          <div style="color:#f3b6c8; font-size:12px; letter-spacing:5px; margin-top:4px; text-transform:uppercase;">Marketing</div>
+          <img src="https://www.pixelettemarketing.com/email-logo.png" alt="Pixelette Marketing" width="210" style="display:inline-block; width:210px; max-width:62%; height:auto; border:0;"/>
         </td></tr>
 
         <!-- Body -->

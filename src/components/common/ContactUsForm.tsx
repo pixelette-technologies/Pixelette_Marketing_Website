@@ -30,23 +30,12 @@ const ContactUsForm: React.FC = () => {
   ) => {
     setSubmitState("idle");
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-          subject: `New website enquiry from ${values.firstName} ${values.lastName}`.trim(),
-          from_name: "Pixelette Marketing Website",
-          name: `${values.firstName} ${values.lastName}`.trim(),
-          email: values.email,
-          message: values.description
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values)
       });
-      const data = await response.json();
-      if (data.success) {
+      if (response.ok) {
         setSubmitState("success");
         resetForm();
       } else {

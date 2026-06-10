@@ -3,13 +3,13 @@
 import React from "react";
 import { ErrorMessage, useField, FieldHookConfig } from "formik";
 
-interface FormTextAreaProps extends FieldHookConfig<string> {
+type FormTextAreaProps = FieldHookConfig<string> & {
   label: string;
   place?: string;
   name: string;
   animation?: string;
   duration?: string;
-}
+};
 
 const FormTextArea: React.FC<FormTextAreaProps> = ({
   label,

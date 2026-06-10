@@ -36,6 +36,25 @@ const structuredData = {
       name: "Pixelette Marketing",
       url: "https://www.pixelettemarketing.com",
       publisher: { "@id": "https://www.pixelettemarketing.com/#organization" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://www.pixelettemarketing.com/#localbusiness",
+      name: "Pixelette Marketing",
+      url: "https://www.pixelettemarketing.com",
+      image: "https://www.pixelettemarketing.com/favicon.svg",
+      telephone: "+44 2045188226",
+      email: "sales@pixelettemarketing.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "71-75 Shelton Street",
+        addressLocality: "London",
+        postalCode: "WC2H 9JQ",
+        addressCountry: "GB"
+      },
+      areaServed: "GB",
+      priceRange: "$$$",
+      parentOrganization: { "@id": "https://www.pixelettemarketing.com/#organization" }
     }
   ]
 };

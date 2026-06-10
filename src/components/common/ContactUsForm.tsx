@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Form, FormikHelpers } from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
 import { Button, FormInput, FormTextArea, Heading } from "../feature";
@@ -12,6 +12,8 @@ interface FormValues {
   description: string;
 }
 
+type SubmitState = "idle" | "success" | "error";
+
 const ContactUsForm: React.FC = () => {
   const initialValues: FormValues = {
     firstName: "",
@@ -20,12 +22,30 @@ const ContactUsForm: React.FC = () => {
     description: ""
   };
 
-  const handleSubmit = (
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+
+  const handleSubmit = async (
     values: FormValues,
-    { resetForm }: FormikHelpers<FormValues>
+    { resetForm, setSubmitting }: FormikHelpers<FormValues>
   ) => {
-    console.log("Form Submitted", values);
-    resetForm();
+    setSubmitState("idle");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values)
+      });
+      if (response.ok) {
+        setSubmitState("success");
+        resetForm();
+      } else {
+        setSubmitState("error");
+      }
+    } catch {
+      setSubmitState("error");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -71,6 +91,18 @@ const ContactUsForm: React.FC = () => {
             <Button type='submit' className='primary-full'>
               {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
+
+            {submitState === "success" && (
+              <p role='status' style={{ marginTop: "1rem", color: "#1e7e34" }}>
+                Thanks — your message has been sent. We&apos;ll be in touch shortly.
+              </p>
+            )}
+            {submitState === "error" && (
+              <p role='alert' style={{ marginTop: "1rem", color: "#c0392b" }}>
+                Sorry, something went wrong. Please try again, or email
+                sales@pixelettemarketing.com.
+              </p>
+            )}
           </Form>
         )}
       </Formik>

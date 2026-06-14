@@ -17,6 +17,11 @@ interface ImportanceProps {
 }
 
 const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
+  // Governance quarantine (P1): the "billion dollar brands" cards used
+  // unlicensed public-figure photos and unsourced attributed quotes. With the
+  // card data emptied, render nothing rather than an empty band. Replace with
+  // verified third-party statistics or owned imagery in the approved redesign.
+  if (!data || data.length === 0) return null;
   return (
     <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1200'>
       <Container className='main'>

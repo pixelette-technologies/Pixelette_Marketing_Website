@@ -42,29 +42,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important social media really is, ",
       subHeading: "according to leaders of billion dollar brands",
-      data: [
-        {
-          role: "COO of Meta",
-          name: "Sheryl Sandberg",
-          summary:
-            "With 2 billion Facebook users, every business has a potential audience. Success comes to those who use our tools to reach the right people with the right message.",
-          image: "/services/sheryl_Sandberg.webp"
-        },
-        {
-          role: "Founder of Hootsuite",
-          name: "Ryan Holmes",
-          summary:
-            "Social media is the great equaliser, it gives small businesses and startups the same tools as Fortune 500 companies to grow their audiences and compete globally?",
-          image: "/services/ryan_Holmes.webp"
-        },
-        {
-          role: "CEO of Tesla and SpaceX",
-          name: "Elon Musk",
-          summary:
-            "Twitter’s reach and influence are massive for launching and promoting ideas. Tesla has never spent a dime on traditional advertising; our social media presence drives our brand",
-          image: "/services/elon_Musk.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -417,29 +395,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important email marketing really is, ",
       subHeading: "according to leaders of billion dollar brands",
-      data: [
-        {
-          role: "Founder of Do it Marketing",
-          name: "David Newman",
-          summary:
-            "Email has an ability many channels don’t: creating valuable, personal touches – at scale.",
-          image: "/services/david_Newman.webp"
-        },
-        {
-          role: "Marketing Coach",
-          name: "Erik Harbison",
-          summary:
-            "If social media is the cocktail party, then email marketing is the ‘meet up for coffee’.",
-          image: "/services/erik_Harbison.webp"
-        },
-        {
-          role: "Co-Founder of Bonfire",
-          name: "Kevan Lee",
-          summary:
-            "The inbox is one of the most personal spaces online. Treat it with respect, and you’ll earn loyalty.",
-          image: "/services/kevan_Lee.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -800,29 +756,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important SEO services really is, ",
       subHeading: "according to leaders of billion dollar brands",
-      data: [
-        {
-          summary:
-            "Ignoring SEO is like leaving money on the table. Businesses that integrate SEO into their marketing strategies consistently outperform their competitors.",
-          name: "Rand Fishkin",
-          role: "Founder of Moz",
-          image: "/services/rand_Fishkin.webp"
-        },
-        {
-          role: "Founder of Ubersuggest",
-          name: "Neil Patel",
-          summary:
-            "SEO is not just about rankings; it’s about relevance. With the right search engine optimisation strategy for small businesses, we’ve seen massive growth.",
-          image: "/services/neil_Patel.webp"
-        },
-        {
-          role: "Founder of LSEO",
-          name: "Kristopher Jones",
-          summary:
-            "No matter how niche or mainstream your market is, great content remains a significant focus for SEO (search engine optimisation).",
-          image: "/services/kristopher_Jones.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -1144,29 +1078,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important PR and communication really is,",
       subHeading: "according to leaders of billion dollar brands",
-      data: [
-        {
-          role: "Content Marketing Expert",
-          name: "Ann Handley",
-          summary:
-            "Consistency in your brand messaging strategy is key to turning customers into advocates.",
-          image: "/services/ann_Handley.webp"
-        },
-        {
-          role: "CEO of Edelman",
-          name: "Richard Edelman",
-          summary:
-            "Crisis management in public relations isn't optional; it's the backbone of a resilient brand.",
-          image: "/services/richard_Edelman.webp"
-        },
-        {
-          role: "PR Strategist",
-          name: "Sarah Evans",
-          summary:
-            "Great PR campaigns don’t just amplify your message; they connect your brand to a larger conversation.",
-          image: "/services/sarah_Evans.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -1515,29 +1427,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important search engine optimisation really is,",
       subHeading: "according to major company founders and leaders",
-      data: [
-        {
-          role: "Content Marketing Expert",
-          name: "Gary Vaynerchuk",
-          summary:
-            "Brands that integrate influencer marketing into their strategies consistently outperform their competitors in audience engagement.",
-          image: "/services/gary_Vaynerchuk.webp"
-        },
-        {
-          role: "Founder of Ubersuggest",
-          name: "Neil Patel",
-          summary:
-            "Influencer marketing is a powerful tool that, when used correctly, creates enduring relationships between brands and their audiences.",
-          image: "/services/neil_Patel.webp"
-        },
-        {
-          role: "Founder of Girlboss",
-          name: "Sophia Amoruso",
-          summary:
-            "A strategic influencer marketing campaign can turn an unknown startup into a household name overnight.",
-          image: "/services/sophia_Amoruso.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -1816,28 +1706,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important ads & PPC really is, ",
       subHeading: "according to major business leaders",
-      data: [
-        {
-          role: "COO of Meta",
-          name: "Sheryl Sandberg",
-          summary:
-            "With 2 billion Facebook users, every business has a potential audience. Success comes to those who use our tools to reach the right people with the right message.",
-          image: "/services/sheryl_Sandberg.webp"
-        },
-        {
-          role: "Social Media Expert",
-          name: "Mari Smith",
-          summary:
-            "Social media ads are not just about visibility; they're about building relationships and sparking conversations.",
-          image: "/services/mari_Smith.webp"
-        },
-        {
-          role: "Founder of WordStream",
-          name: "Larry Kim",
-          summary: "A well-executed PPC strategy is a game-changer for ROI.",
-          image: "/services/larry_Kim.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -2201,29 +2070,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important marketing analytics really is, ",
       subHeading: "according to major business leaders and scholars",
-      data: [
-        {
-          role: "Former CEO of Hewlett-Packard",
-          name: "Carly Fiorina",
-          summary:
-            "The goal is to turn data into information, and information into insight.",
-          image: "/services/carly_Fiorina.webp"
-        },
-        {
-          role: "Data Science Pioneer",
-          name: "Clive Humby",
-          summary:
-            "Data is the new oil; those who harness it effectively will drive innovation.",
-          image: "/services/clive_Humby.webp"
-        },
-        {
-          role: "CEO of Tesla and SpaceX",
-          name: "Elon Musk",
-          summary:
-            "Marketing without analytics is like driving with your eyes closed.",
-          image: "/services/elon_Musk.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:
@@ -2623,29 +2470,7 @@ export const servicesData = [
     importance: {
       mainHeading: "How important marketing analytics is,",
       subHeading: "according to major business leaders and scholars",
-      data: [
-        {
-          role: " Co-founder of Microsoft",
-          name: "Bill Gates",
-          summary:
-            "Lead generation isn't just a marketing task; it's the foundation of sustainable growth. The more you know about your customers, the better you can serve them.",
-          image: "/services/bill_Gates.webp"
-        },
-        {
-          role: "Founder of Amazon",
-          name: "Jeff Bezos",
-          summary:
-            "In the world of business, leads are the lifeblood. Without a steady flow of quality leads, even the best product can fail.",
-          image: "/services/jeff_Bezos.webp"
-        },
-        {
-          role: "Entrepreneur and Investor",
-          name: "Mark Cuban",
-          summary:
-            "Success in sales begins with understanding your audience and building a pipeline of prospects. Lead generation is where that journey starts.",
-          image: "/services/mark_Cuban.webp"
-        }
-      ]
+      data: []
     },
     status: {
       heading:

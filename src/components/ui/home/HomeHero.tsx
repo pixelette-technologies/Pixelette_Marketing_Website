@@ -25,7 +25,7 @@ export default function HomeHero() {
             {/* Men Picture */}
             <Image
               src='/home/hh_image_1.webp'
-              alt='Hero Section Banner'
+              alt=''
               width={402}
               priority
               height={408}
@@ -37,7 +37,7 @@ export default function HomeHero() {
             {/* Building Image */}
             <Image
               src='/home/hh_image_2.webp'
-              alt='Hero Section Banner'
+              alt=''
               width={342}
               priority
               height={362}
@@ -49,7 +49,7 @@ export default function HomeHero() {
             {/* Back ground round */}
             <Image
               src='/home/hh_image_3.webp'
-              alt='Hero Section Banner'
+              alt=''
               width={353}
               priority
               height={354}
@@ -61,7 +61,7 @@ export default function HomeHero() {
             {/* Laptop */}
             <Image
               src='/home/hh_image_4.webp'
-              alt='Hero Section Banner'
+              alt=''
               width={199}
               priority
               height={218}
@@ -73,7 +73,7 @@ export default function HomeHero() {
             {/* Clock tower */}
             <Image
               src='/home/hh_image_6.webp'
-              alt='Hero Section Banner'
+              alt=''
               width={162}
               priority
               height={628}
@@ -87,7 +87,7 @@ export default function HomeHero() {
 
         <Image
           src='/home/heroImageForMobile.png'
-          alt='Background image for mobile responsive '
+          alt=''
           height={480}
           width={520}
           priority
@@ -115,7 +115,7 @@ export default function HomeHero() {
               Pixelette Marketing delivers precision driven marketing for
               Fintech, SaaS, Web3, tech products and platforms, and more. We
               believe your industry deserves strategies as innovative as your
-              solutions. Take the guesswork out of growth by requesting your a
+              solutions. Take the guesswork out of growth by requesting your
               strategy proposal today and{" "}
               <span className=' text_primary--bold color_primary'>
                 start achieving ROI you can see!

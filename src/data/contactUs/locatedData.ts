@@ -4,14 +4,7 @@ const locatedData = [
     city: `<span className="color_primary">London, </span> UK`,
     phone: "+44 2045188226",
     email: "sales@pixelettemarketing.com",
-    address: "71-75 Shelton Street,"
-  },
-  {
-    img: "/contactUs/florida.webp",
-    city: ` <span className="color_primary"> Florida, </span> USA `,
-    phone: "+44 2045188226",
-    email: "sales@pixelettemarketing.com",
-    address: "71-75 Shelton Street,"
+    address: "77 Fulham Palace Road, London W6 8JA"
   }
 ];
 

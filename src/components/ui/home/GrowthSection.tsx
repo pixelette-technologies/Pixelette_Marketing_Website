@@ -27,38 +27,37 @@ export default function GrowthSection() {
                 <div>
                   <div>
                     <Heading className='primary font_family_glory color_primary' level={4}>
-                      300%
+                      Growth
                     </Heading>
                     <Text className='secondry font_family_glory'>
-                      growth in 1 month in community membership for a Web3
-                      platform
+                      Audience and community growth for Web3 and technology
+                      brands
                     </Text>
                   </div>
                   <div>
                     <Heading className='primary font_family_glory color_primary' level={4}>
-                      40%
+                      Conversion
                     </Heading>
                     <Text className='secondry font_family_glory'>
-                      lead conversion increase in Fintech app over six months
+                      Funnel and lead-conversion optimisation for fintech brands
                     </Text>
                   </div>
                 </div>
                 <div>
                   <div>
                     <Heading className='primary font_family_glory color_primary' level={4}>
-                      2.5x
+                      Paid ROI
                     </Heading>
                     <Text className='secondry font_family_glory'>
-                      ROI on PPC campaigns for a SaaS company
+                      Paid media managed for measurable return for SaaS brands
                     </Text>
                   </div>
                   <div>
                     <Heading className='primary font_family_glory color_primary' level={4}>
-                      120%
+                      Pipeline
                     </Heading>
                     <Text className='secondry font_family_glory'>
-                      increase in qualified social media leads for an AI startup
-                      in 60 days
+                      Qualified lead generation for high-growth startups
                     </Text>
                   </div>
                 </div>

@@ -31,11 +31,14 @@ export default function HomeHeroGOS() {
 
         <h1 className="pmHero__title">
           <span className="pmHero__line">
-            <span className="pmHero__line-in">Growth, engineered</span>
+            <span className="pmHero__line-in">Growth,</span>
+          </span>
+          <span className="pmHero__line">
+            <span className="pmHero__line-in">engineered to</span>
           </span>
           <span className="pmHero__line">
             <span className="pmHero__line-in">
-              to <em>compound.</em>
+              <em>compound.</em>
             </span>
           </span>
         </h1>

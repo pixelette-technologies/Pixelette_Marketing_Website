@@ -53,7 +53,7 @@
     font-family: "Poppins";
     text-transform: uppercase;
     letter-spacing: 0.28em;
-    font-size: 1.15rem;
+    font-size: 1.25rem;
     color: #675b51;
     padding-bottom: 3.2rem;
     border-bottom: 1px solid rgba(27, 20, 17, 0.12);
@@ -72,18 +72,18 @@
     font-family: "Poppins";
     text-transform: uppercase;
     letter-spacing: 0.34em;
-    font-size: 1.3rem;
-    font-weight: 500;
+    font-size: 1.4rem;
+    font-weight: 600;
     color: #b3063c;
-    margin-bottom: 2.8rem;
+    margin-bottom: 3.2rem;
   }
 
   &__title {
     font-family: "Fraunces";
-    font-weight: 400;
-    font-size: clamp(4.8rem, 8.4vw, 10rem);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
+    font-weight: 500;
+    font-size: clamp(4.6rem, 11vw, 14rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
     color: #1b1411;
 
     em {
@@ -178,7 +178,7 @@
 .pmHero__line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
+  padding-bottom: 0.14em;
 }
 .pmHero__line-in {
   display: block;
@@ -190,6 +190,9 @@
 }
 .pmHero__line:nth-child(2) .pmHero__line-in {
   animation-delay: 0.27s;
+}
+.pmHero__line:nth-child(3) .pmHero__line-in {
+  animation-delay: 0.39s;
 }
 
 // child 3 is the title (its lines animate separately); stagger the rest

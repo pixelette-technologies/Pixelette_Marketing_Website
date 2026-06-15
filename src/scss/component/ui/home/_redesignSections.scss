@@ -608,6 +608,16 @@ details[open] .pmFaq__icon::after {
   }
 }
 
+// ---- Contact page hero (band) ---------------------------------------------
+.pmContactHero {
+  padding-top: clamp(11rem, 13vw, 16rem);
+  padding-bottom: clamp(5rem, 7vw, 8rem);
+}
+.pmContactHero__title {
+  max-width: 16ch;
+  margin-top: 0.4rem;
+}
+
 // ---- Contact close (editorial conversion) ---------------------------------
 .pmContact__grid {
   display: grid;

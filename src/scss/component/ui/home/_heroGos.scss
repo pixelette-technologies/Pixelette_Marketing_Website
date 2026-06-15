@@ -178,6 +178,35 @@
       display: none;
     }
   }
+
+  // in-house abstract brand-motion film (the living layer behind the type)
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+
+    // warm legibility scrim - keeps the (left) headline readable over the motion
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        96deg,
+        rgba(248, 245, 243, 0.95) 0%,
+        rgba(248, 245, 243, 0.72) 34%,
+        rgba(248, 245, 243, 0.34) 66%,
+        rgba(248, 245, 243, 0.06) 100%
+      );
+    }
+  }
+
+  &__film {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 }
 
 // headline line-mask reveal + staggered entrance - PURE CSS.
@@ -275,5 +304,9 @@
   }
   .pmHero::after {
     animation: none !important;
+  }
+  // reduced-motion: drop the video; the static warm field + frozen aurora remain
+  .pmHero__media {
+    display: none !important;
   }
 }

@@ -21,6 +21,21 @@ const INDEX = [
 export default function HomeHeroGOS() {
   return (
     <section className="pmHero">
+      <div className="pmHero__media" aria-hidden="true">
+        <video
+          className="pmHero__film"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/hero-motion-poster.jpg"
+        >
+          <source src="/hero-motion.webm" type="video/webm" />
+          <source src="/hero-motion.mp4" type="video/mp4" />
+        </video>
+      </div>
+
       <div className="pmHero__inner pmHero__inner--anim">
         <div className="pmHero__meta">
           <span>Pixelette Marketing</span>

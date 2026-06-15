@@ -171,17 +171,62 @@
   }
 }
 
-// headline line-mask reveal (the inner span is animated by framer-motion)
+// headline line-mask reveal + staggered entrance - PURE CSS.
+// Content is visible by default; the animation is enhancement only and never a
+// prerequisite for visibility (the framer version left the hero blank under
+// reduced-motion / no-JS). Disabled fully under prefers-reduced-motion.
 .pmHero__line {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.04em;
+  padding-bottom: 0.06em;
 }
 .pmHero__line-in {
   display: block;
   will-change: transform;
+  animation: pmLineRise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.pmHero__line:nth-child(1) .pmHero__line-in {
+  animation-delay: 0.15s;
+}
+.pmHero__line:nth-child(2) .pmHero__line-in {
+  animation-delay: 0.27s;
 }
 
+// child 3 is the title (its lines animate separately); stagger the rest
+.pmHero__inner--anim > :nth-child(1) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.05s;
+}
+.pmHero__inner--anim > :nth-child(2) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.12s;
+}
+.pmHero__inner--anim > :nth-child(4) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.4s;
+}
+.pmHero__inner--anim > :nth-child(5) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.52s;
+}
+.pmHero__inner--anim > :nth-child(6) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.64s;
+}
+
+@keyframes pmRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pmLineRise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
 @keyframes pmHeroDrift {
   from {
     transform: translate(0, 0) scale(1);
@@ -192,7 +237,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pmHero::before {
-    animation: none;
+  .pmHero::before,
+  .pmHero__inner--anim > *,
+  .pmHero__line-in {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }

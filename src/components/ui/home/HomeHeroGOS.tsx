@@ -1,12 +1,13 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 /**
- * HomeHeroGOS - art-directed editorial hero with a restrained entrance
- * choreography: the headline rises line-by-line behind a mask, the supporting
- * elements stagger in on a slow expo-out ease. Reduced-motion renders static.
+ * HomeHeroGOS - art-directed editorial hero.
+ *
+ * Content is VISIBLE BY DEFAULT (server-rendered, no JS dependency). The
+ * entrance is a pure-CSS enhancement (line-mask + staggered rise) that is
+ * disabled under prefers-reduced-motion. This replaces the earlier
+ * framer-motion choreography, which SSR'd content at opacity:0 and left the
+ * hero BLANK for reduced-motion users and anyone whose JS did not run.
  * Claims-safe: only the approved group line.
  */
 
@@ -17,82 +18,54 @@ const INDEX = [
   { n: "04", k: "Compound" }
 ];
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const container: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } }
-};
-const rise: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } }
-};
-const line: Variants = {
-  hidden: { y: "115%" },
-  show: { y: "0%", transition: { duration: 1.05, ease: EASE } }
-};
-
 export default function HomeHeroGOS() {
-  const reduce = useReducedMotion();
-  const animate = reduce ? undefined : "show";
-  const initial = reduce ? undefined : "hidden";
-
   return (
-    <section className='pmHero'>
-      <motion.div
-        className='pmHero__inner'
-        variants={container}
-        initial={initial}
-        animate={animate}
-      >
-        <motion.div className='pmHero__meta' variants={rise}>
+    <section className="pmHero">
+      <div className="pmHero__inner pmHero__inner--anim">
+        <div className="pmHero__meta">
           <span>Pixelette Marketing</span>
           <span>Retained growth partner</span>
-        </motion.div>
+        </div>
 
-        <motion.p className='pmHero__eyebrow' variants={rise}>
-          Premium retained growth
-        </motion.p>
+        <p className="pmHero__eyebrow">Premium retained growth</p>
 
-        <h1 className='pmHero__title'>
-          <span className='pmHero__line'>
-            <motion.span className='pmHero__line-in' variants={line}>
-              Growth, engineered
-            </motion.span>
+        <h1 className="pmHero__title">
+          <span className="pmHero__line">
+            <span className="pmHero__line-in">Growth, engineered</span>
           </span>
-          <span className='pmHero__line'>
-            <motion.span className='pmHero__line-in' variants={line}>
+          <span className="pmHero__line">
+            <span className="pmHero__line-in">
               to <em>compound.</em>
-            </motion.span>
+            </span>
           </span>
         </h1>
 
-        <motion.p className='pmHero__lead' variants={rise}>
+        <p className="pmHero__lead">
           A retained growth partner for ambitious technology, commerce and Web3
           brands. Strategy, demand and proof, run as one quiet, compounding
           system.
-        </motion.p>
+        </p>
 
-        <motion.div className='pmHero__actions' variants={rise}>
-          <Link href='/contactus' className='pmBtn pmBtn--magnetic'>
+        <div className="pmHero__actions">
+          <Link href="/contactus" className="pmBtn pmBtn--magnetic">
             Book a growth strategy call
           </Link>
-          <Link href='/services' className='pmBtn pmBtn--ghost'>
+          <Link href="/services" className="pmBtn pmBtn--ghost">
             See how we operate
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.ol className='pmHero__index' variants={rise}>
+        <ol className="pmHero__index">
           {INDEX.map((i) => (
             <li key={i.n}>
-              <span className='pmHero__index-n'>{i.n}</span>
-              <span className='pmHero__index-k'>{i.k}</span>
+              <span className="pmHero__index-n">{i.n}</span>
+              <span className="pmHero__index-k">{i.k}</span>
             </li>
           ))}
-        </motion.ol>
-      </motion.div>
+        </ol>
+      </div>
 
-      <span className='pmHero__sidelabel' aria-hidden='true'>
+      <span className="pmHero__sidelabel" aria-hidden="true">
         The marketing arm of Pixelette Group
       </span>
     </section>

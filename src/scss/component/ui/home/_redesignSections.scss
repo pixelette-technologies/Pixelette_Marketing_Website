@@ -1,0 +1,681 @@
+// ===========================================================================
+// Premium editorial section system (homepage)
+// Boutique, warm, composed. Fraunces display + Poppins text. Crimson #B3063C
+// used sparingly as a luxury accent; oxblood #4D031A for depth and hover.
+// Fewer cards, hairline rules, generous whitespace, one deep "brand world".
+// ===========================================================================
+
+// ---- shells ---------------------------------------------------------------
+.pmSection {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(9rem, 12vw, 16rem) 4rem;
+
+  @media only screen and (max-width: 720px) {
+    padding: 8rem 2.2rem;
+  }
+}
+
+.pmSection--light {
+  background: #f8f5f3;
+  color: #1b1411;
+}
+.pmSection--raised {
+  background: #f0e9e4;
+  color: #1b1411;
+}
+.pmSection--dark {
+  background:
+    radial-gradient(120% 100% at 50% -12%, rgba(123, 8, 41, 0.5), transparent 60%),
+    #160d0e;
+  color: #f3ece6;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+.pmWrap {
+  position: relative;
+  z-index: 2;
+  max-width: 120rem;
+  margin: 0 auto;
+}
+
+// ---- type -----------------------------------------------------------------
+.pmEyebrow {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Poppins";
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #675b51;
+  margin-bottom: 2.6rem;
+
+  &::before {
+    content: "";
+    width: 2.6rem;
+    height: 1px;
+    margin-right: 1.3rem;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  &--crim {
+    color: #b3063c;
+  }
+}
+
+.pmSection--dark .pmEyebrow {
+  color: #c9b3a6;
+}
+
+// crimson accent on dark needs a lighter rose to clear WCAG AA (4.5:1)
+.pmSection--dark .pmH2 em {
+  color: #e23a5b;
+}
+
+.pmH2 {
+  font-family: "Fraunces";
+  font-weight: 400;
+  font-size: clamp(3.2rem, 4.6vw, 5.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+
+  em {
+    font-style: italic;
+    color: #b3063c;
+  }
+  &--ink {
+    color: #1b1411;
+  }
+}
+
+.pmLead {
+  font-family: "Poppins";
+  font-size: 1.7rem;
+  line-height: 1.66;
+  color: #c9b3a6;
+  max-width: 46rem;
+
+  &--ink {
+    color: #574d46;
+  }
+}
+
+.pmHead {
+  margin-bottom: clamp(5rem, 7vw, 9rem);
+
+  &--split {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: end;
+    gap: 4rem;
+
+    .pmLead {
+      margin-top: 0;
+    }
+    @media only screen and (max-width: 880px) {
+      grid-template-columns: 1fr;
+      gap: 2.4rem;
+    }
+  }
+
+  &--center {
+    text-align: center;
+
+    .pmEyebrow::before {
+      display: none;
+    }
+    .pmH2 {
+      margin: 0 auto;
+      max-width: 22ch;
+    }
+  }
+}
+
+// ---- shared buttons -------------------------------------------------------
+.pmBtn {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Poppins";
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
+  padding: 1.5rem 2.8rem;
+  border-radius: 0.6rem;
+  color: #f8f5f3;
+  background: #b3063c;
+  transition: background 0.25s ease, transform 0.25s ease;
+
+  &:hover {
+    background: #4d031a;
+    transform: translateY(-2px);
+  }
+
+  &--ghost {
+    background: transparent;
+    color: #1b1411;
+    border: 1px solid rgba(27, 20, 17, 0.26);
+
+    &:hover {
+      background: transparent;
+      border-color: #b3063c;
+      color: #b3063c;
+    }
+  }
+
+  &--onDark {
+    color: #f3ece6;
+    border-color: rgba(243, 236, 230, 0.32);
+
+    &:hover {
+      border-color: #f3ece6;
+      color: #ffffff;
+    }
+  }
+}
+
+// ---- Operating System (dark brand world) ---------------------------------
+.pmOs__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 3.4rem;
+  row-gap: 4rem;
+  margin-top: 2rem;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pmOs__item {
+  padding-top: 3.2rem;
+  border-top: 1px solid rgba(243, 236, 230, 0.18);
+}
+
+.pmOs__num {
+  display: block;
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(3.4rem, 4vw, 4.6rem);
+  line-height: 1;
+  color: #d8123f;
+}
+
+.pmOs__name {
+  font-family: "Fraunces";
+  font-weight: 500;
+  font-size: 2.4rem;
+  color: #f3ece6;
+  margin: 1.8rem 0 1.2rem;
+}
+
+.pmOs__body {
+  font-family: "Poppins";
+  font-size: 1.45rem;
+  line-height: 1.62;
+  color: #c9b3a6;
+}
+
+// ---- Capabilities (editorial index) --------------------------------------
+.pmCap__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 6rem;
+
+  @media only screen and (max-width: 760px) {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+}
+
+.pmCap__item {
+  border-top: 1px solid rgba(27, 20, 17, 0.12);
+}
+
+.pmCap__link {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 2.4rem;
+  row-gap: 1.2rem;
+  padding: 3.4rem 0;
+  transition: padding-left 0.35s ease;
+
+  &:hover {
+    padding-left: 1.4rem;
+
+    .pmCap__name {
+      color: #b3063c;
+    }
+  }
+}
+
+.pmCap__idx {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: "Fraunces";
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.7rem;
+  color: #b3063c;
+}
+
+.pmCap__name {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: "Fraunces";
+  font-weight: 500;
+  font-size: clamp(2.4rem, 2.6vw, 3.1rem);
+  line-height: 1.05;
+  color: #1b1411;
+  transition: color 0.25s ease;
+
+  span {
+    display: block;
+    font-weight: 400;
+    font-size: 0.62em;
+    color: #675b51;
+    margin-top: 0.3rem;
+  }
+}
+
+.pmCap__body {
+  grid-column: 2;
+  grid-row: 2;
+  font-family: "Poppins";
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #574d46;
+  max-width: 38rem;
+}
+
+// ---- Sectors (editorial list) --------------------------------------------
+.pmSectors__grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media only screen and (max-width: 880px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: 540px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pmSectors__item {
+  border-top: 1px solid rgba(27, 20, 17, 0.12);
+}
+
+.pmSectors__link {
+  display: block;
+  padding: 3.4rem 2.4rem 3.6rem 0;
+  transition: padding-left 0.35s ease;
+
+  &:hover {
+    padding-left: 1.2rem;
+
+    .pmSectors__name {
+      color: #b3063c;
+    }
+  }
+}
+
+.pmSectors__name {
+  font-family: "Fraunces";
+  font-weight: 500;
+  font-size: 2.6rem;
+  color: #1b1411;
+  transition: color 0.25s ease;
+
+  span {
+    font-weight: 400;
+    color: #675b51;
+  }
+}
+
+.pmSectors__body {
+  font-family: "Poppins";
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #574d46;
+  margin-top: 1.4rem;
+  max-width: 34rem;
+}
+
+// ---- Approach (statement) -------------------------------------------------
+.pmApproach__quote {
+  font-family: "Fraunces";
+  font-weight: 400;
+  font-size: clamp(3.2rem, 5vw, 6rem);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  color: #1b1411;
+  max-width: 24ch;
+  margin-top: 1rem;
+
+  em {
+    font-style: italic;
+    color: #b3063c;
+  }
+}
+
+.pmApproach__cols {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4rem;
+  margin-top: clamp(5rem, 7vw, 8rem);
+
+  @media only screen and (max-width: 760px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+.pmApproach__col {
+  padding-top: 2.6rem;
+  border-top: 1px solid rgba(27, 20, 17, 0.14);
+
+  h3 {
+    font-family: "Fraunces";
+    font-weight: 500;
+    font-size: 2rem;
+    color: #1b1411;
+    margin-bottom: 1.2rem;
+  }
+  p {
+    font-family: "Poppins";
+    font-size: 1.45rem;
+    line-height: 1.62;
+    color: #574d46;
+  }
+}
+
+// ---- CTA (dark close) -----------------------------------------------------
+.pmCta {
+  text-align: center;
+}
+
+.pmCta__inner {
+  max-width: 80rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .pmH2 {
+    max-width: 22ch;
+  }
+  .pmLead {
+    margin: 2.4rem auto 0;
+    text-align: center;
+  }
+}
+
+.pmCta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  justify-content: center;
+  margin-top: 3.8rem;
+}
+
+.pmCta__trust {
+  font-family: "Poppins";
+  font-size: 1.4rem;
+  color: #c9b3a6;
+  margin-top: 3rem;
+}
+
+// ---- micro-interactions: link arrows --------------------------------------
+.pmCap__link,
+.pmSectors__link {
+  position: relative;
+}
+
+.pmCap__arrow,
+.pmSectors__arrow {
+  position: absolute;
+  top: 3.4rem;
+  right: 0;
+  font-family: "Poppins";
+  font-size: 1.8rem;
+  color: #b3063c;
+  opacity: 0;
+  transform: translateX(-0.8rem);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.pmCap__link:hover .pmCap__arrow,
+.pmSectors__link:hover .pmSectors__arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+// magnetic-feel primary button (refined depth on hover)
+.pmBtn--magnetic:hover {
+  box-shadow: 0 1.4rem 3.2rem -1.2rem rgba(179, 6, 60, 0.55);
+}
+
+// ---- kinetic brand moment: marquee ----------------------------------------
+.pmMarquee {
+  overflow: hidden;
+  background: #160d0e;
+  padding: 3rem 0;
+  border-top: 1px solid rgba(243, 236, 230, 0.1);
+  border-bottom: 1px solid rgba(243, 236, 230, 0.1);
+}
+
+.pmMarquee__rail {
+  display: flex;
+  width: max-content;
+  animation: pmMarquee 34s linear infinite;
+}
+
+.pmMarquee:hover .pmMarquee__rail {
+  animation-play-state: paused;
+}
+
+.pmMarquee__track {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.pmMarquee__item {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Fraunces";
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  letter-spacing: -0.01em;
+  color: rgba(243, 236, 230, 0.82);
+  padding: 0 1rem;
+}
+
+.pmMarquee__dot {
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: #b3063c;
+  margin: 0 2.6rem 0 3.2rem;
+}
+
+@keyframes pmMarquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+// ---- FAQ (objection handling) ---------------------------------------------
+.pmFaq__list {
+  max-width: 88rem;
+  border-top: 1px solid rgba(27, 20, 17, 0.12);
+}
+
+.pmFaq__item {
+  border-bottom: 1px solid rgba(27, 20, 17, 0.12);
+}
+
+.pmFaq__q {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.4rem;
+  padding: 2.8rem 0;
+  font-family: "Fraunces";
+  font-weight: 500;
+  font-size: clamp(1.9rem, 2.2vw, 2.4rem);
+  line-height: 1.2;
+  color: #1b1411;
+  transition: color 0.25s ease;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+details[open] > .pmFaq__q {
+  color: #b3063c;
+}
+
+.pmFaq__icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: #b3063c;
+  }
+  &::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+  }
+  &::after {
+    left: 50%;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+    transition: transform 0.25s ease;
+  }
+}
+
+details[open] .pmFaq__icon::after {
+  transform: scaleY(0);
+}
+
+.pmFaq__a {
+  padding: 0 0 3rem;
+  max-width: 64rem;
+
+  p {
+    font-family: "Poppins";
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: #574d46;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pmFaq__q,
+  .pmFaq__icon::after {
+    transition: none;
+  }
+}
+
+// ---- Contact page hero (band) ---------------------------------------------
+.pmContactHero {
+  padding-top: clamp(11rem, 13vw, 16rem);
+  padding-bottom: clamp(5rem, 7vw, 8rem);
+}
+.pmContactHero__title {
+  max-width: 16ch;
+  margin-top: 0.4rem;
+}
+
+// ---- Contact close (editorial conversion) ---------------------------------
+.pmContact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}
+
+.pmContact__details {
+  list-style: none;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(27, 20, 17, 0.12);
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(27, 20, 17, 0.12);
+  }
+}
+
+.pmContact__k {
+  font-family: "Poppins";
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.15rem;
+  color: #675b51;
+}
+
+.pmContact__v {
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  color: #1b1411;
+  text-align: right;
+  transition: color 0.25s ease;
+}
+
+a.pmContact__v:hover {
+  color: #b3063c;
+}
+
+// ---- reduced motion -------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  .pmBtn,
+  .pmCap__link,
+  .pmSectors__link,
+  .pmCap__arrow,
+  .pmSectors__arrow {
+    transition: none;
+  }
+  .pmMarquee__rail {
+    animation: none;
+  }
+}

@@ -1,0 +1,250 @@
+// ===========================================================================
+// Editorial hero (pmHero) - boutique, warm-editorial direction.
+// The headline is the visual: dramatic Fraunces display, generous whitespace,
+// a single oxblood accent, and the operating model as a refined type index.
+// ===========================================================================
+
+.pmHero {
+  position: relative;
+  min-height: 94vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 14rem 4rem 9rem;
+  background: linear-gradient(180deg, #f6efe9 0%, #f8f5f3 62%);
+
+  // slow ambient drift glow - the hero feels alive at rest
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -25%;
+    pointer-events: none;
+    background: radial-gradient(38% 38% at 78% 20%, rgba(179, 6, 60, 0.1), transparent 70%);
+    animation: pmHeroDrift 26s ease-in-out infinite alternate;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  @media only screen and (max-width: 720px) {
+    min-height: auto;
+    padding: 11rem 2.2rem 7rem;
+  }
+
+  &__inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 120rem;
+    margin: 0 auto;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    font-family: "Poppins";
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 1.25rem;
+    color: #675b51;
+    padding-bottom: 3.2rem;
+    border-bottom: 1px solid rgba(27, 20, 17, 0.12);
+    margin-bottom: 5.5rem;
+
+    span:last-child {
+      color: #b3063c;
+    }
+    @media only screen and (max-width: 560px) {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  &__eyebrow {
+    font-family: "Poppins";
+    text-transform: uppercase;
+    letter-spacing: 0.34em;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #b3063c;
+    margin-bottom: 3.2rem;
+  }
+
+  &__title {
+    font-family: "Fraunces";
+    font-weight: 500;
+    font-size: clamp(4.6rem, 11vw, 14rem);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    color: #1b1411;
+
+    em {
+      font-style: italic;
+      font-weight: 400;
+      color: #b3063c;
+    }
+  }
+
+  &__lead {
+    font-family: "Poppins";
+    font-size: 1.9rem;
+    line-height: 1.62;
+    color: #574d46;
+    max-width: 50rem;
+    margin-top: 3.6rem;
+
+    @media only screen and (max-width: 560px) {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    align-items: center;
+    margin-top: 4.2rem;
+  }
+
+  &__index {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3.6rem;
+    max-width: 84rem;
+    margin-top: 6.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(27, 20, 17, 0.12);
+
+    li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    @media only screen and (max-width: 560px) {
+      gap: 2rem 2.6rem;
+    }
+  }
+
+  &__index-n {
+    font-family: "Fraunces";
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.7rem;
+    color: #b3063c;
+  }
+
+  &__index-k {
+    font-family: "Poppins";
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 1.25rem;
+    color: #574d46;
+  }
+
+  &__sidelabel {
+    position: absolute;
+    right: 2.4rem;
+    top: 50%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    transform-origin: center;
+    font-family: "Poppins";
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 1.05rem;
+    color: #6f6157;
+    z-index: 2;
+
+    @media only screen and (max-width: 1180px) {
+      display: none;
+    }
+  }
+}
+
+// headline line-mask reveal + staggered entrance - PURE CSS.
+// Content is visible by default; the animation is enhancement only and never a
+// prerequisite for visibility (the framer version left the hero blank under
+// reduced-motion / no-JS). Disabled fully under prefers-reduced-motion.
+.pmHero__line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.14em;
+}
+.pmHero__line-in {
+  display: block;
+  will-change: transform;
+  animation: pmLineRise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.pmHero__line:nth-child(1) .pmHero__line-in {
+  animation-delay: 0.15s;
+}
+.pmHero__line:nth-child(2) .pmHero__line-in {
+  animation-delay: 0.27s;
+}
+.pmHero__line:nth-child(3) .pmHero__line-in {
+  animation-delay: 0.39s;
+}
+
+// child 3 is the title (its lines animate separately); stagger the rest
+.pmHero__inner--anim > :nth-child(1) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.05s;
+}
+.pmHero__inner--anim > :nth-child(2) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.12s;
+}
+.pmHero__inner--anim > :nth-child(4) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.4s;
+}
+.pmHero__inner--anim > :nth-child(5) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.52s;
+}
+.pmHero__inner--anim > :nth-child(6) {
+  animation: pmRise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both 0.64s;
+}
+
+@keyframes pmRise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pmLineRise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes pmHeroDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-5%, 4%) scale(1.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pmHero::before,
+  .pmHero__inner--anim > *,
+  .pmHero__line-in {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

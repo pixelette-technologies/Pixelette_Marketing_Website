@@ -152,8 +152,8 @@ export default function GrowthOperatingSystem({
             <stop offset='100%' stopColor='rgba(179,6,60,0)' />
           </radialGradient>
           <linearGradient id='gosGlass' x1='0' y1='0' x2='0' y2='1'>
-            <stop offset='0%' stopColor='rgba(248,245,243,0.15)' />
-            <stop offset='100%' stopColor='rgba(248,245,243,0.03)' />
+            <stop offset='0%' stopColor='rgba(255,252,250,0.62)' />
+            <stop offset='100%' stopColor='rgba(248,242,238,0.28)' />
           </linearGradient>
           <linearGradient id='gosSignal' x1='0' y1='1' x2='1' y2='0'>
             <stop offset='0%' stopColor='#B3063C' />
@@ -215,9 +215,20 @@ export default function GrowthOperatingSystem({
         <path
           className='gos__signal'
           d={SIGNAL_PATH}
+          pathLength={1}
           fill='none'
           stroke='url(#gosSignal)'
           strokeWidth='2.4'
+          strokeLinecap='round'
+        />
+        {/* a bright travelling head that runs the signal as it ignites */}
+        <path
+          className='gos__pulse'
+          d={SIGNAL_PATH}
+          pathLength={1}
+          fill='none'
+          stroke='#FFE3EA'
+          strokeWidth='3.4'
           strokeLinecap='round'
         />
 
@@ -225,7 +236,11 @@ export default function GrowthOperatingSystem({
         {N.map((p, i) => {
           const isEnd = i === N.length - 1;
           return (
-            <g key={i} className={`gos__node ${isEnd ? "gos__node--end" : ""}`}>
+            <g
+              key={i}
+              className={`gos__node ${isEnd ? "gos__node--end" : ""}`}
+              style={{ "--gi": i } as React.CSSProperties}
+            >
               <circle
                 cx={p.x}
                 cy={p.y}
@@ -247,7 +262,7 @@ export default function GrowthOperatingSystem({
         })}
 
         {/* crosshair endpoint */}
-        <g stroke='#D8123F' fill='none'>
+        <g className='gos__cross' stroke='#D8123F' fill='none'>
           <circle cx={end.x} cy={end.y} r='27' opacity='0.5' strokeWidth='1' />
           <circle cx={end.x} cy={end.y} r='42' opacity='0.26' strokeWidth='1' />
           <line x1={end.x} y1={end.y - 31} x2={end.x} y2={end.y - 48} strokeWidth='1' opacity='0.7' />

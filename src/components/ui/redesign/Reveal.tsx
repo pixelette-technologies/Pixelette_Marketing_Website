@@ -1,25 +1,21 @@
-"use client";
-
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ElementType, ReactNode } from "react";
 
 /**
- * Reveal - restrained scroll reveal used across the redesign.
- * Slow expo-out ease (premium, not flashy). Respects reduced-motion by
- * rendering the content statically. Used in place of AOS for finer control.
+ * Reveal - scroll-linked reveal used across the redesign.
+ *
+ * Pure CSS scroll-driven motion (animation-timeline: view()): each element
+ * rises and fades in as it scrolls into view, so the whole page moves as you
+ * travel down it - not a one-time fade. Content is VISIBLE BY DEFAULT (server
+ * rendered, no JS); the motion is progressive enhancement, disabled under
+ * prefers-reduced-motion or where scroll-timeline is unsupported. Replaces the
+ * earlier framer-motion version (JS-dependent visibility, one-shot fade).
+ *
+ * `delay` is accepted for call-site compatibility (scroll reveals stagger
+ * naturally by position, so it is not otherwise used).
  */
-
-const EASE = [0.16, 1, 0.3, 1] as const;
-
-const variants: Variants = {
-  hidden: { opacity: 0, y: 26 },
-  show: { opacity: 1, y: 0 }
-};
-
 export default function Reveal({
   children,
   as = "div",
-  delay = 0,
   className
 }: {
   children: ReactNode;
@@ -27,24 +23,7 @@ export default function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const reduce = useReducedMotion();
-  const Comp = motion[as as keyof typeof motion] as typeof motion.div;
-
-  if (reduce) {
-    const Plain = as as ElementType;
-    return <Plain className={className}>{children}</Plain>;
-  }
-
-  return (
-    <Comp
-      className={className}
-      variants={variants}
-      initial='hidden'
-      whileInView='show'
-      viewport={{ once: true, margin: "-12% 0px -12% 0px" }}
-      transition={{ duration: 0.9, delay, ease: EASE }}
-    >
-      {children}
-    </Comp>
-  );
+  const Comp = as as ElementType;
+  const cls = `pmReveal ${className ?? ""}`.trim();
+  return <Comp className={cls}>{children}</Comp>;
 }

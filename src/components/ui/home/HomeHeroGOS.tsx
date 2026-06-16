@@ -21,21 +21,15 @@ const INDEX = [
 export default function HomeHeroGOS() {
   return (
     <section className="pmHero">
-      <div className="pmHero__media" aria-hidden="true">
-        <video
-          className="pmHero__film"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          poster="/hero-motion-poster.jpg"
-        >
-          <source src="/hero-motion.webm" type="video/webm" />
-          <source src="/hero-motion.mp4" type="video/mp4" />
-        </video>
-      </div>
-
+      {/*
+        Hero brand-motion REMOVED 2026-06-16: the generated abstract film was a
+        drifting red "blob" - the exact thing the hero-brand-film brief bans
+        ("elegant geometry, not blobs or confetti") and carried no "compounding"
+        concept. It read as generic premium-but-empty stock motion (RULES-017
+        auto-reject) and abandoned the Growth Operating System signal system.
+        Falls back to the vault-reviewed code aurora until the correct
+        on-concept motion (the crimson signal igniting + compounding) is built.
+      */}
       <div className="pmHero__inner pmHero__inner--anim">
         <div className="pmHero__meta">
           <span>Pixelette Marketing</span>

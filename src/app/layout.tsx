@@ -47,9 +47,9 @@ const structuredData = {
       email: "sales@pixelettemarketing.com",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "71-75 Shelton Street",
+        streetAddress: "77 Fulham Palace Road",
         addressLocality: "London",
-        postalCode: "WC2H 9JQ",
+        postalCode: "W6 8JA",
         addressCountry: "GB"
       },
       areaServed: "GB",

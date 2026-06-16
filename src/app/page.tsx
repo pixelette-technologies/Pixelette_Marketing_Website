@@ -1,49 +1,59 @@
+import { HomeHeroGOS } from "@/components/ui/home";
 import {
-  HomeHero,
-  GrowthSection,
-  EngagementStalls,
-  DynamicMarket,
-  RangeOfMarket
-} from "@/components/ui/home";
-import {
-  ContactSection,
-  TeamSection,
-  TrustedBrands
-} from "@/components/common";
-import { talkBusinessData } from "@/data";
+  OperatingSystem,
+  Capabilities,
+  Sectors,
+  Approach,
+  CtaBand,
+  MarqueeBand,
+  Faqs,
+  ContactClose
+} from "@/components/ui/redesign";
 
 import type { Metadata } from 'next'
- 
+
 export const metadata: Metadata = {
-  title: 'Pixelette Marketing | Full-Service Digital Marketing Agency',
-  description: 'Results you can measure. Growth you can scale. Our expert-led digital marketing services help brands in emerging industries win in competitive markets.',
-  keywords: ['digital marketing agency', 'digital marketing services', 'digital marketing solutions'],
+  title: 'Pixelette Marketing | Premium Retained Growth Partner',
+  description: 'A premium retained growth partner for ambitious technology, commerce and Web3 brands. Strategy, demand and proof run as one operating system.',
+  keywords: ['retained marketing agency', 'growth marketing partner', 'b2b technology marketing'],
   alternates: {
-    canonical: 'https://www.pixelettemarketing.com',
+    canonical: 'https://pixelettemarketing.com',
   },
   openGraph: {
-    title: 'Pixelette Marketing | Full-Service Digital Marketing Agency',
-    description: 'Results you can measure. Growth you can scale. Our expert-led digital marketing services help brands in emerging industries win in competitive markets.',
+    type: 'website',
+    url: 'https://www.pixelettemarketing.com',
+    siteName: 'Pixelette Marketing',
+    title: 'Pixelette Marketing | Premium Retained Growth Partner',
+    description: 'A premium retained growth partner for ambitious technology, commerce and Web3 brands. Strategy, demand and proof run as one operating system.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pixelette Marketing, premium retained growth partner'
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pixelette Marketing | Premium Retained Growth Partner',
+    description: 'A premium retained growth partner for ambitious technology, commerce and Web3 brands.',
+    images: ['/og-image.png'],
   },
 }
 
 export default function Home() {
   return (
     <>
-      <HomeHero />
-      <TrustedBrands />
-      <GrowthSection />
-      <EngagementStalls />
-      <DynamicMarket />
-      <RangeOfMarket />
-      <TeamSection
-        mainHeading='From zero to impact'
-        subHeading='We deliver results that matter'
-      />
-      <ContactSection
-        heading={`let's <span> talk business <span/>`}
-        data={talkBusinessData}
-      />
+      <HomeHeroGOS />
+      <OperatingSystem />
+      <Capabilities />
+      <MarqueeBand />
+      <Sectors />
+      <Approach />
+      <Faqs />
+      <CtaBand />
+      <ContactClose />
     </>
   );
 }

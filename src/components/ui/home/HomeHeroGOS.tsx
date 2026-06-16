@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GrowthOperatingSystem } from "@/components/ui/redesign";
 
 /**
  * HomeHeroGOS - art-directed editorial hero.
@@ -22,14 +23,20 @@ export default function HomeHeroGOS() {
   return (
     <section className="pmHero">
       {/*
-        Hero brand-motion REMOVED 2026-06-16: the generated abstract film was a
-        drifting red "blob" - the exact thing the hero-brand-film brief bans
-        ("elegant geometry, not blobs or confetti") and carried no "compounding"
-        concept. It read as generic premium-but-empty stock motion (RULES-017
-        auto-reject) and abandoned the Growth Operating System signal system.
-        Falls back to the vault-reviewed code aurora until the correct
-        on-concept motion (the crimson signal igniting + compounding) is built.
+        Hero motion = the Growth Operating System signal system (the redesign's
+        signature device), brought to life: the crimson signal IGNITES at
+        Strategy and COMPOUNDS through Demand -> Proof -> Compound, each stage
+        lighting and holding as the system accrues. On-concept (not decorative),
+        claims-safe (capability labels only, no metrics/logos), inline SVG so it
+        can never break as a missing asset. Replaces the rejected abstract blob.
+        A left-light scrim keeps the headline AA-legible; disabled under
+        prefers-reduced-motion (the fully-drawn instrument remains).
       */}
+      <div className="pmHero__stage" aria-hidden="true">
+        <GrowthOperatingSystem className="pmHero__gos" />
+        <span className="pmHero__scrim" />
+      </div>
+
       <div className="pmHero__inner pmHero__inner--anim">
         <div className="pmHero__meta">
           <span>Pixelette Marketing</span>

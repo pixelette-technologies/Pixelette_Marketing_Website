@@ -30,6 +30,17 @@
     #160d0e;
   color: #f3ece6;
 
+  // living crimson glow that slowly drifts behind the type (motion in the body)
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(46% 38% at 80% 16%, rgba(216, 18, 63, 0.28), transparent 60%);
+    animation: pmSectionGlow 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
   &::after {
     content: "";
     position: absolute;
@@ -677,5 +688,17 @@ a.pmContact__v:hover {
   }
   .pmMarquee__rail {
     animation: none;
+  }
+  .pmSection--dark::before {
+    animation: none;
+  }
+}
+
+@keyframes pmSectionGlow {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+  to {
+    transform: translate(-7%, 5%) scale(1.14);
   }
 }

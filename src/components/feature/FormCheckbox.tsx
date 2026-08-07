@@ -30,7 +30,10 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
         <input
           id={name}
           type='checkbox'
-          {...field}
+          name={field.name}
+          checked={Boolean(field.value)}
+          onChange={field.onChange}
+          onBlur={field.onBlur}
           aria-invalid={meta.touched && Boolean(meta.error)}
           style={{ marginTop: "0.25rem", flexShrink: 0 }}
         />

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
 import { Resend } from "resend";
 
 // Resend needs the Node.js runtime (not Edge).
@@ -9,6 +10,22 @@ interface ContactPayload {
   lastName?: string;
   email?: string;
   description?: string;
+  dataConsent?: boolean;
+  consentVersion?: string;
+  // Honeypot — genuine submissions leave this empty.
+  companyWebsite?: string;
+}
+
+// Bounds mirror the client Yup schema; the server never trusts the client.
+const LIMITS = {
+  name: { min: 2, max: 50 },
+  email: { max: 160 },
+  message: { min: 10, max: 500 }
+};
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function clean(value: unknown): string {
+  return typeof value === "string" ? value.trim() : "";
 }
 
 function escapeHtml(value: string): string {
@@ -25,11 +42,17 @@ function buildEmailHtml(opts: {
   email: string;
   message: string;
   date: string;
+  submissionId: string;
+  consentVersion: string;
+  receivedAt: string;
 }): string {
   const name = escapeHtml(opts.name);
   const email = escapeHtml(opts.email);
   const message = escapeHtml(opts.message).replace(/\n/g, "<br/>");
   const date = escapeHtml(opts.date);
+  const submissionId = escapeHtml(opts.submissionId);
+  const consentVersion = escapeHtml(opts.consentVersion);
+  const receivedAt = escapeHtml(opts.receivedAt);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -67,6 +90,22 @@ function buildEmailHtml(opts: {
             </td></tr>
           </table>
 
+          <p style="color:#6f7480; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:24px 0 12px;">Consent &amp; Provenance</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#101015; border:1px solid #25252e; border-radius:12px;">
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #25252e;">
+              <span style="color:#6f7480; font-size:12px;">Consent</span>
+              <span style="color:#d7d9df; font-size:12px; float:right;">Given &middot; v${consentVersion}</span>
+            </td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #25252e;">
+              <span style="color:#6f7480; font-size:12px;">Received (UTC)</span>
+              <span style="color:#d7d9df; font-size:12px; float:right;">${receivedAt}</span>
+            </td></tr>
+            <tr><td style="padding:12px 18px;">
+              <span style="color:#6f7480; font-size:12px;">Submission ID</span>
+              <span style="color:#d7d9df; font-size:12px; float:right;">${submissionId}</span>
+            </td></tr>
+          </table>
+
           <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:26px;">
             <tr><td style="background-color:#a3123f; border-radius:10px;">
               <a href="mailto:${email}" style="display:inline-block; color:#ffffff; font-size:14px; font-weight:700; text-decoration:none; padding:13px 26px;">Reply to ${name}</a>
@@ -97,9 +136,51 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { firstName, lastName, email, description } = body;
-  if (!firstName || !email || !description) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  // Honeypot: real users never fill the hidden `companyWebsite` field. Accept
+  // silently (mirroring the real success shape) so a bot cannot tell it was
+  // caught.
+  if (typeof body.companyWebsite === "string" && body.companyWebsite.trim() !== "") {
+    return NextResponse.json({ ok: true });
+  }
+
+  // Server-side validation — never trust the client. Bounds mirror the Yup schema.
+  const firstName = clean(body.firstName);
+  const lastName = clean(body.lastName);
+  const email = clean(body.email).toLowerCase();
+  const description = clean(body.description);
+
+  if (firstName.length < LIMITS.name.min || firstName.length > LIMITS.name.max) {
+    return NextResponse.json(
+      { error: "Please enter your first name (2–50 characters)." },
+      { status: 400 }
+    );
+  }
+  if (lastName.length < LIMITS.name.min || lastName.length > LIMITS.name.max) {
+    return NextResponse.json(
+      { error: "Please enter your last name (2–50 characters)." },
+      { status: 400 }
+    );
+  }
+  if (!EMAIL_RE.test(email) || email.length > LIMITS.email.max) {
+    return NextResponse.json(
+      { error: "Please enter a valid email address." },
+      { status: 400 }
+    );
+  }
+  if (
+    description.length < LIMITS.message.min ||
+    description.length > LIMITS.message.max
+  ) {
+    return NextResponse.json(
+      { error: "Please add a short message (10–500 characters)." },
+      { status: 400 }
+    );
+  }
+  if (body.dataConsent !== true) {
+    return NextResponse.json(
+      { error: "Please accept the privacy notice to continue." },
+      { status: 400 }
+    );
   }
 
   const apiKey = process.env.RESEND_API_KEY;
@@ -110,7 +191,13 @@ export async function POST(req: Request) {
   const resend = new Resend(apiKey);
   const to = process.env.CONTACT_TO_EMAIL || "sales@pixelettemarketing.com";
   const from = process.env.CONTACT_FROM_EMAIL || "Pixelette Marketing <noreply@pixelettemarketing.com>";
-  const name = `${firstName} ${lastName ?? ""}`.trim();
+  const name = `${firstName} ${lastName}`.trim();
+
+  // Data-minimising provenance: an audit trail that stores consent + a
+  // submission id, but never the raw IP address.
+  const submissionId = randomUUID();
+  const receivedAt = new Date().toISOString();
+  const consentVersion = clean(body.consentVersion) || "unversioned";
   const date = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
@@ -122,13 +209,21 @@ export async function POST(req: Request) {
     to,
     replyTo: email,
     subject: `New Project Enquiry from ${name} — Pixelette Marketing`,
-    text: `New Project Enquiry — submitted via pixelettemarketing.com on ${date}\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${description}\n\nReply directly to ${email}`,
-    html: buildEmailHtml({ name, email, message: description, date })
+    text: `New Project Enquiry — submitted via pixelettemarketing.com on ${date}\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${description}\n\n--\nConsent: Given (v${consentVersion})\nReceived (UTC): ${receivedAt}\nSubmission ID: ${submissionId}\n\nReply directly to ${email}`,
+    html: buildEmailHtml({
+      name,
+      email,
+      message: description,
+      date,
+      submissionId,
+      consentVersion,
+      receivedAt
+    })
   });
 
   if (error) {
     return NextResponse.json({ error: "Failed to send message" }, { status: 502 });
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, submissionId });
 }

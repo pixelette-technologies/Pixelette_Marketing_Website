@@ -9,6 +9,7 @@ interface ButtonProps {
   children: React.ReactNode;
   animation?: string;
   duration?: string;
+  disabled?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -18,7 +19,8 @@ const Button: FC<ButtonProps> = ({
   type = "button",
   children,
   animation,
-  duration
+  duration,
+  disabled
 }) => {
   return to ? (
     <Link
@@ -36,6 +38,7 @@ const Button: FC<ButtonProps> = ({
       type={type}
       data-aos={animation}
       data-aos-duration={duration}
+      disabled={disabled}
     >
       {children}
     </button>

@@ -1,5 +1,3 @@
-"use server";
-
 const Insta = () => {
   return (
     <svg

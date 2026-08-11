@@ -1,5 +1,3 @@
-"use server";
-
 const WhiteCollan = () => {
   return (
     <svg

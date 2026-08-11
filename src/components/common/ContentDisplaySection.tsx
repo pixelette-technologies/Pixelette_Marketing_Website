@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useState, useEffect, useRef, useCallback } from "react";
+import { FC, useState, useEffect, useRef } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
 
@@ -29,29 +29,31 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   const lastTimeRef = useRef<number>(0);
   const speed = 0.1; // Reduced speed for smoother movement
 
-  const animate = useCallback((timestamp: number) => {
-    if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-    const deltaTime = timestamp - lastTimeRef.current;
-    lastTimeRef.current = timestamp;
-
-    if (!isHovered) {
-      setPosition(prev => {
-        const newPosition = prev + (speed * (deltaTime / 16)); // Normalize by 60fps
-        // Reset position when it reaches 50% (half of the content)
-        return newPosition >= 50 ? 0 : newPosition;
-      });
-    }
-    animationRef.current = requestAnimationFrame(animate);
-  }, [isHovered]);
-
   useEffect(() => {
+    lastTimeRef.current = 0;
+
+    const animate = (timestamp: number) => {
+      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
+      const deltaTime = timestamp - lastTimeRef.current;
+      lastTimeRef.current = timestamp;
+
+      if (!isHovered) {
+        setPosition(prev => {
+          const newPosition = prev + (speed * (deltaTime / 16)); // Normalize by 60fps
+          // Reset position when it reaches 50% (half of the content)
+          return newPosition >= 50 ? 0 : newPosition;
+        });
+      }
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
     animationRef.current = requestAnimationFrame(animate);
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [animate]);
+  }, [isHovered]);
 
   const renderCard = (el: CardProps, index: number, key: string) => (
     <div 

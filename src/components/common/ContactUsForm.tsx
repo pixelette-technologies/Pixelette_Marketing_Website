@@ -1,46 +1,42 @@
 "use client";
 
 import React, { useState } from "react";
-import { Formik, Form, Field, FormikHelpers } from "formik";
-import {
-  CONSENT_VERSION,
-  contactUSvalidationSchema
-} from "@/validations/contactUsValidation";
-import {
-  Button,
-  FormCheckbox,
-  FormInput,
-  FormTextArea,
-  Heading
-} from "../feature";
+import { Field, Form, Formik, FormikHelpers } from "formik";
+import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
+import { Button, FormInput, FormTextArea, Heading } from "../feature";
 
 interface FormValues {
   firstName: string;
   lastName: string;
   email: string;
   description: string;
-  dataConsent: boolean;
-  // Honeypot — must stay empty for genuine submissions.
-  companyWebsite: string;
+  consent: boolean;
+  noticeVersion: string;
+  formStartedAt: string;
+  sourcePage: string;
+  _website: string;
 }
 
 type SubmitState = "idle" | "success" | "error";
 
-const DEFAULT_ERROR =
-  "Sorry, something went wrong. Please try again, or email sales@pixelettemarketing.com.";
-
 const ContactUsForm: React.FC = () => {
-  const initialValues: FormValues = {
+  const privacyNoticeUrl = process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL?.trim() ?? "";
+  const noticeVersion = process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION?.trim() ?? "";
+  const consentText = process.env.NEXT_PUBLIC_CONTACT_CONSENT_TEXT?.trim() ?? "";
+  const governanceReady = Boolean(privacyNoticeUrl && noticeVersion && consentText);
+  const [initialValues] = useState<FormValues>(() => ({
     firstName: "",
     lastName: "",
     email: "",
     description: "",
-    dataConsent: false,
-    companyWebsite: ""
-  };
-
+    consent: false,
+    noticeVersion,
+    formStartedAt: new Date().toISOString(),
+    sourcePage: "/",
+    _website: ""
+  }));
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
-  const [errorMsg, setErrorMsg] = useState<string>(DEFAULT_ERROR);
+  const [eventId, setEventId] = useState<string | null>(null);
 
   const handleSubmit = async (
     values: FormValues,
@@ -48,26 +44,69 @@ const ContactUsForm: React.FC = () => {
   ) => {
     setSubmitState("idle");
     try {
+      const activeEventId = eventId ?? crypto.randomUUID();
+      if (!eventId) setEventId(activeEventId);
+      const params = new URLSearchParams(window.location.search);
+      let referrer = "";
+      try {
+        const parsed = new URL(document.referrer);
+        referrer = `${parsed.origin}${parsed.pathname}`;
+      } catch {
+        referrer = "";
+      }
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, consentVersion: CONSENT_VERSION })
+        body: JSON.stringify({
+          ...values,
+          eventId: activeEventId,
+          noticeVersion,
+          sourcePage: window.location.pathname,
+          attribution: {
+            campaignId: params.get("campaign_id") ?? "",
+            utmSource: params.get("utm_source") ?? "",
+            utmMedium: params.get("utm_medium") ?? "",
+            utmCampaign: params.get("utm_campaign") ?? "",
+            utmContent: params.get("utm_content") ?? "",
+            utmTerm: params.get("utm_term") ?? "",
+            landingPage: window.location.pathname,
+            referrer
+          }
+        })
       });
       if (response.ok) {
         setSubmitState("success");
-        resetForm();
+        setEventId(null);
+        resetForm({
+          values: {
+            ...initialValues,
+            noticeVersion,
+            formStartedAt: new Date().toISOString()
+          }
+        });
       } else {
-        const data = await response.json().catch(() => null);
-        setErrorMsg(data?.error || DEFAULT_ERROR);
         setSubmitState("error");
       }
     } catch {
-      setErrorMsg(DEFAULT_ERROR);
       setSubmitState("error");
     } finally {
       setSubmitting(false);
     }
   };
+
+  if (!governanceReady) {
+    return (
+      <div className='contactUsForm bg_white' role='status'>
+        <Heading className='secondry font_family_glory uppercase'>
+          contact form temporarily unavailable
+        </Heading>
+        <p>
+          The governed privacy notice and consent configuration must be approved before this form
+          can accept enquiries.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -85,6 +124,13 @@ const ContactUsForm: React.FC = () => {
       >
         {({ isSubmitting }) => (
           <Form>
+            <Field type='hidden' name='noticeVersion' />
+            <Field type='hidden' name='formStartedAt' />
+            <Field type='hidden' name='sourcePage' />
+            <div aria-hidden='true' style={{ position: "absolute", left: "-10000px" }}>
+              <label htmlFor='contact-website'>Website</label>
+              <Field id='contact-website' name='_website' tabIndex='-1' autoComplete='off' />
+            </div>
             <div className='contactUsFormFlex'>
               <FormInput
                 label='First Name'
@@ -108,58 +154,26 @@ const ContactUsForm: React.FC = () => {
               name='description'
               place='Write your query here'
             />
-
-            {/* Honeypot: hidden from people; bots that fill it are rejected
-                silently on the server. Kept out of the tab order and off
-                autofill so it never traps a genuine user. */}
-            <div
-              aria-hidden='true'
-              style={{
-                position: "absolute",
-                left: "-9999px",
-                top: "auto",
-                width: 1,
-                height: 1,
-                overflow: "hidden"
-              }}
-            >
-              <label htmlFor='companyWebsite'>Company website</label>
-              <Field
-                id='companyWebsite'
-                name='companyWebsite'
-                type='text'
-                tabIndex={-1}
-                autoComplete='off'
-              />
-            </div>
-
-            <FormCheckbox name='dataConsent'>
-              I agree that Pixelette Marketing may use the details above to
-              respond to my enquiry, in line with the{" "}
-              <a
-                href='/cookie-policy'
-                target='_blank'
-                rel='noopener noreferrer'
-                style={{ color: "#a3123f", textDecoration: "underline" }}
-              >
-                Cookie &amp; Privacy Policy
-              </a>
-              .
-            </FormCheckbox>
-
-            <Button type='submit' className='primary-full'>
+            <label style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+              <Field type='checkbox' name='consent' />
+              <span>
+                {consentText}{" "}
+                <a href={privacyNoticeUrl} target='_blank' rel='noreferrer'>
+                  Read the privacy notice
+                </a>
+              </span>
+            </label>
+            <Button type='submit' className='primary-full' disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
-
             {submitState === "success" && (
               <p role='status' style={{ marginTop: "1rem", color: "#1e7e34" }}>
-                Thanks — your message has been sent. We&apos;ll be in touch
-                shortly.
+                Thanks - your message has been sent. We&apos;ll be in touch shortly.
               </p>
             )}
             {submitState === "error" && (
               <p role='alert' style={{ marginTop: "1rem", color: "#c0392b" }}>
-                {errorMsg}
+                Sorry, the governed enquiry route is unavailable. No submission has been confirmed.
               </p>
             )}
           </Form>

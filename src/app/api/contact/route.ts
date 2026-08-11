@@ -1,32 +1,9 @@
 import { NextResponse } from "next/server";
-import { randomUUID } from "node:crypto";
 import { Resend } from "resend";
+import { validateContactPayload, type GovernedContactSubmission } from "@/lib/contactContract";
+import { DurableContactDeliveryControl, sendWithBoundedRetry } from "@/lib/contactDeliveryControl";
 
-// Resend needs the Node.js runtime (not Edge).
 export const runtime = "nodejs";
-
-interface ContactPayload {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  description?: string;
-  dataConsent?: boolean;
-  consentVersion?: string;
-  // Honeypot — genuine submissions leave this empty.
-  companyWebsite?: string;
-}
-
-// Bounds mirror the client Yup schema; the server never trusts the client.
-const LIMITS = {
-  name: { min: 2, max: 50 },
-  email: { max: 160 },
-  message: { min: 10, max: 500 }
-};
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function clean(value: unknown): string {
-  return typeof value === "string" ? value.trim() : "";
-}
 
 function escapeHtml(value: string): string {
   return value
@@ -37,22 +14,61 @@ function escapeHtml(value: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function providerConfiguration() {
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  const to = process.env.CONTACT_TO_EMAIL?.trim();
+  const from = process.env.CONTACT_FROM_EMAIL?.trim();
+  const noticeVersion = process.env.CONTACT_PRIVACY_NOTICE_VERSION?.trim();
+  const storeDirectory = process.env.MARKETING_CONTACT_STORE_DIR?.trim();
+  const rateLimitSecret = process.env.MARKETING_CONTACT_RATE_LIMIT_SECRET?.trim();
+  const allowedOrigins = (process.env.CONTACT_ALLOWED_ORIGINS ?? "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  if (!apiKey || !to || !from || !noticeVersion || !storeDirectory || !rateLimitSecret || allowedOrigins.length === 0) return null;
+  return { apiKey, to, from, noticeVersion, storeDirectory, rateLimitSecret, allowedOrigins };
+}
+
+function buildTextMessage(
+  submission: GovernedContactSubmission,
+  name: string,
+  date: string,
+  submissionId: string
+): string {
+  const campaign = submission.attribution.campaignId || submission.attribution.utmCampaign || "not supplied";
+  return [
+    `New Project Enquiry - submitted via pixelettemarketing.com on ${date}`,
+    "",
+    `Submission: ${submissionId}`,
+    `Name: ${name}`,
+    `Email: ${submission.email}`,
+    `Source: ${submission.sourcePage}`,
+    `Campaign: ${campaign}`,
+    `Privacy notice version: ${submission.noticeVersion}`,
+    "",
+    "Message:",
+    submission.description,
+    "",
+    `Reply directly to ${submission.email}`
+  ].join("\n");
+}
+
 function buildEmailHtml(opts: {
   name: string;
   email: string;
   message: string;
   date: string;
   submissionId: string;
-  consentVersion: string;
-  receivedAt: string;
+  sourcePage: string;
+  campaign: string;
 }): string {
   const name = escapeHtml(opts.name);
   const email = escapeHtml(opts.email);
   const message = escapeHtml(opts.message).replace(/\n/g, "<br/>");
   const date = escapeHtml(opts.date);
   const submissionId = escapeHtml(opts.submissionId);
-  const consentVersion = escapeHtml(opts.consentVersion);
-  const receivedAt = escapeHtml(opts.receivedAt);
+  const sourcePage = escapeHtml(opts.sourcePage);
+  const campaign = escapeHtml(opts.campaign || "not supplied");
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -61,66 +77,20 @@ function buildEmailHtml(opts: {
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0b0b0f; padding:28px 12px;">
     <tr><td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; font-family:Helvetica,Arial,sans-serif;">
-
-        <!-- Header -->
-        <tr><td style="background-color:#6d1239; background-image:linear-gradient(135deg,#3d0a22,#a3123f); border-radius:16px 16px 0 0; padding:34px 32px; text-align:center;">
+        <tr><td style="background-color:#6d1239; border-radius:16px 16px 0 0; padding:34px 32px; text-align:center;">
           <img src="https://www.pixelettemarketing.com/email-logo.png" alt="Pixelette Marketing" width="210" style="display:inline-block; width:210px; max-width:62%; height:auto; border:0;"/>
         </td></tr>
-
-        <!-- Body -->
         <tr><td style="background-color:#15151b; padding:34px 32px;">
           <span style="display:inline-block; background-color:#2a2a33; color:#f3b6c8; font-size:11px; font-weight:700; letter-spacing:1.5px; padding:7px 14px; border-radius:999px; text-transform:uppercase;">New Enquiry</span>
           <h1 style="color:#ffffff; font-size:26px; font-weight:700; margin:18px 0 6px;">New Project Enquiry</h1>
           <p style="color:#9296a1; font-size:13px; margin:0 0 26px;">Submitted via the contact page &middot; ${date}</p>
-
-          <p style="color:#6f7480; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:0 0 12px;">Contact Details</p>
-
           <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#101015; border:1px solid #25252e; border-radius:12px;">
-            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;">
-              <div style="color:#6f7480; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Name</div>
-              <div style="color:#ffffff; font-size:15px; font-weight:600; margin-top:3px;">${name}</div>
-            </td></tr>
-            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;">
-              <div style="color:#6f7480; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Email</div>
-              <div style="margin-top:3px;"><a href="mailto:${email}" style="color:#f06292; font-size:15px; font-weight:600; text-decoration:none;">${email}</a></div>
-            </td></tr>
-            <tr><td style="padding:16px 18px;">
-              <div style="color:#6f7480; font-size:11px; text-transform:uppercase; letter-spacing:1px;">Message</div>
-              <div style="color:#d7d9df; font-size:15px; line-height:1.6; margin-top:6px;">${message}</div>
-            </td></tr>
-          </table>
-
-          <p style="color:#6f7480; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin:24px 0 12px;">Consent &amp; Provenance</p>
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#101015; border:1px solid #25252e; border-radius:12px;">
-            <tr><td style="padding:12px 18px; border-bottom:1px solid #25252e;">
-              <span style="color:#6f7480; font-size:12px;">Consent</span>
-              <span style="color:#d7d9df; font-size:12px; float:right;">Given &middot; v${consentVersion}</span>
-            </td></tr>
-            <tr><td style="padding:12px 18px; border-bottom:1px solid #25252e;">
-              <span style="color:#6f7480; font-size:12px;">Received (UTC)</span>
-              <span style="color:#d7d9df; font-size:12px; float:right;">${receivedAt}</span>
-            </td></tr>
-            <tr><td style="padding:12px 18px;">
-              <span style="color:#6f7480; font-size:12px;">Submission ID</span>
-              <span style="color:#d7d9df; font-size:12px; float:right;">${submissionId}</span>
-            </td></tr>
-          </table>
-
-          <table role="presentation" cellpadding="0" cellspacing="0" style="margin-top:26px;">
-            <tr><td style="background-color:#a3123f; border-radius:10px;">
-              <a href="mailto:${email}" style="display:inline-block; color:#ffffff; font-size:14px; font-weight:700; text-decoration:none; padding:13px 26px;">Reply to ${name}</a>
-            </td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Name:</strong> <span style="color:#d7d9df;">${name}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Email:</strong> <a href="mailto:${email}" style="color:#f06292;">${email}</a></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Message:</strong><div style="color:#d7d9df; margin-top:6px;">${message}</div></td></tr>
+            <tr><td style="padding:16px 18px; color:#d7d9df; font-size:13px;">Submission ${submissionId}<br/>Source ${sourcePage}<br/>Campaign ${campaign}</td></tr>
           </table>
         </td></tr>
-
-        <!-- Footer -->
-        <tr><td style="background-color:#101015; padding:20px 32px; text-align:center; border-radius:0 0 16px 16px; border-top:1px solid #25252e;">
-          <p style="color:#6f7480; font-size:12px; margin:0;">
-            Submitted via <a href="https://www.pixelettemarketing.com" style="color:#9296a1; text-decoration:none;">pixelettemarketing.com</a>
-            &middot; Reply directly to <a href="mailto:${email}" style="color:#f06292; text-decoration:none;">${email}</a>
-          </p>
-        </td></tr>
-
       </table>
     </td></tr>
   </table>
@@ -129,101 +99,113 @@ function buildEmailHtml(opts: {
 }
 
 export async function POST(req: Request) {
-  let body: ContactPayload;
+  const configuration = providerConfiguration();
+  if (!configuration) {
+    return NextResponse.json({ error: "Governed contact route is not configured" }, { status: 503 });
+  }
+  const mediaType = (req.headers.get("content-type") ?? "").split(";", 1)[0].trim().toLowerCase();
+  if (mediaType !== "application/json") {
+    return NextResponse.json({ error: "Unsupported content type" }, { status: 415 });
+  }
+  const contentLength = Number(req.headers.get("content-length") ?? "0");
+  if (!Number.isFinite(contentLength) || contentLength < 0 || contentLength > 16_384) {
+    return NextResponse.json({ error: "Request too large" }, { status: 413 });
+  }
+  const origin = req.headers.get("origin");
+  if (!origin || !configuration.allowedOrigins.includes(origin)) {
+    return NextResponse.json({ error: "Origin not allowed" }, { status: 403 });
+  }
+
+  let body: unknown;
   try {
-    body = await req.json();
+    const rawBody = await req.text();
+    if (new TextEncoder().encode(rawBody).byteLength > 16_384) {
+      return NextResponse.json({ error: "Request too large" }, { status: 413 });
+    }
+    body = JSON.parse(rawBody);
   } catch {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
-
-  // Honeypot: real users never fill the hidden `companyWebsite` field. Accept
-  // silently (mirroring the real success shape) so a bot cannot tell it was
-  // caught.
-  if (typeof body.companyWebsite === "string" && body.companyWebsite.trim() !== "") {
-    return NextResponse.json({ ok: true });
+  const validation = validateContactPayload(body, configuration.noticeVersion);
+  if (!validation.ok) {
+    return NextResponse.json({ error: validation.code }, { status: 400 });
   }
 
-  // Server-side validation — never trust the client. Bounds mirror the Yup schema.
-  const firstName = clean(body.firstName);
-  const lastName = clean(body.lastName);
-  const email = clean(body.email).toLowerCase();
-  const description = clean(body.description);
-
-  if (firstName.length < LIMITS.name.min || firstName.length > LIMITS.name.max) {
+  const submission = validation.value;
+  const sourceAddress = (req.headers.get("x-forwarded-for") ?? "").split(",", 1)[0].trim()
+    || req.headers.get("x-real-ip")?.trim()
+    || "";
+  if (!sourceAddress) {
+    return NextResponse.json({ error: "Request source unavailable" }, { status: 400 });
+  }
+  let control: DurableContactDeliveryControl;
+  let decision;
+  try {
+    control = new DurableContactDeliveryControl({
+      entity: "MARKETING",
+      storeDirectory: configuration.storeDirectory,
+      hmacSecret: configuration.rateLimitSecret,
+    });
+    decision = await control.begin(submission.eventId, submission, sourceAddress);
+  } catch {
+    return NextResponse.json({ error: "Durable submission control unavailable" }, { status: 503 });
+  }
+  if (decision.action === "RATE_LIMITED") {
     return NextResponse.json(
-      { error: "Please enter your first name (2–50 characters)." },
-      { status: 400 }
+      { error: "Submission rate limit reached" },
+      { status: 429, headers: { "Retry-After": String(decision.retryAfterSeconds) } },
     );
   }
-  if (lastName.length < LIMITS.name.min || lastName.length > LIMITS.name.max) {
-    return NextResponse.json(
-      { error: "Please enter your last name (2–50 characters)." },
-      { status: 400 }
-    );
+  if (decision.action === "IN_PROGRESS") {
+    return NextResponse.json({ error: "Submission already in progress" }, { status: 409 });
   }
-  if (!EMAIL_RE.test(email) || email.length > LIMITS.email.max) {
-    return NextResponse.json(
-      { error: "Please enter a valid email address." },
-      { status: 400 }
-    );
+  if (decision.action === "CONFLICT") {
+    return NextResponse.json({ error: "Submission identity conflict" }, { status: 409 });
   }
-  if (
-    description.length < LIMITS.message.min ||
-    description.length > LIMITS.message.max
-  ) {
-    return NextResponse.json(
-      { error: "Please add a short message (10–500 characters)." },
-      { status: 400 }
-    );
+  if (decision.action === "EXHAUSTED") {
+    return NextResponse.json({ error: "Submission retry limit exhausted" }, { status: 503 });
   }
-  if (body.dataConsent !== true) {
-    return NextResponse.json(
-      { error: "Please accept the privacy notice to continue." },
-      { status: 400 }
-    );
+  if (decision.action === "REPLAY") {
+    return NextResponse.json({ ok: true, submissionId: decision.submissionId, replayed: true });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json({ error: "Email service is not configured" }, { status: 500 });
-  }
-
-  const resend = new Resend(apiKey);
-  const to = process.env.CONTACT_TO_EMAIL || "sales@pixelettemarketing.com";
-  const from = process.env.CONTACT_FROM_EMAIL || "Pixelette Marketing <noreply@pixelettemarketing.com>";
-  const name = `${firstName} ${lastName}`.trim();
-
-  // Data-minimising provenance: an audit trail that stores consent + a
-  // submission id, but never the raw IP address.
-  const submissionId = randomUUID();
-  const receivedAt = new Date().toISOString();
-  const consentVersion = clean(body.consentVersion) || "unversioned";
+  const resend = new Resend(configuration.apiKey);
+  const name = `${submission.firstName} ${submission.lastName}`.trim();
+  const submissionId = submission.eventId;
   const date = new Date().toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric"
   });
+  const campaign = submission.attribution.campaignId || submission.attribution.utmCampaign || "";
+  const delivery = await sendWithBoundedRetry(
+    () => resend.emails.send({
+      from: configuration.from,
+      to: configuration.to,
+      replyTo: submission.email,
+      subject: `New Project Enquiry from ${name} - Pixelette Marketing`,
+      text: buildTextMessage(submission, name, date, submissionId),
+      html: buildEmailHtml({
+        name,
+        email: submission.email,
+        message: submission.description,
+        date,
+        submissionId,
+        sourcePage: submission.sourcePage,
+        campaign
+      })
+    }, { idempotencyKey: decision.idempotencyKey }),
+    (result) => !result.error && Boolean(result.data?.id),
+  );
 
-  const { error } = await resend.emails.send({
-    from,
-    to,
-    replyTo: email,
-    subject: `New Project Enquiry from ${name} — Pixelette Marketing`,
-    text: `New Project Enquiry — submitted via pixelettemarketing.com on ${date}\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${description}\n\n--\nConsent: Given (v${consentVersion})\nReceived (UTC): ${receivedAt}\nSubmission ID: ${submissionId}\n\nReply directly to ${email}`,
-    html: buildEmailHtml({
-      name,
-      email,
-      message: description,
-      date,
-      submissionId,
-      consentVersion,
-      receivedAt
-    })
-  });
-
-  if (error) {
+  if (!delivery.ok) {
+    await control.fail(decision.lease).catch(() => undefined);
     return NextResponse.json({ error: "Failed to send message" }, { status: 502 });
   }
-
-  return NextResponse.json({ ok: true, submissionId });
+  try {
+    await control.complete(decision.lease, delivery.value.data!.id);
+  } catch {
+    return NextResponse.json({ error: "Delivery receipt could not be committed" }, { status: 503 });
+  }
+  return NextResponse.json({ ok: true, submissionId, replayed: false });
 }

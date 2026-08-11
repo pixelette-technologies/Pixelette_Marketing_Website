@@ -1,5 +1,3 @@
-"use server";
-
 const Jira = () => {
   return (
     <svg

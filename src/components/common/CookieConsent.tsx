@@ -64,14 +64,18 @@ const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored !== "granted" && stored !== "denied") {
+    const timer = window.setTimeout(() => {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored !== "granted" && stored !== "denied") {
+          setVisible(true);
+        }
+      } catch {
         setVisible(true);
       }
-    } catch {
-      setVisible(true);
-    }
+    }, 0);
+
+    return () => window.clearTimeout(timer);
   }, []);
 
   const decide = (choice: "granted" | "denied") => {

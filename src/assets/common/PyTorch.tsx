@@ -1,5 +1,3 @@
-"use server";
-
 const PyTorch = () => {
   return (
     <svg

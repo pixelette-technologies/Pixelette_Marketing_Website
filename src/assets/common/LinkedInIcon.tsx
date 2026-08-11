@@ -1,5 +1,3 @@
-"use server";
-
 // Square LinkedIn glyph for the footer social row (the existing `LinkedIn`
 // asset is a wide wordmark used on the home page, so it must not be reused here).
 const LinkedInIcon = () => {

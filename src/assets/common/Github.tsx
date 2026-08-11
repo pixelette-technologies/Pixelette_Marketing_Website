@@ -1,5 +1,3 @@
-"use server";
-
 const Github = () => {
   return (
     <svg

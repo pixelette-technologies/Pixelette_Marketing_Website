@@ -1,5 +1,3 @@
-"use server";
-
 const HotJar = () => {
   return (
     <svg

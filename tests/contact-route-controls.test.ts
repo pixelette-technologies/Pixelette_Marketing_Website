@@ -51,6 +51,23 @@ test("form remains unavailable until privacy and consent configuration is comple
   assert.match(form, /Read the privacy notice/);
 });
 
+test("form captures governed campaign attribution without referrer path or query data", () => {
+  assert.match(form, /new URLSearchParams\(window\.location\.search\)/);
+  for (const parameter of [
+    "campaign_id",
+    "utm_source",
+    "utm_medium",
+    "utm_campaign",
+    "utm_content",
+    "utm_term",
+  ]) {
+    assert.match(form, new RegExp(`params\\.get\\("${parameter}"\\)`));
+  }
+  assert.match(form, /landingPage: window\.location\.pathname/);
+  assert.match(form, /referrer = parsed\.origin/);
+  assert.doesNotMatch(form, /referrer = `\$\{parsed\.origin\}\$\{parsed\.pathname\}`/);
+});
+
 test("security headers constrain framing, capabilities and transport", () => {
   for (const header of [
     "Content-Security-Policy",

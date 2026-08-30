@@ -50,7 +50,7 @@ const ContactUsForm: React.FC = () => {
       let referrer = "";
       try {
         const parsed = new URL(document.referrer);
-        referrer = `${parsed.origin}${parsed.pathname}`;
+        referrer = parsed.origin;
       } catch {
         referrer = "";
       }

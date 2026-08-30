@@ -5,6 +5,7 @@ import test from "node:test";
 const route = readFileSync("src/app/api/contact/route.ts", "utf8");
 const form = readFileSync("src/components/common/ContactUsForm.tsx", "utf8");
 const nextConfig = readFileSync("next.config.ts", "utf8");
+const envExample = readFileSync(".env.example", "utf8");
 
 test("contact route has no recipient or sender fallback", () => {
   assert.match(route, /CONTACT_TO_EMAIL/);
@@ -42,6 +43,29 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
   assert.match(route, /sendMarketingBdSubmission/);
   assert.match(route, /Marketing to BD handoff failed/);
   assert.match(form, /eventId \?\? crypto\.randomUUID\(\)/);
+});
+
+test("environment example enumerates the complete fail-closed contact and BD contract", () => {
+  for (const name of [
+    "RESEND_API_KEY",
+    "CONTACT_TO_EMAIL",
+    "CONTACT_FROM_EMAIL",
+    "CONTACT_ALLOWED_ORIGINS",
+    "CONTACT_PRIVACY_NOTICE_VERSION",
+    "MARKETING_CONTACT_STORE_DIR",
+    "MARKETING_CONTACT_RATE_LIMIT_SECRET",
+    "MARKETING_BD_STAGE_URL",
+    "MARKETING_TRANSPORT_SECRET",
+    "MARKETING_DEFAULT_CAMPAIGN_ID",
+    "MARKETING_RETENTION_REVIEW_DAYS",
+    "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL",
+    "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION",
+    "NEXT_PUBLIC_CONTACT_CONSENT_TEXT",
+  ]) {
+    assert.match(envExample, new RegExp(`^${name}=$`, "m"));
+  }
+  assert.match(envExample, /persistent storage/);
+  assert.match(envExample, /Ephemeral serverless/);
 });
 
 test("form remains unavailable until privacy and consent configuration is complete", () => {

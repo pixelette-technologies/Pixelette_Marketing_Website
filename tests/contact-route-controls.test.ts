@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
@@ -6,6 +7,49 @@ const route = readFileSync("src/app/api/contact/route.ts", "utf8");
 const form = readFileSync("src/components/common/ContactUsForm.tsx", "utf8");
 const nextConfig = readFileSync("next.config.ts", "utf8");
 const envExample = readFileSync(".env.example", "utf8");
+const expectedEnvironmentNames = [
+  "RESEND_API_KEY",
+  "CONTACT_TO_EMAIL",
+  "CONTACT_FROM_EMAIL",
+  "CONTACT_ALLOWED_ORIGINS",
+  "CONTACT_PRIVACY_NOTICE_VERSION",
+  "MARKETING_CONTACT_STORE_DIR",
+  "MARKETING_CONTACT_RATE_LIMIT_SECRET",
+  "MARKETING_BD_STAGE_URL",
+  "MARKETING_TRANSPORT_SECRET",
+  "MARKETING_DEFAULT_CAMPAIGN_ID",
+  "MARKETING_RETENTION_REVIEW_DAYS",
+  "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL",
+  "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION",
+  "NEXT_PUBLIC_CONTACT_CONSENT_TEXT",
+];
+
+function assertSafeEnvironmentExample(text: string): void {
+  const assignments = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("#"))
+    .map((line) => {
+      const match = /^([A-Z][A-Z0-9_]*)=(.*)$/.exec(line);
+      assert.ok(match, `Malformed environment example assignment: ${line}`);
+      return { name: match[1], value: match[2] };
+    });
+  assert.equal(
+    assignments.length,
+    expectedEnvironmentNames.length,
+    "Environment assignment denominator must match",
+  );
+  const names = assignments.map(({ name }) => name);
+  assert.equal(new Set(names).size, names.length, "Environment assignments must be unique");
+  assert.deepEqual(
+    [...names].sort(),
+    [...expectedEnvironmentNames].sort(),
+    "Environment assignments must contain only expected keys",
+  );
+  for (const { name, value } of assignments) {
+    assert.equal(value, "", `${name} must not contain an example value`);
+  }
+}
 
 test("contact route has no recipient or sender fallback", () => {
   assert.match(route, /CONTACT_TO_EMAIL/);
@@ -46,26 +90,39 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
 });
 
 test("environment example enumerates the complete fail-closed contact and BD contract", () => {
-  for (const name of [
-    "RESEND_API_KEY",
-    "CONTACT_TO_EMAIL",
-    "CONTACT_FROM_EMAIL",
-    "CONTACT_ALLOWED_ORIGINS",
-    "CONTACT_PRIVACY_NOTICE_VERSION",
-    "MARKETING_CONTACT_STORE_DIR",
-    "MARKETING_CONTACT_RATE_LIMIT_SECRET",
-    "MARKETING_BD_STAGE_URL",
-    "MARKETING_TRANSPORT_SECRET",
-    "MARKETING_DEFAULT_CAMPAIGN_ID",
-    "MARKETING_RETENTION_REVIEW_DAYS",
-    "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL",
-    "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION",
-    "NEXT_PUBLIC_CONTACT_CONSENT_TEXT",
-  ]) {
-    assert.match(envExample, new RegExp(`^${name}=$`, "m"));
-  }
+  assertSafeEnvironmentExample(envExample);
   assert.match(envExample, /persistent storage/);
   assert.match(envExample, /Ephemeral serverless/);
+});
+
+test("environment contract fails closed against duplicate, unknown and non-empty assignments", () => {
+  assert.throws(
+    () => assertSafeEnvironmentExample(`${envExample}\nRESEND_API_KEY=`),
+    /assignment denominator/,
+  );
+  assert.throws(
+    () => assertSafeEnvironmentExample(envExample.replace(
+      "RESEND_API_KEY=",
+      ["RESEND_API_KEY", "synthetic-placeholder"].join("="),
+    )),
+    /must not contain an example value/,
+  );
+  assert.throws(
+    () => assertSafeEnvironmentExample(envExample.replace(
+      "RESEND_API_KEY=",
+      "UNRECOGNISED_PROVIDER_SETTING=",
+    )),
+    /only expected keys/,
+  );
+});
+
+test("secret-bearing environment files are ignored while the empty example remains tracked", () => {
+  for (const path of [".env", ".env.local", ".env.production.local"]) {
+    const result = spawnSync("git", ["check-ignore", "-q", "--", path]);
+    assert.equal(result.status, 0, `${path} must be ignored`);
+  }
+  const example = spawnSync("git", ["check-ignore", "-q", "--", ".env.example"]);
+  assert.equal(example.status, 1, ".env.example must remain available for version control");
 });
 
 test("form remains unavailable until privacy and consent configuration is complete", () => {

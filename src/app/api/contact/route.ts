@@ -2,6 +2,11 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { validateContactPayload, type GovernedContactSubmission } from "@/lib/contactContract";
 import { DurableContactDeliveryControl, sendWithBoundedRetry } from "@/lib/contactDeliveryControl";
+import {
+  buildMarketingBdSourceEnvelope,
+  sendMarketingBdSubmission,
+  validateMarketingBdTransportConfiguration,
+} from "@/lib/marketingBdTransport";
 
 export const runtime = "nodejs";
 
@@ -21,12 +26,27 @@ function providerConfiguration() {
   const noticeVersion = process.env.CONTACT_PRIVACY_NOTICE_VERSION?.trim();
   const storeDirectory = process.env.MARKETING_CONTACT_STORE_DIR?.trim();
   const rateLimitSecret = process.env.MARKETING_CONTACT_RATE_LIMIT_SECRET?.trim();
+  const bdEndpoint = process.env.MARKETING_BD_STAGE_URL?.trim();
+  const bdSecret = process.env.MARKETING_TRANSPORT_SECRET?.trim();
+  const defaultCampaignId = process.env.MARKETING_DEFAULT_CAMPAIGN_ID?.trim();
+  const retentionReviewDays = Number(process.env.MARKETING_RETENTION_REVIEW_DAYS ?? "");
   const allowedOrigins = (process.env.CONTACT_ALLOWED_ORIGINS ?? "")
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
-  if (!apiKey || !to || !from || !noticeVersion || !storeDirectory || !rateLimitSecret || allowedOrigins.length === 0) return null;
-  return { apiKey, to, from, noticeVersion, storeDirectory, rateLimitSecret, allowedOrigins };
+  if (!apiKey || !to || !from || !noticeVersion || !storeDirectory || !rateLimitSecret
+      || !bdEndpoint || !bdSecret || !defaultCampaignId || allowedOrigins.length === 0) return null;
+  try {
+    const bd = validateMarketingBdTransportConfiguration({
+      endpoint: bdEndpoint,
+      secret: bdSecret,
+      defaultCampaignId,
+      retentionReviewDays,
+    });
+    return { apiKey, to, from, noticeVersion, storeDirectory, rateLimitSecret, allowedOrigins, bd };
+  } catch {
+    return null;
+  }
 }
 
 function buildTextMessage(
@@ -167,6 +187,22 @@ export async function POST(req: Request) {
   }
   if (decision.action === "REPLAY") {
     return NextResponse.json({ ok: true, submissionId: decision.submissionId, replayed: true });
+  }
+
+  let bdEnvelope;
+  try {
+    bdEnvelope = buildMarketingBdSourceEnvelope(submission, configuration.bd, origin, Date.now());
+  } catch {
+    await control.fail(decision.lease).catch(() => undefined);
+    return NextResponse.json({ error: "Marketing to BD handoff is not configured" }, { status: 503 });
+  }
+  const bdDelivery = await sendWithBoundedRetry(
+    () => sendMarketingBdSubmission(bdEnvelope, configuration.bd),
+    (result) => result.accepted && Boolean(result.providerReceiptId),
+  );
+  if (!bdDelivery.ok) {
+    await control.fail(decision.lease).catch(() => undefined);
+    return NextResponse.json({ error: "Marketing to BD handoff failed" }, { status: 502 });
   }
 
   const resend = new Resend(configuration.apiKey);

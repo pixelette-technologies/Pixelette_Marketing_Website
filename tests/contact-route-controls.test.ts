@@ -22,8 +22,9 @@ test("contact route fails closed on content type, origin and actual body bytes",
 
 test("payload validation runs before provider construction", () => {
   const validation = route.indexOf("validateContactPayload(body");
+  const bdProvider = route.indexOf("sendMarketingBdSubmission(bdEnvelope");
   const provider = route.indexOf("new Resend(configuration.apiKey)");
-  assert.ok(validation >= 0 && provider > validation);
+  assert.ok(validation >= 0 && bdProvider > validation && provider > bdProvider);
   assert.doesNotMatch(route, /console\.(log|info|warn|error)/);
 });
 
@@ -36,6 +37,10 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
   assert.match(route, /sendWithBoundedRetry/);
   assert.match(route, /control\.complete\(decision\.lease/);
   assert.match(route, /control\.fail\(decision\.lease/);
+  assert.match(route, /MARKETING_BD_STAGE_URL/);
+  assert.match(route, /MARKETING_TRANSPORT_SECRET/);
+  assert.match(route, /sendMarketingBdSubmission/);
+  assert.match(route, /Marketing to BD handoff failed/);
   assert.match(form, /eventId \?\? crypto\.randomUUID\(\)/);
 });
 

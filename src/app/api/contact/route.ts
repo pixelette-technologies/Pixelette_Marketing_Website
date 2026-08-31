@@ -27,6 +27,7 @@ function providerConfiguration() {
   const storeDirectory = process.env.MARKETING_CONTACT_STORE_DIR?.trim();
   const rateLimitSecret = process.env.MARKETING_CONTACT_RATE_LIMIT_SECRET?.trim();
   const bdEndpoint = process.env.MARKETING_BD_STAGE_URL?.trim();
+  const bdEndpointSha256 = process.env.MARKETING_BD_STAGE_URL_SHA256?.trim();
   const bdSecret = process.env.MARKETING_TRANSPORT_SECRET?.trim();
   const defaultCampaignId = process.env.MARKETING_DEFAULT_CAMPAIGN_ID?.trim();
   const retentionReviewDays = Number(process.env.MARKETING_RETENTION_REVIEW_DAYS ?? "");
@@ -35,10 +36,11 @@ function providerConfiguration() {
     .map((value) => value.trim())
     .filter(Boolean);
   if (!apiKey || !to || !from || !noticeVersion || !storeDirectory || !rateLimitSecret
-      || !bdEndpoint || !bdSecret || !defaultCampaignId || allowedOrigins.length === 0) return null;
+      || !bdEndpoint || !bdEndpointSha256 || !bdSecret || !defaultCampaignId || allowedOrigins.length === 0) return null;
   try {
     const bd = validateMarketingBdTransportConfiguration({
       endpoint: bdEndpoint,
+      endpointSha256: bdEndpointSha256,
       secret: bdSecret,
       defaultCampaignId,
       retentionReviewDays,

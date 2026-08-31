@@ -7,7 +7,9 @@ import {
   buildSyntheticStagingSubmission,
   executeSyntheticStagingJourney,
   readSyntheticStagingConfiguration,
+  syntheticStagingEventId,
 } from "../src/lib/syntheticStagingJourney.ts";
+import { marketingBdEndpointSha256 } from "../src/lib/marketingBdTransport.ts";
 
 const trigger = "synthetic-preview-trigger-secret-00001";
 const transportSecret = "synthetic-marketing-transport-secret-0001";
@@ -16,14 +18,17 @@ const eventId = "123e4567-e89b-42d3-a456-426614174000";
 const nowMs = Date.parse("2026-09-01T12:00:00.000Z");
 
 function environment(overrides: Record<string, string | undefined> = {}): Record<string, string | undefined> {
+  const endpoint = "https://bd-stage.example.invalid/v1/source-submissions";
   return {
     VERCEL_ENV: "preview",
     MARKETING_SYNTHETIC_STAGE_ENABLED: "1",
     MARKETING_SYNTHETIC_STAGE_TRIGGER_SECRET: trigger,
-    MARKETING_BD_STAGE_URL: "https://bd-stage.example.invalid/v1/source-submissions",
+    MARKETING_BD_STAGE_URL: endpoint,
+    MARKETING_BD_STAGE_URL_SHA256: marketingBdEndpointSha256(endpoint),
     MARKETING_TRANSPORT_SECRET: transportSecret,
     MARKETING_DEFAULT_CAMPAIGN_ID: campaignId,
     MARKETING_RETENTION_REVIEW_DAYS: "365",
+    MARKETING_SYNTHETIC_STAGE_DAILY_WRITE_LIMIT: "1",
     ...overrides,
   };
 }
@@ -33,6 +38,20 @@ test("configuration exists only in explicitly enabled Vercel Preview", () => {
   assert.throws(() => readSyntheticStagingConfiguration(environment({ VERCEL_ENV: "production" })), /STAGING_DISABLED/);
   assert.throws(() => readSyntheticStagingConfiguration(environment({ MARKETING_SYNTHETIC_STAGE_ENABLED: "0" })), /STAGING_DISABLED/);
   assert.throws(() => readSyntheticStagingConfiguration(environment({ MARKETING_SYNTHETIC_STAGE_TRIGGER_SECRET: "short" })), /TRIGGER_SECRET_INVALID/);
+  assert.throws(() => readSyntheticStagingConfiguration(environment({ MARKETING_SYNTHETIC_STAGE_DAILY_WRITE_LIMIT: "2" })), /DAILY_WRITE_LIMIT_INVALID/);
+  assert.throws(() => readSyntheticStagingConfiguration(environment({
+    MARKETING_BD_STAGE_URL: "https://other-stage.example.invalid/v1/source-submissions",
+  })), /ENDPOINT_BINDING_MISMATCH/);
+});
+
+test("one deterministic unique synthetic event is permitted per UTC day", () => {
+  const first = syntheticStagingEventId(trigger, nowMs);
+  const sameDay = syntheticStagingEventId(trigger, nowMs + 60_000);
+  const nextDay = syntheticStagingEventId(trigger, nowMs + 86_400_000);
+  assert.match(first, /^[0-9a-f-]{36}$/);
+  assert.equal(sameDay, first);
+  assert.notEqual(nextDay, first);
+  assert.throws(() => syntheticStagingEventId(trigger, -1), /TIME_INVALID/);
 });
 
 test("trigger comparison fails closed", () => {
@@ -68,6 +87,7 @@ test("route cannot dispatch email or apply live learning", () => {
   assert.match(source, /readSyntheticStagingConfiguration/);
   assert.match(configurationSource, /VERCEL_ENV\s*!==\s*"preview"/);
   assert.match(source, /x-marketing-staging-trigger/);
+  assert.match(source, /syntheticStagingEventId/);
   assert.match(source, /emailDispatched:\s*false/);
   assert.match(source, /liveLearningApplied:\s*false/);
 });

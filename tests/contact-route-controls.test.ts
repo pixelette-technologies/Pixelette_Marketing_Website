@@ -16,11 +16,13 @@ const expectedEnvironmentNames = [
   "MARKETING_CONTACT_STORE_DIR",
   "MARKETING_CONTACT_RATE_LIMIT_SECRET",
   "MARKETING_BD_STAGE_URL",
+  "MARKETING_BD_STAGE_URL_SHA256",
   "MARKETING_TRANSPORT_SECRET",
   "MARKETING_DEFAULT_CAMPAIGN_ID",
   "MARKETING_RETENTION_REVIEW_DAYS",
   "MARKETING_SYNTHETIC_STAGE_ENABLED",
   "MARKETING_SYNTHETIC_STAGE_TRIGGER_SECRET",
+  "MARKETING_SYNTHETIC_STAGE_DAILY_WRITE_LIMIT",
   "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL",
   "NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION",
   "NEXT_PUBLIC_CONTACT_CONSENT_TEXT",
@@ -85,6 +87,7 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
   assert.match(route, /control\.complete\(decision\.lease/);
   assert.match(route, /control\.fail\(decision\.lease/);
   assert.match(route, /MARKETING_BD_STAGE_URL/);
+  assert.match(route, /MARKETING_BD_STAGE_URL_SHA256/);
   assert.match(route, /MARKETING_TRANSPORT_SECRET/);
   assert.match(route, /sendMarketingBdSubmission/);
   assert.match(route, /Marketing to BD handoff failed/);

@@ -1,9 +1,9 @@
-import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import {
   authoriseSyntheticStagingTrigger,
   executeSyntheticStagingJourney,
   readSyntheticStagingConfiguration,
+  syntheticStagingEventId,
 } from "@/lib/syntheticStagingJourney";
 
 export const runtime = "nodejs";
@@ -22,11 +22,12 @@ export async function POST(request: NextRequest) {
       request.headers.get("x-marketing-staging-trigger"),
       configuration.triggerSecret,
     );
+    const nowMs = Date.now();
     const result = await executeSyntheticStagingJourney({
       configuration,
       origin: request.nextUrl.origin,
-      eventId: randomUUID(),
-      nowMs: Date.now(),
+      eventId: syntheticStagingEventId(configuration.triggerSecret, nowMs),
+      nowMs,
     });
     if (!result.accepted) {
       return NextResponse.json({ error: "Synthetic staging receiver refused the journey" }, { status: 502, headers });

@@ -1,9 +1,10 @@
-import { timingSafeEqual } from "node:crypto";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import type { GovernedContactSubmission } from "./contactContract";
 import {
   buildMarketingBdSourceEnvelope,
   sendMarketingBdSubmission,
   type MarketingBdTransportConfiguration,
+  validateMarketingBdTransportConfiguration,
 } from "./marketingBdTransport.ts";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -12,6 +13,7 @@ const DESCRIPTION = "SYNTHETIC STAGING ONLY - NO REAL PERSON OR ENQUIRY";
 
 export interface SyntheticStagingConfiguration {
   triggerSecret: string;
+  dailyUniqueWriteLimit: 1;
   transport: MarketingBdTransportConfiguration;
 }
 
@@ -34,15 +36,33 @@ export function readSyntheticStagingConfiguration(
     throw new Error("SYNTHETIC_STAGING_TRIGGER_SECRET_INVALID");
   }
   const retentionReviewDays = Number(required(environment, "MARKETING_RETENTION_REVIEW_DAYS"));
+  const dailyUniqueWriteLimit = Number(required(environment, "MARKETING_SYNTHETIC_STAGE_DAILY_WRITE_LIMIT"));
+  if (dailyUniqueWriteLimit !== 1) {
+    throw new Error("SYNTHETIC_STAGING_DAILY_WRITE_LIMIT_INVALID");
+  }
+  const transport = validateMarketingBdTransportConfiguration({
+    endpoint: required(environment, "MARKETING_BD_STAGE_URL"),
+    endpointSha256: required(environment, "MARKETING_BD_STAGE_URL_SHA256"),
+    secret: required(environment, "MARKETING_TRANSPORT_SECRET"),
+    defaultCampaignId: required(environment, "MARKETING_DEFAULT_CAMPAIGN_ID"),
+    retentionReviewDays,
+  });
   return {
     triggerSecret,
-    transport: {
-      endpoint: required(environment, "MARKETING_BD_STAGE_URL"),
-      secret: required(environment, "MARKETING_TRANSPORT_SECRET"),
-      defaultCampaignId: required(environment, "MARKETING_DEFAULT_CAMPAIGN_ID"),
-      retentionReviewDays,
-    },
+    dailyUniqueWriteLimit,
+    transport,
   };
+}
+
+export function syntheticStagingEventId(triggerSecret: string, nowMs: number): string {
+  if (!Number.isSafeInteger(nowMs) || nowMs < 0) {
+    throw new Error("SYNTHETIC_STAGING_TIME_INVALID");
+  }
+  const utcDay = new Date(nowMs).toISOString().slice(0, 10);
+  const digest = createHmac("sha256", triggerSecret)
+    .update(`marketing-synthetic-staging:${utcDay}`, "utf8")
+    .digest("hex");
+  return `${digest.slice(0, 8)}-${digest.slice(8, 12)}-4${digest.slice(13, 16)}-a${digest.slice(17, 20)}-${digest.slice(20, 32)}`;
 }
 
 export function authoriseSyntheticStagingTrigger(supplied: string | null, expected: string): void {

@@ -1,4 +1,4 @@
-import { createHmac } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import type { GovernedContactSubmission } from "./contactContract";
 
 const CANONICAL_CAMPAIGN = /^PMC-marketing-20[0-9]{2}(0[1-9]|1[0-2])-[0-9]{2}$/;
@@ -6,9 +6,14 @@ const SOURCE_PATH = "/v1/source-submissions";
 
 export interface MarketingBdTransportConfiguration {
   endpoint: string;
+  endpointSha256: string;
   secret: string;
   defaultCampaignId: string;
   retentionReviewDays: number;
+}
+
+export function marketingBdEndpointSha256(endpoint: string): string {
+  return createHash("sha256").update(endpoint, "utf8").digest("hex");
 }
 
 export interface MarketingBdSourceEnvelope {
@@ -65,6 +70,15 @@ export function validateMarketingBdTransportConfiguration(
   if (endpoint.protocol !== "https:" || endpoint.pathname !== SOURCE_PATH || endpoint.search || endpoint.hash) {
     throw new Error("MARKETING_BD_ENDPOINT_INVALID");
   }
+  const expectedHash = configuration.endpointSha256.trim().toLowerCase();
+  if (!/^[0-9a-f]{64}$/.test(expectedHash)) {
+    throw new Error("MARKETING_BD_ENDPOINT_BINDING_INVALID");
+  }
+  const canonicalEndpoint = endpoint.toString();
+  const actualHash = marketingBdEndpointSha256(canonicalEndpoint);
+  if (!timingSafeEqual(Buffer.from(actualHash, "hex"), Buffer.from(expectedHash, "hex"))) {
+    throw new Error("MARKETING_BD_ENDPOINT_BINDING_MISMATCH");
+  }
   if (configuration.secret.length < 32) throw new Error("MARKETING_BD_SECRET_TOO_SHORT");
   if (!CANONICAL_CAMPAIGN.test(configuration.defaultCampaignId)) {
     throw new Error("MARKETING_BD_CAMPAIGN_INVALID");
@@ -74,7 +88,7 @@ export function validateMarketingBdTransportConfiguration(
       || configuration.retentionReviewDays > 3660) {
     throw new Error("MARKETING_BD_RETENTION_REVIEW_INVALID");
   }
-  return { ...configuration, endpoint: endpoint.toString() };
+  return { ...configuration, endpoint: canonicalEndpoint, endpointSha256: expectedHash };
 }
 
 export function buildMarketingBdSourceEnvelope(

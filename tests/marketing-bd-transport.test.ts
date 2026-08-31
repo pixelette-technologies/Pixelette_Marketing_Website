@@ -3,14 +3,17 @@ import test from "node:test";
 import type { GovernedContactSubmission } from "../src/lib/contactContract";
 import {
   buildMarketingBdSourceEnvelope,
+  marketingBdEndpointSha256,
   marketingBdSignature,
   sendMarketingBdSubmission,
   stableJson,
   validateMarketingBdTransportConfiguration,
 } from "../src/lib/marketingBdTransport.ts";
 
+const endpoint = "https://bd-stage.example.invalid/v1/source-submissions";
 const configuration = {
-  endpoint: "https://bd-stage.example.invalid/v1/source-submissions",
+  endpoint,
+  endpointSha256: marketingBdEndpointSha256(endpoint),
   secret: "synthetic-marketing-transport-secret-0001",
   defaultCampaignId: "PMC-marketing-202608-30",
   retentionReviewDays: 365,
@@ -43,6 +46,14 @@ test("configuration fails closed for invalid endpoint, weak secret and noncanoni
     ...configuration,
     endpoint: "https://example.invalid/v1/marketing-lead-events",
   }), /ENDPOINT_INVALID/);
+  assert.throws(() => validateMarketingBdTransportConfiguration({
+    ...configuration,
+    endpoint: "https://other-stage.example.invalid/v1/source-submissions",
+  }), /ENDPOINT_BINDING_MISMATCH/);
+  assert.throws(() => validateMarketingBdTransportConfiguration({
+    ...configuration,
+    endpointSha256: "not-a-sha256",
+  }), /ENDPOINT_BINDING_INVALID/);
   assert.throws(() => validateMarketingBdTransportConfiguration({
     ...configuration,
     secret: "short",

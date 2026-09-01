@@ -16,17 +16,21 @@ const headers = {
 };
 
 function stagingFailureCode(error: unknown): string {
-  if (!(error instanceof Error)) return "SYNTHETIC_STAGING_UNCLASSIFIED_FAILURE";
-  if (/^SYNTHETIC_[A-Z0-9_:]+$/.test(error.message)) return error.message;
-  const cause = (error as Error & { cause?: unknown }).cause;
+  const errorRecord = typeof error === "object" && error !== null
+    ? error as { message?: unknown; name?: unknown; cause?: unknown }
+    : undefined;
+  const message = typeof errorRecord?.message === "string" ? errorRecord.message : "";
+  const name = typeof errorRecord?.name === "string" ? errorRecord.name : "";
+  if (/^SYNTHETIC_[A-Z0-9_:]+$/.test(message)) return message;
+  const cause = errorRecord?.cause;
   if (typeof cause === "object" && cause !== null && "code" in cause) {
     const code = String((cause as { code?: unknown }).code ?? "");
     if (/^[A-Z0-9_]+$/.test(code)) return `SYNTHETIC_STAGING_NETWORK_${code}`;
   }
-  if (error.name === "TimeoutError" || error.name === "AbortError") {
+  if (name === "TimeoutError" || name === "AbortError") {
     return "SYNTHETIC_STAGING_NETWORK_TIMEOUT";
   }
-  if (error.message === "fetch failed") return "SYNTHETIC_STAGING_NETWORK_FETCH_FAILED";
+  if (message === "fetch failed") return "SYNTHETIC_STAGING_NETWORK_FETCH_FAILED";
   return "SYNTHETIC_STAGING_UNCLASSIFIED_FAILURE";
 }
 

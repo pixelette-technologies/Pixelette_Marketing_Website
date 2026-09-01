@@ -10,20 +10,22 @@
 // whole argument for the clamp-and-auto-fit register the primitives are built
 // on.
 
+// Phase F. The heading and the cards were a side-by-side pair, which squeezed
+// the heading into a narrow column beside a wide dark rectangle. They stack
+// now: the heading block on its own at the top, the nine cards below it across
+// the full width.
 .engagementStalls {
   display: flex;
-  flex-wrap: wrap;
-  align-items: start;
-  gap: 2.5rem;
+  flex-direction: column;
+  gap: var(--sec-y-sm);
 
-  // The heading column. It gives way before the cards do, because the cards
-  // are what the section is for — but it was on `flex: 1 1 16rem` against a
-  // panel on `flex: 999 1 24rem`, and a grow factor of 999 takes essentially
-  // all the free space. The column was being squeezed to about 256px at
-  // desktop, which is why the heading wrapped to four cramped lines beside a
-  // vast dark rectangle. 1 against 2 gives roughly a 38/62 split.
+  // The heading block is held to roughly half the container so the copy does
+  // not run the width of the page. 34rem is 544px against the 1160px wrap —
+  // just under half — and because it is a max rather than a percentage it
+  // simply stops applying on narrow screens instead of crushing the column to
+  // half a phone.
   & > div:first-child {
-    flex: 1 1 18rem;
+    max-width: 34rem;
 
     // The guide's eyebrow-to-heading gap, exactly: 20px.
     & > *:first-child {
@@ -44,11 +46,21 @@
 // The dark ground is now the full-bleed .band-dark on the section wrapper, so
 // what is left here is only the grid. The cards keep their own edges and now
 // have room to breathe against the band.
+// Three across, on flex, which divides the nine cards into exactly three rows.
+//
+// The basis is a third of the row minus its share of the two gaps, so the
+// three columns are equal. The min-width lets a card that can no longer hold
+// 15rem drop to the next line on its own, which is what keeps this to zero
+// breakpoints: three across at desktop, two in the middle, one on a phone.
 .engagementStalls__panel {
-  flex: 2 1 26rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
+
+  & > * {
+    flex: 1 1 calc((100% - 2rem) / 3);
+    min-width: min(15rem, 100%);
+  }
 }
 
 // The D8 colour block that sat here is gone. It set the h2 to the brand anchor

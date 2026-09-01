@@ -19,13 +19,25 @@
   // `text-wrap: balance` on the display classes, because a flex item cannot
   // balance against text it is laid out beside. It is a plain block again.
 
+  // Phase F. There was a long gap between "Growth starts here" and "Success
+  // follows next", from two causes stacking.
+  //
+  // The section carried a full --sec-y-sm top margin, 40px rising to 64px. And
+  // the row below was `align-items: center`, so the text column — about 300px
+  // tall — was being vertically centred against the collage, which renders
+  // around 430px. That centring alone put roughly 65px of dead space above the
+  // eyebrow, on top of the margin.
+  //
+  // The margin comes down and the row aligns to the start, so the eyebrow sits
+  // directly under the heading and the collage runs on past the text rather
+  // than pushing it down the page.
   & > section {
-    margin-top: var(--sec-y-sm);
+    margin-top: 1.5rem;
 
     & > div {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
+      align-items: start;
       justify-content: space-between;
       gap: 2rem 2.5rem;
 

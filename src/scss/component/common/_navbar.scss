@@ -13,6 +13,20 @@
   border-bottom: 1px solid var(--color-line);
 }
 
+// Phase F. The services and industries dropdowns were being cut off on hover.
+//
+// container_main carries `overflow: hidden`, kept deliberately because several
+// sections position decorative elements outside their own box and rely on it to
+// clip them. The header is not one of those sections — it has nothing to clip
+// and one thing that must escape, so the clip is switched off HERE rather than
+// on the container itself. Removing it globally would un-clip the hero collage,
+// DynamicMarket, the industry hero and FinalResult all at once.
+//
+// Scoped to the header's own container, so nothing else changes.
+.site-header > .container_main {
+  overflow: visible;
+}
+
 .main_nav {
   // The drawer is absolutely positioned and the removed sticky wrapper used to
   // be its containing block. This replaces it.

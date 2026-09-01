@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Logo } from "@/assets/common";
+import { LogoBlack } from "@/assets/common";
 import Container from "./Container";
 import Link from "next/link";
 import { NavbarDropDown } from "../feature";
@@ -33,7 +33,7 @@ export default function Navbar() {
         <div className='main_nav'>
           <nav className='site-nav'>
             <Link href={"/"}>
-              <Logo />
+              <LogoBlack />
             </Link>
             <div>
               <Link href={"/"} className='flink'>

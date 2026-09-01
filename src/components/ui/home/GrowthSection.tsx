@@ -16,13 +16,15 @@ export default function GrowthSection() {
   return (
     <Container className='main'>
       <div className='growthSection rule-cap'>
-        <Heading className='h2' level={2}>
-          Growth <span>starts</span> here
-        </Heading>
+
 
         <section>
           <div>
             <header>
+              <Heading className='h2' level={2}>
+                Growth <span>starts</span> here
+              </Heading>
+              
               <Heading className='eyebrow' level={3}>
                 Success Follows Next
               </Heading>

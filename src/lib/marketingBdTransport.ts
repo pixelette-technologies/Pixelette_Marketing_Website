@@ -149,7 +149,7 @@ export function marketingBdSignature(
   secret: string,
   timestamp: number,
   idempotencyKey: string,
-  body: MarketingBdSourceEnvelope,
+  body: unknown,
 ): string {
   return createHmac("sha256", secret)
     .update(`${timestamp}.${idempotencyKey}.${stableJson(body)}`, "utf8")

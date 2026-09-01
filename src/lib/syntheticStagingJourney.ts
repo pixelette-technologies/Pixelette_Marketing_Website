@@ -2,7 +2,9 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 import type { GovernedContactSubmission } from "./contactContract";
 import {
   buildMarketingBdSourceEnvelope,
+  marketingBdSignature,
   sendMarketingBdSubmission,
+  stableJson,
   type MarketingBdTransportConfiguration,
   validateMarketingBdTransportConfiguration,
 } from "./marketingBdTransport.ts";
@@ -10,6 +12,8 @@ import {
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const NOTICE_VERSION = "synthetic-staging-v1";
 const DESCRIPTION = "SYNTHETIC STAGING ONLY - NO REAL PERSON OR ENQUIRY";
+const BASELINE_NEXT_ACTION = "AWAIT_RESTRICTED_BD_OUTCOME";
+const LEARNED_NEXT_ACTION = "COLLECT_ADDITIONAL_MATCHED_OUTCOMES_BEFORE_PATTERN_PROPOSAL";
 
 export interface SyntheticStagingConfiguration {
   triggerSecret: string;
@@ -138,8 +142,172 @@ export async function executeSyntheticStagingJourney(options: {
   };
 }
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function stagingEndpoint(sourceEndpoint: string, route: string): string {
+  const endpoint = new URL(sourceEndpoint);
+  if (!endpoint.pathname.endsWith("/v1/source-submissions")) {
+    throw new Error("SYNTHETIC_STAGING_ENDPOINT_INVALID");
+  }
+  endpoint.pathname = endpoint.pathname.replace(/\/source-submissions$/, `/${route}`);
+  return endpoint.toString();
+}
+
+async function signedSyntheticPost(options: {
+  endpoint: string;
+  eventId: string;
+  body: Record<string, unknown>;
+  secret: string;
+  nowMs: number;
+  fetchImpl: typeof fetch;
+}): Promise<Record<string, unknown>> {
+  const timestamp = Math.floor(options.nowMs / 1000);
+  const response = await options.fetchImpl(options.endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Marketing-Timestamp": String(timestamp),
+      "X-Marketing-Idempotency-Key": options.eventId,
+      "X-Marketing-Signature": marketingBdSignature(
+        options.secret,
+        timestamp,
+        options.eventId,
+        options.body,
+      ),
+    },
+    body: stableJson(options.body),
+    cache: "no-store",
+    signal: AbortSignal.timeout(5_000),
+  });
+  if (!response.ok
+      || response.headers.get("cache-control") !== "no-store"
+      || response.headers.get("x-marketing-data-classification") !== "synthetic-only") {
+    throw new Error("SYNTHETIC_STAGING_RECEIVER_REFUSED");
+  }
+  const payload = await response.json() as unknown;
+  if (!isRecord(payload)) throw new Error("SYNTHETIC_STAGING_RESPONSE_INVALID");
+  return payload;
+}
+
+export interface SyntheticStagingFullJourneyResult {
+  accepted: boolean;
+  submissionId: string;
+  providerReceiptId?: string;
+  sourceReceiptStatus: string;
+  baselineNextAction: string;
+  outcomeStatus: string;
+  outcomeReturnStatus: string;
+  learnedNextAction: string;
+  nextActionChanged: boolean;
+  learningState: string;
+  appliesLiveChange: false;
+  acceptedForLiveLearning: false;
+}
+
+export async function executeSyntheticStagingFullJourney(options: {
+  configuration: SyntheticStagingConfiguration;
+  origin: string;
+  eventId: string;
+  nowMs: number;
+  fetchImpl?: typeof fetch;
+}): Promise<SyntheticStagingFullJourneyResult> {
+  const fetchImpl = options.fetchImpl ?? fetch;
+  const source = await executeSyntheticStagingJourney({ ...options, fetchImpl });
+  if (!source.accepted) {
+    return {
+      accepted: false,
+      submissionId: source.submissionId,
+      providerReceiptId: source.providerReceiptId,
+      sourceReceiptStatus: "REFUSED",
+      baselineNextAction: "",
+      outcomeStatus: "",
+      outcomeReturnStatus: "",
+      learnedNextAction: "",
+      nextActionChanged: false,
+      learningState: "",
+      appliesLiveChange: false,
+      acceptedForLiveLearning: false,
+    };
+  }
+
+  const eventId = source.submissionId;
+  const query = { eventId };
+  const request = {
+    eventId,
+    secret: options.configuration.transport.secret,
+    nowMs: options.nowMs,
+    fetchImpl,
+  };
+  const baseline = await signedSyntheticPost({
+    ...request,
+    endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-learning/query"),
+    body: query,
+  });
+  const outcome = await signedSyntheticPost({
+    ...request,
+    endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-outcomes"),
+    body: {
+      eventId,
+      governanceReference: "SYNTHETIC-BD-ACCEPTANCE",
+      commercialFeedback: {
+        stage: "SYNTHETIC_QUALIFIED",
+        outcome: "SYNTHETIC_WON",
+        valueBand: "SYNTHETIC_ZERO_VALUE",
+      },
+      attribution: {
+        campaignId: options.configuration.transport.defaultCampaignId,
+        source: "synthetic-staging",
+      },
+    },
+  });
+  const returned = await signedSyntheticPost({
+    ...request,
+    endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-outcomes/query"),
+    body: query,
+  });
+  const learned = await signedSyntheticPost({
+    ...request,
+    endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-learning/query"),
+    body: query,
+  });
+
+  const learning = isRecord(learned.learning) ? learned.learning : undefined;
+  const previousNextAction = String(learning?.previous_next_action ?? baseline.next_action ?? "");
+  const learnedNextAction = String(learned.next_action ?? "");
+  const acceptedForLiveLearning = learning?.accepted_for_live_learning;
+  const appliesLiveChange = learned.applies_live_change;
+  const valid = ["AWAITING_OUTCOME", "LEARNING_PROJECTED"].includes(String(baseline.learning_status))
+    && previousNextAction === BASELINE_NEXT_ACTION
+    && ["RECORDED", "DUPLICATE"].includes(String(outcome.outcome_status))
+    && ["PROJECTED", "DUPLICATE"].includes(String((outcome.learning_projection as Record<string, unknown> | undefined)?.learning_status))
+    && returned.outcome_status === "RETURNED"
+    && learned.learning_status === "LEARNING_PROJECTED"
+    && learnedNextAction === LEARNED_NEXT_ACTION
+    && acceptedForLiveLearning === false
+    && appliesLiveChange === false;
+
+  return {
+    accepted: valid,
+    submissionId: eventId,
+    providerReceiptId: source.providerReceiptId,
+    sourceReceiptStatus: "STAGED FOR BD",
+    baselineNextAction: previousNextAction,
+    outcomeStatus: String(outcome.outcome_status ?? ""),
+    outcomeReturnStatus: String(returned.outcome_status ?? ""),
+    learnedNextAction,
+    nextActionChanged: previousNextAction !== learnedNextAction,
+    learningState: String(learning?.learning_state ?? ""),
+    appliesLiveChange: false,
+    acceptedForLiveLearning: false,
+  };
+}
+
 export const SYNTHETIC_STAGING_MARKERS = Object.freeze({
   noticeVersion: NOTICE_VERSION,
   description: DESCRIPTION,
   email: "journey@example.invalid",
+  baselineNextAction: BASELINE_NEXT_ACTION,
+  learnedNextAction: LEARNED_NEXT_ACTION,
 });

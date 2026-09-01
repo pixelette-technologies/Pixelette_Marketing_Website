@@ -5,6 +5,7 @@ import {
   SYNTHETIC_STAGING_MARKERS,
   authoriseSyntheticStagingTrigger,
   buildSyntheticStagingSubmission,
+  executeSyntheticStagingFullJourney,
   executeSyntheticStagingJourney,
   readSyntheticStagingConfiguration,
   syntheticStagingEventId,
@@ -113,6 +114,104 @@ test("website staging journey reaches the governed receiver without email or liv
   assert.equal((captured?.payload as Record<string, unknown>).email, "journey@example.invalid");
   assert.equal(captured?.sourceUrl, "https://preview.example.invalid/contact-us");
   assert.equal(captured?.campaignId, campaignId);
+});
+
+test("full hosted journey returns a durable BD outcome and changes only the staged next action", async () => {
+  const configuration = readSyntheticStagingConfiguration(environment());
+  const calls: string[] = [];
+  const response = (body: Record<string, unknown>) => new Response(JSON.stringify(body), {
+    status: 200,
+    headers: {
+      "Cache-Control": "no-store",
+      "Content-Type": "application/json",
+      "X-Marketing-Data-Classification": "synthetic-only",
+    },
+  });
+  const result = await executeSyntheticStagingFullJourney({
+    configuration,
+    origin: "https://preview.example.invalid",
+    eventId,
+    nowMs,
+    fetchImpl: async (input) => {
+      const path = new URL(String(input)).pathname;
+      calls.push(path);
+      if (path.endsWith("/source-submissions")) {
+        return response({ transport_status: "DELIVERED", receiver_receipt: { status: "STAGED FOR BD" } });
+      }
+      if (path.endsWith("/synthetic-learning/query") && calls.length === 2) {
+        return response({
+          learning_status: "AWAITING_OUTCOME",
+          next_action: SYNTHETIC_STAGING_MARKERS.baselineNextAction,
+          applies_live_change: false,
+        });
+      }
+      if (path.endsWith("/synthetic-outcomes")) {
+        return response({
+          outcome_status: "RECORDED",
+          learning_projection: {
+            learning_status: "PROJECTED",
+            learning: { previous_next_action: SYNTHETIC_STAGING_MARKERS.baselineNextAction },
+          },
+        });
+      }
+      if (path.endsWith("/synthetic-outcomes/query")) {
+        return response({ outcome_status: "RETURNED" });
+      }
+      return response({
+        learning_status: "LEARNING_PROJECTED",
+        next_action: SYNTHETIC_STAGING_MARKERS.learnedNextAction,
+        applies_live_change: false,
+        learning: {
+          previous_next_action: SYNTHETIC_STAGING_MARKERS.baselineNextAction,
+          accepted_for_live_learning: false,
+          learning_state: "INSUFFICIENT_EVIDENCE_FOR_PATTERN_PROPOSAL",
+        },
+      });
+    },
+  });
+  assert.equal(result.accepted, true);
+  assert.deepEqual(calls, [
+    "/v1/source-submissions",
+    "/v1/synthetic-learning/query",
+    "/v1/synthetic-outcomes",
+    "/v1/synthetic-outcomes/query",
+    "/v1/synthetic-learning/query",
+  ]);
+  assert.equal(result.outcomeStatus, "RECORDED");
+  assert.equal(result.outcomeReturnStatus, "RETURNED");
+  assert.equal(result.nextActionChanged, true);
+  assert.equal(result.appliesLiveChange, false);
+  assert.equal(result.acceptedForLiveLearning, false);
+});
+
+test("full hosted journey fails closed when staged outcome evidence is incomplete", async () => {
+  const configuration = readSyntheticStagingConfiguration(environment());
+  let call = 0;
+  const result = await executeSyntheticStagingFullJourney({
+    configuration,
+    origin: "https://preview.example.invalid",
+    eventId,
+    nowMs,
+    fetchImpl: async () => {
+      call += 1;
+      const bodies = [
+        { transport_status: "DELIVERED", receiver_receipt: { status: "STAGED FOR BD" } },
+        { learning_status: "AWAITING_OUTCOME", next_action: SYNTHETIC_STAGING_MARKERS.baselineNextAction, applies_live_change: false },
+        { outcome_status: "RECORDED", learning_projection: { learning_status: "PROJECTED" } },
+        { outcome_status: "RETURNED" },
+        { learning_status: "LEARNING_PROJECTED", next_action: SYNTHETIC_STAGING_MARKERS.learnedNextAction, applies_live_change: true },
+      ];
+      return new Response(JSON.stringify(bodies[call - 1]), {
+        status: 200,
+        headers: {
+          "Cache-Control": "no-store",
+          "Content-Type": "application/json",
+          "X-Marketing-Data-Classification": "synthetic-only",
+        },
+      });
+    },
+  });
+  assert.equal(result.accepted, false);
 });
 
 test("invalid origin and non-governed receiver response fail closed", async () => {

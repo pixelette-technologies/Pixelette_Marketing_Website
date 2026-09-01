@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {
   authoriseSyntheticStagingTrigger,
-  executeSyntheticStagingJourney,
+  executeSyntheticStagingFullJourney,
   readSyntheticStagingConfiguration,
   syntheticStagingEventId,
 } from "@/lib/syntheticStagingJourney";
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       configuration.triggerSecret,
     );
     const nowMs = Date.now();
-    const result = await executeSyntheticStagingJourney({
+    const result = await executeSyntheticStagingFullJourney({
       configuration,
       origin: request.nextUrl.origin,
       eventId: syntheticStagingEventId(configuration.triggerSecret, nowMs),
@@ -36,8 +36,18 @@ export async function POST(request: NextRequest) {
       ok: true,
       submissionId: result.submissionId,
       providerReceiptId: result.providerReceiptId,
+      sourceReceiptStatus: result.sourceReceiptStatus,
+      baselineNextAction: result.baselineNextAction,
+      outcomeStatus: result.outcomeStatus,
+      outcomeReturnStatus: result.outcomeReturnStatus,
+      learnedNextAction: result.learnedNextAction,
+      nextActionChanged: result.nextActionChanged,
+      learningState: result.learningState,
       dataClassification: "synthetic-only",
       emailDispatched: false,
+      realDataProcessed: false,
+      publicAction: false,
+      spend: false,
       liveLearningApplied: false,
     }, { status: 200, headers });
   } catch (error) {

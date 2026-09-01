@@ -8,7 +8,9 @@
     "start": "next start",
     "test:contact": "node --test tests/*.test.ts",
     "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
-    "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "lint:check": "eslint \"src/**/*.{ts,tsx}\"",
+    "compare:palette": "node scripts/build-palette-compare.mjs"
   },
   "dependencies": {
     "aos": "^2.3.4",

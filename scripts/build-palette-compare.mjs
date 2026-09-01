@@ -1,22 +1,23 @@
 /**
  * Palette comparison page — Phase B decision instrument.
  *
- * Renders the pattern guide's frozen values beside the proposed Pixelette
+ * Renders the pattern guide's frozen values beside the live Pixelette
  * Marketing values, using the guide's own component CSS with only the colour
  * tokens swapped, so what you are judging is the actual system rather than
  * hand-written swatches. Every token-against-ground pairing carries its
  * measured WCAG 2.1 contrast ratio, and every failure is badged by provenance:
  * a fault inherited from the guide is amber, one we introduced is red.
  *
- * INVERT THIS ONCE THE PALETTE IS SIGNED OFF. Freeze the approved values in
- * PROPOSED, extract the live ones from src/scss/globels/_tokens.scss, and exit
- * non-zero on any drift. Until that happens both columns render from constants
- * and the page stops comparing anything the moment the tokens land.
+ * INVERTED on 1 September 2026, the moment the palette was signed off.
+ * APPROVED is now frozen at the signed-off values and the live column is read
+ * back out of src/scss/globels/_tokens.scss, so this exits non-zero both on an
+ * introduced contrast failure and on any token drifting away from what was
+ * approved. It is a regression gate now, not only a decision instrument.
  *
  *   node scripts/build-palette-compare.mjs
  */
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 // On Windows import.meta.url yields /D:/... so strip the leading slash.
@@ -24,9 +25,10 @@ const ROOT = new URL("..", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "
 const OUT = join(ROOT, "vault", "palette-compare.html");
 
 /* ------------------------------------------------------------------ *
- * The two palettes.
- * GUIDE is frozen: read out of vault/Pixelette_Web_Patterns.html.
- * PROPOSED is the Phase B derivation, pending sign-off.
+ * The two frozen palettes.
+ * GUIDE is read out of vault/Pixelette_Web_Patterns.html.
+ * APPROVED is the Phase B derivation as signed off on 1 September 2026.
+ * Neither is edited without a decision behind it.
  * ------------------------------------------------------------------ */
 
 const GUIDE = {
@@ -63,13 +65,14 @@ const GUIDE = {
   danger: null
 };
 
-const PROPOSED = {
+const APPROVED = {
   label: "Pixelette Marketing",
-  sub: "proposed — two-tone",
+  sub: "approved — two-tone",
   brand: "#B3063C",           // the wordmark, the favicon and $primary all agree
   brandHover: "#8C0430",
   signal: "#FF2F5B",          // already in the repo; solid marks only on light
   wash: "#EBC7D2",
+  tint: "#F9EBF0",            // diagram and highlight fill
   ink: "#0A0A0A",
   body: "#5C4149",            // guide ramp, hue rotated to 341.3 deg at held lightness
   muted: "#7D5D67",
@@ -105,78 +108,80 @@ const PROPOSED = {
 };
 
 /* ------------------------------------------------------------------ *
- * The one open by-eye call: the dark family's temperature.
+ * The live palette, read back out of the stylesheet.
  *
- * The faithful rotation above preserves the guide's high dark-family
- * saturation, which gives a distinctly crimson black. The alternative is a
- * softer, near-neutral warm black. That call cannot be made in the abstract,
- * so it is derived here and rendered as a real surface below.
+ * The generator is now inverted. APPROVED above is frozen at the values
+ * signed off by eye on 1 September 2026; this reads what src/scss actually
+ * emits, and any divergence is drift that exits non-zero. Before the
+ * inversion both columns rendered from the same constants, which would have
+ * meant the page silently stopped comparing anything the moment the tokens
+ * landed — the failure this file exists to prevent.
  *
- * Method: hold hue and HSL lightness exactly, multiply saturation. Only the
- * dark-family tokens move. footerEyebrow is deliberately excluded — the signal
- * tone is the one voice on the dark ground and softening it would remove the
- * thing being judged.
- *
- * Note this shares the flaw documented on panelMuted above: holding HSL
- * lightness does not hold relative luminance. Desaturating a red-family token
- * adds green and blue, which carry 0.7152 and 0.0722 of the luminance formula
- * against red's 0.2126, so every softened token gets *lighter* in luminance
- * terms. Grounds rise toward their text and text rises away from its ground.
- * The arithmetic below reports the net rather than assuming it.
+ * The dark family's temperature was the one open by-eye call. A softened,
+ * near-neutral warm alternative was derived by holding hue and HSL lightness
+ * and multiplying saturation by 0.35, rendered beside the faithful rotation
+ * and measured: it cleared every threshold, so the call was purely by eye.
+ * The faithful rotation was chosen. That work is written up in
+ * vault/Brand layer.md; it is not re-derived here.
  * ------------------------------------------------------------------ */
 
-const DARK_KEYS = [
-  "footerBg", "footerLine", "footerBody", "footerMuted", "footerPill",
-  "panelA", "panelB", "panelBorder", "panelText", "panelMuted",
-  "panelBtnText", "panelBtnBorder"
-];
+const TOKENS = join(ROOT, "src", "scss", "globels", "_tokens.scss");
 
-const SOFTEN = 0.35;
-
-function hexToHsl(hex) {
-  const h = hex.replace("#", "");
-  const [r, g, b] = [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16) / 255);
-  const max = Math.max(r, g, b), min = Math.min(r, g, b);
-  const l = (max + min) / 2;
-  const d = max - min;
-  if (d === 0) return [0, 0, l];
-  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-  let hue;
-  if (max === r) hue = ((g - b) / d) % 6;
-  else if (max === g) hue = (b - r) / d + 2;
-  else hue = (r - g) / d + 4;
-  hue *= 60;
-  if (hue < 0) hue += 360;
-  return [hue, s, l];
-}
-
-function hslToHex(h, s, l) {
-  const c = (1 - Math.abs(2 * l - 1)) * s;
-  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
-  const m = l - c / 2;
-  const seg = Math.floor(h / 60) % 6;
-  const [r, g, b] = [
-    [c, x, 0], [x, c, 0], [0, c, x], [0, x, c], [x, 0, c], [c, 0, x]
-  ][seg];
-  return (
-    "#" +
-    [r, g, b]
-      .map(v => Math.round((v + m) * 255).toString(16).padStart(2, "0").toUpperCase())
-      .join("")
-  );
-}
-
-function soften(hex, factor) {
-  const [h, s, l] = hexToHsl(hex);
-  return hslToHex(h, s * factor, l);
-}
-
-const SOFTENED = {
-  ...PROPOSED,
-  label: "Softened dark family",
-  sub: `near-neutral warm — saturation × ${SOFTEN}`,
-  ...Object.fromEntries(DARK_KEYS.map(k => [k, soften(PROPOSED[k], SOFTEN)]))
+// Generator key -> the custom property that carries it. Anything absent from
+// this map is not gated, so a token added to the brand layer must be added
+// here too or it drifts unwatched.
+const TOKEN_OF = {
+  brand: "--color-brand",
+  brandHover: "--color-brand-hover",
+  signal: "--color-brand-signal",
+  wash: "--color-brand-wash",
+  tint: "--color-brand-tint",
+  ink: "--color-ink",
+  body: "--color-body",
+  muted: "--color-muted",
+  soft: "--color-soft",
+  page: "--color-page",
+  band: "--color-band",
+  line: "--color-line",
+  lineCard: "--color-line-card",
+  linePill: "--color-line-pill",
+  lineStrong: "--color-line-strong",
+  footerBg: "--color-footer-bg",
+  footerLine: "--color-footer-line",
+  footerBody: "--color-footer-body",
+  footerMuted: "--color-footer-muted",
+  footerPill: "--color-footer-pill",
+  footerEyebrow: "--color-footer-eyebrow",
+  panelA: "--color-panel-a",
+  panelB: "--color-panel-b",
+  panelBorder: "--color-panel-border",
+  panelText: "--color-panel-text",
+  panelMuted: "--color-panel-muted",
+  panelBtnText: "--color-panel-btn-text",
+  panelBtnBorder: "--color-panel-btn-border",
+  ok: "--color-ok",
+  danger: "--color-danger"
 };
+
+function readLive() {
+  const src = readFileSync(TOKENS, "utf8");
+  const out = { label: "Pixelette Marketing", sub: "live, from _tokens.scss" };
+  const missing = [];
+  for (const [key, prop] of Object.entries(TOKEN_OF)) {
+    // The trailing colon is what keeps --color-brand from matching
+    // --color-brand-hover, and --color-panel-b from matching -border.
+    const m = src.match(new RegExp(`${prop}:\\s*(#[0-9a-fA-F]{6})\\s*;`));
+    if (m) out[key] = m[1].toUpperCase();
+    else missing.push(prop);
+  }
+  return { live: out, missing };
+}
+
+const { live: LIVE, missing: MISSING } = readLive();
+
+const DRIFT = Object.keys(TOKEN_OF)
+  .filter(k => APPROVED[k] && LIVE[k] && APPROVED[k].toUpperCase() !== LIVE[k])
+  .map(k => ({ key: k, prop: TOKEN_OF[k], approved: APPROVED[k].toUpperCase(), live: LIVE[k] }));
 
 /* ------------------------------------------------------------------ *
  * Contrast arithmetic. WCAG 2.1, sRGB relative luminance.
@@ -239,7 +244,7 @@ function evaluate(check) {
 
   const row = { name, kind, note, need };
 
-  for (const [key, p] of [["guide", GUIDE], ["proposed", PROPOSED]]) {
+  for (const [key, p] of [["guide", GUIDE], ["live", LIVE]]) {
     if (!p[fg] || !p[bg]) {
       row[key] = null;
       continue;
@@ -250,7 +255,7 @@ function evaluate(check) {
 
   // Provenance: a failure both palettes share came from the guide and is not
   // ours to fix. A failure only we have, we introduced.
-  if (row.proposed && !row.proposed.pass) {
+  if (row.live && !row.live.pass) {
     row.verdict = row.guide && !row.guide.pass ? "inherited" : "introduced";
   } else {
     row.verdict = "pass";
@@ -262,26 +267,10 @@ const RESULTS = CHECKS.map(evaluate);
 const introduced = RESULTS.filter(r => r.verdict === "introduced");
 const inherited = RESULTS.filter(r => r.verdict === "inherited");
 
-// The open call, measured. Only the checks that actually sit on a dark ground
-// can move, so only those are shown — a table of unchanged rows would bury the
-// four numbers the decision turns on.
-const DARK_CHECKS = CHECKS.filter(c => c[2] === "footerBg" || c[2] === "panelB");
-
-const DARK_RESULTS = DARK_CHECKS.map(([name, fg, bg, kind, note]) => {
-  const need = THRESHOLD[kind];
-  const measure = p => {
-    const r = ratio(p[fg], p[bg]);
-    return { r, fg: p[fg], bg: p[bg], pass: need === 0 || r >= need };
-  };
-  const faithful = measure(PROPOSED);
-  const softened = measure(SOFTENED);
-  return { name, note, need, kind, faithful, softened, delta: softened.r - faithful.r };
-});
-
-// A softened token that drops below its threshold does not block sign-off of
-// the faithful palette — it prices the alternative. Choosing it would need the
-// same lightening pass that panelMuted already took.
-const softFails = DARK_RESULTS.filter(r => r.need > 0 && !r.softened.pass);
+// Anything the checks cannot see. A token can drift without moving a single
+// contrast ratio — a ground swapped for another of the same luminance, a
+// hairline retuned — so drift is gated separately from the arithmetic.
+const blocking = DRIFT.length > 0 || MISSING.length > 0;
 
 /* ------------------------------------------------------------------ *
  * The guide's component CSS, parameterised on the palette. Taken from
@@ -491,44 +480,6 @@ function specimen(ns) {
 </div>`;
 }
 
-// The dark surfaces on their own, at the size they are actually read, so the
-// temperature call is made against the real thing rather than a swatch.
-function darkSpecimen(ns) {
-  return `
-<div class="${ns}">
-  <div style="padding:22px 22px 0">
-    <div class="panel">
-      <div class="plabel">Part of Pixelette Group</div>
-      <div class="h3" style="color:#FFFFFF; margin-top:9px">Engineering, blockchain and AI</div>
-      <p class="ptext" style="margin:8px 0 0">Pixelette Technologies builds the software; Pixelette
-      Certified proves it. Marketing takes it to the people who need it.</p>
-      <span class="pbtn" style="margin-top:14px">pixelettetechnologies.com</span>
-    </div>
-  </div>
-
-  <div class="footer" style="padding:24px 22px; margin-top:22px">
-    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:24px">
-      <div>
-        <div style="font-size:15px; font-weight:600; color:#F2F5F4">Pixelette Marketing</div>
-        <div class="small" style="color:inherit; margin-top:8px; max-width:34ch">Precision driven
-        marketing for Fintech, SaaS, Web3 and technology brands.</div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:14px">
-          <span class="pill">Fintech</span><span class="pill">SaaS</span><span class="pill">Web3</span>
-        </div>
-      </div>
-      <div style="display:flex; flex-direction:column; gap:8px">
-        <div class="eyebrow" style="margin-bottom:3px">Services</div>
-        <a href="#" class="small" style="color:inherit">Social Media Marketing</a>
-        <a href="#" class="small" style="color:inherit">SEO</a>
-        <a href="#" class="small" style="color:inherit">Email Marketing</a>
-      </div>
-    </div>
-    <div class="frule" style="margin:20px 0 12px"></div>
-    <div class="legal">© 2026 Pixelette Marketing. All rights reserved. · Cookie Policy</div>
-  </div>
-</div>`;
-}
-
 // The specimen markup references a handful of tokens through custom properties
 // so one block of markup can render in either palette.
 function vars(p) {
@@ -573,7 +524,7 @@ const rows = RESULTS.map(r => {
     <td class="k">${r.name}<div class="note">${r.note}</div></td>
     <td class="mono nw">${r.need === 0 ? "—" : r.need.toFixed(1)}</td>
     ${cell(r.guide, r.need)}
-    ${cell(r.proposed, r.need)}
+    ${cell(r.live, r.need)}
     <td class="nw">${badge}</td>
   </tr>`;
 }).join("\n");
@@ -604,28 +555,16 @@ const tokenRows = [
     ([name, key]) => `<tr>
       <td class="k">${name}</td>
       <td class="mono nw">${GUIDE[key] ? sw(GUIDE[key]) + GUIDE[key] : "—"}</td>
-      <td class="mono nw">${PROPOSED[key] ? sw(PROPOSED[key]) + PROPOSED[key] : "—"}</td>
+      <td class="mono nw">${APPROVED[key] ? sw(APPROVED[key]) + APPROVED[key] : "—"}</td>
+      <td class="mono nw">${LIVE[key] ? sw(LIVE[key]) + LIVE[key] : "—"}</td>
     </tr>`
   )
   .join("\n");
 
-const darkRows = DARK_RESULTS.map(r => {
-  const fmt = e => (r.need === 0 ? "dim" : e.pass ? "ok" : "bad");
-  const d = r.delta;
-  const arrow = Math.abs(d) < 0.005 ? "·" : d > 0 ? "▲" : "▼";
-  return `<tr>
-    <td class="k">${r.name}<div class="note">${r.note}</div></td>
-    <td class="mono nw">${r.need === 0 ? "—" : r.need.toFixed(1)}</td>
-    <td class="num ${fmt(r.faithful)}">${r.faithful.r.toFixed(2)}</td>
-    <td class="num ${fmt(r.softened)}">${r.softened.r.toFixed(2)}</td>
-    <td class="delta ${r.need === 0 ? "dim" : d >= 0 ? "ok" : "bad"}">${arrow} ${d >= 0 ? "+" : ""}${d.toFixed(2)}</td>
-  </tr>`;
-}).join("\n");
-
-const darkTokenRows = DARK_KEYS.map(key => `<tr>
-    <td class="k">${key}</td>
-    <td class="mono nw">${sw(PROPOSED[key])}${PROPOSED[key]}</td>
-    <td class="mono nw">${sw(SOFTENED[key])}${SOFTENED[key]}</td>
+const driftRows = DRIFT.map(d => `<tr>
+    <td class="k">${d.key}<div class="note">${d.prop}</div></td>
+    <td class="mono nw">${sw(d.approved)}${d.approved}</td>
+    <td class="mono nw">${sw(d.live)}${d.live}</td>
   </tr>`).join("\n");
 
 const page = `<title>Marketing Palette Comparison</title>
@@ -701,17 +640,13 @@ const page = `<title>Marketing Palette Comparison</title>
   .call.bad .tag{color:var(--bad)} .call.ok .tag{color:var(--ok)}
   footer.foot{border-top:1px solid var(--line-strong);margin-top:36px;padding:20px 0 56px;
               font-size:12.5px;color:var(--muted)}
-  td.delta{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
-           white-space:nowrap;font-size:12px}
 
   /* The guide's own component CSS, emitted once per palette under its own
      namespace. Without these four blocks the specimens render as unstyled
      markup — no serif headings, no filled button, no card, no dark ground —
      and the page compares nothing but a handful of inline colours. */
 ${componentCss(GUIDE, "gA")}
-${componentCss(PROPOSED, "pA")}
-${componentCss(PROPOSED, "dF")}
-${componentCss(SOFTENED, "dS")}
+${componentCss(LIVE, "pA")}
 </style>
 
 <div class="wrap">
@@ -719,7 +654,7 @@ ${componentCss(SOFTENED, "dS")}
 <header class="top">
   <p class="kick">Pixelette Group Revamp · Phase B · decision instrument</p>
   <h1>Marketing palette, against the guide</h1>
-  <p style="font-size:1.05rem;max-width:66ch">The guide's frozen values on the left, the proposed
+  <p style="font-size:1.05rem;max-width:66ch">The guide's frozen values on the left, the live
   Pixelette Marketing values on the right, rendered through the guide's own component CSS with only the
   colour tokens swapped. Real site copy throughout — tokens judged in isolation read differently from
   tokens judged in context. Sign off by eye; the arithmetic below only vetoes.</p>
@@ -733,63 +668,46 @@ ${componentCss(SOFTENED, "dS")}
       <div style="${vars(GUIDE)}">${specimen("gA")}</div>
     </div>
     <div class="col">
-      <div class="colhead"><b>${PROPOSED.label}</b><span>${PROPOSED.sub}</span></div>
-      <div style="${vars(PROPOSED)}">${specimen("pA")}</div>
+      <div class="colhead"><b>${APPROVED.label}</b><span>${APPROVED.sub}</span></div>
+      <div style="${vars(APPROVED)}">${specimen("pA")}</div>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="sechead"><h2>The open call — dark family temperature</h2>
-  <p class="note" style="max-width:74ch">The only decision left on this page. The faithful rotation keeps
-  the guide's high dark-family saturation and reads as a distinctly crimson black; the alternative drops
-  saturation to ${Math.round(SOFTEN * 100)}% of it, holding hue and HSL lightness, for a near-neutral warm
-  black. Everything else on the page is identical between the two. The signal tone on the footer eyebrow is
-  deliberately not softened — it is the one voice on the dark ground and it is part of what is being judged.
-  Pick the one that looks right; the numbers underneath only veto.</p></div>
+  <div class="sechead"><h2>Drift</h2>
+  <p class="note" style="max-width:74ch">The approved values are frozen in this script; the live column is
+  read back out of <code>src/scss/globels/_tokens.scss</code> on every run. A token can drift without moving
+  a single contrast ratio — one ground swapped for another of the same luminance, a hairline retuned — so
+  this is gated separately from the arithmetic and fails the build on its own.</p></div>
 
   ${
-    softFails.length === 0
-      ? `<div class="call ok"><span class="tag">Both options clear every threshold</span>
-         <p>The choice is purely by eye. Softening raises the luminance of every dark-family token, which
-         lifts the grounds toward their text and the text away from its ground at the same time — the net
-         is in the delta column, and nothing crosses a threshold either way.</p></div>`
-      : `<div class="call"><span class="tag">Softening costs ${softFails.length} check(s)</span>
-         <p>${softFails.map(r => `${r.name} falls to ${r.softened.r.toFixed(2)} against ${r.need.toFixed(1)}`).join("; ")}.
-         This is the same failure mode <code>panelMuted</code> already took a lightening pass for: holding HSL
-         lightness does not hold relative luminance. Choosing the softened family is still open — it costs one
-         more lightening pass on those tokens, not a change of direction.</p></div>`
+    MISSING.length > 0
+      ? `<div class="call bad"><span class="tag">${MISSING.length} token(s) not found in the stylesheet</span>
+         <p>${MISSING.join(", ")}. Either the token was renamed without updating TOKEN_OF in this script, or
+         it was dropped from the brand layer. Until it resolves, that token is ungated.</p></div>`
+      : ""
+  }
+  ${
+    DRIFT.length === 0
+      ? `<div class="call ok"><span class="tag">No drift</span>
+         <p>Every gated token in <code>_tokens.scss</code> matches the value signed off on 1 September 2026.</p></div>`
+      : `<div class="call bad"><span class="tag">${DRIFT.length} token(s) drifted</span>
+         <p>These no longer match what was approved: ${DRIFT.map(d => d.prop).join(", ")}. Either revert the
+         stylesheet or, if the change is deliberate, get it signed off and re-freeze APPROVED in this script.
+         Do not do the second quietly.</p></div>`
   }
 
-  <div class="cols">
-    <div class="col">
-      <div class="colhead"><b>Faithful rotation</b><span>as proposed · crimson black</span></div>
-      <div style="${vars(PROPOSED)}">${darkSpecimen("dF")}</div>
-    </div>
-    <div class="col">
-      <div class="colhead"><b>${SOFTENED.label}</b><span>${SOFTENED.sub}</span></div>
-      <div style="${vars(SOFTENED)}">${darkSpecimen("dS")}</div>
-    </div>
-  </div>
-
-  <div class="scroll" style="margin-top:20px"><table>
-    <thead><tr>
-      <th>Check</th><th>Needs</th>
-      <th style="text-align:right">Faithful</th>
-      <th style="text-align:right">Softened</th>
-      <th style="text-align:right">Delta</th>
-    </tr></thead>
+  ${
+    DRIFT.length === 0
+      ? ""
+      : `<div class="scroll"><table>
+    <thead><tr><th>Token</th><th>Approved</th><th>Live</th></tr></thead>
     <tbody>
-${darkRows}
+${driftRows}
     </tbody>
-  </table></div>
-
-  <div class="scroll" style="margin-top:14px"><table>
-    <thead><tr><th>Dark-family token</th><th>Faithful</th><th>Softened</th></tr></thead>
-    <tbody>
-${darkTokenRows}
-    </tbody>
-  </table></div>
+  </table></div>`
+  }
 </section>
 
 <section>
@@ -801,7 +719,7 @@ ${darkTokenRows}
   ${
     introduced.length === 0
       ? `<div class="call ok"><span class="tag">Nothing introduced</span>
-         <p>Every check the guide passes, the proposed palette also passes. The brand tone clears the
+         <p>Every check the guide passes, the live palette also passes. The brand tone clears the
          4.5:1 reading threshold on all three light grounds, so it substitutes directly for the guide's
          green at every call site — no darker reading tone has to be invented.</p></div>`
       : `<div class="call bad"><span class="tag">${introduced.length} introduced failure(s)</span>
@@ -821,7 +739,7 @@ ${darkTokenRows}
     <thead><tr>
       <th>Check</th><th>Needs</th>
       <th style="text-align:right">Guide</th>
-      <th style="text-align:right">Proposed</th>
+      <th style="text-align:right">Live</th>
       <th>Verdict</th>
     </tr></thead>
     <tbody>
@@ -835,7 +753,7 @@ ${rows}
   <p class="note" style="max-width:70ch">The neutral ramp is the guide's own, hue-rotated to the brand
   at 341.3° with HSL lightness held exactly. Nothing measurable moves and every text ratio improves.</p></div>
   <div class="scroll"><table>
-    <thead><tr><th>Role</th><th>Guide</th><th>Proposed</th></tr></thead>
+    <thead><tr><th>Role</th><th>Guide</th><th>Approved</th><th>Live</th></tr></thead>
     <tbody>
 ${tokenRows}
     </tbody>
@@ -844,8 +762,8 @@ ${tokenRows}
 
 <footer class="foot">
   Generated by <code>scripts/build-palette-compare.mjs</code> · WCAG 2.1 contrast against sRGB relative
-  luminance · <strong>invert this generator once the palette is signed off</strong>: freeze the approved
-  values, extract the live ones from the stylesheet, and exit non-zero on drift.
+  luminance · approved values frozen 1 September 2026, live values read from
+  <code>src/scss/globels/_tokens.scss</code> on every run.
 </footer>
 
 </div>`;
@@ -857,10 +775,22 @@ console.log(`Palette comparison written to ${OUT}`);
 console.log(`  checks run:  ${RESULTS.length}`);
 console.log(`  introduced:  ${introduced.length}${introduced.length ? " — " + introduced.map(r => r.name).join(", ") : ""}`);
 console.log(`  inherited:   ${inherited.length}${inherited.length ? " — " + inherited.map(r => r.name).join(", ") : ""}`);
-console.log(`  open call:   dark family, faithful vs softened (saturation x ${SOFTEN})`);
-console.log(`  softened:    ${softFails.length ? softFails.length + " check(s) would need a lightening pass — " + softFails.map(r => `${r.name} ${r.softened.r.toFixed(2)}`).join(", ") : "clears every threshold"}`);
+console.log(`  drift:       ${DRIFT.length ? DRIFT.map(d => d.prop).join(", ") : "none"}`);
+console.log(`  ungated:     ${MISSING.length ? MISSING.join(", ") : "none"}`);
 
 if (introduced.length > 0) {
-  console.error("\nIntroduced contrast failures block sign-off.");
-  process.exit(1);
+  console.error("\nIntroduced contrast failures block the build.");
 }
+if (DRIFT.length > 0) {
+  console.error(
+    "\nThe live tokens no longer match what was signed off. Revert the stylesheet, or get" +
+      "\nthe change approved and re-freeze APPROVED in this script. Do not do the second quietly."
+  );
+}
+if (MISSING.length > 0) {
+  console.error(
+    "\nTokens named in TOKEN_OF are absent from _tokens.scss, so they are ungated:" +
+      `\n  ${MISSING.join(", ")}`
+  );
+}
+if (introduced.length > 0 || blocking) process.exit(1);

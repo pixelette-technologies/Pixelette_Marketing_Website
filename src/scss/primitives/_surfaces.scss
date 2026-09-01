@@ -115,6 +115,63 @@
   background: var(--color-band);
 }
 
+// --- The dark band ---------------------------------------------------------
+// Marketing KEEPS the dark family as a deliberate device rather than reducing
+// to the guide's light-throughout rhythm. Settled 1 Sep 2026; see [[Rules]].
+// Two of the three dark bands are not even a choice — every client logo and
+// every platform mark in this repo is knockout white (fill="white", or a baked
+// raster pattern), so those rows CANNOT sit on a light ground without new
+// assets.
+//
+// The discipline that makes it a device instead of an accident:
+//
+//   1. THREE PER PAGE MAXIMUM.
+//   2. Always a full-bleed section band, never a rounded box floating inside a
+//      light section. A card grid nested in a bordered panel reads as a widget
+//      and was most of why the old treatment looked like a brick.
+//   3. Never the separator between two ordinary sections. Ordinary sections
+//      separate on the hairline. Dark is punctuation.
+//
+// One class, so the logo bands and the capability matrix read as the same
+// recurring device rather than three unrelated black rectangles.
+//
+// Contrast measured against the WORST case, the #21040d gradient start
+// (the #0f080a end is one to two tenths better on every row):
+//   .eyebrow  signal       5.34
+//   headings  page white  19.30
+//   .lead     panel text   7.36
+//   .small    panel muted  5.39
+// The brand anchor is 2.77 here and is barred, as everywhere on dark.
+.band-dark {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
+}
+
+.band-dark .eyebrow {
+  color: var(--color-footer-eyebrow);
+}
+
+.band-dark .h1,
+.band-dark .h1p,
+.band-dark .h2,
+.band-dark .h3,
+.band-dark .h4 {
+  color: var(--color-page);
+}
+
+.band-dark .lead,
+.band-dark .body {
+  color: var(--color-panel-text);
+}
+
+.band-dark .small {
+  color: var(--color-panel-muted);
+}
+
+.band-dark .rule {
+  background: var(--color-panel-border);
+}
+
 .band-closing {
   background: var(--color-band);
   border-top: 1px solid var(--color-line);

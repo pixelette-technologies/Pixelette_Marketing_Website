@@ -49,6 +49,29 @@
   letter-spacing: -0.008em;
 }
 
+// Sentence case, without touching a single byte of copy.
+//
+// In the whole pattern guide there is exactly ONE all-caps h1 or h2; every
+// other heading is sentence case, and the display face is drawn for it —
+// Newsreader with NEGATIVE tracking, which is the worst possible setting for
+// capitals. Retiring the `uppercase` utility is therefore the fix.
+//
+// The catch: several headings are stored lowercase in the source and only ever
+// looked capitalised because the utility shouted them — "growing in dynamic
+// markets is tough", "we make it achievable". Dropping the utility alone would
+// render those lowercase. Editing the strings would change content bytes,
+// which the hard constraint forbids.
+//
+// ::first-letter resolves it in CSS. Capitalising an already-capital letter is
+// a no-op, so this is safe to apply to every display heading and needs no
+// per-call-site knowledge of how the copy happens to be cased.
+.h1::first-letter,
+.h1p::first-letter,
+.h2::first-letter,
+.h3::first-letter {
+  text-transform: uppercase;
+}
+
 // The one sans heading.
 .h4 {
   font-family: var(--font-body);
@@ -59,16 +82,22 @@
   text-wrap: balance;
 }
 
+// The measure caps are part of the spec, not a suggestion. Without them every
+// paragraph runs the full 1160px container and the page loses its structure —
+// which is most of why the converted site read as unshaped next to Certified.
+// Guide values exactly: 62ch on .lead, 66ch on .body.
 .lead {
   font-size: var(--fs-lead);
   line-height: 1.55;
   color: var(--color-body);
+  max-width: 62ch;
 }
 
 .body {
   font-size: var(--fs-body);
   line-height: 1.65;
   color: var(--color-body);
+  max-width: 66ch;
 }
 
 .small {

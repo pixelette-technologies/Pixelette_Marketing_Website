@@ -22,9 +22,10 @@ const ServicesSection: FC<ServicesSectionProps> = ({
     <div className='band-alt'>
       <Container className='main'>
         <div className='servicesSection'>
-          {/* The sticky header needs its own ground so the cards do not scroll
-              through it. Same band as the section, stated once. */}
-          <header className='band-alt'>
+          {/* No longer sticky, so it no longer needs a ground of its own to
+              stop the cards scrolling through it — it sits on the section's
+              own .band-alt. See the partial for why sticky had to go. */}
+          <header>
             <Heading
               className='heading_large font_family_glory uppercase'
             >

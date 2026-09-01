@@ -18,6 +18,40 @@
 // The 800px query that dropped the sticky header goes with them — sticky is
 // harmless once the header can wrap.
 
+// Phase F. TWO THINGS, and the first was the reason the section looked broken.
+//
+// 1. THE GROUP ALTERNATION WAS A TOKEN COLLISION, NOT A DESIGN. The rule read
+//    :nth-child(odd) { background-color: var(--color-band) } and
+//    :nth-child(even) { background-color: var(--color-page) } — but this whole
+//    section sits on .band-alt, which IS --color-band. So every odd group was
+//    painted the colour it was already sitting on, and the tiles inside it were
+//    --color-band too, on --color-band. Two groups in three rendered as bare
+//    text with no cards visible at all, and the third rendered as a white slab.
+//    It looked deliberate and it was not.
+//
+//    This is the fourth instance of the same fault on this branch — after
+//    color_tertiary on bg_gray--lighter, color_primary on bg_primary, and the
+//    OurValues cards in F13. Both tokens are always correct in isolation; it is
+//    the PAIRING that fails, which is why no gate catches any of them.
+//
+//    The whole alternation is deleted rather than repaired. Making all the
+//    groups white would have fixed the invisibility and bought a stack of white
+//    slabs holding band-coloured tiles — a box inside a box inside a box, and a
+//    fifth card treatment on a site meant to have one. See _servicesCard.scss
+//    for what replaces it.
+//
+// 2. THE STICKY SUB-HEADER HAD STOPPED WORKING. It was `position: sticky;
+//    top: 0; z-index: 2`, written when nothing above it was positioned. F10
+//    made .site-header sticky at z-index 60 and 64-80px tall, so this header
+//    stuck at viewport top UNDERNEATH it and vanished on scroll. Sticky is
+//    dropped rather than moved to top: var(--header-h): two stacked sticky bars
+//    on a page this long is a lot of the viewport, and the header has nothing
+//    to say once you are inside the list.
+//
+//    Same family as the scroll-padding fault fixed in F11 — a dependent of the
+//    sticky-header reversal that was written as a settled fact somewhere else
+//    and never revisited. Grep for `position: sticky` before trusting any of
+//    the others.
 .servicesSection {
   margin-block: var(--sec-y-sm);
 
@@ -27,9 +61,6 @@
     flex-wrap: wrap;
     gap: 1.25rem;
     justify-content: space-between;
-    position: sticky;
-    top: 0rem;
-    z-index: 2;
 
     & > :is(h1, h2) {
       flex: 1 1 18rem;
@@ -44,18 +75,6 @@
       & > :is(h1, h2) {
         margin-bottom: 1rem;
         color: var(--color-ink);
-      }
-    }
-  }
-
-  & > section {
-    & > * {
-      &:nth-child(odd) {
-        background-color: var(--color-band);
-      }
-
-      &:nth-child(even) {
-        background-color: var(--color-page);
       }
     }
   }

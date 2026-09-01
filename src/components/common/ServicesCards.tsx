@@ -16,9 +16,14 @@ interface ServicesCardsProps {
 //
 // The colour utilities are gone: color_primary on the heading and
 // color_gray-dark on the card body are the partial's job now, which is what
-// lets the legacy layer retire. Note that the heading's class reaches the DOM
-// as heading_small, not .small — Heading prefixes the first class token only —
-// so the Appendix E primitive of that name has never been what styled it.
+// lets the legacy layer retire.
+//
+// A note here used to say the group heading reaches the DOM as heading_small
+// rather than .small, because Heading prefixed the first class token. F2
+// stopped it doing that, so the note has been wrong since — it rendered
+// <h2 class="small"> and did hit the primitive. It is the .eyebrow now: the
+// group label is the eyebrow in the guide's section anatomy, and .eyebrow
+// carries the brand tone itself, so the partial no longer sets a colour.
 
 const ServicesCards: FC<ServicesCardsProps> = ({
   heading = "Default Heading",
@@ -27,7 +32,7 @@ const ServicesCards: FC<ServicesCardsProps> = ({
   return (
     <div className='servicesCard'>
       {/* Heading Section */}
-      <Heading className='small'>{heading || "No Heading Provided"}</Heading>
+      <Heading className='eyebrow'>{heading || "No Heading Provided"}</Heading>
 
       {/* Data Section */}
       <section>

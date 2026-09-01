@@ -63,6 +63,30 @@
       }
 
       & > * {
+        // --- The parallax ---------------------------------------------------
+        // HeroCollage writes --px and --py on this section, unitless, -1 to 1
+        // across the box. The pixels live here, in --depth, so each layer's
+        // travel sits beside the percentages that place it and the two cannot
+        // drift apart.
+        //
+        // Depth follows the stacking order, because that is what makes it read
+        // as depth rather than as a wobble: the near images travel furthest,
+        // the far ones barely move. The version D2 removed gave every image the
+        // SAME offset, which is why it never actually parallaxed.
+        //
+        // The transform is declared unconditionally but --depth defaults to 0,
+        // so nothing moves until the media query below opts a layer in.
+        --depth: 0px;
+        transform: translate3d(
+          calc(var(--px, 0) * var(--depth)),
+          calc(var(--py, 0) * var(--depth)),
+          0
+        );
+        // Long and eased, so the collage settles behind the pointer rather than
+        // tracking it exactly. Tracking exactly is what makes this kind of
+        // effect feel cheap.
+        transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
         // Men picture — 402x408
         &:first-child {
           top: 35%;
@@ -95,6 +119,44 @@
           top: 0%;
           left: 63.2%;
           width: 25%;
+        }
+      }
+
+      // The second sanctioned motion exception, and the last. Like the marquee
+      // it is opt-in rather than opt-out: the depths only exist for a visitor
+      // who has a fine pointer AND has not asked for reduced motion. Everyone
+      // else keeps --depth: 0px and the static collage that shipped before it.
+      //
+      // The amplitudes are deliberately small — 14px at the very front, 4px at
+      // the back. The whole composition is 649px wide; anything larger stops
+      // being depth and starts being a carousel.
+      @media (prefers-reduced-motion: no-preference) and (pointer: fine) {
+        & > * {
+          // Scoped to the media query on purpose. will-change promotes each
+          // image to its own compositor layer, and there is no reason to pay
+          // for five of those on a device that will never move them.
+          will-change: transform;
+
+          // Background round — the backdrop, so it holds almost still.
+          &:nth-child(3) {
+            --depth: 4px;
+          }
+          // Clock tower — far, but taller than the box, so a little more.
+          &:nth-child(5) {
+            --depth: 6px;
+          }
+          // Men picture — the subject, mid-ground.
+          &:first-child {
+            --depth: 9px;
+          }
+          // Building — front plane.
+          &:nth-child(2) {
+            --depth: 13px;
+          }
+          // Laptop — nearest and smallest, so it travels furthest.
+          &:nth-child(4) {
+            --depth: 16px;
+          }
         }
       }
     }

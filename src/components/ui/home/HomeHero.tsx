@@ -2,20 +2,22 @@ import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import Image from "next/image";
 import Link from "next/link";
+import HeroCollage from "./HeroCollage";
 
-// The mouse-parallax that used to live here is gone: a useState offset, a
+// D2 removed the mouse-parallax as decoration — a useState offset, a
 // handleMouseMove reading getBoundingClientRect, and five inline transform and
-// transition styles. The five images stay — they are the hero widget and the
-// most distinctive thing on the page — and they do not move, because their
-// positioning is entirely SCSS-owned.
+// transition styles. Worth keeping on the record: all five images shared the
+// SAME offset and differed only in transition duration (0.1s, 0.5s, 0.4s, 0.5s,
+// 0.5s), so there was no per-layer depth multiplier and the apparent depth was
+// entirely an artefact of staggered easing, at an amplitude of 10px.
 //
-// Worth recording: all five images shared the SAME offset and differed only in
-// transition duration (0.1s, 0.5s, 0.4s, 0.5s, 0.5s). There was no per-layer
-// depth multiplier, so the apparent parallax depth was entirely an artefact of
-// staggered easing, at an amplitude of 10px.
+// Phase F. The user asked for it back, and the hero is theirs to call by eye.
+// It is rebuilt properly this time, with real per-layer depth, in HeroCollage.
 //
-// With the state and the handler gone nothing here is interactive, so the file
-// drops "use client" and becomes a server component.
+// THIS FILE STAYS A SERVER COMPONENT. The collage is the only interactive part
+// of the hero and it now owns its own "use client" boundary, so the headline,
+// the standfirst and the call to action are still server-rendered rather than
+// shipping as client JavaScript because the picture beside them moves.
 
 export default function HomeHero() {
   return (
@@ -48,48 +50,7 @@ export default function HomeHero() {
       <Container className='main'>
         <div className='heroHome'>
           <div>
-            <section>
-              {/* Men Picture */}
-              <Image
-                src='/home/hh_image_1.webp'
-                alt=''
-                width={402}
-                priority
-                height={408}
-              />
-              {/* Building Image */}
-              <Image
-                src='/home/hh_image_2.webp'
-                alt=''
-                width={342}
-                priority
-                height={362}
-              />
-              {/* Back ground round */}
-              <Image
-                src='/home/hh_image_3.webp'
-                alt=''
-                width={353}
-                priority
-                height={354}
-              />
-              {/* Laptop */}
-              <Image
-                src='/home/hh_image_4.webp'
-                alt=''
-                width={199}
-                priority
-                height={218}
-              />
-              {/* Clock tower */}
-              <Image
-                src='/home/hh_image_6.webp'
-                alt=''
-                width={162}
-                priority
-                height={628}
-              />
-            </section>
+            <HeroCollage />
           </div>
 
           <Image

@@ -13,13 +13,16 @@
 .rangeOfMarket {
   padding-block: var(--sec-y);
 
+  // The two platform rows. They were centred, wrapping flex rows; each is a
+  // marquee now, so it is a plain block and _marquee.scss owns the layout
+  // inside it. Restating flex and gap here would beat .marquee__track on source
+  // order — component partials load after the primitives — and putting
+  // flex-wrap back on the track breaks the loop.
+  //
+  // The rows run against each other, which is what the pre-revamp version did.
   & > header,
   & > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: clamp(1.875rem, 0.8rem + 3.4vw, 3.125rem);
+    --marquee-duration: 30s;
   }
 
   & > center {

@@ -49,16 +49,23 @@
       white-space: nowrap;
     }
 
+    // The logo strip. min-width: 0 matters more than usual here — without it a
+    // flex item refuses to shrink below its content, and the marquee track is
+    // deliberately `width: max-content`, so the strip would push the band wider
+    // than the page instead of scrolling inside it.
+    //
+    // The flex/wrap/gap rule that used to sit on the inner div is GONE. That
+    // div is .marquee__track now, and because component partials load after the
+    // primitives it would have beaten .marquee__track on source order — putting
+    // flex-wrap: wrap back on a track that must never wrap, which breaks the
+    // loop outright. Layout for the strip belongs to _marquee.scss alone.
     & > section {
       flex: 1 1 auto;
       min-width: 0;
 
-      & > div {
-        display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: clamp(1.875rem, 0.8rem + 3.4vw, 3.125rem);
-      }
+      // Slower than the platform rows: six logos over a shorter track, and the
+      // point is that it reads as barely moving.
+      --marquee-duration: 40s;
     }
   }
 }

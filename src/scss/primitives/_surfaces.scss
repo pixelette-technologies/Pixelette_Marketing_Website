@@ -5,6 +5,15 @@
 // ONLY — no lift, no shadow change, no scale. That is the rule most often
 // broken by reflex, so it is stated here at the point it applies.
 //
+// ONE SANCTIONED EXCEPTION EXISTS, and it is recorded here rather than only
+// where it lives, because Trap 10 in the vault says a reinstated motion surface
+// that is documented somewhere else gets read as leftover decoration and
+// deleted by the next pass. The two logo strips — the client logos in
+// TrustedBrands and the platform rows in RangeOfMarket — run a marquee, asked
+// for by the user on 1 September 2026 after D2 had removed it. See
+// _marquee.scss. Nothing else on the site moves, and that exception does not
+// extend to cards, hovers, reveals or anything in this file.
+//
 // Cards are noticeably rounder than controls (12px against 4px). That
 // contrast is part of the look and is not ours to retune.
 

@@ -6,4 +6,7 @@
 @forward "./type";
 @forward "./surfaces";
 @forward "./controls";
+// The one motion surface on the site, and a deliberate exception to the
+// flat-and-static register. Read the header of the partial before touching it.
+@forward "./marquee";
 @forward "./responsive";

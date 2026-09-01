@@ -45,6 +45,30 @@ const renderIcons = (icons: IconComponent[]) =>
     </div>
   ));
 
+// One marquee row. The track carries the icon set TWICE — it slides by exactly
+// one group and restarts on the duplicate, which is what makes the loop
+// seamless. The second group is aria-hidden so the accessibility tree sees
+// eight platforms, not sixteen; the marks themselves are already aria-hidden
+// inside their own components.
+//
+// The two rows run in opposite directions, which is what the pre-revamp version
+// did and what the user asked for. `reverse` picks the counter-rotating
+// keyframe rather than negating the duration, so both rows start from a settled
+// position instead of mid-slide.
+const MarqueeRow: FC<{ icons: IconComponent[]; reverse?: boolean }> = ({
+  icons,
+  reverse
+}) => (
+  <div className={reverse ? "marquee marquee--reverse" : "marquee"}>
+    <div className='marquee__track'>
+      <div className='marquee__group'>{renderIcons(icons)}</div>
+      <div className='marquee__group' aria-hidden>
+        {renderIcons(icons)}
+      </div>
+    </div>
+  </div>
+);
+
 const RangeOfMarket: FC = () => {
   const iconsGroup1: IconComponent[] = [
     Ahrefs,
@@ -71,7 +95,9 @@ const RangeOfMarket: FC = () => {
     <div className='rangeOfMarketBand band-dark'>
       <Container className='main'>
         <section className='rangeOfMarket'>
-          <header>{renderIcons(iconsGroup1)}</header>
+          <header>
+            <MarqueeRow icons={iconsGroup1} />
+          </header>
 
           <center className='text_align_center'>
             <Heading className='h2' level={2}>
@@ -83,7 +109,9 @@ const RangeOfMarket: FC = () => {
             </Text>
           </center>
 
-          <div>{renderIcons(iconsGroup2)}</div>
+          <div>
+            <MarqueeRow icons={iconsGroup2} reverse />
+          </div>
         </section>
       </Container>
     </div>

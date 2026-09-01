@@ -43,6 +43,30 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
     "/common/webBooking.svg"
   ];
 
+  // The marquee needs the row twice: the track slides left by exactly one
+  // group, at which point the duplicate is sitting where the original began and
+  // the loop restarts invisibly. The duplicate is aria-hidden, so the
+  // accessibility tree still sees six logos rather than twelve.
+  //
+  // This is the same duplication D2 removed, and removing it was right AT THE
+  // TIME — the motion had already gone, so the copies were just six logos
+  // rendered as twenty-four. The two belong together. If the animation ever
+  // goes again, this second call goes with it.
+  const renderGroup = (duplicate: boolean) => (
+    <div className='marquee__group' aria-hidden={duplicate || undefined}>
+      {imagesArray.map((icon, index) => (
+        <div key={index} className='icon-wrapper'>
+          <Image
+            src={icon}
+            alt={duplicate ? "" : `Brand Logo ${index}`}
+            width={200}
+            height={50}
+          />
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <div className='trustedBrands band-dark'>
       <Container className='main'>
@@ -60,18 +84,10 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
             <Heading className='h2'>Leading Brands</Heading>
           )}
 
-          <section>
-            <div>
-              {imagesArray.map((icon, index) => (
-                <div key={index} className='icon-wrapper'>
-                  <Image
-                    src={icon}
-                    alt={`Brand Logo ${index}`}
-                    width={200}
-                    height={50}
-                  />
-                </div>
-              ))}
+          <section className='marquee'>
+            <div className='marquee__track'>
+              {renderGroup(false)}
+              {renderGroup(true)}
             </div>
           </section>
         </Container>

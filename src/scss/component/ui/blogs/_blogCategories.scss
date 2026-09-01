@@ -11,6 +11,19 @@
 // inheriting, so the misspelling goes without moving a pixel. The remaining
 // call sites are handled where their own components convert.
 
+// Phase F. The sidebar label was `heading_tertiary font_family_glory`, and
+// heading_tertiary maps to --fs-h2 — 28 to 42px, the SECTION heading size —
+// so a widget label in a 238px sidebar was set larger than most of the page
+// it filters. It takes .h4 instead — 18px flat, and the ONE sans heading in
+// Appendix E, which is the role a widget label actually plays. It went to .h3
+// first and was still too big by eye; .h4 is the next step DOWN THE FIXED
+// SCALE rather than an invented size, which is the only way to go smaller
+// here. Note it changes the face: .h4 is --font-body, so this label is no
+// longer serif. font_family_glory goes either way, since it was restating a
+// family the primitive already sets.
+//
+// Heading still emits h2 by default, so the :is(h1, h2) rule below is
+// unaffected by the class change.
 .blogCategories {
   padding: 0.75rem;
   border-radius: var(--radius-card);

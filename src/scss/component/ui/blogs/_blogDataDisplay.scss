@@ -8,7 +8,13 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  // The list ended on a 1.25rem margin and the footer began, which on a page
+  // this short read as the content falling into it. --sec-y is the site's
+  // section rhythm and it MATCHES THE TOP: BlogHeroSection above already
+  // carries padding-block: var(--sec-y), so its bottom padding is the gap
+  // above this block. Adding a second --sec-y on top here would double that
+  // to ~192px at desktop, which is why only the bottom is set.
+  padding-bottom: var(--sec-y);
 
   & > section {
     flex: 0 0 14.875rem;

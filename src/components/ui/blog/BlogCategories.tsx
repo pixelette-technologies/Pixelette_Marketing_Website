@@ -32,11 +32,7 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
     <section
       className='blogCategories'
     >
-      <Heading
-        className='heading_tertiary font_family_glory'
-      >
-        Categories
-      </Heading>
+      <Heading className='h4'>Categories</Heading>
 
       <div className='searchBar'>
         <IoSearchOutline />

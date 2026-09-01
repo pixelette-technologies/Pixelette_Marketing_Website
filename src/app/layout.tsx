@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
-import { CookieConsent, Footer, Navbar } from "@/components/common";
+import {
+  CookieConsent,
+  Footer,
+  Navbar,
+  ScrollReveal
+} from "@/components/common";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -124,8 +129,12 @@ gtag('js', new Date());
 gtag('config', 'G-1HGJEBFGRW');`}
         </Script>
         <Navbar />
-        <div>{children}</div>
+        {/* .page-flow is the scroll reveal's only structural dependency: a
+            page is a list of blocks and these are them. See ScrollReveal and
+            _reveal.scss. The class carries no styling of its own. */}
+        <div className='page-flow'>{children}</div>
         <Footer />
+        <ScrollReveal />
         <CookieConsent />
       </body>
     </html>

@@ -17,6 +17,7 @@ const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
   return (
     <div
       className='blogCardGrid'
+      data-reveal='stagger'
     >
       {data?.map((story, index) => (
         <Link

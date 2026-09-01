@@ -24,7 +24,7 @@ const Located = () => {
             collapsible thing so that it doesn’t take up too much space. Show
             the main two countries i.e. UK and US in the first row.
           </Text>
-          <section>
+          <section data-reveal='stagger'>
             {locatedData.map((el, index) => (
               <blockquote
                 key={index}

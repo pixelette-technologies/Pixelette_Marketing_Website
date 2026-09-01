@@ -36,7 +36,7 @@ const TeamSection: FC<TeamSectionProps> = ({
             </ul>
           )}
 
-          <section>
+          <section data-reveal='stagger'>
             {teamData.map((el, index) => (
               <TeamCard
                 key={index}

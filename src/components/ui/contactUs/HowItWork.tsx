@@ -33,7 +33,7 @@ const HowItWork = () => {
               </div>
             </section>
           </header>
-          <section>
+          <section data-reveal='stagger'>
             {howItWorkData.map((el, index) => (
               <blockquote
                 key={index}

@@ -17,7 +17,7 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
   const sectionData = data?.slice(2);
   return (
     <div className='storiesCardGrid'>
-      <header>
+      <header data-reveal='stagger'>
         {headerData?.map((story, index) => (
           <Link
             key={`section-story-${index}`}
@@ -36,7 +36,7 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
           </Link>
         ))}
       </header>
-      <section>
+      <section data-reveal='stagger'>
         {sectionData?.map((story, index) => (
           <Link
             key={`section-story-${index}`}

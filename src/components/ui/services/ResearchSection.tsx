@@ -47,7 +47,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
           </Text>
         </header>
 
-        <section>
+        <section data-reveal='stagger'>
           {data?.map((el, index) => (
             <div
               key={index}

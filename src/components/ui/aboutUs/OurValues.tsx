@@ -25,7 +25,7 @@ const OurValues = () => {
           </Text>
         </header>
 
-        <section>
+        <section data-reveal='stagger'>
           <div>
             <Text className='text_primary--bold'>Thrive on collaboration</Text>
             <Text className='text_tertiary'>

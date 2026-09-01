@@ -28,7 +28,7 @@ const OurTeam = () => {
             </Text>
           </header>
 
-          <section>
+          <section data-reveal='stagger'>
             {ourTeamData.map((el, index) => (
               <div
                 style={{ backgroundColor: el.bgColor }}

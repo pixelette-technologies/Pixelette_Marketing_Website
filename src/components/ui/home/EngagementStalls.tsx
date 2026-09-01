@@ -51,7 +51,7 @@ const EngagementStalls = () => {
               your audience at every step.
             </Text>
           </div>
-          <div className='engagementStalls__panel'>
+          <div className='engagementStalls__panel' data-reveal='stagger'>
             {engagementData.map((el, index) => (
               <ArrowCard
                 key={index}

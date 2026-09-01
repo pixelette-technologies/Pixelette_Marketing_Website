@@ -29,7 +29,7 @@ const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
             </Text>
           </header>
 
-          <section>
+          <section data-reveal='stagger'>
             {data?.map((el, index) => (
               <Web3MarketingCard
                 key={index}

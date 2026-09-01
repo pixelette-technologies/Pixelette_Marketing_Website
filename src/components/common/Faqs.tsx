@@ -24,7 +24,7 @@ const Faqs: FC<FaqsProps> = ({ data }) => {
 
   return (
     <Container className='main'>
-      <section className='faqs'>
+      <section className='faqs' data-reveal='stagger'>
         {data?.map((el, index) => (
           <Accordion
             key={index}

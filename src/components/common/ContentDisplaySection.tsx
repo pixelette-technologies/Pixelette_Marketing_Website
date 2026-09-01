@@ -66,7 +66,7 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
               <Text className='lead'>{detail}</Text>
             </div>
           </header>
-          <section className='contentDisplayCards'>
+          <section className='contentDisplayCards' data-reveal='stagger'>
             {data.map((el, index) => (
               <div key={index} className='contentCard'>
                 <div className='card-content'>

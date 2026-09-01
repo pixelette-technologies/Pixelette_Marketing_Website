@@ -31,7 +31,7 @@ const OurServices = () => {
               industry and business that actually work.
             </Text>
           </header>
-          <section>
+          <section data-reveal='stagger'>
             {ourServicesData.map((el, index) => (
               <ArrowCard
                 key={index}

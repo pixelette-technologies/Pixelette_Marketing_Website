@@ -32,7 +32,7 @@ export default function AboutUs() {
           is lifted between the other two VISUALLY, by `order` in
           _aboutClose.scss, so three dark bands stop stacking without any
           content being reordered. */}
-      <div className='aboutClose'>
+      <div className='aboutClose' data-reveal='group'>
         <OurTeam />
         <TrustedBrands topHeading={true} heading='Our clients' />
         <QuestionAndAnswer

@@ -5,14 +5,36 @@
 // ONLY — no lift, no shadow change, no scale. That is the rule most often
 // broken by reflex, so it is stated here at the point it applies.
 //
-// ONE SANCTIONED EXCEPTION EXISTS, and it is recorded here rather than only
-// where it lives, because Trap 10 in the vault says a reinstated motion surface
-// that is documented somewhere else gets read as leftover decoration and
-// deleted by the next pass. The two logo strips — the client logos in
-// TrustedBrands and the platform rows in RangeOfMarket — run a marquee, asked
-// for by the user on 1 September 2026 after D2 had removed it. See
-// _marquee.scss. Nothing else on the site moves, and that exception does not
-// extend to cards, hovers, reveals or anything in this file.
+// THE REGISTER IS NO LONGER STATIC, and this paragraph is where that is
+// recorded — Trap 10 in the vault says a motion surface documented anywhere
+// else gets read as leftover decoration and deleted by the next pass.
+//
+// 1. THE LOGO MARQUEE. The client logos in TrustedBrands and the platform rows
+//    in RangeOfMarket. Asked for by the user on 1 September 2026 after D2 had
+//    removed it. See _marquee.scss.
+//
+// 2. THE HERO PARALLAX. The five collage images track the pointer at five
+//    depths. Also the user's call, also 1 September 2026. See _heroHome.scss.
+//
+// 3. THE SCROLL REVEAL — added 1 September 2026, and the one that changes the
+//    rule rather than carving an exception out of it. Every block on every
+//    page fades and rises as it is scrolled to, and card grids cascade. It is
+//    site-wide, so "flat and static" no longer describes this site. That is a
+//    GROUP-LEVEL change and the question is open with Mr Rana; if it comes
+//    back no, _reveal.scss and ScrollReveal.tsx revert together in one commit.
+//    See the header of _reveal.scss.
+//
+// A correction to what this paragraph used to claim: "nothing else on the site
+// moves" was already untrue when it was written. framer-motion animates the
+// navbar dropdown, the mobile drawer, the blog category dropdown and the
+// article table of contents. Those are UI-state transitions on controls rather
+// than decorative motion, which is arguably a different category — but the
+// flat sentence was wrong and reasoning built on it was reasoning from a false
+// premise.
+//
+// NONE OF THIS LICENSES MOTION ON HOVER. Hover still changes border colour
+// only — no lift, no shadow change, no scale — and the reveal does not extend
+// to cards responding to the cursor or to anything else in this file.
 //
 // Cards are noticeably rounder than controls (12px against 4px). That
 // contrast is part of the look and is not ours to retune.

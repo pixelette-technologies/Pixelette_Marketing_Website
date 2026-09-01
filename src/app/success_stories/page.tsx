@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function SuccessStories() {
   return (
-    <div className=''>
+    <div className='' data-reveal='group'>
       <StoriesHeroSection />
       <StoriesDataDisplay />
     </div>

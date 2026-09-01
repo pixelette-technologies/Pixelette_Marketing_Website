@@ -35,7 +35,7 @@ const ContactSection: FC<ContactSectionProps> = ({
               ></HeadingTag>
             )}
             {text && <Text className='lead'>{text}</Text>}
-            <div>
+            <div data-reveal='stagger'>
               {data?.map((el, index) => (
                 <blockquote key={index}>
                   <section>

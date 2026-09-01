@@ -44,7 +44,7 @@ const DynamicMarket = () => {
             drive real, measurable success
           </Text>
         </header>
-        <section>
+        <section data-reveal='stagger'>
           {dynamicMarketData.map((el, index) => (
             <ArrowCard
               key={index}

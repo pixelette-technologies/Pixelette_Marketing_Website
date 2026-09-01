@@ -9,4 +9,8 @@
 // The one motion surface on the site, and a deliberate exception to the
 // flat-and-static register. Read the header of the partial before touching it.
 @forward "./marquee";
+// The scroll reveal — the THIRD motion surface, and site-wide rather than
+// one widget. It retires the flat-and-static register as written, which is
+// a group-level change and is open with Mr Rana. Read the partial header.
+@forward "./reveal";
 @forward "./responsive";

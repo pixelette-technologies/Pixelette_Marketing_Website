@@ -75,7 +75,7 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
               {text}
             </Text>
           </header>
-          <section>
+          <section data-reveal='stagger'>
             {data?.map((el, index) => (
               <div
                 key={index}

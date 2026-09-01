@@ -35,7 +35,7 @@ const ServicesCards: FC<ServicesCardsProps> = ({
       <Heading className='eyebrow'>{heading || "No Heading Provided"}</Heading>
 
       {/* Data Section */}
-      <section>
+      <section data-reveal='stagger'>
         {data.length > 0 ? (
           data.map((el, index) => (
             <div key={index} className='cardItem'>

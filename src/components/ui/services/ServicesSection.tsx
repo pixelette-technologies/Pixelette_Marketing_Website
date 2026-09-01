@@ -42,7 +42,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
               </Text>
             </div>
           </header>
-          <section>
+          <section data-reveal='stagger'>
             {data.length > 0 ? (
               data.map((el, index) => (
                 <ServicesCards

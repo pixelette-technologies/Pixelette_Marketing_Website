@@ -66,10 +66,10 @@ export default function HomeHero() {
           <section>
             <div>
               <Heading className='h1' level={1}>
-                Marketing That Matters
+                Marketing that matters
               </Heading>
               <Heading className='h1' level={2}>
-                to Your Bottom Line
+                to your bottom line
               </Heading>
               <Text className='lead'>
                 Pixelette Marketing delivers precision driven marketing for

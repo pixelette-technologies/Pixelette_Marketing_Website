@@ -15,6 +15,21 @@ const headers = {
   "X-Marketing-Data-Classification": "synthetic-only",
 };
 
+function stagingFailureCode(error: unknown): string {
+  if (!(error instanceof Error)) return "SYNTHETIC_STAGING_UNCLASSIFIED_FAILURE";
+  if (/^SYNTHETIC_[A-Z0-9_:]+$/.test(error.message)) return error.message;
+  const cause = (error as Error & { cause?: unknown }).cause;
+  if (typeof cause === "object" && cause !== null && "code" in cause) {
+    const code = String((cause as { code?: unknown }).code ?? "");
+    if (/^[A-Z0-9_]+$/.test(code)) return `SYNTHETIC_STAGING_NETWORK_${code}`;
+  }
+  if (error.name === "TimeoutError" || error.name === "AbortError") {
+    return "SYNTHETIC_STAGING_NETWORK_TIMEOUT";
+  }
+  if (error.message === "fetch failed") return "SYNTHETIC_STAGING_NETWORK_FETCH_FAILED";
+  return "SYNTHETIC_STAGING_UNCLASSIFIED_FAILURE";
+}
+
 export async function POST(request: NextRequest) {
   try {
     const configuration = readSyntheticStagingConfiguration();
@@ -52,10 +67,14 @@ export async function POST(request: NextRequest) {
     }, { status: 200, headers });
   } catch (error) {
     const message = error instanceof Error ? error.message : "SYNTHETIC_STAGING_REFUSED";
+    const failureCode = stagingFailureCode(error);
     const disabled = message === "SYNTHETIC_STAGING_DISABLED";
     const refused = message === "SYNTHETIC_STAGING_TRIGGER_REFUSED";
     return NextResponse.json(
-      { error: disabled ? "Synthetic staging is disabled" : refused ? "Synthetic staging trigger refused" : "Synthetic staging is unavailable" },
+      {
+        error: disabled ? "Synthetic staging is disabled" : refused ? "Synthetic staging trigger refused" : "Synthetic staging is unavailable",
+        failureCode,
+      },
       { status: disabled ? 404 : refused ? 401 : 503, headers },
     );
   }

@@ -41,38 +41,63 @@
     display: flex;
     gap: 0.75rem;
 
+    // Phase F. "View More" moved to the foot of the card so the title gets a
+    // full line to itself. It used to sit in a flex row beside the heading
+    // block, which cost the title roughly 90px and broke "Fintech Marketing"
+    // and "Generation Management" across two cramped lines.
+    //
+    // The link could not simply be moved: the content rule allows layout and
+    // alignment to change freely but not DOM order, and the link and the
+    // summary are not even siblings — the link is inside the inner <section>,
+    // the summary is outside it. `order` only sorts within one flex container.
+    //
+    // `display: contents` on that wrapper dissolves the box without removing
+    // the element, so the title block, the summary and the link all become flex
+    // items of this column and `order` can sequence them. Source order is
+    // untouched, and it works for both ArrowCard variants — textfloat renders
+    // the link BEFORE the heading, and it still lands at the foot.
     & > header {
       flex: 1 1 auto;
       min-width: 0;
+      display: flex;
+      flex-direction: column;
 
       & > section {
-        margin-bottom: 0.75rem;
+        display: contents;
+      }
+
+      & > section > header {
+        order: 1;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75rem;
+        flex-direction: column;
+        min-width: 0;
+        margin-bottom: 0.75rem;
+      }
 
-        & > header {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          min-width: 0;
-        }
+      & > p {
+        order: 2;
+      }
 
-        // Was display: none until hover, so it was unreachable by keyboard and
-        // absent on touch. Always rendered now, as a text link rather than the
-        // filled block that only ever appeared under a cursor.
-        & > a {
-          flex: 0 0 auto;
-          font-size: 0.8125rem;
-          font-weight: 500;
-          color: var(--color-brand);
-          white-space: nowrap;
+      // Was display: none until hover, so it was unreachable by keyboard and
+      // absent on touch. Always rendered now, as a text link rather than the
+      // filled block that only ever appeared under a cursor.
+      //
+      // margin-top: auto pins it to the foot. The cards stretch to a common
+      // height in their row, so the link sits on the same baseline across the
+      // row however long each summary runs.
+      & > section > a {
+        order: 3;
+        align-self: start;
+        margin-top: auto;
+        padding-top: 1rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--color-brand);
+        white-space: nowrap;
 
-          &:hover {
-            color: var(--color-brand-hover);
-            text-decoration: underline;
-          }
+        &:hover {
+          color: var(--color-brand-hover);
+          text-decoration: underline;
         }
       }
     }
@@ -117,6 +142,12 @@
       & > header {
         align-items: flex-end;
       }
+    }
+
+    // The link is a flex item of the header column now, so it needs the
+    // matching alignment or it would sit left on a right-aligned card.
+    & > header > section > a {
+      align-self: end;
     }
   }
 }

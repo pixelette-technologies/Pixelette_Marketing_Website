@@ -33,7 +33,7 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
         {topHeading ? (
           ""
         ) : (
-          <Heading className='primary color_secondry font_family_glory uppercase'>
+          <Heading className='primary font_family_glory uppercase'>
             Trusted by
             <ArrowRed />
           </Heading>

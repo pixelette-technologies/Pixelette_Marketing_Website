@@ -117,3 +117,34 @@
     }
   }
 }
+
+// D8. QUARANTINE PRESERVED. This component is under a governance quarantine —
+// the "billion dollar brands" cards used unlicensed public-figure photos and
+// unsourced attributed quotes — and returns null on all eight services, so
+// none of this renders today. It has NOT been converted: the layout, the
+// fourteen media queries and the markup are untouched deliberately.
+//
+// The only change is that its ground and its four text colours used to come
+// from the global bg_* / color_* utilities, which this commit deletes. They
+// are restated here, scoped, at exactly the values they had, so that if the
+// component is ever un-quarantined it renders as it did rather than unstyled.
+.importanceBand {
+  background-color: var(--color-ink);
+
+  & .importance {
+    & > center {
+      & > :first-child {
+        color: var(--color-brand);
+      }
+
+      & > :nth-child(2) {
+        color: var(--color-page);
+      }
+    }
+
+    & section > p,
+    & blockquote > p {
+      color: var(--color-page);
+    }
+  }
+}

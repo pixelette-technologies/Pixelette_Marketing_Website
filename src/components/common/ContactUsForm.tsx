@@ -96,7 +96,7 @@ const ContactUsForm: React.FC = () => {
 
   if (!governanceReady) {
     return (
-      <div className='contactUsForm bg_white' role='status'>
+      <div className='contactUsForm' role='status'>
         <Heading className='secondry font_family_glory uppercase'>
           contact form temporarily unavailable
         </Heading>
@@ -110,7 +110,7 @@ const ContactUsForm: React.FC = () => {
 
   return (
     <div
-      className='contactUsForm bg_white'
+      className='contactUsForm'
     >
       <Heading className='secondry font_family_glory uppercase'>
         book a call with us

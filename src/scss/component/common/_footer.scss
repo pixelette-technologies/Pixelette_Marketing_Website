@@ -12,18 +12,11 @@
   display: grid;
   // The guide's 1.5fr 1fr 1fr 1fr 1fr, one column short: there is no brand
   // column, so Services takes the wide slot because it carries eight links.
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 3rem;
-
-  @media only screen and (max-width: 950px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  @media only screen and (max-width: 550px) {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
+  // D8: auto-fit rather than three explicit column counts stepped at 950 and
+  // 550px. The columns fold in the same order and the file needs no
+  // breakpoints at all.
+  grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
+  gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);
 
   & > div {
     display: flex;
@@ -44,16 +37,12 @@
 
 .footerLegal {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
   padding-top: 1.25rem;
 
-  @media only screen and (max-width: 650px) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
 }
 
 .footerSocial {

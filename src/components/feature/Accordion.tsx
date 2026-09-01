@@ -51,8 +51,8 @@ const Accordion: FC<AccordionProps> = ({
       >
         <span className='accordion__label'>
           <span
-            className={`text_primary--bolder ${
-              isOpen ? "color_primary" : "color_primary--light"
+            className={`text_primary--bolder accordion__index${
+              isOpen ? " accordion__index--open" : ""
             }`}
           >
             {ind}

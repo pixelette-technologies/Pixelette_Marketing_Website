@@ -90,13 +90,13 @@ export default function HomeHero() {
           <section>
             <div>
               <Heading
-                className='hero color_primary font_family_glory uppercase'
+                className='hero font_family_glory uppercase'
                 level={1}
               >
                 Marketing That Matters
               </Heading>
               <Heading
-                className='hero color_secondry font_family_glory uppercase'
+                className='hero font_family_glory uppercase'
                 level={2}
               >
                 to Your Bottom Line
@@ -107,7 +107,7 @@ export default function HomeHero() {
                 believe your industry deserves strategies as innovative as your
                 solutions. Take the guesswork out of growth by requesting your
                 strategy proposal today and{" "}
-                <span className=' text_primary--bold color_primary'>
+                <span className='text_primary--bold heroHome__emphasis'>
                   start achieving ROI you can see!
                 </span>
               </Text>

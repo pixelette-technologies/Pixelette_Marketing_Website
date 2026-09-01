@@ -46,3 +46,14 @@
   border-radius: var(--radius-card);
   padding: 1.5rem;
 }
+
+// D8. Colour moves here from the call site.
+.engagementStalls > div:first-child {
+  & > h2 {
+    color: var(--color-brand);
+  }
+
+  & > h3 {
+    color: var(--color-ink);
+  }
+}

@@ -51,3 +51,15 @@
   margin-top: 0.625rem;
   padding: 0rem 2.75rem;
 }
+
+// D8. The index number carried color_primary when open and color_primary--light
+// when closed. Both are gone from the call site; the closed tone is
+// --color-soft, which is the reading ramp's quiet end at 5.44:1 rather than the
+// old alias's 3.4:1 on white.
+.accordion__index {
+  color: var(--color-soft);
+}
+
+.accordion__index--open {
+  color: var(--color-brand);
+}

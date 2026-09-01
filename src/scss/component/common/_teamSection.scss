@@ -36,3 +36,8 @@
     gap: 0.5625rem;
   }
 }
+
+// D8. Colour moves here from color_primary at the call site.
+.teamSection > header > :first-child {
+  color: var(--color-brand);
+}

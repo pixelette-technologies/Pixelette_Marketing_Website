@@ -20,11 +20,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 3.125rem;
-
-    @media only screen and (max-width: 650px) {
-      gap: 1.875rem;
-    }
+    gap: clamp(1.875rem, 0.8rem + 3.4vw, 3.125rem);
   }
 
   & > center {

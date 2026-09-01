@@ -22,7 +22,7 @@ const TeamSection: FC<TeamSectionProps> = ({
         <section className='teamSection'>
           <header>
             <Heading
-              className='secondry--boldLight color_primary font_family_glory uppercase'
+              className='secondry--boldLight font_family_glory uppercase'
             >
               {mainHeading}
             </Heading>

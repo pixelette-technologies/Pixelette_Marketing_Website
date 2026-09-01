@@ -23,14 +23,14 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
   // verified third-party statistics or owned imagery in the approved redesign.
   if (!data || data.length === 0) return null;
   return (
-    <div className='bg_secondry'>
+    <div className='importanceBand'>
       <Container className='main'>
         <div className='importance'>
           <center>
-            <Heading className='tertiary--medium color_primary'>
+            <Heading className='tertiary--medium'>
               {mainheading}
             </Heading>
-            <Heading className='tertiary--light color_white'>
+            <Heading className='tertiary--light'>
               {subHeading}
             </Heading>
           </center>
@@ -41,9 +41,9 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
               >
                 <div>
                   <section>
-                    <Text className='tertiary color_white'>{el.summary}</Text>
+                    <Text className='tertiary'>{el.summary}</Text>
                     <blockquote>
-                      <Text className='small color_white'>{el.role}</Text>
+                      <Text className='small'>{el.role}</Text>
                       <div>
                         <Heading className='ImportanceCardheading uppercase '>
                           {el.name}

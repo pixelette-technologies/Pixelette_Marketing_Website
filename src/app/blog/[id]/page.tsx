@@ -76,7 +76,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
   };
 
   return (
-    <div className='bg_tertiary'>
+    <div className='band-alt'>
       <script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}

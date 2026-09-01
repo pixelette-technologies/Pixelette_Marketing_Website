@@ -16,15 +16,11 @@
     // Deliberately asymmetric — content is meant to bleed off the right edge,
     // so this is NOT the symmetric wrap and is left on its own geometry until
     // the sections that use it are converted.
+    // D8: the two breakpoints that stepped this padding down interpolate
+    // instead. Same endpoints, 109px at the top and 20px at the bottom.
     max-width: 1366px;
     margin: auto;
-    padding-left: 6.8125rem;
+    padding-left: clamp(1.25rem, -0.4rem + 5.3vw, 6.8125rem);
     overflow: hidden;
-    @media only screen and (max-width: 1250px) {
-      padding-left: 3.125rem;
-    }
-    @media only screen and (max-width: 800px) {
-      padding-left: 1.25rem;
-    }
   }
 }

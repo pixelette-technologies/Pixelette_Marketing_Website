@@ -29,13 +29,13 @@ const EngagementStalls = () => {
         <section className='engagementStalls sec'>
           <div>
             <Heading
-              className='primary color_primary uppercase font_family_glory'
+              className='primary uppercase font_family_glory'
               level={2}
             >
               Engagement stalls without strategy
             </Heading>
             <Heading
-              className='primary color_secondry uppercase font_family_glory'
+              className='primary uppercase font_family_glory'
               level={3}
             >
               We drive it forward

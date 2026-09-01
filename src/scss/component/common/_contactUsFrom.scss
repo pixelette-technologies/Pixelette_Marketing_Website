@@ -1,7 +1,8 @@
 .contactUsForm {
   padding: 1.5rem 1rem;
   border-radius: 0.9375rem;
-  & > h1 {
+  // The heading rule selected h1; Heading renders h2 here.
+  & > :is(h1, h2) {
     margin-bottom: 1.25rem;
   }
 }
@@ -11,9 +12,13 @@
   flex-wrap: wrap;
   gap: 0.625rem;
   & > div {
-    flex: 1 1 calc(50% - 0.625rem);
-    @media only screen and (max-width: 650px) {
-      flex: 1 1 calc(100% - 0.625rem);
-    }
+    flex: 1 1 14rem;
   }
+}
+
+// D8. The bg_white utility at the call site becomes the card surface, and the
+// one media query goes: the field pairs are auto-fit.
+.contactUsForm {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
 }

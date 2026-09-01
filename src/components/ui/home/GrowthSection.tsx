@@ -8,10 +8,10 @@ export default function GrowthSection() {
     <Container className='main'>
       <div className='growthSection rule-cap'>
         <Heading
-          className='primary color_secondry font_family_glory uppercase'
+          className='primary font_family_glory uppercase'
           level={2}
         >
-          Growth <span className='color_primary'>starts</span> here
+          Growth <span>starts</span> here
           <ArrowRed />
         </Heading>
 
@@ -24,7 +24,7 @@ export default function GrowthSection() {
               <section>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
+                    <Heading className='primary font_family_glory' level={4}>
                       Growth
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -33,7 +33,7 @@ export default function GrowthSection() {
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
+                    <Heading className='primary font_family_glory' level={4}>
                       Conversion
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -43,7 +43,7 @@ export default function GrowthSection() {
                 </div>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
+                    <Heading className='primary font_family_glory' level={4}>
                       Paid ROI
                     </Heading>
                     <Text className='secondry font_family_glory'>
@@ -51,7 +51,7 @@ export default function GrowthSection() {
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
+                    <Heading className='primary font_family_glory' level={4}>
                       Pipeline
                     </Heading>
                     <Text className='secondry font_family_glory'>

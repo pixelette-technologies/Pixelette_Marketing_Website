@@ -1,4 +1,9 @@
 // Tokens first, so the :root block lands at the top of the compiled sheet
 // before anything that reads from it.
+//
+// D8. _color.scss is gone. It held sixteen Sass variables aliasing the tokens,
+// kept alive only so the 40 call sites that referenced them would keep
+// compiling while the sections converted. Those reached zero, so the aliases
+// went with them and every colour in this stylesheet now resolves through a
+// custom property rather than a build-time value.
 @forward "./tokens";
-@forward "./color";

@@ -1,6 +1,8 @@
-@use "../globels" as color;
-
-// This one stays global on purpose. It is a reset, not a colour rule, and
+// D8. The legacy color_* utilities are gone — all nine of them, at zero call
+// sites. Colour now lives with the component that needs it, which is what
+// makes a palette change one edit to _tokens.scss.
+//
+// This one rule stays global on purpose. It is a reset, not a colour rule, and
 // every primitive that needs an underline — .link, .prose a — is a class and
 // outranks it. Do NOT add the guide's global coloured link rule here: it would
 // turn the navigation, breadcrumbs and footer brand-coloured.
@@ -18,40 +20,4 @@ a {
 
 .font_family_glory {
   font-family: var(--font-display);
-}
-
-.color_primary {
-  color: color.$primary;
-}
-
-.color_primary--light {
-  color: color.$primary--light;
-}
-
-.color_secondry {
-  color: color.$secondry;
-}
-
-.color_tertiary {
-  color: color.$tertiary;
-}
-
-.color_secondry--light {
-  color: color.$secondry--light;
-}
-
-.color_gray--light {
-  color: color.$gray--light;
-}
-
-.color_gray {
-  color: color.$gray;
-}
-
-.color_gray-dark {
-  color: color.$gray-dark;
-}
-
-.color_white {
-  color: var(--color-page);
 }

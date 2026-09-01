@@ -34,17 +34,13 @@
 
     & > div {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 2.5rem;
-
-      @media only screen and (max-width: 760px) {
-        flex-direction: column;
-        gap: 2rem;
-      }
+      gap: 2rem 2.5rem;
 
       & > header {
-        flex: 1 1 auto;
+        flex: 1 1 24rem;
         min-width: 0;
 
         & > h3 {
@@ -70,7 +66,8 @@
       }
 
       & > div {
-        flex: 0 1 auto;
+        flex: 1 1 18rem;
+        min-width: 0;
 
         & > img {
           display: block;
@@ -79,5 +76,21 @@
         }
       }
     }
+  }
+}
+
+// D8. Colour moves here from color_primary / color_secondry at the call site,
+// which is what lets the legacy utility layer be deleted.
+.growthSection {
+  & > h2 {
+    color: var(--color-ink);
+
+    & > span {
+      color: var(--color-brand);
+    }
+  }
+
+  & > section > div > header > section > div > div > h4 {
+    color: var(--color-brand);
   }
 }

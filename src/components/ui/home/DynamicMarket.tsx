@@ -19,13 +19,13 @@ const DynamicMarket = () => {
         <header>
           <div>
             <Heading
-              className='primary color_secondry uppercase font_family_glory'
+              className='primary uppercase font_family_glory'
               level={2}
             >
               growing in dynamic <br /> markets is tough
             </Heading>
             <Heading
-              className='primary color_primary uppercase font_family_glory'
+              className='primary uppercase font_family_glory'
               level={3}
             >
               we make it achievable

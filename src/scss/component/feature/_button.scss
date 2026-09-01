@@ -1,50 +1,63 @@
-@use "../../globels" as color;
+// D8. Off the legacy Sass alias — the last four color.$* references outside
+// the utility layer that is being deleted in this commit.
+//
+// The blanket 0.3s transition is gone. Its own comment said it went with the
+// decorative layer in D2 and it was still here; the register is flat.
+//
+// .btn_secondry-full had NO background and NO border, only a size. Every
+// button on the site also carries the .btn primitive — Button renders
+// `btn btn_${className}` — so it fell through to the filled brand button and
+// rendered identically to .btn_primary-full beside it. That is the "Get a
+// proposal" button on all eight service heroes: an action pair drawn as two
+// identical filled buttons. It takes the outline treatment it was named for.
 
-// cursor and font-family are a legitimate global reset and stay.
 button {
+  // cursor and font-family are a legitimate global reset and stay.
   cursor: pointer;
   font-family: var(--font-body);
 }
 
-// The blanket 0.3s transition used to sit on every button in the document,
-// which meant it also animated .btn and .btn2 — and the register is flat and
-// static. Scoped to the legacy button classes so their behaviour is unchanged;
-// it goes entirely with the decorative layer in D2.
-.btn_primary,
-.btn_primary-full,
-.btn_secondry-full {
-  transition: 0.3s ease-in-out;
-}
-
 .btn {
-  &_primary {
+  &_primary,
+  &_primary-full {
     font-size: 0.875rem;
     color: var(--color-page);
     font-weight: 500;
     padding: 0.90625rem 2.15625rem;
-    border: 1px solid color.$primary;
-    border-radius: 0.5rem;
-    background-color: color.$primary;
+    border: 1px solid var(--color-brand);
+    border-radius: var(--radius-btn);
+    background-color: var(--color-brand);
     line-height: 1.375rem;
+
+    &:hover {
+      background-color: var(--color-brand-hover);
+      border-color: var(--color-brand-hover);
+    }
   }
+
   &_primary-full {
     display: block;
     font-size: 1rem;
-    color: var(--color-page);
-    font-weight: 500;
-    padding: 0.90625rem 2.15625rem;
-    border: 1px solid color.$primary;
-    border-radius: 0.5rem;
-    background-color: color.$primary;
-    line-height: 1.375rem;
     width: 100%;
   }
+
+  // The outline half of the action pair. Same inherited border fault as .btn2 —
+  // 1.56:1 on white, below the 3:1 non-text threshold — and deliberately not
+  // fixed here, because fixing it on one site forks the group design system.
   &_secondry-full {
     font-size: 1rem;
     font-weight: 500;
     padding: 0.90625rem 2.15625rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-btn);
     width: 100%;
     line-height: 1.375rem;
+    background: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-line-strong);
+
+    &:hover {
+      border-color: var(--color-ink);
+      background: transparent;
+    }
   }
 }

@@ -44,12 +44,8 @@
   & > div {
     display: flex;
     align-items: center;
-    gap: 3.75rem;
+    gap: clamp(2rem, 0.9rem + 3.4vw, 3.75rem);
     flex-wrap: wrap;
-
-    @media only screen and (max-width: 850px) {
-      gap: 2rem;
-    }
 
     & > :is(h1, h2) {
       width: 12.4375rem;
@@ -64,11 +60,7 @@
         display: flex;
         align-items: center;
         flex-wrap: wrap;
-        gap: 3.125rem;
-
-        @media only screen and (max-width: 650px) {
-          gap: 1.875rem;
-        }
+        gap: clamp(1.875rem, 0.8rem + 3.4vw, 3.125rem);
       }
     }
   }

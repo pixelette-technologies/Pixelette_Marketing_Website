@@ -140,3 +140,20 @@
     }
   }
 }
+
+// D8. Colour moves here from the call site.
+.heroHome {
+  & > section > div {
+    & > h1 {
+      color: var(--color-brand);
+    }
+
+    & > h2 {
+      color: var(--color-ink);
+    }
+  }
+}
+
+.heroHome__emphasis {
+  color: var(--color-brand);
+}

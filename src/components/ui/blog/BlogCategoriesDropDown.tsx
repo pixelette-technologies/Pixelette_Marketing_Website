@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import { Text } from "@/components/feature";
@@ -15,31 +15,51 @@ interface BlogCategoriesDropDownProps {
   onSelectCategory: (title: string) => void;
 }
 
+// D5. The toggle was a <header> carrying onClick — no button, no keyboard
+// path, no focus state and no aria-expanded, so the category filter was
+// unreachable without a mouse on exactly the widths where this control
+// replaces the sidebar, which is to say on phones. Third instance of this
+// defect after the FAQ accordion and ProcessSection's tabs, and fixed the same
+// way.
+//
+// The four colour utilities go with it. Two of them were `color_secondary`,
+// the misspelling of color_secondry that has never applied; the selected state
+// is aria-pressed now and the partial styles it.
+
 const BlogCategoriesDropDown: React.FC<BlogCategoriesDropDownProps> = ({
   data,
   selectedCategory,
   onSelectCategory
 }) => {
   const [active, setActive] = useState(false);
+  const uid = useId();
+  const listId = `${uid}-category-list`;
 
   return (
     <blockquote className='blogCategoriesDropDown'>
-      <header onClick={() => setActive(!active)}>
-        <section>
-          <LuFilter />
-          <Text className='secondry'>{selectedCategory}</Text>
-        </section>
-        <motion.div
-          animate={
-            active
-              ? {
-                  rotate: -180
-                }
-              : { rotate: 0 }
-          }
+      <header>
+        <button
+          type='button'
+          onClick={() => setActive(!active)}
+          aria-expanded={active}
+          aria-controls={listId}
         >
-          <IoIosArrowDown />
-        </motion.div>
+          <section>
+            <LuFilter />
+            <Text className='secondry'>{selectedCategory}</Text>
+          </section>
+          <motion.div
+            animate={
+              active
+                ? {
+                    rotate: -180
+                  }
+                : { rotate: 0 }
+            }
+          >
+            <IoIosArrowDown />
+          </motion.div>
+        </button>
       </header>
       {active && (
         <motion.div
@@ -47,17 +67,14 @@ const BlogCategoriesDropDown: React.FC<BlogCategoriesDropDownProps> = ({
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
           className='dropdown-content'
+          id={listId}
         >
           <button
             onClick={() => {
               onSelectCategory("All");
               setActive(!active);
             }}
-            className={
-              selectedCategory === "All"
-                ? "bg_primary color_white"
-                : "color_secondary bg_dropdown"
-            }
+            aria-pressed={selectedCategory === "All"}
           >
             All
           </button>
@@ -68,11 +85,7 @@ const BlogCategoriesDropDown: React.FC<BlogCategoriesDropDownProps> = ({
                 onSelectCategory(el.title);
                 setActive(!active);
               }}
-              className={
-                selectedCategory === el.title
-                  ? "bg_primary color_white"
-                  : "color_secondary  bg_dropdown"
-              }
+              aria-pressed={selectedCategory === el.title}
             >
               {el.title}
             </button>

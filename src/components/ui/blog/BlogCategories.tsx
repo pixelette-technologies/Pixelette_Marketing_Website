@@ -30,7 +30,7 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
 
   return (
     <section
-      className='blogCategories bg_white'
+      className='blogCategories'
     >
       <Heading
         className='tertiary font_family_glory'
@@ -52,11 +52,7 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
         {!isSearching && (
           <button
             onClick={() => onSelectCategory("All")}
-            className={
-              selectedCategory === "All"
-                ? "bg_primary color_white"
-                : "color_secondary"
-            }
+            aria-pressed={selectedCategory === "All"}
           >
             All
           </button>
@@ -71,11 +67,7 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
             <button
               key={index}
               onClick={() => onSelectCategory(el.title)}
-              className={
-                selectedCategory === el.title
-                  ? "bg_primary color_white"
-                  : "color_secondary"
-              }
+              aria-pressed={selectedCategory === el.title}
             >
               {el.title}
             </button>

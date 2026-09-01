@@ -15,8 +15,8 @@ const BlogCard: FC<BlogCardProps> = ({ icon, title, summary, image }) => {
     <div className='blogCard'>
       {icon && <LogoBlack />}
       <Image src={image} alt={title} height={160} width={200} />
-      <Text className='primary color_secondry'>{title}</Text>
-      <Text className='tertiary color_gray--light'>{summary}</Text>
+      <Text className='primary'>{title}</Text>
+      <Text className='tertiary'>{summary}</Text>
     </div>
   );
 };

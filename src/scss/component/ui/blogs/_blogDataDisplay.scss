@@ -1,28 +1,38 @@
+// D5. The sidebar and the dropdown are a genuine component swap rather than a
+// layout tweak — a 14.875rem category list on wide screens, a collapsed
+// dropdown on narrow ones — so this file keeps ONE media query for it and
+// takes the guide's 767px rather than the 550px it invented. Three of the four
+// go: the two column widths are a wrapping flex pair now.
+
 .blogDataDisplay {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
   margin-bottom: 1.25rem;
-  @media only screen and (max-width: 550px) {
-    flex-direction: column;
-  }
 
   & > section {
-    width: 14.875rem;
-    @media only screen and (max-width: 550px) {
-      display: none;
-    }
+    flex: 0 0 14.875rem;
   }
+
   & > blockquote {
     display: none;
-    @media only screen and (max-width: 550px) {
-      display: block;
-    }
   }
+
   & > div {
-    width: calc(100% - 15.875rem);
-    @media only screen and (max-width: 550px) {
-      width: 100%;
-      margin-bottom: 1.875rem;
+    flex: 999 1 20rem;
+    min-width: 0;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .blogDataDisplay {
+    & > section {
+      display: none;
+    }
+
+    & > blockquote {
+      display: block;
+      flex: 1 1 100%;
     }
   }
 }

@@ -1,48 +1,51 @@
-@use "../../../globels" as color;
+// D5. Off the legacy Sass aliases, which takes four more color.$* references.
+//
+// The category row had `width: 1140px` on its inner div inside an
+// overflow-x: scroll wrapper, so the filters were always a fixed 1140px wide
+// and always horizontally scrollable — at every viewport, including ones far
+// wider than 1140px, where the row simply stopped short with dead space beside
+// it. They wrap now and the scroller goes with the custom scrollbar it needed.
+//
+// The selected state was bg_primary + color_white and the unselected one
+// `color_secondary`, the misspelling of color_secondry that has never applied.
+// Both are aria-pressed now.
 
 .storiesDataDisplay {
-  margin: 2rem 0rem;
+  margin-block: var(--sec-y-sm);
+
   & > header {
     margin-bottom: 2rem;
 
-    width: 100%;
-    overflow: hidden;
-    overflow-x: scroll;
-    padding-bottom: 0.3125rem;
-    &::-webkit-scrollbar {
-      width: 0.4375rem;
-      height: 0.375rem;
-    }
-    &::-webkit-scrollbar-track {
-      margin-bottom: 1.25rem;
-      background-color: color.$gray;
-      border-radius: 0.625rem;
-      display: none;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: color.$primary;
-      border-radius: 0.625rem;
-      cursor: grabbing;
-    }
-    &::-webkit-scrollbar-thumb:hover {
-      background: color.$primary;
-      border-radius: 0.625rem;
-    }
     & > div {
-      width: 1140px;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.625rem;
+
       & > button {
         font-size: 0.75rem;
         font-weight: 400;
         border: 1px solid var(--color-line-strong);
-        border-radius: 0.3125rem;
-        padding: 0.75rem 2.4375rem;
-        border: none;
+        border-radius: var(--radius-btn);
+        padding: 0.75rem 1.5rem;
+        background: none;
+        color: var(--color-body);
+        cursor: pointer;
+
+        &:hover {
+          border-color: var(--color-brand);
+          color: var(--color-brand);
+        }
+
+        &[aria-pressed="true"] {
+          background-color: var(--color-brand);
+          border-color: var(--color-brand);
+          color: var(--color-page);
+        }
       }
     }
   }
+
   & > section {
     & > * {
       &:not(:last-child) {

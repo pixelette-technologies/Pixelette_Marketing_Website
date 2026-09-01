@@ -1,45 +1,44 @@
+// D5. Three media queries gone. The hero image is fluid rather than pinned to
+// 260px below 700px, and the byline row wraps instead of switching direction —
+// which also removes the rule that had to strip the divider border back off at
+// the same width.
+
 .heroSingleBlogPage {
-  padding-top: 4.1875rem;
-  margin-bottom: 3.5rem;
+  padding-top: var(--sec-y);
+  margin-bottom: var(--sec-y-sm);
 
   & > img {
     width: 100%;
+    height: auto;
     margin-bottom: 0.9375rem;
-
-    @media only screen and (max-width: 700px) {
-      height: 260px;
-    }
   }
+
   & > section {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    @media only screen and (max-width: 600px) {
-      flex-direction: column;
-    }
+    gap: 0.5rem;
 
     & > div {
       display: flex;
       align-items: center;
+
       & > p {
         font-size: 0.875rem;
         font-weight: 500;
+        color: var(--color-body);
       }
+
       & > img {
         margin: 0rem 0.625rem;
+        border-radius: 50%;
       }
     }
 
     & > * {
       &:first-child {
-        border-right: 1px solid var(--color-ink);
+        border-right: 1px solid var(--color-line-strong);
         padding-right: 0.5rem;
-        margin-right: 0.5rem;
-
-        @media only screen and (max-width: 600px) {
-          border: none;
-          padding-right: 0rem;
-          margin-right: 0rem;
-        }
       }
     }
   }

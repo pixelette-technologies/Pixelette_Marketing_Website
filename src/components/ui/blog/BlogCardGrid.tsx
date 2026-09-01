@@ -16,13 +16,13 @@ type BlogDataDisplayProps = {
 const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
   return (
     <div
-      className='blogCardGrid bg_white'
+      className='blogCardGrid'
     >
       {data?.map((story, index) => (
         <Link
           key={`section-story-${index}`}
           href={`/blog/${story.id}`}
-          className='bg_gray--lightness'
+          
         >
           <BlogCard
             icon={false}

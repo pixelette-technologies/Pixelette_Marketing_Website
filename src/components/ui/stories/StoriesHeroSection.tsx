@@ -17,10 +17,10 @@ const StoriesHeroSection = () => {
             className='tertiary font_family_glory uppercase'
             level={1}
           >
-            Stories of <span className='color_primary'>growth and impact</span>
+            Stories of <span>growth and impact</span>
           </Heading>
           <Text
-            className='primary color_secondry'
+            className='primary'
           >
             Explore the success stories of brands we’ve helped scale. Covering
             everything from strategy to execution, discover how Pixelette

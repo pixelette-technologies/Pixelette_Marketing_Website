@@ -18,10 +18,10 @@ const BlogHeroSection = () => {
             level={1}
           >
             Pixelette
-            <span className='color_primary'> Marketing Blog</span>
+            <span> Marketing Blog</span>
           </Heading>
           <Text
-            className='primary color_secondry'
+            className='primary'
           >
             Your marketing knowlege repository for emerging industries
           </Text>

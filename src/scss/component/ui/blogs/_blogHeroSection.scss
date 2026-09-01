@@ -1,31 +1,33 @@
+// D5. Three media queries gone; the image is fluid and the pair wraps.
+
 .blogHeroSection {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 2.875rem;
-  padding: 2.5rem 0rem;
+  padding-block: var(--sec-y);
 
-  @media only screen and (max-width: 1000px) {
-    gap: 0.625rem;
-    & > img {
-      max-width: 60%;
-      height: auto;
-    }
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    gap: 2.5rem;
-    & > img {
-      max-width: 80%;
-    }
-    text-align: center;
+  & > img {
+    flex: 1 1 20rem;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
   }
 
   & > section {
+    flex: 1 1 20rem;
+    min-width: 0;
+
     & > h1 {
       margin-bottom: 1.5rem;
-      @media only screen and (max-width: 750px) {
-        margin-bottom: 0.625rem;
+
+      & > span {
+        color: var(--color-brand);
       }
+    }
+
+    & > p {
+      color: var(--color-ink);
     }
   }
 }

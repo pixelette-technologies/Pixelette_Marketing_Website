@@ -16,13 +16,13 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
   const headerData = data?.slice(0, 2);
   const sectionData = data?.slice(2);
   return (
-    <div className='storiesCardGrid  bg_white'>
+    <div className='storiesCardGrid'>
       <header>
         {headerData?.map((story, index) => (
           <Link
             key={`section-story-${index}`}
             href={`/story/${story.id}`}
-            className='bg_gray--lightness'
+            
           >
             <BlogCard
               icon={false}
@@ -41,7 +41,7 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
           <Link
             key={`section-story-${index}`}
             href={`/story/${story.id}`}
-            className='bg_gray--lightness'
+            
           >
             <BlogCard
               icon={false}

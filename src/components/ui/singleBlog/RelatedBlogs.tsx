@@ -107,7 +107,7 @@ const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
                 <h5>{el.subheading}</h5>
                 <h3>{el.title}</h3>
                 {el.link && (
-                  <Link href={el.link} className='color_gradient'>
+                  <Link href={el.link} >
                     Read Blog
                     <MdArrowForward />
                   </Link>

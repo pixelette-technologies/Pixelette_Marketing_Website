@@ -4,7 +4,7 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -30,6 +30,8 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
     title.replace(/\s+/g, "-").toLowerCase();
 
   const [active, setActive] = useState(false);
+  const uid = useId();
+  const tocId = `${uid}-toc`;
 
   const pathname = usePathname();
   const shareUrl = encodeURIComponent(
@@ -42,7 +44,7 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
       <div className='singleBlogContent'>
         <div>
           <header>
-            <Heading className='primary color_primary' level={1}>{heading}</Heading>
+            <Heading className='primary' level={1}>{heading}</Heading>
             <Text className='primary'>{description}</Text>
           </header>
 
@@ -60,20 +62,27 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
 
         <section>
           <div>
-            <div className='bg_primary'>
-              <header onClick={() => setActive(!active)}>
-                <h2>Table of content</h2>
-                <motion.div
-                  animate={
-                    active
-                      ? {
-                          rotate: -180
-                        }
-                      : { rotate: 0 }
-                  }
+            <div>
+              <header>
+                <button
+                  type='button'
+                  onClick={() => setActive(!active)}
+                  aria-expanded={active}
+                  aria-controls={tocId}
                 >
-                  <IoIosArrowDown />
-                </motion.div>
+                  <h2>Table of content</h2>
+                  <motion.div
+                    animate={
+                      active
+                        ? {
+                            rotate: -180
+                          }
+                        : { rotate: 0 }
+                    }
+                  >
+                    <IoIosArrowDown />
+                  </motion.div>
+                </button>
               </header>
               {active && (
                 <motion.div
@@ -81,6 +90,7 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
                   animate={{ y: "0rem", opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className='dropdown-content'
+                  id={tocId}
                 >
                   <ul>
                     {data.map((el, index) => (

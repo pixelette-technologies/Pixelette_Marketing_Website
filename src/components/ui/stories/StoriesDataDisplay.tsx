@@ -27,11 +27,7 @@ const StoriesDataDisplay = () => {
           <div>
             <button
               onClick={() => setSelectedCategory("All")}
-              className={
-                selectedCategory === "All"
-                  ? "bg_primary color_white"
-                  : "color_secondary"
-              }
+              aria-pressed={selectedCategory === "All"}
             >
               All
             </button>
@@ -39,11 +35,7 @@ const StoriesDataDisplay = () => {
               <button
                 key={index}
                 onClick={() => setSelectedCategory(el.title)}
-                className={
-                  selectedCategory === el.title
-                    ? "bg_primary color_white"
-                    : "color_secondary"
-                }
+                aria-pressed={selectedCategory === el.title}
               >
                 {el.title}
               </button>

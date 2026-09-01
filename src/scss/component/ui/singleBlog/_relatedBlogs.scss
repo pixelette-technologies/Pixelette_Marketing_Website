@@ -1,17 +1,33 @@
+// D5. Both heading rules in this file were dead, and one of them mattered.
+//
+// `.contentSlider > h1` set font-size: 2.5rem and font-weight: 600 on
+// "Related Articles", which Heading renders as an h2 — so it never applied,
+// and the override of the type scale went with it rather than being ported.
+//
+// `.contentSlider_item > h1` set the card title to 16px/600. The markup
+// renders <h3>, so every related-article title has been rendering at --fs-h3,
+// up to 25px, inside a 300px-wide slide. That is the visible half of this
+// commit.
+//
+// The `color_gradient` class on the Read Blog link is in the vault's
+// referenced-but-undefined list: it has no definition anywhere, so it has
+// never done anything. The link's colour comes from the partial.
+
 .contentSlider {
-  margin-top: 1.25rem;
-  & > h1 {
-    font-size: 2.5rem;
-    font-weight: 600;
-    margin-bottom: 5rem;
+  margin-block: var(--sec-y-sm);
+
+  & > :is(h1, h2) {
+    margin-bottom: var(--sec-y-sm);
   }
 
   & > header {
-    margin-top: 3.125rem;
+    margin-top: var(--sec-y-sm);
+
     & > div {
       display: flex;
       align-items: center;
       gap: 2.5rem;
+
       & > button {
         display: flex;
         align-items: center;
@@ -19,6 +35,7 @@
         border: none;
         background-color: transparent;
         cursor: pointer;
+        color: var(--color-brand);
       }
     }
   }
@@ -26,29 +43,41 @@
 
 .contentSlider_item {
   padding: 0rem 0.5rem;
+
   & > img {
     width: 100%;
     height: 206px;
-    border-radius: 0.625rem;
+    border-radius: var(--radius-card);
     object-fit: cover;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
+
   & > h5 {
     font-size: 0.875rem;
     font-weight: 400;
     margin-bottom: 0.125rem;
+    color: var(--color-muted);
   }
-  & > h1 {
-    font-size: 1rem;
+
+  & > :is(h1, h3) {
+    font-size: var(--fs-body);
     font-weight: 600;
+    line-height: 1.4;
     margin-bottom: 0.4375rem;
+    color: var(--color-ink);
   }
+
   & > a {
     display: flex;
     align-items: center;
     font-size: 0.75rem;
     gap: 0.625rem;
-    color: var(--color-ink);
+    color: var(--color-brand);
+
+    &:hover {
+      color: var(--color-brand-hover);
+    }
+
     & > * {
       &:last-child {
         font-size: 0.875rem;

@@ -2,7 +2,7 @@
 
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import { FC } from "react";
+import { FC, useId } from "react";
 import CountUp from "react-countup";
 
 interface CardProps {
@@ -24,6 +24,12 @@ const ResearchSection: FC<ResearchSectionProps> = ({
   detail,
   data
 }) => {
+  // These ids were counter-section-N, identical to the ones Status emits on the
+  // same page, so two elements shared an id in one document. This component
+  // never observes them — it runs CountUp immediately — but the duplicates were
+  // real and Status's document-wide query was picking these nodes up.
+  const uid = useId();
+
   return (
     <Container className='main'>
       <div className='researchSection'>
@@ -45,7 +51,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
           {data?.map((el, index) => (
             <div
               key={index}
-              id={`counter-section-${index + 1}`}
+              id={`${uid}-counter-${index + 1}`}
               className='counter-section'
             >
               <Heading className='primary color_primary font_family_glory '>

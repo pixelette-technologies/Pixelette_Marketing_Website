@@ -1,28 +1,53 @@
+// The toggle is a real button now, so it needs the resets a button carries and
+// the 44px tap target the guide's accessibility floor requires. The panel is
+// always in the DOM and hidden with the `hidden` attribute rather than being
+// unmounted.
+
 .accordion {
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-card);
   background-color: var(--color-page);
-  & > header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    justify-content: space-between;
-    & > div {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    & > blockquote {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 1.25rem;
-      width: 1.25rem;
-      border-radius: 50%;
-    }
-  }
-  & > section {
-    margin-top: 0.625rem;
-    padding: 0rem 2.75rem;
-  }
+  border: 1px solid var(--color-line-card);
+}
+
+.accordion:hover {
+  border-color: var(--color-line-strong);
+}
+
+.accordion__toggle {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.accordion__label {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.accordion__marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.accordion > section {
+  margin-top: 0.625rem;
+  padding: 0rem 2.75rem;
 }

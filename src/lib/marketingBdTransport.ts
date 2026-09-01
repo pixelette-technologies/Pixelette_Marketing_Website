@@ -177,7 +177,7 @@ export async function sendMarketingBdSubmission(
     now?: () => number;
     timeoutMs?: number;
   } = {},
-): Promise<{ accepted: boolean; providerReceiptId?: string }> {
+): Promise<{ accepted: boolean; providerReceiptId?: string; refusalCode?: string }> {
   const canonical = validateMarketingBdTransportConfiguration(configuration);
   const fetchImpl = options.fetchImpl ?? fetch;
   const now = options.now ?? Date.now;
@@ -198,14 +198,21 @@ export async function sendMarketingBdSubmission(
     cache: "no-store",
     signal: AbortSignal.timeout(timeoutMs),
   });
-  if (!response.ok || response.headers.get("cache-control") !== "no-store") {
+  if (response.headers.get("cache-control") !== "no-store") {
     return { accepted: false };
   }
-  let payload: MarketingBdReceipt;
+  let payload: MarketingBdReceipt & { error?: unknown };
   try {
-    payload = await response.json() as MarketingBdReceipt;
+    payload = await response.json() as MarketingBdReceipt & { error?: unknown };
   } catch {
     return { accepted: false };
+  }
+  if (!response.ok) {
+    const refusalCode = String(payload.error ?? "");
+    return {
+      accepted: false,
+      refusalCode: /^[A-Z0-9_]+$/.test(refusalCode) ? refusalCode : undefined,
+    };
   }
   if (!["DELIVERED", "DUPLICATE"].includes(String(payload.transport_status))
       || !isRecord(payload.receiver_receipt)

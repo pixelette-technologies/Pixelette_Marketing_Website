@@ -173,3 +173,30 @@ test("duplicate is safe while retry, dead-letter and invalid receipts fail close
     receiver_receipt: { status: "REJECTED" },
   })).accepted, false);
 });
+
+test("receiver refusals expose only a bounded machine code", async () => {
+  const now = Date.parse("2026-08-30T12:00:00.000Z");
+  const envelope = buildMarketingBdSourceEnvelope(
+    submission,
+    configuration,
+    "https://www.pixelettemarketing.com",
+    now,
+  );
+  const refused = await sendMarketingBdSubmission(envelope, configuration, {
+    now: () => now,
+    fetchImpl: async () => new Response(JSON.stringify({ error: "ALLOWLISTED_STAGING_SOURCE_REQUIRED" }), {
+      status: 401,
+      headers: { "Cache-Control": "no-store", "Content-Type": "application/json" },
+    }),
+  });
+  assert.deepEqual(refused, { accepted: false, refusalCode: "ALLOWLISTED_STAGING_SOURCE_REQUIRED" });
+
+  const unbounded = await sendMarketingBdSubmission(envelope, configuration, {
+    now: () => now,
+    fetchImpl: async () => new Response(JSON.stringify({ error: "refused: source https://private.example" }), {
+      status: 401,
+      headers: { "Cache-Control": "no-store", "Content-Type": "application/json" },
+    }),
+  });
+  assert.deepEqual(unbounded, { accepted: false, refusalCode: undefined });
+});

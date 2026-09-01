@@ -52,7 +52,14 @@ export async function POST(request: NextRequest) {
       nowMs,
     });
     if (!result.accepted) {
-      return NextResponse.json({ error: "Synthetic staging receiver refused the journey" }, { status: 502, headers });
+      const sourceRefusalCode = result.sourceRefusalCode;
+      const failureCode = sourceRefusalCode && /^[A-Z0-9_]+$/.test(sourceRefusalCode)
+        ? `SYNTHETIC_STAGING_RECEIVER_${sourceRefusalCode}`
+        : "SYNTHETIC_STAGING_RECEIVER_REFUSED";
+      return NextResponse.json(
+        { error: "Synthetic staging receiver refused the journey", failureCode },
+        { status: 502, headers },
+      );
     }
     return NextResponse.json({
       ok: true,

@@ -114,7 +114,7 @@ export async function executeSyntheticStagingJourney(options: {
   eventId: string;
   nowMs: number;
   fetchImpl?: typeof fetch;
-}): Promise<{ accepted: boolean; submissionId: string; providerReceiptId?: string }> {
+}): Promise<{ accepted: boolean; submissionId: string; providerReceiptId?: string; refusalCode?: string }> {
   const origin = new URL(options.origin);
   if (origin.protocol !== "https:" || origin.pathname !== "/" || origin.search || origin.hash
       || origin.username || origin.password) {
@@ -139,6 +139,7 @@ export async function executeSyntheticStagingJourney(options: {
     accepted: delivery.accepted,
     submissionId: envelope.eventId,
     providerReceiptId: delivery.providerReceiptId,
+    refusalCode: delivery.refusalCode,
   };
 }
 
@@ -204,6 +205,7 @@ export interface SyntheticStagingFullJourneyResult {
   learningState: string;
   appliesLiveChange: false;
   acceptedForLiveLearning: false;
+  sourceRefusalCode?: string;
 }
 
 async function governedStep<T>(name: string, action: () => Promise<T>): Promise<T> {
@@ -237,6 +239,7 @@ export async function executeSyntheticStagingFullJourney(options: {
       learningState: "",
       appliesLiveChange: false,
       acceptedForLiveLearning: false,
+      sourceRefusalCode: source.refusalCode,
     };
   }
 

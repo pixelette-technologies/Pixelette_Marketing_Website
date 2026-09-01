@@ -1,60 +1,65 @@
-import ArrowRed from "@/assets/common/ArrowLeft";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import Image from "next/image";
+
+// Phase F. There is no eyebrow available here without writing copy, and the
+// content rule says ship the pattern without the missing element rather than
+// invent one — so this section opens on the h2 alone. "Success Follows Next"
+// takes the eyebrow role for the grid it labels, which is the job it was
+// already doing.
+//
+// The ArrowRed mark is gone. It was the second mannerism — .rule-cap, already
+// on this section's opening hairline, is the only one this design gets, and
+// the two were competing three lines apart.
 
 export default function GrowthSection() {
   return (
     <Container className='main'>
       <div className='growthSection rule-cap'>
-        <Heading
-          className='primary font_family_glory uppercase'
-          level={2}
-        >
+        <Heading className='h2' level={2}>
           Growth <span>starts</span> here
-          <ArrowRed />
         </Heading>
 
         <section>
           <div>
             <header>
-              <Heading level={3}>
+              <Heading className='eyebrow' level={3}>
                 Success Follows Next
               </Heading>
               <section>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory' level={4}>
+                    <Heading className='h4' level={4}>
                       Growth
                     </Heading>
-                    <Text className='secondry font_family_glory'>
+                    <Text className='small'>
                       Audience and community growth for Web3 and technology
                       brands
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory' level={4}>
+                    <Heading className='h4' level={4}>
                       Conversion
                     </Heading>
-                    <Text className='secondry font_family_glory'>
+                    <Text className='small'>
                       Funnel and lead-conversion optimisation for fintech brands
                     </Text>
                   </div>
                 </div>
                 <div>
                   <div>
-                    <Heading className='primary font_family_glory' level={4}>
+                    <Heading className='h4' level={4}>
                       Paid ROI
                     </Heading>
-                    <Text className='secondry font_family_glory'>
+                    <Text className='small'>
                       Paid media managed for measurable return for SaaS brands
                     </Text>
                   </div>
                   <div>
-                    <Heading className='primary font_family_glory' level={4}>
+                    <Heading className='h4' level={4}>
                       Pipeline
                     </Heading>
-                    <Text className='secondry font_family_glory'>
+                    <Text className='small'>
                       Qualified lead generation for high-growth startups
                     </Text>
                   </div>

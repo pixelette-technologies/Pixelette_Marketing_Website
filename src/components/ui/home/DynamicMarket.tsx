@@ -11,6 +11,19 @@ import { dynamicMarketData } from "@/data";
 // queries that maintained them across widths all go. The section stacks.
 //
 // The 15rem top corner radii that appeared only below 1366px went with them.
+//
+// Phase F. Guide anatomy: mainHeading is the eyebrow, subHeading is the h2,
+// the standfirst is .lead.
+//
+// The hard <br /> inside the heading went too. It is not content — no word
+// changes — it is a hand-set line break, and it fights both `text-wrap:
+// balance` on the display classes and the measure cap on the copy. The heading
+// now breaks where the type system decides at every width instead of at the
+// one width somebody happened to be looking at.
+//
+// Both strings are stored lowercase here. The eyebrow uppercases itself and
+// the h2 gets its capital from the ::first-letter rule in _type, so neither
+// needed a byte changed.
 
 const DynamicMarket = () => {
   return (
@@ -18,20 +31,14 @@ const DynamicMarket = () => {
       <Container className='main'>
         <header>
           <div>
-            <Heading
-              className='primary uppercase font_family_glory'
-              level={2}
-            >
-              growing in dynamic <br /> markets is tough
+            <Heading className='eyebrow' level={2}>
+              growing in dynamic markets is tough
             </Heading>
-            <Heading
-              className='primary uppercase font_family_glory'
-              level={3}
-            >
+            <Heading className='h2' level={3}>
               we make it achievable
             </Heading>
           </div>
-          <Text className='primary'>
+          <Text className='lead'>
             The right strategy makes all the difference. Our industry-focused
             approach simplifies the journey, offering customised solutions that
             drive real, measurable success

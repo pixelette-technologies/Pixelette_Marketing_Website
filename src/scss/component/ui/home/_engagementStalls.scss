@@ -16,15 +16,18 @@
   align-items: start;
   gap: 2.5rem;
 
-  // The heading column. It takes its natural share and is the one that gives
-  // way, because the cards are what the section is for.
+  // The heading column. It gives way before the cards do, because the cards
+  // are what the section is for — but it was on `flex: 1 1 16rem` against a
+  // panel on `flex: 999 1 24rem`, and a grow factor of 999 takes essentially
+  // all the free space. The column was being squeezed to about 256px at
+  // desktop, which is why the heading wrapped to four cramped lines beside a
+  // vast dark rectangle. 1 against 2 gives roughly a 38/62 split.
   & > div:first-child {
-    flex: 1 1 16rem;
+    flex: 1 1 18rem;
 
-    & > * {
-      &:first-child {
-        margin-bottom: 0.5625rem;
-      }
+    // The guide's eyebrow-to-heading gap, exactly: 20px.
+    & > *:first-child {
+      margin-bottom: 1.25rem;
     }
 
     & > p {
@@ -33,27 +36,22 @@
   }
 }
 
-// The dark ground the cards sit on. Settled in Phase A: the saturated bands
-// become the dark panel family rather than staying flat crimson or flat ink.
+// Phase F. This used to carry the dark gradient, a border, a 12px radius and
+// 24px of padding — a bordered box holding a grid of bordered cards, sitting
+// inside an otherwise light section. Two nested boxes and three borders deep,
+// which is what made it read as a brick rather than as a section.
+//
+// The dark ground is now the full-bleed .band-dark on the section wrapper, so
+// what is left here is only the grid. The cards keep their own edges and now
+// have room to breathe against the band.
 .engagementStalls__panel {
-  flex: 999 1 24rem;
+  flex: 2 1 26rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
   gap: 1rem;
-
-  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
-  border: 1px solid var(--color-panel-border);
-  border-radius: var(--radius-card);
-  padding: 1.5rem;
 }
 
-// D8. Colour moves here from the call site.
-.engagementStalls > div:first-child {
-  & > h2 {
-    color: var(--color-brand);
-  }
-
-  & > h3 {
-    color: var(--color-ink);
-  }
-}
+// The D8 colour block that sat here is gone. It set the h2 to the brand anchor
+// and the h3 to ink — both unreadable now the section is on dark, and both
+// already handled by .band-dark, which colours .eyebrow, the headings, .lead
+// and .small from one place for all three dark bands.

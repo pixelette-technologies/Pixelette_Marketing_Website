@@ -29,6 +29,21 @@ export default function HomeHero() {
     // guide's action pair, because a second CTA is new content. Both headings
     // keep their own elements: merging them into a single h1 would change the
     // DOM structure of content.
+    //
+    // Phase F. The hero STAYS SPLIT — left collage, right copy — rather than
+    // going centred like Certified's. Chosen by the user on 1 Sep: the collage
+    // is the most distinctive thing on the site and centring the hero would
+    // have cost it. What changed is only the type.
+    //
+    // Both headings carried `hero font_family_glory uppercase`, which reached
+    // the DOM as heading_hero — one of the twelve legacy variants, and mapped
+    // to h1 on the guide's scale. So the type was right and the CASE was the
+    // problem: 64px of Newsreader at negative tracking, set in capitals.
+    //
+    // They are .h1 now, and sentence case. The accent also moves from the first
+    // line to the second, which is the guide's own hero device — the statement
+    // in ink, the payoff in the brand tone. Certified does exactly this with
+    // "We fix that in 10 weeks."
     <div className='wash'>
       <Container className='main'>
         <div className='heroHome'>
@@ -89,19 +104,13 @@ export default function HomeHero() {
               band behind the copy fought the gradient. */}
           <section>
             <div>
-              <Heading
-                className='hero font_family_glory uppercase'
-                level={1}
-              >
+              <Heading className='h1' level={1}>
                 Marketing That Matters
               </Heading>
-              <Heading
-                className='hero font_family_glory uppercase'
-                level={2}
-              >
+              <Heading className='h1' level={2}>
                 to Your Bottom Line
               </Heading>
-              <Text className='primary'>
+              <Text className='lead'>
                 Pixelette Marketing delivers precision driven marketing for
                 Fintech, SaaS, Web3, tech products and platforms, and more. We
                 believe your industry deserves strategies as innovative as your

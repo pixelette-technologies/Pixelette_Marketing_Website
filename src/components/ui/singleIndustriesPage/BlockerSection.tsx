@@ -11,10 +11,10 @@ const BlockerSection: FC<BlockerSectionProps> = ({ heading, description }) => {
   return (
     <Container className='main'>
       <div className='blockerSection'>
-        <Heading className='primary--light font_family_glory'>
+        <Heading className='heading_primary--light font_family_glory'>
           {heading}
         </Heading>
-        <Text className='primary'>{description}</Text>
+        <Text className='text_primary'>{description}</Text>
       </div>
     </Container>
   );

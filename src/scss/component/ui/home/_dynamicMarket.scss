@@ -17,11 +17,18 @@
 
       & > div {
         flex: 1 1 22rem;
+
+        // The guide's eyebrow-to-heading gap, exactly: 20px.
+        & > *:first-child {
+          margin-bottom: 1.25rem;
+        }
       }
 
+      // The 33.1rem cap here was a hand-measured number doing the job the
+      // measure cap now does properly. .lead carries the guide's 62ch, which
+      // holds the line length whatever the type size interpolates to.
       & > p {
         flex: 1 1 20rem;
-        max-width: 33.1rem;
       }
     }
 
@@ -34,15 +41,11 @@
   }
 }
 
-// D8. Colour moves here from the call site.
-.dynamicMarket {
-  & > div > header > div {
-    & > h2 {
-      color: var(--color-ink);
-    }
-
-    & > h3 {
-      color: var(--color-brand);
-    }
-  }
-}
+// Phase F. The D8 colour block that sat here is deleted rather than swapped.
+//
+// It set the h2 to ink and the h3 to the brand anchor, which was correct while
+// both were display headings. Now that the h2 is the eyebrow and the h3 is the
+// section heading, the same two rules would do exactly the wrong thing twice:
+// strip the eyebrow's brand colour, and paint the largest heading on the page
+// crimson. The primitives already carry both — .eyebrow is brand, .h2 is ink —
+// so the right move is to stop restating them here.

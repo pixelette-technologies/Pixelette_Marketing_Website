@@ -29,10 +29,10 @@ const TeamCard: FC<TeamCardProps> = ({ image, name, role, detail }) => {
       </section>
       <header>
         <Image src={image} alt='profile' height={90} width={90} />
-        <Heading className='secondry--boldLight'>{name}</Heading>
-        <Text className='secondry--semibold'>{role}</Text>
+        <Heading className='heading_secondry--boldLight'>{name}</Heading>
+        <Text className='text_secondry--semibold'>{role}</Text>
       </header>
-      <Text className='tertiary--light'>{detail}</Text>
+      <Text className='text_tertiary--light'>{detail}</Text>
     </div>
   );
 };

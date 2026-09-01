@@ -119,9 +119,9 @@
 // Marketing KEEPS the dark family as a deliberate device rather than reducing
 // to the guide's light-throughout rhythm. Settled 1 Sep 2026; see [[Rules]].
 // Two of the three dark bands are not even a choice — every client logo and
-// every platform mark in this repo is knockout white (fill="white", or a baked
-// raster pattern), so those rows CANNOT sit on a light ground without new
-// assets.
+// every platform mark in this repo is knockout white, either a white fill
+// attribute or a baked raster pattern, so those rows CANNOT sit on a light
+// ground without new assets.
 //
 // The discipline that makes it a device instead of an accident:
 //
@@ -135,8 +135,8 @@
 // One class, so the logo bands and the capability matrix read as the same
 // recurring device rather than three unrelated black rectangles.
 //
-// Contrast measured against the WORST case, the #21040d gradient start
-// (the #0f080a end is one to two tenths better on every row):
+// Contrast measured against the WORST case, the gradient start — panel-a,
+// was 21040d. The panel-b end is one to two tenths better on every row:
 //   .eyebrow  signal       5.34
 //   headings  page white  19.30
 //   .lead     panel text   7.36

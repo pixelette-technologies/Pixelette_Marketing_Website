@@ -4,17 +4,14 @@
 .teamSection {
   padding-block: var(--sec-y);
 
+  // Phase F. mainHeading is the eyebrow, subHeading is the h2 — the pair was
+  // already in the content and both halves were rendering as the same
+  // uppercase display heading. The gap between them is the guide's 20px.
   & > header {
-    margin-bottom: 0.875rem;
+    margin-bottom: 2.5rem;
 
-    & > * {
-      &:first-child {
-        margin-bottom: 0.4375rem;
-      }
-
-      &:last-child {
-        margin-bottom: 1.875rem;
-      }
+    & > *:first-child {
+      margin-bottom: 1.25rem;
     }
   }
 
@@ -37,7 +34,6 @@
   }
 }
 
-// D8. Colour moves here from color_primary at the call site.
-.teamSection > header > :first-child {
-  color: var(--color-brand);
-}
+// Phase F. The D8 colour rule that sat here is gone: .eyebrow already carries
+// the brand tone and .h2 already carries ink, so restating either here only
+// risked the two drifting apart.

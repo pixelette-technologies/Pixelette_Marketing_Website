@@ -31,13 +31,13 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
             height={280}
           />
           <div>
-            <Heading className='tertiary font_family_glory uppercase' level={1}>
+            <Heading className='heading_tertiary font_family_glory uppercase' level={1}>
               {mainHeading}
             </Heading>
-            <Heading className='tertiary font_family_glory uppercase'>
+            <Heading className='heading_tertiary font_family_glory uppercase'>
               {subHeading}
             </Heading>
-            <Text className='secondry'>{text}</Text>
+            <Text className='text_secondry'>{text}</Text>
             <Link href='/contactus'>
               <Button className='primary'>Book a consultation</Button>
             </Link>

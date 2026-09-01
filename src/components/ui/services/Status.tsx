@@ -65,12 +65,12 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
         <div className='status'>
           <header>
             <Heading
-              className='secondry--light'
+              className='heading_secondry--light'
             >
               {heading}
             </Heading>
             <Text
-              className='secondry'
+              className='text_secondry'
             >
               {text}
             </Text>
@@ -82,7 +82,7 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
                 id={sectionId(index)}
                 className='counter-section'
               >
-                <Text className='primary'>
+                <Text className='text_primary'>
                   <span>
                     {visibleSections[sectionId(index)] ? (
                       <CountUp start={0} end={el.value || 0} />

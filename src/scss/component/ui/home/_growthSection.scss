@@ -14,20 +14,10 @@
   border-top: 1px solid var(--color-line);
   padding-block: var(--sec-y);
 
-  & > h2 {
-    display: flex;
-    align-items: center;
-    gap: 0.625rem;
-
-    // The arrow mark is on currentColor now rather than a hard-coded
-    // --color-brand-signal. It is a thin connecting stroke, and the brand
-    // layer bars those from the marking tone: solid marks may take it, thin
-    // strokes may not. It reads at the anchor.
-    & > svg {
-      flex: 0 0 auto;
-      color: var(--color-brand);
-    }
-  }
+  // Phase F. The flex row and the arrow-mark rule that sat here are gone with
+  // the ArrowRed itself. Making the heading a flex container also defeated
+  // `text-wrap: balance` on the display classes, because a flex item cannot
+  // balance against text it is laid out beside. It is a plain block again.
 
   & > section {
     margin-top: var(--sec-y-sm);
@@ -43,8 +33,9 @@
         flex: 1 1 24rem;
         min-width: 0;
 
+        // The guide's eyebrow-to-content gap, exactly: 20px.
         & > h3 {
-          margin-bottom: 2rem;
+          margin-bottom: 1.25rem;
         }
 
         & > section {

@@ -21,16 +21,8 @@ const TeamSection: FC<TeamSectionProps> = ({
       <Container className='main'>
         <section className='teamSection'>
           <header>
-            <Heading
-              className='secondry--boldLight font_family_glory uppercase'
-            >
-              {mainHeading}
-            </Heading>
-            <Heading
-              className='secondry--boldLight font_family_glory uppercase'
-            >
-              {subHeading}
-            </Heading>
+            <Heading className='eyebrow'>{mainHeading}</Heading>
+            <Heading className='h2'>{subHeading}</Heading>
           </header>
           {details && (
             <ul>

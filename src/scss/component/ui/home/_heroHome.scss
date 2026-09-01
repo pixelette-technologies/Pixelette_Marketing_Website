@@ -141,15 +141,20 @@
   }
 }
 
-// D8. Colour moves here from the call site.
+// Phase F. The accent swaps ends. It was on the first line, which made
+// "Marketing That Matters" the loudest thing on the page and left the half
+// that actually names the benefit in plain ink. The guide's hero device puts
+// the statement in ink and the payoff in the brand tone — Certified reads
+// "Your next enterprise deal is waiting on a certificate you don't have yet."
+// in ink, then "We fix that in 10 weeks." in teal. Same shape here.
 .heroHome {
   & > section > div {
     & > h1 {
-      color: var(--color-brand);
+      color: var(--color-ink);
     }
 
     & > h2 {
-      color: var(--color-ink);
+      color: var(--color-brand);
     }
   }
 }

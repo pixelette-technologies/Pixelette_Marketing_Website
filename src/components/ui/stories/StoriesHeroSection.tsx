@@ -14,13 +14,13 @@ const StoriesHeroSection = () => {
         />
         <section>
           <Heading
-            className='tertiary font_family_glory uppercase'
+            className='heading_tertiary font_family_glory uppercase'
             level={1}
           >
             Stories of <span>growth and impact</span>
           </Heading>
           <Text
-            className='primary'
+            className='text_primary'
           >
             Explore the success stories of brands we’ve helped scale. Covering
             everything from strategy to execution, discover how Pixelette

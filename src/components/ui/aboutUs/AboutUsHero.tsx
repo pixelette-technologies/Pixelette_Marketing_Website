@@ -21,11 +21,11 @@ const AboutUsHero = () => {
             height={288}
           />
           <div>
-            <Heading className='tertiary uppercase font_family_glory' level={1}>
+            <Heading className='heading_tertiary uppercase font_family_glory' level={1}>
               Redefining growth
               <span> with purpose</span>
             </Heading>
-            <Text className='secondry'>
+            <Text className='text_secondry'>
               At Pixelette Marketing, we bring a thoughtful, collaborative
               approach to help brands achieve their goals. Our marketing services
               are built on trust, creativity and delivering results that matter.

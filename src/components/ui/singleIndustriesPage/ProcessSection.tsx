@@ -39,10 +39,10 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
     <Container className='main'>
       <div className='processSection'>
         <header>
-          <Heading className='primary--light font_family_glory'>
+          <Heading className='heading_primary--light font_family_glory'>
             {heading}
           </Heading>
-          <Text className='primary'>{description}</Text>
+          <Text className='text_primary'>{description}</Text>
         </header>
         <section>
           <div>
@@ -65,7 +65,7 @@ const ProcessSection: React.FC<ProcessSectionProps> = ({
               ))}
             </header>
             <section id={panelId} role='tabpanel'>
-              <Text className='secondry'>{data[activeIndex].description}</Text>
+              <Text className='text_secondry'>{data[activeIndex].description}</Text>
             </section>
           </div>
         </section>

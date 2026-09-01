@@ -24,7 +24,7 @@ const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
               dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
               className='heading_secondry--light'
             ></h2>
-            <Text className='secondry'>
+            <Text className='text_secondry'>
               {text}
             </Text>
           </header>

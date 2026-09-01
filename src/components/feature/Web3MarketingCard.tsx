@@ -28,7 +28,7 @@ const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
         className='text_secondry--semibold'
         dangerouslySetInnerHTML={{ __html: heading || "" }}
       />
-      <Text className='tertiary'>{summary}</Text>
+      <Text className='text_tertiary'>{summary}</Text>
     </div>
   );
 };

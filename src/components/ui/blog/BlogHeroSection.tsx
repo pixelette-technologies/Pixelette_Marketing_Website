@@ -14,14 +14,14 @@ const BlogHeroSection = () => {
         />
         <section>
           <Heading
-            className='tertiary font_family_glory uppercase'
+            className='heading_tertiary font_family_glory uppercase'
             level={1}
           >
             Pixelette
             <span> Marketing Blog</span>
           </Heading>
           <Text
-            className='primary'
+            className='text_primary'
           >
             Your marketing knowlege repository for emerging industries
           </Text>

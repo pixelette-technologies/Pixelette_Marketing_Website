@@ -46,7 +46,7 @@ const BlogCategoriesDropDown: React.FC<BlogCategoriesDropDownProps> = ({
         >
           <section>
             <LuFilter />
-            <Text className='secondry'>{selectedCategory}</Text>
+            <Text className='text_secondry'>{selectedCategory}</Text>
           </section>
           <motion.div
             animate={

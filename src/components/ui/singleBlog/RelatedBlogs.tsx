@@ -92,7 +92,7 @@ const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
   return (
     <Container className='main'>
       <div className='contentSlider'>
-        <Heading className='secondry'>Related Articles</Heading>
+        <Heading className='heading_secondry'>Related Articles</Heading>
 
         <section>
           <Slider ref={slider} {...settings}>

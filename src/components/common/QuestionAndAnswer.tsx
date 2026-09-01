@@ -20,7 +20,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
       <div className='questionAndAnswer  text_align_center'>
         {subheading ? (
           <header>
-            <Text className='primary'>Become a partner</Text>
+            <Text className='text_primary'>Become a partner</Text>
           </header>
         ) : (
           ""
@@ -31,7 +31,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
           className='heading_secondry--light'
         ></h2>
         <Text
-          className='secondry'
+          className='text_secondry'
         >
           {text}
         </Text>

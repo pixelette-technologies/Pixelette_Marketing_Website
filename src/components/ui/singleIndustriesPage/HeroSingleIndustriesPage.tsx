@@ -39,10 +39,10 @@ const HeroSingleIndustriesPage: FC<HeroSingleIndustriesPageProps> = ({
               />
 
               <section>
-                <Heading className='primary font_family_glory' level={1}>
+                <Heading className='heading_primary font_family_glory' level={1}>
                   {heading}
                 </Heading>
-                <Text className='primary'>{description}</Text>
+                <Text className='text_primary'>{description}</Text>
               </section>
             </div>
 

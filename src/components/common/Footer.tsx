@@ -77,7 +77,7 @@ export default function Footer() {
         <div className='rule' />
 
         <div className='footerLegal'>
-          <Text className='secondry legal'>
+          <Text className='text_secondry legal'>
             © 2026 Pixelette Marketing. All rights reserved.
           </Text>
           <div className='footerSocial'>

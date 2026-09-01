@@ -20,16 +20,16 @@ const GoalAndProposedSection: FC<GoalAndProposedSectionProps> = ({
       <Container className='main'>
         <div className='goalAndProposedSection'>
           <section>
-            <Heading className='primary--light font_family_glory'>
+            <Heading className='heading_primary--light font_family_glory'>
               {goalHeading}
             </Heading>
-            <Text className='primary'>{goalDescription}</Text>
+            <Text className='text_primary'>{goalDescription}</Text>
           </section>
           <section>
-            <Heading className='primary--light font_family_glory'>
+            <Heading className='heading_primary--light font_family_glory'>
               {proposedHeading}
             </Heading>
-            <Text className='primary'>{proposedDescription}</Text>
+            <Text className='text_primary'>{proposedDescription}</Text>
           </section>
         </div>
       </Container>

@@ -34,11 +34,11 @@ const ServicesHero: FC<ServicesHeroProps> = ({
             />
           </section>
           <div>
-            <Heading className='tertiary uppercase font_family_glory' level={1}>
+            <Heading className='heading_tertiary uppercase font_family_glory' level={1}>
               {mainHeading} <span> {subHeading}</span>
             </Heading>
 
-            <Text className='secondry'>{text}</Text>
+            <Text className='text_secondry'>{text}</Text>
             <div>
               <Link href='/contactus'>
                 <Button className='primary-full'>Book a call</Button>

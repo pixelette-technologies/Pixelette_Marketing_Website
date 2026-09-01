@@ -30,11 +30,11 @@ const ContactSection: FC<ContactSectionProps> = ({
           <section>
             {heading && (
               <HeadingTag
-                className='heading_primary font_family_glory uppercase'
+                className={headingLevel === 1 ? "h1p" : "h2"}
                 dangerouslySetInnerHTML={{ __html: heading }}
               ></HeadingTag>
             )}
-            {text && <Text className='secondry'>{text}</Text>}
+            {text && <Text className='lead'>{text}</Text>}
             <div>
               {data?.map((el, index) => (
                 <blockquote key={index}>
@@ -43,9 +43,9 @@ const ContactSection: FC<ContactSectionProps> = ({
                   </section>
                   <div>
                     {el.heading && (
-                      <Text className='primary--bolder'>{el.heading}</Text>
+                      <Text className='text_primary--bolder'>{el.heading}</Text>
                     )}
-                    <Text className='tertiary'>{el.text}</Text>
+                    <Text className='text_tertiary'>{el.text}</Text>
                   </div>
                 </blockquote>
               ))}

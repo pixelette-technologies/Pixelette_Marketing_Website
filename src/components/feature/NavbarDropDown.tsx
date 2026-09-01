@@ -38,7 +38,7 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
         {/* color_white dropped in D3: the header ground moved from the dark
             bar to the guide's page ground, and the label would have been white
             on white. */}
-        <Text className="secondry">{name}</Text>
+        <Text className="text_secondry">{name}</Text>
         <motion.div
           animate={
             active

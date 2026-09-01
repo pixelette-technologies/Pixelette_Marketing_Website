@@ -26,17 +26,17 @@ const ServicesSection: FC<ServicesSectionProps> = ({
               through it. Same band as the section, stated once. */}
           <header className='band-alt'>
             <Heading
-              className='large font_family_glory uppercase'
+              className='heading_large font_family_glory uppercase'
             >
               We manage You grow
             </Heading>
             <div>
               <Heading
-                className='secondry font_family_glory uppercase'
+                className='heading_secondry font_family_glory uppercase'
               >
                 {heading || "No Heading Provided"}
               </Heading>
-              <Text className='secondry'>
+              <Text className='text_secondry'>
                 {text || "No description available."}
               </Text>
             </div>
@@ -51,7 +51,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
                 />
               ))
             ) : (
-              <Text className='tertiary'>
+              <Text className='text_tertiary'>
                 No services available.
               </Text>
             )}

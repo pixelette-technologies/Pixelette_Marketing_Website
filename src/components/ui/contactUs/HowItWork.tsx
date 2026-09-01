@@ -12,24 +12,24 @@ const HowItWork = () => {
         <div className='howItworks'>
           <header>
             <Heading
-              className='secondry--light'
+              className='heading_secondry--light'
             >
               Here’s how it works
             </Heading>
             <section>
               <div>
                 <MailIcon />
-                <Text className='primary'>
+                <Text className='text_primary'>
                   sales@pixelettemarketing.com
                 </Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text className='primary'>+44 2045188226</Text>
+                <Text className='text_primary'>+44 2045188226</Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text className='primary'>+1 7732709034</Text>
+                <Text className='text_primary'>+1 7732709034</Text>
               </div>
             </section>
           </header>
@@ -42,10 +42,10 @@ const HowItWork = () => {
                   <el.icon />
                 </section>
                 <div>
-                  <Heading className='secondry--boldLight'>
+                  <Heading className='heading_secondry--boldLight'>
                     {el.heading}
                   </Heading>
-                  <Text className='tertiary--light'>{el.text}</Text>
+                  <Text className='text_tertiary--light'>{el.text}</Text>
                 </div>
               </blockquote>
             ))}

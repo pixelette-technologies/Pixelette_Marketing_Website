@@ -61,10 +61,10 @@ const ArrowCard: FC<ArrowCardProps> = ({
             )}
 
             <header>
-              <Text className='primary--semiBold arrowCard__main'>
+              <Text className='text_primary--semiBold arrowCard__main'>
                 {mainHeading}
               </Text>
-              <Text className='primary--semiBold arrowCard__sub'>
+              <Text className='text_primary--semiBold arrowCard__sub'>
                 {subHeading}
               </Text>
             </header>
@@ -73,7 +73,7 @@ const ArrowCard: FC<ArrowCardProps> = ({
             )}
           </section>
 
-          <Text className='tertiary arrowCard__summary'>{summary}</Text>
+          <Text className='text_tertiary arrowCard__summary'>{summary}</Text>
         </header>
 
         {textfloat ? (

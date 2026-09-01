@@ -10,17 +10,17 @@ const OurTeam = () => {
         <section className='ourTeam'>
           <header>
             <Text
-              className='primary'
+              className='text_primary'
             >
               Our team
             </Text>
             <Heading
-              className='secondry--light'
+              className='heading_secondry--light'
             >
               Your partners in growth
             </Heading>
             <Text
-              className='secondry'
+              className='text_secondry'
             >
               At Pixelette Marketing, our team of passionate marketers is
               dedicated to helping your brand not just get noticed but also

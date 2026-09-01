@@ -33,7 +33,7 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
       className='blogCategories'
     >
       <Heading
-        className='tertiary font_family_glory'
+        className='heading_tertiary font_family_glory'
       >
         Categories
       </Heading>

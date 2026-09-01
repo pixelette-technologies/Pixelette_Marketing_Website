@@ -34,16 +34,16 @@ const ServicesCards: FC<ServicesCardsProps> = ({
         {data.length > 0 ? (
           data.map((el, index) => (
             <div key={index} className='cardItem'>
-              <Text className='primary--semiBold'>
+              <Text className='text_primary--semiBold'>
                 {el.title || "No Title"}
               </Text>
-              <Text className='tertiary'>
+              <Text className='text_tertiary'>
                 {el.text || "No Description Available"}
               </Text>
             </div>
           ))
         ) : (
-          <Text className='tertiary'>No items to display.</Text>
+          <Text className='text_tertiary'>No items to display.</Text>
         )}
       </section>
     </div>

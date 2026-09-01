@@ -15,41 +15,32 @@
 // kill them again. This is the trap the vault records against GrowthSection,
 // and the sweep found it in 24 partials.
 
+// Phase F. The component is a single dark band now, so the padding belongs to
+// the wrapper rather than to the inner strip, and the 3.6875rem top margin
+// that used to push the heading down the light page goes with it.
+//
+// The gradient and the panel text colour are no longer restated here — both
+// come from .band-dark, which the three dark bands share so they read as one
+// recurring device. The eyebrow takes the signal tone from there too.
 .trustedBrands {
+  padding-block: var(--sec-y-sm);
+
   & > div {
-    margin-bottom: 0.75rem;
-
-    & > :is(h1, h2) {
-      display: flex;
-      align-items: center;
-      gap: 0.625rem;
-      margin-top: 3.6875rem;
-      color: var(--color-ink);
-
-      // Thin connecting stroke, so it takes the anchor rather than the
-      // marking tone. See the brand layer.
-      & > svg {
-        flex: 0 0 auto;
-        color: var(--color-brand);
-      }
-    }
+    margin-bottom: 1.25rem;
   }
 }
 
 .trustedBrandsBand {
-  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
-  padding-block: var(--sec-y-sm);
-  color: var(--color-panel-text);
-
   & > div {
     display: flex;
     align-items: center;
     gap: clamp(2rem, 0.9rem + 3.4vw, 3.75rem);
     flex-wrap: wrap;
 
+    // The label column. .band-dark already sets it white; only the width is
+    // this file's business.
     & > :is(h1, h2) {
       width: 12.4375rem;
-      color: var(--color-page);
     }
 
     & > section {

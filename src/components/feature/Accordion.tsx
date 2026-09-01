@@ -70,7 +70,7 @@ const Accordion: FC<AccordionProps> = ({
       </button>
 
       <section id={panelId} role='region' aria-labelledby={buttonId} hidden={!isOpen}>
-        <Text className='secondry '>{answer}</Text>
+        <Text className='text_secondry'>{answer}</Text>
       </section>
     </div>
   );

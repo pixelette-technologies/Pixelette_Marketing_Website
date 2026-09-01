@@ -34,20 +34,20 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
         <div className='contentDisplaySection'>
           <header>
             <div>
-              <Text className='primary'>{title}</Text>
+              <Text className='text_primary'>{title}</Text>
               <h2
                 dangerouslySetInnerHTML={{ __html: heading || "" }}
                 className='heading_secondry--light'
               ></h2>
-              <Text className='secondry'>{detail}</Text>
+              <Text className='text_secondry'>{detail}</Text>
             </div>
           </header>
           <section className='contentDisplayCards'>
             {data.map((el, index) => (
               <div key={index} className='contentCard'>
                 <div className='card-content'>
-                  <Text className='primary--bold'>{el.heading}</Text>
-                  <Text className='tertiary'>{el.detail}</Text>
+                  <Text className='text_primary--bold'>{el.heading}</Text>
+                  <Text className='text_tertiary'>{el.detail}</Text>
                 </div>
               </div>
             ))}

@@ -105,10 +105,10 @@ const FinalResult: React.FC<FinalResultProps> = ({
         <section>
           <header>
             <div>
-              <Heading className='primary--light font_family_glory'>
+              <Heading className='heading_primary--light font_family_glory'>
                 {mainheading}
               </Heading>
-              <Text className='primary'>{maindescription}</Text>
+              <Text className='text_primary'>{maindescription}</Text>
             </div>
             <section>
               {icons.map((el, index) => (
@@ -126,10 +126,10 @@ const FinalResult: React.FC<FinalResultProps> = ({
           <section>
             <section>
               <div>
-                <Heading className='primary--light font_family_glory'>
+                <Heading className='heading_primary--light font_family_glory'>
                   {heading}
                 </Heading>
-                <Text className='primary'>{description}</Text>
+                <Text className='text_primary'>{description}</Text>
                 <section>
                   <header>
                     <h3 className='font_family_glory'>

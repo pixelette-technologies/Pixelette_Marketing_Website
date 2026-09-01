@@ -27,10 +27,10 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
       <Container className='main'>
         <div className='importance'>
           <center>
-            <Heading className='tertiary--medium'>
+            <Heading className='heading_tertiary--medium'>
               {mainheading}
             </Heading>
-            <Heading className='tertiary--light'>
+            <Heading className='heading_tertiary--light'>
               {subHeading}
             </Heading>
           </center>
@@ -41,14 +41,14 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
               >
                 <div>
                   <section>
-                    <Text className='tertiary'>{el.summary}</Text>
+                    <Text className='text_tertiary'>{el.summary}</Text>
                     <blockquote>
                       <Text className='small'>{el.role}</Text>
                       <div>
-                        <Heading className='ImportanceCardheading uppercase '>
+                        <Heading className='heading_ImportanceCardheading uppercase'>
                           {el.name}
                         </Heading>
-                        <Heading className='ImportanceCardheading uppercase '>
+                        <Heading className='heading_ImportanceCardheading uppercase'>
                           {el.name}
                         </Heading>
                       </div>

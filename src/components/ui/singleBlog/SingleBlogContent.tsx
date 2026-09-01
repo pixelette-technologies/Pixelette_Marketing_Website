@@ -44,17 +44,17 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
       <div className='singleBlogContent'>
         <div>
           <header>
-            <Heading className='primary' level={1}>{heading}</Heading>
-            <Text className='primary'>{description}</Text>
+            <Heading className='heading_primary' level={1}>{heading}</Heading>
+            <Text className='text_primary'>{description}</Text>
           </header>
 
           <section>
             {data.map(el => (
               <div key={el.id} id={generateId(el.titleOne)}>
-                <Heading className='secondry--boldLight'>
+                <Heading className='heading_secondry--boldLight'>
                   {el.titleOne}: {el.titleTwo}
                 </Heading>
-                <Text className='primary'>{el.description}</Text>
+                <Text className='text_primary'>{el.description}</Text>
               </div>
             ))}
           </section>

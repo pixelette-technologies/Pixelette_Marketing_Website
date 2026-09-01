@@ -12,17 +12,17 @@ const OurServices = () => {
         <div className='ourServices'>
           <header>
             <Text
-              className='primary'
+              className='text_primary'
             >
               Industries we service
             </Text>
             <Heading
-              className='secondry--light'
+              className='heading_secondry--light'
             >
               We succeed where it matters most today
             </Heading>
             <Text
-              className='secondry'
+              className='text_secondry'
             >
               Navigating the complexities of fast-evolving industries requires a
               deep understanding and agility. We specialise in marketing for

@@ -6,10 +6,9 @@
 // The band was bg_primary — flat saturated crimson. Settled decision from
 // Phase A: those become the dark panel family.
 
-.rangeOfMarketBand {
-  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
-  color: var(--color-panel-text);
-}
+// Phase F. The gradient and panel text colour moved to the shared .band-dark
+// so this band and the client-logo band are literally the same device. Nothing
+// is left to declare on the wrapper.
 
 .rangeOfMarket {
   padding-block: var(--sec-y);
@@ -26,14 +25,12 @@
   & > center {
     margin-block: var(--sec-y);
 
-    & > h1,
-    & > h2 {
+    // Colour comes from .band-dark for both of these now.
+    & > :is(h1, h2) {
       margin-bottom: 1rem;
-      color: var(--color-page);
     }
 
     & > p {
-      color: var(--color-panel-text);
       max-width: 52ch;
       margin-inline: auto;
     }

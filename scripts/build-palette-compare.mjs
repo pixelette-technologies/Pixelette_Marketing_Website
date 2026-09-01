@@ -105,6 +105,80 @@ const PROPOSED = {
 };
 
 /* ------------------------------------------------------------------ *
+ * The one open by-eye call: the dark family's temperature.
+ *
+ * The faithful rotation above preserves the guide's high dark-family
+ * saturation, which gives a distinctly crimson black. The alternative is a
+ * softer, near-neutral warm black. That call cannot be made in the abstract,
+ * so it is derived here and rendered as a real surface below.
+ *
+ * Method: hold hue and HSL lightness exactly, multiply saturation. Only the
+ * dark-family tokens move. footerEyebrow is deliberately excluded — the signal
+ * tone is the one voice on the dark ground and softening it would remove the
+ * thing being judged.
+ *
+ * Note this shares the flaw documented on panelMuted above: holding HSL
+ * lightness does not hold relative luminance. Desaturating a red-family token
+ * adds green and blue, which carry 0.7152 and 0.0722 of the luminance formula
+ * against red's 0.2126, so every softened token gets *lighter* in luminance
+ * terms. Grounds rise toward their text and text rises away from its ground.
+ * The arithmetic below reports the net rather than assuming it.
+ * ------------------------------------------------------------------ */
+
+const DARK_KEYS = [
+  "footerBg", "footerLine", "footerBody", "footerMuted", "footerPill",
+  "panelA", "panelB", "panelBorder", "panelText", "panelMuted",
+  "panelBtnText", "panelBtnBorder"
+];
+
+const SOFTEN = 0.35;
+
+function hexToHsl(hex) {
+  const h = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map(i => parseInt(h.substr(i, 2), 16) / 255);
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  const l = (max + min) / 2;
+  const d = max - min;
+  if (d === 0) return [0, 0, l];
+  const s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+  let hue;
+  if (max === r) hue = ((g - b) / d) % 6;
+  else if (max === g) hue = (b - r) / d + 2;
+  else hue = (r - g) / d + 4;
+  hue *= 60;
+  if (hue < 0) hue += 360;
+  return [hue, s, l];
+}
+
+function hslToHex(h, s, l) {
+  const c = (1 - Math.abs(2 * l - 1)) * s;
+  const x = c * (1 - Math.abs(((h / 60) % 2) - 1));
+  const m = l - c / 2;
+  const seg = Math.floor(h / 60) % 6;
+  const [r, g, b] = [
+    [c, x, 0], [x, c, 0], [0, c, x], [0, x, c], [x, 0, c], [c, 0, x]
+  ][seg];
+  return (
+    "#" +
+    [r, g, b]
+      .map(v => Math.round((v + m) * 255).toString(16).padStart(2, "0").toUpperCase())
+      .join("")
+  );
+}
+
+function soften(hex, factor) {
+  const [h, s, l] = hexToHsl(hex);
+  return hslToHex(h, s * factor, l);
+}
+
+const SOFTENED = {
+  ...PROPOSED,
+  label: "Softened dark family",
+  sub: `near-neutral warm — saturation × ${SOFTEN}`,
+  ...Object.fromEntries(DARK_KEYS.map(k => [k, soften(PROPOSED[k], SOFTEN)]))
+};
+
+/* ------------------------------------------------------------------ *
  * Contrast arithmetic. WCAG 2.1, sRGB relative luminance.
  * ------------------------------------------------------------------ */
 
@@ -187,6 +261,27 @@ function evaluate(check) {
 const RESULTS = CHECKS.map(evaluate);
 const introduced = RESULTS.filter(r => r.verdict === "introduced");
 const inherited = RESULTS.filter(r => r.verdict === "inherited");
+
+// The open call, measured. Only the checks that actually sit on a dark ground
+// can move, so only those are shown — a table of unchanged rows would bury the
+// four numbers the decision turns on.
+const DARK_CHECKS = CHECKS.filter(c => c[2] === "footerBg" || c[2] === "panelB");
+
+const DARK_RESULTS = DARK_CHECKS.map(([name, fg, bg, kind, note]) => {
+  const need = THRESHOLD[kind];
+  const measure = p => {
+    const r = ratio(p[fg], p[bg]);
+    return { r, fg: p[fg], bg: p[bg], pass: need === 0 || r >= need };
+  };
+  const faithful = measure(PROPOSED);
+  const softened = measure(SOFTENED);
+  return { name, note, need, kind, faithful, softened, delta: softened.r - faithful.r };
+});
+
+// A softened token that drops below its threshold does not block sign-off of
+// the faithful palette — it prices the alternative. Choosing it would need the
+// same lightening pass that panelMuted already took.
+const softFails = DARK_RESULTS.filter(r => r.need > 0 && !r.softened.pass);
 
 /* ------------------------------------------------------------------ *
  * The guide's component CSS, parameterised on the palette. Taken from
@@ -396,6 +491,44 @@ function specimen(ns) {
 </div>`;
 }
 
+// The dark surfaces on their own, at the size they are actually read, so the
+// temperature call is made against the real thing rather than a swatch.
+function darkSpecimen(ns) {
+  return `
+<div class="${ns}">
+  <div style="padding:22px 22px 0">
+    <div class="panel">
+      <div class="plabel">Part of Pixelette Group</div>
+      <div class="h3" style="color:#FFFFFF; margin-top:9px">Engineering, blockchain and AI</div>
+      <p class="ptext" style="margin:8px 0 0">Pixelette Technologies builds the software; Pixelette
+      Certified proves it. Marketing takes it to the people who need it.</p>
+      <span class="pbtn" style="margin-top:14px">pixelettetechnologies.com</span>
+    </div>
+  </div>
+
+  <div class="footer" style="padding:24px 22px; margin-top:22px">
+    <div style="display:grid; grid-template-columns:1.4fr 1fr; gap:24px">
+      <div>
+        <div style="font-size:15px; font-weight:600; color:#F2F5F4">Pixelette Marketing</div>
+        <div class="small" style="color:inherit; margin-top:8px; max-width:34ch">Precision driven
+        marketing for Fintech, SaaS, Web3 and technology brands.</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:14px">
+          <span class="pill">Fintech</span><span class="pill">SaaS</span><span class="pill">Web3</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:8px">
+        <div class="eyebrow" style="margin-bottom:3px">Services</div>
+        <a href="#" class="small" style="color:inherit">Social Media Marketing</a>
+        <a href="#" class="small" style="color:inherit">SEO</a>
+        <a href="#" class="small" style="color:inherit">Email Marketing</a>
+      </div>
+    </div>
+    <div class="frule" style="margin:20px 0 12px"></div>
+    <div class="legal">© 2026 Pixelette Marketing. All rights reserved. · Cookie Policy</div>
+  </div>
+</div>`;
+}
+
 // The specimen markup references a handful of tokens through custom properties
 // so one block of markup can render in either palette.
 function vars(p) {
@@ -476,6 +609,25 @@ const tokenRows = [
   )
   .join("\n");
 
+const darkRows = DARK_RESULTS.map(r => {
+  const fmt = e => (r.need === 0 ? "dim" : e.pass ? "ok" : "bad");
+  const d = r.delta;
+  const arrow = Math.abs(d) < 0.005 ? "·" : d > 0 ? "▲" : "▼";
+  return `<tr>
+    <td class="k">${r.name}<div class="note">${r.note}</div></td>
+    <td class="mono nw">${r.need === 0 ? "—" : r.need.toFixed(1)}</td>
+    <td class="num ${fmt(r.faithful)}">${r.faithful.r.toFixed(2)}</td>
+    <td class="num ${fmt(r.softened)}">${r.softened.r.toFixed(2)}</td>
+    <td class="delta ${r.need === 0 ? "dim" : d >= 0 ? "ok" : "bad"}">${arrow} ${d >= 0 ? "+" : ""}${d.toFixed(2)}</td>
+  </tr>`;
+}).join("\n");
+
+const darkTokenRows = DARK_KEYS.map(key => `<tr>
+    <td class="k">${key}</td>
+    <td class="mono nw">${sw(PROPOSED[key])}${PROPOSED[key]}</td>
+    <td class="mono nw">${sw(SOFTENED[key])}${SOFTENED[key]}</td>
+  </tr>`).join("\n");
+
 const page = `<title>Marketing Palette Comparison</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Outfit:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -549,6 +701,17 @@ const page = `<title>Marketing Palette Comparison</title>
   .call.bad .tag{color:var(--bad)} .call.ok .tag{color:var(--ok)}
   footer.foot{border-top:1px solid var(--line-strong);margin-top:36px;padding:20px 0 56px;
               font-size:12.5px;color:var(--muted)}
+  td.delta{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;
+           white-space:nowrap;font-size:12px}
+
+  /* The guide's own component CSS, emitted once per palette under its own
+     namespace. Without these four blocks the specimens render as unstyled
+     markup — no serif headings, no filled button, no card, no dark ground —
+     and the page compares nothing but a handful of inline colours. */
+${componentCss(GUIDE, "gA")}
+${componentCss(PROPOSED, "pA")}
+${componentCss(PROPOSED, "dF")}
+${componentCss(SOFTENED, "dS")}
 </style>
 
 <div class="wrap">
@@ -574,6 +737,59 @@ const page = `<title>Marketing Palette Comparison</title>
       <div style="${vars(PROPOSED)}">${specimen("pA")}</div>
     </div>
   </div>
+</section>
+
+<section>
+  <div class="sechead"><h2>The open call — dark family temperature</h2>
+  <p class="note" style="max-width:74ch">The only decision left on this page. The faithful rotation keeps
+  the guide's high dark-family saturation and reads as a distinctly crimson black; the alternative drops
+  saturation to ${Math.round(SOFTEN * 100)}% of it, holding hue and HSL lightness, for a near-neutral warm
+  black. Everything else on the page is identical between the two. The signal tone on the footer eyebrow is
+  deliberately not softened — it is the one voice on the dark ground and it is part of what is being judged.
+  Pick the one that looks right; the numbers underneath only veto.</p></div>
+
+  ${
+    softFails.length === 0
+      ? `<div class="call ok"><span class="tag">Both options clear every threshold</span>
+         <p>The choice is purely by eye. Softening raises the luminance of every dark-family token, which
+         lifts the grounds toward their text and the text away from its ground at the same time — the net
+         is in the delta column, and nothing crosses a threshold either way.</p></div>`
+      : `<div class="call"><span class="tag">Softening costs ${softFails.length} check(s)</span>
+         <p>${softFails.map(r => `${r.name} falls to ${r.softened.r.toFixed(2)} against ${r.need.toFixed(1)}`).join("; ")}.
+         This is the same failure mode <code>panelMuted</code> already took a lightening pass for: holding HSL
+         lightness does not hold relative luminance. Choosing the softened family is still open — it costs one
+         more lightening pass on those tokens, not a change of direction.</p></div>`
+  }
+
+  <div class="cols">
+    <div class="col">
+      <div class="colhead"><b>Faithful rotation</b><span>as proposed · crimson black</span></div>
+      <div style="${vars(PROPOSED)}">${darkSpecimen("dF")}</div>
+    </div>
+    <div class="col">
+      <div class="colhead"><b>${SOFTENED.label}</b><span>${SOFTENED.sub}</span></div>
+      <div style="${vars(SOFTENED)}">${darkSpecimen("dS")}</div>
+    </div>
+  </div>
+
+  <div class="scroll" style="margin-top:20px"><table>
+    <thead><tr>
+      <th>Check</th><th>Needs</th>
+      <th style="text-align:right">Faithful</th>
+      <th style="text-align:right">Softened</th>
+      <th style="text-align:right">Delta</th>
+    </tr></thead>
+    <tbody>
+${darkRows}
+    </tbody>
+  </table></div>
+
+  <div class="scroll" style="margin-top:14px"><table>
+    <thead><tr><th>Dark-family token</th><th>Faithful</th><th>Softened</th></tr></thead>
+    <tbody>
+${darkTokenRows}
+    </tbody>
+  </table></div>
 </section>
 
 <section>
@@ -641,6 +857,8 @@ console.log(`Palette comparison written to ${OUT}`);
 console.log(`  checks run:  ${RESULTS.length}`);
 console.log(`  introduced:  ${introduced.length}${introduced.length ? " — " + introduced.map(r => r.name).join(", ") : ""}`);
 console.log(`  inherited:   ${inherited.length}${inherited.length ? " — " + inherited.map(r => r.name).join(", ") : ""}`);
+console.log(`  open call:   dark family, faithful vs softened (saturation x ${SOFTEN})`);
+console.log(`  softened:    ${softFails.length ? softFails.length + " check(s) would need a lightening pass — " + softFails.map(r => `${r.name} ${r.softened.r.toFixed(2)}`).join(", ") : "clears every threshold"}`);
 
 if (introduced.length > 0) {
   console.error("\nIntroduced contrast failures block sign-off.");

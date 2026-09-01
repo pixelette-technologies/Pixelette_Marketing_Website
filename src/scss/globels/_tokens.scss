@@ -1,0 +1,176 @@
+// =====================================================================
+// Design tokens.
+//
+// Two layers, and the boundary between them matters more than any single
+// value in the file.
+//
+//   BRAND LAYER   The colour block and the signature device. The only
+//                 part that differs per company. Signed off by eye on
+//                 vault/palette-compare.html, 1 September 2026: the
+//                 faithful rotation, not the softened alternative.
+//
+//   COMMON LAYER  Everything else — container, type scale, geometry,
+//                 section rhythm, type roles. Group property, taken
+//                 verbatim from the playbook's Appendix E. Do NOT
+//                 re-derive these from the pattern guide: two independent
+//                 derivations will not agree, and the divergence only
+//                 becomes visible when two sibling sites are open side by
+//                 side, long after both have shipped.
+//
+// Every token is named for the job it does, never for how light it is.
+// A brand-signal that is barred from text survives a redesign; a
+// brand-light gets misused within a week.
+// =====================================================================
+
+:root {
+  // ===================================================================
+  // BRAND LAYER — Pixelette Marketing
+  // ===================================================================
+
+  // --- Value structure: two-tone -------------------------------------
+  // A dark anchor carries everything that is read; a bright signal marks
+  // and never speaks on light grounds. Both tones already existed in the
+  // repository rather than having to be chosen.
+  //
+  // The wordmark, the favicon and the old $primary all agreed on the
+  // anchor, so unlike the Certified conversion there was no colour drift
+  // to resolve and no favicon to re-cut.
+  --color-brand: #b3063c; // 6.98 on white, 6.43 on band. Text, links,
+  // eyebrows, icon strokes, tile figures, filled buttons.
+  --color-brand-hover: #8c0430; // 9.65 on white. Interaction state.
+
+  // Marking tone. Clears the 3:1 non-text threshold on light grounds and
+  // NOTHING else: never text there, never a thin stroke. On the dark
+  // footer it measures 5.11 and gets a voice, exactly as the guide's own
+  // bright tone does on its own dark ground.
+  --color-brand-signal: #ff2f5b; // 3.61 on white, 5.11 on footer
+
+  --color-brand-wash: #ebc7d2; // hero wash inner stop; brand text on it 4.53
+  --color-brand-tint: #f9ebf0; // diagram and highlight fill
+
+  // --- Neutral ramp ---------------------------------------------------
+  // The guide's own ramp with hue rotated to the brand at 341.3deg,
+  // holding HSL lightness exactly. Every text ratio holds or improves by
+  // +0.32 to +0.50 against the guide's blue-biased original. It costs
+  // nothing measurable and changes the feel of every page.
+  --color-ink: #0a0a0a; //  20.0 on white — headings (achromatic, as the guide)
+  --color-body: #5c4149; //   9.10 — body and lead copy
+  --color-muted: #7d5d67; //  5.78 — small print, secondary nav
+  --color-soft: #7f626b; //   5.44 — source lines, logo-row marks
+
+  // --- Grounds ---------------------------------------------------------
+  --color-page: #ffffff;
+  --color-band: #f8f5f3; // the site's own warm ground, kept deliberately.
+  // A real differentiator against the guide's cool
+  // near-white, and it costs nothing.
+
+  // --- Hairline ramp ----------------------------------------------------
+  --color-line: #efe2e6; // section rules
+  --color-line-card: #eedfe4; // card edges
+  --color-line-pill: #ecdde2; // pill edges
+  --color-line-strong: #dec3cb; // strong borders, outline controls
+  // NOTE: --color-line-strong at 1.56:1 on white is below the 3:1 non-text
+  // threshold in WCAG 1.4.11. That fault is INHERITED — the guide identifies
+  // its outline button by this border alone and the value is identical
+  // across every group site. Do not fix it here: fixing it on one site forks
+  // the group design system. It is raised with the guide's author as a
+  // shared-layer change and badged as inherited on the comparison page.
+
+  // --- Dark families ----------------------------------------------------
+  // Footer and panel shift together. Both were lightened where the rotation
+  // demanded it: holding HSL lightness does NOT hold relative luminance, and
+  // green carries 0.7152 of the WCAG luminance formula against red's 0.2126,
+  // so a cool guide palette rotated to a warm brand improves every
+  // light-ground ratio and degrades every dark-ground one. Only
+  // --color-panel-muted actually fell below threshold, at 3.84; it was
+  // lightened from L47 to L57 to restore the guide's relationship.
+  // Any site rotating a cool palette to a warm brand should expect the same
+  // class of failure, and expect it only on the dark family.
+  --color-footer-bg: #2b0612;
+  --color-footer-line: #401220;
+  --color-footer-body: #bc9da7; // 7.49
+  --color-footer-muted: #a07c87; // 5.04
+  --color-footer-pill: #4a1b2a;
+  --color-footer-eyebrow: #ff2f5b; // 5.11 — the one place the signal tone speaks
+
+  --color-panel-a: #21040d; // gradient start
+  --color-panel-b: #0f080a; // gradient end
+  --color-panel-border: #471c29;
+  --color-panel-text: #ae9ba1; // 7.55
+  --color-panel-muted: #a87b89; // 5.53 (was 3.84 before the lightening pass)
+  --color-panel-btn-text: #e9bfcc; // 12.07
+  --color-panel-btn-border: #642a3c;
+
+  // --- Semantic ---------------------------------------------------------
+  // Both values were already in the repository.
+  --color-ok: #1e7e34; // 4.83 on white
+  --color-danger: #c0392b; // 5.06 on white
+
+  // --- Signature device -------------------------------------------------
+  // Signal-capped section rules: a short segment of the marking tone on a
+  // section's top hairline, and the same segment on the leading edge of
+  // feature cards. It marks a section OPENING, not every band.
+  // Exactly one mannerism. Do not add a second.
+  --sig-cap-width: 40px;
+  --sig-cap-height: 3px;
+
+  // Shadow tint. Warm, to sit with the dark family rather than the guide's
+  // cool original. The three shadows themselves are common-layer.
+  --shadow-tint: 43 6 18;
+
+  // ===================================================================
+  // COMMON LAYER — group property, Appendix E verbatim
+  // ===================================================================
+
+  // --- Container --------------------------------------------------------
+  // 1160px maximum, 20px gutters. Nothing on the site is wider.
+  --container-wrap: 1160px;
+
+  // --- Fluid type scale -------------------------------------------------
+  // Interpolated between 390px and 1440px, the two widths the pattern guide
+  // is drawn at, so both endpoints land exactly on spec.
+  --fs-h1: clamp(2.25rem, 1.6rem + 2.6667vw, 4rem); //  36 -> 64
+  --fs-h1p: clamp(1.9375rem, 1.45rem + 2vw, 3.25rem); //  31 -> 52
+  --fs-h2: clamp(1.75rem, 1.425rem + 1.3333vw, 2.625rem); //  28 -> 42
+  --fs-h3: clamp(1.375rem, 1.3054rem + 0.2857vw, 1.5625rem); //  22 -> 25
+  --fs-h4: 1.125rem; //  18, flat
+  --fs-lead: clamp(1.0625rem, 0.9929rem + 0.2857vw, 1.25rem); //  17 -> 20
+  --fs-body: 1rem; //  16, flat
+
+  // --fs-h1p is the interior-page hero variant and drives every service,
+  // category and article route, so it has more call sites than anything else.
+  //
+  // --fs-body is flat at 16px DELIBERATELY. Below 16px, iOS zooms the
+  // viewport on input focus. Do not make it fluid.
+
+  // --- Section rhythm ---------------------------------------------------
+  --sec-y: clamp(3.5rem, 2.5714rem + 3.8095vw, 6rem); //  56 -> 96
+  --sec-y-sm: clamp(2.5rem, 2.0357rem + 1.9048vw, 4rem); //  40 -> 64
+  --header-h: clamp(4rem, 3.6288rem + 1.5238vw, 5rem); //  64 -> 80
+
+  // --- Geometry ---------------------------------------------------------
+  // Cards are noticeably rounder than controls; that contrast is part of
+  // the look and is not ours to retune.
+  --radius-btn: 4px;
+  --radius-tile: 4px;
+  --radius-card: 12px;
+
+  // Three shadows only, used sparingly. The register is flat, so a shadow
+  // is an exception. Hover changes BORDER COLOUR ONLY — no lift, no shadow
+  // change, no scale. That is the rule most often broken by reflex.
+  --shadow-sm: 0 1px 2px rgb(var(--shadow-tint) / 0.05);
+  --shadow-card: 0 1px 2px rgb(var(--shadow-tint) / 0.05), 0 10px 28px -16px rgb(var(--shadow-tint) / 0.18);
+  --shadow-raised: 0 24px 64px -24px rgb(var(--shadow-tint) / 0.28);
+
+  // --- Type roles -------------------------------------------------------
+  // Display is Newsreader at WEIGHT 400 at every width, not the guide's
+  // drawn 300: the light cut read as too fragile at desktop sizes, and that
+  // by-eye call was made and signed off during the Certified conversion.
+  // If the weight ever changes again, change it everywhere at once.
+  //
+  // The families arrive from next/font/google in app/layout.tsx, which
+  // self-hosts them; the --font-*-src variables are what it defines.
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Consolas, monospace;
+}

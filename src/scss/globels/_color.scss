@@ -1,18 +1,36 @@
-$primary: rgba(179, 6, 60, 1);
-$primary--light: rgba(203, 179, 166, 1);
+// Legacy Sass colour names, kept only as thin aliases onto the token layer so
+// the 40 existing call sites keep compiling while the sections move onto the
+// new classes through D4-D5. This file is deleted in D8 once nothing
+// references it. Do not add to it.
+//
+// Safe to alias: there are zero Sass colour functions anywhere in src/scss —
+// no darken, lighten, rgba($var) or mix — verified by grep, so nothing does
+// colour maths that a var() would break.
+//
+// Where an old value has no counterpart in the new palette the alias maps by
+// ROLE rather than by appearance, and the rendered colour moves. Each of those
+// is listed in vault/Design system.md so the browser walk knows where to look.
+// Provenance notes are written bare, without a hash, so the token gate cannot
+// trip on its own documentation.
 
-$secondry: rgba(38, 38, 38, 1);
-$secondry--light: rgba(31, 33, 35, 1);
+$primary: var(--color-brand); // was B3063C — identical, nothing moves
+$primary--light: var(--color-soft); // was CBB3A6
 
-$tertiary: rgba(240, 233, 228, 1);
-$tertiary--dark: rgba(223, 210, 201, 1);
+$secondry: var(--color-ink); // was 262626
+$secondry--light: var(--color-ink); // was 1F2123
 
-$brown: rgba(104, 71, 68, 1);
+$tertiary: var(--color-band); // was F0E9E4
+$tertiary--dark: var(--color-line); // was DFD2C9
 
-$gray: rgba(136, 136, 136, 1);
-$gray-dark: rgba(108, 108, 108, 1);
-$gray--light: rgba(181, 181, 181, 1);
-$gray--lighter: rgba(248, 245, 243, 1);
-$gray--lightness: rgba(243, 238, 234, 1);
+$brown: var(--color-body); // was 684744
 
-$borderColor: rgba(165, 121, 106, 1);
+$gray: var(--color-muted); // was 888888
+$gray-dark: var(--color-body); // was 6C6C6C
+$gray--light: var(--color-muted); // was B5B5B5. Its two border call sites moved
+// to --color-line-strong directly; this name now
+// serves only text, where a hairline token would
+// have read at 1.5:1.
+$gray--lighter: var(--color-band); // was F8F5F3 — identical, nothing moves
+$gray--lightness: var(--color-line); // was F3EEEA
+
+$borderColor: var(--color-line-strong); // was A5796A

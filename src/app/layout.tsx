@@ -1,6 +1,35 @@
 import type { Metadata } from "next";
+import { IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
 import { AnimationsLayout, CookieConsent, Footer, Navbar } from "@/components/common";
+
+// The three type roles, self-hosted. This replaces two render-blocking
+// @import url(...) lines in _base.scss that pulled four overlapping and
+// partly duplicated families (Glory, Poppins, Open Sans, Tangerine).
+// Self-hosting also lets the CSP drop fonts.googleapis.com and
+// fonts.gstatic.com once nothing else reaches for them.
+//
+// Newsreader and Outfit are variable fonts, so no weight is declared — the
+// full range ships and the display role is set to 400 in the stylesheet.
+// IBM Plex Mono has static cuts only and must name its weights.
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap"
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap"
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap"
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pixelettemarketing.com"),
@@ -65,7 +94,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable}`}
+    >
       <head>
         <link rel='icon' href='/favicon.svg' />
         <script

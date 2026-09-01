@@ -3,7 +3,7 @@
 button {
   cursor: pointer;
   transition: 0.3s ease-in-out;
-  font-family: "Poppins";
+  font-family: var(--font-body);
 }
 
 .btn {

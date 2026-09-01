@@ -97,7 +97,7 @@ export default function ServicesIndexPage() {
               style={{
                 display: "block",
                 padding: "0.9375rem",
-                border: "1px solid rgba(128,128,128,0.3)",
+                border: "1px solid var(--color-line)",
                 borderRadius: 12,
                 textDecoration: "none",
                 color: "inherit"

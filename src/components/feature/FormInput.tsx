@@ -43,7 +43,7 @@ const FormInput: FC<FormInputProps> = ({
           field.onChange(e);
         }}
         style={{
-          border: meta.touched && meta.error ? "1px solid red" : undefined
+          border: meta.touched && meta.error ? "1px solid var(--color-danger)" : undefined
         }}
       />
       <ErrorMessage component='div' name={field.name} className='form-error' />

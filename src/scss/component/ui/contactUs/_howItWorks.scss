@@ -43,7 +43,7 @@
       align-items: center;
       gap: 1.5rem;
       padding: 1.375rem 0.5rem;
-      background-color: rgba(42, 44, 46, 1);
+      background-color: var(--color-panel-b);
       border-radius: 0.625rem;
       @media only screen and (max-width: 950px) {
         flex-direction: column;

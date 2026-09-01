@@ -21,7 +21,7 @@
 }
 
 .bg_white {
-  background-color: white;
+  background-color: var(--color-page);
 }
 
 .bg_gray--light {
@@ -37,5 +37,5 @@
 }
 
 .bg_dropdown {
-  background-color: rgb(15, 15, 15);
+  background-color: var(--color-panel-b);
 }

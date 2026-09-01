@@ -19,7 +19,7 @@ button {
 .btn {
   &_primary {
     font-size: 0.875rem;
-    color: white;
+    color: var(--color-page);
     font-weight: 500;
     padding: 0.90625rem 2.15625rem;
     border: 1px solid color.$primary;
@@ -30,7 +30,7 @@ button {
   &_primary-full {
     display: block;
     font-size: 1rem;
-    color: white;
+    color: var(--color-page);
     font-weight: 500;
     padding: 0.90625rem 2.15625rem;
     border: 1px solid color.$primary;

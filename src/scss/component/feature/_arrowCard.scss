@@ -34,7 +34,7 @@
         & > a {
           display: none;
           border-radius: 0.625rem;
-          color: white;
+          color: var(--color-page);
           font-size: 0.75rem;
           font-weight: 400;
           padding: 0.4375rem 0rem;
@@ -84,8 +84,8 @@
 
 .hover_black_arrowCard:hover {
   transition: 0.9s ease-in-out;
-  background-color: rgba(255, 47, 91, 0.05);
-  border: 1px solid rgba(255, 47, 92, 0.61);
+  background-color: var(--color-brand-tint);
+  border: 1px solid var(--color-brand-signal);
   -ms-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
@@ -94,19 +94,19 @@
       & > section {
         & > a {
           display: block;
-          background-color: rgba(255, 47, 91, 0.2);
+          background-color: var(--color-brand-tint);
 
           display: flex;
           align-items: center;
           justify-content: center;
           text-align: center;
           &:hover {
-            border: 1px solid rgba(255, 47, 92, 0.61);
+            border: 1px solid var(--color-brand-signal);
           }
         }
       }
       & > p {
-        color: white;
+        color: var(--color-page);
       }
     }
     & > div {
@@ -115,7 +115,7 @@
         width: 1.5625rem;
         height: 1.25rem;
         & > path {
-          fill: white;
+          fill: var(--color-page);
         }
       }
     }
@@ -123,8 +123,8 @@
 }
 
 .hover_white_arrowCard:hover {
-  background-color: rgba(165, 121, 106, 1);
-  border: 1px solid rgb(155, 126, 117);
+  background-color: var(--color-line-strong);
+  border: 1px solid var(--color-line-strong);
   -ms-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
@@ -135,24 +135,24 @@
         & > header {
           & > * {
             &:last-child {
-              color: white;
+              color: var(--color-page);
             }
           }
         }
         & > a {
           display: block;
-          background-color: rgba(104, 71, 68, 0.2);
+          background-color: var(--color-band);
           display: flex;
           align-items: center;
           justify-content: center;
           text-align: center;
           &:hover {
-            border: 1px solid rgb(155, 126, 117);
+            border: 1px solid var(--color-line-strong);
           }
         }
       }
       & > p {
-        color: white;
+        color: var(--color-page);
       }
     }
     & > div {
@@ -161,7 +161,7 @@
         width: 1.5625rem;
         height: 1.25rem;
         & > path {
-          fill: white;
+          fill: var(--color-page);
         }
       }
     }

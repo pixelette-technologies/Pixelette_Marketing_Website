@@ -11,10 +11,10 @@ const wrap: React.CSSProperties = {
   right: 0,
   bottom: 0,
   zIndex: 9999,
-  background: "#4d031a",
-  color: "#f8f5f3",
+  background: "var(--color-panel-a)",
+  color: "var(--color-band)",
   padding: "16px 20px",
-  boxShadow: "0 -2px 16px rgba(0,0,0,0.25)"
+  boxShadow: "0 -2px 16px rgb(var(--shadow-tint) / 0.25)"
 };
 const inner: React.CSSProperties = {
   maxWidth: 1200,
@@ -46,17 +46,17 @@ const btnBase: React.CSSProperties = {
 const rejectStyle: React.CSSProperties = {
   ...btnBase,
   background: "transparent",
-  border: "1px solid #f8f5f3",
-  color: "#f8f5f3"
+  border: "1px solid var(--color-band)",
+  color: "var(--color-band)"
 };
 const acceptStyle: React.CSSProperties = {
   ...btnBase,
-  background: "#b3063c",
-  border: "1px solid #b3063c",
-  color: "#ffffff"
+  background: "var(--color-brand)",
+  border: "1px solid var(--color-brand)",
+  color: "var(--color-page)"
 };
 const linkStyle: React.CSSProperties = {
-  color: "#ffffff",
+  color: "var(--color-page)",
   textDecoration: "underline"
 };
 

@@ -165,12 +165,12 @@ const ContactUsForm: React.FC = () => {
               {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
             {submitState === "success" && (
-              <p role='status' style={{ marginTop: "0.625rem", color: "#1e7e34" }}>
+              <p role='status' style={{ marginTop: "0.625rem", color: "var(--color-ok)" }}>
                 Thanks - your message has been sent. We&apos;ll be in touch shortly.
               </p>
             )}
             {submitState === "error" && (
-              <p role='alert' style={{ marginTop: "0.625rem", color: "#c0392b" }}>
+              <p role='alert' style={{ marginTop: "0.625rem", color: "var(--color-danger)" }}>
                 Sorry, the governed enquiry route is unavailable. No submission has been confirmed.
               </p>
             )}

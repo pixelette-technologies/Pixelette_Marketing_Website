@@ -44,18 +44,18 @@
           & > h4 {
             font-size: 1.0625rem;
             font-weight: 500;
-            color: rgba(0, 0, 0, 0.411);
+            color: var(--color-muted);
             cursor: pointer;
             transition: 0.3s ease-in-out;
             &:hover {
-              color: rgba(0, 0, 0, 0.637);
+              color: var(--color-body);
             }
           }
         }
       }
       & > section {
         width: 100%;
-        background-color: white;
+        background-color: var(--color-page);
         padding: 1.875rem 2.5rem;
         border-radius: 0.625rem;
         height: 200px;
@@ -74,10 +74,10 @@
           display: none;
         }
         &::-webkit-scrollbar-thumb {
-          background-color: rgba(0, 0, 0, 0.5);
+          background-color: var(--color-body);
         }
         &::-webkit-scrollbar-thumb:hover {
-          background-color: rgba(0, 0, 0, 0.637);
+          background-color: var(--color-body);
           border-radius: 10px;
         }
       }
@@ -88,7 +88,7 @@
 #active_Tab_Process {
   margin-left: -1.1875rem;
   & > h4 {
-    color: black;
+    color: var(--color-ink);
   }
   & > div {
     display: block;

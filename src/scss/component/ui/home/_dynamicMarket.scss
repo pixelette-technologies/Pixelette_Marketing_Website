@@ -33,7 +33,7 @@
     max-width: 1366px;
     margin: auto;
     @media only screen and (max-width: 1366px) {
-      background-color: #f8f5f3;
+      background-color: var(--color-band);
       border-top-right-radius: 15rem;
       border-top-left-radius: 15rem;
     }

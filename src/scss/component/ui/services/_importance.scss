@@ -46,7 +46,7 @@
         display: flex;
         position: relative;
         padding-right: -8.125rem;
-        background: linear-gradient(180deg, #b3063c 0%, #4d031a 100%);
+        background: linear-gradient(180deg, var(--color-brand) 0%, var(--color-panel-a) 100%);
         @media only screen and (max-width: 1317px) {
           border-bottom-left-radius: 0.8125rem;
           padding-bottom: 0.625rem;
@@ -103,11 +103,11 @@
               & > * {
                 &:nth-child(1) {
                   color: transparent;
-                  -webkit-text-stroke: 0.5px white;
+                  -webkit-text-stroke: 0.5px var(--color-page);
                 }
                 &:nth-child(2) {
-                  color: white;
-                  -webkit-text-stroke: 0.5px white;
+                  color: var(--color-page);
+                  -webkit-text-stroke: 0.5px var(--color-page);
                   animation: animate 8s ease-in-out infinite;
                 }
               }

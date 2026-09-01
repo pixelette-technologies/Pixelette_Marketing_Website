@@ -43,7 +43,7 @@
     gap: 3.5rem;
     flex-wrap: wrap;
     border-radius: 0.375rem;
-    background-color: rgba(240, 233, 228, 1);
+    background-color: var(--color-band);
     @media only screen and (max-width: 850px) {
       gap: 1.875rem;
     }

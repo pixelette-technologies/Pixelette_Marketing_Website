@@ -1,7 +1,7 @@
 .accordion {
   padding: 1.5rem;
   border-radius: 0.75rem;
-  background-color: white;
+  background-color: var(--color-page);
   & > header {
     display: flex;
     align-items: center;

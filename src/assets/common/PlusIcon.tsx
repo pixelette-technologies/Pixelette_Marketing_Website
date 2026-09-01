@@ -8,7 +8,7 @@ const PlusIcon = () => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <rect width='16' height='16' rx='8' fill='#F8F5F3' />
+      <rect width='16' height='16' rx='8' fill="var(--color-band)" />
       <path
         fill-rule='evenodd'
         clip-rule='evenodd'

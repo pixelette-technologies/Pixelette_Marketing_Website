@@ -32,7 +32,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
         rows={4}
         style={{
           border:
-            meta.touched && meta.error ? "1px solid red" : "1px solid #ccc"
+            meta.touched && meta.error ? "1px solid var(--color-danger)" : "1px solid var(--color-line-strong)"
         }}
       />
       <ErrorMessage component='div' name={field.name} className='form-error' />

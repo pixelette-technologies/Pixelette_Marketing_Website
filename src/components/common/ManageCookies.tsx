@@ -6,9 +6,9 @@ const btnStyle: React.CSSProperties = {
   cursor: "pointer",
   fontSize: "0.5625rem",
   fontWeight: 600,
-  background: "#b3063c",
-  border: "1px solid #b3063c",
-  color: "#ffffff"
+  background: "var(--color-brand)",
+  border: "1px solid var(--color-brand)",
+  color: "var(--color-page)"
 };
 
 const ManageCookies = () => {

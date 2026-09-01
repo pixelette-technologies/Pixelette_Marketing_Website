@@ -15,7 +15,7 @@
       padding: 1rem;
       border-radius: 0.625rem;
       flex: 1 1 calc(33.3% - 1rem);
-      background-color: rgba(250, 246, 243, 1);
+      background-color: var(--color-band);
       @media only screen and (max-width: 960px) {
         flex: 1 1 calc(50% - 1rem);
       }

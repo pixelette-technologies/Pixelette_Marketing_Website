@@ -172,7 +172,7 @@ const FinalResult: React.FC<FinalResultProps> = ({
                           >
                             <path
                               d='M76.5 10.2857V7.71429H5.38096L10.7619 2.57143L9.41667 0L0 9L9.41667 18L10.7619 15.4286L5.38096 10.2857H76.5Z'
-                              fill='#B3063C'
+                              fill="var(--color-brand)"
                             />
                           </svg>
                         </button>
@@ -190,7 +190,7 @@ const FinalResult: React.FC<FinalResultProps> = ({
                           >
                             <path
                               d='M0.5 10.2857V7.71429H71.619L66.2381 2.57143L67.5833 0L77 9L67.5833 18L66.2381 15.4286L71.619 10.2857H0.5Z'
-                              fill='#B3063C'
+                              fill="var(--color-brand)"
                             />
                           </svg>
                         </button>

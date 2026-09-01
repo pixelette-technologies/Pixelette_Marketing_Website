@@ -13,7 +13,7 @@ const articleStyle: React.CSSProperties = {
   maxWidth: 820,
   margin: "0 auto",
   padding: "64px 0",
-  color: "#282828",
+  color: "var(--color-ink)",
   lineHeight: 1.7
 };
 

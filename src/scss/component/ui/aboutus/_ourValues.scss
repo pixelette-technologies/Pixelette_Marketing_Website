@@ -35,11 +35,11 @@
     & > * {
       &:nth-child(1),
       &:nth-child(2) {
-        background-color: white;
+        background-color: var(--color-page);
       }
       &:nth-child(3),
       &:nth-child(4) {
-        background-color: rgba(240, 233, 228, 1);
+        background-color: var(--color-band);
       }
     }
   }

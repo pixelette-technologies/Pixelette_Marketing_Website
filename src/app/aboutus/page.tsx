@@ -28,17 +28,21 @@ export default function AboutUs() {
       <WhoWeAre />
       <OurValues />
       <OurServices />
-      <OurTeam />
-      <div style={{ marginTop: "-0.75rem" }}>
+      {/* Authored team -> clients -> close, and it stays that way. The close
+          is lifted between the other two VISUALLY, by `order` in
+          _aboutClose.scss, so three dark bands stop stacking without any
+          content being reordered. */}
+      <div className='aboutClose'>
+        <OurTeam />
         <TrustedBrands topHeading={true} heading='Our clients' />
+        <QuestionAndAnswer
+          subheading={true}
+          heading={"We turn ideas into measurable wins"}
+          text={
+            "Pixelette Marketing teams up with brands like yours – bold, ambitious and ready to shape the future. Together, we create campaigns that deliver results you can see and success you can feel."
+          }
+        />
       </div>
-      <QuestionAndAnswer
-        subheading={true}
-        heading={"We turn ideas into measurable wins"}
-        text={
-          "Pixelette Marketing teams up with brands like yours – bold, ambitious and ready to shape the future. Together, we create campaigns that deliver results you can see and success you can feel."
-        }
-      />
     </>
   );
 }

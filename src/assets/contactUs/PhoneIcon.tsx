@@ -1,6 +1,7 @@
 const PhoneIcon = () => {
   return (
     <svg
+      aria-hidden='true'
       width='56'
       height='57'
       viewBox='0 0 56 57'

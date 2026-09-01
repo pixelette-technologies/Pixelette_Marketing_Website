@@ -1,6 +1,7 @@
 const CrossIcon = () => {
   return (
     <svg
+      aria-hidden='true'
       width='17'
       height='17'
       viewBox='0 0 17 17'
@@ -13,7 +14,7 @@ const CrossIcon = () => {
         width='16'
         height='16'
         rx='8'
-        fill='#B3063C'
+        fill='currentColor'
       />
       <path
         fill-rule='evenodd'

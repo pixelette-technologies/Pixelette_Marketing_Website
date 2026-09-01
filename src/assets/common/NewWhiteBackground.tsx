@@ -3,6 +3,7 @@ import React from "react";
 const NewWhiteBackground = () => {
   return (
     <svg
+      aria-hidden='true'
       width='1366'
       height='841'
       viewBox='0 0 1366 841'

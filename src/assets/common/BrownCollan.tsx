@@ -1,6 +1,7 @@
 const BrownCollan = () => {
   return (
     <svg
+      aria-hidden='true'
       width='107'
       height='69'
       viewBox='0 0 107 69'

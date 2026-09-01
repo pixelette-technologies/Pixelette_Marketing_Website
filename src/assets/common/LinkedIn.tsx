@@ -1,6 +1,7 @@
 const LinkedIn = () => {
   return (
     <svg
+      aria-hidden='true'
       width='104'
       height='27'
       viewBox='0 0 104 27'

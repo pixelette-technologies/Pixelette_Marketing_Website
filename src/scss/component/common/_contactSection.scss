@@ -41,6 +41,9 @@
           padding: 0.875rem;
         }
         & > section {
+          // The icons here are currentColor now; this is the colour they had
+          // hard-coded before. was B3063C
+          color: var(--color-brand);
           & > svg {
             height: 1.5rem;
             width: 1.65625rem;

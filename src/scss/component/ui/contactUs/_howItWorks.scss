@@ -58,6 +58,9 @@
         max-width: calc(100% - 1.5rem);
       }
       & > section {
+        // Same as before the icons became currentColor. was B3063C. Whether
+        // crimson is right on this dark grey ground is a D5 question.
+        color: var(--color-brand);
         height: 3.5rem;
         width: 3.5rem;
         @media only screen and (max-width: 990px) {

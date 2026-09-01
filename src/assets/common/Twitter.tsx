@@ -1,6 +1,7 @@
 const Twitter = () => {
   return (
     <svg
+      aria-hidden='true'
       width='23'
       height='20'
       viewBox='0 0 23 20'

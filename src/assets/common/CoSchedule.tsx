@@ -1,6 +1,7 @@
 const CoSchedule = () => {
   return (
     <svg
+      aria-hidden='true'
       width='88'
       height='23'
       viewBox='0 0 88 23'

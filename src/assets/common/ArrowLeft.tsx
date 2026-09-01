@@ -3,6 +3,7 @@
 const ArrowRed = () => {
   return (
     <svg
+      aria-hidden='true'
       width='43'
       height='8'
       viewBox='0 0 43 8'

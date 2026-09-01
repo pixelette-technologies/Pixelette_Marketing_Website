@@ -1,6 +1,7 @@
 const Facebook = () => {
   return (
     <svg
+      aria-hidden='true'
       width='10'
       height='21'
       viewBox='0 0 10 21'

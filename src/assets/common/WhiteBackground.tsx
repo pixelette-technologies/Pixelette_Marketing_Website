@@ -1,6 +1,7 @@
 const WhiteBackground = () => {
   return (
     <svg
+      aria-hidden='true'
       width='1366'
       height='665'
       viewBox='0 0 1366 665'

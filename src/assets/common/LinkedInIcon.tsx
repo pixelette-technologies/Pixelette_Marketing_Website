@@ -3,6 +3,7 @@
 const LinkedInIcon = () => {
   return (
     <svg
+      aria-hidden='true'
       width='21'
       height='21'
       viewBox='0 0 24 24'

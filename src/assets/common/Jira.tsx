@@ -1,6 +1,7 @@
 const Jira = () => {
   return (
     <svg
+      aria-hidden='true'
       width='77'
       height='26'
       viewBox='0 0 77 26'

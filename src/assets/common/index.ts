@@ -17,7 +17,6 @@ export { default as Semrush } from "./Semrush";
 export { default as Sprout } from "./Sprout";
 export { default as ArrowRight } from "./ArrowRight";
 export { default as ArrowLeft } from "./ArrowLeft";
-export { default as WhiteCollan } from "./WhiteCollan";
 export { default as BrownCollan } from "./BrownCollan";
 export { default as BookIcon } from "./BookIcon";
 export { default as AuditIcon } from "./AuditIcon";

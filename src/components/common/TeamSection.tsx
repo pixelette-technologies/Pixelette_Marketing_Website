@@ -16,7 +16,7 @@ const TeamSection: FC<TeamSectionProps> = ({
 }) => {
   return (
     <div
-      className='bg_tertiary--dark '
+      className='band-alt'
     >
       <Container className='main'>
         <section className='teamSection'>

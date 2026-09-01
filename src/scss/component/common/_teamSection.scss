@@ -1,39 +1,38 @@
+// D5. Two media queries gone; the cards are an auto-fit grid rather than a
+// flex basis restated at 900px and 600px.
+
 .teamSection {
-  padding: 2rem 0rem;
+  padding-block: var(--sec-y);
+
   & > header {
     margin-bottom: 0.875rem;
+
     & > * {
       &:first-child {
         margin-bottom: 0.4375rem;
       }
+
       &:last-child {
         margin-bottom: 1.875rem;
       }
     }
   }
+
   & > ul {
     margin-bottom: 2rem;
+
     & > li {
       margin-left: 1.875rem;
-      font-size: 0.875rem;
-      font-weight: 300;
-      line-height: 1.25rem;
+      font-size: var(--fs-body);
+      line-height: 1.6;
       margin-bottom: 0.1875rem;
+      color: var(--color-body);
     }
   }
 
   & > section {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
     gap: 0.5625rem;
-    & > div {
-      flex: 1 1 calc(33.3% - 0.5625rem);
-      @media only screen and (max-width: 900px) {
-        flex: 1 1 calc(50% - 0.5625rem);
-      }
-      @media only screen and (max-width: 600px) {
-        flex: 1 1 calc(100% - 0.5625rem);
-      }
-    }
   }
 }

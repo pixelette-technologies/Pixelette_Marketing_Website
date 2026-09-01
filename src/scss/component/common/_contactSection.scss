@@ -1,68 +1,83 @@
-@use "../../globels" as color;
+// The closing section, on every page that has one.
+//
+// D5. The ground was bg_tertiary, which is the band token reached through a
+// legacy alias; it takes .band-closing from the primitives instead, which is
+// the same ground plus the hairline that separates a closing band from the
+// section above it.
+//
+// Two selector faults. The heading rule was written as `h2`, but this
+// component takes a headingLevel prop and /story/[id] and the service routes
+// render it as `h1` — so on those pages the heading lost its spacing and the
+// brand-coloured <span> inside it lost its colour. And the rule for the
+// contact block's own heading selected `h1` where the markup renders a <p>
+// through Text, so it had never applied anywhere. Both are on :is() now.
+//
+// Four media queries gone: the two columns are a wrapping flex pair.
 
 .contactUsSection {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 2rem;
-  padding: 3.25rem 0rem;
-  @media only screen and (max-width: 960px) {
-    flex-direction: column;
-    gap: 0.625rem;
-  }
-  & > section {
-    width: 65%;
-    @media only screen and (max-width: 960px) {
-      width: 100%;
-    }
+  padding-block: var(--sec-y);
 
-    & > h2 {
+  & > section {
+    flex: 1 1 24rem;
+    min-width: 0;
+
+    & > :is(h1, h2) {
       margin-bottom: 1.25rem;
+
       & > span {
-        color: color.$primary;
+        color: var(--color-brand);
       }
     }
+
     & > p {
       margin-bottom: 1rem;
     }
+
     & > div {
       & > * {
         &:not(:last-child) {
           margin-bottom: 0.5rem;
         }
       }
+
       & > blockquote {
         display: flex;
         align-items: center;
         gap: 2rem;
         padding: 1.5rem;
-        border-radius: 0.9375rem;
-        @media only screen and (max-width: 650px) {
-          gap: 1rem;
-          padding: 0.875rem;
-        }
+        background: var(--color-page);
+        border: 1px solid var(--color-line-card);
+        border-radius: var(--radius-card);
+
         & > section {
+          flex: 0 0 auto;
           // The icons here are currentColor now; this is the colour they had
           // hard-coded before. was B3063C
           color: var(--color-brand);
+
           & > svg {
             height: 1.5rem;
             width: 1.65625rem;
           }
         }
+
         & > div {
-          & > h1 {
-            margin-bottom: 1rem;
+          min-width: 0;
+
+          & > p:first-child {
+            margin-bottom: 0.25rem;
           }
         }
       }
     }
   }
+
   & > div {
-    margin-top: 1.5rem;
-    max-width: 40%;
-    @media only screen and (max-width: 960px) {
-      max-width: 800px;
-      margin-top: 0.625rem;
-    }
+    flex: 1 1 20rem;
+    min-width: 0;
   }
 }

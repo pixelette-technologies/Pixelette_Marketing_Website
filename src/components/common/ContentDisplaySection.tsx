@@ -29,17 +29,17 @@ const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   data
 }) => {
   return (
-    <div className='bg_secondry'>
+    <div className='contentDisplayBand'>
       <Container className='main'>
         <div className='contentDisplaySection'>
           <header>
             <div>
-              <Text className='primary color_white'>{title}</Text>
+              <Text className='primary'>{title}</Text>
               <h2
                 dangerouslySetInnerHTML={{ __html: heading || "" }}
-                className='heading_secondry--light color_white'
+                className='heading_secondry--light'
               ></h2>
-              <Text className='secondry color_gray'>{detail}</Text>
+              <Text className='secondry'>{detail}</Text>
             </div>
           </header>
           <section className='contentDisplayCards'>

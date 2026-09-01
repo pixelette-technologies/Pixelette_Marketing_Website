@@ -1,12 +1,24 @@
-@use "../../globels" as color;
+// D5. Off the legacy Sass aliases and onto the tokens directly, which takes
+// two of the 36 color.$* references with it.
+//
+// The hover filled the whole card with $primary over 0.9s and switched the
+// text to white, then swapped the quote mark for a white one so it would still
+// read on the new ground. Three transitions maintained it. Hover changes
+// border colour only, so all of it goes; the white mark had no other call site
+// and is deleted.
 
 .teamCard {
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-card);
   position: relative;
-  border: 1px solid color.$borderColor;
-  color: color.$brown;
-  transition: 0.9s ease-in-out;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  color: var(--color-body);
+
+  &:hover {
+    border-color: var(--color-line-strong);
+  }
+
   & > header {
     & > img {
       border-radius: 50%;
@@ -14,35 +26,19 @@
     }
   }
 
-  & > div,
-  section {
+  // The quote mark, top right.
+  & > section {
     position: absolute;
     right: 1.875rem;
     top: 0rem;
-    transition: 0.9s ease-in-out;
+
     & > svg {
       height: 4.375rem;
-      transition: 0.9s ease-in-out;
     }
-  }
-
-  & > div {
-    display: none;
   }
 
   & > p {
     margin-top: 0.4375rem;
     margin-bottom: 1.25rem;
-  }
-
-  &:hover {
-    background-color: color.$primary;
-    color: var(--color-page);
-    & > section {
-      display: none;
-    }
-    & > div {
-      display: block;
-    }
   }
 }

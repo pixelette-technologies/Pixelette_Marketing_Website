@@ -24,7 +24,7 @@ const ContactSection: FC<ContactSectionProps> = ({
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
   return (
-    <div className='bg_tertiary'>
+    <div className='band-closing'>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
@@ -37,7 +37,7 @@ const ContactSection: FC<ContactSectionProps> = ({
             {text && <Text className='secondry'>{text}</Text>}
             <div>
               {data?.map((el, index) => (
-                <blockquote className='bg_white' key={index}>
+                <blockquote key={index}>
                   <section>
                     <el.icon />
                   </section>

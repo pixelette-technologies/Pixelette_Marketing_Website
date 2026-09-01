@@ -15,12 +15,12 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
 }) => {
   return (
     <section
-      className='bg_secondry--light'
+      className='questionAndAnswerBand'
     >
       <div className='questionAndAnswer  text_align_center'>
         {subheading ? (
           <header>
-            <Text className='primary color_primary'>Become a partner</Text>
+            <Text className='primary'>Become a partner</Text>
           </header>
         ) : (
           ""
@@ -28,10 +28,10 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
 
         <h2
           dangerouslySetInnerHTML={{ __html: heading || "" }}
-          className='heading_secondry--light color_white'
+          className='heading_secondry--light'
         ></h2>
         <Text
-          className='secondry color_white'
+          className='secondry'
         >
           {text}
         </Text>

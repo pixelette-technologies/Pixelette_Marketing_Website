@@ -10,7 +10,9 @@
     "lint": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "lint:check": "eslint \"src/**/*.{ts,tsx}\"",
-    "compare:palette": "node scripts/build-palette-compare.mjs"
+    "compare:palette": "node scripts/build-palette-compare.mjs",
+    "lint:legacy-tokens": "node scripts/lint-legacy-tokens.mjs",
+    "route:walk": "node scripts/route-walk.mjs"
   },
   "dependencies": {
     "formik": "^2.4.6",

@@ -1,69 +1,50 @@
-@use "../../../globels" as color;
+// D5. Off the legacy Sass alias, and onto .wash-left — the guide's interior
+// hero ground, which the hero strategy chose for exactly these routes and
+// which had no call site until About took the first one.
+//
+// Seven media queries gone. Four of them existed only to step the hero image
+// down through 1140, 980, 750 and 550px, which a fluid image and a wrapping
+// flex pair do without a breakpoint. The 550px query that stacked the two
+// buttons and capped them at 15.625rem goes too: the pair wraps on its own.
+
 .servicesHero {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 3.5rem;
-  padding-top: 3.6875rem;
-  @media only screen and (max-width: 1140px) {
-    gap: 1.875rem;
-    & > section {
-      & > img {
-        max-width: 55%;
-      }
-    }
-  }
-  @media only screen and (max-width: 980px) {
-    gap: 0.9375rem;
-    & > section {
-      & > img {
-        max-width: 55%;
-        height: auto;
-      }
-    }
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    gap: 3.125rem;
-    & > section {
-      & > img {
-        max-width: 80%;
-      }
-    }
-  }
-  @media only screen and (max-width: 550px) {
-    & > section {
-      & > img {
-        width: 100%;
-      }
+  padding-block: var(--sec-y);
+
+  & > section {
+    flex: 1 1 20rem;
+    min-width: 0;
+
+    & > img {
+      max-width: 100%;
+      height: auto;
     }
   }
 
   & > div {
+    flex: 1 1 20rem;
+    min-width: 0;
+
     & > h1 {
+      color: var(--color-brand);
+
       & > span {
-        color: color.$secondry;
+        color: var(--color-ink);
       }
     }
+
     & > p {
       padding: 1.5rem 0rem;
-      @media only screen and (max-width: 980px) {
-        padding: 0.875rem 0rem;
-      }
     }
+
     & > div {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-
       gap: 1rem;
-      @media only screen and (max-width: 980px) {
-        gap: 0.625rem;
-      }
-      @media only screen and (max-width: 550px) {
-        flex-direction: column;
-        max-width: 15.625rem;
-        margin: auto;
-        padding-top: 0.625rem;
-      }
     }
   }
 }

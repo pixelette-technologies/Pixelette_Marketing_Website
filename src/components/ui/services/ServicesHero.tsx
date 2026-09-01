@@ -18,47 +18,39 @@ const ServicesHero: FC<ServicesHeroProps> = ({
   text
 }) => {
   return (
-    <Container className='main'>
-      <section className='servicesHero'>
-        <section>
-          <Image
-            src={image}
-            alt='hero image for services'
-            height={288}
-            width={626}
-            priority
-          />
-        </section>
-        <div>
-          <Heading
-            className='tertiary color_primary uppercase font_family_glory'
-            level={1}
-          >
-            {mainHeading} <span> {subHeading}</span>
-          </Heading>
-
-          <Text className='secondry'>
-            {text}
-          </Text>
+    // .wash-left, the guide's interior hero ground. The wrapper is here so the
+    // gradient runs full-bleed behind the container rather than being clipped
+    // to it, the same shape HomeHero uses for the centred .wash.
+    <div className='wash-left'>
+      <Container className='main'>
+        <section className='servicesHero'>
+          <section>
+            <Image
+              src={image}
+              alt='hero image for services'
+              height={288}
+              width={626}
+              priority
+            />
+          </section>
           <div>
-            <Link href='/contactus'>
-              <Button
-                className='primary-full'
-              >
-                Book a call
-              </Button>
-            </Link>
-            <Link href='/contactus'>
-              <Button
-                className='secondry-full'
-              >
-                Get a proposal
-              </Button>
-            </Link>
+            <Heading className='tertiary uppercase font_family_glory' level={1}>
+              {mainHeading} <span> {subHeading}</span>
+            </Heading>
+
+            <Text className='secondry'>{text}</Text>
+            <div>
+              <Link href='/contactus'>
+                <Button className='primary-full'>Book a call</Button>
+              </Link>
+              <Link href='/contactus'>
+                <Button className='secondry-full'>Get a proposal</Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-    </Container>
+        </section>
+      </Container>
+    </div>
   );
 };
 

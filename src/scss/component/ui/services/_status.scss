@@ -1,42 +1,61 @@
+// D5. The ground was bg_primary — flat saturated crimson. Phase A settled that
+// those become the dark panel family, and this band was missed along with
+// WhoWeAre's. It joins them.
+//
+// The heading rule selected h1 where Heading renders h2.
+//
+// Four media queries gone; both columns wrap and the figures are auto-fit.
+
 .status {
-  padding: 2.625rem 0rem;
+  padding-block: var(--sec-y);
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    align-items: start;
-  }
+  gap: 1.25rem 2rem;
+
   & > header {
+    flex: 1 1 22rem;
     max-width: 37.5rem;
-    @media only screen and (max-width: 750px) {
-      max-width: 100%;
-    }
-    & > h1 {
+
+    & > :is(h1, h2) {
       margin-bottom: 2rem;
-      @media only screen and (max-width: 750px) {
-        margin-bottom: 0.8125rem;
-      }
+      color: var(--color-page);
+    }
+
+    & > p {
+      color: var(--color-panel-text);
     }
   }
 
   & > section {
+    flex: 1 1 18rem;
     max-width: 24.5rem;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(9rem, 100%), 1fr));
     gap: 2rem;
-    @media only screen and (max-width: 750px) {
-      margin: auto;
-    }
+
     & > div {
-      flex: 1 1 calc(50% - 2rem);
       & > p {
+        color: var(--color-panel-text);
+
         & > span {
+          display: block;
+          font-family: var(--font-mono);
+          font-variant-numeric: tabular-nums;
           font-size: 1.75rem;
           font-weight: 600;
+          line-height: 1.1;
+          color: var(--color-brand-signal);
         }
       }
     }
   }
+}
+
+// The dark ground. Was flat crimson; joins the dark panel family with the
+// other bands. See the note in _questionAndAnswer.scss.
+.statusBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
 }

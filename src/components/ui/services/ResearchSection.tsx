@@ -36,7 +36,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
         <header>
           <div>
             <Heading
-              className='secondry color_secondry font_family_glory uppercase'
+              className='secondry font_family_glory uppercase'
             >
               {mainHeading}
               <span> {subHeading}</span>
@@ -54,11 +54,11 @@ const ResearchSection: FC<ResearchSectionProps> = ({
               id={`${uid}-counter-${index + 1}`}
               className='counter-section card-feature'
             >
-              <Heading className='primary color_primary font_family_glory '>
+              <Heading className='primary font_family_glory'>
                 <CountUp start={0} end={el.value || 0} />%
               </Heading>
               <Text className='secondry font_family_glory'>{el.message}</Text>
-              <blockquote className='bg_white'>
+              <blockquote>
                 <Text className='secondry font_family_glory'>
                   Source: {el.source}
                 </Text>

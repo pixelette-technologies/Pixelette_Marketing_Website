@@ -1,35 +1,49 @@
+// D5. Another heading the same colour as its own ground. "We manage You grow"
+// is the `large` variant, so it renders at --fs-h1 — up to 64px — and it took
+// color_tertiary on a bg_gray--lighter band. Both resolve through the legacy
+// aliases to --color-band, so it was 1:1 with what was behind it: the biggest
+// piece of type on the services pages, and it has never been visible on any
+// build. This is the third of these, after WhoWeAre's two eyebrows.
+//
+// It is a quiet, oversized label sitting beside the section's real heading, so
+// it takes --color-muted rather than the full ink: that keeps the recessive
+// role the tertiary tone was reaching for and is legible at 5.3:1 on the band.
+//
+// Both heading rules in this file selected h1 where Heading renders h2, so
+// neither the 29rem cap on the label nor the 16.9375rem width and margin on
+// the section heading had ever applied.
+//
+// Four media queries gone. The header is a wrapping flex row, which removes
+// the 960px direction flip and the two max-widths stepped at 1067 and 960.
+// The 800px query that dropped the sticky header goes with them — sticky is
+// harmless once the header can wrap.
+
 .servicesSection {
-  margin: 1.875rem 0rem;
+  margin-block: var(--sec-y-sm);
+
   & > header {
-    padding: 2rem 0rem;
+    padding-block: var(--sec-y-sm);
     display: flex;
+    flex-wrap: wrap;
     gap: 1.25rem;
     justify-content: space-between;
     position: sticky;
     top: 0rem;
     z-index: 2;
-    @media only screen and (max-width: 960px) {
-      flex-direction: column;
-    }
-    @media only screen and (max-width: 800px) {
-      position: relative;
-    }
 
-    & > h1 {
+    & > :is(h1, h2) {
+      flex: 1 1 18rem;
       max-width: 29rem;
+      color: var(--color-muted);
     }
 
     & > div {
+      flex: 1 1 22rem;
       max-width: 36.625rem;
-      @media only screen and (max-width: 1067px) {
-        max-width: 30rem;
-      }
-      @media only screen and (max-width: 960px) {
-        max-width: 100%;
-      }
-      & > h1 {
-        width: 16.9375rem;
+
+      & > :is(h1, h2) {
         margin-bottom: 1rem;
+        color: var(--color-ink);
       }
     }
   }
@@ -39,6 +53,7 @@
       &:nth-child(odd) {
         background-color: var(--color-band);
       }
+
       &:nth-child(even) {
         background-color: var(--color-page);
       }

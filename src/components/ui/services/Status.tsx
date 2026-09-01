@@ -60,17 +60,17 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
   }, [data]);
 
   return (
-    <div className='bg_primary' ref={rootRef}>
+    <div className='statusBand' ref={rootRef}>
       <Container className='main'>
         <div className='status'>
           <header>
             <Heading
-              className='secondry--light color_white'
+              className='secondry--light'
             >
               {heading}
             </Heading>
             <Text
-              className='secondry color_white'
+              className='secondry'
             >
               {text}
             </Text>
@@ -82,7 +82,7 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
                 id={sectionId(index)}
                 className='counter-section'
               >
-                <Text className='primary color_white'>
+                <Text className='primary'>
                   <span>
                     {visibleSections[sectionId(index)] ? (
                       <CountUp start={0} end={el.value || 0} />

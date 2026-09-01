@@ -19,20 +19,20 @@ const ServicesSection: FC<ServicesSectionProps> = ({
   data = []
 }) => {
   return (
-    <div
-      className='bg_gray--lighter'
-    >
+    <div className='band-alt'>
       <Container className='main'>
         <div className='servicesSection'>
-          <header className='bg_gray--lighter'>
+          {/* The sticky header needs its own ground so the cards do not scroll
+              through it. Same band as the section, stated once. */}
+          <header className='band-alt'>
             <Heading
-              className='large font_family_glory color_tertiary uppercase'
+              className='large font_family_glory uppercase'
             >
               We manage You grow
             </Heading>
             <div>
               <Heading
-                className='secondry font_family_glory color_secondry uppercase'
+                className='secondry font_family_glory uppercase'
               >
                 {heading || "No Heading Provided"}
               </Heading>
@@ -51,7 +51,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
                 />
               ))
             ) : (
-              <Text className='tertiary color_gray-dark'>
+              <Text className='tertiary'>
                 No services available.
               </Text>
             )}

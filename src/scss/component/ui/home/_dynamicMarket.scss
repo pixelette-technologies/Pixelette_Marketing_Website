@@ -1,14 +1,14 @@
 .dynamicMarket {
   position: relative;
-  margin-top: -48.1rem;
+  margin-top: -30.0625rem;
   @media only screen and (max-width: 920px) {
-    margin-top: -59rem;
+    margin-top: -36.875rem;
   }
   @media only screen and (max-width: 700px) {
-    margin-top: -64rem;
+    margin-top: -40rem;
   }
   @media only screen and (max-width: 600px) {
-    margin-top: -8rem;
+    margin-top: -5rem;
   }
   & > section {
     width: 100%;
@@ -20,12 +20,12 @@
     top: 0;
     & > svg {
       max-width: 1366px;
-      margin-top: -18.6rem;
+      margin-top: -11.625rem;
       @media only screen and (max-width: 1200px) {
-        margin-top: -27rem;
+        margin-top: -16.875rem;
       }
       @media only screen and (max-width: 700px) {
-        margin-top: -32rem;
+        margin-top: -20rem;
       }
     }
   }
@@ -34,12 +34,12 @@
     margin: auto;
     @media only screen and (max-width: 1366px) {
       background-color: #f8f5f3;
-      border-top-right-radius: 24rem;
-      border-top-left-radius: 24rem;
+      border-top-right-radius: 15rem;
+      border-top-left-radius: 15rem;
     }
     @media only screen and (max-width: 700px) {
-      border-top-right-radius: 20rem;
-      border-top-left-radius: 20rem;
+      border-top-right-radius: 12.5rem;
+      border-top-left-radius: 12.5rem;
     }
 
     & > div {
@@ -48,13 +48,13 @@
         align-items: center;
         justify-content: space-between;
         @media only screen and (max-width: 1250px) {
-          padding: 0rem 5rem;
+          padding: 0rem 3.125rem;
         }
         @media only screen and (max-width: 1000px) {
           flex-direction: column;
           align-items: start;
-          gap: 2rem;
-          padding: 0rem 2rem;
+          gap: 1.25rem;
+          padding: 0rem 1.25rem;
         }
 
         & > div {
@@ -62,10 +62,10 @@
         }
 
         & > p {
-          max-width: 52.96rem;
+          max-width: 33.1rem;
           z-index: 10000;
           @media only screen and (max-width: 1250px) {
-            max-width: 45rem;
+            max-width: 28.125rem;
           }
           @media only screen and (max-width: 1000px) {
             max-width: 80%;
@@ -79,18 +79,18 @@
       & > section {
         display: flex;
         flex-wrap: wrap;
-        gap: 2rem;
-        margin-top: 3.2rem;
-        padding-bottom: 3.1rem;
+        gap: 1.25rem;
+        margin-top: 2rem;
+        padding-bottom: 1.9375rem;
 
         & > div {
           z-index: 10000;
-          flex: 1 1 calc(33.3% - 3rem);
+          flex: 1 1 calc(33.3% - 1.875rem);
           @media only screen and (max-width: 700px) {
-            flex: 1 1 calc(50% - 3rem);
+            flex: 1 1 calc(50% - 1.875rem);
           }
           @media only screen and (max-width: 550px) {
-            flex: 1 1 calc(100% - 3rem);
+            flex: 1 1 calc(100% - 1.875rem);
           }
         }
       }

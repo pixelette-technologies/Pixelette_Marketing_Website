@@ -23,7 +23,7 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
         style={{
           display: "flex",
           alignItems: "flex-start",
-          gap: "0.5rem",
+          gap: "0.3125rem",
           cursor: "pointer"
         }}
       >
@@ -32,7 +32,7 @@ const FormCheckbox: FC<FormCheckboxProps> = ({
           type='checkbox'
           {...field}
           aria-invalid={meta.touched && Boolean(meta.error)}
-          style={{ marginTop: "0.25rem", flexShrink: 0 }}
+          style={{ marginTop: "0.15625rem", flexShrink: 0 }}
         />
         <span className='form-consent-text'>{children}</span>
       </label>

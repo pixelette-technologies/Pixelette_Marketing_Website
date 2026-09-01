@@ -50,7 +50,7 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
       </section>
       {active && (
         <motion.div
-          initial={{ y: "-6rem", opacity: 0 }}
+          initial={{ y: "-3.75rem", opacity: 0 }}
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
           className="dropdown-content"

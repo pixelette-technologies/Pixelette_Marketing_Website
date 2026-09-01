@@ -74,10 +74,10 @@ export default function ServicesIndexPage() {
       <section
         style={{ maxWidth: 1200, margin: "0 auto", padding: "96px 20px 80px" }}
       >
-        <h1 style={{ fontSize: "2.5rem", lineHeight: 1.15, marginBottom: "1rem" }}>
+        <h1 style={{ fontSize: "1.5625rem", lineHeight: 1.15, marginBottom: "0.625rem" }}>
           Digital Marketing Services
         </h1>
-        <p style={{ maxWidth: 760, marginBottom: "3rem", opacity: 0.85 }}>
+        <p style={{ maxWidth: 760, marginBottom: "1.875rem", opacity: 0.85 }}>
           Pixelette Marketing is a full-service digital marketing agency for
           emerging Fintech, SaaS, Web3 and technology brands. Explore our
           services below.
@@ -87,7 +87,7 @@ export default function ServicesIndexPage() {
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "1.5rem"
+            gap: "0.9375rem"
           }}
         >
           {servicesData.map(service => (
@@ -96,17 +96,17 @@ export default function ServicesIndexPage() {
               href={`/services/${service.route}`}
               style={{
                 display: "block",
-                padding: "1.5rem",
+                padding: "0.9375rem",
                 border: "1px solid rgba(128,128,128,0.3)",
                 borderRadius: 12,
                 textDecoration: "none",
                 color: "inherit"
               }}
             >
-              <h2 style={{ fontSize: "1.25rem", marginBottom: "0.5rem" }}>
+              <h2 style={{ fontSize: "0.78125rem", marginBottom: "0.3125rem" }}>
                 {service.title}
               </h2>
-              <p style={{ fontSize: "0.95rem", opacity: 0.8, margin: 0 }}>
+              <p style={{ fontSize: "0.59375rem", opacity: 0.8, margin: 0 }}>
                 {service.summary}
               </p>
             </Link>

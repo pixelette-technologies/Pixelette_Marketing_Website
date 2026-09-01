@@ -1,13 +1,13 @@
 .rangeOfMarket {
-  padding: 2.97rem 0rem;
+  padding: 1.85625rem 0rem;
   overflow-x: hidden;
-  margin-top: 1rem;
+  margin-top: 0.625rem;
   & > header,
   div {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5rem;
+    gap: 3.125rem;
     animation: scrollX 30s linear infinite;
   }
 
@@ -17,16 +17,16 @@
   }
 
   & > center {
-    margin-top: 10.2rem;
-    margin-bottom: 13.7rem;
+    margin-top: 6.375rem;
+    margin-bottom: 8.5625rem;
     & > h1 {
-      margin-bottom: 1.6rem;
+      margin-bottom: 1rem;
     }
     @media only screen and (max-width: 600px) {
-      margin-top: 7.4rem;
+      margin-top: 4.625rem;
     }
     @media only screen and (max-width: 600px) {
-      margin-bottom: 10.7rem;
+      margin-bottom: 6.6875rem;
     }
   }
 }

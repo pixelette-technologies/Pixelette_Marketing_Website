@@ -1,28 +1,28 @@
 @use "../../globels" as color;
 
 nav {
-  padding: 1rem 0rem;
+  padding: 0.625rem 0rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   @media only screen and (max-width: 750px) {
-    padding: 2rem 0rem;
+    padding: 1.25rem 0rem;
   }
 
   & > svg {
-    width: 12.9rem;
-    height: 3.2rem;
+    width: 8.0625rem;
+    height: 2rem;
     cursor: pointer;
   }
   & > div {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.25rem;
     @media only screen and (max-width: 750px) {
       display: none;
     }
     & > a {
-      font-size: 1.4rem;
+      font-size: 0.875rem;
       font-weight: 400;
       color: white;
     }
@@ -31,7 +31,7 @@ nav {
   & > figure {
     display: none;
     & > * {
-      font-size: 3.5rem;
+      font-size: 2.1875rem;
       color: white;
     }
     @media only screen and (max-width: 750px) {
@@ -46,8 +46,8 @@ nav {
   z-index: 1000000;
   width: 70%;
   right: 0rem;
-  padding: 5rem 3rem;
-  min-height: calc(100vh - 8.1rem);
+  padding: 3.125rem 1.875rem;
+  min-height: calc(100vh - 5.0625rem);
   @media only screen and (max-width: 750px) {
     display: block;
   }
@@ -56,13 +56,13 @@ nav {
     width: 100%;
     & > a {
       display: block;
-      font-size: 1.6rem;
+      font-size: 1rem;
       font-weight: 400;
       color: white;
     }
     & > * {
       &:not(:last-child) {
-        margin-bottom: 2.5rem;
+        margin-bottom: 1.5625rem;
       }
     }
   }

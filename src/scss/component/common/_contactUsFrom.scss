@@ -1,19 +1,19 @@
 .contactUsForm {
-  padding: 2.4rem 1.6rem;
-  border-radius: 1.5rem;
+  padding: 1.5rem 1rem;
+  border-radius: 0.9375rem;
   & > h1 {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
   }
 }
 .contactUsFormFlex {
   display: flex;
   align-items: start;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.625rem;
   & > div {
-    flex: 1 1 calc(50% - 1rem);
+    flex: 1 1 calc(50% - 0.625rem);
     @media only screen and (max-width: 650px) {
-      flex: 1 1 calc(100% - 1rem);
+      flex: 1 1 calc(100% - 0.625rem);
     }
   }
 }

@@ -28,7 +28,7 @@ const inner: React.CSSProperties = {
 const textStyle: React.CSSProperties = {
   margin: 0,
   flex: "1 1 280px",
-  fontSize: "0.9rem",
+  fontSize: "0.5625rem",
   lineHeight: 1.5
 };
 const actions: React.CSSProperties = {
@@ -40,7 +40,7 @@ const btnBase: React.CSSProperties = {
   padding: "10px 22px",
   borderRadius: 4,
   cursor: "pointer",
-  fontSize: "0.9rem",
+  fontSize: "0.5625rem",
   fontWeight: 600
 };
 const rejectStyle: React.CSSProperties = {

@@ -29,7 +29,7 @@ export default function AboutUs() {
       <OurValues />
       <OurServices />
       <OurTeam />
-      <div style={{ marginTop: "-1.2rem" }}>
+      <div style={{ marginTop: "-0.75rem" }}>
         <TrustedBrands topHeading={true} heading='Our clients' />
       </div>
       <QuestionAndAnswer

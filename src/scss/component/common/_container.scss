@@ -2,35 +2,35 @@
   &main {
     max-width: 1366px;
     margin: auto;
-    padding: 0rem 10.9rem;
+    padding: 0rem 6.8125rem;
     overflow: hidden;
 
     @media only screen and (max-width: 1286px) {
-      padding: 0rem 6rem;
+      padding: 0rem 3.75rem;
     }
     @media only screen and (max-width: 1156px) {
-      padding: 0rem 5rem;
+      padding: 0rem 3.125rem;
     }
     @media only screen and (max-width: 1100px) {
-      padding: 0rem 4rem;
+      padding: 0rem 2.5rem;
     }
     @media only screen and (max-width: 800px) {
-      padding: 0rem 2rem;
+      padding: 0rem 1.25rem;
     }
     @media only screen and (max-width: 620px) {
-      padding: 0rem 1rem;
+      padding: 0rem 0.625rem;
     }
   }
   &mainLeft {
     max-width: 1366px;
     margin: auto;
-    padding-left: 10.9rem;
+    padding-left: 6.8125rem;
     overflow: hidden;
     @media only screen and (max-width: 1250px) {
-      padding-left: 5rem;
+      padding-left: 3.125rem;
     }
     @media only screen and (max-width: 800px) {
-      padding-left: 2rem;
+      padding-left: 1.25rem;
     }
   }
 }

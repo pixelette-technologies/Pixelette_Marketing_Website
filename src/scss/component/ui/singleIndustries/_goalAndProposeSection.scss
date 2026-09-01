@@ -1,11 +1,11 @@
 .goalAndProposedSection {
-  padding-top: 6rem;
-  padding-bottom: 8rem;
+  padding-top: 3.75rem;
+  padding-bottom: 5rem;
   display: flex;
   align-items: start;
-  padding-left: 4rem;
-  padding-right: 4rem;
-  gap: 2rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  gap: 1.25rem;
   @media only screen and (max-width: 850px) {
     padding-left: 0rem;
     padding-right: 0rem;
@@ -19,7 +19,7 @@
       width: 100%;
     }
     & > h1 {
-      margin-bottom: 2rem;
+      margin-bottom: 1.25rem;
     }
   }
 }

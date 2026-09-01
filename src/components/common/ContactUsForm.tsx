@@ -154,7 +154,7 @@ const ContactUsForm: React.FC = () => {
               name='description'
               place='Write your query here'
             />
-            <label style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+            <label style={{ display: "flex", gap: "0.46875rem", alignItems: "flex-start" }}>
               <Field type='checkbox' name='consent' />
               <span>
                 {consentText}{" "}
@@ -167,12 +167,12 @@ const ContactUsForm: React.FC = () => {
               {isSubmitting ? "Submitting..." : "Book A Call"}
             </Button>
             {submitState === "success" && (
-              <p role='status' style={{ marginTop: "1rem", color: "#1e7e34" }}>
+              <p role='status' style={{ marginTop: "0.625rem", color: "#1e7e34" }}>
                 Thanks - your message has been sent. We&apos;ll be in touch shortly.
               </p>
             )}
             {submitState === "error" && (
-              <p role='alert' style={{ marginTop: "1rem", color: "#c0392b" }}>
+              <p role='alert' style={{ marginTop: "0.625rem", color: "#c0392b" }}>
                 Sorry, the governed enquiry route is unavailable. No submission has been confirmed.
               </p>
             )}

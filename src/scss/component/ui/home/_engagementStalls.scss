@@ -1,15 +1,15 @@
 // .engagementStalls {
 //   display: flex;
-//   padding-top: 3.2rem;
-//   gap: 4rem;
+//   padding-top: 2rem;
+//   gap: 2.5rem;
 //   position: relative;
 //   @media only screen and (max-width: 900px) {
-//     gap: 1.3rem;
+//     gap: 0.8125rem;
 //   }
 
 //   @media only screen and (max-width: 700px) {
 //     flex-direction: column;
-//     gap: 2rem;
+//     gap: 1.25rem;
 //   }
 
 //   & > header {
@@ -20,43 +20,43 @@
 //       }
 //       & > * {
 //         &:first-child {
-//           margin-bottom: 0.9rem;
+//           margin-bottom: 0.5625rem;
 //         }
 //       }
 //       & > p {
-//         margin-top: 3.2rem;
+//         margin-top: 2rem;
 //         @media only screen and (max-width: 700px) {
-//           margin-top: 1.5rem;
+//           margin-top: 0.9375rem;
 //         }
 //       }
 //     }
 //   }
 //   & > section {
-//     border-radius: 3.2rem;
+//     border-radius: 2rem;
 //     max-width: 802px;
-//     padding-top: 4rem;
-//     padding-left: 3.2rem;
-//     padding-right: 3.2rem;
-//     // padding-bottom: 75rem;
-//     margin-bottom: 1rem;
+//     padding-top: 2.5rem;
+//     padding-left: 2rem;
+//     padding-right: 2rem;
+//     // padding-bottom: 46.875rem;
+//     margin-bottom: 0.625rem;
 //     display: flex;
 //     align-items: start;
 //     height: 100vh;
-//     gap: 5rem;
+//     gap: 3.125rem;
 //     @media only screen and (max-width: 1200px) {
-//       padding-bottom: 75rem;
-//       margin-bottom: 5rem;
-//       gap: 3rem;
+//       padding-bottom: 46.875rem;
+//       margin-bottom: 3.125rem;
+//       gap: 1.875rem;
 //     }
 //     @media only screen and (max-width: 900px) {
-//       padding-left: 1.6rem;
-//       padding-right: 1.6rem;
-//       padding-top: 2rem;
-//       gap: 1.5rem;
+//       padding-left: 1rem;
+//       padding-right: 1rem;
+//       padding-top: 1.25rem;
+//       gap: 0.9375rem;
 //     }
 //     @media only screen and (max-width: 600px) {
 //       height: auto;
-//       padding-bottom: 16rem;
+//       padding-bottom: 10rem;
 //     }
 //     & > section {
 //       display: none;
@@ -65,19 +65,19 @@
 //     & > * {
 //       & > * {
 //         &:not(:last-child) {
-//           margin-bottom: 3.8rem;
+//           margin-bottom: 2.375rem;
 //           @media only screen and (max-width: 530px) {
-//             margin-bottom: 1rem;
+//             margin-bottom: 0.625rem;
 //           }
 //         }
 //       }
 //     }
 
 //     @media only screen and (max-width: 850px) {
-//       gap: 2rem;
-//       padding-left: 1.8rem;
-//       padding-right: 1.8rem;
-//       padding-top: 2rem;
+//       gap: 1.25rem;
+//       padding-left: 1.125rem;
+//       padding-right: 1.125rem;
+//       padding-top: 1.25rem;
 //     }
 //     @media only screen and (max-width: 600px) {
 //       flex-direction: column;
@@ -96,15 +96,15 @@
 
 .engagementStalls {
   display: flex;
-  padding-top: 3.2rem;
-  gap: 4rem;
+  padding-top: 2rem;
+  gap: 2.5rem;
   @media only screen and (max-width: 900px) {
-    gap: 1.3rem;
+    gap: 0.8125rem;
   }
 
   @media only screen and (max-width: 700px) {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
   }
 
   & > div {
@@ -114,52 +114,52 @@
     }
     & > * {
       &:first-child {
-        margin-bottom: 0.9rem;
+        margin-bottom: 0.5625rem;
       }
     }
     & > p {
-      margin-top: 3.2rem;
+      margin-top: 2rem;
       @media only screen and (max-width: 700px) {
-        margin-top: 1.5rem;
+        margin-top: 0.9375rem;
       }
     }
   }
   & > section {
-    border-radius: 3.2rem;
+    border-radius: 2rem;
     max-width: 802px;
-    padding-top: 4rem;
-    padding-left: 3.2rem;
-    padding-right: 3.2rem;
-    padding-bottom: 75rem;
+    padding-top: 2.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 46.875rem;
     display: flex;
     align-items: start;
-    gap: 5rem;
+    gap: 3.125rem;
     @media only screen and (max-width: 1200px) {
-      padding-bottom: 75rem;
-      margin-bottom: 5rem;
-      gap: 3rem;
+      padding-bottom: 46.875rem;
+      margin-bottom: 3.125rem;
+      gap: 1.875rem;
     }
     @media only screen and (max-width: 900px) {
-      padding-left: 1.6rem;
-      padding-right: 1.6rem;
-      padding-top: 2rem;
-      gap: 1.5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-top: 1.25rem;
+      gap: 0.9375rem;
     }
 
     // @media only screen and (max-width: 530px) {
-    //   padding-bottom: 70rem;
+    //   padding-bottom: 43.75rem;
     // }
     @media only screen and (max-width: 600px) {
       height: auto;
-      padding-bottom: 16rem;
+      padding-bottom: 10rem;
     }
 
     & > * {
       & > * {
         &:not(:last-child) {
-          margin-bottom: 3.8rem;
+          margin-bottom: 2.375rem;
           @media only screen and (max-width: 530px) {
-            margin-bottom: 1rem;
+            margin-bottom: 0.625rem;
           }
         }
       }
@@ -169,10 +169,10 @@
     }
 
     @media only screen and (max-width: 850px) {
-      gap: 2rem;
-      padding-left: 1.8rem;
-      padding-right: 1.8rem;
-      padding-top: 2rem;
+      gap: 1.25rem;
+      padding-left: 1.125rem;
+      padding-right: 1.125rem;
+      padding-top: 1.25rem;
     }
     @media only screen and (max-width: 600px) {
       flex-direction: column;

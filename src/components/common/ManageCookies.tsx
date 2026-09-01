@@ -4,7 +4,7 @@ const btnStyle: React.CSSProperties = {
   padding: "10px 22px",
   borderRadius: 4,
   cursor: "pointer",
-  fontSize: "0.9rem",
+  fontSize: "0.5625rem",
   fontWeight: 600,
   background: "#b3063c",
   border: "1px solid #b3063c",

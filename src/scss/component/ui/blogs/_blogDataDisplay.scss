@@ -1,13 +1,13 @@
 .blogDataDisplay {
   display: flex;
-  gap: 1.6rem;
-  margin-bottom: 2rem;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
   @media only screen and (max-width: 550px) {
     flex-direction: column;
   }
 
   & > section {
-    width: 23.8rem;
+    width: 14.875rem;
     @media only screen and (max-width: 550px) {
       display: none;
     }
@@ -19,10 +19,10 @@
     }
   }
   & > div {
-    width: calc(100% - 25.4rem);
+    width: calc(100% - 15.875rem);
     @media only screen and (max-width: 550px) {
       width: 100%;
-      margin-bottom: 3rem;
+      margin-bottom: 1.875rem;
     }
   }
 }

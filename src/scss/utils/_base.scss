@@ -20,14 +20,9 @@ body {
 }
 
 html {
-  font-size: 62.5%;
-  @include breakPoint.respond(tab-port) {
-    font-size: 45%;
-  }
-  @media only screen and (max-width: 850px) {
-    font-size: 52%;
-  }
-  @include breakPoint.respond(tab-land) {
-    font-size: 57%;
-  }
+  // Standard root. Every rem literal in the SCSS was rebased by 0.625 in the
+  // same commit, so desktop renders identically to the four-rule version this
+  // replaces. The 45% and 52% rules removed with it were already dead: equal
+  // specificity, overridden by the 57% tab-land rule declared after them.
+  font-size: 100%;
 }

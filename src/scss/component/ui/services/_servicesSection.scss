@@ -1,9 +1,9 @@
 .servicesSection {
-  margin: 3rem 0rem;
+  margin: 1.875rem 0rem;
   & > header {
-    padding: 3.2rem 0rem;
+    padding: 2rem 0rem;
     display: flex;
-    gap: 2rem;
+    gap: 1.25rem;
     justify-content: space-between;
     position: sticky;
     top: 0rem;
@@ -16,20 +16,20 @@
     }
 
     & > h1 {
-      max-width: 46.4rem;
+      max-width: 29rem;
     }
 
     & > div {
-      max-width: 58.6rem;
+      max-width: 36.625rem;
       @media only screen and (max-width: 1067px) {
-        max-width: 48rem;
+        max-width: 30rem;
       }
       @media only screen and (max-width: 960px) {
         max-width: 100%;
       }
       & > h1 {
-        width: 27.1rem;
-        margin-bottom: 1.6rem;
+        width: 16.9375rem;
+        margin-bottom: 1rem;
       }
     }
   }

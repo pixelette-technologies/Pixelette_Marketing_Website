@@ -2,70 +2,70 @@
 
 .text_ {
   &primary {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 400;
-    line-height: 2.4rem;
+    line-height: 1.5rem;
     @media only screen and (max-width: 700px) {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.25rem;
     }
   }
   &primary--semiBold {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 500;
-    line-height: 1.8rem;
+    line-height: 1.125rem;
     @media only screen and (max-width: 700px) {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.25rem;
     }
   }
   &primary--bold {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 600;
-    line-height: 2rem;
+    line-height: 1.25rem;
     @media only screen and (max-width: 700px) {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.25rem;
     }
   }
   &primary--bolder {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 700;
-    line-height: 2.4rem;
+    line-height: 1.5rem;
     @media only screen and (max-width: 700px) {
-      font-size: 1.5rem;
-      line-height: 2rem;
+      font-size: 0.9375rem;
+      line-height: 1.25rem;
     }
   }
 
   &secondry {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
     font-weight: 400;
-    line-height: 2rem;
+    line-height: 1.25rem;
   }
   &secondry--semibold {
-    font-size: 1.4rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    line-height: 2.2rem;
+    line-height: 1.375rem;
   }
   &tertiary {
-    font-size: 1.2rem;
+    font-size: 0.75rem;
     font-weight: 400;
-    line-height: 1.6rem;
+    line-height: 1rem;
     @media only screen and (max-width: 1200px) {
-      font-size: 1.4rem;
-      line-height: 1.9rem;
+      font-size: 0.875rem;
+      line-height: 1.1875rem;
     }
   }
   &tertiary--light {
-    font-size: 1.2rem;
+    font-size: 0.75rem;
     font-weight: 300;
-    line-height: 2rem;
+    line-height: 1.25rem;
   }
 
   &small {
-    font-size: 0.9rem;
+    font-size: 0.5625rem;
     font-weight: 700;
-    line-height: 1.247rem;
+    line-height: 0.779375rem;
   }
 }

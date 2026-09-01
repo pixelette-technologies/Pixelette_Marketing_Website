@@ -4,20 +4,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 5.1rem;
-  padding: 4rem 0rem;
+  gap: 3.1875rem;
+  padding: 2.5rem 0rem;
   @media only screen and (max-width: 985px) {
     flex-direction: column;
   }
 
   & > div {
-    padding-top: 23rem;
+    padding-top: 14.375rem;
     z-index: 1000;
     & > section {
       position: relative;
       max-width: 662px;
       height: 410px;
-      margin-left: 12rem;
+      margin-left: 7.5rem;
       & > img {
         position: absolute;
         transition: 0.3s ease-in-out;
@@ -54,8 +54,8 @@
           }
         }
         &:nth-child(2) {
-          top: 4.5rem;
-          left: -11rem;
+          top: 2.8125rem;
+          left: -6.875rem;
           z-index: 80;
           @media only screen and (max-width: 1065px) {
             height: 300px;
@@ -63,16 +63,16 @@
           }
         }
         &:nth-child(3) {
-          top: -6rem;
-          left: 3rem;
+          top: -3.75rem;
+          left: 1.875rem;
           @media only screen and (max-width: 1065px) {
             height: 300px;
             width: 310px;
           }
         }
         &:nth-child(4) {
-          left: 34rem;
-          top: 16rem;
+          left: 21.25rem;
+          top: 10rem;
           z-index: 80;
           @media only screen and (max-width: 1065px) {
             height: 150px;
@@ -80,12 +80,12 @@
           }
         }
         &:nth-child(5) {
-          left: 30rem;
-          top: -22rem;
+          left: 18.75rem;
+          top: -13.75rem;
           @media only screen and (max-width: 1065px) {
             height: 460px;
             width: 110px;
-            top: -15rem;
+            top: -9.375rem;
           }
         }
       }
@@ -94,11 +94,11 @@
       }
     }
     @media only screen and (max-width: 988px) {
-      padding-top: 5rem;
+      padding-top: 3.125rem;
     }
     @media only screen and (max-width: 550px) {
       padding-top: 0rem;
-      margin-top: -4rem;
+      margin-top: -2.5rem;
     }
   }
   & > img {
@@ -114,52 +114,52 @@
   }
 
   & > section {
-    padding-top: 3.8rem;
-    padding-bottom: 3.8rem;
-    padding-right: 5.3rem;
-    padding-left: 22rem;
-    margin-left: -0rem;
-    margin-bottom: -8.7rem;
-    border-top-right-radius: 3rem;
-    border-bottom-right-radius: 3rem;
+    padding-top: 2.375rem;
+    padding-bottom: 2.375rem;
+    padding-right: 3.3125rem;
+    padding-left: 13.75rem;
+    margin-left: 0rem;
+    margin-bottom: -5.4375rem;
+    border-top-right-radius: 1.875rem;
+    border-bottom-right-radius: 1.875rem;
 
     @media only screen and (max-width: 1346px) {
-      padding-left: 20rem;
+      padding-left: 12.5rem;
     }
     @media only screen and (max-width: 1325px) {
-      padding-right: 3rem;
-      padding-left: 19rem;
+      padding-right: 1.875rem;
+      padding-left: 11.875rem;
     }
     @media only screen and (max-width: 1280px) {
-      padding-left: 21rem;
+      padding-left: 13.125rem;
     }
     @media only screen and (max-width: 1200px) {
-      margin-left: -24rem;
-      margin-bottom: -15rem;
+      margin-left: -15rem;
+      margin-bottom: -9.375rem;
     }
 
     @media only screen and (max-width: 1080px) {
-      margin-bottom: -10.5rem;
+      margin-bottom: -6.5625rem;
     }
 
     @media only screen and (max-width: 1050px) {
-      padding-left: 19rem;
+      padding-left: 11.875rem;
     }
     @media only screen and (max-width: 1050px) {
-      padding-left: 17rem;
+      padding-left: 10.625rem;
     }
 
     @media only screen and (max-width: 988px) {
-      padding-left: 3rem;
-      padding-right: 3rem;
-      margin-top: -10rem;
-      padding-top: 9rem;
+      padding-left: 1.875rem;
+      padding-right: 1.875rem;
+      margin-top: -6.25rem;
+      padding-top: 5.625rem;
       margin-bottom: 0rem;
-      margin-left: -5rem;
-      border-bottom-left-radius: 3rem;
-      border-bottom-right-radius: 3rem;
-      border-top-left-radius: 3rem;
-      border-top-right-radius: 3rem;
+      margin-left: -3.125rem;
+      border-bottom-left-radius: 1.875rem;
+      border-bottom-right-radius: 1.875rem;
+      border-top-left-radius: 1.875rem;
+      border-top-right-radius: 1.875rem;
     }
     @media only screen and (max-width: 580px) {
       margin-left: 0rem;
@@ -167,7 +167,7 @@
     }
 
     & > div {
-      max-width: 38.2rem;
+      max-width: 23.875rem;
       @media only screen and (max-width: 1050px) {
         max-width: 300px;
       }
@@ -177,31 +177,31 @@
       }
       @media only screen and (max-width: 1325px) {
         & > h1 {
-          font-size: 4.8rem;
-          line-height: 4.5rem;
+          font-size: 3rem;
+          line-height: 2.8125rem;
           @media only screen and (max-width: 1065px) {
-            font-size: 4rem;
-            line-height: 3.5rem;
+            font-size: 2.5rem;
+            line-height: 2.1875rem;
           }
           @media only screen and (max-width: 1050px) {
-            font-size: 3.5rem;
-            line-height: 3.2rem;
+            font-size: 2.1875rem;
+            line-height: 2rem;
           }
         }
       }
 
       & > p {
-        margin: 3.2rem 0rem;
+        margin: 2rem 0rem;
         z-index: 999999;
         @media only screen and (max-width: 1325px) {
-          margin: 2rem 0rem;
+          margin: 1.25rem 0rem;
         }
         @media only screen and (max-width: 1065px) {
-          margin: 1.6rem 0rem;
+          margin: 1rem 0rem;
         }
 
         @media only screen and (max-width: 850px) {
-          margin: 1.5rem 0rem;
+          margin: 0.9375rem 0rem;
         }
       }
     }

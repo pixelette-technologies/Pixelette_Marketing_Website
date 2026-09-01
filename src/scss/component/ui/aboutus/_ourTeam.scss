@@ -1,62 +1,62 @@
 .ourTeam {
-  padding-top: 5.6rem;
+  padding-top: 3.5rem;
   @media only screen and (max-width: 1160px) {
-    padding-bottom: 5.6rem;
+    padding-bottom: 3.5rem;
   }
   & > header {
     & > h1 {
-      margin-top: 0.5rem;
-      margin-bottom: 1.4rem;
+      margin-top: 0.3125rem;
+      margin-bottom: 0.875rem;
     }
   }
   & > section {
-    margin-top: 2.4rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0rem;
     justify-content: center;
 
     @media only screen and (max-width: 1190px) {
-      gap: 2rem;
+      gap: 1.25rem;
     }
 
     & > div {
       flex: 1 1 calc(20% - 0rem);
-      border-top-left-radius: 10.7rem;
-      border-top-right-radius: 10.7rem;
+      border-top-left-radius: 6.6875rem;
+      border-top-right-radius: 6.6875rem;
       display: flex;
       align-items: center;
-      padding-top: 3rem;
+      padding-top: 1.875rem;
       flex-direction: column;
       overflow: hidden;
 
       @media only screen and (max-width: 1190px) {
-        flex: 1 1 calc(33.3% - 2rem);
-        border-radius: 4rem;
-        max-width: calc(33% - 2rem);
+        flex: 1 1 calc(33.3% - 1.25rem);
+        border-radius: 2.5rem;
+        max-width: calc(33% - 1.25rem);
         & > img {
-          height: 25rem;
+          height: 15.625rem;
           width: auto;
         }
       }
       @media only screen and (max-width: 750px) {
-        flex: 1 1 calc(50% - 2rem);
-        max-width: calc(50% - 2rem);
+        flex: 1 1 calc(50% - 1.25rem);
+        max-width: calc(50% - 1.25rem);
       }
       @media only screen and (max-width: 520px) {
-        flex: 1 1 calc(100% - 2rem);
-        max-width: calc(100% - 2rem);
-        border-radius: 2rem;
+        flex: 1 1 calc(100% - 1.25rem);
+        max-width: calc(100% - 1.25rem);
+        border-radius: 1.25rem;
       }
 
       & > center {
         & > * {
           &:first-child {
-            font-size: 1.35rem;
+            font-size: 0.84375rem;
             font-weight: 700;
           }
           &:nth-child(2) {
-            font-size: 1.14rem;
+            font-size: 0.7125rem;
             font-weight: 400;
           }
         }
@@ -64,13 +64,13 @@
     }
     & > * {
       &:nth-child(even) {
-        margin-top: 3.6rem;
+        margin-top: 2.25rem;
         @media only screen and (max-width: 1190px) {
           margin-top: 0rem;
         }
 
         & > img {
-          margin-top: 1.85rem;
+          margin-top: 1.15625rem;
           @media only screen and (max-width: 1190px) {
             margin-top: 0rem;
           }

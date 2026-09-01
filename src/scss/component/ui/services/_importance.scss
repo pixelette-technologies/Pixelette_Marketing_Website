@@ -1,75 +1,75 @@
 .importance {
-  padding-top: 2.4rem;
+  padding-top: 1.5rem;
   max-width: 1060px;
   & > center {
     text-align: center;
-    margin-bottom: 10rem;
+    margin-bottom: 6.25rem;
   }
 
   & > section {
     display: flex;
-    gap: 4.6rem;
+    gap: 2.875rem;
     flex-wrap: wrap;
     justify-content: space-between;
     @media only screen and (max-width: 1317px) {
       justify-content: center;
-      gap: 12rem;
-      padding-bottom: 6rem;
+      gap: 7.5rem;
+      padding-bottom: 3.75rem;
     }
     @media only screen and (max-width: 1017px) {
-      gap: 10rem;
+      gap: 6.25rem;
     }
     @media only screen and (max-width: 630px) {
-      gap: 2rem;
+      gap: 1.25rem;
     }
     & > div {
-      flex: 1 1 calc(33.3% - 4.6rem);
-      max-width: calc(28.3% - 4.6rem);
+      flex: 1 1 calc(33.3% - 2.875rem);
+      max-width: calc(28.3% - 2.875rem);
       @media only screen and (max-width: 1317px) {
-        flex: 1 1 calc(42.3% - 12rem);
-        max-width: calc(37.3% - 12rem);
+        flex: 1 1 calc(42.3% - 7.5rem);
+        max-width: calc(37.3% - 7.5rem);
       }
       @media only screen and (max-width: 1017px) {
-        flex: 1 1 calc(86.3% - 10rem);
-        max-width: calc(86.3% - 10rem);
+        flex: 1 1 calc(86.3% - 6.25rem);
+        max-width: calc(86.3% - 6.25rem);
       }
       @media only screen and (max-width: 630px) {
-        flex: 1 1 calc(100% - 2rem);
-        max-width: calc(100% - 2rem);
+        flex: 1 1 calc(100% - 1.25rem);
+        max-width: calc(100% - 1.25rem);
       }
       & > div {
-        border-top-left-radius: 1.3rem;
-        padding-left: 1rem;
-        padding-top: 1rem;
+        border-top-left-radius: 0.8125rem;
+        padding-left: 0.625rem;
+        padding-top: 0.625rem;
         height: 270px;
         overflow: visible;
         display: flex;
         position: relative;
-        padding-right: -13rem;
+        padding-right: -8.125rem;
         background: linear-gradient(180deg, #b3063c 0%, #4d031a 100%);
         @media only screen and (max-width: 1317px) {
-          border-bottom-left-radius: 1.3rem;
-          padding-bottom: 1rem;
+          border-bottom-left-radius: 0.8125rem;
+          padding-bottom: 0.625rem;
         }
         @media only screen and (max-width: 1017px) {
-          border-radius: 1rem;
+          border-radius: 0.625rem;
         }
         @media only screen and (max-width: 630px) {
-          padding: 1rem;
+          padding: 0.625rem;
         }
         & > img {
           position: absolute;
-          right: -12rem;
-          top: -4.1rem;
+          right: -7.5rem;
+          top: -2.5625rem;
           @media only screen and (max-width: 1317px) {
-            right: -13rem;
+            right: -8.125rem;
           }
           @media only screen and (max-width: 1200px) {
-            // top: -15.4rem;
-            right: -11.5rem;
+            // top: -9.625rem;
+            right: -7.1875rem;
           }
           @media only screen and (max-width: 1017px) {
-            right: -6.5rem;
+            right: -4.0625rem;
           }
           @media only screen and (max-width: 630px) {
             display: none;
@@ -90,7 +90,7 @@
           }
           & > blockquote {
             & > p {
-              margin-top: -11rem;
+              margin-top: -6.875rem;
             }
             & > div {
               position: relative;

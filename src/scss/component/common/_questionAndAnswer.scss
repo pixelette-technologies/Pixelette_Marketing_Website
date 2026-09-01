@@ -1,9 +1,9 @@
 @use "../../globels" as color;
 
 .questionAndAnswer {
-  max-width: 65rem;
+  max-width: 40.625rem;
   margin: auto;
-  padding: 4.2rem 2rem;
+  padding: 2.625rem 1.25rem;
 
   & > h2 {
     & > span {
@@ -11,7 +11,7 @@
     }
   }
   & > p {
-    margin-top: 1.2rem;
-    margin-bottom: 2.4rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
   }
 }

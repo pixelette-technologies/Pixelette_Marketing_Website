@@ -1,10 +1,10 @@
 .heroSingleBlogPage {
-  padding-top: 6.7rem;
-  margin-bottom: 5.6rem;
+  padding-top: 4.1875rem;
+  margin-bottom: 3.5rem;
 
   & > img {
     width: 100%;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.9375rem;
 
     @media only screen and (max-width: 700px) {
       height: 260px;
@@ -21,19 +21,19 @@
       display: flex;
       align-items: center;
       & > p {
-        font-size: 1.4rem;
+        font-size: 0.875rem;
         font-weight: 500;
       }
       & > img {
-        margin: 0rem 1rem;
+        margin: 0rem 0.625rem;
       }
     }
 
     & > * {
       &:first-child {
         border-right: 1px solid black;
-        padding-right: 0.8rem;
-        margin-right: 0.8rem;
+        padding-right: 0.5rem;
+        margin-right: 0.5rem;
 
         @media only screen and (max-width: 600px) {
           border: none;

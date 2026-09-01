@@ -63,7 +63,10 @@
 
     & > a {
       // .flink carries the 44px tap target; this is the type role.
-      font-size: 0.875rem;
+      //
+      // Phase F. Up 2px, from 14 to 16. This also brings the desktop bar onto
+      // the same size as the mobile drawer, which was already 1rem.
+      font-size: 1rem;
       font-weight: 400;
       color: var(--color-ink);
     }

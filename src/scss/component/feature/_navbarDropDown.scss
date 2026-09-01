@@ -22,6 +22,22 @@
       color: var(--color-brand);
     }
 
+    // Phase F. "Services" and "Industries" were rendering a step SMALLER than
+    // the plain links beside them, and the cause was that the two kinds of nav
+    // item never shared a type rule at all. The plain links take 14px from
+    // .site-nav; these come through Text as `text_secondry`, which is the
+    // legacy 13px small variant. One pixel, but enough to see in a row of six.
+    //
+    // Both are 16px now — the size the mobile drawer was already using — so
+    // the whole bar matches at every width. Set here rather than by changing
+    // text_secondry, which is still styling paragraphs across twelve
+    // unconverted sections.
+    & > p {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
     & > div {
       display: flex;
       align-items: center;

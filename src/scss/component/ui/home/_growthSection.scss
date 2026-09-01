@@ -8,6 +8,10 @@
 // A 45-line commented-out header block went with it.
 
 .growthSection {
+  // The signature device. .rule-cap supplies the 40px segment of the marking
+  // tone; this is the hairline it caps. It marks a section OPENING, not every
+  // band — which is why it is here and not on every wrapper in the codebase.
+  border-top: 1px solid var(--color-line);
   padding-block: var(--sec-y);
 
   & > h2 {

@@ -19,91 +19,105 @@ import Link from "next/link";
 
 export default function HomeHero() {
   return (
-    <Container className='main'>
-      <div className='heroHome'>
-        <div>
+    // Phase E, the hero ground: the guide's centred light wash, its default
+    // front-page treatment. The wrapper exists so the gradient runs full-bleed
+    // behind the container rather than being clipped to it. Interior pages take
+    // the offset .wash-left variant.
+    //
+    // No eyebrow. HomeHero has no such copy and writing one is Trap 01, which
+    // was reverted twice on the Certified conversion. One button, not the
+    // guide's action pair, because a second CTA is new content. Both headings
+    // keep their own elements: merging them into a single h1 would change the
+    // DOM structure of content.
+    <div className='wash'>
+      <Container className='main'>
+        <div className='heroHome'>
+          <div>
+            <section>
+              {/* Men Picture */}
+              <Image
+                src='/home/hh_image_1.webp'
+                alt=''
+                width={402}
+                priority
+                height={408}
+              />
+              {/* Building Image */}
+              <Image
+                src='/home/hh_image_2.webp'
+                alt=''
+                width={342}
+                priority
+                height={362}
+              />
+              {/* Back ground round */}
+              <Image
+                src='/home/hh_image_3.webp'
+                alt=''
+                width={353}
+                priority
+                height={354}
+              />
+              {/* Laptop */}
+              <Image
+                src='/home/hh_image_4.webp'
+                alt=''
+                width={199}
+                priority
+                height={218}
+              />
+              {/* Clock tower */}
+              <Image
+                src='/home/hh_image_6.webp'
+                alt=''
+                width={162}
+                priority
+                height={628}
+              />
+            </section>
+          </div>
+
+          <Image
+            src='/home/heroImageForMobile.png'
+            alt=''
+            height={480}
+            width={520}
+            priority
+          />
+
+          {/* bg_tertiary dropped: the wash is the ground now, and a second
+              band behind the copy fought the gradient. */}
           <section>
-            {/* Men Picture */}
-            <Image
-              src='/home/hh_image_1.webp'
-              alt=''
-              width={402}
-              priority
-              height={408}
-            />
-            {/* Building Image */}
-            <Image
-              src='/home/hh_image_2.webp'
-              alt=''
-              width={342}
-              priority
-              height={362}
-            />
-            {/* Back ground round */}
-            <Image
-              src='/home/hh_image_3.webp'
-              alt=''
-              width={353}
-              priority
-              height={354}
-            />
-            {/* Laptop */}
-            <Image
-              src='/home/hh_image_4.webp'
-              alt=''
-              width={199}
-              priority
-              height={218}
-            />
-            {/* Clock tower */}
-            <Image
-              src='/home/hh_image_6.webp'
-              alt=''
-              width={162}
-              priority
-              height={628}
-            />
+            <div>
+              <Heading
+                className='hero color_primary font_family_glory uppercase'
+                level={1}
+              >
+                Marketing That Matters
+              </Heading>
+              <Heading
+                className='hero color_secondry font_family_glory uppercase'
+                level={2}
+              >
+                to Your Bottom Line
+              </Heading>
+              <Text className='primary'>
+                Pixelette Marketing delivers precision driven marketing for
+                Fintech, SaaS, Web3, tech products and platforms, and more. We
+                believe your industry deserves strategies as innovative as your
+                solutions. Take the guesswork out of growth by requesting your
+                strategy proposal today and{" "}
+                <span className=' text_primary--bold color_primary'>
+                  start achieving ROI you can see!
+                </span>
+              </Text>
+              <Link href='/contactus'>
+                <Button className='primary'>Book A Call</Button>
+              </Link>
+            </div>
           </section>
         </div>
-
-        <Image
-          src='/home/heroImageForMobile.png'
-          alt=''
-          height={480}
-          width={520}
-          priority
-        />
-
-        <section className='bg_tertiary'>
-          <div>
-            <Heading
-              className='hero color_primary font_family_glory uppercase'
-              level={1}
-            >
-              Marketing That Matters
-            </Heading>
-            <Heading
-              className='hero color_secondry font_family_glory uppercase'
-              level={2}
-            >
-              to Your Bottom Line
-            </Heading>
-            <Text className='primary'>
-              Pixelette Marketing delivers precision driven marketing for
-              Fintech, SaaS, Web3, tech products and platforms, and more. We
-              believe your industry deserves strategies as innovative as your
-              solutions. Take the guesswork out of growth by requesting your
-              strategy proposal today and{" "}
-              <span className=' text_primary--bold color_primary'>
-                start achieving ROI you can see!
-              </span>
-            </Text>
-            <Link href='/contactus'>
-              <Button className='primary'>Book A Call</Button>
-            </Link>
-          </div>
-        </section>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }

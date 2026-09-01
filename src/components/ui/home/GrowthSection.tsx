@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function GrowthSection() {
   return (
     <Container className='main'>
-      <div className='growthSection'>
+      <div className='growthSection rule-cap'>
         <Heading
           className='primary color_secondry font_family_glory uppercase'
           level={2}

@@ -52,7 +52,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
             <div
               key={index}
               id={`${uid}-counter-${index + 1}`}
-              className='counter-section'
+              className='counter-section card-feature'
             >
               <Heading className='primary color_primary font_family_glory '>
                 <CountUp start={0} end={el.value || 0} />%

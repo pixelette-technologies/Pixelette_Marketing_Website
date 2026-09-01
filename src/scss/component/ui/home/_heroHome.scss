@@ -18,30 +18,8 @@
       margin-left: 7.5rem;
       & > img {
         position: absolute;
-        transition: 0.3s ease-in-out;
       }
 
-      &:hover {
-        & > * {
-          &:first-child {
-            transform: rotate(-4deg);
-          }
-          &:nth-child(2) {
-            transform: rotate(-7deg);
-          }
-          &:nth-child(3) {
-            -ms-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-          }
-          &:nth-child(4) {
-            transform: rotate(-7deg);
-          }
-          &:nth-child(5) {
-            transform: rotate(7deg);
-          }
-        }
-      }
 
       & > * {
         &:first-child {

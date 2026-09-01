@@ -21,10 +21,10 @@ export default function GrowthSection() {
         <section>
           <div>
             <header>
-              <Heading className='h2' level={2}>
+              <Heading className='h2 sectionTitle' level={2}>
                 Growth <span>starts</span> here
               </Heading>
-              
+
               <Heading className='eyebrow' level={3}>
                 Success Follows Next
               </Heading>

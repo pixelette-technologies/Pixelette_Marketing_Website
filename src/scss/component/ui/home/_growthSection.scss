@@ -34,10 +34,14 @@
   & > section {
     margin-top: 1.5rem;
 
+    .sectionTitle {
+      margin-bottom: 2rem;
+    }
+
     & > div {
       display: flex;
       flex-wrap: wrap;
-      align-items: start;
+      align-items: center;
       justify-content: space-between;
       gap: 2rem 2.5rem;
 
@@ -85,12 +89,17 @@
 // D8. Colour moves here from color_primary / color_secondry at the call site,
 // which is what lets the legacy utility layer be deleted.
 .growthSection {
-  & > h2 {
-    color: var(--color-ink);
-
-    & > span {
-      color: var(--color-brand);
-    }
+  // The accent on "starts". This was `.growthSection > h2 > span`, which went
+  // dead the moment the heading moved inside the header column — the section's
+  // ink colour survived because .h2 carries it, but the brand-coloured half of
+  // the heading silently stopped being brand-coloured. Exactly the failure the
+  // D4 sweep found in 24 partials, arriving again from a structural change
+  // rather than a level change.
+  //
+  // It hangs off the .sectionTitle class rather than off the heading's position
+  // in the tree, so moving the heading again cannot kill it a third time.
+  & .sectionTitle > span {
+    color: var(--color-brand);
   }
 
   & > section > div > header > section > div > div > h4 {

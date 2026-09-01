@@ -22,6 +22,9 @@ function stagingFailureCode(error: unknown): string {
   const message = typeof errorRecord?.message === "string" ? errorRecord.message : "";
   const name = typeof errorRecord?.name === "string" ? errorRecord.name : "";
   if (/^SYNTHETIC_[A-Z0-9_:]+$/.test(message)) return message;
+  if (/^MARKETING_BD_[A-Z0-9_]+$/.test(message)) {
+    return `SYNTHETIC_STAGING_CONFIGURATION_${message}`;
+  }
   const cause = errorRecord?.cause;
   if (typeof cause === "object" && cause !== null && "code" in cause) {
     const code = String((cause as { code?: unknown }).code ?? "");

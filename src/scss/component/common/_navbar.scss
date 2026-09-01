@@ -2,11 +2,12 @@
 // and nothing else. It was a dark bar (bg_secondry) with white links; the guide
 // puts the header on the page ground and separates it with a single rule.
 //
-// Not sticky. The old wrapper declared position: sticky with no `top`, so it
-// never stuck; the guide's header does not stick either, so the dead wrapper
-// was removed rather than made real. Nothing overlaps an anchor target as a
-// result, which is why there is no scroll-padding-top anywhere in this
-// stylesheet.
+// It WAS not sticky, and this paragraph used to explain why there was no
+// scroll-padding-top anywhere in the stylesheet. Phase F made it sticky, which
+// makes that reasoning obsolete and the scroll padding necessary — see the
+// rule on :root in _base.scss. Kept as a record of why the old decision was
+// right at the time: the Phase C wrapper declared position: sticky with no
+// `top`, so it never stuck, and the guide's header does not stick either.
 
 // Phase F. The header is STICKY, at the user's request. This reverses the
 // Phase C decision to remove the sticky wrapper rather than make it work.

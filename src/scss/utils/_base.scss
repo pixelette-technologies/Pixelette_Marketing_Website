@@ -16,6 +16,16 @@ body {
 }
 
 html {
+  // Phase F. The header is sticky now, so an anchor target would otherwise
+  // scroll to the very top of the viewport and sit UNDERNEATH it. This is not
+  // hypothetical: the article table of contents in SingleBlogContent links to
+  // `#${generateId(...)}` for every section of every post, so on the blog
+  // routes each jump would land the heading behind the bar.
+  //
+  // The guide's own value, and it tracks --header-h rather than restating the
+  // height, so the two cannot drift apart.
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+
   // Standard root. Every rem literal in the SCSS was rebased by 0.625 in the
   // same commit, so desktop renders identically to the four-rule version this
   // replaces. The 45% and 52% rules removed with it were already dead: equal

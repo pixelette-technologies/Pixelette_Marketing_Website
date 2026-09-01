@@ -35,7 +35,10 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
       onMouseLeave={() => setActive(false)}
     >
       <section>
-        <Text className="secondry color_white">{name}</Text>
+        {/* color_white dropped in D3: the header ground moved from the dark
+            bar to the guide's page ground, and the label would have been white
+            on white. */}
+        <Text className="secondry">{name}</Text>
         <motion.div
           animate={
             active

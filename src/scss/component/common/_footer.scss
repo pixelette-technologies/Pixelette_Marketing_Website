@@ -1,20 +1,76 @@
-// Scoped in D1: an unscoped `footer` rule would fight the .footer primitive
-// on padding and descendant layout. Retired with this partial in D3.
+// The footer ground, hairline, eyebrow colour and legal row all come from the
+// .footer primitive. This partial only lays the columns out.
+//
+// The old rule was `footer { padding; & > div { flex } }` — unscoped, and it
+// would have fought the primitive on every one of those properties.
+
 .site-footer {
-  padding: 2.09375rem 0rem;
+  padding-block: var(--sec-y-sm);
+}
+
+.footerColumns {
+  display: grid;
+  // The guide's 1.5fr 1fr 1fr 1fr 1fr, one column short: there is no brand
+  // column, so Services takes the wide slot because it carries eight links.
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem;
+
+  @media only screen and (max-width: 950px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media only screen and (max-width: 550px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   & > div {
     display: flex;
+    flex-direction: column;
+    // .flink already carries the 44px tap target, so the columns need no gap
+    // of their own; adding one would push the rows apart twice.
+    align-items: flex-start;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.25rem;
+  }
+
+  a {
+    color: var(--color-footer-body);
+  }
+}
+
+.footerLegal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 1.25rem;
+
+  @media only screen and (max-width: 650px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.footerSocial {
+  display: flex;
+  align-items: center;
+  gap: 1.53125rem;
+
+  & > a {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    @media only screen and (max-width: 650px) {
-      flex-direction: column;
-      gap: 0.625rem;
-    }
-    & > div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.53125rem;
-    }
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    color: var(--color-footer-body);
+  }
+
+  & > a:hover {
+    color: var(--color-page);
   }
 }

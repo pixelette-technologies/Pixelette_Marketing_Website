@@ -1,32 +1,61 @@
-@use "../../globels" as color;
+// The header on the guide's pattern: a light ground, a hairline at the bottom
+// and nothing else. It was a dark bar (bg_secondry) with white links; the guide
+// puts the header on the page ground and separates it with a single rule.
+//
+// Not sticky. The old wrapper declared position: sticky with no `top`, so it
+// never stuck; the guide's header does not stick either, so the dead wrapper
+// was removed rather than made real. Nothing overlaps an anchor target as a
+// result, which is why there is no scroll-padding-top anywhere in this
+// stylesheet.
 
-// Scoped in D1: an unscoped `nav` rule styles every nav in the document,
-// including anything the conversion builds. Retired with this partial in D3.
+.site-header {
+  background: var(--color-page);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.main_nav {
+  // The drawer is absolutely positioned and the removed sticky wrapper used to
+  // be its containing block. This replaces it.
+  position: relative;
+}
+
 .site-nav {
-  padding: 0.625rem 0rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media only screen and (max-width: 750px) {
-    padding: 1.25rem 0rem;
+  gap: 1.5rem;
+  min-height: var(--header-h);
+
+  & > a {
+    display: inline-flex;
+    align-items: center;
   }
 
-  & > svg {
+  & > svg,
+  & > a > svg {
     width: 8.0625rem;
     height: 2rem;
     cursor: pointer;
   }
+
   & > div {
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
+
     @media only screen and (max-width: 750px) {
       display: none;
     }
+
     & > a {
+      // .flink carries the 44px tap target; this is the type role.
       font-size: 0.875rem;
       font-weight: 400;
-      color: white;
+      color: var(--color-ink);
+    }
+
+    & > a:hover {
+      color: var(--color-brand);
     }
   }
 
@@ -34,7 +63,7 @@
     display: none;
     & > * {
       font-size: 2.1875rem;
-      color: white;
+      color: var(--color-ink);
     }
     @media only screen and (max-width: 750px) {
       display: block;
@@ -45,11 +74,17 @@
 .navbarMobileMenu {
   display: none;
   position: absolute;
-  z-index: 1000000;
+  // was 999999999999 as an inline style on the element, plus 1000000 here.
+  // The header needs to sit above page content and below nothing else.
+  z-index: 50;
   width: 70%;
   right: 0rem;
   padding: 3.125rem 1.875rem;
   min-height: calc(100vh - 5.0625rem);
+  background: var(--color-page);
+  border-left: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+
   @media only screen and (max-width: 750px) {
     display: block;
   }
@@ -57,10 +92,13 @@
   & > div {
     width: 100%;
     & > a {
-      display: block;
+      display: flex;
       font-size: 1rem;
       font-weight: 400;
-      color: white;
+      color: var(--color-ink);
+    }
+    & > a:hover {
+      color: var(--color-brand);
     }
     & > * {
       &:not(:last-child) {

@@ -1,3 +1,7 @@
+// Converted in D3 with the header. The label, the chevron and the panel were
+// all white-on-dark; the header now sits on the page ground, so every one of
+// them would have been invisible.
+
 .navdropDown {
   position: relative;
   & > section {
@@ -5,11 +9,19 @@
     align-items: center;
     gap: 0.25rem;
     cursor: pointer;
-    padding: 1.875rem 0rem;
+    // Matches the 44px tap-target floor without needing .flink on a div.
+    min-height: 44px;
+    padding: 0.5rem 0rem;
+    color: var(--color-ink);
     @media only screen and (max-width: 750px) {
       justify-content: space-between;
       padding: 0rem;
     }
+
+    &:hover {
+      color: var(--color-brand);
+    }
+
     & > div {
       display: flex;
       align-items: center;
@@ -17,40 +29,55 @@
 
       & > * {
         font-size: 0.875rem;
-        color: white;
+        color: currentColor;
         @media only screen and (max-width: 750px) {
           font-size: 1rem;
         }
       }
     }
   }
+
   & > div {
-    z-index: 999999 !important;
-    background-color: rgb(15, 15, 15);
-    border: 1px solid rgba(255, 255, 255, 0.336);
-    position: fixed;
+    // was 999999 !important, and the panel was position: fixed with a hard-coded
+    // top offset — a workaround for the sticky wrapper that no longer exists.
+    // Absolute against .navdropDown is what it always wanted to be.
+    z-index: 40;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-page);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
     gap: 0.125rem;
-    top: 4.1875rem;
     width: 18.125rem;
-    padding: 1.25rem 0.9375rem;
-    border-radius: 0.375rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-card);
+
     @media only screen and (max-width: 750px) {
+      position: static;
       width: 100%;
-      top: 1.875rem;
+      box-shadow: none;
+      border: 0;
+      padding: 0.25rem 0 0;
     }
 
     & > a {
       text-decoration: none;
       font-size: 0.875rem;
       font-weight: 400;
-      color: white;
-      padding: 0.75rem 0.625rem;
-      border-radius: 0.1875rem;
+      color: var(--color-body);
+      // 44px tap target, met by padding plus line-height rather than a
+      // min-height that would fight the flex column.
+      padding: 0.6875rem 0.625rem;
+      border-radius: var(--radius-btn);
+
       &:hover {
-        background-color: #282828;
+        background-color: var(--color-band);
+        color: var(--color-brand);
       }
+
       @media only screen and (max-width: 750px) {
         padding: 0.4375rem 0.25rem;
       }

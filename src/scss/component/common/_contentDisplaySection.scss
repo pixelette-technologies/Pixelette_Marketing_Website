@@ -18,95 +18,116 @@
 // Four media queries gone. The two columns are a wrapping flex pair and the
 // cards were already auto-fit.
 
+// Phase F. Rebuilt on EngagementStalls' anatomy — the home page section this
+// one was asked to match — so the two read as the same device on eight service
+// routes, five industry routes and the home page. The component note carries
+// the full account; the short version is that the layout, the type roles and
+// the card treatment all move, and the card text had never been styled at all.
+//
+// The layout values below are EngagementStalls' values, not near-misses:
+// --sec-y-sm between the heading block and the cards, 34rem on the heading
+// column, 1.25rem under the eyebrow, 1.5rem above the standfirst, and the same
+// thirds-minus-gaps flex basis on the grid. Where the two sections differ by
+// accident rather than intent they will drift apart again, so they are stated
+// identically.
 .contentDisplaySection {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 1.25rem;
-  padding-block: var(--sec-y-sm);
+  flex-direction: column;
+  gap: var(--sec-y-sm);
 
+  // The heading block. Was `flex: 1 1 22rem` with `position: sticky` beside the
+  // cards, which is what left the left half of the band empty for the whole
+  // length of the list while the cards crushed into 34rem on the right.
+  //
+  // 34rem is 544px against the 1160px container — just under half — and it is a
+  // max rather than a percentage, so it stops applying on narrow screens
+  // instead of crushing the column to half a phone.
   & > header {
-    flex: 1 1 22rem;
-    min-width: 0;
-    align-self: start;
-    position: sticky;
-    top: 1.25rem;
-    display: flex;
-    align-items: center;
-
     & > div {
-      max-width: 31.375rem;
+      max-width: 34rem;
+
+      // The guide's eyebrow-to-heading gap, exactly: 20px.
+      & > *:first-child {
+        margin-bottom: 1.25rem;
+      }
 
       & > h2 {
-        margin-top: 1rem;
-        margin-bottom: 2rem;
-
+        // The accent half of the heading. The marking tone, 5.48:1 on this
+        // ground; the anchor it used to carry is 2.84 and barred here.
         & > span {
           color: var(--color-brand-signal);
         }
       }
+
+      & > p:last-child {
+        margin-top: 1.5rem;
+      }
     }
   }
 
+  // Three across, on flex, with the basis a third of the row minus its share of
+  // the two gaps so the columns are equal. min-width lets a card that can no
+  // longer hold 15rem drop to the next line by itself: three at desktop, two in
+  // the middle, one on a phone, and no breakpoint anywhere.
+  //
+  // The 34.8125rem max-width that used to cap this grid is gone with the
+  // side-by-side layout it was compensating for.
   .contentDisplayCards {
-    flex: 999 1 22rem;
-    min-width: 0;
-    max-width: 34.8125rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
-    align-content: start;
+
+    & > * {
+      flex: 1 1 calc((100% - 2rem) / 3);
+      min-width: min(15rem, 100%);
+    }
   }
 
+  // The card, on .arrowCard--dark's treatment rather than its own.
+  //
+  // It was `background: var(--color-page)` with `:nth-child(odd)` on
+  // --color-band — two light cards alternating on a dark band, which is the
+  // fourth card treatment on a site that is meant to have one. Transparent with
+  // a panel-border hairline is what the cards in EngagementStalls do, and it
+  // lets the band read as one surface instead of a tray of tiles.
+  //
+  // Hover changes border colour only. That is the register, and it is the rule
+  // most often broken by reflex.
   .contentCard {
-    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid var(--color-panel-border);
     border-radius: var(--radius-card);
-    background: var(--color-page);
-    box-shadow: var(--shadow-card);
+    padding: 1.25rem;
 
-    // was F0E9E4
-    &:nth-child(odd) {
-      background-color: var(--color-band);
+    &:hover {
+      border-color: var(--color-brand-signal);
     }
+  }
 
-    .card-content {
-      .primary--bold {
-        margin-bottom: 0.625rem;
-        display: block;
-        font-size: 0.75rem;
-        font-weight: 600;
-      }
+  // The two rules these replace selected .primary--bold and .tertiary, which
+  // the DOM has never carried — Text emits the className verbatim since F2, so
+  // the live classes are text_primary--bold and text_tertiary. Neither rule had
+  // applied on any build, and both elements were inheriting --color-panel-text
+  // from the band onto a white card at roughly 2:1.
+  //
+  // Measured on this ground — the page tone at 19.8:1, panel text 7.55:1.
+  .contentCard__title {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-size: var(--fs-body);
+    font-weight: 600;
+    color: var(--color-page);
+  }
 
-      // was 666
-      .tertiary {
-        color: var(--color-muted);
-        line-height: 1.5;
-      }
-    }
+  .contentCard__summary {
+    color: var(--color-panel-text);
+    line-height: 1.5;
   }
 }
 
-// The dark ground. Was flat bg_secondry; it joins the dark panel family with
-// the other three bands. See the note in _questionAndAnswer.scss about folding
-// the four copies into one shared surface.
-.contentDisplayBand {
-  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
-  color: var(--color-panel-text);
-}
-
-// Colour for the heading column, moved off color_white and color_gray at the
-// call site. color_gray resolved to --color-muted, which is 3.43:1 on this
-// ground and below the 4.5:1 floor for copy; the panel text tone is 7.55:1 and
-// is the one the dark family defines for exactly this job.
-.contentDisplayBand {
-  & .contentDisplaySection > header > div {
-    & > p:first-child,
-    & > h2 {
-      color: var(--color-page);
-    }
-
-    & > p:last-child {
-      color: var(--color-panel-text);
-    }
-  }
-}
+// The local .contentDisplayBand gradient is GONE — the wrapper takes the shared
+// .band-dark, which is the same gradient plus the panel text tone, and which
+// colours .eyebrow, .h2 and .lead for every dark band from one place. The D8
+// colour block that used to set those three by hand here went with it: once the
+// heading column is on the Appendix E primitives there is nothing left for it
+// to say. That is the whole shape of the Phase F pass on a section.

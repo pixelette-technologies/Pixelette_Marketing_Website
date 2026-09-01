@@ -20,6 +20,7 @@
 .whoWeAre {
   display: flex;
   flex-wrap: wrap;
+
   gap: 0rem;
 
   & > section {
@@ -49,7 +50,7 @@
     &:first-child {
       background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: flex-end;
 
       & > div {

@@ -46,3 +46,6 @@ temp_interactive_push.bat
 /u.txt
 /pmw_*
 config.bat
+
+#obsdian vault
+/vault

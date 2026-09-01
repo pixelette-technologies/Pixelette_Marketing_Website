@@ -18,6 +18,15 @@
     display: flex;
     align-items: center;
     gap: 0.625rem;
+
+    // The arrow mark is on currentColor now rather than a hard-coded
+    // --color-brand-signal. It is a thin connecting stroke, and the brand
+    // layer bars those from the marking tone: solid marks may take it, thin
+    // strokes may not. It reads at the anchor.
+    & > svg {
+      flex: 0 0 auto;
+      color: var(--color-brand);
+    }
   }
 
   & > section {

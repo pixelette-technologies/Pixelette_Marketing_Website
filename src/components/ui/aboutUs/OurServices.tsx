@@ -41,7 +41,6 @@ const OurServices = () => {
                 to={`/industries/${el.route}`}
                 theme={false}
                 textfloat={false}
-                className='hover_white_arrowCard'
               />
             ))}
           </section>

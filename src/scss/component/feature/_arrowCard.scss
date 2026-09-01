@@ -1,169 +1,160 @@
+// ArrowCard — the home page twice, About's service list, the industry hero.
+//
+// D4. Three faults, all of them live, all of them on the home page.
+//
+// 1. BOTH hover states made their own copy invisible. Each one lightened the
+//    card ground and set the summary paragraph to var(--color-page) at the
+//    same moment: hover_black_arrowCard filled with --color-brand-tint
+//    (F9EBF0) and hover_white_arrowCard with --color-line-strong (DEC3CB), so
+//    white text on them measured 1.06:1 and 1.55:1. The two headings went the
+//    same way through color_white. Every card on the page lost its text under
+//    the cursor, and the dark column lost it against a near-white fill.
+//
+// 2. Two more failures were there without hovering anything. On the dark
+//    column the main heading took color_primary — the brand anchor B3063C on
+//    the ink ground, 2.84:1 — and the summary took color_gray, 3.43:1. Both
+//    are below the 4.5:1 floor for copy at these sizes. The anchor tone is for
+//    light grounds; the marking tone is the one that is free on dark, and at
+//    5.48:1 it is also the one that passes. That is exactly the job
+//    --color-brand-signal is named for.
+//
+// 3. The register. A 0.9s transition, transform: scale(1.05) on hover and a
+//    0.6s rotate on the arrow, which is the decorative layer D2 removed
+//    everywhere else. HOVER CHANGES BORDER COLOUR ONLY — no lift, no shadow
+//    change, no scale.
+//
+// The card takes the .card geometry from the primitives rather than restating
+// it: 12px radius, hairline edge, the flat register. Six media queries went
+// with the rewrite; the arrow column is a fixed rem and the rest is flex.
+
 .arrowCard {
-  padding: 0.625rem;
-  transition: 0.9s ease-in-out;
-  border-radius: 0.625rem;
-  border: 1px solid transparent;
-  @media only screen and (max-width: 900px) {
-    padding: 0.3125rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+
+  &:hover {
+    border-color: var(--color-line-strong);
   }
+
   & > section {
-    gap: 0.75rem;
     display: flex;
+    gap: 0.75rem;
 
     & > header {
-      & > section {
-        margin-bottom: 1rem;
+      flex: 1 1 auto;
+      min-width: 0;
 
+      & > section {
+        margin-bottom: 0.75rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        @media only screen and (max-width: 700px) {
-          margin-bottom: 0.375rem;
-        }
+        gap: 0.75rem;
 
         & > header {
           display: flex;
-          justify-content: center;
           flex-direction: column;
-          width: 100%;
-          & > p {
-            width: 70%;
-          }
+          justify-content: center;
+          min-width: 0;
         }
 
+        // Was display: none until hover, so it was unreachable by keyboard and
+        // absent on touch. Always rendered now, as a text link rather than the
+        // filled block that only ever appeared under a cursor.
         & > a {
-          display: none;
-          border-radius: 0.625rem;
-          color: var(--color-page);
-          font-size: 0.75rem;
-          font-weight: 400;
-          padding: 0.4375rem 0rem;
-          width: 8.125rem;
-          transition: 0.4s ease-in-out;
-        }
-      }
+          flex: 0 0 auto;
+          font-size: 0.8125rem;
+          font-weight: 500;
+          color: var(--color-brand);
+          white-space: nowrap;
 
-      & > p {
-        transition: 0.6s ease-in-out;
-      }
-    }
-
-    @media only screen and (max-width: 900px) {
-      gap: 0.625rem;
-    }
-
-    & > div {
-      width: 1.5625rem;
-
-      @media only screen and (max-width: 900px) {
-        width: 1.5625rem;
-
-        & > svg {
-          width: 1.5625rem;
-
-          @media only screen and (max-width: 700px) {
-            width: 1.5625rem;
+          &:hover {
+            color: var(--color-brand-hover);
+            text-decoration: underline;
           }
         }
       }
-      @media only screen and (max-width: 700px) {
-        width: 1.5625rem;
-      }
+    }
 
-      & > * {
+    // The arrow column.
+    & > div {
+      flex: 0 0 1.5625rem;
+
+      & > svg {
         width: 1.5625rem;
-        margin-top: 0.625rem;
         height: 1.25rem;
-        transition:
-          width 0.6s,
-          transform 0.6s;
+        margin-top: 0.5rem;
+        color: var(--color-brand);
       }
     }
   }
 }
 
-.hover_black_arrowCard:hover {
-  transition: 0.9s ease-in-out;
-  background-color: var(--color-brand-tint);
-  border: 1px solid var(--color-brand-signal);
-  -ms-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  & > section {
-    & > header {
-      & > section {
-        & > a {
-          display: block;
-          background-color: var(--color-brand-tint);
+.arrowCard__main {
+  color: var(--color-brand);
+}
 
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          &:hover {
-            border: 1px solid var(--color-brand-signal);
-          }
-        }
-      }
-      & > p {
-        color: var(--color-page);
-      }
-    }
-    & > div {
-      & > svg {
-        transform: rotateZ(-360deg);
-        width: 1.5625rem;
-        height: 1.25rem;
-        & > path {
-          fill: var(--color-page);
-        }
+.arrowCard__sub {
+  color: var(--color-ink);
+}
+
+.arrowCard__summary {
+  color: var(--color-body);
+}
+
+// --- Right-aligned variant --------------------------------------------------
+// Replaces the two inline style objects. The arrow moves to the trailing edge
+// at the call site; this is only the alignment.
+
+.arrowCard--float {
+  text-align: right;
+
+  & > section {
+    justify-content: flex-end;
+
+    & > header > section {
+      & > header {
+        align-items: flex-end;
       }
     }
   }
 }
 
-.hover_white_arrowCard:hover {
-  background-color: var(--color-line-strong);
-  border: 1px solid var(--color-line-strong);
-  -ms-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  transition: 0.9s ease-in-out;
-  & > section {
-    & > header {
-      & > section {
-        & > header {
-          & > * {
-            &:last-child {
-              color: var(--color-page);
-            }
-          }
-        }
-        & > a {
-          display: block;
-          background-color: var(--color-band);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          &:hover {
-            border: 1px solid var(--color-line-strong);
-          }
-        }
-      }
-      & > p {
-        color: var(--color-page);
-      }
-    }
-    & > div {
-      & > svg {
-        transform: rotateZ(-360deg);
-        width: 1.5625rem;
-        height: 1.25rem;
-        & > path {
-          fill: var(--color-page);
-        }
-      }
+// --- Dark ground ------------------------------------------------------------
+// The cards inside the closing panel on the home page and the industry hero.
+// Measured against --color-ink, which is the ground bg_secondry now resolves
+// to: signal 5.48:1, panel text 7.55:1, white 19.8:1.
+
+.arrowCard--dark {
+  background: transparent;
+  border-color: var(--color-panel-border);
+
+  &:hover {
+    border-color: var(--color-brand-signal);
+  }
+
+  & .arrowCard__main {
+    color: var(--color-brand-signal);
+  }
+
+  & .arrowCard__sub {
+    color: var(--color-page);
+  }
+
+  & .arrowCard__summary {
+    color: var(--color-panel-text);
+  }
+
+  & > section > div > svg {
+    color: var(--color-brand-signal);
+  }
+
+  & > section > header > section > a {
+    color: var(--color-brand-signal);
+
+    &:hover {
+      color: var(--color-page);
     }
   }
 }

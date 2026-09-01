@@ -5,16 +5,33 @@
 // The band was bg_primary, a flat saturated crimson. Settled decision from
 // Phase A: saturated bg_primary bands become the dark panel family, not flat
 // crimson.
+//
+// D4. Both heading rules in this file were DEAD. They selected `h1` and
+// Heading defaults to level 2, so neither the "Trusted by" row nor the
+// "Leading Brands" label had ever received its layout on any build: the arrow
+// mark was not aligned to its heading, and the label had neither its width nor
+// its white on the dark ground — it was inheriting --color-panel-text instead.
+// They are written against :is(h1, h2) so a later level change cannot silently
+// kill them again. This is the trap the vault records against GrowthSection,
+// and the sweep found it in 24 partials.
 
 .trustedBrands {
   & > div {
     margin-bottom: 0.75rem;
-    & > h1 {
+
+    & > :is(h1, h2) {
       display: flex;
       align-items: center;
       gap: 0.625rem;
       margin-top: 3.6875rem;
       color: var(--color-ink);
+
+      // Thin connecting stroke, so it takes the anchor rather than the
+      // marking tone. See the brand layer.
+      & > svg {
+        flex: 0 0 auto;
+        color: var(--color-brand);
+      }
     }
   }
 }
@@ -34,7 +51,7 @@
       gap: 2rem;
     }
 
-    & > h1 {
+    & > :is(h1, h2) {
       width: 12.4375rem;
       color: var(--color-page);
     }

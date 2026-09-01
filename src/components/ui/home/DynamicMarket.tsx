@@ -39,7 +39,6 @@ const DynamicMarket = () => {
                   summary={el.text}
                   theme={false}
                   textfloat={false}
-                  className='hover_white_arrowCard'
                   to={`industries/${el.route}`}
                 />
               ))}

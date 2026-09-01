@@ -61,7 +61,6 @@ const HeroSingleIndustriesPage: FC<HeroSingleIndustriesPageProps> = ({
                 summary={el.description}
                 theme={false}
                 textfloat={false}
-                className='hover_black_arrowCard'
               />
             ))}
           </blockquote>

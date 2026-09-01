@@ -43,7 +43,6 @@ const EngagementStalls = () => {
                   summary={el.text}
                   theme={true}
                   textfloat={false}
-                  className='hover_black_arrowCard'
                 />
               ))}
             </div>
@@ -56,7 +55,6 @@ const EngagementStalls = () => {
                   summary={el.text}
                   theme={true}
                   textfloat={true}
-                  className='hover_black_arrowCard'
                 />
               ))}
             </blockquote>
@@ -69,7 +67,6 @@ const EngagementStalls = () => {
                   summary={el.text}
                   theme={true}
                   textfloat={false}
-                  className='hover_black_arrowCard'
                 />
               ))}
             </section>

@@ -1,30 +1,40 @@
+// D5. Same dead heading selector as the rest of this page — h1 where Heading
+// renders h2 — so the spacing under "What defines us" had never applied.
+//
+// Two media queries gone. The four value cards are auto-fit, which also fixes
+// the odd pair the flex basis produced: at 500px it kept two columns and only
+// tightened the gap, so the cards were narrower on a phone than the grid ever
+// intended.
+
 .ourValues {
-  // padding: 3.5rem 0rem;
-  padding-top: 3.5rem;
-  padding-bottom: 4.125rem;
+  padding-block: var(--sec-y);
+
+  & > p:first-child {
+    color: var(--color-brand);
+  }
+
   & > header {
-    & > h1 {
+    & > :is(h1, h2) {
       margin-top: 0.3125rem;
       margin-bottom: 0.875rem;
+      color: var(--color-ink);
+    }
+
+    & > p {
+      color: var(--color-ink);
     }
   }
 
   & > section {
     margin-top: 1.5rem;
-
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
     gap: 1rem;
-    @media only screen and (max-width: 500px) {
-      gap: 0.5rem;
-    }
+
     & > div {
-      flex: 1 1 calc(50% - 1rem);
-      border-radius: 0.5rem;
+      border-radius: var(--radius-card);
       padding: 1rem;
-      @media only screen and (max-width: 500px) {
-        flex: 1 1 calc(50% - 0.5rem);
-      }
+
       & > * {
         &:first-child {
           margin-bottom: 0.4375rem;
@@ -37,6 +47,7 @@
       &:nth-child(2) {
         background-color: var(--color-page);
       }
+
       &:nth-child(3),
       &:nth-child(4) {
         background-color: var(--color-band);

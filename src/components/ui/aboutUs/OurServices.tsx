@@ -6,23 +6,23 @@ import React from "react";
 const OurServices = () => {
   return (
     <div
-      className='bg_tertiary--dark'
+      className='band-alt'
     >
       <Container className='main'>
         <div className='ourServices'>
           <header>
             <Text
-              className='primary color_primary'
+              className='primary'
             >
               Industries we service
             </Text>
             <Heading
-              className='secondry--light color_secondry'
+              className='secondry--light'
             >
               We succeed where it matters most today
             </Heading>
             <Text
-              className='secondry color_secondry'
+              className='secondry'
             >
               Navigating the complexities of fast-evolving industries requires a
               deep understanding and agility. We specialise in marketing for

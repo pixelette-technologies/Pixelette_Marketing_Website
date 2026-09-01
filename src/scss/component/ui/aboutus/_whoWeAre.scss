@@ -1,43 +1,57 @@
+// D5. This section carried the worst fault found in the conversion so far.
+//
+// The left half was bg_primary — flat saturated crimson — which Phase A
+// settled should become the dark panel family and which this section was
+// missed out of. Its eyebrow was color_primary: the brand anchor on a ground
+// made of the brand anchor, 1:1, the same colour as what was behind it. The
+// right half repeated the trick, color_secondry on bg_secondry, also 1:1. Both
+// eyebrows were invisible except where a white-to-transparent gradient plate
+// happened to sit behind the first few characters — which is what that plate
+// was for, and it is why neither was ever noticed.
+//
+// Both grounds join the dark family and both eyebrows take the marking tone,
+// which the brand layer frees on dark and which measures 5.1:1 on the panel
+// and 5.48:1 on the ink. The gradient plate goes with the problem it was
+// hiding.
+//
+// The heading rule selected h1 where the call sites pass level={2}, so its
+// margins and its 1.9375rem line height had never applied either.
+
 .whoWeAre {
   display: flex;
   flex-wrap: wrap;
   gap: 0rem;
+
   & > section {
-    flex: 1 1 calc(50% - 0rem);
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    @media only screen and (max-width: 750px) {
-      flex: 1 1 calc(100% - 0rem);
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-    }
+    flex: 1 1 22rem;
+    padding: var(--sec-y) 2rem;
+
     & > div {
       max-width: 33.875rem;
-      @media only screen and (max-width: 750px) {
-        max-width: 100%;
+
+      & > header > p {
+        color: var(--color-brand-signal);
       }
-      & > header {
-        background: linear-gradient(
-          90deg,
-          var(--color-page) 0%,
-          transparent 100%
-        );
-        padding: 0.625rem 1rem;
-      }
-      & > h1 {
+
+      & > :is(h1, h2) {
         margin: 1rem 0rem;
-        line-height: 1.9375rem;
+        color: var(--color-page);
+      }
+
+      & p {
+        color: var(--color-page);
       }
     }
   }
 
   & > * {
+    // The brand-tinted dark. Was flat crimson.
     &:first-child {
+      background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
       & > div {
         & > div {
           & > * {
@@ -49,19 +63,24 @@
       }
     }
 
+    // The neutral dark, so the two halves stay distinguishable now that
+    // neither of them is crimson.
     &:last-child {
+      background-color: var(--color-ink);
+
       & > div {
         & > ul {
           margin-top: 1rem;
+
           & > * {
             &:not(:last-child) {
               margin-bottom: 1rem;
             }
           }
+
           & > li {
-            font-size: 0.875rem;
-            font-weight: 400;
-            line-height: 1.25rem;
+            font-size: var(--fs-body);
+            line-height: 1.6;
             color: var(--color-page);
             margin-left: 1.25rem;
           }

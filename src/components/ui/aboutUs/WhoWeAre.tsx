@@ -1,34 +1,30 @@
 import { Heading, Text } from "@/components/feature";
 
+// D5. Both eyebrows here were invisible: color_primary on a bg_primary ground
+// and color_secondry on a bg_secondry ground, each the same colour as the thing
+// behind it. The colour utilities are gone and the partial gives both grounds
+// and both eyebrows their tones. See _whoWeAre.scss.
+
 const WhoWeAre = () => {
   return (
     <div className='whoWeAre'>
-      <section
-        className='bg_primary'
-      >
+      <section>
         <div>
           <header>
-            <Text className='primary color_primary'>Who we are</Text>
+            <Text className='primary'>Who we are</Text>
           </header>
-          <Heading
-            className='secondry--light color_white'
-            level={2}
-          >
+          <Heading className='secondry--light' level={2}>
             Bridging the gap in marketing for emerging industries
           </Heading>
           <div>
-            <Text
-              className='secondry color_white'
-            >
+            <Text className='secondry'>
               When Pixelette Marketing began in 2020, we recognized an untapped
               opportunity to serve industries breaking new ground. Emerging
               fields like AI, blockchain, fintech and startups overall needed
               more than generic marketing strategies – they required a partner
               who truly grasped their complexities and ambitions.
             </Text>
-            <Text
-              className='secondry color_white'
-            >
+            <Text className='secondry'>
               So, we took a different path. We’re not just marketers, we’re
               partners for innovators. Every campaign, every strategy, every
               piece of content we craft is designed to uplift groundbreaking
@@ -38,22 +34,15 @@ const WhoWeAre = () => {
           </div>
         </div>
       </section>
-      <section
-        className='bg_secondry'
-      >
+      <section>
         <div>
           <header>
-            <Text className='primary color_secondry'>Our approach</Text>
+            <Text className='primary'>Our approach</Text>
           </header>
-          <Heading
-            className='secondry--light color_white'
-            level={2}
-          >
+          <Heading className='secondry--light' level={2}>
             Your vision, our blueprint
           </Heading>
-          <Text
-            className='secondry color_white'
-          >
+          <Text className='secondry'>
             Your ambitions set the direction; we provide the roadmap. With a
             clear understanding of your goals, we design actionable plans to
             bring your vision to life.

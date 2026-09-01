@@ -6,18 +6,18 @@ const OurValues = () => {
     <Container className='main'>
       <section className='ourValues'>
         <Text
-          className='primary color_primary'
+          className='primary'
         >
           Our values
         </Text>
         <header>
           <Heading
-            className='secondry--light color_secondry'
+            className='secondry--light'
           >
             What defines us
           </Heading>
           <Text
-            className='secondry color_secondry'
+            className='secondry'
           >
             Our values are the cornerstone of everything we do. They shape our
             approach, guide our decisions, drive our commitment to helping you

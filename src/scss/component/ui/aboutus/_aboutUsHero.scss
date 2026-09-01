@@ -1,40 +1,41 @@
+// D5. Five media queries stepping the hero image down through four widths,
+// replaced by a wrapping flex pair and a max-width. The image is fluid, so it
+// does not need to be re-pinned at 1000, 750, 550 and 430px.
+//
+// The section now sits on .wash-left, the guide's interior hero ground. Phase E
+// built both washes and applied only the centred one to the home page, so the
+// offset variant chosen for interior pages in the hero strategy had zero call
+// sites until now. This is the first.
+
 .heroSectionAbout {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 3.125rem;
-  padding: 2.5rem 0rem;
+  padding-block: var(--sec-y);
 
-  @media only screen and (max-width: 1000px) {
-    gap: 0.625rem;
-    & > img {
-      max-width: 60%;
-      height: auto;
-    }
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    gap: 2.5rem;
-    & > img {
-      max-width: 80%;
-    }
-  }
-  @media only screen and (max-width: 550px) {
-    & > img {
-      max-width: 90%;
-    }
-  }
-  @media only screen and (max-width: 430px) {
-    & > img {
-      width: 100%;
-    }
+  & > img {
+    flex: 1 1 20rem;
+    min-width: 0;
+    max-width: 39.125rem;
+    height: auto;
   }
 
   & > div {
+    flex: 1 1 20rem;
+    min-width: 0;
+
+    & > :is(h1, h2) {
+      color: var(--color-brand);
+
+      & > span {
+        color: var(--color-ink);
+      }
+    }
+
     & > p {
       margin: 1.5rem 0rem;
-      @media only screen and (max-width: 750px) {
-        margin: 0.875rem 0rem;
-      }
+      color: var(--color-ink);
     }
   }
 }

@@ -1,27 +1,47 @@
+// D5. Two more contrast failures on a dark ground, the same pair as OurTeam's
+// neighbours: the eyebrow took color_primary — the brand anchor at 2.84:1 on
+// ink — and the standfirst took color_gray--light, which resolves to
+// --color-muted at 3.43:1. Both are under the floor. They take the marking
+// tone and the panel text tone, at 5.48:1 and 7.55:1.
+//
+// The heading rule selected h1 where Heading renders h2.
+//
+// Seven media queries gone, which is the whole of this file's responsive
+// surface. The cards were a five-across flex basis re-derived at 1190, 750 and
+// 520px, with a staggered top margin on even children that had to be undone at
+// the first breakpoint and an image height pinned at another. Auto-fit needs
+// none of it; the stagger goes with the breakpoints that maintained it.
+//
+// The arch stays — it is the one distinctive thing about this row — as a
+// single radius rather than three.
+
 .ourTeam {
-  padding-top: 3.5rem;
-  @media only screen and (max-width: 1160px) {
-    padding-bottom: 3.5rem;
-  }
+  padding-block: var(--sec-y);
+
   & > header {
-    & > h1 {
+    & > p:first-child {
+      color: var(--color-brand-signal);
+    }
+
+    & > :is(h1, h2) {
       margin-top: 0.3125rem;
       margin-bottom: 0.875rem;
+      color: var(--color-page);
+    }
+
+    & > p:last-child {
+      color: var(--color-panel-text);
     }
   }
+
   & > section {
     margin-top: 1.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+    gap: 1.25rem;
     justify-content: center;
 
-    @media only screen and (max-width: 1190px) {
-      gap: 1.25rem;
-    }
-
     & > div {
-      flex: 1 1 calc(20% - 0rem);
       border-top-left-radius: 6.6875rem;
       border-top-right-radius: 6.6875rem;
       display: flex;
@@ -30,52 +50,31 @@
       flex-direction: column;
       overflow: hidden;
 
-      @media only screen and (max-width: 1190px) {
-        flex: 1 1 calc(33.3% - 1.25rem);
-        border-radius: 2.5rem;
-        max-width: calc(33% - 1.25rem);
-        & > img {
-          height: 15.625rem;
-          width: auto;
-        }
-      }
-      @media only screen and (max-width: 750px) {
-        flex: 1 1 calc(50% - 1.25rem);
-        max-width: calc(50% - 1.25rem);
-      }
-      @media only screen and (max-width: 520px) {
-        flex: 1 1 calc(100% - 1.25rem);
-        max-width: calc(100% - 1.25rem);
-        border-radius: 1.25rem;
+      & > img {
+        max-width: 100%;
+        height: auto;
       }
 
       & > center {
         & > * {
           &:first-child {
-            font-size: 0.84375rem;
+            font-size: 0.875rem;
             font-weight: 700;
           }
+
           &:nth-child(2) {
-            font-size: 0.7125rem;
+            font-size: 0.75rem;
             font-weight: 400;
           }
         }
       }
     }
-    & > * {
-      &:nth-child(even) {
-        margin-top: 2.25rem;
-        @media only screen and (max-width: 1190px) {
-          margin-top: 0rem;
-        }
-
-        & > img {
-          margin-top: 1.15625rem;
-          @media only screen and (max-width: 1190px) {
-            margin-top: 0rem;
-          }
-        }
-      }
-    }
   }
+}
+
+// The dark ground. Was flat bg_secondry; joins the dark panel family with the
+// other bands. See the note in _questionAndAnswer.scss.
+.ourTeamBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
 }

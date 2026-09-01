@@ -1,28 +1,30 @@
+// D5. The heading rule selected h1 where Heading renders h2, so its margins
+// had never applied. Three media queries gone: the cards are auto-fit rather
+// than a flex basis restated at 700px and 500px.
+
 .ourServices {
-  padding: 3.5rem 0rem;
+  padding-block: var(--sec-y);
+
   & > header {
-    & > h1 {
+    & > p:first-child {
+      color: var(--color-brand);
+    }
+
+    & > :is(h1, h2) {
       margin-top: 0.3125rem;
       margin-bottom: 0.875rem;
+      color: var(--color-ink);
+    }
+
+    & > p:last-child {
+      color: var(--color-ink);
     }
   }
 
   & > section {
-    margin-top: 2.1875rem;
-    display: flex;
-    flex-wrap: wrap;
+    margin-top: var(--sec-y-sm);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
     gap: 1rem;
-    @media only screen and (max-width: 700px) {
-      gap: 0.5rem;
-    }
-    & > div {
-      flex: 1 1 calc(33.3% - 1rem);
-      @media only screen and (max-width: 700px) {
-        flex: 1 1 calc(50% - 0.5rem);
-      }
-      @media only screen and (max-width: 500px) {
-        flex: 1 1 calc(100% - 0.5rem);
-      }
-    }
   }
 }

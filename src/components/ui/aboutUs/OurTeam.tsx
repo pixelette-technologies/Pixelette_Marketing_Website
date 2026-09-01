@@ -5,22 +5,22 @@ import Image from "next/image";
 
 const OurTeam = () => {
   return (
-    <div className='bg_secondry'>
+    <div className='ourTeamBand'>
       <Container className='main'>
         <section className='ourTeam'>
           <header>
             <Text
-              className='primary color_primary'
+              className='primary'
             >
               Our team
             </Text>
             <Heading
-              className='secondry--light color_white'
+              className='secondry--light'
             >
               Your partners in growth
             </Heading>
             <Text
-              className='secondry color_gray--light'
+              className='secondry'
             >
               At Pixelette Marketing, our team of passionate marketers is
               dedicated to helping your brand not just get noticed but also

@@ -1,3 +1,11 @@
+// The logo strip. The scrolling marquee is gone — the keyframes went with the
+// decorative layer in D2 and the four duplicate render passes went with them —
+// so this is now a static row that wraps.
+//
+// The band was bg_primary, a flat saturated crimson. Settled decision from
+// Phase A: saturated bg_primary bands become the dark panel family, not flat
+// crimson.
+
 .trustedBrands {
   & > div {
     margin-bottom: 0.75rem;
@@ -6,37 +14,43 @@
       align-items: center;
       gap: 0.625rem;
       margin-top: 3.6875rem;
+      color: var(--color-ink);
     }
   }
-  & > section {
-    padding: 0.75rem 0rem;
-    & > div {
-      display: flex;
-      align-items: center;
-      gap: 9.375rem;
-      @media only screen and (max-width: 850px) {
-        gap: 6.25rem;
-      }
-      @media only screen and (max-width: 650px) {
-        gap: 3.75rem;
-      }
-      @media only screen and (max-width: 500px) {
-        gap: 1.875rem;
-      }
-      & > h1 {
-        width: 12.4375rem;
-        z-index: 1000;
-      }
+}
 
-      & > section {
-        max-width: 1000px;
-        overflow: hidden;
-        & > div {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 3.125rem;
-          animation: scrollX 40s linear infinite;
+.trustedBrandsBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  padding-block: var(--sec-y-sm);
+  color: var(--color-panel-text);
+
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: 3.75rem;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 850px) {
+      gap: 2rem;
+    }
+
+    & > h1 {
+      width: 12.4375rem;
+      color: var(--color-page);
+    }
+
+    & > section {
+      flex: 1 1 auto;
+      min-width: 0;
+
+      & > div {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 3.125rem;
+
+        @media only screen and (max-width: 650px) {
+          gap: 1.875rem;
         }
       }
     }

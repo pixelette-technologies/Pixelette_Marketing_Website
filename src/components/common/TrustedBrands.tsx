@@ -9,9 +9,13 @@ interface TrustedBrandsProps {
   heading?: string;
 }
 
-type RenderIconsProps = {
-  icons: string[]; // Change type to string[]
-};
+// The logo row used to be rendered four times over and scrolled with a CSS
+// `animation: scrollX 40s linear infinite`. The keyframes went with the
+// decorative layer in D2, which stopped the motion but left four static copies
+// of the same six logos sitting in a row. They render ONCE now.
+//
+// No content is lost: the extra three passes were the same imagesArray
+// repeated so the marquee had something to scroll into.
 
 const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
   const imagesArray = [
@@ -22,14 +26,6 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
     "/common/fantacyFusio.svg",
     "/common/webBooking.svg"
   ];
-
-  const renderIcons = ({ icons }: RenderIconsProps) => {
-    return icons.map((icon, index) => (
-      <div key={index} className='icon-wrapper'>
-        <Image src={icon} alt={`Brand Logo ${index}`} width={200} height={50} />
-      </div>
-    ));
-  };
 
   return (
     <div className='trustedBrands'>
@@ -43,28 +39,30 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
           </Heading>
         )}
       </Container>
-      <section className='bg_primary'>
+      <section className='trustedBrandsBand'>
         <Container className='mainLeft'>
           {heading ? (
-            <Heading className='primary color_white font_family_glory uppercase'>
+            <Heading className='primary font_family_glory uppercase'>
               {heading}
             </Heading>
           ) : (
-            <Heading className='primary color_white font_family_glory uppercase'>
+            <Heading className='primary font_family_glory uppercase'>
               Leading Brands
             </Heading>
           )}
 
           <section>
             <div>
-              {renderIcons({
-                icons: [
-                  ...imagesArray,
-                  ...imagesArray,
-                  ...imagesArray,
-                  ...imagesArray
-                ]
-              })}
+              {imagesArray.map((icon, index) => (
+                <div key={index} className='icon-wrapper'>
+                  <Image
+                    src={icon}
+                    alt={`Brand Logo ${index}`}
+                    width={200}
+                    height={50}
+                  />
+                </div>
+              ))}
             </div>
           </section>
         </Container>

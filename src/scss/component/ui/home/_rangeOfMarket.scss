@@ -1,32 +1,45 @@
+// Two platform-logo rows with the section's heading between them. The rows
+// scrolled in opposite directions on a CSS marquee; the keyframes went with the
+// decorative layer in D2 and the four duplicate render passes went with them.
+// Static, wrapping rows now.
+//
+// The band was bg_primary — flat saturated crimson. Settled decision from
+// Phase A: those become the dark panel family.
+
+.rangeOfMarketBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
+}
+
 .rangeOfMarket {
-  padding: 1.85625rem 0rem;
-  overflow-x: hidden;
-  margin-top: 0.625rem;
+  padding-block: var(--sec-y);
+
   & > header,
-  div {
+  & > div {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 3.125rem;
-    animation: scrollX 30s linear infinite;
-  }
 
-  & > div {
-    animation-direction: reverse;
-    animation-delay: -3s;
+    @media only screen and (max-width: 650px) {
+      gap: 1.875rem;
+    }
   }
 
   & > center {
-    margin-top: 6.375rem;
-    margin-bottom: 8.5625rem;
-    & > h1 {
+    margin-block: var(--sec-y);
+
+    & > h1,
+    & > h2 {
       margin-bottom: 1rem;
+      color: var(--color-page);
     }
-    @media only screen and (max-width: 600px) {
-      margin-top: 4.625rem;
-    }
-    @media only screen and (max-width: 600px) {
-      margin-bottom: 6.6875rem;
+
+    & > p {
+      color: var(--color-panel-text);
+      max-width: 52ch;
+      margin-inline: auto;
     }
   }
 }

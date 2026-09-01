@@ -21,17 +21,18 @@ import { FC } from "react";
 
 type IconComponent = FC;
 
-type RenderIconsProps = {
-  icons: IconComponent[];
-};
+// Both icon rows used to be rendered four times over and scrolled in opposite
+// directions with `animation: scrollX 30s linear infinite`. The keyframes went
+// with the decorative layer in D2, which stopped the motion but left four
+// static copies of each row. They render ONCE now — 8 platforms and 7, not 32
+// and 28. No distinct content is lost.
 
-const renderIcons = ({ icons }: RenderIconsProps) => {
-  return icons.map((Icon, index) => (
+const renderIcons = (icons: IconComponent[]) =>
+  icons.map((Icon, index) => (
     <div key={index} className='icon-wrapper'>
       <Icon />
     </div>
   ));
-};
 
 const RangeOfMarket: FC = () => {
   const iconsGroup1: IconComponent[] = [
@@ -56,45 +57,22 @@ const RangeOfMarket: FC = () => {
   ];
 
   return (
-    <div className='bg_primary'>
+    <div className='rangeOfMarketBand'>
       <Container className='main'>
         <section className='rangeOfMarket'>
-          <header>
-            {renderIcons({
-              icons: [
-                ...iconsGroup1,
-                ...iconsGroup1,
-                ...iconsGroup1,
-                ...iconsGroup1
-              ]
-            })}
-          </header>
+          <header>{renderIcons(iconsGroup1)}</header>
 
           <center className='text_align_center'>
-            <Heading
-              className='secondry--semibold color_white'
-              level={2}
-            >
+            <Heading className='secondry--semibold' level={2}>
               Our range of marketing tech and platforms
             </Heading>
-            <Text
-              className='primary color_white'
-            >
+            <Text className='primary'>
               Pixelette Marketing utilises a diverse range of platforms to drive
               engagement, generate leads and boost your ROI
             </Text>
           </center>
 
-          <div>
-            {renderIcons({
-              icons: [
-                ...iconsGroup2,
-                ...iconsGroup2,
-                ...iconsGroup2,
-                ...iconsGroup2
-              ]
-            })}
-          </div>
+          <div>{renderIcons(iconsGroup2)}</div>
         </section>
       </Container>
     </div>

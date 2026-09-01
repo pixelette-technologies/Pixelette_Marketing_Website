@@ -7,17 +7,17 @@ import React from "react";
 const Located = () => {
   return (
     <div
-      className='bg_tertiary--dark'
+      className='band-alt'
     >
       <Container className='main'>
         <section className='located'>
           <Heading
-            className='secondry--light color_secondry'
+            className='secondry--light'
           >
             We’re stationed all around the globe
           </Heading>
           <Text
-            className='secondry color_secondry'
+            className='secondry'
           >
             Show locations in a different way, not really happy with how it’s
             currently done here. Maybe turn it into a slider or a drop down,
@@ -28,7 +28,7 @@ const Located = () => {
             {locatedData.map((el, index) => (
               <blockquote
                 key={index}
-                className='bg_white'
+                
               >
                 <Image
                   src={el.img}
@@ -41,9 +41,9 @@ const Located = () => {
                     className='heading_secondry--boldLight'
                     dangerouslySetInnerHTML={{ __html: el.city }}
                   />
-                  <Text className='primary color_secondry'>{el.phone}</Text>
-                  <Text className='primary color_secondry'>{el.email}</Text>
-                  <Text className='primary color_secondry'>{el.address}</Text>
+                  <Text className='primary'>{el.phone}</Text>
+                  <Text className='primary'>{el.email}</Text>
+                  <Text className='primary'>{el.address}</Text>
                 </div>
               </blockquote>
             ))}

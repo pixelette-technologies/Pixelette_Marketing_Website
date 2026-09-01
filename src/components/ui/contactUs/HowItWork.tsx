@@ -6,30 +6,30 @@ import { howItWorkData } from "@/data/contactUs";
 const HowItWork = () => {
   return (
     <div
-      className='bg_secondry--light'
+      className='howItworksBand'
     >
       <Container className='main'>
         <div className='howItworks'>
           <header>
             <Heading
-              className='secondry--light color_white'
+              className='secondry--light'
             >
               Here’s how it works
             </Heading>
             <section>
               <div>
                 <MailIcon />
-                <Text className='primary color_white'>
+                <Text className='primary'>
                   sales@pixelettemarketing.com
                 </Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text className='primary color_white'>+44 2045188226</Text>
+                <Text className='primary'>+44 2045188226</Text>
               </div>
               <div>
                 <PhoneIcon />
-                <Text className='primary color_white'>+1 7732709034</Text>
+                <Text className='primary'>+1 7732709034</Text>
               </div>
             </section>
           </header>
@@ -42,10 +42,10 @@ const HowItWork = () => {
                   <el.icon />
                 </section>
                 <div>
-                  <Heading className='secondry--boldLight color_white'>
+                  <Heading className='secondry--boldLight'>
                     {el.heading}
                   </Heading>
-                  <Text className='tertiary--light color_white'>{el.text}</Text>
+                  <Text className='tertiary--light'>{el.text}</Text>
                 </div>
               </blockquote>
             ))}

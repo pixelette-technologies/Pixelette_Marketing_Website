@@ -13,7 +13,7 @@ const PlusIcon = () => {
         fill-rule='evenodd'
         clip-rule='evenodd'
         d='M8.33366 5.66602H7.66699V7.66602H5.66699V8.33268H7.66699V10.3327H8.33366V8.33268H10.3337V7.66602H8.33366V5.66602Z'
-        fill='black'
+        fill="var(--color-ink)"
       />
     </svg>
   );

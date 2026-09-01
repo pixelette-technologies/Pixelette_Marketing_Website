@@ -49,7 +49,12 @@ const PATTERNS = [
   [/#[0-9a-fA-F]{3,8}\b/g, "hex colour"],
   [/\brgba?\(\s*\d/g, "rgb()/rgba() literal"],
   [/:\s*(white|black)\b/g, "named colour"],
-  [/\bsolid\s+(white|black)\b/g, "named colour"]
+  [/\bsolid\s+(white|black)\b/g, "named colour"],
+  // JSX attribute position. The hand-written SVG components set their paint
+  // with fill='...' and stroke='...' rather than a CSS declaration, so a named
+  // colour there has no colon in front of it and the rule above walks past it.
+  // WhiteCollan.tsx carried fill='white' unnoticed for exactly that reason.
+  [/\b(?:fill|stroke|color|stopColor)\s*=\s*['"](?:white|black)['"]/g, "named colour"]
 ];
 
 const EXTS = new Set([".scss", ".ts", ".tsx", ".css"]);

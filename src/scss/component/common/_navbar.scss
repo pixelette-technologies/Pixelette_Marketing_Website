@@ -8,7 +8,37 @@
 // result, which is why there is no scroll-padding-top anywhere in this
 // stylesheet.
 
+// Phase F. The header is STICKY, at the user's request. This reverses the
+// Phase C decision to remove the sticky wrapper rather than make it work.
+//
+// Worth recording why that decision went the other way: the wrapper was
+// `position: sticky` with NO `top` value, which does nothing at all — the bar
+// scrolled away like any other element. So the site has never actually had a
+// sticky header, and removing the dead wrapper matched both the guide and the
+// behaviour visitors were already getting. This is new behaviour, not restored
+// behaviour.
+//
+// `sticky` rather than `fixed` on purpose: sticky keeps the header in flow, so
+// it still occupies its own height and the page below does not jump up under
+// it. A fixed header would need a matching spacer or a body padding equal to
+// --header-h, and that is a second number to keep in sync for no gain.
+//
+// Two things sticky needs that are easy to break later:
+//
+//   1. NO ANCESTOR MAY HAVE `overflow` ANYTHING BUT VISIBLE. `html` and `body`
+//      are clean today. `container_main` carries `overflow: hidden` but sits
+//      INSIDE the header, so it is not an ancestor — and it is already
+//      `overflow: visible` here anyway, so the dropdowns can escape.
+//   2. An opaque background, which it has, so content does not read through it.
+//
+// z-index 60 clears the page. The drawer (50) and the dropdown panel (40) are
+// inside the header, so they are in ITS stacking context and are lifted with
+// it rather than competing against it. It stays below .skip-to-content at 100,
+// which must always win.
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
   background: var(--color-page);
   border-bottom: 1px solid var(--color-line);
 }

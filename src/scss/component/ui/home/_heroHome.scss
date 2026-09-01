@@ -57,6 +57,18 @@
       aspect-ratio: 649 / 628;
       margin-inline: auto;
 
+      // Phase F. This box is `position: relative` with `z-index: auto`, which
+      // does NOT open a stacking context — so the collage's internal z-indexes
+      // of 2, 80 and 80 were competing in the ROOT stacking context against
+      // every other positioned element on the page. Harmless while nothing
+      // above them was positioned; the moment the header became sticky at
+      // z-index 60, two of the five images would have scrolled OVER it.
+      //
+      // `isolation: isolate` contains those three values here, where they were
+      // always meant to apply. The collage now stacks against itself and the
+      // section as a whole stacks against the page as one layer.
+      isolation: isolate;
+
       & > img {
         position: absolute;
         height: auto;

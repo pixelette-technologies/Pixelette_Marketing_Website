@@ -60,7 +60,7 @@
           }
         }
         & > section {
-          z-index: 9999;
+          z-index: 3;
           position: absolute;
 
           & > div {
@@ -72,7 +72,7 @@
             }
             & > h1 {
               margin-bottom: 1rem;
-              z-index: 1000;
+              z-index: 2;
             }
             & > section {
               margin-top: 3rem;

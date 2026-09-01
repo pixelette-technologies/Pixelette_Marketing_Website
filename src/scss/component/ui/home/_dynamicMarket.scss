@@ -58,12 +58,12 @@
         }
 
         & > div {
-          z-index: 1000;
+          z-index: 2;
         }
 
         & > p {
           max-width: 33.1rem;
-          z-index: 10000;
+          z-index: 2;
           @media only screen and (max-width: 1250px) {
             max-width: 28.125rem;
           }
@@ -84,7 +84,7 @@
         padding-bottom: 1.9375rem;
 
         & > div {
-          z-index: 10000;
+          z-index: 2;
           flex: 1 1 calc(33.3% - 1.875rem);
           @media only screen and (max-width: 700px) {
             flex: 1 1 calc(50% - 1.875rem);

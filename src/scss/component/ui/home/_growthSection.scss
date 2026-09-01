@@ -1,123 +1,68 @@
-@use "../../../globels" as color;
+// Converted in D4.
+//
+// The 145px, weight-900 backdrop word this section appeared to have was DEAD
+// CSS: the rule selected `header > h1` and the markup renders `<h3>`, so it has
+// never applied on any build. It is deleted rather than converted — there was
+// no distinctive device here to preserve, and no by-eye call to make.
+//
+// A 45-line commented-out header block went with it.
 
 .growthSection {
-  margin-top: 3.6875rem;
-  @media only screen and (max-width: 600px) {
-    margin-top: 1.875rem;
-    overflow: hidden;
-  }
+  padding-block: var(--sec-y);
 
-  // & > header {
-  //   & > * {
-  //     &:first-child {
-  //       display: flex;
-  //       align-items: center;
-  //       gap: 0.625rem;
-  //     }
-  //   }
-
-  //   & > div {
-  //     margin-top: 1.5rem;
-  //     border-radius: 0.5rem;
-  //     padding: 1.5rem 2rem;
-  //     display: flex;
-  //     flex-wrap: wrap;
-  //     gap: 7.1875rem;
-  //     @media only screen and (max-width: 850px) {
-  //       gap: 3.75rem;
-  //     }
-  //     @media only screen and (max-width: 700px) {
-  //       gap: 2.1875rem;
-  //     }
-  //     @media only screen and (max-width: 600px) {
-  //       gap: 1.5625rem;
-  //       padding: 0.875rem 1.375rem;
-  //     }
-
-  //     & > div {
-  //       flex: 1 1 calc(25% - 7.1875rem);
-  //       @media only screen and (max-width: 600px) {
-  //         flex: 1 1 calc(50% - 1.5625rem);
-  //       }
-  //       & > h1 {
-  //         margin-bottom: 0.4375rem;
-  //       }
-  //     }
-  //   }
-  // }
-
-  & > h1 {
+  & > h2 {
     display: flex;
     align-items: center;
     gap: 0.625rem;
-    @media only screen and (max-width: 760px) {
-      margin-bottom: 2.5rem;
-    }
   }
 
   & > section {
-    margin-top: 0rem;
+    margin-top: var(--sec-y-sm);
+
     & > div {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // gap: 0.625rem;
+      gap: 2.5rem;
+
       @media only screen and (max-width: 760px) {
         flex-direction: column;
+        gap: 2rem;
       }
 
       & > header {
-        position: relative;
-        & > h1 {
-          font-size: 9.0625rem;
-          color: color.$tertiary;
-          line-height: 8.625rem;
-          text-transform: uppercase;
-          position: absolute;
-          font-family: var(--font-display);
-          font-weight: 900;
-          top: -4.375rem;
-          left: 0rem;
+        flex: 1 1 auto;
+        min-width: 0;
+
+        & > h3 {
+          margin-bottom: 2rem;
         }
+
         & > section {
           display: flex;
           flex-wrap: wrap;
-          align-items: center;
-          gap: 3.6875rem;
-          position: relative;
-          margin-top: -6.25rem;
-          padding: 0rem 1.875rem;
+          gap: 2rem 3rem;
+
           & > div {
-            flex: 1 1 calc(50% - 3.6875rem);
-            & > div {
-              & > h1 {
-                margin-bottom: -0.1875rem;
-              }
-            }
-            & > * {
-              &:not(:last-child) {
-                margin-bottom: 6.8125rem;
-              }
-            }
-          }
-          & > * {
-            &:last-child {
-              margin-top: 11.875rem;
+            flex: 1 1 calc(50% - 3rem);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+
+            & > div > h4 {
+              margin-bottom: 0.375rem;
             }
           }
         }
       }
 
       & > div {
+        flex: 0 1 auto;
+
         & > img {
-          margin-bottom: -0.625rem;
-          @media only screen and (max-width: 978px) {
-            max-width: 470px;
-            height: auto;
-          }
-          @media only screen and (max-width: 550px) {
-            max-width: 90%;
-          }
+          display: block;
+          max-width: 100%;
+          height: auto;
         }
       }
     }

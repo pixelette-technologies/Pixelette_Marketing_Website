@@ -1,114 +1,111 @@
-@use "../../globels/" as breakPoint;
-
-// Deleted in D1: `h1 { z-index: -10 }` was a global unscoped rule. z-index is
-// inert on a statically positioned h1, but it pushes any positioned or
-// flex/grid-child h1 behind its siblings. There was no legitimate reason for
-// it. Check every h1 during the browser walk.
+// The legacy heading variants, redefined on the guide's type scale.
+//
+// Every heading on the site goes through the Heading component, which emits
+// `heading_${className}`. Converting these twelve variants converts every
+// heading at once, without touching 33 call sites — and they are deleted in D8
+// as sections move onto the .h1/.h2/.h3/.h4 primitives directly.
+//
+// THREE THINGS CHANGE, and they change everywhere:
+//
+//   1. The face. Display headings were Poppins and Glory; they are Newsreader.
+//   2. The weight. Everything display-role is WEIGHT 400. The old scale ran
+//      800/700/600/500/400 as separate variants, which is why several of them
+//      differ by nothing else. Appendix E is explicit that display is 400 at
+//      every width, so the --light / --semibold / --boldLight distinctions
+//      collapse. If that ever changes, change it everywhere at once.
+//   3. The size. Fixed rem sizes with per-variant breakpoints become the fluid
+//      clamps, so eighteen media queries in this file alone go to zero.
+//
+// The invented scale had more levels than the guide has. hero and large both
+// map to h1; primary, primary--light and the three tertiary variants all map to
+// h2. Collapsing them is the point, not a loss.
+//
+// NO COLOUR IS SET HERE. This partial loads after the legacy color_* utilities,
+// so a colour declaration would silently beat every color_primary and
+// color_white on the site. Colour stays with those utilities until D8.
 
 .heading_ {
-  &hero {
-    font-weight: 800;
-    font-size: 3.5rem;
-    line-height: 3rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 2.5rem;
-      line-height: 2.375rem;
-    }
-    @media only screen and (max-width: 700px) {
-      font-size: 2.3125rem;
-      line-height: 2.0625rem;
-    }
-    @include breakPoint.respond(mobile) {
-      line-height: 2.25rem;
-    }
-  }
-  &primary {
-    font-size: 2.5rem;
-    font-weight: 800;
-    line-height: 2.625rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 2.125rem;
-      line-height: 2.1875rem;
-    }
-    @media only screen and (max-width: 700px) {
-      font-size: 2rem;
-      line-height: 2rem;
-    }
-    &--light {
-      font-size: 2.5rem;
-      font-weight: 600;
-    }
-  }
-  &secondry {
-    font-size: 1.5rem;
-    font-weight: 800;
-    line-height: 1.625rem;
-  }
-  &secondry--boldLight {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.625rem;
-  }
-  &secondry--semibold {
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.625rem;
-  }
-  &secondry--light {
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.625rem;
-  }
-
-  &tertiary {
-    font-size: 2rem;
-    font-weight: 800;
-    line-height: 2.1875rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 1.75rem;
-      line-height: 1.875rem;
-    }
-  }
-  &tertiary--medium {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 2.1875rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 1.75rem;
-      line-height: 1.875rem;
-    }
-  }
-  &tertiary--light {
-    font-size: 2rem;
-    font-weight: 400;
-    line-height: 2.1875rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 1.75rem;
-      line-height: 1.875rem;
-    }
-  }
-
+  &hero,
+  &large,
+  &primary,
+  &primary--light,
+  &secondry,
+  &secondry--boldLight,
+  &secondry--semibold,
+  &secondry--light,
+  &tertiary,
+  &tertiary--medium,
+  &tertiary--light,
   &ImportanceCardheading {
-    font-size: 3rem;
-    font-weight: 600;
-    line-height: 3.005rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
   }
-  &small {
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.25rem;
-  }
+
+  // --- h1: the page hero title ---------------------------------------------
+  &hero,
   &large {
-    font-size: 5.73125rem;
-    font-weight: 800;
-    line-height: 4.69625rem;
-    @media only screen and (max-width: 960px) {
-      font-size: 4.48125rem;
-      line-height: 3.75rem;
-    }
-    @media only screen and (max-width: 750px) {
-      font-size: 3.25rem;
-      line-height: 3rem;
-    }
+    font-size: var(--fs-h1);
+    line-height: 1.05;
+    letter-spacing: -0.016em;
+  }
+
+  // --- h2: section headings -------------------------------------------------
+  &primary,
+  &primary--light,
+  &tertiary,
+  &tertiary--medium,
+  &tertiary--light,
+  &ImportanceCardheading {
+    font-size: var(--fs-h2);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+  }
+
+  // --- h3: sub-headings -----------------------------------------------------
+  &secondry,
+  &secondry--boldLight,
+  &secondry--semibold,
+  &secondry--light {
+    font-size: var(--fs-h3);
+    line-height: 1.26;
+    letter-spacing: -0.008em;
+  }
+
+  // --- h4: the one sans heading --------------------------------------------
+  // Already the guide's value before the conversion: 18px at 600.
+  &small {
+    font-family: var(--font-body);
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+}
+
+// Display tracking and leading are the two type values that cannot interpolate.
+// This is the SAME 767px breakpoint the primitives use, not a second one.
+@media (max-width: 767px) {
+  .heading_hero,
+  .heading_large {
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .heading_primary,
+  .heading_primary--light,
+  .heading_tertiary,
+  .heading_tertiary--medium,
+  .heading_tertiary--light,
+  .heading_ImportanceCardheading {
+    line-height: 1.18;
+    letter-spacing: -0.008em;
+  }
+
+  .heading_secondry,
+  .heading_secondry--boldLight,
+  .heading_secondry--semibold,
+  .heading_secondry--light {
+    line-height: 1.28;
+    letter-spacing: -0.004em;
   }
 }

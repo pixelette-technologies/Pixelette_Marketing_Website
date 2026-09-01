@@ -66,10 +66,25 @@
         display: contents;
       }
 
+      // The title is TWO paragraphs — mainHeading and subHeading, "Fintech"
+      // and "Marketing" — and they were stacked in a flex column, which is why
+      // the title read as two lines however much room the card had. They sit
+      // on one line now, sharing a baseline, with the brand tone on the first
+      // half and ink on the second.
+      //
+      // Row direction rather than editing the markup, because merging the two
+      // paragraphs into one would be a DOM change to content.
+      //
+      // flex-wrap keeps the old behaviour as the fallback: where a long pair
+      // like "Lead Generation Management" genuinely cannot fit the card, it
+      // breaks back onto two lines instead of overflowing.
       & > section > header {
         order: 1;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        column-gap: 0.3125rem;
         min-width: 0;
         margin-bottom: 0.75rem;
       }
@@ -138,9 +153,12 @@
   & > section {
     justify-content: flex-end;
 
+    // The title pair is a ROW now, so pushing it to the trailing edge is
+    // justify-content. align-items still controls the cross axis, which is
+    // vertical here, and must stay on the shared baseline.
     & > header > section {
       & > header {
-        align-items: flex-end;
+        justify-content: flex-end;
       }
     }
 

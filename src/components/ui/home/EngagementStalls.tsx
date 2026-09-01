@@ -2,16 +2,31 @@ import { Container } from "@/components/common";
 import { ArrowCard, Heading, Text } from "@/components/feature";
 import { engagementData } from "@/data";
 
-const EngagementStalls = () => {
-  const firstFiveItems = engagementData.slice(0, 5);
-  const remainingItems = engagementData.slice(5);
+// D4. Two things were holding this section open.
+//
+// The dark inner panel carried padding-bottom: 46.875rem — 750px of empty
+// ground below the last card. It was scaffolding for a scroll-driven reveal,
+// whose 100vh height and wheel listeners sit in the large commented-out block
+// this commit deletes with the rest. D2 removed the motion and left the space
+// it used to move through, so the page has been rendering three quarters of a
+// screen of blank panel ever since. DynamicMarket then climbed back up into
+// that hole with margin-top: -30.0625rem and covered the seam with a
+// decorative SVG blob. Both halves of the arrangement go, and the sections
+// stack.
+//
+// The last four cards were rendered TWICE — once in a blockquote, aligned
+// right, and once in a section, aligned left — with a display:none swap at
+// 600px choosing between them. Alignment was the only difference between the
+// two copies, so the duplicate is gone and all nine cards sit on one grid in
+// source order. Nothing leaves the page: the hidden copy was never on screen
+// beside the one it duplicated. Same fault as the marquees D2 left half
+// removed, and the same fix.
 
+const EngagementStalls = () => {
   return (
-    <div
-      className='bg_tertiary--dark'
-    >
-      <Container className='main '>
-        <section className='engagementStalls'>
+    <div className='band-alt'>
+      <Container className='main'>
+        <section className='engagementStalls sec'>
           <div>
             <Heading
               className='primary color_primary uppercase font_family_glory'
@@ -31,46 +46,18 @@ const EngagementStalls = () => {
               your audience at every step.
             </Text>
           </div>
-          <section
-            className='bg_secondry'
-          >
-            <div>
-              {firstFiveItems.map((el, index) => (
-                <ArrowCard
-                  key={index}
-                  mainHeading={el.mainHeading}
-                  subHeading={el.subHeading}
-                  summary={el.text}
-                  theme={true}
-                  textfloat={false}
-                />
-              ))}
-            </div>
-            <blockquote>
-              {remainingItems.map((el, index) => (
-                <ArrowCard
-                  key={index + 5}
-                  mainHeading={el.mainHeading}
-                  subHeading={el.subHeading}
-                  summary={el.text}
-                  theme={true}
-                  textfloat={true}
-                />
-              ))}
-            </blockquote>
-            <section>
-              {remainingItems.map((el, index) => (
-                <ArrowCard
-                  key={index + 5}
-                  mainHeading={el.mainHeading}
-                  subHeading={el.subHeading}
-                  summary={el.text}
-                  theme={true}
-                  textfloat={false}
-                />
-              ))}
-            </section>
-          </section>
+          <div className='engagementStalls__panel'>
+            {engagementData.map((el, index) => (
+              <ArrowCard
+                key={index}
+                mainHeading={el.mainHeading}
+                subHeading={el.subHeading}
+                summary={el.text}
+                theme={true}
+                textfloat={false}
+              />
+            ))}
+          </div>
         </section>
       </Container>
     </div>

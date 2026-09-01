@@ -1,99 +1,35 @@
+// D4. Fourteen media queries, a -30.0625rem top margin, a second negative
+// margin on a decorative SVG and a pair of 15rem corner radii that only
+// existed below 1366px — all of it machinery for overlapping this section into
+// the empty panel EngagementStalls was holding open. See that component.
+//
+// What is left is a header pair and a card grid, and neither needs a
+// breakpoint: the header is a wrapping flex row and the cards are auto-fit.
+
 .dynamicMarket {
-  position: relative;
-  margin-top: -30.0625rem;
-  @media only screen and (max-width: 920px) {
-    margin-top: -36.875rem;
-  }
-  @media only screen and (max-width: 700px) {
-    margin-top: -40rem;
-  }
-  @media only screen and (max-width: 600px) {
-    margin-top: -5rem;
-  }
-  & > section {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    & > svg {
-      max-width: 1366px;
-      margin-top: -11.625rem;
-      @media only screen and (max-width: 1200px) {
-        margin-top: -16.875rem;
-      }
-      @media only screen and (max-width: 700px) {
-        margin-top: -20rem;
-      }
-    }
-  }
   & > div {
-    max-width: 1366px;
-    margin: auto;
-    @media only screen and (max-width: 1366px) {
-      background-color: var(--color-band);
-      border-top-right-radius: 15rem;
-      border-top-left-radius: 15rem;
-    }
-    @media only screen and (max-width: 700px) {
-      border-top-right-radius: 12.5rem;
-      border-top-left-radius: 12.5rem;
-    }
+    & > header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1.25rem 2.5rem;
 
-    & > div {
-      & > header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @media only screen and (max-width: 1250px) {
-          padding: 0rem 3.125rem;
-        }
-        @media only screen and (max-width: 1000px) {
-          flex-direction: column;
-          align-items: start;
-          gap: 1.25rem;
-          padding: 0rem 1.25rem;
-        }
-
-        & > div {
-          z-index: 2;
-        }
-
-        & > p {
-          max-width: 33.1rem;
-          z-index: 2;
-          @media only screen and (max-width: 1250px) {
-            max-width: 28.125rem;
-          }
-          @media only screen and (max-width: 1000px) {
-            max-width: 80%;
-          }
-          @media only screen and (max-width: 700px) {
-            max-width: 100%;
-          }
-        }
+      & > div {
+        flex: 1 1 22rem;
       }
 
-      & > section {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1.25rem;
-        margin-top: 2rem;
-        padding-bottom: 1.9375rem;
-
-        & > div {
-          z-index: 2;
-          flex: 1 1 calc(33.3% - 1.875rem);
-          @media only screen and (max-width: 700px) {
-            flex: 1 1 calc(50% - 1.875rem);
-          }
-          @media only screen and (max-width: 550px) {
-            flex: 1 1 calc(100% - 1.875rem);
-          }
-        }
+      & > p {
+        flex: 1 1 20rem;
+        max-width: 33.1rem;
       }
+    }
+
+    & > section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+      gap: 1.25rem;
+      margin-top: var(--sec-y-sm);
     }
   }
 }

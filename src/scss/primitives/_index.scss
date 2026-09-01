@@ -1,0 +1,9 @@
+// The shared primitives — Appendix E's class inventory, written once.
+//
+// _responsive is forwarded last because it carries the single media query and
+// has to win over the base declarations it overrides.
+@forward "./layout";
+@forward "./type";
+@forward "./surfaces";
+@forward "./controls";
+@forward "./responsive";

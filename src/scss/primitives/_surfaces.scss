@@ -1,0 +1,134 @@
+// Surface primitives. Appendix E, group property.
+//
+// The register is FLAT AND STATIC, so a shadow is an exception rather than a
+// default, and there are only three of them. HOVER CHANGES BORDER COLOUR
+// ONLY — no lift, no shadow change, no scale. That is the rule most often
+// broken by reflex, so it is stated here at the point it applies.
+//
+// Cards are noticeably rounder than controls (12px against 4px). That
+// contrast is part of the look and is not ours to retune.
+
+.card {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  border-color: var(--color-line-strong);
+}
+
+// The signature device's second and last appearance: the same segment on the
+// leading edge of a feature card. See .rule-cap in _layout.
+.card-feature {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-feature::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--sig-cap-width);
+  height: var(--sig-cap-height);
+  background: var(--color-brand-signal);
+}
+
+.tile {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-tile);
+  padding: 1rem 1.125rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.tile b {
+  display: block;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.4375rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+}
+
+.tile span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+// --- Dark grounds ----------------------------------------------------------
+// The saturated bg_primary bands become this family, not flat crimson.
+
+.panel {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--radius-card);
+  padding: 1.375rem 1.5rem;
+  color: var(--color-panel-text);
+}
+
+.panel .plabel {
+  font-family: var(--font-mono);
+  font-size: 0.65625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-panel-muted);
+}
+
+.footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-body);
+}
+
+// On the dark ground the marking tone finally gets a voice — 5.11 here,
+// exactly as the guide's own bright tone does on its own dark ground.
+.footer .eyebrow {
+  color: var(--color-footer-eyebrow);
+}
+
+.footer .rule {
+  background: var(--color-footer-line);
+}
+
+.footer .pill {
+  border-color: var(--color-footer-pill);
+  color: var(--color-footer-body);
+}
+
+.footer .legal {
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
+  color: var(--color-footer-muted);
+}
+
+// --- Bands -----------------------------------------------------------------
+
+.band-alt {
+  background: var(--color-band);
+}
+
+.band-closing {
+  background: var(--color-band);
+  border-top: 1px solid var(--color-line);
+}
+
+// --- Hero grounds ----------------------------------------------------------
+// .wash is the guide's front-page treatment, centred. .wash-left is its
+// interior variant, offset. Geometry is the second and last thing that cannot
+// interpolate, so it reappears in the single media query in _responsive.
+
+.wash {
+  background: radial-gradient(1200px 560px at 50% -20%, var(--color-brand-wash) 0%, var(--color-page) 65%);
+}
+
+.wash-left {
+  background: radial-gradient(1000px 470px at 16% -10%, var(--color-brand-wash) 0%, var(--color-page) 60%);
+}

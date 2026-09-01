@@ -1,0 +1,186 @@
+// Type primitives. Appendix E, group property.
+//
+// Three roles and no more:
+//   Display  Newsreader, WEIGHT 400 at every width. Not the guide's drawn
+//            300 — the light cut read as too fragile at desktop sizes and
+//            that by-eye call was signed off during the Certified
+//            conversion. If it ever changes again, change it everywhere.
+//   Body     Outfit. Everything read at length, plus h4, the one sans
+//            heading.
+//   Mono     IBM Plex Mono. Eyebrows, statistics, figures, source lines,
+//            small labels.
+//
+// Display tracking and leading are the only type values that do not
+// interpolate; they are handled in the single media query in _responsive.
+
+.h1,
+.h1p,
+.h2,
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.05;
+  letter-spacing: -0.016em;
+}
+
+// The interior-page hero variant. Drives every service, category and article
+// route, so it has more call sites than anything else here.
+.h1p {
+  font-size: var(--fs-h1p);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.14;
+  letter-spacing: -0.014em;
+}
+
+.h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.26;
+  letter-spacing: -0.008em;
+}
+
+// The one sans heading.
+.h4 {
+  font-family: var(--font-body);
+  font-size: var(--fs-h4);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.body {
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.small {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+// Exactly this, everywhere: mono, 11px, .18em, uppercase, brand.
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+// Source and attribution lines under statistics.
+.src {
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
+  letter-spacing: 0.02em;
+  color: var(--color-soft);
+}
+
+// Inline links OPT IN. Do not copy the guide's global coloured link rule —
+// it would turn the navigation, breadcrumbs and footer brand-coloured.
+// Article bodies get the same treatment through .prose below.
+.link {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.link:hover {
+  color: var(--color-brand-hover);
+}
+
+.list,
+.list-num {
+  padding-left: 1.25rem;
+  color: var(--color-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+}
+
+.list {
+  list-style: disc;
+}
+
+.list-num {
+  list-style: decimal;
+}
+
+.list > li + li,
+.list-num > li + li {
+  margin-top: 0.5rem;
+}
+
+.list::marker,
+.list-num::marker {
+  color: var(--color-muted);
+}
+
+// Article bodies. The only place links colour themselves without opting in.
+.prose {
+  font-size: var(--fs-body);
+  line-height: 1.75;
+  color: var(--color-body);
+}
+
+.prose > * + * {
+  margin-top: 1rem;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.14;
+  letter-spacing: -0.014em;
+  color: var(--color-ink);
+  margin-top: 2rem;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: 1.26;
+  color: var(--color-ink);
+  margin-top: 1.75rem;
+}
+
+.prose a {
+  color: var(--color-brand);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.prose a:hover {
+  color: var(--color-brand-hover);
+}
+
+.prose strong {
+  font-weight: 600;
+  color: var(--color-ink);
+}

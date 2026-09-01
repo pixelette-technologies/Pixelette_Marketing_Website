@@ -38,6 +38,12 @@ const submission: GovernedContactSubmission = {
 };
 
 test("configuration fails closed for invalid endpoint, weak secret and noncanonical campaign", () => {
+  const prefixedEndpoint = "https://bd-stage.example.invalid/marketnerve/v1/source-submissions";
+  assert.equal(validateMarketingBdTransportConfiguration({
+    ...configuration,
+    endpoint: prefixedEndpoint,
+    endpointSha256: marketingBdEndpointSha256(prefixedEndpoint),
+  }).endpoint, prefixedEndpoint);
   assert.throws(() => validateMarketingBdTransportConfiguration({
     ...configuration,
     endpoint: "http://example.invalid/v1/source-submissions",
@@ -45,6 +51,14 @@ test("configuration fails closed for invalid endpoint, weak secret and noncanoni
   assert.throws(() => validateMarketingBdTransportConfiguration({
     ...configuration,
     endpoint: "https://example.invalid/v1/marketing-lead-events",
+  }), /ENDPOINT_INVALID/);
+  assert.throws(() => validateMarketingBdTransportConfiguration({
+    ...configuration,
+    endpoint: "https://user:pass@example.invalid/marketnerve/v1/source-submissions",
+  }), /ENDPOINT_INVALID/);
+  assert.throws(() => validateMarketingBdTransportConfiguration({
+    ...configuration,
+    endpoint: "https://example.invalid/market%2Fnerve/v1/source-submissions",
   }), /ENDPOINT_INVALID/);
   assert.throws(() => validateMarketingBdTransportConfiguration({
     ...configuration,

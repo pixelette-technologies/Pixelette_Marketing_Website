@@ -4,6 +4,13 @@ import type { GovernedContactSubmission } from "./contactContract";
 const CANONICAL_CAMPAIGN = /^PMC-marketing-20[0-9]{2}(0[1-9]|1[0-2])-[0-9]{2}$/;
 const SOURCE_PATH = "/v1/source-submissions";
 
+function isGovernedSourcePath(pathname: string): boolean {
+  if (!pathname.endsWith(SOURCE_PATH)) return false;
+  const prefix = pathname.slice(0, -SOURCE_PATH.length);
+  if (!prefix) return true;
+  return /^\/(?:[A-Za-z0-9][A-Za-z0-9._~-]*\/)*$/.test(`${prefix}/`);
+}
+
 export interface MarketingBdTransportConfiguration {
   endpoint: string;
   endpointSha256: string;
@@ -67,7 +74,13 @@ export function validateMarketingBdTransportConfiguration(
   } catch {
     throw new Error("MARKETING_BD_ENDPOINT_INVALID");
   }
-  if (endpoint.protocol !== "https:" || endpoint.pathname !== SOURCE_PATH || endpoint.search || endpoint.hash) {
+  if (endpoint.protocol !== "https:"
+      || endpoint.username
+      || endpoint.password
+      || endpoint.port
+      || endpoint.search
+      || endpoint.hash
+      || !isGovernedSourcePath(endpoint.pathname)) {
     throw new Error("MARKETING_BD_ENDPOINT_INVALID");
   }
   const expectedHash = configuration.endpointSha256.trim().toLowerCase();

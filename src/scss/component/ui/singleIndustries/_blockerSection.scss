@@ -1,10 +1,11 @@
+// D5. One media query gone; the section rhythm token interpolates the top
+// margin the breakpoint used to step. The heading rule selected h1 where
+// Heading renders h2.
+
 .blockerSection {
-  margin-top: 7rem;
-  margin-bottom: 6.25rem;
-  @media only screen and (max-width: 750px) {
-    margin-top: 4.375rem;
-  }
-  & > h1 {
+  margin-block: var(--sec-y);
+
+  & > :is(h1, h2) {
     margin-bottom: 1rem;
   }
 }

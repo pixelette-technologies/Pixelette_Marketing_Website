@@ -1,19 +1,30 @@
-@use "../../globels" as color;
+// D5. Off the legacy Sass alias and onto the card surface from the primitives,
+// which is what the bg_white utility at the call site was standing in for.
 
 .web3marketingCard {
   padding: 1.5rem;
-  border-radius: 0.75rem;
+  border-radius: var(--radius-card);
   text-align: center;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+
+  &:hover {
+    border-color: var(--color-line-strong);
+  }
 
   & > img {
-    border-radius: 0.625rem;
+    border-radius: var(--radius-card);
     max-width: 100%;
+    height: auto;
   }
+
   & > h6 {
     margin-top: 1.5rem;
     margin-bottom: 0.75rem;
+    color: var(--color-ink);
+
     & > span {
-      color: color.$primary;
+      color: var(--color-brand);
     }
   }
 }

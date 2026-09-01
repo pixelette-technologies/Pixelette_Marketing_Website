@@ -1,97 +1,76 @@
+// D5. Thirteen media queries, none left.
+//
+// The copy block carried padding-right: 18.75rem — 300px of empty gutter — so
+// that the hero image could be pulled back over it with margin-left: -12.5rem.
+// Between them they needed six breakpoints to stay in register, and below
+// 750px the arrangement inverted into a 12.5rem bottom padding and a -9.375rem
+// top margin, restated twice more at 550 and 450px. container_main carries
+// overflow: hidden, so the overlap was one container change away from being
+// clipped. The two sit side by side and wrap.
+//
+// The heading also overrode the type scale outright — font-size: 2.25rem with
+// a second value at 950px, and font-weight: 600 against the display role's
+// 400. Every heading on the site is meant to come from the scale; this was the
+// only one still setting its own size. It takes --fs-h1p, the interior hero
+// variant, which is what the other three interior heroes use.
+
 .heroSingleIndustriesPage {
   position: relative;
+
+  // The noise ground. Decorative, and bounded to the block rather than pinned
+  // to a hand-measured 720px that had to grow to 800px on a phone.
   & > img {
     position: absolute;
+    inset: 0;
     width: 100%;
-    height: 720px;
+    height: 100%;
+    object-fit: cover;
     z-index: -10;
-    @media only screen and (max-width: 550px) {
-      height: 800px;
-    }
   }
+
   & > div {
     & > section {
       & > section {
-        padding-top: 3.625rem;
+        padding-top: var(--sec-y);
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
-        @media only screen and (max-width: 750px) {
-          flex-direction: column;
-        }
+        gap: 2rem;
+
         & > div {
+          flex: 1 1 22rem;
+          min-width: 0;
           background-color: var(--color-band);
-          padding-top: 2.1875rem;
-          padding-left: 3.625rem;
-          padding-bottom: 2.1875rem;
-          padding-right: 18.75rem;
-          max-width: 891px;
-          @media only screen and (max-width: 950px) {
-            padding-right: 15.625rem;
-          }
-          @media only screen and (max-width: 800px) {
-            padding-left: 1.75rem;
-            padding-top: 1.25rem;
-          }
-          @media only screen and (max-width: 750px) {
-            padding-top: 1.25rem;
-            padding-left: 0.9375rem;
-            padding-right: 0.9375rem;
-            padding-bottom: 12.5rem;
-          }
+          padding: 2.1875rem;
+
           & > img {
-            @media only screen and (max-width: 950px) {
-              height: 50px;
-              width: 160px;
-            }
+            max-width: 100%;
+            height: auto;
           }
+
           & > section {
-            & > h1 {
+            & > :is(h1, h2) {
               margin: 1.5rem 0rem;
-              font-weight: 600;
-              font-size: 2.25rem;
-              @media only screen and (max-width: 950px) {
-                font-size: 1.875rem;
-              }
-              @media only screen and (max-width: 800px) {
-                margin: 0.875rem 0rem;
-              }
-            }
-            & > p {
-              font-size: 0.875rem;
+              color: var(--color-brand);
             }
           }
         }
 
         & > img {
-          margin-left: -12.5rem;
-          @media only screen and (max-width: 1050px) {
-            height: 230px;
-            width: 400px;
-          }
-          @media only screen and (max-width: 750px) {
-            margin-left: 0rem;
-            margin-top: -9.375rem;
-          }
-          @media only screen and (max-width: 550px) {
-            margin-top: -10.625rem;
-          }
-          @media only screen and (max-width: 450px) {
-            width: 90%;
-            height: auto;
-          }
+          flex: 1 1 18rem;
+          min-width: 0;
+          max-width: 100%;
+          height: auto;
         }
       }
+
       & > blockquote {
-        display: flex;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+        align-items: stretch;
         gap: 1.25rem;
-        padding-top: 1.5625rem;
-        padding-bottom: 1.875rem;
-        @media only screen and (max-width: 550px) {
-          flex-direction: column;
-          align-items: flex-start;
-        }
+        padding-block: 1.5625rem 1.875rem;
       }
     }
   }

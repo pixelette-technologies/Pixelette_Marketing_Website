@@ -7,7 +7,6 @@ import React from "react";
 import dynamic from "next/dynamic";
 import type SlickSlider from "react-slick";
 import type { Settings } from "react-slick";
-import NewWhiteBackground from "@/assets/common/NewWhiteBackground";
 
 const Slider = dynamic(() => import("react-slick"), {
   ssr: false
@@ -125,10 +124,6 @@ const FinalResult: React.FC<FinalResultProps> = ({
           </header>
 
           <section>
-            <div>
-              <NewWhiteBackground />
-            </div>
-
             <section>
               <div>
                 <Heading className='primary--light font_family_glory'>

@@ -16,7 +16,7 @@ const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
 }) => {
   return (
     <div
-      className='web3marketingCard  bg_white'
+      className='web3marketingCard'
     >
       <Image
         src={image || "/industries/mq_1.webp"}
@@ -28,7 +28,7 @@ const Web3MarketingCard: FC<Web3MarketingCardProps> = ({
         className='text_secondry--semibold'
         dangerouslySetInnerHTML={{ __html: heading || "" }}
       />
-      <Text className='tertiary color_gray--light'>{summary}</Text>
+      <Text className='tertiary'>{summary}</Text>
     </div>
   );
 };

@@ -16,13 +16,13 @@ interface Web3QuestionsProps {
 
 const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
   return (
-    <div className='bg_tertiary'>
+    <div className='band-alt'>
       <Container className='main'>
         <section className='web3Question'>
           <header>
             <h2
               dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
-              className='heading_secondry--light color_secondry'
+              className='heading_secondry--light'
             ></h2>
             <Text className='secondry'>
               {text}

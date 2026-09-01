@@ -1,51 +1,40 @@
-@use "../../../globels" as color;
+// D5. Off the legacy Sass alias. Five media queries gone: the header is a
+// wrapping flex pair and the cards are auto-fit, which replaces a flex basis
+// re-derived at 900px and a 600px rule that set `flex: 1 1 calc(400px - 1rem)`
+// — a fixed basis dressed as a fluid one, and the reason the cards stopped
+// filling the row on a phone.
 
 .web3Question {
-  padding: 1.5rem 0rem;
+  padding-block: var(--sec-y);
 
   & > header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1.25rem;
     margin-bottom: 2rem;
-    @media only screen and (max-width: 750px) {
-      flex-direction: column;
-    }
 
     & > h2 {
+      flex: 1 1 18rem;
       max-width: 23.75rem;
-      line-height: 1.75rem;
-      @media only screen and (max-width: 750px) {
-        text-align: center;
-      }
+      color: var(--color-ink);
+
       & > span {
-        color: color.$primary;
+        color: var(--color-brand);
       }
     }
+
     & > p {
+      flex: 1 1 20rem;
       max-width: 34.75rem;
       text-align: right;
-      @media only screen and (max-width: 750px) {
-        text-align: center;
-      }
     }
   }
+
   & > section {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
     gap: 1rem;
-    justify-content: center;
-    & > div {
-      flex: 1 1 calc(33.3% - 1rem);
-      @media only screen and (max-width: 900px) {
-        flex: 1 1 calc(47% - 1rem);
-        max-width: calc(47% - 1rem);
-      }
-      @media only screen and (max-width: 600px) {
-        flex: 1 1 calc(400px - 1rem);
-        max-width: calc(400px - 1rem);
-      }
-    }
   }
 }

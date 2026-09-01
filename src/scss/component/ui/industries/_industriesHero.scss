@@ -1,32 +1,39 @@
+// D5. Five media queries gone. The image was pinned to a 250px height at 900px
+// and released again at 750px; it is fluid now, and the pair wraps.
+//
+// Takes .wash-left, the guide's interior hero ground — the third of the four
+// interior heroes to get the ground the hero strategy chose for it.
+
 .industriesHero {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 3.5rem;
-  padding: 2.75rem 0rem;
-  @media only screen and (max-width: 900px) {
-    gap: 1.25rem;
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-  }
+  padding-block: var(--sec-y);
+
   & > img {
-    border-radius: 0.9375rem;
-    @media only screen and (max-width: 900px) {
-      max-width: 55%;
-      height: 250px;
-    }
-    @media only screen and (max-width: 750px) {
-      max-width: 100%;
-      height: auto;
-    }
+    flex: 1 1 18rem;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
   }
 
   & > div {
+    flex: 1 1 20rem;
+    min-width: 0;
+
+    & > h1 {
+      color: var(--color-brand);
+    }
+
+    & > h2 {
+      color: var(--color-ink);
+    }
+
     & > p {
       margin: 1.5rem 0rem;
-      @media only screen and (max-width: 900px) {
-        margin: 0.75rem 0rem;
-      }
+      color: var(--color-body);
     }
   }
 }

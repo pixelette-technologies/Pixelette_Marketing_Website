@@ -18,40 +18,33 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
   text
 }) => {
   return (
-    <Container className='main'>
-      <section className='industriesHero'>
-        <Image
-          src={image}
-          alt='Hero Section'
-          priority
-          width={500}
-          height={280}
-        />
-        <div>
-          <Heading
-            className='tertiary color_primary font_family_glory uppercase'
-            level={1}
-          >
-            {mainHeading}
-          </Heading>
-          <Heading
-            className='tertiary color_secondry font_family_glory uppercase'
-          >
-            {subHeading}
-          </Heading>
-          <Text
-            className='secondry color_secondry--light'
-          >
-            {text}
-          </Text>
-          <Link href='/contactus'>
-            <Button className='primary'>
-              Book a consultation
-            </Button>
-          </Link>
-        </div>
-      </section>
-    </Container>
+    // .wash-left, the guide's interior hero ground, full-bleed behind the
+    // container rather than clipped to it.
+    <div className='wash-left'>
+      <Container className='main'>
+        <section className='industriesHero'>
+          <Image
+            src={image}
+            alt='Hero Section'
+            priority
+            width={500}
+            height={280}
+          />
+          <div>
+            <Heading className='tertiary font_family_glory uppercase' level={1}>
+              {mainHeading}
+            </Heading>
+            <Heading className='tertiary font_family_glory uppercase'>
+              {subHeading}
+            </Heading>
+            <Text className='secondry'>{text}</Text>
+            <Link href='/contactus'>
+              <Button className='primary'>Book a consultation</Button>
+            </Link>
+          </div>
+        </section>
+      </Container>
+    </div>
   );
 };
 

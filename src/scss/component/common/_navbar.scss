@@ -126,9 +126,9 @@
   // The header needs to sit above page content and below nothing else.
   z-index: 50;
   width: 70%;
-  right: 0rem;
+  right: -20px;
   padding: 3.125rem 1.875rem;
-  min-height: calc(100vh - 5.0625rem);
+  min-height: calc(100vh - 4.0625rem);
   background: var(--color-page);
   border-left: 1px solid var(--color-line);
   border-bottom: 1px solid var(--color-line);

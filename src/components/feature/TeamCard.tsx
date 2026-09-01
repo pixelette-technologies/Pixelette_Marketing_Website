@@ -9,23 +9,18 @@ interface TeamCardProps {
   name: string;
   role: string;
   detail: string;
-  animation?: string;
-  duration?: string;
 }
 
 const TeamCard: FC<TeamCardProps> = ({
   image,
   name,
   role,
-  detail,
-  animation,
-  duration
+  detail
+
 }) => {
   return (
     <div
       className='teamCard bg_white'
-      data-aos={animation}
-      data-aos-duration={duration}
     >
       <div>
         <WhiteCollan />
@@ -39,25 +34,19 @@ const TeamCard: FC<TeamCardProps> = ({
           alt='profile'
           height={90}
           width={90}
-          data-aos='fade-up'
-          data-aos-duration='1700'
         />
         <Heading
           className='secondry--boldLight'
-          animation='fade-up'
-          duration='1800'
         >
           {name}
         </Heading>
         <Text
           className='secondry--semibold'
-          animation='fade-up'
-          duration='1900'
         >
           {role}
         </Text>
       </header>
-      <Text className='tertiary--light' animation='fade-up' duration='2000'>
+      <Text className='tertiary--light'>
         {detail}
       </Text>
     </div>

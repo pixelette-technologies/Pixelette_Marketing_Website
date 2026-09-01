@@ -7,6 +7,5 @@ export { default as ContactSection } from "./ContactSection";
 export { default as QuestionAndAnswer } from "./QuestionAndAnswer";
 export { default as ServicesCards } from "./ServicesCards";
 export { default as ContentDisplaySection } from "./ContentDisplaySection";
-export { default as AnimationsLayout } from "./AnimationsLayout";
 export { default as Faqs } from "./Faqs";
 export { default as CookieConsent } from "./CookieConsent";

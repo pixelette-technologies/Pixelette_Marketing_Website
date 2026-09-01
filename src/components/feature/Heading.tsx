@@ -1,8 +1,6 @@
 interface HeadingProps {
   className?: string;
   children: React.ReactNode;
-  animation?: string;
-  duration?: string;
   level?: 1 | 2 | 3 | 4 | 5 | 6; // Optional, defaults to 2 (h1 reserved for the page hero title)
 }
 
@@ -18,8 +16,6 @@ const tagMap = {
 const Heading = ({
   className = "",
   children,
-  animation,
-  duration,
   level = 2
 }: HeadingProps) => {
   const Tag = tagMap[level];
@@ -27,8 +23,6 @@ const Heading = ({
   return (
     <Tag
       className={`heading_${className}`}
-      data-aos={animation}
-      data-aos-duration={duration}
     >
       {children}
     </Tag>

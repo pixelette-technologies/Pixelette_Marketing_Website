@@ -11,8 +11,6 @@ interface ArrowCardProps {
   textfloat: boolean;
   className?: string;
   to?: string;
-  animation?: string;
-  duration?: string;
 }
 
 const ArrowCard: FC<ArrowCardProps> = ({
@@ -22,16 +20,13 @@ const ArrowCard: FC<ArrowCardProps> = ({
   theme,
   textfloat,
   className,
-  to,
-  animation,
-  duration
+  to
+
 }) => {
   return (
     <div
       className={`arrowCard ${className}  `}
       style={{ textAlign: textfloat ? "right" : "left" }}
-      data-aos={animation}
-      data-aos-duration={duration}
     >
       <section
         style={{ justifyContent: textfloat ? "flex-end" : "flex-start" }}

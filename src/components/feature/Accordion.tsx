@@ -7,8 +7,6 @@ interface AccordionProps {
   answer?: string;
   isOpen: boolean;
   onToggle: () => void;
-  animation?: string;
-  duration?: string;
   ind?: string;
 }
 
@@ -17,15 +15,11 @@ const Accordion: FC<AccordionProps> = ({
   answer,
   isOpen,
   onToggle,
-  animation,
-  duration,
   ind
 }) => {
   return (
     <div
       className='accordion'
-      data-aos={animation}
-      data-aos-duration={duration}
       onClick={onToggle}
       style={{ cursor: "pointer" }}
     >

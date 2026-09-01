@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
-import { AnimationsLayout, CookieConsent, Footer, Navbar } from "@/components/common";
+import { CookieConsent, Footer, Navbar } from "@/components/common";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -39,7 +39,6 @@ export const metadata: Metadata = {
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "aos/dist/aos.css";
 import Script from "next/script";
 
 const structuredData = {
@@ -124,11 +123,9 @@ try { if (localStorage.getItem('pmw-consent') === 'granted') { gtag('consent', '
 gtag('js', new Date());
 gtag('config', 'G-1HGJEBFGRW');`}
         </Script>
-        <AnimationsLayout>
-          <Navbar />
-          <div>{children}</div>
-          <Footer />
-        </AnimationsLayout>
+        <Navbar />
+        <div>{children}</div>
+        <Footer />
         <CookieConsent />
       </body>
     </html>

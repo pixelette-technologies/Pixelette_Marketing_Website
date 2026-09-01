@@ -17,16 +17,12 @@ const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
   return (
     <div
       className='blogCardGrid bg_white'
-      data-aos='fade-up'
-      data-aos-duration='1000'
     >
       {data?.map((story, index) => (
         <Link
           key={`section-story-${index}`}
           href={`/blog/${story.id}`}
           className='bg_gray--lightness'
-          data-aos='fade-up'
-          data-aos-duration={`${1000 + index * 200}`}
         >
           <BlogCard
             icon={false}

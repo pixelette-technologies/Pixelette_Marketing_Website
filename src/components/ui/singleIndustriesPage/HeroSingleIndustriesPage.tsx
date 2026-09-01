@@ -62,7 +62,6 @@ const HeroSingleIndustriesPage: FC<HeroSingleIndustriesPageProps> = ({
                 theme={false}
                 textfloat={false}
                 className='hover_black_arrowCard'
-                animation='fade-up'
               />
             ))}
           </blockquote>

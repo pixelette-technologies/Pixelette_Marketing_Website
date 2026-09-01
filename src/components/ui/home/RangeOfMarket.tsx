@@ -56,10 +56,10 @@ const RangeOfMarket: FC = () => {
   ];
 
   return (
-    <div className='bg_primary' data-aos='fade-up' data-aos-duration='1200'>
+    <div className='bg_primary'>
       <Container className='main'>
         <section className='rangeOfMarket'>
-          <header data-aos='fade-left' data-aos-duration='1400'>
+          <header>
             {renderIcons({
               icons: [
                 ...iconsGroup1,
@@ -73,23 +73,19 @@ const RangeOfMarket: FC = () => {
           <center className='text_align_center'>
             <Heading
               className='secondry--semibold color_white'
-              animation='fade-left'
-              duration='1600'
               level={2}
             >
               Our range of marketing tech and platforms
             </Heading>
             <Text
               className='primary color_white'
-              animation='fade-right'
-              duration='1800'
             >
               Pixelette Marketing utilises a diverse range of platforms to drive
               engagement, generate leads and boost your ROI
             </Text>
           </center>
 
-          <div data-aos='fade-right' data-aos-duration='2000'>
+          <div>
             {renderIcons({
               icons: [
                 ...iconsGroup2,

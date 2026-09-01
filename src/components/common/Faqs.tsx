@@ -33,8 +33,6 @@ const Faqs: FC<FaqsProps> = ({ data }) => {
             answer={el.answer}
             isOpen={openAccordionIndex === index}
             onToggle={() => handleAccordionToggle(index)}
-            animation='fade-up'
-            duration={`1${index}00`}
           />
         ))}
       </section>

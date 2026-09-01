@@ -1,27 +1,28 @@
-"use client";
-
-import { useState } from "react";
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import Image from "next/image";
 import Link from "next/link";
 
+// The mouse-parallax that used to live here is gone: a useState offset, a
+// handleMouseMove reading getBoundingClientRect, and five inline transform and
+// transition styles. The five images stay — they are the hero widget and the
+// most distinctive thing on the page — and they do not move, because their
+// positioning is entirely SCSS-owned.
+//
+// Worth recording: all five images shared the SAME offset and differed only in
+// transition duration (0.1s, 0.5s, 0.4s, 0.5s, 0.5s). There was no per-layer
+// depth multiplier, so the apparent parallax depth was entirely an artefact of
+// staggered easing, at an amplitude of 10px.
+//
+// With the state and the handler gone nothing here is interactive, so the file
+// drops "use client" and becomes a server component.
+
 export default function HomeHero() {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { clientX, clientY, currentTarget } = e;
-    const rect = currentTarget.getBoundingClientRect();
-    const offsetX = ((clientX - rect.left) / rect.width - 0.5) * 20;
-    const offsetY = ((clientY - rect.top) / rect.height - 0.5) * 20;
-    setOffset({ x: offsetX, y: offsetY });
-  };
-
   return (
     <Container className='main'>
-      <div className='heroHome' onMouseMove={handleMouseMove}>
+      <div className='heroHome'>
         <div>
-          <section data-aos='fade-up'>
+          <section>
             {/* Men Picture */}
             <Image
               src='/home/hh_image_1.webp'
@@ -29,10 +30,6 @@ export default function HomeHero() {
               width={402}
               priority
               height={408}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.1s ease-out"
-              }}
             />
             {/* Building Image */}
             <Image
@@ -41,10 +38,6 @@ export default function HomeHero() {
               width={342}
               priority
               height={362}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
             />
             {/* Back ground round */}
             <Image
@@ -53,10 +46,6 @@ export default function HomeHero() {
               width={353}
               priority
               height={354}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.4s ease-out"
-              }}
             />
             {/* Laptop */}
             <Image
@@ -65,10 +54,6 @@ export default function HomeHero() {
               width={199}
               priority
               height={218}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
             />
             {/* Clock tower */}
             <Image
@@ -77,10 +62,6 @@ export default function HomeHero() {
               width={162}
               priority
               height={628}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
             />
           </section>
         </div>
@@ -93,25 +74,21 @@ export default function HomeHero() {
           priority
         />
 
-        <section className='bg_tertiary' data-aos='fade-up'>
+        <section className='bg_tertiary'>
           <div>
             <Heading
               className='hero color_primary font_family_glory uppercase'
-              animation='fade-up'
-              duration='1200'
               level={1}
             >
               Marketing That Matters
             </Heading>
             <Heading
               className='hero color_secondry font_family_glory uppercase'
-              animation='fade-up'
-              duration='1400'
               level={2}
             >
               to Your Bottom Line
             </Heading>
-            <Text className='primary' animation='fade-up' duration='1600'>
+            <Text className='primary'>
               Pixelette Marketing delivers precision driven marketing for
               Fintech, SaaS, Web3, tech products and platforms, and more. We
               believe your industry deserves strategies as innovative as your
@@ -122,9 +99,7 @@ export default function HomeHero() {
               </span>
             </Text>
             <Link href='/contactus'>
-              <Button className='primary' animation='fade-up' duration='1800'>
-                Book A Call
-              </Button>
+              <Button className='primary'>Book A Call</Button>
             </Link>
           </div>
         </section>

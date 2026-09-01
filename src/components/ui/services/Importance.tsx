@@ -23,10 +23,10 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
   // verified third-party statistics or owned imagery in the approved redesign.
   if (!data || data.length === 0) return null;
   return (
-    <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1200'>
+    <div className='bg_secondry'>
       <Container className='main'>
         <div className='importance'>
-          <center data-aos='fade-right' data-aos-duration='1200'>
+          <center>
             <Heading className='tertiary--medium color_primary'>
               {mainheading}
             </Heading>
@@ -38,8 +38,6 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
             {data?.map((el, index) => (
               <div
                 key={index}
-                data-aos='fade-up'
-                data-aos-duration={`${1000 + index * 200}`}
               >
                 <div>
                   <section>

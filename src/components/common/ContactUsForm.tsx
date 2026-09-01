@@ -111,8 +111,6 @@ const ContactUsForm: React.FC = () => {
   return (
     <div
       className='contactUsForm bg_white'
-      data-aos='fade-left'
-      data-aos-duration='1000'
     >
       <Heading className='secondry font_family_glory uppercase'>
         book a call with us

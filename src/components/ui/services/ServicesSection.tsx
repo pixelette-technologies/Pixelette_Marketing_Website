@@ -21,28 +21,22 @@ const ServicesSection: FC<ServicesSectionProps> = ({
   return (
     <div
       className='bg_gray--lighter'
-      data-aos='fade-up'
-      data-aos-duration='1000'
     >
       <Container className='main'>
         <div className='servicesSection'>
           <header className='bg_gray--lighter'>
             <Heading
               className='large font_family_glory color_tertiary uppercase'
-              animation='fade-right'
-              duration='1200'
             >
               We manage You grow
             </Heading>
             <div>
               <Heading
                 className='secondry font_family_glory color_secondry uppercase'
-                animation='fade-left'
-                duration='1600'
               >
                 {heading || "No Heading Provided"}
               </Heading>
-              <Text className='secondry' animation='fade-left' duration='1600'>
+              <Text className='secondry'>
                 {text || "No description available."}
               </Text>
             </div>

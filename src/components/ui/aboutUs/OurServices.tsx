@@ -7,30 +7,22 @@ const OurServices = () => {
   return (
     <div
       className='bg_tertiary--dark'
-      data-aos='fade-up'
-      data-aos-duration='1200'
     >
       <Container className='main'>
         <div className='ourServices'>
           <header>
             <Text
               className='primary color_primary'
-              animation='fade-right'
-              duration='1200'
             >
               Industries we service
             </Text>
             <Heading
               className='secondry--light color_secondry'
-              animation='fade-right'
-              duration='1200'
             >
               We succeed where it matters most today
             </Heading>
             <Text
               className='secondry color_secondry'
-              animation='fade-up'
-              duration='1600'
             >
               Navigating the complexities of fast-evolving industries requires a
               deep understanding and agility. We specialise in marketing for
@@ -49,9 +41,7 @@ const OurServices = () => {
                 to={`/industries/${el.route}`}
                 theme={false}
                 textfloat={false}
-                animation='fade-up'
                 className='hover_white_arrowCard'
-                duration={`${1000 + index * 200}`}
               />
             ))}
           </section>

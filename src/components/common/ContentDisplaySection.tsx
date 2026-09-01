@@ -1,6 +1,4 @@
-"use client";
-
-import { FC, useState, useEffect, useRef } from "react";
+import { FC } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
 
@@ -16,110 +14,44 @@ interface ContentDisplaySectionProps {
   data: CardProps[];
 }
 
+// The vertical marquee is gone: a 60fps requestAnimationFrame loop driving a
+// setPosition on every tick, a hover-pause state, and four render passes of the
+// same card list — three stacked for the "seamless loop" plus a fourth copy for
+// mobile. The cards now render ONCE, on a grid, at every width.
+//
+// No content is lost. The extra passes were the same data.map output repeated
+// so the loop had something to scroll into.
+
 const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   title,
   heading,
   detail,
   data
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [position, setPosition] = useState(0);
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | undefined>(undefined);
-  const lastTimeRef = useRef<number>(0);
-  const speed = 0.1; // Reduced speed for smoother movement
-
-  useEffect(() => {
-    lastTimeRef.current = 0;
-
-    const animate = (timestamp: number) => {
-      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-      const deltaTime = timestamp - lastTimeRef.current;
-      lastTimeRef.current = timestamp;
-
-      if (!isHovered) {
-        setPosition(prev => {
-          const newPosition = prev + (speed * (deltaTime / 16)); // Normalize by 60fps
-          // Reset position when it reaches 50% (half of the content)
-          return newPosition >= 50 ? 0 : newPosition;
-        });
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isHovered]);
-
-  const renderCard = (el: CardProps, index: number, key: string) => (
-    <div 
-      key={key}
-      className="marquee-card"
-    >
-      <div className="card-content">
-        <Text className='primary--bold'>{el.heading}</Text>
-        <Text className='tertiary'>{el.detail}</Text>
-      </div>
-    </div>
-  );
-
   return (
-    <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
+    <div className='bg_secondry'>
       <Container className='main'>
         <div className='contentDisplaySection'>
           <header>
             <div>
-              <Text
-                className='primary color_white'
-                animation='fade-up'
-                duration='1400'
-              >
-                {title}
-              </Text>
+              <Text className='primary color_white'>{title}</Text>
               <h2
                 dangerouslySetInnerHTML={{ __html: heading || "" }}
                 className='heading_secondry--light color_white'
-                data-aos='fade-up'
-                data-aos-duration='1200'
               ></h2>
-              <Text
-                className='secondry color_gray'
-                animation='fade-up'
-                duration='1600'
-              >
-                {detail}
-              </Text>
+              <Text className='secondry color_gray'>{detail}</Text>
             </div>
           </header>
-          <section 
-            className="marquee-section"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div
-              ref={marqueeRef}
-              className="marquee-content"
-              style={{
-                transform: `translateY(-${position}%)`,
-                transition: isHovered ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-              }}
-            >
-              {/* First set of items */}
-              {data.map((el, index) => renderCard(el, index, `first-${index}`))}
-              {/* Duplicate set for seamless loop */}
-              {data.map((el, index) => renderCard(el, index, `second-${index}`))}
-              {/* Third set to ensure seamless loop */}
-              {data.map((el, index) => renderCard(el, index, `third-${index}`))}
-            </div>
+          <section className='contentDisplayCards'>
+            {data.map((el, index) => (
+              <div key={index} className='contentCard'>
+                <div className='card-content'>
+                  <Text className='primary--bold'>{el.heading}</Text>
+                  <Text className='tertiary'>{el.detail}</Text>
+                </div>
+              </div>
+            ))}
           </section>
-          {/* Mobile view */}
-          <div className="mobile-view">
-            {data.map((el, index) => renderCard(el, index, `mobile-${index}`))}
-          </div>
         </div>
       </Container>
     </div>

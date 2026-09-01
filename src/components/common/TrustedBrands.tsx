@@ -32,7 +32,7 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
   };
 
   return (
-    <div className='trustedBrands' data-aos='fade-up' data-aos-duration='1800'>
+    <div className='trustedBrands'>
       <Container className='main'>
         {topHeading ? (
           ""

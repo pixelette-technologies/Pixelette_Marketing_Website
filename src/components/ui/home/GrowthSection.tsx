@@ -9,8 +9,6 @@ export default function GrowthSection() {
       <div className='growthSection'>
         <Heading
           className='primary color_secondry font_family_glory uppercase'
-          animation='fade-right'
-          duration='1400'
           level={2}
         >
           Growth <span className='color_primary'>starts</span> here
@@ -20,10 +18,10 @@ export default function GrowthSection() {
         <section>
           <div>
             <header>
-              <Heading animation='fade-right' duration={"1300"} level={3}>
+              <Heading level={3}>
                 Success Follows Next
               </Heading>
-              <section data-aos='fade-right' data-aos-duration={1300}>
+              <section>
                 <div>
                   <div>
                     <Heading className='primary font_family_glory color_primary' level={4}>
@@ -64,7 +62,7 @@ export default function GrowthSection() {
               </section>
             </header>
 
-            <div data-aos='fade-left' data-aos-duration='2000'>
+            <div>
               <Image
                 src='/home/growthBanner.webp'
                 alt='Growth Banner'

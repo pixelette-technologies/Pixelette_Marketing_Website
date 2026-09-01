@@ -22,8 +22,6 @@ const StoriesDataDisplay = () => {
     <Container className='main'>
       <div
         className='storiesDataDisplay'
-        data-aos='fade-up'
-        data-aos-duration='1200'
       >
         <header>
           <div>

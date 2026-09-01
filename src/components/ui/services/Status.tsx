@@ -47,21 +47,17 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
   }, []);
 
   return (
-    <div className='bg_primary' data-aos='fade-up' data-aos-duration='1000'>
+    <div className='bg_primary'>
       <Container className='main'>
         <div className='status'>
           <header>
             <Heading
               className='secondry--light color_white'
-              animation='fade-up'
-              duration='1200'
             >
               {heading}
             </Heading>
             <Text
               className='secondry color_white'
-              animation='fade-up'
-              duration='1400'
             >
               {text}
             </Text>
@@ -72,13 +68,11 @@ const Status: FC<StatusProps> = ({ heading, text, data }) => {
                 key={index}
                 id={`counter-section-${index + 1}`}
                 className='counter-section'
-                data-aos='fade-up'
-                data-aos-duration={`${1000 + index * 200}`}
               >
                 <Text className='primary color_white'>
                   <span>
                     {visibleSections[`counter-section-${index + 1}`] ? (
-                      <CountUp start={0} end={el.value || 0} duration={7} />
+                      <CountUp start={0} end={el.value || 0} />
                     ) : (
                       "0"
                     )}

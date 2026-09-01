@@ -31,29 +31,25 @@ const ResearchSection: FC<ResearchSectionProps> = ({
           <div>
             <Heading
               className='secondry color_secondry font_family_glory uppercase'
-              animation='fade-right'
-              duration='1200'
             >
               {mainHeading}
               <span> {subHeading}</span>
             </Heading>
           </div>
-          <Text className='secondry' animation='fade-left' duration='1600'>
+          <Text className='secondry'>
             {detail}
           </Text>
         </header>
 
-        <section data-aos='fade-up' data-aos-duration='1200'>
+        <section>
           {data?.map((el, index) => (
             <div
               key={index}
               id={`counter-section-${index + 1}`}
               className='counter-section'
-              data-aos='fade-up'
-              data-aos-duration={`${1000 + index * 200}`}
             >
               <Heading className='primary color_primary font_family_glory '>
-                <CountUp start={0} end={el.value || 0} duration={7} />%
+                <CountUp start={0} end={el.value || 0} />%
               </Heading>
               <Text className='secondry font_family_glory'>{el.message}</Text>
               <blockquote className='bg_white'>

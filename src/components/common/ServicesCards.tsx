@@ -47,7 +47,7 @@ const ServicesCards: FC<ServicesCardsProps> = ({
   data = []
 }) => {
   return (
-    <div className='servicesCard' data-aos='fade-up' data-aos-duration='1400'>
+    <div className='servicesCard'>
       {/* Heading Section */}
       <Heading className='small color_primary'>
         {heading || "No Heading Provided"}

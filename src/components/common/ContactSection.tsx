@@ -24,7 +24,7 @@ const ContactSection: FC<ContactSectionProps> = ({
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
   return (
-    <div className='bg_tertiary' data-aos='fade-up' data-aos-duration='1000'>
+    <div className='bg_tertiary'>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
@@ -32,12 +32,10 @@ const ContactSection: FC<ContactSectionProps> = ({
               <HeadingTag
                 className='heading_primary font_family_glory uppercase'
                 dangerouslySetInnerHTML={{ __html: heading }}
-                data-aos='fade-right'
-                data-aos-duration='1200'
               ></HeadingTag>
             )}
             {text && <Text className='secondry'>{text}</Text>}
-            <div data-aos='fade-up'>
+            <div>
               {data?.map((el, index) => (
                 <blockquote className='bg_white' key={index}>
                   <section>

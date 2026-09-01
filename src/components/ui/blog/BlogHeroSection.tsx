@@ -11,13 +11,10 @@ const BlogHeroSection = () => {
           alt='Hero About Us Page'
           width={626}
           height={288}
-          data-aos='fade-up'
         />
         <section>
           <Heading
             className='tertiary font_family_glory uppercase'
-            animation='fade-up'
-            duration='1200'
             level={1}
           >
             Pixelette
@@ -25,8 +22,6 @@ const BlogHeroSection = () => {
           </Heading>
           <Text
             className='primary color_secondry'
-            animation='fade-up'
-            duration='1400'
           >
             Your marketing knowlege repository for emerging industries
           </Text>

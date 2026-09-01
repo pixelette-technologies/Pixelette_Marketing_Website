@@ -23,8 +23,6 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
             key={`section-story-${index}`}
             href={`/story/${story.id}`}
             className='bg_gray--lightness'
-            data-aos='fade-up'
-            data-aos-duration={`${1000 + index * 200}`}
           >
             <BlogCard
               icon={false}
@@ -43,8 +41,6 @@ const StoriesCardGrid: React.FC<StoriesCardGridProps> = ({ data }) => {
           <Link
             key={`section-story-${index}`}
             href={`/story/${story.id}`}
-            data-aos='fade-up'
-            data-aos-duration={`${1000 + index * 200}`}
             className='bg_gray--lightness'
           >
             <BlogCard

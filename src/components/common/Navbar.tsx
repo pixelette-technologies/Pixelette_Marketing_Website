@@ -19,7 +19,7 @@ export default function Navbar() {
 
   return (
     <div style={{ position: "sticky", zIndex: 9999 }}>
-      <div className='bg_secondry' data-aos='fade-down'>
+      <div className='bg_secondry'>
         <Container className='main'>
           <div className='main_nav'>
             <nav className='site-nav'>

@@ -12,13 +12,10 @@ const AboutUsHero = () => {
           alt='Hero About Us Page'
           width={626}
           height={288}
-          data-aos='fade-up'
         />
         <div>
           <Heading
             className='tertiary color_primary uppercase font_family_glory'
-            animation='fade-up'
-            duration='1200'
             level={1}
           >
             Redefining growth
@@ -26,15 +23,13 @@ const AboutUsHero = () => {
           </Heading>
           <Text
             className='secondry color_secondry'
-            animation='fade-up'
-            duration='1400'
           >
             At Pixelette Marketing, we bring a thoughtful, collaborative
             approach to help brands achieve their goals. Our marketing services
             are built on trust, creativity and delivering results that matter.
           </Text>
           <Link href='contactus'>
-            <Button className='primary' animation='fade-up' duration='1600'>
+            <Button className='primary'>
               Get in touch
             </Button>
           </Link>

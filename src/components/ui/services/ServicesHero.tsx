@@ -20,7 +20,7 @@ const ServicesHero: FC<ServicesHeroProps> = ({
   return (
     <Container className='main'>
       <section className='servicesHero'>
-        <section data-aos='fade-up'>
+        <section>
           <Image
             src={image}
             alt='hero image for services'
@@ -32,22 +32,18 @@ const ServicesHero: FC<ServicesHeroProps> = ({
         <div>
           <Heading
             className='tertiary color_primary uppercase font_family_glory'
-            animation='fade-up'
-            duration='1000'
             level={1}
           >
             {mainHeading} <span> {subHeading}</span>
           </Heading>
 
-          <Text className='secondry' animation='fade-up' duration='1400'>
+          <Text className='secondry'>
             {text}
           </Text>
           <div>
             <Link href='/contactus'>
               <Button
                 className='primary-full'
-                animation='fade-up'
-                duration='1600'
               >
                 Book a call
               </Button>
@@ -55,8 +51,6 @@ const ServicesHero: FC<ServicesHeroProps> = ({
             <Link href='/contactus'>
               <Button
                 className='secondry-full'
-                animation='fade-up'
-                duration='1800'
               >
                 Get a proposal
               </Button>

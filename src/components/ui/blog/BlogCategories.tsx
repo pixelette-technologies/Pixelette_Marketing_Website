@@ -31,13 +31,9 @@ const BlogCategories: FC<BlogCategoriesProps> = ({
   return (
     <section
       className='blogCategories bg_white'
-      data-aos='fade-up'
-      data-aos-duration='1000'
     >
       <Heading
         className='tertiary font_family_glory'
-        animation='fade-up'
-        duration='1200'
       >
         Categories
       </Heading>

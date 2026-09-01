@@ -1,12 +1,22 @@
 @use "../../globels" as color;
 
+// The marquee machinery is gone with the motion it existed for: the fixed
+// 600px viewport with overflow hidden, the ::before/::after gradient masks that
+// faded the scrolling edges, and the will-change / translateZ(0) /
+// backface-visibility GPU hints on three separate elements. The separate
+// .mobile-view block goes too — there is one card list now and it renders at
+// every width.
+//
+// The card hover also goes. It lifted 2px and deepened its shadow; the register
+// is flat, and hover changes border colour only.
+
 .contentDisplaySection {
   display: flex;
   padding-top: 1.25rem;
   justify-content: space-between;
   gap: 1.25rem;
   padding-bottom: 1.25rem;
-  
+
   @media only screen and (max-width: 750px) {
     flex-direction: column;
   }
@@ -19,7 +29,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     @media only screen and (max-width: 750px) {
       text-align: center;
       padding-bottom: 1.875rem;
@@ -28,16 +38,16 @@
       margin: auto;
       position: relative;
     }
-    
+
     & > div {
       & > h2 {
         margin-top: 1rem;
         margin-bottom: 2rem;
-        
+
         @media only screen and (max-width: 750px) {
           margin-bottom: 0.625rem;
         }
-        
+
         & > span {
           color: color.$primary;
         }
@@ -45,123 +55,42 @@
     }
   }
 
-  .marquee-section {
-    position: relative;
-    max-width: 557px;
-    height: 600px;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 0.625rem;
-    padding: 0.625rem;
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+  .contentDisplayCards {
+    flex: 1 1 auto;
+    max-width: 34.8125rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1rem;
+    align-content: start;
 
     @media only screen and (max-width: 750px) {
-      display: none;
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 100px;
-      z-index: 2;
-      pointer-events: none;
-      opacity: 0.8;
-    }
-
-    &::before {
-      top: 0;
-      background: linear-gradient(to bottom, var(--bg-secondry) 0%, transparent 100%);
-    }
-
-    &::after {
-      bottom: 0;
-      background: linear-gradient(to top, var(--bg-secondry) 0%, transparent 100%);
-    }
-
-    .marquee-content {
-      position: relative;
-      width: 100%;
-      will-change: transform;
-      padding: 0.625rem 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      height: fit-content;
-    }
-
-    .marquee-card {
-      padding: 1rem 2rem;
-      border-radius: 0.625rem;
-      background: white;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-shrink: 0;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-
-      &:nth-child(odd) {
-        background-color: rgba(240, 233, 228, 1);
-      }
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-      }
-
-      .card-content {
-        .primary--bold {
-          margin-bottom: 0.625rem;
-          display: block;
-          font-size: 0.75rem;
-          font-weight: 600;
-        }
-
-        .tertiary {
-          color: #666;
-          line-height: 1.5;
-        }
-      }
+      max-width: none;
     }
   }
 
-  .mobile-view {
-    display: none;
-    
-    @media only screen and (max-width: 750px) {
-      display: block;
-      padding: 0 0.625rem;
+  .contentCard {
+    padding: 1rem 2rem;
+    border-radius: var(--radius-card);
+    background: var(--color-page);
+    box-shadow: var(--shadow-card);
+
+    // was F0E9E4
+    &:nth-child(odd) {
+      background-color: var(--color-band);
     }
 
-    .marquee-card {
-      padding: 1rem 2rem;
-      margin-bottom: 1rem;
-      border-radius: 0.625rem;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-      &:nth-child(odd) {
-        background-color: rgba(240, 233, 228, 1);
+    .card-content {
+      .primary--bold {
+        margin-bottom: 0.625rem;
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 600;
       }
 
-      .card-content {
-        .primary--bold {
-          margin-bottom: 0.625rem;
-          display: block;
-          font-size: 0.75rem;
-          font-weight: 600;
-        }
-
-        .tertiary {
-          color: #666;
-          line-height: 1.5;
-        }
+      // was 666
+      .tertiary {
+        color: var(--color-muted);
+        line-height: 1.5;
       }
     }
   }

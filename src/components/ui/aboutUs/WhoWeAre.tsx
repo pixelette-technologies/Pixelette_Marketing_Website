@@ -5,17 +5,13 @@ const WhoWeAre = () => {
     <div className='whoWeAre'>
       <section
         className='bg_primary'
-        data-aos='fade-up'
-        data-aos-duration='1000'
       >
         <div>
-          <header data-aos='fade-up' data-aos-duration='1200'>
+          <header>
             <Text className='primary color_primary'>Who we are</Text>
           </header>
           <Heading
             className='secondry--light color_white'
-            animation='fade-up'
-            duration='1300'
             level={2}
           >
             Bridging the gap in marketing for emerging industries
@@ -23,8 +19,6 @@ const WhoWeAre = () => {
           <div>
             <Text
               className='secondry color_white'
-              animation='fade-up'
-              duration='1400'
             >
               When Pixelette Marketing began in 2020, we recognized an untapped
               opportunity to serve industries breaking new ground. Emerging
@@ -34,8 +28,6 @@ const WhoWeAre = () => {
             </Text>
             <Text
               className='secondry color_white'
-              animation='fade-up'
-              duration='1500'
             >
               So, we took a different path. We’re not just marketers, we’re
               partners for innovators. Every campaign, every strategy, every
@@ -48,40 +40,34 @@ const WhoWeAre = () => {
       </section>
       <section
         className='bg_secondry'
-        data-aos='fade-up'
-        data-aos-duration='1000'
       >
         <div>
-          <header data-aos='fade-up' data-aos-duration='1200'>
+          <header>
             <Text className='primary color_secondry'>Our approach</Text>
           </header>
           <Heading
             className='secondry--light color_white'
-            animation='fade-up'
-            duration='1300'
             level={2}
           >
             Your vision, our blueprint
           </Heading>
           <Text
             className='secondry color_white'
-            animation='fade-up'
-            duration='1400'
           >
             Your ambitions set the direction; we provide the roadmap. With a
             clear understanding of your goals, we design actionable plans to
             bring your vision to life.
           </Text>
           <ul>
-            <li data-aos='fade-up' data-aos-duration='1430'>
+            <li>
               Our decisions are rooted in data, making sure every move made is
               backed by actionable insights.
             </li>
-            <li data-aos='fade-up' data-aos-duration='1530'>
+            <li>
               No one-size-fits-all solutions here. Every campaign is customised
               to fit the unique voice and goals of your brand.
             </li>
-            <li data-aos='fade-up' data-aos-duration='1630'>
+            <li>
               We focus only on tangible outcomes (and no vanity metrics),
               whether that’s generating leads or getting you an uptick in
               revenue.

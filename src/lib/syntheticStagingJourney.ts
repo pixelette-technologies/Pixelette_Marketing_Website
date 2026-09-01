@@ -206,6 +206,14 @@ export interface SyntheticStagingFullJourneyResult {
   acceptedForLiveLearning: false;
 }
 
+async function governedStep<T>(name: string, action: () => Promise<T>): Promise<T> {
+  try {
+    return await action();
+  } catch {
+    throw new Error(`SYNTHETIC_STAGING_${name}_STEP_FAILED`);
+  }
+}
+
 export async function executeSyntheticStagingFullJourney(options: {
   configuration: SyntheticStagingConfiguration;
   origin: string;
@@ -214,7 +222,7 @@ export async function executeSyntheticStagingFullJourney(options: {
   fetchImpl?: typeof fetch;
 }): Promise<SyntheticStagingFullJourneyResult> {
   const fetchImpl = options.fetchImpl ?? fetch;
-  const source = await executeSyntheticStagingJourney({ ...options, fetchImpl });
+  const source = await governedStep("SOURCE", () => executeSyntheticStagingJourney({ ...options, fetchImpl }));
   if (!source.accepted) {
     return {
       accepted: false,
@@ -240,12 +248,12 @@ export async function executeSyntheticStagingFullJourney(options: {
     nowMs: options.nowMs,
     fetchImpl,
   };
-  const baseline = await signedSyntheticPost({
+  const baseline = await governedStep("BASELINE", () => signedSyntheticPost({
     ...request,
     endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-learning/query"),
     body: query,
-  });
-  const outcome = await signedSyntheticPost({
+  }));
+  const outcome = await governedStep("OUTCOME", () => signedSyntheticPost({
     ...request,
     endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-outcomes"),
     body: {
@@ -261,17 +269,17 @@ export async function executeSyntheticStagingFullJourney(options: {
         source: "synthetic-staging",
       },
     },
-  });
-  const returned = await signedSyntheticPost({
+  }));
+  const returned = await governedStep("OUTCOME_RETURN", () => signedSyntheticPost({
     ...request,
     endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-outcomes/query"),
     body: query,
-  });
-  const learned = await signedSyntheticPost({
+  }));
+  const learned = await governedStep("LEARNING", () => signedSyntheticPost({
     ...request,
     endpoint: stagingEndpoint(options.configuration.transport.endpoint, "synthetic-learning/query"),
     body: query,
-  });
+  }));
 
   const learning = isRecord(learned.learning) ? learned.learning : undefined;
   const previousNextAction = String(learning?.previous_next_action ?? baseline.next_action ?? "");

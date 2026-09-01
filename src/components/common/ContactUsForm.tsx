@@ -97,7 +97,7 @@ const ContactUsForm: React.FC = () => {
   if (!governanceReady) {
     return (
       <div className='contactUsForm' role='status'>
-        <Heading className='heading_secondry font_family_glory uppercase'>
+        <Heading className='heading_secondry font_family_glory'>
           contact form temporarily unavailable
         </Heading>
         <p>
@@ -112,7 +112,7 @@ const ContactUsForm: React.FC = () => {
     <div
       className='contactUsForm'
     >
-      <Heading className='heading_secondry font_family_glory uppercase'>
+      <Heading className='heading_secondry font_family_glory'>
         book a call with us
       </Heading>
       <Formik

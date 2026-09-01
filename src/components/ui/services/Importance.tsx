@@ -45,10 +45,10 @@ const Importance: FC<ImportanceProps> = ({ mainheading, subHeading, data }) => {
                     <blockquote>
                       <Text className='small'>{el.role}</Text>
                       <div>
-                        <Heading className='heading_ImportanceCardheading uppercase'>
+                        <Heading className='heading_ImportanceCardheading'>
                           {el.name}
                         </Heading>
-                        <Heading className='heading_ImportanceCardheading uppercase'>
+                        <Heading className='heading_ImportanceCardheading'>
                           {el.name}
                         </Heading>
                       </div>

@@ -36,7 +36,7 @@ const ResearchSection: FC<ResearchSectionProps> = ({
         <header>
           <div>
             <Heading
-              className='heading_secondry font_family_glory uppercase'
+              className='heading_secondry font_family_glory'
             >
               {mainHeading}
               <span> {subHeading}</span>

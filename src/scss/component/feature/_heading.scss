@@ -80,6 +80,36 @@
     font-weight: 600;
     line-height: 1.3;
   }
+
+  // Sentence case, without touching a single byte of copy.
+  //
+  // The same rule the Appendix E primitives got in F1, extended to the legacy
+  // variants because the call sites still carry those. It has to land BEFORE
+  // the uppercase utility comes off, not after: several headings are stored
+  // LOWERCASE in the source and only ever looked capitalised because the
+  // utility shouted them — "contact form temporarily unavailable", "book a
+  // call with us", and every subHeading in the industries data. Drop the
+  // utility on its own and those render lowercase.
+  //
+  // Capitalising an already-capital letter is a no-op, so this is safe on
+  // every variant and needs no per-call-site knowledge of how the copy
+  // happens to be cased. It is also why the pass does not have to know which
+  // strings are which.
+  &hero::first-letter,
+  &large::first-letter,
+  &primary::first-letter,
+  &primary--light::first-letter,
+  &secondry::first-letter,
+  &secondry--boldLight::first-letter,
+  &secondry--semibold::first-letter,
+  &secondry--light::first-letter,
+  &tertiary::first-letter,
+  &tertiary--medium::first-letter,
+  &tertiary--light::first-letter,
+  &ImportanceCardheading::first-letter,
+  &small::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 // Display tracking and leading are the two type values that cannot interpolate.

@@ -21,7 +21,7 @@ const AboutUsHero = () => {
             height={288}
           />
           <div>
-            <Heading className='heading_tertiary uppercase font_family_glory' level={1}>
+            <Heading className='heading_tertiary font_family_glory' level={1}>
               Redefining growth
               <span> with purpose</span>
             </Heading>

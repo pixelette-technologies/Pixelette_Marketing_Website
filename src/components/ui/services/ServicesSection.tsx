@@ -27,13 +27,13 @@ const ServicesSection: FC<ServicesSectionProps> = ({
               own .band-alt. See the partial for why sticky had to go. */}
           <header>
             <Heading
-              className='heading_large font_family_glory uppercase'
+              className='heading_large font_family_glory'
             >
               We manage You grow
             </Heading>
             <div>
               <Heading
-                className='heading_secondry font_family_glory uppercase'
+                className='heading_secondry font_family_glory'
               >
                 {heading || "No Heading Provided"}
               </Heading>

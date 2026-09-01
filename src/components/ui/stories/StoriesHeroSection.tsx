@@ -14,7 +14,7 @@ const StoriesHeroSection = () => {
         />
         <section>
           <Heading
-            className='heading_tertiary font_family_glory uppercase'
+            className='heading_tertiary font_family_glory'
             level={1}
           >
             Stories of <span>growth and impact</span>

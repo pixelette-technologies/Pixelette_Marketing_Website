@@ -34,7 +34,7 @@ const ServicesHero: FC<ServicesHeroProps> = ({
             />
           </section>
           <div>
-            <Heading className='heading_tertiary uppercase font_family_glory' level={1}>
+            <Heading className='heading_tertiary font_family_glory' level={1}>
               {mainHeading} <span> {subHeading}</span>
             </Heading>
 

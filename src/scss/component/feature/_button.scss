@@ -1,9 +1,19 @@
 @use "../../globels" as color;
 
+// cursor and font-family are a legitimate global reset and stay.
 button {
   cursor: pointer;
-  transition: 0.3s ease-in-out;
   font-family: var(--font-body);
+}
+
+// The blanket 0.3s transition used to sit on every button in the document,
+// which meant it also animated .btn and .btn2 — and the register is flat and
+// static. Scoped to the legacy button classes so their behaviour is unchanged;
+// it goes entirely with the decorative layer in D2.
+.btn_primary,
+.btn_primary-full,
+.btn_secondry-full {
+  transition: 0.3s ease-in-out;
 }
 
 .btn {

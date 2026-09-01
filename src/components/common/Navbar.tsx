@@ -22,7 +22,7 @@ export default function Navbar() {
       <div className='bg_secondry' data-aos='fade-down'>
         <Container className='main'>
           <div className='main_nav'>
-            <nav>
+            <nav className='site-nav'>
               <Link href={"/"}>
                 <Logo />
               </Link>

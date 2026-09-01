@@ -1,6 +1,8 @@
 @use "../../globels" as color;
 
-nav {
+// Scoped in D1: an unscoped `nav` rule styles every nav in the document,
+// including anything the conversion builds. Retired with this partial in D3.
+.site-nav {
   padding: 0.625rem 0rem;
   display: flex;
   align-items: center;

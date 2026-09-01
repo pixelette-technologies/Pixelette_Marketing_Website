@@ -1,5 +1,9 @@
 @use "../globels" as color;
 
+// This one stays global on purpose. It is a reset, not a colour rule, and
+// every primitive that needs an underline — .link, .prose a — is a class and
+// outranks it. Do NOT add the guide's global coloured link rule here: it would
+// turn the navigation, breadcrumbs and footer brand-coloured.
 a {
   text-decoration: none;
 }

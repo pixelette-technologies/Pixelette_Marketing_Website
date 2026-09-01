@@ -1,4 +1,6 @@
-footer {
+// Scoped in D1: an unscoped `footer` rule would fight the .footer primitive
+// on padding and descendant layout. Retired with this partial in D3.
+.site-footer {
   padding: 2.09375rem 0rem;
   & > div {
     display: flex;

@@ -1,8 +1,9 @@
 @use "../../globels/" as breakPoint;
 
-h1 {
-  z-index: -10;
-}
+// Deleted in D1: `h1 { z-index: -10 }` was a global unscoped rule. z-index is
+// inert on a statically positioned h1, but it pushes any positioned or
+// flex/grid-child h1 behind its siblings. There was no legitimate reason for
+// it. Check every h1 during the browser walk.
 
 .heading_ {
   &hero {

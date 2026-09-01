@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className='bg_primary py-4'>
+    <footer className='site-footer bg_primary py-4'>
       <Container className='main flex justify-between items-center'>
         <div className='flex items-center gap-4'>
           <Text className='secondry color_white'>

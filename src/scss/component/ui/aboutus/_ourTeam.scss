@@ -50,21 +50,36 @@
       flex-direction: column;
       overflow: hidden;
 
+      // The portraits are five different intrinsic heights (180 to 235) in a
+      // row of equal-height grid items, so a short one left its own ground
+      // showing beneath it while a tall one sat flush. margin-top: auto
+      // takes the column's leftover space above the image instead of below,
+      // which lands every portrait on the same baseline whatever it measures.
       & > img {
+        margin-top: auto;
         max-width: 100%;
         height: auto;
       }
 
+      // .ourTeamBand sets color: --color-panel-text for the dark ground, and
+      // the cards inherited it onto five PALE pastels, where it measures 1.63
+      // to 2.31 there — the name and role were near-invisible on all five.
+      // Correct token, wrong ground, which is the pairing failure the vault
+      // records rather than anything either token gets wrong on its own.
+      // Ink carries the name at 12.33 to 17.46, body the role at 5.67 to
+      // 8.02. Muted was measured and rejected: it fails four of the five.
       & > center {
         & > * {
           &:first-child {
             font-size: 0.875rem;
             font-weight: 700;
+            color: var(--color-ink);
           }
 
           &:nth-child(2) {
             font-size: 0.75rem;
             font-weight: 400;
+            color: var(--color-body);
           }
         }
       }

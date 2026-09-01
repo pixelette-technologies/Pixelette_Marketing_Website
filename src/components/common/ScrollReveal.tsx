@@ -88,11 +88,34 @@ export default function ScrollReveal() {
       { threshold: 0.04, rootMargin: "0px 0px -8% 0px" }
     );
 
+    const show = (el: HTMLElement) => {
+      el.setAttribute("data-revealing", "shown");
+      observer.unobserve(el);
+    };
+
     const hide = (el: HTMLElement) => {
       el.setAttribute("data-revealing", "hidden");
       touched.push(el);
       observer.observe(el);
     };
+
+    // An element at opacity 0 is still in the tab order. Without this, tabbing
+    // into a block that has not been scrolled to yet would move focus onto
+    // something invisible and leave it there for the length of the fade — the
+    // browser scrolls it into view, but the observer takes a frame and the
+    // transition takes 640ms after that. Keyboard focus reveals immediately
+    // and skips the animation entirely, which is the correct trade: the
+    // accessibility floor is fixed group property and is not part of any
+    // motion exception. Every hidden ancestor is revealed, not just the
+    // nearest — a card inside an unrevealed section has two.
+    const onFocusIn = (event: FocusEvent) => {
+      let node = event.target as HTMLElement | null;
+      while (node && node !== flow) {
+        if (node.getAttribute("data-revealing") === "hidden") show(node);
+        node = node.parentElement;
+      }
+    };
+    flow.addEventListener("focusin", onFocusIn);
 
     try {
       const fold = window.innerHeight * BELOW_FOLD;
@@ -130,12 +153,14 @@ export default function ScrollReveal() {
       // Something in the walk threw. Whatever has been hidden so far is put
       // back immediately — a half-applied pass is the one outcome that could
       // leave content unreachable, and it is not worth risking for a fade.
+      flow.removeEventListener("focusin", onFocusIn);
       observer.disconnect();
       clear();
       return;
     }
 
     return () => {
+      flow.removeEventListener("focusin", onFocusIn);
       observer.disconnect();
       clear();
     };

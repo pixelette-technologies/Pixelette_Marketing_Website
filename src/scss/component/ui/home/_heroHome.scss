@@ -1,187 +1,142 @@
+// D4. Twenty-eight media queries across eleven breakpoints, down to one.
+//
+// The copy column was still shaped around furniture that no longer exists.
+// When Phase E dropped the bg_tertiary band from behind the copy — a second
+// ground fighting the wash — it left the geometry that band had needed:
+// padding-left: 13.75rem rising to 13.125rem and back down again over five
+// breakpoints, margin-left: -15rem, margin-bottom: -5.4375rem and a pair of
+// 1.875rem corner radii on a surface with nothing to round. What rendered was
+// 220px of empty gutter beside a heading, and below 1200px a column dragged
+// 240px to the left of its own container. That is the gap in the hero.
+//
+// The collage is the other half. It was five absolutely positioned images at
+// fixed rem offsets inside a fixed 662x410 box, with a second set of hard
+// pixel sizes for every image below 1065px, and it was switched off entirely
+// below 988px in favour of a single flat mobile image. The offsets are
+// percentages of the design box now and the box carries its aspect ratio, so
+// the composition scales instead of being re-pinned at each width, and the six
+// per-image overrides go.
+//
+// The one media query left is the collage-to-mobile-image swap, which is a
+// genuine content swap rather than a layout tweak and cannot be interpolated.
+// It sits at the guide's own 767px rather than inventing a twelfth breakpoint.
+
 .heroHome {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 3.1875rem;
-  padding: 2.5rem 0rem;
-  @media only screen and (max-width: 985px) {
-    flex-direction: column;
-  }
+  padding-block: var(--sec-y);
 
+  // --- The collage ---------------------------------------------------------
+  // The hero widget, and the most distinctive thing on the page. Static since
+  // D2 took the mouse-parallax out; its positioning was always SCSS-owned, so
+  // removing the motion did not move the images.
   & > div {
-    padding-top: 14.375rem;
-    z-index: 2;
+    flex: 1 1 24rem;
+    min-width: 0;
+
+    // The five images used to bleed well outside the 662x410 box they were
+    // positioned in — the clock tower alone is 628px tall and sat at
+    // top: -13.75rem, so the composition ran from -220px to +408px vertically
+    // and from -110px to +539px across. It was held on screen by a
+    // padding-top: 14.375rem on this column, and container_main still carries
+    // overflow: hidden, so anything that outgrew that padding was cut. The
+    // container narrowed by 206px in D0, which is exactly the kind of change
+    // that turns a scaffolded overflow into a clipped one.
+    //
+    // The box is the composition's real extent now — 649x628, the union of all
+    // five images — and every offset is a percentage inside it. Nothing
+    // overflows, so nothing needs padding to survive and nothing can be
+    // clipped. Same picture, same stacking order, no scaffolding.
     & > section {
       position: relative;
-      max-width: 662px;
-      height: 410px;
-      margin-left: 7.5rem;
+      width: 100%;
+      max-width: 40.5625rem; // 649px
+      aspect-ratio: 649 / 628;
+      margin-inline: auto;
+
       & > img {
         position: absolute;
+        height: auto;
       }
-
 
       & > * {
+        // Men picture — 402x408
         &:first-child {
-          // was 1000 !important
+          top: 35%;
+          left: 16.9%;
+          width: 61.9%;
           z-index: 2;
-          @media only screen and (max-width: 1065px) {
-            height: 340px;
-            width: 330px;
-          }
         }
+        // Building — 342x362
         &:nth-child(2) {
-          top: 2.8125rem;
-          left: -6.875rem;
+          top: 42.2%;
+          left: 0%;
+          width: 52.7%;
           z-index: 80;
-          @media only screen and (max-width: 1065px) {
-            height: 300px;
-            width: 310px;
-          }
         }
+        // Background round — 353x354
         &:nth-child(3) {
-          top: -3.75rem;
-          left: 1.875rem;
-          @media only screen and (max-width: 1065px) {
-            height: 300px;
-            width: 310px;
-          }
+          top: 25.5%;
+          left: 21.6%;
+          width: 54.4%;
         }
+        // Laptop — 199x218
         &:nth-child(4) {
-          left: 21.25rem;
-          top: 10rem;
+          top: 60.5%;
+          left: 69.3%;
+          width: 30.7%;
           z-index: 80;
-          @media only screen and (max-width: 1065px) {
-            height: 150px;
-            width: 160px;
-          }
         }
+        // Clock tower — 162x628, the full height of the box
         &:nth-child(5) {
-          left: 18.75rem;
-          top: -13.75rem;
-          @media only screen and (max-width: 1065px) {
-            height: 460px;
-            width: 110px;
-            top: -9.375rem;
-          }
+          top: 0%;
+          left: 63.2%;
+          width: 25%;
         }
       }
-      @media only screen and (max-width: 988px) {
-        display: none;
-      }
-    }
-    @media only screen and (max-width: 988px) {
-      padding-top: 3.125rem;
-    }
-    @media only screen and (max-width: 550px) {
-      padding-top: 0rem;
-      margin-top: -2.5rem;
     }
   }
+
+  // --- The mobile stand-in -------------------------------------------------
   & > img {
     display: none;
-    @media only screen and (max-width: 988px) {
-      display: block;
-      z-index: 100;
-    }
-    @media only screen and (max-width: 580px) {
-      width: 96%;
-      height: auto;
-    }
   }
 
+  // --- The copy ------------------------------------------------------------
+  // No band, so no geometry for one. No eyebrow: HomeHero has no such copy and
+  // writing one is Trap 01. One button, because a second call to action is new
+  // content. Both headings keep their own elements.
   & > section {
-    padding-top: 2.375rem;
-    padding-bottom: 2.375rem;
-    padding-right: 3.3125rem;
-    padding-left: 13.75rem;
-    margin-left: 0rem;
-    margin-bottom: -5.4375rem;
-    border-top-right-radius: 1.875rem;
-    border-bottom-right-radius: 1.875rem;
-
-    @media only screen and (max-width: 1346px) {
-      padding-left: 12.5rem;
-    }
-    @media only screen and (max-width: 1325px) {
-      padding-right: 1.875rem;
-      padding-left: 11.875rem;
-    }
-    @media only screen and (max-width: 1280px) {
-      padding-left: 13.125rem;
-    }
-    @media only screen and (max-width: 1200px) {
-      margin-left: -15rem;
-      margin-bottom: -9.375rem;
-    }
-
-    @media only screen and (max-width: 1080px) {
-      margin-bottom: -6.5625rem;
-    }
-
-    @media only screen and (max-width: 1050px) {
-      padding-left: 11.875rem;
-    }
-    @media only screen and (max-width: 1050px) {
-      padding-left: 10.625rem;
-    }
-
-    @media only screen and (max-width: 988px) {
-      padding-left: 1.875rem;
-      padding-right: 1.875rem;
-      margin-top: -6.25rem;
-      padding-top: 5.625rem;
-      margin-bottom: 0rem;
-      margin-left: -3.125rem;
-      border-bottom-left-radius: 1.875rem;
-      border-bottom-right-radius: 1.875rem;
-      border-top-left-radius: 1.875rem;
-      border-top-right-radius: 1.875rem;
-    }
-    @media only screen and (max-width: 580px) {
-      margin-left: 0rem;
-      width: 90%;
-    }
+    flex: 1 1 22rem;
+    min-width: 0;
 
     & > div {
-      max-width: 23.875rem;
-      @media only screen and (max-width: 1050px) {
-        max-width: 300px;
-      }
-
-      @media only screen and (max-width: 988px) {
-        max-width: 420px;
-      }
-      @media only screen and (max-width: 1325px) {
-        & > h1 {
-          font-size: 3rem;
-          line-height: 2.8125rem;
-          @media only screen and (max-width: 1065px) {
-            font-size: 2.5rem;
-            line-height: 2.1875rem;
-          }
-          @media only screen and (max-width: 1050px) {
-            font-size: 2.1875rem;
-            line-height: 2rem;
-          }
-        }
-      }
+      max-width: 34rem;
 
       & > p {
-        margin: 2rem 0rem;
-        // was 999999
-        z-index: 3;
-        @media only screen and (max-width: 1325px) {
-          margin: 1.25rem 0rem;
-        }
-        @media only screen and (max-width: 1065px) {
-          margin: 1rem 0rem;
-        }
-
-        @media only screen and (max-width: 850px) {
-          margin: 0.9375rem 0rem;
-        }
+        margin: 1.5rem 0rem;
       }
+    }
+  }
+}
+
+// The collage carries five images and the clock tower alone is 628px tall in a
+// 410px box. Below the guide's mobile width there is no room to compose them,
+// so the flat stand-in takes over. This is the swap, and it is the only
+// breakpoint this file has left.
+@media only screen and (max-width: 767px) {
+  .heroHome {
+    & > div {
+      display: none;
+    }
+
+    & > img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
   }
 }

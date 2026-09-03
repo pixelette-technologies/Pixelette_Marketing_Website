@@ -152,7 +152,7 @@ const ContactUsForm: React.FC = () => {
               name='description'
               place='Write your query here'
             />
-            <label style={{ display: "flex", gap: "0.46875rem", alignItems: "flex-start" }}>
+            <label className='contactUsFormConsent'>
               <Field type='checkbox' name='consent' />
               <span>
                 {consentText}{" "}

@@ -68,7 +68,7 @@ export default function HomeHero() {
               <Heading className='h1' level={1}>
                 Marketing that matters
               </Heading>
-              <Heading className='h1' level={2}>
+              <Heading className='h1 lowercase' level={2}>
                 to your bottom line
               </Heading>
               <Text className='lead'>

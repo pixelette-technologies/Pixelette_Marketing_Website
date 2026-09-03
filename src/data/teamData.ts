@@ -7,13 +7,6 @@ const teamData = [
     image: "/common/t_1.webp"
   },
   {
-    name: "Kim Serafini",
-    role: "CEO, Positive Prime",
-    detail:
-      "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-    image: "/common/t_2.webp"
-  },
-  {
     name: "Ivan Petrovic",
     role: "CEO, WebBookingPro",
     detail:

@@ -155,3 +155,19 @@
     }
   }
 }
+
+// The brief's primary navigation button. It is the last item in the row on
+// desktop and the last in the drawer on mobile, and it keeps the hero's label
+// so the page never offers two names for the same action.
+//
+// The link wraps the Button rather than the Button taking an href, which is
+// the pattern the heroes already use.
+.site-nav__cta {
+  display: inline-flex;
+
+  // The bar carries seven links and a button now. The button is the one item
+  // that must not shrink into the row.
+  & > .btn {
+    white-space: nowrap;
+  }
+}

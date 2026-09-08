@@ -1,0 +1,22 @@
+// The results hero. Same anatomy as every other interior hero: eyebrow, h1p,
+// standfirst, one action. No second column — there is no artwork for this page
+// and the content rule says ship the pattern without the missing element
+// rather than reach for a stock image to fill the space.
+.resultsHero {
+  padding-block: var(--sec-y);
+  max-width: 34rem;
+
+  & > .eyebrow {
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  & > .lead {
+    margin-top: 1.5rem;
+  }
+
+  & > a {
+    display: inline-flex;
+    margin-top: 2rem;
+  }
+}

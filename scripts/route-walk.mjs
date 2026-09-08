@@ -9,6 +9,10 @@
  * and renders an <h1>. A conversion that has broken a template usually breaks
  * it into a 500 or an empty shell, and both show up here.
  *
+ * It also asserts the two design-system caps that exist only in rendered
+ * markup and that no compiler can see: at most three .band-dark grounds and
+ * at most one .rule-cap mark per route. Both are stated in _surfaces.scss.
+ *
  * The route list is DISCOVERED rather than hard-coded, so it cannot drift:
  *   - /sitemap.xml is the canonical list of public routes
  *   - /success_stories and /story/[id] are deliberately absent from it (they
@@ -90,6 +94,22 @@ for (const route of routes) {
     failures.push({ route, why: "no <h1> rendered" });
     continue;
   }
+
+  // The two design-system caps that a section rewrite is most likely to break,
+  // and that neither the compiler nor the token gate can see. Both are stated
+  // in _surfaces.scss: three .band-dark per page, and exactly one .rule-cap
+  // mannerism. Counted from CLASS ATTRIBUTES rather than the raw body so the
+  // stylesheet's own rule text can never be mistaken for a call site.
+  const dark = (r.body.match(/class="[^"]*\bband-dark\b[^"]*"/g) || []).length;
+  if (dark > 3) {
+    failures.push({ route, why: `${dark} dark bands (max 3)` });
+    continue;
+  }
+  const caps = (r.body.match(/class="[^"]*\brule-cap\b[^"]*"/g) || []).length;
+  if (caps > 1) {
+    failures.push({ route, why: `${caps} rule-cap marks (max 1)` });
+    continue;
+  }
   ok++;
 }
 
@@ -101,4 +121,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log("\nEvery route returned 200 and rendered an h1.");
+console.log("\nEvery route returned 200, rendered an h1 and held the ground caps.");

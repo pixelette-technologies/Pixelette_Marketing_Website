@@ -1,5 +1,5 @@
 import { Facebook, Insta, LinkedInIcon } from "@/assets/common";
-import { Text } from "../feature";
+import { Heading, Text } from "../feature";
 import Container from "./Container";
 import Link from "next/link";
 import { servicesData } from "@/data/services/servicesData";
@@ -9,28 +9,38 @@ import { industriesData } from "@/data/industries/industriesData";
 // social icons. The guide's footer is a dark multi-column sitemap, and there
 // was nothing here to re-split into one.
 //
-// RECORDED DEVIATION. Under the strict content rule, adding these columns adds
-// links to the footer DOM that were not there before. It was approved
-// deliberately in Phase C. No copy is newly written: every label and every href
-// already exists in Navbar.tsx, servicesData and industriesData.
+// RECORDED DEVIATION, NOW RESOLVED. Phase C added these columns deliberately,
+// and recorded that the guide draws FIVE columns with the first a brand column
+// carrying a wordmark and a description — neither of which was available: there
+// was no footer description copy anywhere in the repo, and the wordmark is
+// crimson, which measures about 1.4:1 on this ground and would be invisible.
 //
-// The guide draws five columns, the first a brand column carrying the wordmark
-// and a description. Neither is available: there is no footer description copy,
-// and the wordmark is crimson, which measures about 1.4:1 on this ground and
-// would be invisible. Where the guide demands something that cannot be
-// supplied, the pattern ships without it — so this is four link columns.
+// The 8 Sep 2026 brief supplies the description. So the brand column exists
+// now and the deviation closes. The wordmark still does not: the name is set
+// as type in the footer's own body tone rather than as the crimson mark.
 //
-// Column eyebrows are held to the same rule. "Services" and "Industries" are
-// existing navigation labels; there is no existing copy reading "Company" or
-// "Legal", so those two columns carry no eyebrow rather than inventing one.
+// Column headings follow the brief's navigation labels — What We Do and Who We
+// Help rather than Services and Industries — while the URLs underneath are
+// unchanged.
 
 export default function Footer() {
   return (
     <footer className='site-footer footer'>
       <Container className='main'>
         <div className='footerColumns'>
+          <div className='footerBrand'>
+            <Heading className='h4 footerBrand__name' level={2}>
+              Pixelette Marketing
+            </Heading>
+            <Text className='small'>
+              Growth marketing built around commercial outcomes - connecting
+              strategy, demand, search, pipeline, conversion and growth
+              intelligence.
+            </Text>
+          </div>
+
           <div>
-            <div className='eyebrow'>Services</div>
+            <div className='eyebrow'>What We Do</div>
             {servicesData.map(el => (
               <Link
                 key={el.route}
@@ -43,7 +53,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <div className='eyebrow'>Industries</div>
+            <div className='eyebrow'>Who We Help</div>
             {industriesData.map(el => (
               <Link
                 key={el.route}
@@ -56,20 +66,28 @@ export default function Footer() {
           </div>
 
           <div>
+            <Link href='/results' className='flink small'>
+              Results
+            </Link>
             <Link href='/blog-list' className='flink small'>
-              Blogs
+              Insights
             </Link>
             <Link href='/aboutus' className='flink small'>
-              About Us
+              About
             </Link>
             <Link href='/contactus' className='flink small'>
-              Contact Us
+              Contact
             </Link>
           </div>
 
           <div>
+            {/* The brief's footer lists Privacy alongside Cookies. There is no
+                privacy policy page in this app and no verified URL for one, and
+                the alternative — linking to a page that 404s, or writing legal
+                text — is worse than the omission. It joins this column when a
+                policy exists. See the publication gates. */}
             <Link href='/cookie-policy' className='flink small'>
-              Cookie Policy
+              Cookies
             </Link>
           </div>
         </div>
@@ -97,6 +115,10 @@ export default function Footer() {
             >
               <LinkedInIcon />
             </a>
+            {/* The brief names LinkedIn and Instagram, then "other active
+                channels only". Whether this page is actively maintained is a
+                fact this repo does not hold, and removing a working channel is
+                the more destructive guess, so it stays pending verification. */}
             <a
               href='https://www.facebook.com/p/Pixelette-Marketing-100095390971622/'
               aria-label='Facebook'

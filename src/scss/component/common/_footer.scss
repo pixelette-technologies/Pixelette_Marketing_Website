@@ -63,3 +63,31 @@
     color: var(--color-page);
   }
 }
+
+// --- The brand column -------------------------------------------------------
+// The guide always drew five columns with the first carrying the name and a
+// description. Phase C shipped four and RECORDED WHY: there was no footer
+// description anywhere in the repo, and the wordmark is crimson, which
+// measures about 1.4:1 on this ground.
+//
+// The 8 Sep 2026 brief supplies the description, so the column exists now and
+// that deviation closes. The wordmark still does not appear — the name is set
+// as type in the footer's own tones, not as the crimson mark.
+//
+// It takes the wide slot the guide gives it. auto-fit means stating that as a
+// min-width rather than as an explicit track, so the fold order is unchanged.
+.footerBrand {
+  min-width: min(16rem, 100%);
+
+  & > .small {
+    margin-top: 0.5rem;
+    color: var(--color-footer-body);
+  }
+}
+
+// .h4 carries --color-ink, which is invisible on the footer ground. The footer
+// primitive colours .eyebrow, .rule, .pill and .legal but has no heading rule,
+// because until now the footer had no heading.
+.footerBrand__name {
+  color: var(--color-page);
+}

@@ -1,9 +1,8 @@
 import {
   HomeHero,
   GrowthSection,
-  EngagementStalls,
-  DynamicMarket,
-  RangeOfMarket
+  ItemsSection,
+  DynamicMarket
 } from "@/components/ui/home";
 import {
   ContactSection,
@@ -11,7 +10,12 @@ import {
   TrustedBrands
 } from "@/components/common";
 import { talkBusinessData } from "@/data";
-import { proofCopy } from "@/data/home";
+import {
+  aiTechnologyData,
+  growthSystemData,
+  proofCopy,
+  whyPixeletteData
+} from "@/data/home";
 
 import type { Metadata } from 'next'
  
@@ -40,9 +44,15 @@ export default function Home() {
         cta={proofCopy.cta}
       />
       <GrowthSection />
-      <EngagementStalls />
+      <ItemsSection content={whyPixeletteData} topRule />
+      <ItemsSection
+        content={growthSystemData}
+        ground='dark'
+        grid='thirds'
+        variant='card'
+      />
+      <ItemsSection content={aiTechnologyData} />
       <DynamicMarket />
-      <RangeOfMarket />
       <TeamSection
         mainHeading='From zero to impact'
         subHeading='We deliver results that matter'

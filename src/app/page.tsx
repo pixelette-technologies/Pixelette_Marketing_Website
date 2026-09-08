@@ -13,9 +13,12 @@ import { talkBusinessData } from "@/data";
 import {
   aiTechnologyData,
   growthSystemData,
+  growthProcessData,
   proofCopy,
   resultsCopy,
-  whyPixeletteData
+  waysToWorkData,
+  whyPixeletteData,
+  widerAdvantageData
 } from "@/data/home";
 
 import type { Metadata } from 'next'
@@ -60,6 +63,17 @@ export default function Home() {
         lead={resultsCopy.lead}
         cta={resultsCopy.cta}
       />
+      <ItemsSection
+        content={waysToWorkData}
+        grid='thirds'
+        variant='card'
+      />
+      <ItemsSection
+        content={growthProcessData}
+        ground='dark'
+        variant='card'
+      />
+      <ItemsSection content={widerAdvantageData} topRule />
       <ContactSection
         heading={`let's <span> talk business <span/>`}
         data={talkBusinessData}

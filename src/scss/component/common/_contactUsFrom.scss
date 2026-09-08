@@ -53,3 +53,9 @@
     margin-top: 1.25rem;
   }
 }
+
+// The brief's form standfirst, between the heading and the first field. The
+// heading already carries the gap above it; this is the gap below.
+.contactUsForm > .body {
+  margin-bottom: 0.75rem;
+}

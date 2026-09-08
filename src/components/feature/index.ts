@@ -12,6 +12,7 @@ export { default as TeamCard } from "./TeamCard";
 export { default as Web3MarketingCard } from "./Web3MarketingCard";
 export { default as FormInput } from "./FormInput";
 export { default as FormTextArea } from "./FormTextArea";
+export { default as FormSelect } from "./FormSelect";
 export { default as NavbarDropDown } from "./NavbarDropDown";
 export { default as BlogCard } from "./BlogCard";
 export { default as Accordion } from "./Accordion";

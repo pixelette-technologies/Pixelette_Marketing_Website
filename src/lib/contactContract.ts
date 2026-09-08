@@ -9,11 +9,29 @@ export interface ContactAttribution {
   referrer?: string;
 }
 
+/** What the enquirer is trying to move, from the 8 Sep 2026 brief. The order
+ *  is the brief's: the four commercial outcomes, then Launch, then Other. */
+export const IMPROVE_OPTIONS = [
+  "Demand",
+  "Pipeline",
+  "Conversion",
+  "Revenue",
+  "Launch",
+  "Other"
+] as const;
+
+export type ImproveOption = (typeof IMPROVE_OPTIONS)[number];
+
 export interface GovernedContactSubmission {
   eventId: string;
   firstName: string;
   lastName: string;
   email: string;
+  /** Optional. The brief collects these so sales can prepare, but a missing
+   *  company or website must never cost an enquiry. */
+  company?: string;
+  companyWebsite?: string;
+  improve?: ImproveOption;
   description: string;
   consent: true;
   noticeVersion: string;
@@ -27,9 +45,11 @@ export type ContactValidationResult =
   | { ok: false; code: string };
 
 const TOP_LEVEL_FIELDS = new Set([
-  "eventId", "firstName", "lastName", "email", "description", "consent", "noticeVersion",
-  "formStartedAt", "sourcePage", "_website", "attribution"
+  "eventId", "firstName", "lastName", "email", "company", "companyWebsite", "improve",
+  "description", "consent", "noticeVersion", "formStartedAt", "sourcePage", "_website",
+  "attribution"
 ]);
+const IMPROVE_VALUES: ReadonlySet<string> = new Set(IMPROVE_OPTIONS);
 const ATTRIBUTION_FIELDS = new Set([
   "campaignId", "utmSource", "utmMedium", "utmCampaign", "utmContent", "utmTerm",
   "landingPage", "referrer"
@@ -83,6 +103,38 @@ export function validateContactPayload(
     return { ok: false, code: "FORM_TIMING_INVALID" };
   }
 
+  // The three fields the 8 Sep brief adds are OPTIONAL, and the form posts
+  // every key it holds, so an untouched input arrives as "". boundedString has
+  // no optional mode — it returns null for "" at any minimum — so empty is
+  // skipped before validating, exactly as the attribution loop below does.
+  // Treating "" as invalid here would fail every enquiry that left Company
+  // blank.
+  let company: string | undefined;
+  if (input.company !== undefined && input.company !== "") {
+    const normalized = boundedString(input.company, 1, 200);
+    if (!normalized) return { ok: false, code: "INVALID_CONTACT_FIELDS" };
+    company = normalized;
+  }
+
+  let companyWebsite: string | undefined;
+  if (input.companyWebsite !== undefined && input.companyWebsite !== "") {
+    const normalized = boundedString(input.companyWebsite, 1, 200);
+    if (!normalized) return { ok: false, code: "INVALID_CONTACT_FIELDS" };
+    companyWebsite = normalized;
+  }
+
+  // Membership, not shape. An unrecognised value is rejected rather than
+  // passed through, so the notification email can only ever carry one of the
+  // six the brief names.
+  let improve: ImproveOption | undefined;
+  if (input.improve !== undefined && input.improve !== "") {
+    const normalized = boundedString(input.improve, 1, 32);
+    if (!normalized || !IMPROVE_VALUES.has(normalized)) {
+      return { ok: false, code: "INVALID_CONTACT_FIELDS" };
+    }
+    improve = normalized as ImproveOption;
+  }
+
   const attributionInput = input.attribution ?? {};
   if (!isRecord(attributionInput)
       || Object.keys(attributionInput).some((key) => !ATTRIBUTION_FIELDS.has(key))) {
@@ -104,6 +156,9 @@ export function validateContactPayload(
       firstName,
       lastName,
       email,
+      company,
+      companyWebsite,
+      improve,
       description,
       consent: true,
       noticeVersion,

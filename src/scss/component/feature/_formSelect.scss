@@ -1,0 +1,35 @@
+
+// Matches _formInput.scss line for line, minus two of its faults: the focus
+// outline is left alone here so a keyboard user can still see where they are.
+//
+// The select needs an explicit height because a bare <select> sizes to its
+// font rather than to the padding an <input> would take, so without it the
+// control sits visibly shorter than the fields above it.
+.formselect {
+  margin-top: 0.75rem;
+
+  & > label {
+    font-size: 0.90625rem;
+    font-weight: 500;
+    display: block;
+  }
+
+  & > select {
+    margin-top: 0.0625rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.875rem 0.75rem;
+    border: 1px solid var(--color-line-strong);
+    background-color: transparent;
+    border-radius: 0.4375rem;
+    width: 100%;
+    color: var(--color-ink);
+    font-family: inherit;
+  }
+
+  & > div {
+    margin-top: 0.375rem;
+    color: var(--color-danger);
+    font-size: 0.875rem;
+  }
+}

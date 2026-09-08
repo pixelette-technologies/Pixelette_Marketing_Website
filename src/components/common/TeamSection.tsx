@@ -21,24 +21,22 @@ const TeamSection: FC<TeamSectionProps> = ({
   cta
 }) => {
   return (
-    <div
-      className='band-alt'
-    >
+    <div className='band-alt'>
       <Container className='main'>
         <section className='teamSection'>
-          <header>
-            <Heading className='eyebrow'>{mainHeading}</Heading>
-            <Heading className='h2'>{subHeading}</Heading>
-            {lead && <Text className='lead'>{lead}</Text>}
-          </header>
+          {(mainHeading || subHeading || lead) && (
+            <header>
+              {mainHeading && (
+                <Heading className='eyebrow'>{mainHeading}</Heading>
+              )}
+              {subHeading && <Heading className='h2'>{subHeading}</Heading>}
+              {lead && <Text className='lead'>{lead}</Text>}
+            </header>
+          )}
           {details && (
             <ul>
               {details.map((el, index) => (
-                <li
-                  key={index}
-                >
-                  {el}
-                </li>
+                <li key={index}>{el}</li>
               ))}
             </ul>
           )}

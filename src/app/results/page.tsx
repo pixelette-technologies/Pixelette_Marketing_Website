@@ -59,11 +59,13 @@ export default function ResultsPage() {
         </Container>
       </div>
 
-      {/* The two testimonials, verbatim, from teamData. */}
-      <TeamSection
-        mainHeading='Client proof'
-        subHeading='In their words'
-      />
+      {/* The two testimonials, verbatim, from teamData.
+
+          NO HEADING PAIR. The hero directly above already carries the eyebrow
+          and the heading for this page, and there is no second pair in the
+          brief to give this block. Writing one would be inventing copy to
+          complete a pattern — the trap this codebase has reverted twice. */}
+      <TeamSection />
 
       <ContactSection
         heading={finalConversionCopy.heading}

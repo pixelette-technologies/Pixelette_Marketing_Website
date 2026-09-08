@@ -2395,11 +2395,16 @@ export const servicesData = [
     // rendered blank. Written to be replaced.
     //
     // Every activity named here is one the brief already lists under Pipeline
-    // & Conversion - targeting, landing pages, nurture, sales handoff - so it
-    // claims nothing that is not already sold elsewhere on the site. No
-    // numbers, no guarantees, no volume or conversion promises.
+    // & Conversion: targeting, landing pages, follow-up. It claims nothing
+    // that is not already sold elsewhere on the site, and carries no numbers,
+    // guarantees or volume promises.
+    //
+    // Written to READ LIKE A PERSON WROTE IT. No dash-parentheticals, no
+    // "X, not Y" closer, no stacked adjectives, no glossary-style opening
+    // definition. Sentence lengths are deliberately uneven and it opens on an
+    // observation rather than on the product.
     summary:
-      "Lead generation connects your business with prospects who are ready to hear from you. Pixelette Marketing plans and runs those campaigns - targeting, landing pages, nurture and sales handoff - so interest becomes qualified, sales-ready conversations instead of a list of unworked contacts.",
+      "Getting more traffic is rarely the hard part. Turning it into people your sales team actually wants to call is. Pixelette Marketing runs lead generation that covers the targeting, the landing pages and the follow-up, so the enquiries that reach you are worth picking up the phone for.",
     image: "/services/lead-generation.png",
     research: {
       subHeading: "stalls business success",

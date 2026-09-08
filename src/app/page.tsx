@@ -14,6 +14,7 @@ import {
   aiTechnologyData,
   growthSystemData,
   proofCopy,
+  resultsCopy,
   whyPixeletteData
 } from "@/data/home";
 
@@ -54,8 +55,10 @@ export default function Home() {
       <ItemsSection content={aiTechnologyData} />
       <DynamicMarket />
       <TeamSection
-        mainHeading='From zero to impact'
-        subHeading='We deliver results that matter'
+        mainHeading={resultsCopy.eyebrow}
+        subHeading={resultsCopy.heading}
+        lead={resultsCopy.lead}
+        cta={resultsCopy.cta}
       />
       <ContactSection
         heading={`let's <span> talk business <span/>`}

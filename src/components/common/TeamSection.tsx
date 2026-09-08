@@ -1,18 +1,24 @@
 import { FC } from "react";
-import { Heading, TeamCard } from "../feature";
+import { Heading, TeamCard, Text } from "../feature";
 import Container from "./Container";
+import Link from "next/link";
 import { teamData } from "@/data";
 
 interface TeamSectionProps {
   mainHeading?: string;
   subHeading?: string;
   details?: string[];
+  /** Standfirst under the heading pair. */
+  lead?: string;
+  cta?: { label: string; to: string };
 }
 
 const TeamSection: FC<TeamSectionProps> = ({
   mainHeading,
   subHeading,
-  details
+  details,
+  lead,
+  cta
 }) => {
   return (
     <div
@@ -23,6 +29,7 @@ const TeamSection: FC<TeamSectionProps> = ({
           <header>
             <Heading className='eyebrow'>{mainHeading}</Heading>
             <Heading className='h2'>{subHeading}</Heading>
+            {lead && <Text className='lead'>{lead}</Text>}
           </header>
           {details && (
             <ul>
@@ -47,6 +54,12 @@ const TeamSection: FC<TeamSectionProps> = ({
               />
             ))}
           </section>
+
+          {cta && (
+            <Link href={cta.to} className='btn2 teamSection__cta'>
+              {cta.label}
+            </Link>
+          )}
         </section>
       </Container>
     </div>

@@ -37,3 +37,22 @@
 // Phase F. The D8 colour rule that sat here is gone: .eyebrow already carries
 // the brand tone and .h2 already carries ink, so restating either here only
 // risked the two drifting apart.
+
+// --- 8 Sep 2026 brief -------------------------------------------------------
+// The results section gains a standfirst and a route to the case studies. Both
+// are optional props, so /services/[slug] and /story/[id] render exactly as
+// they did.
+//
+// The header's `*:first-child` gap still belongs to the eyebrow; the
+// standfirst is selected by class so it cannot pick up the eyebrow's rule if
+// the heading pair is ever reordered.
+.teamSection {
+  & > header > .lead {
+    margin-top: 1.5rem;
+  }
+}
+
+.teamSection__cta {
+  display: inline-flex;
+  margin-top: 2rem;
+}

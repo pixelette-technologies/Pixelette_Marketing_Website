@@ -49,3 +49,31 @@
 // strip the eyebrow's brand colour, and paint the largest heading on the page
 // crimson. The primitives already carry both — .eyebrow is brand, .h2 is ink —
 // so the right move is to stop restating them here.
+
+// --- 8 Sep 2026 brief: the stage group --------------------------------------
+// The section carries two groups now, sectors above and growth stages below,
+// and the hairline between them is load-bearing rather than decorative: it is
+// what stops three non-linking stages reading as three more sector cards.
+//
+// The stages take the same auto-fit track as the sectors so the two groups
+// line up on the same column edges. Three items against the 1160px wrap seat
+// three across, which is what the group wants.
+.dynamicMarket {
+  & > div {
+    & > .dynamicMarket__split {
+      margin-top: var(--sec-y-sm);
+    }
+
+    & > .dynamicMarket__stages {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+      gap: 1.25rem;
+      margin-top: var(--sec-y-sm);
+    }
+
+    & > .dynamicMarket__cta {
+      display: inline-flex;
+      margin-top: 2rem;
+    }
+  }
+}

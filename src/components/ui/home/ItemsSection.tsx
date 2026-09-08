@@ -7,7 +7,11 @@ import { FC } from "react";
 export interface ItemsSectionContent {
   eyebrow: string;
   heading: string;
-  lead: string;
+  /** The brief supplies no standfirst for the process section. The content
+   *  rule is to ship the pattern without the missing element rather than
+   *  invent one — see GrowthSection, which opens on its h2 for the same
+   *  reason. */
+  lead?: string;
   items: PointItemContent[];
   /** Section-level CTA, rendered last. */
   cta?: PointItemCta;
@@ -66,7 +70,7 @@ const ItemsSection: FC<ItemsSectionProps> = ({
           <Heading className='h2' level={3}>
             {heading}
           </Heading>
-          <Text className='lead'>{lead}</Text>
+          {lead && <Text className='lead'>{lead}</Text>}
         </header>
 
         <div

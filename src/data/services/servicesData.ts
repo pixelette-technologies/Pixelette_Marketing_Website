@@ -2390,7 +2390,16 @@ export const servicesData = [
     route: "lead_generation",
     mainHeading: " From prospects to loyal customers,",
     subHeading: "  we’re the best lead generation agency for GROWTH",
-    summary: "",
+    // INTERIM COPY, 8 Sep 2026. Lead Generation was the only service with an
+    // empty summary, so its hero standfirst and its card on /services both
+    // rendered blank. Written to be replaced.
+    //
+    // Every activity named here is one the brief already lists under Pipeline
+    // & Conversion - targeting, landing pages, nurture, sales handoff - so it
+    // claims nothing that is not already sold elsewhere on the site. No
+    // numbers, no guarantees, no volume or conversion promises.
+    summary:
+      "Lead generation connects your business with prospects who are ready to hear from you. Pixelette Marketing plans and runs those campaigns - targeting, landing pages, nurture and sales handoff - so interest becomes qualified, sales-ready conversations instead of a list of unworked contacts.",
     image: "/services/lead-generation.png",
     research: {
       subHeading: "stalls business success",

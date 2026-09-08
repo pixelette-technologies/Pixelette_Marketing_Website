@@ -1,6 +1,7 @@
 import { FC, ComponentType } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
+import Link from "next/link";
 import ContactUsForm from "./ContactUsForm";
 
 interface ContactData {
@@ -15,6 +16,11 @@ interface ContactSectionProps {
   data?: ContactData[];
   /** Trailing .small line under the copy column. */
   closing?: string;
+  /** The brief pairs the primary CTA with a secondary one in the closing
+   *  section. The primary IS the form beside this column, so only the
+   *  secondary is rendered — a second button that scrolls to an adjacent form
+   *  is noise. */
+  cta?: { label: string; to: string };
   headingLevel?: 1 | 2;
 }
 
@@ -23,6 +29,7 @@ const ContactSection: FC<ContactSectionProps> = ({
   text,
   data,
   closing,
+  cta,
   headingLevel = 2
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
@@ -55,6 +62,11 @@ const ContactSection: FC<ContactSectionProps> = ({
               ))}
             </div>
             ) : null}
+            {cta && (
+              <Link href={cta.to} className='btn2 contactUsSection__cta'>
+                {cta.label}
+              </Link>
+            )}
             {closing && <Text className='small'>{closing}</Text>}
           </section>
           <div>

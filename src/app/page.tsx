@@ -78,6 +78,7 @@ export default function Home() {
         heading={finalConversionCopy.heading}
         text={finalConversionCopy.lead}
         closing={finalConversionCopy.closing}
+        cta={finalConversionCopy.secondaryCta}
       />
     </>
   );

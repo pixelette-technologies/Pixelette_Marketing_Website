@@ -9,7 +9,8 @@ import {
   FormInput,
   FormSelect,
   FormTextArea,
-  Heading
+  Heading,
+  Text
 } from "../feature";
 
 interface FormValues {
@@ -167,6 +168,8 @@ const ContactUsForm: React.FC = () => {
     <div
       className='contactUsForm'
     >
+      {/* The brief's form eyebrow and heading. */}
+      <Text className='eyebrow'>Start here</Text>
       {/* The brief's form heading. It was `heading_secondry font_family_glory`,
           one of the twelve legacy variants, on a form that renders on six
           routes; .h3 is the same size on the guide's scale. */}

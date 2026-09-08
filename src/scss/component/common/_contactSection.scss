@@ -81,3 +81,10 @@
     min-width: 0;
   }
 }
+
+// The brief's secondary CTA in the closing block. The primary is the form
+// beside it, so this is the only control the copy column carries.
+.contactUsSection__cta {
+  display: inline-flex;
+  margin-top: 1.5rem;
+}

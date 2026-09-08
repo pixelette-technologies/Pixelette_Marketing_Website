@@ -1,5 +1,6 @@
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
+import { heroCopy } from "@/data/home";
 import Image from "next/image";
 import Link from "next/link";
 import HeroCollage from "./HeroCollage";
@@ -26,12 +27,6 @@ export default function HomeHero() {
     // behind the container rather than being clipped to it. Interior pages take
     // the offset .wash-left variant.
     //
-    // No eyebrow. HomeHero has no such copy and writing one is Trap 01, which
-    // was reverted twice on the Certified conversion. One button, not the
-    // guide's action pair, because a second CTA is new content. Both headings
-    // keep their own elements: merging them into a single h1 would change the
-    // DOM structure of content.
-    //
     // Phase F. The hero STAYS SPLIT — left collage, right copy — rather than
     // going centred like Certified's. Chosen by the user on 1 Sep: the collage
     // is the most distinctive thing on the site and centring the hero would
@@ -46,6 +41,27 @@ export default function HomeHero() {
     // line to the second, which is the guide's own hero device — the statement
     // in ink, the payoff in the brand tone. Certified does exactly this with
     // "We fix that in 10 weeks."
+    //
+    // --- 8 Sep 2026 brief ---------------------------------------------------
+    // TWO EARLIER DECISIONS ARE DELIBERATELY REVERSED HERE, both of them by
+    // the brief rather than by taste, and both recorded rather than quietly
+    // overwritten.
+    //
+    // There is an EYEBROW now. Phase E left it out because writing one was
+    // Trap 01 — inventing copy to complete a pattern — and it was reverted
+    // twice on the Certified conversion for exactly that. The brief supplies
+    // the words, so the trap does not apply: this is transcription, not
+    // invention. It is a <p>, NOT a <Heading>, because a heading above the h1
+    // inverts the document outline.
+    //
+    // There are TWO CALLS TO ACTION now. Phase E shipped one because a second
+    // was new content; the brief specifies both, and pairs them everywhere the
+    // primary appears. The labels are held to "Build my growth plan" and "See
+    // client results" in both hero and close — the brief is explicit that
+    // mixing labels between the two positions is worse than either label.
+    //
+    // The headline itself is untouched. It is the one thing the brief's
+    // executive decision says to keep.
     <div className='wash'>
       <Container className='main'>
         <div className='heroHome'>
@@ -65,25 +81,30 @@ export default function HomeHero() {
               band behind the copy fought the gradient. */}
           <section>
             <div>
+              <Text className='eyebrow'>{heroCopy.eyebrow}</Text>
+
               <Heading className='h1' level={1}>
                 Marketing that matters
               </Heading>
               <Heading className='h1 lowercase' level={2}>
                 to your bottom line
               </Heading>
-              <Text className='lead'>
-                Pixelette Marketing delivers precision driven marketing for
-                Fintech, SaaS, Web3, tech products and platforms, and more. We
-                believe your industry deserves strategies as innovative as your
-                solutions. Take the guesswork out of growth by requesting your
-                strategy proposal today and{" "}
-                <span className='text_primary--bold heroHome__emphasis'>
-                  start achieving ROI you can see!
-                </span>
-              </Text>
-              <Link href='/contactus'>
-                <Button className='primary'>Book A Call</Button>
-              </Link>
+
+              <Text className='lead'>{heroCopy.lead}</Text>
+              <Text className='body'>{heroCopy.reach}</Text>
+
+              <div className='heroHome__actions'>
+                <Link href={heroCopy.primaryCta.to}>
+                  <Button className='primary'>
+                    {heroCopy.primaryCta.label}
+                  </Button>
+                </Link>
+                <Link href={heroCopy.secondaryCta.to} className='btn2'>
+                  {heroCopy.secondaryCta.label}
+                </Link>
+              </div>
+
+              <Text className='small'>{heroCopy.closing}</Text>
             </div>
           </section>
         </div>

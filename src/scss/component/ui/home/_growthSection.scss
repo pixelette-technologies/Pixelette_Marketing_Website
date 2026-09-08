@@ -35,7 +35,7 @@
     margin-top: 1.5rem;
 
     .sectionTitle {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     & > div {
@@ -49,9 +49,15 @@
         flex: 1 1 24rem;
         min-width: 0;
 
-        // The guide's eyebrow-to-content gap, exactly: 20px.
-        & > h3 {
+        // The guide's eyebrow-to-content gap, exactly: 20px. BY CLASS: the
+        // brief swapped the heading levels here, so the old `> h3` selector
+        // would now be pointing at the title rather than the eyebrow.
+        & > .eyebrow {
           margin-bottom: 1.25rem;
+        }
+
+        & > .lead {
+          margin-bottom: 2rem;
         }
 
         & > section {
@@ -105,4 +111,10 @@
   & > section > div > header > section > div > div > h4 {
     color: var(--color-brand);
   }
+}
+
+// The brief's closing line under the four outcomes. It restates the framework
+// in one breath, so it wants air above it and nothing else.
+.growthSection__closing {
+  margin-top: 2rem;
 }

@@ -180,9 +180,13 @@
   }
 
   // --- The copy ------------------------------------------------------------
-  // No band, so no geometry for one. No eyebrow: HomeHero has no such copy and
-  // writing one is Trap 01. One button, because a second call to action is new
-  // content. Both headings keep their own elements.
+  // No band, so no geometry for one. Both headings keep their own elements.
+  //
+  // The 8 Sep brief turns one paragraph into five siblings — eyebrow, two
+  // headings, standfirst, reach line, an action PAIR and a closing line — so
+  // the blanket `& > p { margin: 1.5rem 0 }` that spaced the single paragraph
+  // is gone. On five children it would have set the eyebrow as far from its
+  // own headline as the headline sits from the buttons.
   & > section {
     flex: 1 1 22rem;
     min-width: 0;
@@ -190,8 +194,22 @@
     & > div {
       max-width: 34rem;
 
-      & > p {
-        margin: 1.5rem 0rem;
+      // The guide's eyebrow-to-heading gap, exactly: 20px — the same constant
+      // every section header on this page uses.
+      & > .eyebrow {
+        margin-bottom: 1.25rem;
+      }
+
+      & > .lead {
+        margin-top: 1.5rem;
+      }
+
+      & > .body {
+        margin-top: 0.75rem;
+      }
+
+      & > .small {
+        margin-top: 1rem;
       }
     }
   }
@@ -233,6 +251,15 @@
   }
 }
 
-.heroHome__emphasis {
-  color: var(--color-brand);
+
+// The action pair the brief specifies. The primary is the filled control, the
+// secondary is .btn2's outline. They WRAP rather than shrink: the 52px minimum
+// tap target in _controls is not negotiable on a phone, so two lines is the
+// correct answer at narrow widths and two half-width buttons is not.
+.heroHome__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
 }

@@ -25,9 +25,35 @@
 .trustedBrands {
   padding-block: var(--sec-y-sm);
 
-  & > div {
+  // The header container. :first-child rather than a bare `> div`, because
+  // the stacked layout adds a second container below the strip for the call
+  // to action and it must not inherit the header's gap.
+  & > div:first-child {
     margin-bottom: 1.25rem;
   }
+}
+
+// --- The stacked layout -----------------------------------------------------
+// The 8 Sep brief replaces the two-word label with a sentence, which cannot
+// live in the bleed container under `white-space: nowrap`. Heading and
+// standfirst move onto the symmetric measure; only the strip still bleeds.
+//
+// Nothing is needed to disable the nowrap rule: in this mode there is no
+// heading inside .trustedBrandsBand for it to select.
+.trustedBrands--stacked {
+  & > div:first-child {
+    & > .h2 {
+      max-width: 34rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+.trustedBrands__actions {
+  margin-top: 2rem;
 }
 
 .trustedBrandsBand {

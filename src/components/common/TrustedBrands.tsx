@@ -1,11 +1,20 @@
 import { FC } from "react";
 import Container from "./Container";
-import { Heading } from "../feature";
+import { Heading, Text } from "../feature";
 import Image from "next/image";
+import Link from "next/link";
 
 interface TrustedBrandsProps {
   topHeading?: boolean;
   heading?: string;
+  /** Overrides the "Trusted by" label. */
+  eyebrow?: string;
+  /** 'inline' keeps the label beside the strip. 'stacked' lifts the heading
+   *  and a standfirst above it, onto the symmetric measure. */
+  layout?: "inline" | "stacked";
+  /** Rendered in 'stacked' only. */
+  standfirst?: string;
+  cta?: { label: string; to: string };
 }
 
 // The logo row used to be rendered four times over and scrolled with a CSS
@@ -32,8 +41,38 @@ interface TrustedBrandsProps {
 // The ArrowRed mark went with the heading change. It was a second mannerism
 // competing with the sanctioned signal-capped rule, and .rule-cap is the only
 // one this design gets.
+//
+// --- 8 Sep 2026 brief -------------------------------------------------------
+// THE STACKED LAYOUT IS NOT COSMETIC. The brief replaces the two-word label
+// with a full sentence — "Selected brands and ventures we have supported." —
+// and the inline layout physically cannot hold it: the label column sits in
+// container_mainLeft, the deliberately asymmetric bleed container, under a
+// `white-space: nowrap` that exists so "Leading Brands" stops breaking
+// mid-phrase. A sentence on one unwrappable line blows the band open.
+//
+// So the heading and the new standfirst move OUT of the bleed container and
+// onto the symmetric measure, and only the logo strip keeps bleeding right.
+// The nowrap rule then simply stops matching, because there is no longer a
+// heading inside that container for it to select.
+//
+// It is an explicit prop rather than being inferred from `standfirst` being
+// present, so a reader of the call site can see which mode it is in.
+//
+// The label itself is the brief's safer claim. "Trusted by brands" is to be
+// used ONLY where every displayed logo is a genuine client relationship; this
+// set includes portfolio ventures, so the wording above is the one that is
+// literally true.
 
-const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
+const TrustedBrands: FC<TrustedBrandsProps> = ({
+  topHeading,
+  heading,
+  eyebrow,
+  layout = "inline",
+  standfirst,
+  cta
+}) => {
+  const stacked = layout === "stacked";
+
   const imagesArray = [
     "/common/blockGold.svg",
     "/common/fusio.svg",
@@ -68,21 +107,36 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
   );
 
   return (
-    <div className='trustedBrands band-dark'>
+    <div
+      className={
+        stacked
+          ? "trustedBrands trustedBrands--stacked band-dark"
+          : "trustedBrands band-dark"
+      }
+    >
       <Container className='main'>
         {topHeading ? (
           ""
         ) : (
-          <Heading className='eyebrow'>Trusted by</Heading>
+          <Heading className='eyebrow'>{eyebrow ?? "Trusted by"}</Heading>
+        )}
+
+        {stacked && (
+          <>
+            <Heading className='h2'>{heading ?? "Leading Brands"}</Heading>
+            {standfirst && <Text className='lead'>{standfirst}</Text>}
+          </>
         )}
       </Container>
+
       <section className='trustedBrandsBand'>
         <Container className='mainLeft'>
-          {heading ? (
-            <Heading className='h2'>{heading}</Heading>
-          ) : (
-            <Heading className='h2'>Leading Brands</Heading>
-          )}
+          {!stacked &&
+            (heading ? (
+              <Heading className='h2'>{heading}</Heading>
+            ) : (
+              <Heading className='h2'>Leading Brands</Heading>
+            ))}
 
           <section className='marquee'>
             <div className='marquee__track'>
@@ -92,6 +146,16 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({ topHeading, heading }) => {
           </section>
         </Container>
       </section>
+
+      {cta && (
+        <Container className='main'>
+          <div className='trustedBrands__actions'>
+            <Link href={cta.to} className='btn2'>
+              {cta.label}
+            </Link>
+          </div>
+        </Container>
+      )}
     </div>
   );
 };

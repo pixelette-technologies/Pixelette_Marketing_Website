@@ -11,6 +11,7 @@ import {
   TrustedBrands
 } from "@/components/common";
 import { talkBusinessData } from "@/data";
+import { proofCopy } from "@/data/home";
 
 import type { Metadata } from 'next'
  
@@ -31,7 +32,13 @@ export default function Home() {
   return (
     <>
       <HomeHero />
-      <TrustedBrands />
+      <TrustedBrands
+        layout='stacked'
+        eyebrow={proofCopy.eyebrow}
+        heading={proofCopy.heading}
+        standfirst={proofCopy.standfirst}
+        cta={proofCopy.cta}
+      />
       <GrowthSection />
       <EngagementStalls />
       <DynamicMarket />

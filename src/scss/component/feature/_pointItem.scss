@@ -1,0 +1,102 @@
+// PointItem — the shared item block behind six of the twelve homepage
+// sections.
+//
+// COLOUR IS CONTEXTUAL, NOT A PROP. Only the four hooks the primitives cannot
+// already colour correctly appear here. The title, the numeral, the mark and
+// the link want the brand tone, which .h3 and the band do not supply; the body
+// and the capability line want exactly what .body and .small already give them
+// on both grounds, so they are NOT restated. Restating band colours locally is
+// the fault _engagementStalls.scss and _contentDisplaySection.scss both had
+// their colour blocks deleted for.
+
+.pointItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+// The .card geometry from the primitives, not a second set of numbers.
+.pointItem--card {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+}
+
+.pointItem--card:hover {
+  border-color: var(--color-line-strong);
+}
+
+.pointItem__index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+}
+
+.pointItem__icon {
+  color: var(--color-brand);
+  margin-bottom: 0.75rem;
+
+  // The step marks are 24px artwork carrying fill="currentColor", so height is
+  // the only dimension worth stating. Matches _contactSection.scss.
+  & > svg {
+    height: 1.5rem;
+    width: auto;
+  }
+}
+
+// Beats .h3's ink at equal specificity on source order: the component layer
+// loads after the primitives. Same mechanism as .arrowCard__main.
+.pointItem__title {
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+}
+
+.pointItem__caps {
+  margin-top: 0.75rem;
+}
+
+// Pinned to the foot so the links share a baseline across a row of cards of
+// unequal length, exactly as ArrowCard's does.
+.pointItem__cta {
+  align-self: start;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-brand);
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--color-brand-hover);
+    text-decoration: underline;
+  }
+}
+
+// --- Dark ground ------------------------------------------------------------
+// The brand anchor is 2.77 on the panel and is barred here as everywhere on
+// dark; --color-brand-signal is the tone that is free on this ground, at 5.34.
+// Measured against the gradient start, the worst case.
+
+.band-dark .pointItem--card {
+  background: transparent;
+  border-color: var(--color-panel-border);
+}
+
+.band-dark .pointItem--card:hover {
+  border-color: var(--color-brand-signal);
+}
+
+.band-dark .pointItem__index,
+.band-dark .pointItem__icon,
+.band-dark .pointItem__title,
+.band-dark .pointItem__cta {
+  color: var(--color-brand-signal);
+}
+
+.band-dark .pointItem__cta:hover {
+  color: var(--color-page);
+}

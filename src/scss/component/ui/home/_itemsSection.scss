@@ -1,0 +1,65 @@
+// ItemsSection — the shell for the six same-shaped homepage sections.
+//
+// Inherits the anatomy EngagementStalls established and this file replaces:
+// the heading block held to roughly half the wrap so the copy does not run the
+// width of the page, the guide's 20px eyebrow-to-heading gap, and the 24px
+// heading-to-standfirst gap. 34rem is 544px against the 1160px wrap — just
+// under half — and because it is a max rather than a percentage it stops
+// applying on narrow screens instead of crushing the column to half a phone.
+
+.itemsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: var(--sec-y);
+
+  & > header {
+    max-width: 34rem;
+
+    // Header to grid is the section rhythm; everything after the grid is the
+    // 2rem column gap. Stated as the difference so the two cannot drift.
+    margin-bottom: calc(var(--sec-y-sm) - 2rem);
+
+    & > *:first-child {
+      margin-bottom: 1.25rem;
+    }
+
+    & > p {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+// Container-width, matching .growthSection's. Deliberately NOT .rule-cap: the
+// signature mark appears once per page and GrowthSection holds it.
+.itemsSection--ruled {
+  border-top: 1px solid var(--color-line);
+}
+
+// Three across on flex, which divides five items into 3 + 2 and three into a
+// single row. The basis is a third of the row minus its share of the two gaps,
+// so the columns are equal; the min-width lets a card that can no longer hold
+// 15rem drop to the next line on its own. Zero breakpoints: three across at
+// desktop, two in the middle, one on a phone.
+.itemsSection__grid--thirds {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  & > * {
+    flex: 1 1 calc((100% - 2rem) / 3);
+    min-width: min(15rem, 100%);
+  }
+}
+
+// The auto-fit track seats four against the wrap, which is what the four-item
+// sections want and why five items must ask for --thirds instead.
+.itemsSection__grid--auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.itemsSection__cta {
+  align-self: start;
+}

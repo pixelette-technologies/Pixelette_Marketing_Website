@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Container } from "@/components/common";
+import { ArrowCard, Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
 
 const baseUrl = "https://www.pixelettemarketing.com";
@@ -38,6 +39,25 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }
 };
 
+// Added 10 Jun 2026 as an SEO hub and never taken through the design
+// conversion. It carried twenty-odd inline style objects: the h1 hard-coded at
+// 1.5625rem, card titles at 0.78125rem and summaries at 0.59375rem — roughly
+// 9.5px — with no primitive classes at all.
+//
+// NOT A CONTENT CHANGE. Every word on this page is the word that was here
+// before: the heading, the standfirst, both JSON-LD blocks and each card's
+// title and summary are untouched, and they still come from servicesData. Only
+// the markup and the styling change.
+//
+// The cards are ArrowCard, which is the card this site already uses for a
+// titled, summarised link to a detail page — the home page's sector cards are
+// the same component pointing at the same kind of destination. Its "View More"
+// label is its own and needed no copy written for it.
+//
+// The hero takes .wash-left, the interior-page ground. There is no eyebrow:
+// this page has no such copy, and writing one to complete the pattern is the
+// trap the codebase has reverted twice. The pattern ships without it.
+
 export default function ServicesIndexPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -71,48 +91,38 @@ export default function ServicesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
-      <section
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "96px 20px 80px" }}
-      >
-        <h1 style={{ fontSize: "1.5625rem", lineHeight: 1.15, marginBottom: "0.625rem" }}>
-          Digital Marketing Services
-        </h1>
-        <p style={{ maxWidth: 760, marginBottom: "1.875rem", opacity: 0.85 }}>
-          Pixelette Marketing is a full-service digital marketing agency for
-          emerging Fintech, SaaS, Web3 and technology brands. Explore our
-          services below.
-        </p>
+      <div className='wash-left'>
+        <Container className='main'>
+          <section className='hubHero'>
+            <Heading className='h1p' level={1}>
+              Digital Marketing Services
+            </Heading>
+            <Text className='lead'>
+              Pixelette Marketing is a full-service digital marketing agency for
+              emerging Fintech, SaaS, Web3 and technology brands. Explore our
+              services below.
+            </Text>
+          </section>
+        </Container>
+      </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "0.9375rem"
-          }}
-        >
-          {servicesData.map(service => (
-            <Link
-              key={service.route}
-              href={`/services/${service.route}`}
-              style={{
-                display: "block",
-                padding: "0.9375rem",
-                border: "1px solid var(--color-line)",
-                borderRadius: 12,
-                textDecoration: "none",
-                color: "inherit"
-              }}
-            >
-              <h2 style={{ fontSize: "0.78125rem", marginBottom: "0.3125rem" }}>
-                {service.title}
-              </h2>
-              <p style={{ fontSize: "0.59375rem", opacity: 0.8, margin: 0 }}>
-                {service.summary}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <div className='hubList sec'>
+        <Container className='main'>
+          <section className='hubList__grid' data-reveal='stagger'>
+            {servicesData.map(service => (
+              <ArrowCard
+                key={service.route}
+                mainHeading={service.title}
+                subHeading=''
+                summary={service.summary}
+                theme={false}
+                textfloat={false}
+                to={`/services/${service.route}`}
+              />
+            ))}
+          </section>
+        </Container>
+      </div>
     </>
   );
 }

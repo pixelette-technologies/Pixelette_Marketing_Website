@@ -1,0 +1,35 @@
+// The two hub pages, /services and /industries.
+//
+// They were added on 10 Jun 2026 as SEO landing pages and were never taken
+// through the design conversion: headings hard-coded at 1.5625rem, card titles
+// at 0.78125rem and summaries at 0.59375rem — about 9.5px — through twenty-odd
+// inline style objects, with no primitive classes at all. They read as a
+// crawler artefact rather than as pages, which is what they were.
+//
+// Nothing about them was WRONG, exactly. They simply predate the design system
+// and nobody could see them: until the 8 Sep navigation work, neither was
+// reachable from anywhere a visitor could click.
+//
+// One partial, because the two pages are structurally identical.
+
+// The interior hero ground, as every page that is not the home page takes.
+// There is no eyebrow: neither page has that copy and writing one would be
+// inventing content. The pattern ships without the missing element.
+.hubHero {
+  padding-block: var(--sec-y);
+  max-width: 34rem;
+
+  & > .lead {
+    margin-top: 1.5rem;
+  }
+}
+
+// The same auto-fit track the home page uses for its sector cards, so a
+// visitor arriving from the navigation meets a grid they have already seen.
+// Zero breakpoints: the track seats four against the 1160px wrap, three and
+// two as it narrows, one on a phone.
+.hubList__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  gap: 1.25rem;
+}

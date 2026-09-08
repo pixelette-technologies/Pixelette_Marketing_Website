@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Container } from "@/components/common";
+import { ArrowCard, Heading, Text } from "@/components/feature";
 import { industriesData } from "@/data/industries/industriesData";
 
 const baseUrl = "https://www.pixelettemarketing.com";
@@ -38,6 +39,14 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true }
 };
 
+// The twin of /services, added in the same 10 Jun 2026 commit, carrying the
+// same inline styles and the same ~9.5px summaries. See that file for the
+// full note; this page is structurally identical and shares its partial.
+//
+// NOT A CONTENT CHANGE. The heading, the standfirst, both JSON-LD blocks and
+// every card title and summary are exactly what was here before, still read
+// from industriesData. Only the markup and the styling change.
+
 export default function IndustriesIndexPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -71,47 +80,38 @@ export default function IndustriesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
-      <section
-        style={{ maxWidth: 1200, margin: "0 auto", padding: "96px 20px 80px" }}
-      >
-        <h1 style={{ fontSize: "1.5625rem", lineHeight: 1.15, marginBottom: "0.625rem" }}>
-          Industries We Serve
-        </h1>
-        <p style={{ maxWidth: 760, marginBottom: "1.875rem", opacity: 0.85 }}>
-          We partner with brands across the sectors we understand best. Explore
-          how Pixelette Marketing delivers sector-specific growth below.
-        </p>
+      <div className='wash-left'>
+        <Container className='main'>
+          <section className='hubHero'>
+            <Heading className='h1p' level={1}>
+              Industries We Serve
+            </Heading>
+            <Text className='lead'>
+              We partner with brands across the sectors we understand best.
+              Explore how Pixelette Marketing delivers sector-specific growth
+              below.
+            </Text>
+          </section>
+        </Container>
+      </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-            gap: "0.9375rem"
-          }}
-        >
-          {industriesData.map(industry => (
-            <Link
-              key={industry.route}
-              href={`/industries/${industry.route}`}
-              style={{
-                display: "block",
-                padding: "0.9375rem",
-                border: "1px solid var(--color-line)",
-                borderRadius: 12,
-                textDecoration: "none",
-                color: "inherit"
-              }}
-            >
-              <h2 style={{ fontSize: "0.78125rem", marginBottom: "0.3125rem" }}>
-                {industry.title}
-              </h2>
-              <p style={{ fontSize: "0.59375rem", opacity: 0.8, margin: 0 }}>
-                {industry.summary}
-              </p>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <div className='hubList sec'>
+        <Container className='main'>
+          <section className='hubList__grid' data-reveal='stagger'>
+            {industriesData.map(industry => (
+              <ArrowCard
+                key={industry.route}
+                mainHeading={industry.title}
+                subHeading=''
+                summary={industry.summary}
+                theme={false}
+                textfloat={false}
+                to={`/industries/${industry.route}`}
+              />
+            ))}
+          </section>
+        </Container>
+      </div>
     </>
   );
 }

@@ -9,9 +9,9 @@ import {
   TeamSection,
   TrustedBrands
 } from "@/components/common";
-import { talkBusinessData } from "@/data";
 import {
   aiTechnologyData,
+  finalConversionCopy,
   growthSystemData,
   growthProcessData,
   proofCopy,
@@ -24,15 +24,15 @@ import {
 import type { Metadata } from 'next'
  
 export const metadata: Metadata = {
-  title: 'Pixelette Marketing | Full-Service Digital Marketing Agency',
-  description: 'Results you can measure. Growth you can scale. Our expert-led digital marketing services help brands in emerging industries win in competitive markets.',
+  title: "Pixelette Marketing | Growth Marketing & Commercial Growth",
+  description: "Build demand, qualified pipeline, conversion and measurable growth with connected strategy, search, content, paid media, lifecycle marketing and growth intelligence.",
   keywords: ['digital marketing agency', 'digital marketing services', 'digital marketing solutions'],
   alternates: {
     canonical: 'https://www.pixelettemarketing.com',
   },
   openGraph: {
-    title: 'Pixelette Marketing | Full-Service Digital Marketing Agency',
-    description: 'Results you can measure. Growth you can scale. Our expert-led digital marketing services help brands in emerging industries win in competitive markets.',
+    title: "Pixelette Marketing | Growth Marketing & Commercial Growth",
+    description: "Build demand, qualified pipeline, conversion and measurable growth with connected strategy, search, content, paid media, lifecycle marketing and growth intelligence.",
   },
 }
 
@@ -75,8 +75,9 @@ export default function Home() {
       />
       <ItemsSection content={widerAdvantageData} topRule />
       <ContactSection
-        heading={`let's <span> talk business <span/>`}
-        data={talkBusinessData}
+        heading={finalConversionCopy.heading}
+        text={finalConversionCopy.lead}
+        closing={finalConversionCopy.closing}
       />
     </>
   );

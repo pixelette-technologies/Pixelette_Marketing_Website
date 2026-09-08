@@ -13,6 +13,8 @@ interface ContactSectionProps {
   heading?: string;
   text?: string;
   data?: ContactData[];
+  /** Trailing .small line under the copy column. */
+  closing?: string;
   headingLevel?: 1 | 2;
 }
 
@@ -20,6 +22,7 @@ const ContactSection: FC<ContactSectionProps> = ({
   heading,
   text,
   data,
+  closing,
   headingLevel = 2
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
@@ -35,8 +38,9 @@ const ContactSection: FC<ContactSectionProps> = ({
               ></HeadingTag>
             )}
             {text && <Text className='lead'>{text}</Text>}
+            {data?.length ? (
             <div data-reveal='stagger'>
-              {data?.map((el, index) => (
+              {data.map((el, index) => (
                 <blockquote key={index}>
                   <section>
                     <el.icon />
@@ -50,6 +54,8 @@ const ContactSection: FC<ContactSectionProps> = ({
                 </blockquote>
               ))}
             </div>
+            ) : null}
+            {closing && <Text className='small'>{closing}</Text>}
           </section>
           <div>
             <ContactUsForm />

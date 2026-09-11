@@ -84,8 +84,24 @@ const ItemsSection: FC<ItemsSectionProps> = ({
 
         {closing && <Text className='small'>{closing}</Text>}
 
+        {/* THE CONTROL IS CHOSEN BY GROUND, NOT BY THE CALL SITE. Same rule
+            the colours follow: a section cannot get it wrong from outside.
+
+            .btn2 on a dark band resolves to --color-panel-btn-text on a
+            --color-panel-btn-border edge, which is correct and deliberate but
+            deliberately quiet — it is the SECONDARY control. On the Growth
+            System that quiet outline is the only action under five cards that
+            are now a bright light surface, and it disappears under them. The
+            filled .btn is the system's primary control and it is what that
+            slot wants.
+
+            Light grounds keep .btn2: there the section CTA sits among ordinary
+            page furniture and the outline is the right weight. */}
         {cta && (
-          <Link href={cta.to} className='btn2 itemsSection__cta'>
+          <Link
+            href={cta.to}
+            className={`${ground === "dark" ? "btn" : "btn2"} itemsSection__cta`}
+          >
             {cta.label}
           </Link>
         )}

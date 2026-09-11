@@ -1,7 +1,9 @@
 import { Container } from "@/components/common";
-import { ContactSection, TeamSection } from "@/components/common";
+import { ContactSection } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
+import { CaseStudySection } from "@/components/ui/results";
 import { finalConversionCopy, resultsCopy } from "@/data/home";
+import { caseStudies } from "@/data/results/caseStudies";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -15,12 +17,22 @@ const baseUrl = "https://www.pixelettemarketing.com";
 // kept out of the sitemap; pointing the brief's CTAs at it would have put
 // another company's case studies behind a Pixelette Marketing promise.
 //
-// The page is deliberately THIN, and honestly so. The brief's publication
-// gates bar publishing any metric without a documented baseline, timeframe and
-// client approval, and bar rewriting the testimonials for sales effect. So
-// this page carries the brief's frame and the two verbatim quotations, and
-// nothing invented to fill it out. Evidence-led case studies are named in the
-// brief as the next content priority, and they belong here when they exist.
+// The page WAS deliberately thin: the brief's publication gates bar publishing
+// any metric without a documented baseline and client approval, and bar
+// rewriting the testimonials for sales effect, so it carried the frame and the
+// two verbatim quotations and nothing invented to fill it out.
+//
+// 11 Sep 2026. Management supplied the two case studies the brief named as the
+// next content priority, so the gate is satisfied by evidence rather than by
+// absence and they render here. See src/data/results/caseStudies.ts for what
+// is still missing from them and why it is not filled in.
+//
+// TeamSection CAME OFF THIS PAGE. It existed to carry the two client
+// quotations while there was nothing else to show; both quotations now sit
+// inside the case study they are actually about, which is where a testimonial
+// is worth most. Rendering both would put each quote on the page twice. The
+// home page's TeamSection is untouched and still reads from the same single
+// definition in teamData.ts.
 
 export const metadata: Metadata = {
   title: "Client Results | Pixelette Marketing",
@@ -59,13 +71,22 @@ export default function ResultsPage() {
         </Container>
       </div>
 
-      {/* The two testimonials, verbatim, from teamData.
+      {/* NO HEADING PAIR ABOVE THESE. The hero directly above already carries
+          the eyebrow and the heading for the page, and there is no second pair
+          in the brief or in management's copy to give this block. Writing one
+          would be inventing copy to complete a pattern — the trap this
+          codebase has reverted twice.
 
-          NO HEADING PAIR. The hero directly above already carries the eyebrow
-          and the heading for this page, and there is no second pair in the
-          brief to give this block. Writing one would be inventing copy to
-          complete a pattern — the trap this codebase has reverted twice. */}
-      <TeamSection />
+          Grounds alternate so two stories read as two, not one long column.
+          Neither is dark: see CaseStudySection for why the page keeps all
+          three of its bands in hand. */}
+      {caseStudies.map((study, index) => (
+        <CaseStudySection
+          key={study.client}
+          content={study}
+          ground={index % 2 === 1 ? "alt" : "page"}
+        />
+      ))}
 
       <ContactSection
         heading={finalConversionCopy.heading}

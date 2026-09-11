@@ -17,6 +17,18 @@ export interface PointItemContent {
   body: string;
   /** Sub-capabilities, joined into ONE line. The Growth System only. */
   capabilities?: string[];
+  /** The closing "you get" beat. Ways to work with us only.
+   *
+   *  Management supplied the three engagement descriptions on 11 Sep 2026 in a
+   *  fixed three-part shape: a one-line hook, a paragraph saying what the work
+   *  is, and a sentence naming what the client ends up with. That third beat is
+   *  the commercial payoff and it is the same shape in all three, so it takes
+   *  its own slot rather than running into `body` as a third sentence — where
+   *  it would be buried inside the one line a buyer is actually scanning for.
+   *
+   *  Narrowly scoped on purpose, exactly as `index`, `icon` and
+   *  `capabilities` are. It is not a general-purpose second paragraph. */
+  outcome?: string;
   /** Per-item CTA. Ways to work with us only. */
   cta?: PointItemCta;
 }
@@ -47,6 +59,7 @@ const PointItem: FC<PointItemProps> = ({
   title,
   body,
   capabilities,
+  outcome,
   cta,
   variant = "plain"
 }) => {
@@ -73,6 +86,8 @@ const PointItem: FC<PointItemProps> = ({
       {capabilities?.length ? (
         <Text className='small pointItem__caps'>{capabilities.join(" | ")}</Text>
       ) : null}
+
+      {outcome && <Text className='body pointItem__outcome'>{outcome}</Text>}
 
       {cta && (
         <Link href={cta.to} className='pointItem__cta'>

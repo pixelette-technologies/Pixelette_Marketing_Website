@@ -40,8 +40,26 @@ export const heroCopy = {
 // displayed logo is a genuine client relationship; the set includes portfolio
 // ventures, so this is the claim that is literally true.
 
+// --- 11 Sep 2026: a fourth brief reversal, recorded not overwritten ---------
+// The eyebrow was "Proof early", the brief's own word. It is "Trusted by" now.
+//
+// The brief gates the phrase: "Trusted by brands" is to be used ONLY where
+// every displayed logo is a genuine client relationship, and on 9 Sep that
+// could not be established, so the section took the weaker label and the
+// heading below it was written to be literally true of a mixed set. Management
+// confirmed permissions on 11 Sep, which is the gate opening.
+//
+// The HEADING AND STANDFIRST ARE UNCHANGED, deliberately. "Selected brands and
+// ventures we have supported" is still the accurate description of this set,
+// and it is the brief's sentence. The stronger label sits above a description
+// that stays honest about what is in the row, rather than replacing it.
+//
+// "Trusted by" is also not new copy: it is TrustedBrands' own default and has
+// been live on all eight service pages throughout. This aligns the home page
+// with them rather than inventing a third claim.
+
 export const proofCopy = {
-  eyebrow: "Proof early",
+  eyebrow: "Trusted by",
   heading: "Selected brands and ventures we have supported.",
   standfirst:
     "From launch positioning to demand generation and conversion, our work is designed around measurable commercial progress.",
@@ -276,6 +294,20 @@ export const resultsCopy = {
 // --- 09 Ways to work with us ------------------------------------------------
 // Each route carries its own enquiry path. The form reads ?enquiry= and
 // preselects what the visitor is trying to improve.
+//
+// --- 11 Sep 2026 ------------------------------------------------------------
+// The three descriptions below are MANAGEMENT'S OWN WORDS, supplied in reply
+// to the 9 Sep question "can sales fulfil these three exactly as advertised?".
+// The answer was yes, together with the copy. So these are transcription, not
+// authorship, and the same rule the brief's copy takes applies here: do not
+// rewrite them for rhythm or length.
+//
+// What was here before was mine — written in Phase 1 to describe three
+// engagement models the brief named but did not define. It read as a spec
+// ("For teams that need clarity before committing to execution") rather than
+// as an offer. Management's version opens on the buyer's problem and closes on
+// what they walk away with, which is why the closing sentence is lifted into
+// PointItem's `outcome` slot instead of being run into the paragraph.
 
 export const waysToWorkData: ItemsSectionContent = {
   eyebrow: "Ways to work with us",
@@ -284,7 +316,8 @@ export const waysToWorkData: ItemsSectionContent = {
   items: [
     {
       title: "Growth Diagnostic",
-      body: "For teams that need clarity before committing to execution. We diagnose positioning, funnel, channels, search visibility, measurement and commercial blockers, then return a prioritised growth plan.",
+      body: "Find out what is holding your growth back. We assess your marketing, visibility, acquisition and conversion performance to show you what is working, what is not and where the biggest opportunities sit.",
+      outcome: "You leave with clear priorities and a practical growth plan.",
       cta: {
         label: "Request a growth diagnostic",
         to: "/contactus?enquiry=diagnostic"
@@ -292,12 +325,14 @@ export const waysToWorkData: ItemsSectionContent = {
     },
     {
       title: "Managed Growth Programme",
-      body: "For companies that need coordinated strategy and execution across selected channels, with agreed KPIs, reporting and ongoing optimisation.",
+      body: "We turn the growth plan into action. Our team manages and improves your marketing activity across the channels that matter most - connecting strategy, execution and performance around your commercial goals.",
+      outcome: "You get ongoing delivery, optimisation and measurable progress.",
       cta: { label: "Discuss managed growth", to: "/contactus?enquiry=managed" }
     },
     {
       title: "Embedded Growth Team",
-      body: "For companies that want Pixelette to operate as an extension of the internal team across strategy, campaigns, content, demand, analytics and commercial growth.",
+      body: "Add the marketing capability you need without building the whole team in-house. We provide dedicated specialists who work alongside your business, filling capability gaps and taking responsibility for agreed areas of marketing and growth.",
+      outcome: "You get the people, expertise and delivery capacity you need - without the recruitment overhead.",
       cta: { label: "Build an embedded team", to: "/contactus?enquiry=embedded" }
     }
   ],

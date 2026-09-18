@@ -241,7 +241,12 @@ const ContactUsForm: React.FC = () => {
               <Field type='checkbox' name='consent' />
               <span>
                 {consentText}{" "}
-                <a href={privacyNoticeUrl} target='_blank' rel='noreferrer'>
+                <a
+                  href={privacyNoticeUrl}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='link'
+                >
                   Read the privacy notice
                 </a>
               </span>

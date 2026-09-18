@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "pmw-consent";
+import {
+  applyConsent,
+  CONSENT_EVENT,
+  readConsent,
+  type ConsentChoice
+} from "@/lib/consent";
 
 const wrap: React.CSSProperties = {
   position: "fixed",
@@ -65,29 +69,24 @@ const CookieConsent = () => {
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored !== "granted" && stored !== "denied") {
-          setVisible(true);
-        }
-      } catch {
-        setVisible(true);
-      }
+      if (readConsent() === null) setVisible(true);
     }, 0);
 
-    return () => window.clearTimeout(timer);
+    // A choice made in the Privacy choices panel answers this banner's
+    // question too. Without this the banner would stay up asking something
+    // the visitor has already answered a few centimetres above it.
+    const onChange = () => setVisible(false);
+    window.addEventListener(CONSENT_EVENT, onChange);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener(CONSENT_EVENT, onChange);
+    };
   }, []);
 
-  const decide = (choice: "granted" | "denied") => {
-    try {
-      localStorage.setItem(STORAGE_KEY, choice);
-    } catch {}
-    const w = window as unknown as {
-      gtag?: (...args: unknown[]) => void;
-    };
-    w.gtag?.("consent", "update", { analytics_storage: choice });
-    setVisible(false);
-  };
+  // src/lib/consent.ts is the one definition of what a choice does. It fires
+  // CONSENT_EVENT, which the listener above uses to close the banner.
+  const decide = (choice: ConsentChoice) => applyConsent(choice);
 
   if (!visible) return null;
 

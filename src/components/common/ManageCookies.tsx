@@ -11,7 +11,22 @@ const btnStyle: React.CSSProperties = {
   color: "var(--color-page)"
 };
 
-const ManageCookies = () => {
+interface ManageCookiesProps {
+  label?: string;
+  /** When given, the caller styles the control and the inline button style is
+   *  dropped. The footer renders this as one of its links; /cookie-policy keeps
+   *  the filled button it has always had. */
+  className?: string;
+}
+
+// One reopen behaviour, two presentations. The footer's "Privacy choices" is
+// the same action as the cookie page's button — clear the stored choice, deny
+// analytics, reload so CookieConsent asks again — and a second copy of this
+// logic is how the two would start disagreeing about what "reset" means.
+const ManageCookies = ({
+  label = "Change your cookie preferences",
+  className
+}: ManageCookiesProps) => {
   const reopen = () => {
     try {
       localStorage.removeItem("pmw-consent");
@@ -24,8 +39,13 @@ const ManageCookies = () => {
   };
 
   return (
-    <button type="button" onClick={reopen} style={btnStyle}>
-      Change your cookie preferences
+    <button
+      type="button"
+      onClick={reopen}
+      className={className}
+      style={className ? undefined : btnStyle}
+    >
+      {label}
     </button>
   );
 };

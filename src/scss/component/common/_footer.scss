@@ -1,54 +1,101 @@
-// The footer ground, hairline, eyebrow colour and legal row all come from the
-// .footer primitive. This partial only lays the columns out.
+// The footer ground, eyebrow colour and legal type all come from the .footer
+// primitive. This partial lays the footer out.
 //
-// The old rule was `footer { padding; & > div { flex } }` — unscoped, and it
-// would have fought the primitive on every one of those properties.
+// --- 18 Sep 2026: the group footer ------------------------------------------
+// Rebuilt to the Pixelette Technologies footer's structure — brand-led grid,
+// group band, legal line — so the sister sites share one footer shape. Their
+// measurements are carried across as ratios and rhythm; every COLOUR is this
+// site's own footer token, never theirs. Their accent is a mint that belongs to
+// their palette. Ours is --color-footer-eyebrow, the one tone the tokens file
+// lets speak on this ground (5.11).
+//
+// One breakpoint, the site's 767px. Theirs steps at 1000, 900 and 560; the
+// layout file here says resist a second query, so the grid folds once and
+// the rest is clamp() and wrapping.
 
 .site-footer {
-  padding-block: var(--sec-y-sm);
+  padding-top: var(--sec-y);
+  padding-bottom: 2.5rem;
 }
 
-.footerColumns {
+// --- 1. The grid ------------------------------------------------------------
+// Theirs is 1.6fr + two columns. Ours is 1.6fr + three: What We Do and Who We
+// Help are both crawl paths to indexed pages, so neither folds into the other.
+// The brand column keeps their 1.6 weighting.
+.footerGrid {
   display: grid;
-  // The guide's 1.5fr 1fr 1fr 1fr 1fr, one column short: there is no brand
-  // column, so Services takes the wide slot because it carries eight links.
-  // D8: auto-fit rather than three explicit column counts stepped at 950 and
-  // 550px. The columns fold in the same order and the file needs no
-  // breakpoints at all.
-  grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
-  gap: clamp(1.5rem, 1rem + 1.5vw, 3rem);
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: 2.5rem 1.75rem;
 
   & > div {
     display: flex;
     flex-direction: column;
-    // .flink already carries the 44px tap target, so the columns need no gap
-    // of their own; adding one would push the rows apart twice.
     align-items: flex-start;
+    min-width: 0;
   }
 
   .eyebrow {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.75rem;
   }
+}
 
-  a {
+.footerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // .flink carries the 44px tap target, so the rows need no gap of their own.
+  a,
+  .footerList__button {
     color: var(--color-footer-body);
   }
 }
 
-.footerLegal {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding-top: 1.25rem;
-
+// The Privacy choices control is a <button> dressed as the links around it.
+// .flink supplies the tap target and the hover; this only strips the button's
+// own chrome so it cannot read as a different kind of thing in the list.
+.footerList__button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
+.footerList__button:hover,
+.footerList__button:focus-visible {
+  color: var(--color-page);
+  text-decoration: underline;
+}
+
+// --- The brand column -------------------------------------------------------
+.footerBrand {
+  & > .small {
+    margin-top: 1.25rem;
+    max-width: 34ch;
+    color: var(--color-footer-body);
+  }
+}
+
+.footerBrand__logo {
+  display: block;
+
+  & > svg {
+    display: block;
+    height: 2rem;
+    width: auto;
+  }
+}
+
+// In the slot where Technologies lists its ISO certificates.
 .footerSocial {
   display: flex;
   align-items: center;
-  gap: 1.53125rem;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  // Pull the first icon's 44px hit area back to the text edge above it.
+  margin-left: -0.625rem;
 
   & > a {
     display: inline-flex;
@@ -64,30 +111,125 @@
   }
 }
 
-// --- The brand column -------------------------------------------------------
-// The guide always drew five columns with the first carrying the name and a
-// description. Phase C shipped four and RECORDED WHY: there was no footer
-// description anywhere in the repo, and the wordmark is crimson, which
-// measures about 1.4:1 on this ground.
-//
-// The 8 Sep 2026 brief supplies the description, so the column exists now and
-// that deviation closes. The wordmark still does not appear — the name is set
-// as type in the footer's own tones, not as the crimson mark.
-//
-// It takes the wide slot the guide gives it. auto-fit means stating that as a
-// min-width rather than as an explicit track, so the fold order is unchanged.
-.footerBrand {
-  min-width: min(16rem, 100%);
+// --- 2. The group band ------------------------------------------------------
+// Their .groupband: a hairline, an intro on the left at 0.85 and the list on
+// the right at 1.15, the list itself two across.
+.groupband {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-footer-line);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.groupband__intro {
+  // .h4 is --color-ink, invisible here. The footer primitive colours the
+  // eyebrow and the legal line but has no heading rule of its own.
+  & > .h4 {
+    color: var(--color-page);
+    margin-bottom: 0.875rem;
+  }
 
   & > .small {
-    margin-top: 0.5rem;
+    max-width: 46ch;
     color: var(--color-footer-body);
   }
 }
 
-// .h4 carries --color-ink, which is invisible on the footer ground. The footer
-// primitive colours .eyebrow, .rule, .pill and .legal but has no heading rule,
-// because until now the footer had no heading.
-.footerBrand__name {
+.groupband__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.625rem 2rem;
+}
+
+.groupband__name {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-footer-eyebrow);
+
+  & > svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+a.groupband__name:hover {
   color: var(--color-page);
+  text-decoration: underline;
+}
+
+.groupband__name--current {
+  color: var(--color-page);
+}
+
+.groupband__here {
+  font-family: var(--font-mono);
+  font-size: 0.59375rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-footer-muted);
+  border: 1px solid var(--color-footer-line);
+  border-radius: var(--radius-tile);
+  padding: 0.1875rem 0.4375rem;
+}
+
+.groupband__what {
+  display: block;
+  margin-top: 0.4375rem;
+  max-width: 42ch;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-footer-muted);
+}
+
+// --- 3. The legal line ------------------------------------------------------
+// Theirs carries the company identity here. Ours carries the copyright until
+// management supplies the entity details — see Footer.tsx.
+.footerLegal {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-footer-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+// --- The one fold -----------------------------------------------------------
+// Brand across the top, the three link columns beneath it two across, the
+// group band stacked. Theirs goes to one column at 560px; at this site's
+// single breakpoint two columns of short links still fit a phone comfortably.
+@media only screen and (max-width: 767px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1;
+  }
+
+  .groupband,
+  .groupband__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .groupband {
+    gap: 2rem;
+  }
+
+  .groupband__list {
+    gap: 1.375rem;
+  }
 }

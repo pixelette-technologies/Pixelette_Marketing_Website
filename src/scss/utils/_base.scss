@@ -5,17 +5,26 @@
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
   box-sizing: border-box;
-  scroll-behavior: none;
   background-color: var(--color-band);
 }
 
 html {
+  // 18 Sep 2026. Smooth scrolling lives on the root ONLY. It was on `*`, every
+  // element on the page, and body carried `scroll-behavior: none` — not a
+  // valid value, so browsers dropped it and it never did anything.
+  //
+  // The root is the only scroller that needs it: in-page anchor jumps, like
+  // the article table of contents, glide. Page changes do NOT: layout.tsx sets
+  // data-scroll-behavior="smooth" on <html>, which is Next 16's signal to
+  // switch this off for the instant reset to the top on navigation. Remove
+  // that attribute and every link click turns into an animated scroll again.
+  scroll-behavior: smooth;
+
   // Phase F. The header is sticky now, so an anchor target would otherwise
   // scroll to the very top of the viewport and sit UNDERNEATH it. This is not
   // hypothetical: the article table of contents in SingleBlogContent links to

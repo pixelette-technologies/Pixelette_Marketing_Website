@@ -98,8 +98,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    // data-scroll-behavior: Next 16 no longer switches smooth scrolling off
+    // while it resets the scroll on a page change unless this attribute is
+    // present. Without it every link click became an animated scroll from the
+    // previous page's position, measured by Next before it had moved.
     <html
       lang='en'
+      data-scroll-behavior='smooth'
       className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable}`}
     >
       <head>

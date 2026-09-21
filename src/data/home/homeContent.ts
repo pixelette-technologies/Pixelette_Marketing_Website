@@ -59,8 +59,8 @@ export const heroCopy = {
 // with them rather than inventing a third claim.
 
 export const proofCopy = {
-  eyebrow: "Trusted by",
-  heading: "Selected brands and ventures we have supported.",
+  eyebrow: " ",
+  heading: "Organisation we have worked with",
   standfirst:
     "From launch positioning to demand generation and conversion, our work is designed around measurable commercial progress.",
   cta: { label: "See client results", to: RESULTS_HREF }
@@ -70,12 +70,12 @@ export const proofCopy = {
 
 export const whyPixeletteData: ItemsSectionContent = {
   eyebrow: "More than marketing activity",
-  heading: "A growth partner built around the commercial problem.",
+  heading: "A growth partner built around the commercial problem",
   lead: "Most growth problems are not caused by a single channel. Positioning, demand, content, conversion, data and sales handoff all influence the outcome. Pixelette Marketing brings those pieces together around the commercial objective instead of treating each activity as a separate task.",
   items: [
     {
       title: "Commercial strategy",
-      body: "We start with the market, buyer, proposition, sales motion and growth constraint - not a predetermined channel."
+      body: "We start with the market, buyer, proposition, sales motion and growth constraint not a predetermined channel."
     },
     {
       title: "Specialist execution",
@@ -99,7 +99,7 @@ export const whyPixeletteData: ItemsSectionContent = {
 
 export const growthSystemData: ItemsSectionContent = {
   eyebrow: "One connected growth system",
-  heading: "Five capabilities. One commercial objective.",
+  heading: "Five capabilities. One commercial objective",
   lead: "Growth works best when positioning, demand, search, conversion and measurement operate as one system. Pixelette can lead the full programme or deploy the specialist capability the business actually needs.",
   items: [
     {
@@ -176,93 +176,116 @@ export const growthSystemData: ItemsSectionContent = {
 // Replaces the tool-logo wall. Every claim below is about how the work is run
 // rather than about a named product, which is what keeps it inside the brief's
 // gate on unproven capability.
+//
+// 21 SEP 2026 — THE FOUR DESCRIPTIONS AND THE CLOSING LINE ARE GONE, on the
+// user's instruction, and the four names are now the section's whole body:
+// they run the full width of the page as a strip that moves with the scroll.
+// See AiTechnologySection and [[02 Decisions]].
+//
+// So this is NOT an ItemsSectionContent any more, and it must not be made one
+// again: PointItem requires `body`, and four empty strings passed to satisfy
+// the type would be exactly the quiet lie this file keeps writing comments
+// about. The shape says what the section renders.
 
-export const aiTechnologyData: ItemsSectionContent = {
+export interface AiTechnologyContent {
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  /** The four names, in reading order. They ARE the section body now. */
+  marks: string[];
+}
+
+export const aiTechnologyData: AiTechnologyContent = {
   eyebrow: "AI-accelerated. Human-led.",
   heading:
-    "Human strategy. AI-accelerated execution. Commercial accountability.",
-  lead: "Technology should make marketing faster, smarter and more measurable - not become the pitch. Pixelette combines human-led strategy with AI, automation and data where they improve insight, execution and decision-making.",
-  items: [
-    {
-      title: "Faster insight",
-      body: "Support research, market intelligence, campaign analysis and pattern recognition without waiting for manual reporting cycles."
-    },
-    {
-      title: "Smarter prioritisation",
-      body: "Use data and structured analysis to identify where attention, budget and experimentation are most likely to matter."
-    },
-    {
-      title: "Scaled execution",
-      body: "Accelerate repeatable content, search, lead and reporting workflows while keeping quality controls and human review."
-    },
-    {
-      title: "Clear accountability",
-      body: "People remain responsible for strategy, approvals, quality and commercial decisions."
-    }
-  ],
-  closing:
-    "The technology stack changes according to the problem. The commercial objective does not."
+    "Human strategy. AI-accelerated execution. Commercial accountability",
+  lead: "Technology should make marketing faster, smarter and more measurable not become the pitch. Pixelette combines human-led strategy with AI, automation and data where they improve insight, execution and decision-making.",
+  marks: [
+    "Faster insight",
+    "Smarter prioritisation",
+    "Scaled execution",
+    "Clear accountability"
+  ]
 };
 
 // --- 07 Who we help ---------------------------------------------------------
-// Sector experience and growth stage are SEPARATE, which is the point of the
-// restructure: "Startup" was a stage sitting in a list of industries, and the
-// six-card taxonomy read as a client boundary rather than as experience.
+// REBUILT 21 SEP. This section used to be four linked sector cards — AI &
+// Software, FinTech, Web3 & Digital Assets, Technology & Platforms — each with
+// a summary and a View More into a near-identical industry page.
 //
-// The sector titles keep ArrowCard's two-part shape, brand tone on the first
-// half and ink on the second. FinTech has no second half and passes an empty
-// string rather than having its name split somewhere it does not divide.
+// It was removed on the user's instruction, and the reason is positioning
+// rather than design. Four technology sectors, boxed and equal, read as a
+// client boundary: this is what Pixelette does, and nothing else. The standfirst
+// beneath them said the offer was not limited to those categories, which is a
+// sentence arguing against the layout above it. The layout won.
+//
+// What replaces them is a TYPOGRAPHIC FIELD, not a bigger grid. A directory of
+// twelve cards would make exactly the same claim as four, only longer. The
+// markets are set as type at three scales with no boxes, no summaries and no
+// links, so the group reads as range rather than as a menu — and "And beyond"
+// is part of the composition rather than a footnote to it.
+//
+// NOTHING IN THE FIELD LINKS ANYWHERE. The industry pages still exist and are
+// still reachable from the nav and from /industries; they are simply not what
+// this section is for any more. `to` is therefore gone from the data shape, so
+// a future edit cannot quietly reintroduce a link by filling a field that was
+// left sitting there.
+//
+// The three growth stages and the one route out are UNCHANGED. They are the
+// other axis the section has always carried — market, then stage — and the
+// closing statement now bridges the two.
 
-export interface SectorCard {
-  mainHeading: string;
-  subHeading: string;
-  summary: string;
-  to: string;
+/** One market in the landscape.
+ *
+ *  `scale` places it in the composition: three leads carry the field, four
+ *  mids fill it and four quiets set the texture. It is a compositional role,
+ *  not an importance ranking — reading it as a ranking is the one way this
+ *  data could be got wrong, because the section's whole argument is that no
+ *  market here outranks another.
+ *
+ *  `accent` is the brand tone, and it is spent twice in eleven marks. */
+export interface MarketMark {
+  label: string;
+  scale: "lead" | "mid" | "quiet";
+  accent?: boolean;
 }
 
 export interface WhoWeHelpContent {
   eyebrow: string;
   heading: string;
   lead: string;
-  sectors: SectorCard[];
+  markets: MarketMark[];
+  /** The terminal mark. Held apart from `markets` because it is not a market —
+   *  it is the sentence the list would otherwise fail to say. */
+  beyond: string;
   stages: PointItemContent[];
   cta: { label: string; to: string };
+  /** The close. Concise on purpose: it completes the argument that the
+   *  approach adapts to the market, and is not a second content section. */
+  positioning: { heading: string; body: string };
 }
 
 export const whoWeHelpData: WhoWeHelpContent = {
   eyebrow: "Who we help",
-  heading: "Across sectors. Built around your market.",
-  lead: "Pixelette Marketing works with ambitious businesses across sectors. Our experience includes AI, software, FinTech, Web3 and technology platforms, but our marketing offer is not limited to those categories. We build the strategy around your audience, proposition, buying journey, commercial model and growth stage.",
-  sectors: [
-    {
-      mainHeading: "AI",
-      subHeading: "& Software",
-      summary:
-        "For technical products that need clear positioning, buyer education, demand creation and a route from interest to adoption.",
-      to: "industries/ai"
-    },
-    {
-      mainHeading: "FinTech",
-      subHeading: "",
-      summary:
-        "For financial technology businesses that need authority, performance and conversion while communicating complex value clearly.",
-      to: "industries/fintech"
-    },
-    {
-      mainHeading: "Web3",
-      subHeading: "& Digital Assets",
-      summary:
-        "For products that need credibility, community, partner ecosystems and disciplined demand creation.",
-      to: "industries/web_3"
-    },
-    {
-      mainHeading: "Technology",
-      subHeading: "& Platforms",
-      summary:
-        "For technology products and platforms that need to turn capability into clear market position, demand and commercial adoption.",
-      to: "industries/tech"
-    }
+  heading: "Across sectors. Built around your market",
+  lead: "Pixelette Marketing works with businesses across established and emerging sectors. We don't apply a sector template. We shape the strategy around the audience, proposition, buying journey, commercial model and growth ambition of each business.",
+  // Order is the composition. The three scales are interleaved rather than
+  // grouped, so the field wraps into an uneven shape at every width instead of
+  // settling into rows of equals.
+  markets: [
+    { label: "Technology & Software", scale: "lead" },
+    { label: "Financial Services", scale: "mid", accent: true },
+    { label: "Professional Services", scale: "quiet" },
+    { label: "Consumer & Retail", scale: "mid" },
+    { label: "Property & Real Estate", scale: "quiet" },
+    { label: "Healthcare & Wellness", scale: "lead" },
+    { label: "Education", scale: "mid" },
+    { label: "AI & Emerging Technology", scale: "lead", accent: true },
+    { label: "Startups & Scale-ups", scale: "quiet" },
+    { label: "Web3 & Digital Assets", scale: "mid" },
+    { label: "B2B Services", scale: "quiet" }
   ],
+  beyond: "And beyond",
   stages: [
     {
       title: "Launch",
@@ -277,7 +300,11 @@ export const whoWeHelpData: WhoWeHelpContent = {
       body: "Strengthen authority, attribution, channel coordination, conversion and alignment with more complex buying and sales journeys."
     }
   ],
-  cta: { label: "Find your growth route", to: "/industries" }
+  cta: { label: "Find your growth route", to: "/industries" },
+  positioning: {
+    heading: "Sector knowledge matters. Commercial understanding matters more",
+    body: "Different markets have different customers, buying cycles and competitive pressures. Our job is to understand those differences and build the marketing approach around them."
+  }
 };
 
 // --- 08 Results -------------------------------------------------------------
@@ -286,14 +313,28 @@ export const whoWeHelpData: WhoWeHelpContent = {
 
 export const resultsCopy = {
   eyebrow: "Results that matter",
-  heading: "Proof before promises.",
-  lead: "The strongest marketing case is what changed after the work started. Our results section should show the commercial problem, the work delivered and the outcome - with client evidence wherever it is available.",
+  heading: "Proof before promises",
+  lead: "The strongest marketing case is what changed after the work started. Our results section should show the commercial problem, the work delivered and the outcome with client evidence wherever it is available.",
   cta: { label: "See client results", to: RESULTS_HREF }
 };
 
 // --- 09 Ways to work with us ------------------------------------------------
-// Each route carries its own enquiry path. The form reads ?enquiry= and
-// preselects what the visitor is trying to improve.
+// ONE CONTROL, NOT THREE. Each card carried its own CTA into a seeded form —
+// /contactus?enquiry=diagnostic, =managed, =embedded — and the three were
+// replaced on 21 Sep by a single section CTA beneath the closing line.
+//
+// WHAT THAT COSTS, SO IT IS NOT REDISCOVERED AS A BUG. ENQUIRY_SEEDS in
+// ContactUsForm still holds all three keys and the URLs still work if one is
+// shared or bookmarked, but NOTHING ON THE SITE LINKS THEM ANY MORE. The
+// notification email therefore stops telling sales which engagement the
+// visitor came in on. That signal is not recoverable from a single control:
+// it could only be kept by picking one of the three, which would answer a
+// question on the visitor behalf, or by inventing a fourth seed that
+// describes none of them.
+//
+// The label is MINE and is the one piece of copy here that management has not
+// seen. It is deliberately neutral because the control now stands for all
+// three engagements and the closing line beneath it offers a fourth route.
 //
 // --- 11 Sep 2026 ------------------------------------------------------------
 // The three descriptions below are MANAGEMENT'S OWN WORDS, supplied in reply
@@ -311,33 +352,28 @@ export const resultsCopy = {
 
 export const waysToWorkData: ItemsSectionContent = {
   eyebrow: "Ways to work with us",
-  heading: "Buy the growth capability you actually need.",
+  heading: "Buy the growth capability you actually need",
   lead: "Not every company needs a full-service retainer. We structure the engagement around the commercial problem, the capability gap and the level of execution required.",
   items: [
     {
       title: "Growth Diagnostic",
       body: "Find out what is holding your growth back. We assess your marketing, visibility, acquisition and conversion performance to show you what is working, what is not and where the biggest opportunities sit.",
-      outcome: "You leave with clear priorities and a practical growth plan.",
-      cta: {
-        label: "Request a growth diagnostic",
-        to: "/contactus?enquiry=diagnostic"
-      }
+      outcome: "You leave with clear priorities and a practical growth plan."
     },
     {
       title: "Managed Growth Programme",
-      body: "We turn the growth plan into action. Our team manages and improves your marketing activity across the channels that matter most - connecting strategy, execution and performance around your commercial goals.",
-      outcome: "You get ongoing delivery, optimisation and measurable progress.",
-      cta: { label: "Discuss managed growth", to: "/contactus?enquiry=managed" }
+      body: "We turn the growth plan into action. Our team manages and improves your marketing activity across the channels that matter most connecting strategy, execution and performance around your commercial goals.",
+      outcome: "You get ongoing delivery, optimisation and measurable progress."
     },
     {
       title: "Embedded Growth Team",
       body: "Add the marketing capability you need without building the whole team in-house. We provide dedicated specialists who work alongside your business, filling capability gaps and taking responsibility for agreed areas of marketing and growth.",
-      outcome: "You get the people, expertise and delivery capacity you need - without the recruitment overhead.",
-      cta: { label: "Build an embedded team", to: "/contactus?enquiry=embedded" }
+      outcome: "You get the people, expertise and delivery capacity you need without the recruitment overhead."
     }
   ],
   closing:
-    "Specialist services can also be scoped individually where focused delivery is all that is required."
+    "Specialist services can also be scoped individually where focused delivery is all that is required.",
+  cta: { label: "Discuss the right engagement", to: "/contactus" }
 };
 
 // --- 10 How it works --------------------------------------------------------
@@ -353,7 +389,7 @@ export const waysToWorkData: ItemsSectionContent = {
 
 export const growthProcessData: ItemsSectionContent = {
   eyebrow: "From first conversation to commercial impact",
-  heading: "Clear process. Clear ownership. Clear next step.",
+  heading: "Clear process. Clear ownership. Clear next step",
   items: [
     {
       index: "01",
@@ -386,7 +422,7 @@ export const growthProcessData: ItemsSectionContent = {
 
 export const widerAdvantageData: ItemsSectionContent = {
   eyebrow: "Part of Pixelette",
-  heading: "Marketing backed by wider technology capability.",
+  heading: "Marketing backed by wider technology capability",
   lead: "Pixelette Marketing is the specialist growth business within the wider Pixelette Group. Where a growth problem crosses into software, AI, automation, venture structure or enterprise readiness, we can connect the relevant group capability without forcing the client to assemble a new supplier network.",
   items: [
     {
@@ -415,7 +451,7 @@ export const finalConversionCopy = {
    *  The primary is the form itself, which sits beside this copy, so only the
    *  secondary needs a link of its own. */
   secondaryCta: { label: "Talk to Pixelette Marketing", to: "/contactus" },
-  heading: "Let's build the growth plan behind your next stage.",
+  heading: "Let's build the growth plan behind your next stage",
   lead: "Tell us where growth is stuck or where you want to get to. We will use the first conversation to understand the commercial objective, what you have already tried, what the numbers say and whether Pixelette is the right fit.",
   closing:
     "No generic proposal. No channel recommendation before we understand the problem."

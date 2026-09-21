@@ -24,6 +24,14 @@
 //    back no, _reveal.scss and ScrollReveal.tsx revert together in one commit.
 //    See the header of _reveal.scss.
 //
+// 4. THE SCROLL-DRIVEN STRIP. The four names in the "AI-accelerated.
+//    Human-led." section run the full width of the page and their horizontal
+//    offset is a function of the page's scroll position. The user's call, 21
+//    September 2026, and it replaced the four descriptions and the closing
+//    line rather than being added on top of them. It is the second marquee on
+//    the site but it is NOT the first one's mechanism: no keyframes, no timer,
+//    it moves only while the reader is moving. See _scrollMarquee.scss.
+//
 // A correction to what this paragraph used to claim: "nothing else on the site
 // moves" was already untrue when it was written. framer-motion animates the
 // navbar dropdown, the mobile drawer, the blog category dropdown and the

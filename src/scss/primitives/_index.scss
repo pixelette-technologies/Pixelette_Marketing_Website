@@ -13,4 +13,8 @@
 // one widget. It retires the flat-and-static register as written, which is
 // a group-level change and is open with Mr Rana. Read the partial header.
 @forward "./reveal";
+// The FOURTH motion surface. A marquee whose offset comes from the page's own
+// scroll rather than from a timer, for the "AI-accelerated. Human-led."
+// section and nothing else. Read the partial header before touching it.
+@forward "./scrollMarquee";
 @forward "./responsive";

@@ -2,7 +2,8 @@ import {
   HomeHero,
   GrowthSection,
   ItemsSection,
-  DynamicMarket
+  DynamicMarket,
+  AiTechnologySection
 } from "@/components/ui/home";
 import {
   ContactSection,
@@ -10,7 +11,6 @@ import {
   TrustedBrands
 } from "@/components/common";
 import {
-  aiTechnologyData,
   finalConversionCopy,
   growthSystemData,
   growthProcessData,
@@ -55,7 +55,7 @@ export default function Home() {
         grid='thirds'
         variant='card'
       />
-      <ItemsSection content={aiTechnologyData} />
+      <AiTechnologySection />
       <DynamicMarket />
       <TeamSection
         mainHeading={resultsCopy.eyebrow}

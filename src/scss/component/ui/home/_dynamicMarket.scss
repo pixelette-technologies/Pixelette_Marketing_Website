@@ -2,9 +2,6 @@
 // margin on a decorative SVG and a pair of 15rem corner radii that only
 // existed below 1366px — all of it machinery for overlapping this section into
 // the empty panel EngagementStalls was holding open. See that component.
-//
-// What is left is a header pair and a card grid, and neither needs a
-// breakpoint: the header is a wrapping flex row and the cards are auto-fit.
 
 .dynamicMarket {
   & > div {
@@ -31,13 +28,6 @@
         flex: 1 1 20rem;
       }
     }
-
-    & > section {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-      gap: 1.25rem;
-      margin-top: var(--sec-y-sm);
-    }
   }
 }
 
@@ -47,23 +37,157 @@
 // both were display headings. Now that the h2 is the eyebrow and the h3 is the
 // section heading, the same two rules would do exactly the wrong thing twice:
 // strip the eyebrow's brand colour, and paint the largest heading on the page
-// crimson. The primitives already carry both — .eyebrow is brand, .h2 is ink —
-// so the right move is to stop restating them here.
+// crimson. The primitives already carry both, so the right move is to stop
+// restating them here.
+
+// --- The market field, 21 Sep -----------------------------------------------
+// Replaces the four-card auto-fit grid. The grid is what is being avoided, so
+// this is a WRAPPING FLEX ROW and nothing else: a row has no columns to fall
+// into, so the marks pack against each other and break wherever the width runs
+// out. That is where the asymmetry comes from. It is not positioned by hand,
+// which is the only version of this that survives a copy edit — add a market,
+// rename one, and the composition reflows instead of breaking.
+//
+// align-items: baseline is the whole trick. Three type scales sitting on one
+// baseline give each line an uneven top edge for free, and it is the reason
+// this reads as a composition rather than as a tag cloud.
+//
+// NO BREAKPOINT IS NEEDED FOR THE FIELD ITSELF. Every size is a clamp, so the
+// scales compress with the viewport and the row simply wraps more often. The
+// one media query at the end of this file is the stylesheet's existing 767px
+// and does a different job.
+.marketField {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  // Column gap is generous and row gap is tight, so the marks read across the
+  // line before they read down it. Equal gaps would make a lattice.
+  gap: clamp(0.5rem, 1.4vw, 1.25rem) clamp(1.25rem, 3.4vw, 3rem);
+  margin-top: var(--sec-y-sm);
+  padding: 0;
+  list-style: none;
+}
+
+.marketField__mark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  // Long names stay whole. Without this, "AI & Emerging Technology" breaks
+  // across a wrap and the two halves read as two markets.
+  white-space: nowrap;
+  max-width: 100%;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+// The three scales. Lead carries the field, mid fills it, quiet sets the
+// texture. The floors are deliberately not proportional to the ceilings: on a
+// phone the three converge, because three widely separated sizes in a narrow
+// column read as a mistake rather than as a hierarchy.
+.marketField__mark--lead {
+  font-size: clamp(1.5rem, 3.6vw, 2.75rem);
+}
+
+.marketField__mark--mid {
+  font-size: clamp(1.125rem, 2.3vw, 1.75rem);
+  color: var(--color-body);
+}
+
+// The quiet tier is the one that is NOT the display face. Mono, uppercase and
+// tracked, it is the eyebrow's treatment used as texture, which is why the
+// field reads as editorial rather than as one font at four sizes. Its floor is
+// 0.75rem, above the 0.6875rem the eyebrow itself takes, because these sit
+// beside 24px serif and need to hold their own.
+.marketField__mark--quiet {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 1.05vw, 0.8125rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-soft);
+}
+
+// Spent twice in eleven marks. Any more and the accent stops being one.
+.marketField__mark--accent {
+  color: var(--color-brand);
+}
+
+// The terminal mark. The rule is a pseudo-element rather than a border so it
+// can sit on the x-height rather than on the box edge, and so nothing empty
+// exists in the DOM to be announced.
+.marketField__beyond {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-size: clamp(1.125rem, 2.3vw, 1.75rem);
+  font-style: italic;
+  color: var(--color-brand);
+}
+
+.marketField__beyond::before {
+  content: "";
+  width: clamp(1.75rem, 5vw, 4.5rem);
+  height: 1px;
+  background: var(--color-brand);
+  margin-bottom: 0.1em;
+}
+
+// The micro-interaction, and all of it. A mark lifts 2px and takes the brand
+// tone. No underline, no scale, no shadow: these are not controls and must not
+// start looking like them, which is why the cursor is left alone as well.
+//
+// hover only, with no focus pair, BECAUSE THERE IS NOTHING TO FOCUS. The marks
+// are list items, not links. Adding tabindex to eleven inert words to make a
+// colour change reachable would put eleven stops in the keyboard path and
+// return nothing for them.
+.marketField__mark:hover {
+  color: var(--color-brand);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marketField__mark {
+    transition: none;
+  }
+
+  .marketField__mark:hover {
+    transform: none;
+  }
+}
+
+// --- The close, 21 Sep ------------------------------------------------------
+// Market, then stage, and this bridges them. Measure-capped so it reads as a
+// closing remark rather than as the opening of another section.
+.dynamicMarket__positioning {
+  margin-top: var(--sec-y-sm);
+  max-width: 46rem;
+}
+
+.dynamicMarket__positioning > *:first-child {
+  margin-bottom: 0.75rem;
+}
 
 // --- 8 Sep 2026 brief: the stage group --------------------------------------
-// The section carries two groups now, sectors above and growth stages below,
-// and the hairline between them is load-bearing rather than decorative: it is
-// what stops three non-linking stages reading as three more sector cards.
+// The section carries two groups, markets above and growth stages below.
 //
-// The stages take the same auto-fit track as the sectors so the two groups
-// line up on the same column edges. Three items against the 1160px wrap seat
-// three across, which is what the group wants.
+// THE HAIRLINE BETWEEN THEM IS GONE, 21 Sep. It was argued here as
+// load-bearing, the thing that stopped three non-linking stages reading as
+// three more sector cards, and with the cards themselves now gone there is
+// nothing left for the stages to be mistaken for.
+//
+// THE DOUBLED GAP IT CARRIED IS NOT KEPT, as of 21 Sep, on the user's
+// instruction from a rendered page. It was calc(--sec-y-sm * 2), preserving
+// the rendered distance the hairline used to occupy — --sec-y-sm above the
+// rule plus --sec-y-sm above the stages. With the rule gone and the sector
+// cards gone with it, that distance was inherited machinery rather than a
+// judgement, and beside the close above it the stages read as detached.
+//
+// One --sec-y-sm now, the same step the close takes, so the section has ONE
+// interval between its groups instead of two different ones.
 .dynamicMarket {
   & > div {
-    & > .dynamicMarket__split {
-      margin-top: var(--sec-y-sm);
-    }
-
     & > .dynamicMarket__stages {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
@@ -75,5 +199,38 @@
       display: inline-flex;
       margin-top: 2rem;
     }
+  }
+}
+
+// The stylesheet's one breakpoint, and the field's one use of it.
+//
+// A wrapping row on a phone packs two or three marks per line and leaves a
+// ragged right edge that reads as an accident rather than as a composition.
+// Below 767px the field becomes a column and the marks alternate alignment
+// instead, which is a deliberate shape at any content length and cannot
+// collide with itself.
+@media only screen and (max-width: 767px) {
+  .marketField {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+  }
+
+  // Every third mark pulls right. Not every second: alternating on a column
+  // reads as a zigzag, where a three-beat leaves the left edge dominant and
+  // the pull to the right an event.
+  .marketField__mark:nth-child(3n) {
+    align-self: flex-end;
+    text-align: right;
+  }
+
+  // Nowrap is released here. A phone column is exactly the width where a long
+  // market name has nowhere left to go, and the page must not scroll sideways.
+  .marketField__mark {
+    white-space: normal;
+  }
+
+  .marketField__beyond {
+    align-self: flex-start;
   }
 }

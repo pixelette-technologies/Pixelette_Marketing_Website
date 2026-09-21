@@ -28,9 +28,20 @@ They **cannot see**:
 
 ## A method note worth keeping
 
-Twice, a check "passed" against a **stale server**. An orphaned `next start`
-held port 3001, so `curl` was reading an older build while I believed I was
-verifying new work. Both times the giveaway was a result that was *too* clean.
+**Three times now**, a check "passed" against a **stale server**. An orphaned
+`next start` held port 3001, so `curl` was reading an older build while I
+believed I was verifying new work. The first two times the giveaway was a
+result that was *too* clean.
+
+The third was 21 Sep, on the section realignment. `route:walk` reported 35/35
+against a process that had been listening since before the changes existed.
+`scripts/route-walk.mjs` **does not start a server** — it walks whatever
+answers on 3001 — so a green walk proves nothing at all unless the server was
+started after the build. It now reads as the default outcome rather than as a
+warning sign, which is worse than the first two times.
+
+**Check the port before the walk, not after it.** If anything is listening,
+kill it by PID and start a fresh `next start` from the build under test.
 
 Kill by PID before restarting:
 

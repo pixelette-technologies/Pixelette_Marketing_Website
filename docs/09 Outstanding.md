@@ -1,7 +1,8 @@
 # 09 Outstanding
 
-As of **11 September 2026**. Management answered the 9 Sep questions on 11 Sep;
-what they cleared has been built, and what is left is below.
+As of **21 September 2026**. Management answered the 9 Sep questions on 11 Sep;
+what they cleared has been built, and what is left is below. The two blockers
+at the top have not moved since 11 Sep — both need management, not code.
 
 ## Live in production and needs fixing
 
@@ -110,17 +111,36 @@ The first-visit banner still carries its own inline styles and 9px text.
   and the short inline label suits a slim interior page, but it is a second
   phrasing of one claim. Moving them onto the stacked treatment is a one-line
   change per call site and belongs in the browser walk, not before it.
-- **UI treatment for Strategy & Positioning** — newly on this list, and it
-  needs the browser walk first.
-- One **uncommitted spacing tweak** in `_trustedBrands.scss` from the previous
-  session, still awaiting a keep-or-discard decision.
+- **UI treatment for Strategy & Positioning** — still on this list. It came
+  close to being answered on 21 Sep: making card 01 a lead card spanning two
+  tracks would have removed the Growth System's empty track. Rejected, because
+  it asserts a hierarchy the section's own standfirst does not claim. See
+  [[02 Decisions]]. Still needs the browser walk first.
+- **`_caseStudy.scss` has the trailing-row stretch `ItemsSection` just lost.**
+  Its five impact figures use their own copy of the old flex thirds, so on
+  `/results` figures 04 and 05 still stretch to half the wrap against 376px for
+  the three above them. Same fault, same fix available, deliberately not taken
+  in the same change — it is a different page and nobody has seen either yet.
+- The **uncommitted `_trustedBrands.scss` spacing tweak** recorded here on
+  11 Sep is **gone**: the file is no longer modified in the working tree. It
+  was resolved at some point without this note being updated, which is the
+  ordinary failure mode of a list like this one.
 
 ## The standing risk
 
-**Nobody has viewed any of this in a browser.** Not one page, not one
-breakpoint, and the dropdown menus have never been rendered at all. The two
-case studies built on 11 Sep have been verified structurally — headings,
-figures, quotations, grounds, all 35 routes — and **not once by eye**. See
-[[10 Verification]] for exactly what the automated checks can and cannot see.
+**Almost nothing here has been viewed in a browser.** The Growth System band is
+the one exception, and looking at it immediately produced a fault no gate had
+caught. Every other page and breakpoint is structural-only, and the dropdown
+menus have never been rendered at all. The two case studies built on 11 Sep
+have been verified structurally — headings, figures, quotations, grounds, all
+35 routes — and **not once by eye**. See [[10 Verification]] for exactly what
+the automated checks can and cannot see.
+
+**The 21 Sep realignment sharpens this.** It is a change made entirely of
+measurements — 376px, 656px, a fold at roughly 936px, two tracks of the auto
+grid — and not one of those numbers has been observed. A layout change is
+precisely the category the gates are blind to, and it was made on the section
+that has already proved the gates blind once. The three viewports that would
+settle it are desktop, about 800px, and a phone.
 
 Related: [[01 The brief]], [[02 Decisions]]

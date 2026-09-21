@@ -30,7 +30,7 @@ with generated separators — it wraps at the spaces like the prose it is, and
 
 `src/components/ui/home/ItemsSection.tsx`
 
-Props: `content`, `ground`, `grid`, `variant`, `topRule`.
+Props: `content`, `ground`, `grid`, `variant`, `header`, `topRule`.
 
 **`grid` is explicit, not derived from `items.length`.** See
 [[08 Design system constraints]] for the arithmetic — the wrong choice gives a
@@ -38,6 +38,24 @@ full-width orphan card, and it is invisible until it renders.
 
 The anatomy, the 34rem heading measure and the two gap constants are carried
 over **verbatim** from `_engagementStalls.scss`, the file it replaced.
+
+### `header` — added 21 Sep 2026
+
+`'stacked'` (default) is that shared anatomy. `'aside'` turns the header ninety
+degrees and puts the items in the column beside it. **Only "Why Pixelette"
+takes it**, and the reason is editorial rather than decorative — see
+[[02 Decisions]].
+
+It is an explicit prop with two named values, like `ground`, `grid` and
+`variant`, **not** the `className` hatch this component pair refuses. The test
+is whether the call site can get it wrong: it can choose between two described
+layouts and nothing else.
+
+Zero new breakpoints. The two bases are 22rem and 30rem either side of a 4rem
+column gap, so the pair folds to stacked on its own below a viewport of about
+936px. Against the full wrap the tracks resolve to roughly 440px and 656px, and
+656px seats exactly two of the `--auto` grid's 17rem tracks — which is what
+turns four items into 2×2 without the call site asking for it.
 
 ## `ArrowCard` was not extended
 
@@ -89,8 +107,11 @@ figures are the obvious candidate, but dark is punctuation and two case studies
 back to back would take two of the three. Left on page/alt until someone has
 seen the page.
 
-Five figures use **flex thirds**, the only sanctioned idiom that lands 5 as
-3 + 2; auto-fit would seat four and leave a full-width orphan.
+Five figures land 3 + 2. They use `_caseStudy.scss`'s own copy of the **old
+flex thirds**, which `ItemsSection` moved off on 21 Sep — so the trailing pair
+still stretches to half the wrap, the same fault that was fixed on the Growth
+System. Not yet taken; see [[08 Design system constraints]] and
+[[09 Outstanding]].
 
 ## Known cost
 

@@ -50,12 +50,33 @@ a second; use `clamp()`.
 
 ## Two grid idioms only
 
-- **Flex thirds** — `flex: 1 1 calc((100% - 2rem) / 3)`, `min-width: min(15rem, 100%)`
-- **Auto-fit** — `repeat(auto-fit, minmax(min(17rem, 100%), 1fr))`
+Both are auto-fit. They differ **only in track minimum**:
 
-The auto-fit track seats four against the 1160px wrap. Five items on auto-fit
-gives four and a full-width orphan; four on thirds gives three and an orphan.
-This is why [[05 Components]] takes grid as an explicit prop.
+- **Thirds** — `repeat(auto-fit, minmax(min(18rem, 100%), 1fr))`, gap `1rem`
+- **Auto** — `repeat(auto-fit, minmax(min(17rem, 100%), 1fr))`, gap `1.25rem`
+
+Against the 1160px wrap the auto track seats four and the thirds track caps at
+three: 4 × 288 + 3 × 16 is 1200, which does not fit. Five items on auto gives
+four and an orphan; four on thirds gives three and an orphan. This is why
+[[05 Components]] takes grid as an explicit prop.
+
+### Thirds was flex until 21 Sep 2026
+
+It was `flex: 1 1 calc((100% - 2rem) / 3)` with `min-width: min(15rem, 100%)`.
+That basis sets the width of a **full** row correctly and says nothing about a
+short one, so `flex-grow` let the Growth System's trailing pair stretch to half
+the wrap each — 572px against 376px for the three cards above them, a 52%
+difference inside one section, with no card edge landing on a third.
+
+`flex-grow: 0` fixes the desktop row and breaks the middle: between roughly 500
+and 750px of container the items floor on their min-width and two of them leave
+a 200px hole at the end of the row. Deriving the column count from the width
+instead of from the basis fixes both, because auto-fit never stretches a short
+row and its track count still falls to two and then one on its own.
+
+**`_caseStudy.scss` still uses the old flex thirds** for its five impact
+figures, under its own class, and still has the trailing-row stretch. Same
+shape, same fault, not yet taken — see [[09 Outstanding]].
 
 ## Colour is contextual, never a prop
 

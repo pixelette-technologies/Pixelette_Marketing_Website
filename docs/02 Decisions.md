@@ -135,6 +135,44 @@ the panel. A choice made in the panel closes the banner.
 stopped new ones; existing cookies stayed for up to two years, which made "not
 set" untrue for anyone who had once accepted.
 
+## Two homepage sections realigned, 21 Sep
+
+**The problem was measured before it was fixed.** Two adjacent sections held
+three different column widths: "More than marketing activity" ran four items at
+275px, the Growth System's first row three cards at 376px, and its second row
+two at 572px. Nothing lined up with anything, and no card edge in the Growth
+System landed on a third.
+
+**The trailing pair stretched because a flex basis describes a full row only.**
+`flex: 1 1 calc((100% - 2rem) / 3)` sizes three-across correctly and says
+nothing about what a row of two should do, so `flex-grow` filled the width.
+The column count is now derived from the width instead — see
+[[08 Design system constraints]] for why `flex-grow: 0` was the wrong fix.
+
+**"Why Pixelette" now takes an aside header, and the reason is editorial.** It
+is the ARGUMENT for the offer; the Growth System is the offer. Both took the
+same stacked eyebrow → heading → lead → grid, so it read as a peer — and by
+that point in the page it was the fourth appearance of one shape, because six
+of the twelve sections share `ItemsSection`. Turning its header ninety degrees
+subordinates it.
+
+**Colour could not do that work.** `_surfaces.scss` caps a page at three dark
+bands, `route:walk` enforces the cap, and the home page has spent all three.
+Dark is punctuation and there was none left to spend, so the weight came from
+layout instead. This is the three-band cap deciding a design question rather
+than merely forbidding one.
+
+**A fifth option was considered and rejected on content grounds.** Making card
+01 a lead card spanning two tracks would remove the empty track entirely and
+put every edge on a third. It was not taken because it asserts that Strategy &
+Positioning is the way in, while the section's own standfirst says Pixelette
+"can deploy the specialist capability the business actually needs" — which
+reads the five as peers. Changing what the layout claims is a copy decision,
+and the copy is management's.
+
+**None of it has been seen.** Every measurement above is computed. See
+[[10 Verification]].
+
 ## Reversals of earlier recorded decisions
 
 The brief overruled three Phase A–F decisions. Each is recorded in the

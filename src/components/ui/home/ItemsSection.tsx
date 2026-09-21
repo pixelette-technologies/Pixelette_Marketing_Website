@@ -24,6 +24,17 @@ export interface ItemsSectionProps {
   ground?: "page" | "alt" | "dark";
   grid?: "auto" | "thirds";
   variant?: "plain" | "card";
+  /** 'stacked' is the shared anatomy — eyebrow, heading, standfirst, then the
+   *  items beneath. 'aside' turns the header ninety degrees and puts the items
+   *  in the column beside it.
+   *
+   *  EXPLICIT, LIKE ground AND grid, AND FOR THE SAME REASON. It is not the
+   *  className hatch this component refuses: the layout is named, it has two
+   *  values, and both are described here and in _itemsSection.scss. Only "Why
+   *  Pixelette" takes 'aside' — it is the argument FOR the offer rather than
+   *  the offer, and reading as a peer of the Growth System is what this
+   *  demotes. */
+  header?: "stacked" | "aside";
   /** Container-width hairline above the section. NEVER .rule-cap — the page
    *  gets exactly one mannerism and GrowthSection already holds it. */
   topRule?: boolean;
@@ -37,9 +48,10 @@ export interface ItemsSectionProps {
 // the Growth System, both of which have to be dark, and the process steps.
 // route-walk fails the build if a fourth appears.
 //
-// GRID IS EXPLICIT, NOT DERIVED FROM items.length. Against the 1160px wrap the
-// auto-fit track seats four, so five items on 'auto' give four and a
-// full-width orphan, and four items on 'thirds' give three and an orphan.
+// GRID IS EXPLICIT, NOT DERIVED FROM items.length. Both idioms are auto-fit and
+// differ only in track minimum: 'auto' is 17rem and seats four against the
+// 1160px wrap, 'thirds' is 18rem and caps at three. So five items on 'auto'
+// give four and an orphan, and four on 'thirds' give three and an orphan.
 // Neither is visible until it renders, so the call site states which it wants.
 const GROUNDS: Record<NonNullable<ItemsSectionProps["ground"]>, string> = {
   page: "",
@@ -52,6 +64,7 @@ const ItemsSection: FC<ItemsSectionProps> = ({
   ground = "page",
   grid = "auto",
   variant = "plain",
+  header = "stacked",
   topRule = false
 }) => {
   const { eyebrow, heading, lead, items, cta, closing } = content;
@@ -59,9 +72,13 @@ const ItemsSection: FC<ItemsSectionProps> = ({
   const inner = (
     <Container className='main'>
       <section
-        className={
-          topRule ? "itemsSection itemsSection--ruled" : "itemsSection"
-        }
+        className={[
+          "itemsSection",
+          header === "aside" && "itemsSection--aside",
+          topRule && "itemsSection--ruled"
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         <header>
           <Heading className='eyebrow' level={2}>

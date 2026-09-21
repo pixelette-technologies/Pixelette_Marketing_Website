@@ -30,26 +30,84 @@
   }
 }
 
+// --- The aside header -------------------------------------------------------
+// 21 Sep 2026. Six of the twelve homepage sections share this shell, so by the
+// fourth the reader has met the same stacked eyebrow → h2 → lead → grid four
+// times, and "Why Pixelette" — which is the ARGUMENT for the offer — reads as
+// a peer of the Growth System, which is the offer itself.
+//
+// Turning its header ninety degrees subordinates it without touching colour.
+// That constraint is real: _surfaces.scss caps a page at three dark bands,
+// route:walk enforces the cap, and the home page has spent all three. Weight
+// had to come from layout.
+//
+// ZERO BREAKPOINTS, on the house rule. The bases are 22rem + 30rem + the 4rem
+// column gap = 896px, so the pair sits on one line inside the 1160px wrap and
+// folds to stacked on its own below a viewport of roughly 936px. Against the
+// full wrap the two tracks resolve to about 440px and 656px — and 656px seats
+// exactly two of the --auto grid's 17rem tracks, which is what turns this
+// section's four items into 2x2 without the call site having to ask.
+.itemsSection--aside {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 4rem;
+
+  & > header {
+    flex: 1 1 22rem;
+    // The track is the cap here, not the 34rem the stacked shell uses.
+    max-width: 30rem;
+    // The column gap does this job now.
+    margin-bottom: 0;
+  }
+
+  & > .itemsSection__grid {
+    flex: 2 1 30rem;
+    // Without this the inner grid's own tracks set the flex item's floor and
+    // the pair will not fold.
+    min-width: 0;
+  }
+
+  // Defensive: this call site has neither, but a closing line or a section CTA
+  // belongs under the items, not beside the header.
+  & > .small,
+  & > .itemsSection__cta {
+    flex-basis: 100%;
+  }
+}
+
 // Container-width, matching .growthSection's. Deliberately NOT .rule-cap: the
 // signature mark appears once per page and GrowthSection holds it.
 .itemsSection--ruled {
   border-top: 1px solid var(--color-line);
 }
 
-// Three across on flex, which divides five items into 3 + 2 and three into a
-// single row. The basis is a third of the row minus its share of the two gaps,
-// so the columns are equal; the min-width lets a card that can no longer hold
-// 15rem drop to the next line on its own. Zero breakpoints: three across at
-// desktop, two in the middle, one on a phone.
+// --- Three across -----------------------------------------------------------
+// WAS flex, `flex: 1 1 calc((100% - 2rem) / 3)`. That basis sets the width of a
+// FULL row correctly and says nothing about a short one: flex-grow let the
+// Growth System's trailing pair stretch to half the wrap each, so cards 04 and
+// 05 rendered at 572px against 376px for the three above them — a 52%
+// difference inside one section, with no card edge landing on a third.
+//
+// `flex-grow: 0` fixes the desktop row and breaks the middle: between roughly
+// 500 and 750px of container the items floor on their min-width, and two of
+// them then leave a 200px hole at the end of the row.
+//
+// So the column count is derived from the width instead of from the basis.
+// auto-fit never stretches a short row — cards 04 and 05 take tracks 1 and 2
+// at the same 376px as the row above, and track 3 is simply empty — while the
+// track count still falls to two and then to one on its own.
+//
+// 18rem, not the --auto grid's 17rem: 4 x 288 + 3 x 16 is 1200 against an
+// 1160px wrap, so the track count caps at three. That is the entire difference
+// between the two idioms, and it is why both still exist.
+//
+// auto-fit does NOT collapse track 3 here: collapsing requires a track to be
+// empty in every row, and card 03 occupies it.
 .itemsSection__grid--thirds {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
   gap: 1rem;
-
-  & > * {
-    flex: 1 1 calc((100% - 2rem) / 3);
-    min-width: min(15rem, 100%);
-  }
 }
 
 // The auto-fit track seats four against the wrap, which is what the four-item

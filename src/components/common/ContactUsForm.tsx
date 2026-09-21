@@ -256,7 +256,7 @@ const ContactUsForm: React.FC = () => {
             </Button>
             {submitState === "success" && (
               <p role='status' style={{ marginTop: "0.625rem", color: "var(--color-ok)" }}>
-                Thanks - your message has been sent. We&apos;ll be in touch shortly.
+                Thanks your message has been sent. We&apos;ll be in touch shortly.
               </p>
             )}
             {submitState === "error" && (

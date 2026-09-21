@@ -49,7 +49,7 @@ export const caseStudies: CaseStudyContent[] = [
     heading: "Building greater visibility in a competitive hospitality market",
     challenge:
       "WebBookingPro needed to increase awareness and strengthen its position with accommodation providers in a crowded hospitality technology market.",
-    work: "Pixelette supported the business with targeted digital marketing, market positioning, outreach and partnership development - helping it build greater visibility and stronger connections across the hospitality sector.",
+    work: "Pixelette supported the business with targeted digital marketing, market positioning, outreach and partnership development helping it build greater visibility and stronger connections across the hospitality sector.",
     impactHeading: "The impact",
     // Qualitative, because that is what management supplied. Four sentences
     // dressed as figures would be four invented numbers.

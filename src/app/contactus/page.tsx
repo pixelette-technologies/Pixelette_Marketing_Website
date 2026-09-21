@@ -1,4 +1,4 @@
-import { ContactUsHero, HowItWork, Located } from "@/components/ui/contactUs";
+import { ContactUsHero, HowItWork } from "@/components/ui/contactUs";
 import type { Metadata } from 'next'
  
 export const metadata: Metadata = {
@@ -18,7 +18,6 @@ export default function ContactUs() {
     <>
       <ContactUsHero asPageTitle />
       <HowItWork />
-      <Located />
     </>
   );
 }

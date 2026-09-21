@@ -10,7 +10,7 @@ rendered page, not assumed.
 | 03 | Commercial outcomes | `GrowthSection` — relabelled | page, `.rule-cap` |
 | 04 | Why Pixelette | `ItemsSection` | page |
 | 05 | Growth System | `ItemsSection` — cards, thirds | dark 2/3 |
-| 06 | AI and technology | `ItemsSection` — replaced the tool wall | page |
+| 06 | AI and technology | `AiTechnologySection` — scroll-driven strip | page |
 | 07 | Who we help | `DynamicMarket` — two groups | page |
 | 08 | Results | `TeamSection` | `.band-alt` |
 | 09 | Ways to work | `ItemsSection` — cards, per-card CTAs | page |
@@ -59,3 +59,12 @@ meta description.
 exists to stop.
 
 Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]]
+
+## 21 Sep — section 06 is no longer an ItemsSection
+
+The four descriptions and the closing line were removed on the user's
+instruction, which left four bare headings — not the shape the shell exists for.
+The names now run the full width of the page as a strip whose offset follows
+the scroll. Six homepage sections still share `ItemsSection`; this one is
+`AiTechnologySection` with its own `AiTechnologyContent` type. Full reasoning,
+including why the static row is what ships in the HTML, in [[02 Decisions]].

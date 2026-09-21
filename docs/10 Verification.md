@@ -91,6 +91,44 @@ had never done anything. Confirmed fixed by eye.
 position. That is browser behaviour users expect. The dev server's own
 auto-reloads during editing do the same, which can look like the fault.
 
+## Two figures that passed every gate and failed by eye, 21 Sep
+
+The Growth section's collage was replaced, and it took three attempts. The
+first two are the point of this entry: **both passed lint, the token gate,
+types, all 36 contact tests, the build and 35/35 on the route walk, and both
+were rejected within seconds of being looked at.**
+
+**Attempt one — a stepped chain** with the four outcomes labelled along it.
+Four faults, none of them visible to any check in this repo:
+
+1. The four names were on screen twice, three hundred pixels apart — crimson
+   headings in the grid, mono caps on the drawing.
+2. A diagonal path leaves two empty triangles inside its own box. That is a
+   property of the shape, not a spacing bug, and it is what read as
+   unfinished.
+3. The weights were inverted. The labels were heavier than the connectors they
+   belonged to, so the graphic read as an afterthought around the words.
+4. The word CONVERSION overlapped the riser to Revenue by about five units —
+   a collision in the rendered output that nothing could see.
+
+**Attempt two — an inward coil.** Clean, filled its box evenly, and said too
+little. No gate in this repo has an opinion about whether a drawing means
+anything.
+
+**Attempt three — four columns, named on hover** — was accepted.
+
+**The method that worked.** Four candidate graphs were built into the real
+section at the real column width and compared in place. Two cheaper methods
+had already failed:
+
+- **Choosing from a written description.** The coil was picked from a
+  description of it and rejected on sight.
+- **A scratch comparison page.** Shapes that looked right on their own did not
+  all survive the section around them.
+
+Four throwaway variants built into the live component cost about twenty
+minutes and settled in one look what two rounds of discussion had not.
+
 ## Audit against the brief
 
 On 9 Sep the running site was checked block by block against every section of
@@ -99,5 +137,34 @@ here" eyebrow, and the closing section's "Talk to Pixelette Marketing" link.
 
 Everything else in the document was present, in the document's order, including
 every phrase it says to delete.
+
+## 21 Sep — what the gates proved about the scroll strip, and what they cannot
+
+Green: `tsc --noEmit`, `eslint`, `next build`, `route:walk` 35/35,
+`lint:legacy-tokens` 0 findings. The rendered home page was fetched and checked
+directly: three groups in the markup, copies 2 and 3 `aria-hidden`, all four
+phrases present, and neither the four descriptions nor the closing line
+anywhere in the HTML.
+
+**None of that is the feature.** Every gate on this repo reads markup. The
+thing that was asked for is motion, and motion has no server-side trace:
+
+- The strip has never moved. `SPEED` at 0.35 and `EASE` at 0.12 are chosen
+  numbers, not observed ones, and whether the drift reads as elegant or as a
+  conveyor belt is a by-eye call nobody has made.
+- **The wrap has never been watched.** The whole no-`gap` argument exists to
+  make the seam invisible, and a seam is exactly the kind of fault that is
+  obvious in one second of scrolling and invisible to every check above.
+- The hydration swap from wrapped row to strip has never been watched either.
+  It is reasoned to be below the fold on every viewport; that is a calculation.
+- The static fallback has never been rendered. Turning JS off, or setting a
+  reduce preference, is a thirty-second check that has not been done.
+- `--fs-h2` on four phrases at full page width has never been seen at any
+  viewport. The line could be far larger in practice than it reads as a number.
+
+This is the same gap the vault has recorded since 9 Sep: the gates prove the
+page is structurally sound and prove nothing about how it looks. The one time
+a section was actually opened in a browser it produced a fault no gate had
+caught. See [[09 Outstanding]].
 
 Related: [[08 Design system constraints]], [[09 Outstanding]]

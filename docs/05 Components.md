@@ -125,4 +125,30 @@ Fixing it means a semantic prop on a component shared with three other routes,
 so it was raised rather than taken unilaterally. **Still open** —
 see [[09 Outstanding]].
 
-Related: [[03 Phase 1 — Homepage]]
+## ScrollMarquee — 21 Sep
+
+`ScrollMarquee` is the fourth motion surface on the site and the second
+marquee, and it is not the first one's mechanism. `.marquee` is a CSS
+`animation` on a timer, for logos. `.scrollMarquee` has no keyframes: JS
+writes its transform from the page's scroll offset, eased over a few frames,
+so the words move only while the reader moves.
+
+It is registered at the top of `_surfaces.scss` beside the other three, which
+is where the flat-and-static rule is stated. Trap 10.
+
+**The static row is what ships in the HTML.** The stylesheet on its own lays
+the phrases out wrapped, centred and fully legible; the moving strip is
+`[data-marquee="on"]`, set only by `ScrollMarquee.tsx` and only after it has
+measured that three copies of the group cover the viewport. Same rule
+`ScrollReveal` is built on — nothing is hidden that is not also handed to a
+live driver — for the same reason: a clipped strip loses the last two phrases
+outright, and this conversion has already produced four invisible-text faults.
+
+It takes `items` and an optional `label` and nothing else. **No className
+hatch and no ground prop**, exactly as `PointItem` refuses both: the type and
+colour are set by the section it sits in, so a call site cannot get it wrong.
+One call site today, section 06 of the home page.
+
+**Never seen.** See [[10 Verification]].
+
+Related: [[02 Decisions]], [[03 Phase 1 — Homepage]]

@@ -173,6 +173,66 @@ and the copy is management's.
 **None of it has been seen.** Every measurement above is computed. See
 [[10 Verification]].
 
+## The Growth section figure, 21 Sep
+
+**The Growth section's collage is gone, replaced by a drawn figure.**
+`growthBanner.webp` was an Edwardian figure, falling dollar bills and the
+Statue of Liberty. Nothing in it depicted Demand, Pipeline, Conversion or
+Revenue. The currency and the skyline were American on a UK agency's page.
+Money raining from the sky argued the opposite of the standfirst beside it —
+that activity is not the objective. And it was a 538px asset rendered at
+663px, so it was soft on every screen. The file is still in `public/` and is
+now referenced by nothing; deleting it is a decision nobody has taken yet.
+
+**Three figures were drawn before one was kept**, and the two that failed are
+in the history rather than squashed away. Both passed all six gates and both
+were rejected on sight. [[10 Verification]] records what looking found, because
+it is the clearest evidence in this repo for what the gates are worth.
+
+**The figure carries no words.** The first attempt labelled the four outcomes
+along a stepped chain, which put Demand, Pipeline, Conversion and Revenue on
+screen a second time, three hundred pixels from the grid that already names
+and describes all four. Restating them was the whole fault. Whatever occupies
+that column has to do the thing the grid cannot, or say nothing at all.
+
+**Four columns, in the framework's order, ascending, Revenue tallest and the
+only crimson one.** Ascending so the shape reads as each stage building toward
+revenue. Descending was the other honest option and would have read as a
+volume funnel — demand being the widest count — which is not the argument
+this section makes. Note that the grid beside it reads DOWN its columns while the
+figure reads left to right; the two agree with each other and with the closing
+line, and neither agrees with a naive Z-order read of the grid.
+
+**It makes a quantitative claim, deliberately, and nobody has signed it off.**
+Four named columns at four different heights state an order of magnitude
+between the stages. That is a claim about Pixelette's own funnel. It carries
+no axis, no tick, no gridline and no value, and the hover gives a name and
+never a number, so there is nothing a reader could quote. It stays the right
+side of the standing bar on unqualified proof figures **only as long as no
+number is ever added to it**. See [[09 Outstanding]].
+
+**Hover is CSS alone, and is legitimate only because the label is redundant.**
+Each column is a `<g>` holding its own label, revealed on `:hover` and
+`:focus-within` — no JavaScript, no state, nothing to hydrate. Hover-only text
+is normally a trap. It is not one here because all four names are already in
+text beside the figure, so touch, keyboard and screen-reader users lose
+nothing by never seeing it. That is also why the svg stays `aria-hidden`.
+**If the grid beside it ever moves, the figure loses its text alternative and
+this decision has to be revisited.**
+
+**Paint stays in the stylesheet.** The component carries geometry and class
+names only; every fill, stroke and type decision resolves from tokens in
+`_growthDiagram.scss`. It keeps the token gate satisfied without an exemption
+and follows the rule in [[08 Design system constraints]] that colour is read
+from context rather than set at the call site.
+
+**Candidates were compared inside the real section, not on a swatch page.**
+Four graphs were built into the column at the width the column actually gives
+them, looked at in place, and three were then deleted. Both cheaper methods
+had already mispredicted: a figure chosen from a written description was
+rejected on sight, and a scratch comparison page flattered shapes that did not
+survive contact with the section around them.
+
 ## Reversals of earlier recorded decisions
 
 The brief overruled three Phase A–F decisions. Each is recorded in the
@@ -213,4 +273,89 @@ hero already carries the frame, so the headings were removed and
    throughout, so this aligns the home page with them rather than inventing a
    third claim.
 
-Related: [[01 The brief]], [[09 Outstanding]]
+## 21 Sep — section 06 becomes a scroll-driven strip
+
+The user's instruction, given with a screenshot of the section as it stood:
+**remove the four descriptions and the closing one-liner, then run the four
+names as a full-width marquee that moves with the page scroll.**
+
+### What went
+
+- The four `body` sentences under *Faster insight*, *Smarter prioritisation*,
+  *Scaled execution* and *Clear accountability*.
+- The closing line, "The technology stack changes according to the problem. The
+  commercial objective does not."
+
+The eyebrow, the h2 and the standfirst are untouched. The four names are
+untouched. Nothing was written to replace what went — the section is shorter,
+not rewritten.
+
+### Why it left the ItemsSection shell
+
+Six homepage sections share `ItemsSection` because they are genuinely the same
+shape: header, N uniform items, optionally a CTA or a closing line. This one
+stopped being that shape when the bodies went. Four bare headings in the
+`--auto` grid is not a grid, it is a row of labels with two thirds of every
+cell empty, and `PointItem` requires a `body` — satisfying that type with four
+empty strings would have been a lie told to the compiler.
+
+So section 06 is `AiTechnologySection` now, and `aiTechnologyData` has its own
+`AiTechnologyContent` type carrying `marks: string[]` instead of `items`. The
+shell did not grow a fifth layout prop; it already carries four.
+
+Its header is a deliberate copy of the shell's — same 34rem measure, same 20px
+and 24px gaps. Nothing about the top half of the section changed, so nothing
+about it should look changed. If a third section ever wants that header, that
+is when it becomes its own thing.
+
+### The fourth motion surface
+
+This is new motion on a register whose stated property was *flat and static*,
+so it is registered at the top of `_surfaces.scss` where the rule lives, beside
+the logo marquee, the hero parallax and the scroll reveal. **Trap 10**: a
+motion surface documented anywhere other than the point where the rule is
+stated gets read as leftover decoration and deleted. `_marquee.scss` lost its
+keyframes to exactly that once.
+
+It is the second marquee but **not** the first one's mechanism. `.marquee` is a
+CSS `animation` on a timer and runs whether anyone is there or not.
+`.scrollMarquee` has no keyframes: JS writes its transform from the page's
+scroll offset, eased over a few frames, so the words move only while the reader
+moves. That is what was asked for, and it is also the narrower claim on the
+register — nothing on the page moves by itself.
+
+### The state that ships in the HTML is the static one
+
+`ScrollMarquee` is built on ScrollReveal's rule, verbatim: nothing is hidden
+that is not also, in the same pass, handed to a live driver. The stylesheet on
+its own lays the four phrases out as a wrapped, centred, fully legible row —
+no clipping, no duplicates, no transform. The moving strip is
+`[data-marquee="on"]`, set only by `ScrollMarquee.tsx`, and only after it has
+measured that three copies of the group actually cover the viewport.
+
+Get that ordering backwards and the no-JS case ships one group clipped at the
+right edge, losing *Scaled execution* and *Clear accountability* outright. This
+conversion has already produced four separate invisible-text faults; four
+product claims are not worth a fifth.
+
+The cost is a layout change on hydration, wrapped row to strip. Both are
+finished states, and the section is below the fold on every viewport, so the
+swap happens long before it is scrolled to.
+
+### Two things that had to be got right
+
+1. **The translate folds twice.** JS `%` keeps the sign of its left operand and
+   the scroll offset goes negative every time a reader re-enters the section
+   from below. A raw modulo translates the track *right* and opens a band of
+   empty page at the left edge. `((n % w) + w) % w` keeps it in `[0, w)`.
+2. **There is no `gap` on the track.** The spacing lives inside the item as
+   `padding-inline-end`, so a group's width is exactly the sum of its items and
+   the wrap translate is exactly one group. `.marquee` needs a half-gap
+   correction precisely because it does use `gap`, and it visibly jumps once a
+   cycle without it.
+
+**It has not been seen.** Every measurement above is computed, the two states
+have never been rendered side by side, and the strip has never been scrolled.
+See [[10 Verification]].
+
+Related: [[01 The brief]], [[05 Components]], [[08 Design system constraints]], [[09 Outstanding]]

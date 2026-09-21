@@ -96,6 +96,53 @@ of Google's modelled data for visitors who decline).
 
 The first-visit banner still carries its own inline styles and 9px text.
 
+## The Growth section figure (21 Sep)
+
+The home page collage is replaced by four drawn columns, named on hover. Four
+things it leaves open:
+
+- **Nobody has signed off the shape.** Four named columns at four heights
+  state an order of magnitude between Demand, Pipeline, Conversion and
+  Revenue — a claim about Pixelette's own funnel. It carries no axis, tick or
+  value and the hover gives a name and never a number, so nothing is
+  quotable. **The moment a number is added to it, it crosses the proof-figure
+  bar** and needs the same measure, period, client and permission treatment
+  the BlockGuard figures are held against. Worth a line to management for
+  awareness rather than for approval.
+- **`public/home/growthBanner.webp` is now referenced by nothing.** Left in
+  place until someone is sure the figure stays.
+- **The hover names never appear on touch**, which is deliberate: they are
+  redundant with the grid beside the figure, which is also why the svg is
+  `aria-hidden`. **If that grid ever moves or changes, the figure loses its
+  text alternative** and the decision in [[02 Decisions]] has to be reopened.
+- **The hover label scales with the column** — around 20px where it is widest,
+  around 11px once it has wrapped to full width on a phone. That is inherent
+  to keeping text inside the viewBox. Moving the labels to HTML would pin
+  them, at the cost of positioning them over the svg by hand.
+
+## In the working tree, uncommitted (21 Sep)
+
+Recorded because it is easy to lose and easier to commit by accident:
+
+- **A punctuation pass** over `homeContent.ts`, `ContactUsForm.tsx` and
+  `caseStudies.ts` — trailing full stops off headings, and every hyphen used
+  as a dash removed. The full stops are fine. The dash removal left about six
+  sentences reading as dropped words: "the growth constraint **not** a
+  predetermined channel", "more measurable **not** become the pitch", "the
+  channels that matter most **connecting** strategy", "the outcome **with**
+  client evidence", "the delivery capacity you need **without** the
+  recruitment overhead", and the form's "Thanks **your** message has been
+  sent". Each needs a comma, a colon, or the dash back.
+- The same pass sets `proofCopy.eyebrow` to a single space, which renders an
+  empty element rather than no eyebrow, and changes the heading to
+  "Organisation we have worked with", singular. It also reverses the 11 Sep
+  "Trusted by" decision recorded in [[02 Decisions]], which was taken after
+  management confirmed logo permissions.
+- **A new `header='aside'` layout option on `ItemsSection`**, applied to "Why
+  Pixelette" on the home page — around 110 lines across the component and
+  `_itemsSection.scss`. Passes lint, types and the token gate. Not reviewed
+  here, and not seen in a browser.
+
 ## Technical debt still open
 
 - **Card titles lost their heading tags** on both hub pages — 8 and 5. An
@@ -142,5 +189,13 @@ grid — and not one of those numbers has been observed. A layout change is
 precisely the category the gates are blind to, and it was made on the section
 that has already proved the gates blind once. The three viewports that would
 settle it are desktop, about 800px, and a phone.
+
+**The Growth section figure is the counter-example, and it is worth the
+contrast.** It was looked at three times on 21 Sep and the first two versions
+were rejected on sight, both having passed all six gates. Twenty minutes of
+looking settled what two rounds of discussion had not. The desktop view of
+that one section is now the most-observed thing in the repo; nothing else on
+the page has had the same treatment, and the figure itself has still never
+been seen at a phone width, where its hover labels do not exist at all.
 
 Related: [[01 The brief]], [[02 Decisions]]

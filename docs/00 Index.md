@@ -41,12 +41,13 @@ cookie policy page taken onto the design system, the form's privacy link in the
 brand tone, and a scroll-on-navigation fault found by eye and fixed. See
 [[02 Decisions]] and [[10 Verification]].
 
-**21 Sep** — the Growth section's stock collage replaced by a drawn diagram,
-and the two sections beneath it realigned: the Growth System's cards no longer
+**21 Sep** — the Growth section's stock collage replaced by a drawn figure —
+three attempts, two of them rejected by eye after passing every gate — and the
+two sections beneath it realigned: the Growth System's cards no longer
 change width between rows, and "Why Pixelette" now reads as the argument for
 the offer rather than as its peer. `ItemsSection` gained a `header` prop and
 the thirds grid moved from flex to auto-fit. See [[02 Decisions]],
-[[05 Components]] and [[08 Design system constraints]].
+[[05 Components]], [[08 Design system constraints]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

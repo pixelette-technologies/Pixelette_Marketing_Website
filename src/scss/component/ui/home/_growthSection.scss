@@ -78,15 +78,13 @@
         }
       }
 
+      // The second column. It held growthBanner.webp until the collage was
+      // replaced by GrowthDiagram; the `& > img` rule that sized it went with
+      // the asset, because the SVG sizes itself in _growthDiagram.scss and a
+      // rule matching nothing is the kind that gets copied.
       & > div {
         flex: 1 1 18rem;
         min-width: 0;
-
-        & > img {
-          display: block;
-          max-width: 100%;
-          height: auto;
-        }
       }
     }
   }

@@ -1,0 +1,66 @@
+// The chain drawn in GrowthDiagram.tsx. The component carries geometry and
+// class names only; every fill, stroke and type decision is here, so the token
+// gate has one place to check and a brand change stays a token edit.
+
+.growthDiagram {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  // Three connectors, thickening toward Revenue. This is the only quantity
+  // that varies in the drawing and it is deliberately not a measurement — it
+  // reads as accumulation. See the component's note on why nothing else does.
+  &__link {
+    fill: none;
+    stroke: var(--color-line-strong);
+    stroke-linecap: round;
+  }
+
+  &__link--1 {
+    stroke-width: 1.5;
+  }
+
+  &__link--2 {
+    stroke-width: 2.25;
+  }
+
+  &__link--3 {
+    stroke-width: 3.25;
+  }
+
+  // Hollow stations on the page ground, so the connector passes behind them
+  // rather than through them.
+  &__node {
+    fill: var(--color-page);
+    stroke: var(--color-line-strong);
+    stroke-width: 1.5;
+  }
+
+  // Revenue. The single filled node, and the only place crimson appears in the
+  // drawing — the section eyebrow above already owns the tone, so a second
+  // full-strength use had to earn itself.
+  &__node--end {
+    fill: var(--color-brand);
+    stroke: none;
+  }
+
+  &__halo {
+    fill: var(--color-brand-tint);
+  }
+
+  // Type matches .eyebrow's treatment — mono, uppercase, 0.18em — but not its
+  // colour or its size. Size is in viewBox units, so it scales with the
+  // column; the words are already uppercase in the markup because
+  // text-transform on SVG text is the kind of support gap that only shows up
+  // in a browser.
+  &__label {
+    font-family: var(--font-mono);
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    fill: var(--color-ink);
+  }
+
+  &__label--end {
+    fill: var(--color-brand);
+  }
+}

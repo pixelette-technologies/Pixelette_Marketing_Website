@@ -1,6 +1,6 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import Image from "next/image";
+import GrowthDiagram from "./GrowthDiagram";
 
 // Phase F. There is no eyebrow available here without writing copy, and the
 // content rule says ship the pattern without the missing element rather than
@@ -107,12 +107,7 @@ export default function GrowthSection() {
             </header>
 
             <div>
-              <Image
-                src='/home/growthBanner.webp'
-                alt='Growth Banner'
-                width={663}
-                height={649}
-              />
+              <GrowthDiagram />
             </div>
           </div>
         </section>

@@ -1,100 +1,108 @@
-// The four commercial outcomes, drawn as one chain.
+// The four commercial outcomes, as four columns.
 //
-// It replaces `/home/growthBanner.webp` — a collage of an Edwardian figure,
-// falling dollar bills and the Statue of Liberty. Nothing in it depicted
-// Demand, Pipeline, Conversion or Revenue, the currency and the skyline were
-// American on a UK agency's page, and money raining from the sky argued the
-// opposite of the standfirst beside it: that activity is not the objective.
-// It was also a 538px asset rendered at 663px, so it was soft.
+// THIRD ATTEMPT, and the first two are worth knowing about because both failed
+// by eye after passing every gate.
 //
-// WHY A DIAGRAM AND NOT ANOTHER PHOTOGRAPH. The 2x2 beside this already names
-// all four outcomes and describes each one, so a picture that labels the same
-// four adds nothing. What the grid cannot say is that they are SERIAL — a
-// grid reads as four parallel options. The chain says nothing reaches Revenue
-// without passing through the three before it, which is the claim the closing
-// line rests on: every channel should have a reason to exist.
+//   1. A stepped chain with the four outcomes labelled along it. It put the
+//      four names on screen a second time, three hundred pixels from the grid
+//      that already carried them, and a diagonal path leaves two empty
+//      triangles in its own box.
+//   2. An inward coil. Clean, filled its box, said too little.
 //
-// NO PROPORTIONS ANYWHERE. The moment a segment's length or a node's size
-// stands for a quantity, this publishes a conversion rate — and the home page
-// is under a standing bar on unqualified proof figures (the BlockGuard
-// numbers are held off it for exactly this reason). So: even spacing, even
-// steps, no axis, no ticks, no percentages. The one thing that varies is
-// stroke weight, which reads as accumulation, not as a measurement.
+// WHAT IS MEASURED HERE — AND WHAT IS NOT. Four named columns at four
+// different heights is a quantitative shape, and that is a deliberate choice
+// rather than an oversight. It carries NO axis, NO ticks, NO gridlines and NO
+// values, and the hover gives a name and never a number, so the figure states
+// an order of magnitude between stages and nothing a reader could quote. The
+// home page is under a standing bar on unqualified proof figures; this stays
+// the right side of it only as long as no number is ever added to it.
 //
-// IT IS ROUTED ORTHOGONALLY, NOT AS A RISING LINE. A diagonal through four
-// points is a chart, and a chart implies data. Right-angle turns with rounded
-// corners read as a schematic instead — a route, not a plot.
+// The columns ascend, so the shape reads as each stage building toward
+// revenue. Descending would have read as a volume funnel — demand being the
+// widest count — which is the other honest reading and not the one the section
+// argues. Revenue is the tallest and the only crimson one: the section's
+// heading promises a number that matters and that is where it lands.
 //
-// PAINT LIVES IN THE STYLESHEET. Every fill and stroke is a class, resolved in
-// _growthDiagram.scss from the tokens. Nothing here carries a colour, which
-// keeps the token gate satisfied and follows the house rule that colour is
-// contextual rather than set at the call site.
+// THE ORDER IS THE FRAMEWORK'S, left to right, matching the closing line
+// beneath the grid. Note that the grid itself reads DOWN its columns, so the
+// two are consistent with each other and not with a naive Z-order read.
 //
-// LABELS ARE LITERAL UPPERCASE, not `text-transform`. They render inside the
-// SVG, so they scale with the viewBox: roughly 20px where the column is at
-// its widest and around 10px on a phone, where this has wrapped to full width.
-// That range is the one real cost of keeping the labels in the drawing.
+// HOVER. Each column is a <g> holding its own label, revealed on hover and on
+// focus-within by CSS alone — no JavaScript, no state, nothing to hydrate.
+// That is only defensible because the label is redundant: all four names are
+// already in text beside this, so a touch user, a keyboard user and a screen
+// reader lose nothing by never seeing it. The svg stays aria-hidden for the
+// same reason.
 //
-// aria-hidden. The four outcomes are already in text beside it, so the drawing
-// is decorative in the accessibility sense. Announcing it would read the
-// framework out twice, and the alt text it replaces — "Growth Banner" —
-// described the file rather than the content.
+// Geometry and class names only; every fill and stroke resolves from tokens in
+// _growthDiagram.scss, so the token gate holds and colour stays contextual.
+
+/** x, height, label. Width 56 on a 36 gap, so the four span 332 of the 420
+ *  box and sit on equal 44 margins. Heights accelerate slightly rather than
+ *  stepping evenly, which stops the four reading as a mechanical ramp. */
+const BARS = [
+  { x: 44, height: 110, label: "Demand" },
+  { x: 136, height: 165, label: "Pipeline" },
+  { x: 228, height: 235, label: "Conversion" },
+  { x: 320, height: 300, label: "Revenue" }
+];
+
+const BASELINE = 360;
+const WIDTH = 56;
 
 export default function GrowthDiagram() {
   return (
     <svg
       className='growthDiagram'
-      viewBox='0 0 520 500'
+      viewBox='0 0 420 400'
       aria-hidden='true'
       focusable='false'
     >
-      {/* Demand -> Pipeline. Right, then up, on an 18-unit corner. */}
-      <path
-        className='growthDiagram__link growthDiagram__link--1'
-        d='M40 430 H142 a18 18 0 0 0 18 -18 V330'
-      />
-      {/* Pipeline -> Conversion. */}
-      <path
-        className='growthDiagram__link growthDiagram__link--2'
-        d='M160 330 H262 a18 18 0 0 0 18 -18 V230'
-      />
-      {/* Conversion -> Revenue. */}
-      <path
-        className='growthDiagram__link growthDiagram__link--3'
-        d='M280 230 H382 a18 18 0 0 0 18 -18 V130'
-      />
+      {BARS.map(({ x, height, label }, i) => {
+        const top = BASELINE - height;
+        const isLast = i === BARS.length - 1;
 
-      <circle className='growthDiagram__node' cx='40' cy='430' r='9' />
-      <text className='growthDiagram__label' x='40' y='404'>
-        DEMAND
-      </text>
+        return (
+          <g
+            key={label}
+            className={
+              isLast
+                ? "growthDiagram__bar growthDiagram__bar--accent"
+                : "growthDiagram__bar"
+            }
+          >
+            <rect
+              className='growthDiagram__col'
+              x={x}
+              y={top}
+              width={WIDTH}
+              height={height}
+              rx='3'
+            />
+            {/* Centred on the column, 18 above it. Uppercase in the markup
+                rather than by text-transform, which is the kind of SVG support
+                gap that only shows up in a browser. */}
+            <text
+              className='growthDiagram__tip'
+              x={x + WIDTH / 2}
+              y={top - 18}
+              textAnchor='middle'
+            >
+              {label.toUpperCase()}
+            </text>
+          </g>
+        );
+      })}
 
-      <circle className='growthDiagram__node' cx='160' cy='330' r='9' />
-      <text className='growthDiagram__label' x='160' y='304'>
-        PIPELINE
-      </text>
-
-      <circle className='growthDiagram__node' cx='280' cy='230' r='9' />
-      <text className='growthDiagram__label' x='280' y='204'>
-        CONVERSION
-      </text>
-
-      {/* The one filled node and the one crimson label. The section's heading
-          promises a number that matters; this is where it lands. */}
-      <circle className='growthDiagram__halo' cx='400' cy='130' r='27' />
-      <circle
-        className='growthDiagram__node growthDiagram__node--end'
-        cx='400'
-        cy='130'
-        r='13'
+      {/* Somewhere to stand. No axis above it and no tick on it — a baseline
+          gives the figure a ground without turning it into a measurement. */}
+      <line
+        className='growthDiagram__base'
+        x1='30'
+        y1={BASELINE}
+        x2='390'
+        y2={BASELINE}
       />
-      <text
-        className='growthDiagram__label growthDiagram__label--end'
-        x='400'
-        y='88'
-      >
-        REVENUE
-      </text>
     </svg>
   );
 }

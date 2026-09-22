@@ -125,3 +125,95 @@
   display: inline-flex;
   margin-top: var(--sec-y);
 }
+
+// --- 22 Sep 2026: /industries stops being a boundary ------------------------
+// The page opened "Industries We Serve — the sectors we understand best" over
+// five technology cards, while the home page's Who we help section names
+// eleven markets and closes on "And beyond" — AND LINKS HERE. So the site
+// widened its sector claim and then took it back one click later, on the click
+// the home page itself invited. That is what these two blocks fix.
+//
+// The market field is reused rather than restyled: same data, same treatment,
+// because a visitor arriving from that CTA should recognise what they landed
+// on. The rules live in _dynamicMarket.scss at the top level, not nested under
+// .dynamicMarket, so nothing had to move for the second call site.
+
+// The approved positioning pair — "Sector knowledge matters. Commercial
+// understanding matters more." It sits between the range and the five sector
+// pages deliberately: it is the sentence that explains why a short list of
+// pages is not a short list of sectors.
+.hubPositioning {
+  margin-top: var(--sec-y);
+
+  & > .body {
+    margin-top: 1rem;
+  }
+}
+
+// The five sector pages, demoted from five cards to a row of links. Card
+// weight is what made them read as the offer; link weight makes them what they
+// are, which is further reading.
+.hubLinks {
+  margin-top: var(--sec-y);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  & > .body {
+    margin-top: 1rem;
+  }
+}
+
+// The five sectors, each with a line about its market. The first attempt was
+// a bare row of five links under a sentence about the website's own page
+// structure — it read as thin because it WAS thin, and it explained the site
+// rather than the work.
+//
+// Two across, not the auto-fit four the cards used: the lines are sentences,
+// and four columns of sentence is a column of two-word rows. The 22rem basis
+// drops it to one column on its own, no breakpoint.
+.sectorList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 2.5rem;
+  list-style: none;
+  margin-top: 2rem;
+}
+
+.sectorList__item {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
+
+// Link weight, not card weight — these are further reading under a capability
+// claim, not the claim itself. The sector name is the only brand-tone thing in
+// the row so it reads as the entry point.
+.sectorList__link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+
+  &:hover {
+    color: var(--color-brand-hover);
+    text-decoration: underline;
+  }
+}
+
+// The breadth block. Its own section rather than a trailing clause, on the
+// pattern Click Consult uses — the hedge earns a heading because a list of
+// five is otherwise read as the whole answer.
+.hubAside {
+  margin-top: var(--sec-y);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  & > .body {
+    margin-top: 1rem;
+  }
+}
+
+.hubAside__cta {
+  display: inline-flex;
+  margin-top: 2rem;
+}

@@ -8,6 +8,8 @@ export const industriesData = [
     metaDescription: "Build community. Drive demand. Go global. Our Web3 Digital Marketing Services are custom-made for projects shaping the next internet. Book a call ☎️",
     metaKeywords: "web3 marketing, web3 digital marketing services, web3 marketing agency",
     route: "web_3",
+    hubLine:
+      "Token launches, community and credibility, in a market where trust is the hardest thing to earn and the easiest to lose.",
     mainHeading: "We’re a web3 marketing agency",
     subHeading: "turning blocks into breakthroughs",
     summary:
@@ -177,6 +179,8 @@ export const industriesData = [
     metaDescription: "Launching in fintech means pressure from day 1. Our Fintech Marketing Services help prove value & earn users in the toughest financial markets.",
     metaKeywords: "fintech marketing, fintech digital marketing agency, fintech marketing services",
     route: "fintech",
+    hubLine:
+      "Growth inside a regulated market, where compliance shapes what you are allowed to say and trust decides who listens.",
     mainHeading: "We’re a fintech marketing agency",
     subHeading: "converting prospects into assets",
     summary:
@@ -341,6 +345,8 @@ export const industriesData = [
     metaDescription: "Tech Marketing Services built for complexity. We help tech companies of all sizes turn technical products into market-ready brands. Let's connect!",
     metaKeywords: "tech marketing agency, b2b tech marketing agency, tech marketing services",
     route: "tech",
+    hubLine:
+      "Long buying cycles and technical buyers, where the decision is made by a committee you rarely get in the room.",
     mainHeading: "We’re a tech marketing agency ",
     subHeading: "connecting innovation to the world",
     summary:
@@ -509,6 +515,8 @@ export const industriesData = [
     metaDescription: "Convert users, reduce churn and increase MRR with our SaaS Marketing Services built for every stage of the funnel. Book a discovery call (it's on us).",
     metaKeywords: "saas marketing agency, saas marketing services, digital marketing for saas companies",
     route: "saas",
+    hubLine:
+      "Demand that converts to trial, trials that convert to revenue, and retention that makes both worth paying for.",
     mainHeading: "We’re a SaaS marketing agency ",
     subHeading: "transforming software into market success",
     summary:
@@ -673,6 +681,8 @@ export const industriesData = [
     metaDescription: "Got the tech but struggling to sell? Our AI Marketing Solutions help cut through the noise, earn trust & convert visitors into committed users. Let’s connect.",
     metaKeywords: "ai digital marketing agency, ai marketing solutions",
     route: "ai",
+    hubLine:
+      "A market where claims move faster than proof, and buyers want evidence before they want vision.",
     mainHeading: "We’re an AI marketing agency",
     subHeading: "transforming intelligence into influence",
     summary:

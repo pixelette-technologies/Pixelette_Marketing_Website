@@ -405,13 +405,20 @@ The definitive brief is implemented and gated. What it leaves open:
 ## Left open by the dropdown change (22 Sep)
 
 - **The footer still describes the offer in the other shape.** It lists all
-  eight service pages flat and ungrouped, straight from `servicesData`, and
-  does not carry the diagnostic at all. So one page's chrome now presents the
+  eight service pages flat and ungrouped, straight from `servicesData`. So one
+  page's chrome presents the
   same offer two ways: five capabilities in the header, eight channels in the
   footer. A footer sitemap is a legitimately different pattern from a
   navigation and it was left alone deliberately, but **whether it should also
   group is a decision, not an oversight** — and if it should, it has the same
   derive-don't-restate answer the header just took.
+
+  **Corrected.** This item first read that the footer "does not carry the
+  diagnostic at all". That was already false when it was written: `28f9fab`
+  had landed the Services column with `/strategy-positioning` at its head two
+  commits earlier. It was written from a file read hours before rather than
+  from HEAD — the same stale-source fault [[10 Verification]] records twice
+  for servers and once for greps, in prose this time.
 - **"The Diagnostic" is a label nobody has approved.** It is the dropdown's
   wording for `/strategy-positioning`, chosen because the hub's sentence and
   the page's own title both read badly in a list of page titles. The hub's

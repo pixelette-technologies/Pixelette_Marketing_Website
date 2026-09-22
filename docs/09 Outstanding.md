@@ -287,8 +287,10 @@ no gate had caught: one on the Growth System, three on About. That is the
 argument for the browser walk, made twice, and it has still been done on two
 sections of a 35-route site.
 
-Every other page and breakpoint is structural-only, and the dropdown
-menus have never been rendered at all. The two case studies built on 11 Sep
+Every other page and breakpoint is structural-only. **The What We Do dropdown
+has now been rendered** — 22 Sep, both widths, all five groups and all nine
+destinations read out of the live DOM — which leaves Who We Help as the one
+menu never seen. The two case studies built on 11 Sep
 have been verified structurally — headings, figures, quotations, grounds, all
 35 routes — and **not once by eye**. See [[10 Verification]] for exactly what
 the automated checks can and cannot see.
@@ -320,12 +322,15 @@ Related: [[01 The brief]], [[02 Decisions]]
   capability 01, so the claims about what Pixelette does are management's; the
   questions and the four statements under each are not. **This is the thing on
   this page that most wants a reply.**
-- **The page is reachable from `/services` and from nowhere else.** The 11 Sep
-  instruction that Strategy & Positioning takes no nav entry stands, and the
-  premise it rested on — that there is nowhere for it to point — has now
-  changed. Worth putting back to management as a question rather than acting
-  on. Note that `navigation.ts` and `capabilityGroups.ts` both carry that
-  judgement in prose, so both comments are now half true and were updated.
+- ~~**The page is reachable from `/services` and from nowhere else.**~~
+  **Settled 22 Sep, by instruction.** This item said the 11 Sep instruction
+  stood, that the premise it rested on had changed, and that the change was
+  worth putting back to management rather than acting on. It was then **asked
+  for directly**, against the hub's own five labels, and the nav entry was
+  added — "The Diagnostic", under a Strategy & Positioning group. The
+  supersession is recorded in [[02 Decisions]] and
+  [[04 Phase 2 — Navigation and footer]]. The page is now reachable from
+  `/services` and from every route's navigation.
 - **It is not linked from the home page.** The Growth System's card 01 is the
   other place "Strategy & Positioning" appears, and it was left alone: the five
   cards carry no per-item links and adding one to the first would make it read
@@ -383,8 +388,8 @@ The definitive brief is implemented and gated. What it leaves open:
   brief's exact label is 46 characters in a 376px card, so it would overflow a
   container that clips. Either a shorter label on that card or a wrapping CTA
   would fix it; both are decisions about copy the brief specified.
-- **Still no navigation entry**, and the 11 Sep instruction that produced that
-  is still the only word on it.
+- ~~**Still no navigation entry**~~ — **added 22 Sep on a direct instruction**,
+  which superseded the 11 Sep word on it. See above.
 - **`.btn:disabled` is still a group-layer contrast fault.** White on
   `--color-line-strong`, roughly 1.5:1. The diagnostic overrides it locally
   and the enquiry form is untouched, so nothing regressed, but the shared rule
@@ -396,3 +401,86 @@ The definitive brief is implemented and gated. What it leaves open:
 - **The print rule for the cookie banner is global**, sitting in this page's
   partial because this is the only print stylesheet the site has. If a second
   page ever prints, that rule should move somewhere shared.
+
+## Left open by the dropdown change (22 Sep)
+
+- **The footer still describes the offer in the other shape.** It lists all
+  eight service pages flat and ungrouped, straight from `servicesData`, and
+  does not carry the diagnostic at all. So one page's chrome now presents the
+  same offer two ways: five capabilities in the header, eight channels in the
+  footer. A footer sitemap is a legitimately different pattern from a
+  navigation and it was left alone deliberately, but **whether it should also
+  group is a decision, not an oversight** — and if it should, it has the same
+  derive-don't-restate answer the header just took.
+- **"The Diagnostic" is a label nobody has approved.** It is the dropdown's
+  wording for `/strategy-positioning`, chosen because the hub's sentence and
+  the page's own title both read badly in a list of page titles. The hub's
+  link and the page title are untouched. One word from management replaces it.
+- **The cookie banner prints across the mobile drawer**, covering "Who We
+  Help" at 390px. This is the same banner already recorded twice on this list
+  — inline-styled, 9px, and printing across the diagnostic's results — and it
+  is not the drawer's fault. It is now three sightings of one component.
+- **The 768px navigation break is untouched** and still the first thing the
+  browser walk should settle. The dropdown was seen at 1440px and 390px; the
+  width it is known to fail at was not revisited, because this change does not
+  affect the top-level bar that breaks there.
+
+## The blog, after 22 Sep
+
+- **The five sector pages have lost their site-wide links.** The footer's Who
+  We Help column came out on instruction, and it was the only thing linking
+  `/industries/web_3`, `fintech`, `tech`, `saas` and `ai` from every page.
+  They remain in the sitemap, remain indexed and are still reachable from the
+  nav and from `/industries`. Whether that is acceptable is an SEO judgement
+  nobody has made yet; the alternative is a home for them in the Company
+  column or somewhere else site-wide.
+- **Two factual claims in post 5 are unverified.** The bulk-sender
+  requirements (Google and Yahoo from February 2024, authentication,
+  one-click unsubscribe, a spam rate below 0.3%, and Microsoft following) and
+  the current state of FCA action on creators. Both were written from a model
+  whose knowledge ends in May 2026. **Neither should publish unchecked.**
+  Everything else in both posts argues from mechanism and needs no source.
+- **The bylines are a guess.** Post 4 is attributed to Rana Khan and post 5
+  to Temur Khan, the two names already on the blog, because inventing a third
+  seemed worse. Nobody has said either person wrote these.
+- **The card summaries are still cut at seven words.** Both new posts read as
+  fragments on `/blog-list` — "Search still happens, but a growing share…" and
+  "More budget makes a working system bigger…" — because of the truncation in
+  `BlogCardGrid.tsx`. It is the only copy a visitor sees before clicking.
+- **The two new banners are 3:2 where the other three are 16:9**, so those
+  two heroes stand 833px against 703px, and they weigh 169 and 232 KB against
+  21, 55 and 83. Re-encoding at q80 gives 73 and 122 KB with no visible loss;
+  a 16:9 crop gives 45 and 96 KB. Offered and not taken — the files are the
+  user's and cropping them is their call.
+- **Related Articles is fixed by accident.** The slider is `slidesToShow: 4`
+  and each post carried two related entries, so react-slick was cloning them
+  to fill the row. Five posts with four siblings each satisfies it exactly.
+  Add a sixth post and the wiring needs a thought, not a copy-paste.
+- **Still true from the first read of these pages:** the ToC is collapsed by
+  default, the "Share this" row's third icon is a link to the Instagram
+  profile rather than a share, there is no LinkedIn share on B2B content, the
+  Article schema has no `datePublished` or `dateModified` and names the
+  organisation as author while the page says otherwise, OpenGraph has no
+  image, the post URLs are numeric, and one thing has three names — nav says
+  Insights, the h1 says Pixelette Marketing Blog, the URL says `blog-list`.
+
+## The strategy page wave — abandoned mid-build (22 Sep)
+
+The six lenses were to become a wave of hollow circles with the names above
+them and the summaries removed, on instruction. It was built — an SVG path
+with HTML circles, horizontal above 768px and turning vertical below it,
+because six labelled points across a phone is four-point text — and then
+**parked without being wired in**, because another session was rewriting the
+same page in the same minutes and had replaced `diagnosticLenses`, the data
+it was built against.
+
+That session's own answer to the same request is `DimensionWave.tsx`. The
+parked component is in this session's scratchpad and nothing in the repo
+refers to it. It is not a to-do; it is a record of two sessions being told
+the same thing and both acting.
+
+**Related, and the more useful finding: two sessions edited one page at
+once and the tree was briefly broken in a way neither had caused alone.**
+`/strategy-positioning` returned 500 while `page.tsx` imported components the
+other session had just deleted. No gate can see that, because it is not a
+property of anyone's change.

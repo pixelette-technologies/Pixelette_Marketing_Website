@@ -525,3 +525,117 @@ measured rather than admired. Neither the type checker, the token gate, the
 route walk nor a screenshot could see this; a four-line measurement could.
 
 Related: [[02 Decisions]], [[05 Components]]
+
+
+## 22 Sep — a fault no gate could ever have caught
+
+The What We Do dropdown showed four capability groups while `/services` showed
+five. Every gate was green, and every gate would have stayed green forever.
+
+**There was nothing wrong with either file.** `navigation.ts` listed four
+groups and eight routes that all resolved; `capabilityGroups.ts` listed five
+and all resolved too. No type error, no dead link, no missing token, no failed
+route. The fault existed only in the *relationship* between two files, and it
+was a disagreement about an offer rather than about code. This is a category
+this file had not yet named: not layout, not colour, not duplicated words —
+**two correct files making different claims**, where correctness is exactly
+what hides it.
+
+That is the argument for deriving over restating, stated as a verification
+property: the derived version cannot hold this fault, so it needs no gate.
+The count check added beside it covers the one thing deriving does not — a
+service page filed nowhere — and it fails the build rather than reporting.
+
+### What was read out of the live DOM
+
+The dropdowns had never been rendered once, on any of the 36 routes, which
+this file and [[09 Outstanding]] had both recorded. Headless Chrome over CDP,
+the panel opened through its React handler because it is conditionally
+rendered, then every group label and every `href` read back as text:
+
+| | groups | links | all resolve |
+|---|---|---|---|
+| 1440px, bar | 5 | 9 | yes |
+| 390px, drawer | 5 | 9 | yes |
+
+All five labels in the hub's order, `/strategy-positioning` at the top level
+and the eight service routes under `/services`. **Reading the hrefs was worth
+more than the screenshot**: the screenshot proves five groups appeared, the
+href list proves each one goes where it claims, and the second was the thing
+the `mainRoute` prefix had been quietly getting wrong for any destination
+outside the trigger's route.
+
+### What was not done, and why
+
+`next build` was not run. A `next dev` server was live on :3000 and the 21 Sep
+entry's rule is that rebuilding under a live server corrupts `.next`. `tsc
+--noEmit` and eslint were both clean, and — the part that matters here — the
+dev server rendered the menu, which **executes the module-scope count check**.
+A guard that throws at import time is proved by the page rendering at all.
+
+The 768px width was not revisited. It is the width the navigation is known to
+break at, but the break is in the top-level bar and this change does not touch
+it. Recorded so that "seen in a browser" is not read as more than it is:
+**two widths of one menu, not the walk.**
+
+
+## 22 Sep — three rounds of "it still shows the old image", and the server was right every time
+
+A banner was replaced under an unchanged filename. The user reported the old
+image three times: after a reload, after clearing the Next image cache, and
+after restarting the dev server. **The served bytes were correct on every
+one of those checks**, and each check proved it a different way:
+
+- the file on disk, the raw URL and `/_next/image` all returned 1920x1280,
+  where the drawn banner was 2752x1536, so the aspect ratio alone settled it;
+- `.next/cache/images` held **zero entries**, so Next was never caching it;
+- the other dev server on :3001 was stale, but it 404s `/blog/4`, so it could
+  not have been the source either;
+- finally the exact variant the list card requests, `w=640`, was fetched and
+  rendered, and it was the photograph.
+
+**The cause was browser cache, and the diagnostic lesson is that a server
+restart does not touch it.** Same URL, same bytes already held. The fix that
+ends the class of problem is renaming the file so the URL changes, which is
+what was done. Worth keeping: when an asset is replaced in place, nothing
+server-side will ever demonstrate the change to the person looking at it.
+
+**Rendering what the server actually returns is the check that worked.** Not
+the file on disk, not the data file, but the response to the precise URL the
+component requests, decoded and looked at. That is three lines of sharp and
+it is the only one of the four checks that was conclusive on its own.
+
+## 22 Sep — a git mv was swept into another session's commit
+
+`git mv` stages. Another session ran a commit that took the index as it
+stood, so `8a92fc2` carried a rename this session had made and had not
+committed — and carried the OLD file content under the NEW filename, because
+the working-tree replacement was not staged with it. HEAD therefore had the
+drawn banner living at `blog-ai-search-laptop.webp` for two commits.
+
+**The rule: with a second session in the repo, nothing may sit staged.**
+Either commit it or leave it unstaged in the working tree. A staged change is
+not yours once someone else can run `git commit`. This is the same class of
+fault as the shared-index race recorded above, and it is the second time
+concurrency has cost something here.
+
+## 22 Sep — prettier fails on files nobody has touched
+
+`prettier --check` reports most of this working tree as unformatted. It is
+environmental: git checks out CRLF under `core.autocrlf` and the prettier
+config names no `endOfLine`, so it defaults to `lf` and every checked-out
+file disagrees with it. `Navbar.tsx` and `Container.tsx` fail identically
+without being edited.
+
+**Two traps came out of this.** First, converting a file to LF to make the
+check pass produces a whole-file diff and is the wrong fix; the committed
+blob is LF already. Second, running prettier against a copy outside the
+repository silently uses the DEFAULTS, not `.prettierrc.js` — it reported
+double-quoted JSX and parenthesised arrow params as faults, neither of which
+this project wants. A formatting check on a copy has to pass `--config`
+explicitly or it is measuring a different project.
+
+Underneath both, a real finding: `Footer.tsx` has been genuinely unformatted
+since `76878ca`, at two text blocks in the group band and the legal line.
+Related: [[02 Decisions]], [[04 Phase 2 — Navigation and footer]],
+[[09 Outstanding]]

@@ -786,3 +786,132 @@ That is the counterpart to every other note in [[10 Verification]]: looking
 catches what the gates cannot, and arithmetic catches what looking cannot.
 
 Related: [[05 Components]], [[08 Design system constraints]], [[10 Verification]]
+
+
+## 22 Sep — the What We Do dropdown, derived rather than restated
+
+### Deriving the menu from the hub, over editing the list in place
+
+The menu was four capability labels and eight routes typed out in
+`navigation.ts`, beside the five the hub renders from `capabilityGroups`. The
+smaller change was to add the missing fifth group there and move on. It was
+not taken, because **the fault was not the missing group, it was the second
+copy** — the copy is what let the two drift silently when the diagnostic
+shipped, and editing it in place leaves the mechanism that produced the drift
+fully intact and ready to produce it again.
+
+This is the same judgement `capabilityGroups.ts` already records for the hub
+and the home page: capability copy is imported from `growthSystemData`, never
+restated, because restating it is how those two drifted apart the first time.
+The dropdown was simply the one place the rule had not reached.
+
+### A build guard replaced, not removed
+
+`pick()` threw on an unknown route, and the note beside it is right that a link
+silently absent from the navigation is a fault traffic finds before anyone
+else does. Deriving the menu would have quietly retired that guard, so it is
+restated in the terms deriving makes available: **every page in `servicesData`
+must be reachable from the dropdown, or the build fails.** That is a stronger
+claim than the typo check — it also catches a new service page that is never
+filed under a capability, which the old list could not see at all.
+
+The empty-group filter is kept even though none of the five is empty today. It
+is the house rule about shipping the pattern without the missing element, and
+it is what keeps the menu honest if a sixth capability is approved before it
+has anywhere to point.
+
+### An instruction superseded, and recorded as one
+
+The 11 Sep instruction was that Strategy & Positioning takes **no** nav entry.
+[[09 Outstanding]] recorded the correct move once the diagnostic shipped: the
+premise behind that instruction — nowhere for it to point — had ended, and the
+changed premise should go back to management as a question rather than be
+acted on unilaterally. That was right, and it is not what happened here.
+
+**The change was asked for directly**, on 22 Sep, by name, with `/services`
+open and its five labels given as the thing the navigation should represent.
+A current instruction settles this; it does not need the old one reinterpreted.
+Written down as a supersession rather than a correction so that the 11 Sep
+line is found *answered* rather than found contradicted.
+
+### "The Diagnostic" rather than the hub's own link label
+
+The hub's link is a sentence — "Explore our Strategy & Positioning Diagnostic
+→" — because it ends a block of prose. In the dropdown its siblings are page
+titles, and a sentence among them reads as a promotion rather than a
+destination. The full page title would have repeated the group heading
+immediately above it. Both wordings stay as they are in their own place;
+this is the same reasoning the brief already applies to CTA labels, which is
+that a label belongs to its position.
+
+
+## Two blog posts, and what decided the topics, 22 Sep
+
+The blog had three posts, covering Fintech, Web3 and SaaS. Tech and AI had
+sector pages and no insight content, and the AI page is one of the three left
+with no proof at all after the testimonial audit. The gap picked the topics
+rather than the other way round.
+
+**Post 4 is about AI search** — being quotable rather than merely rankable.
+**Post 5 is five checks before increasing spend**, ordered as the five
+capabilities `/services` was restructured into, one common mistake each. The
+second was chosen over two earlier proposals on the user's instruction that
+the topic sit on the services and the sectors rather than on method: a post
+about measurement under refused consent, and a post about writing for
+technical buyers, were both proposed and dropped.
+
+**Neither post contains a Pixelette performance figure**, deliberately. Every
+number in them is third-party and attributed in the sentence that uses it,
+which is the standard the sector pages were cleaned to on the same day. It
+also means neither post waits on the BlockGuard measurement window.
+
+**Length was measured rather than guessed.** The existing three run 354, 360
+and 381 words across six sections; the new two were measured to 365 and 378
+before being written into the data, with the same six-section shape and the
+same closing "Work with Pixelette Marketing" section. The house punctuation
+from the 22 Sep pass is followed — no dashes anywhere, commas and colons
+instead — because that pass is what the rest of the site now reads like.
+
+## The banners were drawn, then thrown away, 22 Sep
+
+Both posts first took drawn SVG figures, on the reasoning `GrowthDiagram`
+set: flat geometry, the diagram tint as fill, one crimson accent, no axes and
+no values, so neither figure states a quantity. The five-check figure was
+deliberately level rather than ascending and used nodes rather than columns,
+specifically so it would not read as the home page's growth figure.
+
+**The user rejected them for the right reason: they were patterns, and a
+pattern says nothing about the article.** That is the objection the About
+hero collage failed on, arrived at from the opposite direction. There the
+image was bought and off-brief; here it was ours and on-brief and still
+decoration.
+
+**What replaced them is subject matter** — an AI search assistant on a laptop
+screen, and two people going through printed charts. Worth recording how the
+abstract route was closed: eight candidate red abstracts were downloaded and
+their saturated pixels measured against the brand token. Every one came back
+at hue 351 to 11 against the brand's 341, which is scarlet or orange rather
+than raspberry. The measurement settled it, not taste.
+
+**The drawn pair are not kept.** The usual treatment here is to leave an
+unreferenced asset alone until someone is sure, which `growthBanner.webp` and
+the five team portraits got. Those were assets whose section might return.
+These were replaced on instruction by files already in the tree, so they went.
+
+## The footer loses a column, 22 Sep
+
+Who We Help comes out, What We Do becomes Services, and Strategy &
+Positioning joins the remaining column, leading it because it is 01 of the
+five capabilities and the eight service pages beneath it all assume it. The
+grid returns to brand + two, which is the shape the Pixelette Technologies
+footer this was rebuilt from has always had.
+
+**The cost is real, and it is not a rendering one.** That column was the only
+site-wide link to the five sector pages. They stay in the sitemap, stay
+indexed, and are still reachable from the nav and from `/industries`, but
+they have lost their internal links from every page on the site. It is
+recorded in the component comment as well as here, because it is exactly the
+kind of change that looks like nothing in a browser and surfaces in a crawl
+three months later.
+Related: [[04 Phase 2 — Navigation and footer]], [[09 Outstanding]],
+[[10 Verification]]

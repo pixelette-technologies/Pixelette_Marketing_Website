@@ -73,7 +73,8 @@ Positioning Diagnostic, built to its own instruction. A new route, linked from
 instrument that reads back the visitor's own answers and names the earliest
 unresolved layer. It reverses the 11 Sep withdrawal that Strategy & Positioning
 gets no page; **the nav entry was not added**, because the page was asked for
-and the nav entry was not. It is **the first page here built with a browser in
+and the nav entry was not. (Superseded later the same day — see the fourth
+change below.) It is **the first page here built with a browser in
 the loop from the start**, and looking at it produced seven faults after all
 six gates were green. See [[02 Decisions]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
@@ -94,13 +95,25 @@ instruction — and nothing is sent anywhere. Looking at it produced four more
 faults, one of which was **the cookie banner printing across the results**.
 See the same five notes.
 
+**22 Sep, fourth change of the day** — the What We Do dropdown was made to be
+`/services` rather than a second copy of it. The menu held its own mapping,
+four capability labels and eight routes typed out beside the five the hub
+renders, and the two had drifted: **the hub showed five capabilities and the
+menu showed four.** `whatWeDoGroups` is derived from `capabilityGroups` now, so
+the menu is that page by construction. This **supersedes the 11 Sep instruction
+that Strategy & Positioning takes no nav entry** — asked for directly, against
+the hub's own five labels. It is also **the first time the dropdowns have been
+rendered at all**, which item 1 below had listed as never done. See
+[[04 Phase 2 — Navigation and footer]] and [[09 Outstanding]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band, the
    whole of the About page and the whole of `/strategy-positioning` have now
    been seen; each look immediately produced faults no gate had caught. Every
-   other page and breakpoint is still structural-only, and the dropdown menus
-   have never been rendered. The 21 Sep realignment is made entirely of
+   other page and breakpoint is still structural-only. The What We Do dropdown
+   has now been rendered, at both widths, which leaves Who We Help as the one
+   menu never seen. The 21 Sep realignment is made entirely of
    computed measurements and adds to this debt rather than settling any of it.
    **And the navigation is broken at 768px on all 36 routes**, which the
    diagnostic's tablet check found and nobody had seen before.

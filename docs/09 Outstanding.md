@@ -300,3 +300,47 @@ the page has had the same treatment, and the figure itself has still never
 been seen at a phone width, where its hover labels do not exist at all.
 
 Related: [[01 The brief]], [[02 Decisions]]
+
+## The Strategy & Positioning Diagnostic (22 Sep)
+
+`/strategy-positioning` is built, gated and looked at. What it leaves open:
+
+- **Nobody has signed off the six lenses or the twenty-four statements.** They
+  are the page's substance and they are mine. The lens NAMES and every "what we
+  would look at first" line are drawn from `growthSystemData`'s approved
+  capability 01, so the claims about what Pixelette does are management's; the
+  questions and the four statements under each are not. **This is the thing on
+  this page that most wants a reply.**
+- **The page is reachable from `/services` and from nowhere else.** The 11 Sep
+  instruction that Strategy & Positioning takes no nav entry stands, and the
+  premise it rested on — that there is nowhere for it to point — has now
+  changed. Worth putting back to management as a question rather than acting
+  on. Note that `navigation.ts` and `capabilityGroups.ts` both carry that
+  judgement in prose, so both comments are now half true and were updated.
+- **It is not linked from the home page.** The Growth System's card 01 is the
+  other place "Strategy & Positioning" appears, and it was left alone: the five
+  cards carry no per-item links and adding one to the first would make it read
+  as the one with a product behind it. One line if it is wanted.
+- **`.btn:disabled` is a group-layer contrast fault, raised not taken.** White
+  text on `--color-line-strong` is roughly 1.5:1. The diagnostic overrides it
+  locally and the enquiry form is untouched, so nothing regressed — but the
+  shared rule is wrong wherever it is used and the value is the guide's, like
+  `--color-line-strong` itself. Same class of inherited fault, same treatment.
+- **The four dead assets keep their company.** Nothing new was added to
+  `public/`; this page has no images at all. Worth noting that it is the first
+  route on the site with none, and it does not look thin for it.
+- **The conversion path is the ordinary enquiry form.** "Talk to us about this"
+  lands on `/contactus` with nothing carried across, so whoever reads the
+  enquiries cannot tell that a visitor arrived from the diagnostic or what
+  their reading said. Same shape as the About page's "Introduce yourself →"
+  problem, and the same two fixes are available: an option in the form's "What
+  are you trying to improve?" select, or a route of its own. **Neither was
+  taken, because the conversion event is not wired at all** — see the top of
+  this file.
+
+## Found while looking at the diagnostic, and not this page's fault
+
+- **The navigation breaks at 768px on every route.** "What We Do" and "Who We
+  Help" wrap to three lines and the primary button overflows the right edge.
+  Confirmed on `/aboutus`, so it predates this work and is on all 36 routes.
+  It is the first thing the browser walk should settle at tablet width.

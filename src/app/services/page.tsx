@@ -121,6 +121,27 @@ export default function ServicesIndexPage() {
                   </Heading>
                   <Text className='body'>{group.body}</Text>
 
+                  {/* 22 Sep 2026. Strategy & Positioning is the one capability
+                      with no service pages under it, and until now it was also
+                      the one with no way out — five blocks, four of them
+                      ending in links and the first ending in nothing. It ends
+                      on the diagnostic now.
+
+                      IT IS NOT IN THE LINK ROW BENEATH. That row is a list of
+                      peer service pages set at link weight, and this is the
+                      capability itself rather than a service filed under it.
+                      Giving it its own line keeps both claims honest and keeps
+                      capability 01 from looking like it finally acquired a
+                      product. */}
+                  {group.featured && (
+                    <Link
+                      href={group.featured.route}
+                      className='capabilityList__featured'
+                    >
+                      {group.featured.label}
+                    </Link>
+                  )}
+
                   {/* Absent, not empty, when a capability has no service page
                       beneath it — see capabilityGroups.ts. */}
                   {group.services.length > 0 && (

@@ -141,3 +141,55 @@ for the whole site rather than per section.
 
 
 Related: [[05 Components]], [[10 Verification]]
+
+## The 100-to-1 grow ratio — 22 Sep 2026
+
+The diagnostic panel is two columns that must fold with **zero breakpoints**,
+and its two columns want different behaviour on either side of the fold: the
+readout should stay at 20rem beside the questions and should take the full
+width once it is beneath them.
+
+`flex-grow` is distributed **within a line**, which resolves it in one rule.
+The question column is `flex: 100 1 30rem` and the readout `flex: 1 1 20rem`:
+
+- side by side, the question takes 100/101 of the spare width and the readout
+  keeps its basis. Equal grow gave the readout about 430px, which is a six-row
+  instrument with 150px of gap down the middle of it.
+- stacked, the readout is the only item on its line, so it has the only share
+  and takes all of it.
+
+Worth knowing because the same shape recurs: any pair where one side is a fixed
+instrument and the other is the content. It is not a new idiom, it is the flex
+spec used properly, and it is written down because the ratio reads as a magic
+number to anyone who has not been told what it buys.
+
+## `.card-feature` is where a signal cap goes on a page that opens dark
+
+`_tokens.scss` describes the mannerism in two sanctioned forms: the segment on
+a section's top hairline (`.rule-cap`) and the same segment on the leading edge
+of a feature card (`.card-feature`). The diagnostic page needed the second, and
+the reason is general.
+
+`.rule-cap` caps a hairline drawn in `--color-line`, a light tone. A section
+that opens **directly beneath a dark band** has no such hairline — and should
+not be given one, because the band edge is already the separation. Drawn
+anyway, the 40px segment renders as a loose crimson dash under a black band.
+That is what it did, it was seen, and the mark moved to the panel.
+
+So: if the section that deserves the mark sits under a dark band, put the mark
+on the object inside it, not on the section's own rule.
+
+## A shared control can be overridden contextually — sparingly
+
+`.btn:disabled` fills with `--color-line-strong` under `--color-page` text,
+about 1.5:1. That is defensible for a submit button greying out for a second
+while a form posts and indefensible for the first control on a page, which is
+what the diagnostic's "Next" is before anybody touches it.
+
+The fix is four lines scoped to `.diagnostic__actions`, leaving the shared rule
+and the enquiry form alone. This is the same category as `.band-dark .btn2` —
+a control restyled by the context it is in, in the context's own stylesheet —
+and NOT a `className` escape hatch. The test is the one `PointItem` states:
+the call site cannot get it wrong, because the call site is not involved.
+
+The shared rule is still wrong everywhere else. See [[09 Outstanding]].

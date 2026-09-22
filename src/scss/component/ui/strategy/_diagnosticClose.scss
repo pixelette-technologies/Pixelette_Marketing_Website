@@ -1,0 +1,57 @@
+// --- The close --------------------------------------------------------------
+// AboutClose's anatomy: a wide primary column and a narrow, quieter note on
+// its own hairline, the note pinned to the bottom of the row so it finishes
+// level with the button rather than floating beside the heading. Equal columns
+// would make the two read as a pair of offers, which the link back to the hub
+// must not be.
+
+.diagnosticClose {
+  padding-block: var(--sec-y);
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
+}
+
+.diagnosticClose__primary {
+  flex: 1 1 30rem;
+  min-width: 0;
+
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  & > .h2 {
+    max-width: 34rem;
+  }
+
+  & > .lead {
+    margin-top: 1.5rem;
+  }
+
+  & > .btn {
+    margin-top: 2rem;
+  }
+}
+
+.diagnosticClose__aside {
+  flex: 0 1 20rem;
+  min-width: 0;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
+}
+
+// .link supplies the brand tone and the underline. This is the size and the
+// tap target: the note above it is .small, so a body-sized link under it would
+// outweigh the thing it qualifies, and 44px is the floor .flink meets for the
+// navigation and this link has to meet for itself.
+.diagnosticClose__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+}
+

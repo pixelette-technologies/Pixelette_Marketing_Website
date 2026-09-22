@@ -99,6 +99,38 @@
   margin-bottom: 0.5rem;
 }
 
+// The featured destination, 22 Sep 2026. One call site: Strategy & Positioning,
+// which is the only capability with no service pages beneath it and was the
+// only block on this page that ended without a way out.
+//
+// IT TAKES THE SAME WEIGHT AS .capabilityList__services DELIBERATELY, and the
+// arrow is what separates them. Checked by eye at 1440px and at 390px against
+// the four capabilities that do carry service links: a heavier treatment made
+// row 01 look like the important one, and a button there would outweigh the
+// single .btn at the foot of the page, which is the one ask this page makes.
+// What distinguishes it is that it is one line rather than a wrapped row of
+// peers, and that no service link on this page carries an arrow.
+//
+// The arrow is part of the label string, not a pseudo-element — the convention
+// aboutContent.ts set with "Introduce yourself →". A copy reviewer opening the
+// data file sees the whole link.
+.capabilityList__featured {
+  display: inline-flex;
+  align-items: center;
+  // The 44px floor .flink meets for the navigation, met here rather than left
+  // to the line height of a 15px link.
+  min-height: 44px;
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-brand);
+
+  &:hover {
+    color: var(--color-brand-hover);
+    text-decoration: underline;
+  }
+}
+
 // The service pages, as a row of quiet links rather than eight cards. They are
 // the detail under a capability now, not the page's primary structure, so they
 // take link weight and not card weight.

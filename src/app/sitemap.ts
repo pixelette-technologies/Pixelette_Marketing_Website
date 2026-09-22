@@ -11,7 +11,10 @@ const BASE = "https://www.pixelettemarketing.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  const staticRoutes = ["", "/aboutus", "/contactus", "/results", "/blog-list", "/cookie-policy", "/services", "/industries"];
+  // /strategy-positioning added 22 Sep 2026. It also puts the route in front of
+  // route:walk, which discovers its list from this file rather than hard-coding
+  // one — a new page left out here is a new page nothing checks.
+  const staticRoutes = ["", "/aboutus", "/contactus", "/results", "/blog-list", "/cookie-policy", "/services", "/industries", "/strategy-positioning"];
   const services = servicesData.map(s => `/services/${s.route}`);
   const industries = industriesData.map(i => `/industries/${i.route}`);
   const blogs = blogsData.flatMap(c => c.data).map(b => `/blog/${b.id}`);

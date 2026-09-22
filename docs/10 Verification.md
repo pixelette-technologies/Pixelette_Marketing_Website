@@ -298,3 +298,71 @@ working tree passing its gates proves nothing about the commit. Check the
 subset out and run the gates against that.
 
 Related: [[08 Design system constraints]], [[09 Outstanding]]
+
+## 22 Sep — the first page built with a browser in the loop
+
+`/strategy-positioning` was looked at while it was being built rather than
+after, at 1440px, 768px and 390px, and the instrument was DRIVEN — Chrome over
+the DevTools protocol, clicking through all six questions to the reading, and
+again picking the top statement six times to reach the other branch.
+
+**All six gates were green before the first screenshot.** tsc, eslint, the
+token gate, sass, the build and 36/36 on the route walk. Looking at it then
+produced **six faults**, none of which any gate could see:
+
+| Fault | What it looked like |
+|---|---|
+| `.rule-cap` floating on nothing | The section opened directly under the dark band, so the 40px marking segment had no light hairline to cap and rendered as a loose crimson dash under a black band. Same fault the About page's cap was moved for. |
+| "YOUR READING" printed twice | The result panel's eyebrow and the readout's label sat on the same baseline, 700px apart, saying the same three words. |
+| The disabled "Next" unreadable | `.btn:disabled` is `--color-page` text on `--color-line-strong`, roughly 1.5:1. Fine for a submit button greying out for a second; this is the first control on the page and it is in that state before anybody touches it. |
+| "Growth priorities" broke in two | The fixed 10rem name column wrapped lens 06 and left its row taller than the five above it. |
+| The method rows did not line up on a phone | The summary wrapped to the gutter while the name above it stayed indented by the numeral column — two halves of one row starting at different x. |
+| "01 / 06" alone in the gap | The counter is pushed to the end of its row, so it sat 115px right of the options it labels, in the space between the two columns. |
+
+A seventh was found at 768px after the first five were fixed: the readout sat
+320px wide under 690px of options and left the right half of the panel empty.
+
+**Every one of these is a layout or a colour or a duplicate word.** That is the
+category the gates are blind to, stated three times in this file already and
+now demonstrated on a page where the looking was not optional.
+
+### What the fixes cost, and what they are worth reading for
+
+- The signal cap moved to `.card-feature` on the panel — the device's second
+  and last sanctioned form, already in use on the services template. The page
+  now carries **zero** `.rule-cap` and one card cap, which is within the rule:
+  one mannerism, and the cap is three per route rather than one required.
+- The disabled button takes a **local** treatment — transparent, line-strong
+  edge, muted text — scoped to `.diagnostic__actions`. The shared
+  `.btn:disabled` the enquiry form depends on is untouched. That shared rule is
+  still 1.5:1 everywhere else it is used and is worth raising as a group-layer
+  question rather than forking further.
+- The two-column fold is one rule for both layouts, on a **100-to-1 grow
+  ratio**: flex-grow is shared within a line, so side by side the question
+  column takes 100/101 of the spare width and the readout keeps its 20rem,
+  while stacked the readout is alone on its line and takes all of it. Zero
+  breakpoints, which is the constraint it had to be solved inside.
+
+### What is still unseen on this page
+
+- **Keyboard focus was never observed.** The radios are real inputs and pick up
+  the global `:focus-visible` ring, and the ring was not driven and photographed
+  — programmatic `.focus()` does not match `:focus-visible`, so the screenshots
+  could not show it.
+- **Hover was never observed** on the option rows, the readout jump buttons or
+  the featured link on `/services`.
+- **The readout's revisit buttons were never clicked.** They appear only once
+  all six lenses are answered; the state was reached and photographed, the
+  buttons were not pressed.
+- **No real browser, no real device.** Everything above is headless Chrome at
+  three widths. No Safari, no iOS, no touch.
+
+### A site-wide fault this found, and did not fix
+
+**The navigation breaks at 768px on every page.** "What We Do" and "Who We
+Help" wrap to three lines and the "Build my growth plan" button runs off the
+right edge. Checked on `/aboutus` to confirm it predates this work. It is the
+navbar, so it is on all 36 routes, and nobody has seen it before because
+nobody had looked at this site at tablet width.
+
+Related: [[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]]

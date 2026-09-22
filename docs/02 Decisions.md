@@ -581,3 +581,81 @@ and a fourth seed would describe none of them.
 supplied. See [[09 Outstanding]].
 
 Related: [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]
+
+## The Strategy & Positioning Diagnostic, 22 Sep 2026
+
+`/strategy-positioning`. A new page, asked for in its own instruction, and the
+first thing on this site built with a browser in the loop from the start
+rather than at the end.
+
+**It reverses a recorded withdrawal, and that is the user's call rather than
+mine.** On 11 Sep it was settled that Strategy & Positioning gets no detail
+page and no nav entry, and that it becomes a UI question on the existing page
+instead. `navigation.ts` and `capabilityGroups.ts` both carry that judgement in
+their own words, and both end the same way: it joins when there is somewhere
+for it to point. There is now. **The navigation is still untouched** — the page
+is reachable from `/services` and from nowhere else — because the page was
+asked for and the nav entry was not.
+
+### The objective shaped the whole page
+
+The instruction was explicit that the page must not merely say Pixelette does
+marketing strategy; it has to PROVE there is a structured way of diagnosing
+market, customer, competition, positioning, messaging and growth priorities.
+Two consequences:
+
+- **The six lenses are management's own capability list.** `growthSystemData`'s
+  capability 01 names exactly six — ICP and buyer insight, market and competitor
+  intelligence, proposition, messaging, go-to-market, campaign strategy — and
+  the six lenses are those six put in dependency order. Every "what we would
+  look at first" line in the reading names the one it belongs to. Nothing on
+  the page invents a service.
+- **The order IS the argument.** A grid of six equal boxes would say the lenses
+  are parallel and interchangeable; the claim is that each waits on the one
+  above it. Rows on a hairline, the third sanctioned idiom, for the third time
+  and the same reason as `/services` and `/industries`.
+
+### The diagnostic benchmarks the visitor against nobody
+
+The instruction bars invented client logos, testimonials, customer numbers,
+results statistics, awards, fake AI and fake research data. That is not a
+constraint the instrument works around — it is what the instrument is.
+
+Six answers in React state, drawn as six four-step measures, and the reading is
+the **minimum**, ties going to the earliest lens because the lenses are a
+dependency chain. That is the entire algorithm. The one number rendered
+anywhere on the page is the visitor's own click read back to them, and the
+caption under the readout says so in words: *a reading of your own answers, not
+a benchmark*.
+
+**Nothing is described as AI.** There is no model, no request and no inference
+here, and the copy never implies one.
+
+### Three decisions inside the instrument
+
+**The light ground, not the dark band.** The obvious move is to give a page's
+dark band to its centrepiece. `_pointItem.scss` records what that costs: the
+Growth System's cards were transparent on a panel-border hairline, every glyph
+inside passed its contrast floor, and the review feedback was that they "are
+not visible properly" — a contrast gate measures text against background and
+cannot see that the container has gone missing. A panel of form controls has a
+dozen such containers. The band went to the method section, which is prose and
+numerals, and the instrument stayed on the ground the primitives are tuned for.
+
+**Real radios, restyled with `appearance: none`.** Not a div with an onClick.
+The focus ring lands on the element the browser already focuses, the arrow keys
+already work inside the group, and the checked state is already exposed —
+none of which is true of the alternative, and all of which `Accordion.tsx` had
+to be rewritten once to recover. The selected row is marked by a class React
+writes rather than by `:has(:checked)`: React already knows, and a state class
+cannot be defeated by a browser that has not shipped `:has`.
+
+**No persistence.** `localStorage` would survive a refresh, and it would also
+mean this page stores something about a visitor — a sentence the cookie policy
+would then have to carry. A diagnostic that takes ninety seconds is not worth
+that. It is also what lets the hero say, truthfully, that nothing is submitted
+and nothing is stored. **If an analytics event or a save is ever added, that
+hero sentence changes in the same commit.**
+
+Related: [[05 Components]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]]

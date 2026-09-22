@@ -1,0 +1,89 @@
+// The six lenses, on the page's one dark band.
+//
+// ROWS ON A HAIRLINE — the third sanctioned layout idiom, alongside
+// .capabilityList on /services and .sectorList on /industries. The rule those
+// two established: reach for a grid when the items really are peers and the
+// set really is complete, otherwise use rows. Six lenses in dependency order
+// are the clearest case of "not peers" on this site — the whole claim of the
+// section is that each one waits on the answer above it.
+//
+// A HANGING NUMERAL AND ONE COLUMN, which is .capabilityList__group's shape on
+// /services. Zero breakpoints: the numeral is a fixed column and the body takes
+// a 28rem basis, so the two sit side by side on a desktop and the body drops
+// beneath the numeral once there is no longer room.
+//
+// It was three columns — numeral, name, summary — and that was changed after
+// looking at the page on a phone. See the note in DiagnosticMethod.tsx: the
+// summary wrapped to the gutter while the name stayed indented, and the fixed
+// name column broke "Growth priorities" over two lines.
+//
+// The hairline is --color-panel-border, the dark family's own line tone.
+// --color-line is a light hairline and would be a bright wire on this ground.
+
+.diagnosticMethod {
+  padding-block: var(--sec-y);
+
+  & > header {
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .h2 {
+      max-width: 34rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__list {
+    margin-top: var(--sec-y-sm);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    padding-block: 1.5rem;
+    border-top: 1px solid var(--color-panel-border);
+
+    // The first row would otherwise draw a second line directly beneath the
+    // header's own air and read as a double rule. Same call .capabilityList
+    // makes on its first group.
+    &:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+
+  // The numeral. The site's own device — PointItem sets the Growth System's
+  // 01-05 the same way and CapabilityModel repeats it on a dark band. It takes
+  // the marking tone rather than the brand anchor, which measures 2.77 here
+  // and is barred on this ground.
+  &__index {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-footer-eyebrow);
+    // Sits the numeral on the name's first line rather than on the top of its
+    // box, which is a few pixels higher. .capabilityList__index's own value.
+    padding-top: 0.35rem;
+  }
+
+  &__main {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+
+  // .band-dark already carries the page white onto .h3, and .h3 already
+  // carries text-wrap: balance. The name needs nothing else: it has the whole
+  // column now, so no name in the set wraps at any width above a phone.
+  &__summary {
+    margin-top: 0.5rem;
+  }
+}

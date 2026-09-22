@@ -152,3 +152,55 @@ One call site today, section 06 of the home page.
 **Never seen.** See [[10 Verification]].
 
 Related: [[02 Decisions]], [[03 Phase 1 — Homepage]]
+
+## The diagnostic components — 22 Sep
+
+`src/components/ui/strategy/`. Four, and one of them is the site's only
+stateful surface.
+
+`DiagnosticHero`, `DiagnosticMethod` and `DiagnosticClose` are ordinary server
+components on the shared anatomy. The close follows `AboutClose` rather than
+the shared `QuestionAndAnswer`, which is still un-converted and hard-codes
+"Book a consultant - it's on us!" — putting legacy classes on a new page to
+avoid a third close file would be the wrong trade. That divergence is still
+open and still belongs to whenever the four templates are next looked at.
+
+### `StrategyDiagnostic` — the instrument
+
+`"use client"`. Six answers in state, a step index, and a done flag. It renders
+either the current question or the reading, with `DiagnosticReadout` beside it
+in both states.
+
+**The primary control follows the state, not the position.** Once all six
+lenses are answered it always reads "See the reading", so a visitor who has
+come back to change one answer is a single press from the updated result
+instead of clicking Next through the rest.
+
+**Focus moves with the step.** Without it, pressing Next leaves focus on the
+button and a screen-reader user is never told the question changed. It is
+skipped on the first render and passes `preventScroll`, so the page neither
+yanks focus on load nor scrolls the panel out from under a sighted reader.
+
+**No `data-reveal` anywhere inside the panel.** `ScrollReveal` hides what it
+observes at opacity 0 until it is scrolled to, and interactive controls are the
+last thing that should depend on an IntersectionObserver having run. The
+section is a block of `.page-flow`, so it fades in as one object.
+
+### `DiagnosticReadout` — six measures
+
+Four segments per lens, filled to the position of the chosen statement, plus
+the fraction as **visible text**. The segments carry `aria-hidden`; the
+fraction is the accessible value and is rendered rather than hidden, because a
+figure whose numbers cannot be read is a figure people assume a score from.
+There is no visually-hidden utility in this codebase and this was not the place
+to introduce one.
+
+**The rows become buttons only once every lens is answered.** Before that there
+is exactly one way forward through the questions, and a second route through
+the same six would be a way to get lost rather than a shortcut. The button
+inherits the row's layout rather than nesting a second one, so the interactive
+and static states are pixel-identical.
+
+**No chart library.** Six rows of four spans.
+
+Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]

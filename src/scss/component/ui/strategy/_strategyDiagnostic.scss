@@ -1,0 +1,431 @@
+// The instrument. The centrepiece of /strategy-positioning and the only
+// stateful surface on this site.
+//
+// IT SITS ON THE LIGHT GROUND, and that is the load-bearing decision in this
+// file. The obvious move is to give the page's dark band to its centrepiece;
+// _pointItem.scss records what that costs. The Growth System's cards were
+// transparent on a --color-panel-border hairline, roughly 1.8:1 against the
+// gradient, and had to be reverted to a light surface on review feedback that
+// they "are not visible properly" — every glyph inside had passed its contrast
+// floor, because a contrast gate measures text against background and cannot
+// see that the container has gone missing. A panel of form controls has a
+// dozen such containers: option edges, a radio dot, a disabled button, four
+// tick segments. All of them stay on the ground the primitives are tuned for.
+//
+// TOKENS ARE SCOPED TO THE MECHANISM, not declared on :root — the convention
+// _reveal.scss and _marquee.scss follow. Deleting this partial takes its custom
+// properties with it and leaves nothing dangling in the token file.
+
+.diagnostic {
+  // NO TOP HAIRLINE. This section opens directly beneath the dark band and the
+  // band edge is the separation — a rule there is a second line 1px under a
+  // hard colour change. It carried one so that .rule-cap would have something
+  // to cap, and by eye that read as a crimson dash loose under a black band.
+  // The mark moved to .card-feature on the panel; see StrategyDiagnostic.tsx.
+  padding-block: var(--sec-y);
+
+  // Matches the reveal's own curve and step, so the instrument's feedback and
+  // the page's arrival read as one piece of motion rather than two.
+  --dq-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dq-quick: 160ms;
+  --dq-fill: 320ms;
+
+  & > header {
+    max-width: 34rem;
+
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
+    }
+  }
+
+  // The panel. Card tokens rather than the .card class itself: .card fixes its
+  // padding at 1.75rem, which is right for a card in a grid of four and mean
+  // for the one designed object on a page. Everything else — ground, edge,
+  // radius, shadow — is the shared card exactly, so this reads as the site's
+  // card enlarged and not as a new surface.
+  //
+  // TWO COLUMNS THAT FOLD ON THEIR OWN, zero breakpoints. 30rem + 20rem either
+  // side of a 3.5rem gap is 856px, so against the 1160px wrap the pair sits on
+  // one line with the question column taking essentially every spare pixel —
+  // see the grow ratio below. They fold to stacked just under a 940px viewport,
+  // which puts a tablet in portrait on the stacked layout and a tablet in
+  // landscape on the pair.
+  &__panel {
+    margin-top: var(--sec-y-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(2rem, 1rem + 3vw, 3.5rem);
+    padding: clamp(1.25rem, 0.6rem + 2.6vw, 2.5rem);
+    background: var(--color-page);
+    border: 1px solid var(--color-line-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  // THE GROW RATIO IS 100 TO 1, and it is the thing that makes one rule serve
+  // both layouts. flex-grow is shared out WITHIN A LINE, so:
+  //
+  //   side by side — the two are on one line, the question takes 100/101 of
+  //     the spare width and the readout keeps its 20rem. Equal grow would have
+  //     given the readout about 430px, which is a six-row instrument with
+  //     150px of gap down the middle of it.
+  //   stacked — the readout is alone on its line, so it is the only thing with
+  //     a share and it takes the full width. Its rows are name / ticks / value
+  //     with the name on flex 1, so they simply widen.
+  //
+  // Seen at 768px, where the readout sat 320px wide under 690px of options and
+  // left the right half of the panel empty. Zero breakpoints, which is the
+  // house rule this had to be solved inside.
+  &__question {
+    flex: 100 1 30rem;
+    min-width: 0;
+  }
+
+  // The lens name and the step counter, on one baseline.
+  //
+  // SAME 40rem MEASURE AS THE OPTIONS, and that is the whole reason the cap is
+  // here: the counter is pushed to the end of this row, so without it "01 / 06"
+  // sat 115px to the right of the option rows it belongs to, alone in the gap
+  // between the two columns. Found by eye at 1440px.
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    max-width: 40rem;
+  }
+
+  &__step {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    color: var(--color-soft);
+  }
+
+  // A fieldset defaults to min-width: min-content, which would keep the panel
+  // from ever folding: the longest option string would set the floor of the
+  // flex item holding it. This is the one line that makes the two-column
+  // layout responsive at all.
+  &__field {
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  // The question is the legend, so the four options are a labelled group to a
+  // screen reader rather than four loose radios. Legends need display: block
+  // and their padding zeroed before they lay out like ordinary text.
+  &__legend {
+    display: block;
+    padding: 0;
+    margin-top: 1rem;
+    max-width: 30rem;
+  }
+
+  // The options are controls and take the column, but not all of it. Against
+  // the full wrap the question column resolves to about 700px, and four rows
+  // of one short sentence run that width read as a table rather than as a set
+  // of choices — seen at 1440px, not reasoned about. 40rem holds them a little
+  // wider than the heading measure above them, which is the relationship every
+  // other section on the site has between its header and its content.
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: 1.75rem;
+    max-width: 40rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  // The primary control starts disabled: on arrival the only thing a visitor
+  // can do is choose a statement, and Next genuinely cannot proceed until they
+  // have. The SHARED .btn:disabled fill is wrong here, though — it is
+  // --color-line-strong under --color-page text, which renders the word "Next"
+  // at roughly 1.5:1. That is defensible for a submit button greying out for a
+  // second while a form posts, and indefensible for the first control on the
+  // page's centrepiece, which is in that state before anybody has touched it.
+  //
+  // Outline and muted instead: inert, legible at 5.78, and scoped to this
+  // section so the enquiry form's submit button is untouched.
+  &__actions .btn:disabled {
+    background: transparent;
+    border-color: var(--color-line-strong);
+    color: var(--color-muted);
+  }
+}
+
+// --- The option row ---------------------------------------------------------
+// A real <input type="radio"> restyled with appearance: none, NOT a div with
+// an onClick. The focus ring lands on the element the browser already focuses,
+// arrow keys already move within the group, and the checked state is already
+// exposed to assistive technology — none of which is true of the alternative,
+// and all of which Accordion.tsx had to be rewritten once to recover.
+//
+// HOVER CHANGES BORDER COLOUR ONLY, which is the rule _surfaces.scss says is
+// the one most often broken by reflex. No lift, no shadow, no scale.
+//
+// The selected row is marked by a class React writes, not by :has(:checked).
+// React already knows which option is selected; a state class cannot be
+// defeated by a browser that has not shipped :has, and this row is a control
+// rather than a decoration.
+
+.dqOption {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-line-pill);
+  border-radius: var(--radius-btn);
+  cursor: pointer;
+  transition:
+    border-color var(--dq-quick) var(--dq-ease),
+    background-color var(--dq-quick) var(--dq-ease);
+
+  &:hover {
+    border-color: var(--color-line-strong);
+  }
+
+  // The brand edge and the tint together, because the edge alone at 1px is the
+  // same weight as the three rows that are not selected. --color-brand-tint is
+  // the token cut for exactly this — a highlight fill on a light ground.
+  &--on {
+    border-color: var(--color-brand);
+    background: var(--color-brand-tint);
+  }
+
+  &__input {
+    appearance: none;
+    flex: 0 0 auto;
+    width: 0.875rem;
+    height: 0.875rem;
+    // Sits the dot on the first line of the label rather than on the top of
+    // its box, which is a few pixels higher.
+    margin: 0.3125rem 0 0;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+    background: var(--color-page);
+    cursor: pointer;
+    transition: border-color var(--dq-quick) var(--dq-ease);
+
+    // The inset ring is the white gap between the edge and the dot. Drawn with
+    // a shadow rather than a pseudo-element so the control stays one box and
+    // the native focus ring still follows its outline exactly.
+    &:checked {
+      background: var(--color-brand);
+      border-color: var(--color-brand);
+      box-shadow: inset 0 0 0 3px var(--color-page);
+    }
+  }
+
+  &__text {
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-body);
+  }
+
+  &--on &__text {
+    color: var(--color-ink);
+  }
+}
+
+// --- The readout ------------------------------------------------------------
+// Six measures, four segments each, filled to the position of the chosen
+// statement. The fraction beside them is VISIBLE TEXT and carries the value;
+// the segments are aria-hidden decoration. A figure whose numbers cannot be
+// read is a figure people assume a score from, and the caption beneath says in
+// words what this one is — the same discipline the home page's growth figure
+// holds to by carrying no axis, no tick and no value at all.
+
+.diagnosticReadout {
+  // Grow 1 against the question column's 100. See the note there.
+  flex: 1 1 20rem;
+  min-width: 0;
+
+  &__list {
+    list-style: none;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-block: 0.6875rem;
+    border-top: 1px solid var(--color-line);
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  // The lens, in the small mono label the .label primitive and .panel .plabel
+  // both use. Muted until the lens has been answered, ink once it has, brand
+  // while it is the one being asked — three states, one property.
+  &__name {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    transition: color var(--dq-quick) var(--dq-ease);
+  }
+
+  &__row--on &__name {
+    color: var(--color-ink);
+  }
+
+  &__row--current &__name {
+    color: var(--color-brand);
+  }
+
+  &__ticks {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 3px;
+  }
+
+  // The unfilled segment is --color-line-strong, not --color-line. On the
+  // section rules a hairline wants to disappear; here the empty segments have
+  // to read as a four-step scale BEFORE anything is answered, and at
+  // --color-line six rows of them looked like faint dotted placeholders rather
+  // than like an instrument waiting for input. Seen at 1440px and at 390px.
+  &__tick {
+    width: 0.75rem;
+    height: 0.25rem;
+    border-radius: 1px;
+    background: var(--color-line-strong);
+    transition: background-color var(--dq-fill) var(--dq-ease);
+  }
+
+  &__tick--on {
+    background: var(--color-brand);
+  }
+
+  &__value {
+    flex: 0 0 2rem;
+    text-align: right;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.6875rem;
+    color: var(--color-soft);
+  }
+
+  // Once every lens is answered the rows become the way back into any of them.
+  // Before that they are not controls at all: there is exactly one way forward
+  // through the questions and a second route through the same six would be a
+  // way to get lost rather than a shortcut.
+  //
+  // The button inherits the row's layout rather than nesting a second one, so
+  // the interactive and static states are pixel-identical.
+  &__jump {
+    display: flex;
+    align-items: center;
+    gap: inherit;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: 0;
+    text-align: left;
+    cursor: pointer;
+
+    &:hover .diagnosticReadout__name {
+      color: var(--color-brand);
+    }
+  }
+
+  &__note {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+  }
+}
+
+// --- The reading ------------------------------------------------------------
+
+.diagnosticResult {
+  & > .eyebrow {
+    display: block;
+    margin-bottom: 1.25rem;
+  }
+
+  &__heading {
+    max-width: 30rem;
+
+    // The lens name. Same hero device the rest of the site uses for the half
+    // of a heading that carries the point.
+    & > span {
+      color: var(--color-brand);
+    }
+
+    // It is focused when the reading appears, so a screen reader is told the
+    // panel has changed rather than being left on the button that changed it.
+    // Programmatic focus on a heading should not draw a ring for a mouse user;
+    // :focus-visible is what decides, and the global rule in _controls.scss
+    // supplies it when it applies.
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 4px;
+    }
+  }
+
+  & > .body {
+    margin-top: 1.25rem;
+  }
+
+  &__tie {
+    margin-top: 1.25rem;
+  }
+
+  &__order {
+    margin-top: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-line);
+  }
+}
+
+// The legend takes focus on every step change for the same reason. Same
+// treatment, so the two states of the panel behave identically.
+.diagnostic__legend:focus {
+  outline: none;
+}
+
+.diagnostic__legend:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 4px;
+}
+
+// --- Motion -----------------------------------------------------------------
+// The transitions above are feedback on a control, not decoration, so they are
+// short. Under a reduce preference they go entirely: the states they move
+// between are all still reachable, because every one of them is a colour
+// change and the end state is what carries the meaning.
+@media (prefers-reduced-motion: reduce) {
+  .dqOption,
+  .dqOption__input,
+  .diagnosticReadout__name,
+  .diagnosticReadout__tick {
+    transition: none;
+  }
+}

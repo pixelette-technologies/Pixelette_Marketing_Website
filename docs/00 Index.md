@@ -67,13 +67,27 @@ settle how it should be written. See [[02 Decisions]],
 [[07 Results and hub pages]], [[08 Design system constraints]],
 [[09 Outstanding]] and [[10 Verification]].
 
+**22 Sep, third change of the day** — `/strategy-positioning`, the Strategy &
+Positioning Diagnostic, built to its own instruction. A new route, linked from
+`/services` and from nowhere else, whose centrepiece is a six-question
+instrument that reads back the visitor's own answers and names the earliest
+unresolved layer. It reverses the 11 Sep withdrawal that Strategy & Positioning
+gets no page; **the nav entry was not added**, because the page was asked for
+and the nav entry was not. It is **the first page here built with a browser in
+the loop from the start**, and looking at it produced seven faults after all
+six gates were green. See [[02 Decisions]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
-1. **Almost nothing has been viewed in a browser.** The Growth System band and
-   the whole of the About page have now been seen; each look immediately
-   produced faults no gate had caught. Every other page and breakpoint is still
-   structural-only, and the dropdown menus have never been rendered. The
-   21 Sep realignment is made entirely of computed measurements and adds to
-   this debt rather than settling any of it. See [[10 Verification]].
+1. **Almost nothing has been viewed in a browser.** The Growth System band, the
+   whole of the About page and the whole of `/strategy-positioning` have now
+   been seen; each look immediately produced faults no gate had caught. Every
+   other page and breakpoint is still structural-only, and the dropdown menus
+   have never been rendered. The 21 Sep realignment is made entirely of
+   computed measurements and adds to this debt rather than settling any of it.
+   **And the navigation is broken at 768px on all 36 routes**, which the
+   diagnostic's tablet check found and nobody had seen before.
+   See [[10 Verification]].
 2. **The form's privacy-notice link is broken in production**, and the 11 Sep
    reply did not supply the URL that fixes it. See [[09 Outstanding]].

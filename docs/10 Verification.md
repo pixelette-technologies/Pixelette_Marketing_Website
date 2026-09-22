@@ -415,3 +415,73 @@ command removes the tree with the recursive delete the 21 Sep entry warns
 about.
 
 Related: [[02 Decisions]], [[09 Outstanding]]
+
+## 22 Sep — the diagnostic, checked rather than demonstrated
+
+The rebuilt `/strategy-positioning` is the first thing here whose CORRECTNESS
+could be checked rather than only its appearance, because it computes
+something. Both were done.
+
+### The arithmetic, 41 assertions against the shipped module
+
+`scripts`-free: the lib is compiled with tsc and imported, so the code under
+test is the code that ships rather than a transcription of it. Every case the
+brief's quality checklist names, and the ones it implies:
+
+- a complete 0 and a complete 100, raw 0 and raw 48
+- a hand-computed mixed set: raw 26, 26/48 = 54.17 → **54**, and the six
+  dimension percentages 88 / 13 / 50 / 100 / 13 / 63 checked individually
+- **every band boundary**: 39 and 40, 59 and 60, 79 and 80, plus the raw
+  totals either side of each one, because not every integer percentage exists
+  on a 48-point scale — raw 19 is 39.58, which rounds to 40 and crosses a band
+- ties at the top and at the bottom, both resolving to the earliest dimension
+- unanswered questions scoring 0 rather than NaN
+- a rogue stored answer of 99 clamping to 4, so no percentage can exceed 100
+
+### The same numbers again, through the UI
+
+Driven in a real browser, not asserted from the module: twelve answers clicked,
+and the page produced 54, Developing, the same six percentages, Positioning
+strongest, Audience the priority — the earliest of two dimensions tied at 13% —
+and the three recommendations for the three lowest. **The UI and the unit
+checks agree**, which is the only way to know the component is calling the
+maths it claims to.
+
+Then: Back preserved every earlier answer, question 1 was changed from 4 to 0,
+and the score recalculated to **46** — 22/48 — with Market falling to 38%.
+Restart asked before clearing, kept the answers when cancelled, and cleared
+storage and returned to the start panel when confirmed. A fresh page load
+restored a completed result from localStorage. The all-equal case suppressed
+the strongest/priority pair, which would otherwise have named one dimension
+twice, and showed its own sentence instead.
+
+### Keyboard, and the thing programmatic focus cannot tell you
+
+Real key events through the DevTools protocol, because `.focus()` does not
+match `:focus-visible` and a screenshot of a programmatic focus proves nothing.
+Tab reaches the options, `:focus-visible` matches, the ring renders, and Arrow
+keys move within the radio group and select — native behaviour, intact,
+because these are real radios rather than divs with click handlers.
+
+**No console errors or warnings** on load or through a full run.
+
+### Looking at it found four more
+
+| Fault | What it looked like |
+|---|---|
+| Methodology descriptions a line too high | The numeral sat inside the head column, so every description started level with `01` rather than with the stage name it describes. Fixed by giving the numeral its own row. |
+| The sample's trailing block stretched | Four blocks on `flex: 1 1 18rem` put three across and grew the fourth to the full width of the document, so 90-day priorities had its slots half a metre from their terms. **The same trailing-row stretch recorded in [[08 Design system constraints]]** — fixed the same way, by deriving the column count from the width. |
+| A rule that stopped mid-page | The outputs' closing statement had a hairline above it capped at its own 44ch measure, under a grid whose hairlines ran the full track. The rule came off. |
+| **The cookie banner printed across the results** | `position: fixed`, so it printed as a black bar through the middle of the score. There was no selector in the codebase that could reach it — `CookieConsent` is entirely inline-styled — so it gained a class that carries no styling. |
+
+### What is still unseen
+
+- **Hover, anywhere.** Not driven, not photographed.
+- **A real browser and a real device.** Everything above is headless Chrome at
+  1440, 768 and 390.
+- **The print output itself.** Print media was emulated and the right things
+  are hidden and kept, but nothing was sent to a printer or a PDF.
+- **The FAQ accordions were never opened**, and the shared `Accordion` has not
+  been seen on any page.
+
+Related: [[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]]

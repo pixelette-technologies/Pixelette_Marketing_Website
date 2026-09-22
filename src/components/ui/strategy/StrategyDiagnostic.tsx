@@ -1,287 +1,400 @@
 "use client";
 
-import { Container } from "@/components/common";
-import { Heading, Text } from "@/components/feature";
+import { Text } from "@/components/feature";
 import {
-  diagnosticLenses,
-  diagnosticResult,
-  diagnosticSection
+  diagnosticIntro,
+  diagnosticQuestions,
+  dimensionsById
 } from "@/data/strategy";
-import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import DiagnosticReadout from "./DiagnosticReadout";
+import {
+  TOTAL_QUESTIONS,
+  type Answers,
+  clearState,
+  emptyAnswers,
+  parseStoredRaw,
+  readServerSnapshot,
+  readStoredRaw,
+  saveState,
+  scoreDiagnostic,
+  subscribeToStoredState,
+  track
+} from "@/lib/strategyDiagnostic";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useSyncExternalStore
+} from "react";
+import DiagnosticResults from "./DiagnosticResults";
 
-// The instrument. The one client component on this page, and the only one on
-// the site that holds state a visitor can see change.
-//
-// WHAT IT ACTUALLY DOES, stated plainly because the copy has to be able to
-// stand behind it: it keeps six answers in React state, draws them as six
-// four-step measures, and takes the MINIMUM — ties going to the earliest lens,
-// because the lenses are a dependency chain and the earliest unresolved one is
-// the one the others are waiting on. That is the whole algorithm. There is no
-// model, no request, no storage and no analytics event, which is what lets the
-// hero say "nothing is submitted and nothing is stored". If that ever stops
-// being true, the hero copy changes in the same commit.
-//
-// NO PERSISTENCE, DELIBERATELY. localStorage would survive a refresh and would
-// also mean this page stores something about a visitor, which is a sentence
-// the cookie policy would then have to carry. A diagnostic that takes ninety
-// seconds does not need to be resumable at that price.
-//
-// THE CONTROLS ARE REAL RADIOS. appearance: none restyles the dot, which means
-// the focus ring lands on the input the browser already focuses and the arrow
-// keys already work within the group — none of which is true of a div with an
-// onClick, and all of which this codebase has had to retrofit once already
-// (see Accordion.tsx, where the toggle was a div with a cursor style).
-//
-// THE SELECTED ROW IS MARKED BY A CLASS FROM REACT, not by :has(:checked).
-// React knows which option is selected, and a state class cannot be defeated
-// by a browser that has not shipped :has.
-//
-// FOCUS MOVES WITH THE STEP. Without it, pressing Next leaves focus on the
-// button and a screen-reader user is never told the question changed. It is
-// skipped on the first render — the page must not yank focus on load — and it
-// passes preventScroll, so the browser does not scroll the panel around under
-// a sighted reader who is already looking at it.
-//
-// NO data-reveal INSIDE THE PANEL. ScrollReveal hides what it observes at
-// opacity 0 until it is scrolled to, and interactive controls are the last
-// thing that should depend on an IntersectionObserver having run. The section
-// is a block of .page-flow, so it fades in as one object and the controls
-// inside it are never individually hidden.
+type Phase = "idle" | "running" | "results";
 
-const LENS_COUNT = diagnosticLenses.length;
-const TOP_LEVEL = 4;
+interface Working {
+  answers: Answers;
+  step: number;
+  phase: Phase;
+  /** A stored, unfinished set was found. Offers resume or start again rather
+   *  than dropping somebody back into question 7 with no explanation. */
+  resumable: boolean;
+}
 
-/** "1" -> "01". The mono numerals everywhere on this site are two digits. */
-const pad = (n: number) => String(n).padStart(2, "0");
+const FRESH: Working = {
+  answers: emptyAnswers(),
+  step: 0,
+  phase: "idle",
+  resumable: false
+};
+
+// The instrument. The only stateful surface on this site.
+//
+// THREE PHASES: idle (the start control), running (one question at a time) and
+// results. The section's heading and standfirst are NOT here — they are in
+// DiagnosticSection, so they reach a crawler and a no-JS reader regardless of
+// what this component is doing.
+//
+// THE SERVER RENDERS `idle`, ALWAYS, because it cannot read localStorage.
+// Stored answers arrive through useSyncExternalStore, which is the API built
+// for a value the two environments legitimately disagree about: null on the
+// server, the stored string on the client, and React handles the changeover.
+// The first attempt read storage in an effect and called setState, which works
+// and is also what React's own lint rules now flag — a second render pass on
+// every mount. See the note in `src/lib/strategyDiagnostic.ts`.
+//
+// TWO PIECES OF STATE, NOT FIVE. `working` is the whole view — answers, step,
+// phase, resumable — and it is NULL until the visitor touches something, at
+// which point it takes over and storage becomes write-only. That null is what
+// distinguishes "nothing has happened yet" from "twelve unanswered questions",
+// which are the same answer array and very different situations: without it,
+// the save effect would immediately write an empty set over a stored one.
+//
+// THE CONTROLS ARE REAL RADIOS restyled with appearance: none. Not divs with
+// onClick. The focus ring lands on the element the browser already focuses,
+// arrow keys already move within the group, and the checked state is already
+// exposed to assistive technology — none of which is true of the alternative,
+// and all of which Accordion.tsx had to be rewritten once to recover. The
+// selected row is marked by a class React writes rather than by :has(:checked),
+// because React already knows and a state class cannot be defeated by a
+// browser that has not shipped :has.
+//
+// NOTHING IS SENT ANYWHERE. No fetch, no backend, no third party. The answers
+// go to localStorage on this machine and the score is computed in
+// `src/lib/strategyDiagnostic.ts`. The three analytics events carry a name and
+// nothing else.
+
+/** The view a stored state restores to. Pure, so it needs no effect: a
+ *  completed set opens on its results, an unfinished one offers to resume at
+ *  the first question without an answer, and no stored state at all is the
+ *  untouched page. */
+const restore = (raw: string | null): Working => {
+  const stored = parseStoredRaw(raw);
+  if (!stored) return FRESH;
+
+  if (stored.completed) {
+    return {
+      answers: stored.answers,
+      step: TOTAL_QUESTIONS - 1,
+      phase: "results",
+      resumable: false
+    };
+  }
+
+  if (stored.answers.every(answer => answer === null)) return FRESH;
+
+  const firstUnanswered = stored.answers.findIndex(answer => answer === null);
+  return {
+    answers: stored.answers,
+    step: firstUnanswered === -1 ? 0 : firstUnanswered,
+    phase: "idle",
+    resumable: true
+  };
+};
 
 const StrategyDiagnostic = () => {
-  const { eyebrow, heading, lead, stepSeparator, next, back, finish } =
-    diagnosticSection;
-
-  const [answers, setAnswers] = useState<(number | null)[]>(() =>
-    diagnosticLenses.map(() => null)
+  // The stored state, as a raw string, through React's external-store API. See
+  // the long note in `src/lib/strategyDiagnostic.ts` for why this is not an
+  // effect that calls setState: the server cannot read storage, and this is
+  // the one API that makes that difference React's problem rather than ours.
+  const raw = useSyncExternalStore(
+    subscribeToStoredState,
+    readStoredRaw,
+    readServerSnapshot
   );
-  const [step, setStep] = useState(0);
-  const [done, setDone] = useState(false);
+
+  // `null` until the visitor touches something, at which point the local copy
+  // takes over and storage becomes write-only. That is what stops our own
+  // saves feeding back in and re-restoring the view underneath somebody who is
+  // halfway through question nine.
+  const [working, setWorking] = useState<Working | null>(null);
+  const view = working ?? restore(raw);
+  const { answers, step, phase, resumable } = view;
+
+  const [confirmingRestart, setConfirmingRestart] = useState(false);
 
   const legendRef = useRef<HTMLLegendElement | null>(null);
-  const resultRef = useRef<HTMLHeadingElement | null>(null);
-  // Nothing is focused until the visitor has actually done something.
+  const resultsRef = useRef<HTMLHeadingElement | null>(null);
+  /** Nothing takes focus until the visitor has actually done something. */
   const interacted = useRef(false);
+  /** One completion event per run. Going back to change question 3 and
+   *  returning to the results is the same completion, not a second one, and
+   *  counting it twice would quietly inflate the only number anybody will look
+   *  at. Reset by restart, which genuinely is a new run. */
+  const completionCounted = useRef(false);
 
+  // --- Save -----------------------------------------------------------------
+  // On every change, so a refresh mid-question loses at most the current one.
+  // An effect is the right tool HERE and was the wrong one for loading: this
+  // pushes React's state out to an external system, which is what effects are
+  // for, and it calls no setState.
+  //
+  // `working === null` means nothing has been touched yet, so there is nothing
+  // to save and nothing to overwrite a stored set with.
+  useEffect(() => {
+    if (!working) return;
+    if (working.phase === "idle" && working.answers.every(a => a === null)) {
+      return;
+    }
+    saveState(working.answers, working.phase === "results");
+  }, [working]);
+
+  // --- Focus ----------------------------------------------------------------
+  // Without this, pressing Continue leaves focus on the button and a
+  // screen-reader user is never told the question changed. preventScroll stops
+  // the browser hauling the panel around under a sighted reader who is already
+  // looking at it.
   useEffect(() => {
     if (!interacted.current) return;
-    const target = done ? resultRef.current : legendRef.current;
+    const target = phase === "results" ? resultsRef.current : legendRef.current;
     target?.focus({ preventScroll: true });
-  }, [step, done]);
+  }, [step, phase]);
 
-  const allAnswered = answers.every(answer => answer !== null);
-  const lens = diagnosticLenses[step];
+  const question = diagnosticQuestions[step];
+  const answered = answers[step] !== null;
+  const isLast = step === TOTAL_QUESTIONS - 1;
+  const complete = answers.every(answer => answer !== null);
 
-  const select = (option: number) => {
-    interacted.current = true;
-    setAnswers(current =>
-      current.map((answer, index) => (index === step ? option : answer))
-    );
-  };
-
-  // One primary control, and its meaning follows the state rather than the
-  // position: once all six are answered it always offers the reading, so a
-  // visitor who has come back to change one answer is one press from the
-  // updated result instead of clicking Next through the rest.
-  const advance = () => {
-    interacted.current = true;
-    if (allAnswered) setDone(true);
-    else setStep(current => Math.min(current + 1, LENS_COUNT - 1));
-  };
-
-  const goBack = () => {
-    interacted.current = true;
-    setStep(current => Math.max(current - 1, 0));
-  };
-
-  const revisit = (index: number) => {
-    interacted.current = true;
-    setDone(false);
-    setStep(index);
-  };
-
-  const restart = () => {
-    interacted.current = true;
-    setAnswers(diagnosticLenses.map(() => null));
-    setStep(0);
-    setDone(false);
-  };
-
-  // The reading. Levels are 1-4 and read straight off the option position, so
-  // there is no scoring table anywhere to drift out of step with the copy.
-  const levels = answers.map(answer => (answer === null ? 0 : answer + 1));
-  const lowest = Math.min(...levels);
-  const resolved = done && lowest === TOP_LEVEL;
-  const primaryIndex = levels.indexOf(lowest);
-  const alsoLowest = diagnosticLenses.filter(
-    (_, index) => levels[index] === lowest && index !== primaryIndex
+  const score = useMemo(
+    () => scoreDiagnostic(answers, diagnosticQuestions),
+    [answers]
   );
 
-  return (
-    <Container className='main'>
-      <section className='diagnostic' id='diagnostic'>
-        <header>
-          <Heading className='eyebrow' level={2}>
-            {eyebrow}
-          </Heading>
-          <Heading className='h2' level={3}>
-            {heading}
-          </Heading>
-          <Text className='lead'>{lead}</Text>
-        </header>
+  // --- Actions --------------------------------------------------------------
+  // Every one of them writes the WHOLE working state, built from `view` rather
+  // than from a previous `working`: before the first interaction `working` is
+  // null and the view is whatever storage restored, so a functional update
+  // would be starting from the wrong place.
 
-        {/* THE PAGE'S ONE SIGNATURE MARK, and it is the card form of it rather
-            than .rule-cap. That was settled by looking at the page: the section
-            carried .rule-cap on its own top hairline, and because it opens
-            directly beneath the dark band there was no light rule for the
-            segment to cap — it rendered as a loose crimson dash sitting under
-            a black band, which is the same fault the About page's cap had and
-            was moved for. A section following a dark band does not need a
-            hairline in any case; the band edge is the separation.
+  const update = (changes: Partial<Working>) => {
+    interacted.current = true;
+    setWorking({ ...view, ...changes });
+  };
 
-            .card-feature is the device's second and last sanctioned
-            appearance, already in use on the services template, so this is
-            house vocabulary and not a third mannerism. It marks the object the
-            page exists for. */}
-        <div className='diagnostic__panel card-feature'>
-          <div className='diagnostic__question'>
-            {done ? (
-              <div className='diagnosticResult'>
-                <Text className='eyebrow'>{diagnosticResult.eyebrow}</Text>
+  const begin = (fresh: boolean) => {
+    if (fresh) clearState();
+    update(
+      fresh
+        ? { answers: emptyAnswers(), step: 0, phase: "running", resumable: false }
+        : { phase: "running", resumable: false }
+    );
+    track("strategy_diagnostic_started");
+  };
 
-                {/* A raw h4 rather than <Heading>: it takes a ref, which the
-                    shared component does not forward. The .h3 SCALE on an h4
-                    ELEMENT is the house split — the section eyebrow is the h2
-                    and the visual .h2 above is the h3. */}
-                <h4 className='h3 diagnosticResult__heading' ref={resultRef} tabIndex={-1}>
-                  {resolved ? (
-                    diagnosticResult.resolved.heading
-                  ) : (
-                    <>
-                      {diagnosticResult.headingPrefix}{" "}
-                      <span>{diagnosticLenses[primaryIndex].name}</span>
-                    </>
-                  )}
-                </h4>
+  const select = (value: number) => {
+    update({
+      answers: answers.map((answer, index) =>
+        index === step ? value : answer
+      )
+    });
+  };
 
-                <Text className='body'>
-                  {resolved
-                    ? diagnosticResult.resolved.body
-                    : diagnosticLenses[primaryIndex].reading}
-                </Text>
+  /** The one way into the results, so the event is counted in one place. */
+  const showResults = () => {
+    update({ phase: "results" });
+    // Not fired from an effect watching `phase`: that would also fire when a
+    // returning visitor is restored straight into their stored results, which
+    // is a page load rather than a completion.
+    if (!completionCounted.current) {
+      completionCounted.current = true;
+      track("strategy_diagnostic_completed");
+    }
+  };
 
-                {!resolved && alsoLowest.length > 0 && (
-                  <Text className='small diagnosticResult__tie'>
-                    {diagnosticResult.tiePrefix}{" "}
-                    {alsoLowest.map(other => other.name).join(", ")}
-                  </Text>
-                )}
+  const goForward = () => {
+    if (!isLast) {
+      update({ step: step + 1 });
+      return;
+    }
+    showResults();
+  };
 
-                {!resolved && (
-                  <Text className='small diagnosticResult__order'>
-                    {diagnosticResult.orderNote}
-                  </Text>
-                )}
+  const goBack = () => update({ step: Math.max(step - 1, 0) });
 
-                <div className='diagnostic__actions'>
-                  <Link
-                    href={
-                      resolved
-                        ? diagnosticResult.resolved.cta.to
-                        : diagnosticResult.cta.to
-                    }
-                    className='btn'
-                  >
-                    {resolved
-                      ? diagnosticResult.resolved.cta.label
-                      : diagnosticResult.cta.label}
-                  </Link>
-                  <button type='button' className='btn2' onClick={restart}>
-                    {diagnosticResult.restart}
-                  </button>
-                </div>
-              </div>
-            ) : (
+  /** From the results back into a specific question. Answers are untouched, so
+   *  changing one and returning re-scores rather than restarting. */
+  const reopen = (index: number) => update({ step: index, phase: "running" });
+
+  const restart = () => {
+    setConfirmingRestart(false);
+    completionCounted.current = false;
+    clearState();
+    update({ answers: emptyAnswers(), step: 0, phase: "idle", resumable: false });
+  };
+
+  // --- Render ---------------------------------------------------------------
+
+  if (phase === "results") {
+    return (
+      <DiagnosticResults
+        score={score}
+        headingRef={resultsRef}
+        onReopen={reopen}
+        onRestart={restart}
+        confirming={confirmingRestart}
+        setConfirming={setConfirmingRestart}
+      />
+    );
+  }
+
+  if (phase === "idle") {
+    return (
+      <div className='diagnostic__panel card-feature'>
+        <div className='diagnosticStart'>
+          <Text className='body'>
+            {resumable ? diagnosticIntro.resume : diagnosticIntro.assurance}
+          </Text>
+
+          <div className='diagnostic__actions'>
+            {resumable ? (
               <>
-                <div className='diagnostic__meta'>
-                  <Text className='eyebrow'>{lens.name}</Text>
-                  <Text className='diagnostic__step'>
-                    {pad(step + 1)} {stepSeparator} {pad(LENS_COUNT)}
-                  </Text>
-                </div>
-
-                {/* min-width: 0 on the fieldset in the stylesheet — a fieldset
-                    defaults to min-width: min-content and would otherwise
-                    refuse to let the two-column panel fold. */}
-                <fieldset className='diagnostic__field'>
-                  <legend
-                    className='h3 diagnostic__legend'
-                    ref={legendRef}
-                    tabIndex={-1}
-                  >
-                    {lens.question}
-                  </legend>
-
-                  <div className='diagnostic__options'>
-                    {lens.options.map((option, index) => (
-                      <label
-                        key={option}
-                        className={
-                          answers[step] === index
-                            ? "dqOption dqOption--on"
-                            : "dqOption"
-                        }
-                      >
-                        <input
-                          type='radio'
-                          className='dqOption__input'
-                          name={lens.id}
-                          value={index}
-                          checked={answers[step] === index}
-                          onChange={() => select(index)}
-                        />
-                        <span className='dqOption__text'>{option}</span>
-                      </label>
-                    ))}
-                  </div>
-                </fieldset>
-
-                <div className='diagnostic__actions'>
-                  <button
-                    type='button'
-                    className='btn'
-                    onClick={advance}
-                    disabled={answers[step] === null}
-                  >
-                    {allAnswered ? finish : next}
-                  </button>
-                  {step > 0 && (
-                    <button type='button' className='btn2' onClick={goBack}>
-                      {back}
-                    </button>
-                  )}
-                </div>
+                <button
+                  type='button'
+                  className='btn'
+                  onClick={() => begin(false)}
+                >
+                  {diagnosticIntro.resumeAction}
+                </button>
+                <button
+                  type='button'
+                  className='btn2'
+                  onClick={() => begin(true)}
+                >
+                  {diagnosticIntro.restartAction}
+                </button>
               </>
+            ) : (
+              <button type='button' className='btn' onClick={() => begin(true)}>
+                {diagnosticIntro.start}
+              </button>
             )}
           </div>
+        </div>
+      </div>
+    );
+  }
 
-          <DiagnosticReadout
-            answers={answers}
-            current={done ? null : step}
-            canRevisit={allAnswered}
-            onJump={revisit}
+  const dimension = dimensionsById[question.dimension];
+  const position = step + 1;
+
+  return (
+    <div className='diagnostic__panel card-feature'>
+      <div className='diagnosticQuestion'>
+        <div className='diagnosticQuestion__meta'>
+          <Text className='eyebrow'>{dimension.name}</Text>
+          <Text className='diagnosticQuestion__count'>
+            {position} / {TOTAL_QUESTIONS}
+          </Text>
+        </div>
+
+        {/* A real progressbar role, so the position is announced rather than
+            being a decorative stripe. The inline width is the only inline
+            style on this page and it is a length, not a colour — the token
+            gate's rule is about colour and this cannot be expressed in a
+            stylesheet. */}
+        <div
+          className='diagnosticProgress'
+          role='progressbar'
+          aria-valuemin={1}
+          aria-valuemax={TOTAL_QUESTIONS}
+          aria-valuenow={position}
+          aria-label={`Question ${position} of ${TOTAL_QUESTIONS}`}
+        >
+          <span
+            className='diagnosticProgress__fill'
+            style={{ width: `${(position / TOTAL_QUESTIONS) * 100}%` }}
           />
         </div>
-      </section>
-    </Container>
+
+        {/* min-width: 0 on the fieldset in the stylesheet — a fieldset defaults
+            to min-width: min-content and would otherwise refuse to let the
+            panel fold. */}
+        <fieldset className='diagnosticQuestion__field'>
+          <legend
+            className='h3 diagnosticQuestion__prompt'
+            ref={legendRef}
+            tabIndex={-1}
+          >
+            {question.prompt}
+          </legend>
+
+          <div className='diagnosticQuestion__options'>
+            {question.options.map((option, index) => (
+              <label
+                key={option}
+                className={
+                  answers[step] === index ? "dqOption dqOption--on" : "dqOption"
+                }
+              >
+                <input
+                  type='radio'
+                  className='dqOption__input'
+                  // The step is in the group name so that moving back to a
+                  // question does not inherit the previous group's checked
+                  // state through a reused DOM node.
+                  name={`dq-${step}`}
+                  value={index}
+                  checked={answers[step] === index}
+                  onChange={() => select(index)}
+                />
+                <span className='dqOption__text'>{option}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <div className='diagnostic__actions'>
+          <button
+            type='button'
+            className='btn'
+            onClick={goForward}
+            disabled={!answered}
+          >
+            {isLast ? "See my results" : "Continue"}
+          </button>
+
+          {step > 0 && (
+            <button type='button' className='btn2' onClick={goBack}>
+              Back
+            </button>
+          )}
+
+          {/* Once every question has an answer, the last one is always one
+              press away — so a visitor who went back to change question 3 is
+              not made to click Continue nine more times. */}
+          {complete && !isLast && (
+            <button
+              type='button'
+              className='btn2'
+              onClick={() => {
+                interacted.current = true;
+                showResults();
+              }}
+            >
+              Skip to results
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
   );
 };
 

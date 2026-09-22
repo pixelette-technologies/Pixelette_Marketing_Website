@@ -1,293 +1,594 @@
-// The Strategy & Positioning Diagnostic, 22 September 2026.
+import type { BandId, DimensionId } from "@/lib/strategyDiagnostic";
+
+// The Strategy & Positioning page copy, 22 September 2026.
 //
-// ONE FILE, on the same rule aboutContent.ts and homeContent.ts follow: this
-// is one copy document, so a reviewer checking the wording opens one file and
-// no TSX stands between them and the words.
+// ONE FILE, on the rule aboutContent.ts and homeContent.ts follow: this is one
+// copy document, so a reviewer checking the wording opens one file and no TSX
+// stands between them and the words. The arithmetic is deliberately NOT here —
+// it is in `src/lib/strategyDiagnostic.ts`, so that copy review and score
+// review are two separate readings of two separate files.
 //
-// WHY THIS PAGE EXISTS. Strategy & Positioning is the first of the five
-// approved capabilities and the only one with nowhere to go: navigation.ts and
-// capabilityGroups.ts both record the same judgement — a dropdown group or a
-// link row with no destination is a dead label, so the pattern shipped without
-// it. Both notes end the same way: it joins when there is somewhere for it to
-// point. This is that destination, and the two files are updated with it.
+// WHAT THIS PAGE MAY NOT SAY, and these are hard rules rather than preferences:
 //
-// WHAT THIS PAGE MAY NOT SAY, and the constraint is the whole reason the
-// instrument below is shaped the way it is:
-//
-//   - No client logos, testimonials, customer counts, results figures or
-//     awards. The site is already holding management's REAL BlockGuard numbers
-//     off the home page for want of a measurement window; inventing softer
-//     ones here would be indefensible.
-//   - No research data. The diagnostic therefore benchmarks the visitor
-//     against NOBODY. It reads back their own six answers and names the
-//     earliest lens they have said is unresolved — arithmetic on their own
-//     clicks, which is the one number on this page that cannot be wrong.
-//   - Nothing is described as AI-powered. Six arrays and a minimum: there is
-//     no model here and the copy never implies one.
-//
-// EVERY CAPABILITY PHRASE IN THE READINGS IS MANAGEMENT'S. growthSystemData's
-// capability 01 lists exactly six: ICP and buyer insight, market and competitor
-// intelligence, proposition, messaging, go-to-market, campaign strategy. The
-// six lenses are those six, in dependency order, and each reading names the one
-// it belongs to. Nothing below invents a service.
+//   - Nothing invented. No clients, logos, testimonials, customer counts,
+//     performance figures, market research, awards or credentials. The site is
+//     already holding management's REAL BlockGuard numbers off the home page
+//     for want of a measurement window; softer invented ones here would be
+//     indefensible.
+//   - The diagnostic is NOT described as scientifically validated, predictive,
+//     proprietary, algorithmic or AI-powered, because it is none of those. The
+//     permitted descriptions are the ones used below: structured diagnostic,
+//     strategic framework, indicative assessment.
+//   - The sample output invents no client. Every slot in it describes what
+//     belongs there rather than filling it with a plausible-looking answer,
+//     which is the only version of a sample that cannot be mistaken for a real
+//     engagement.
 //
 // Eyebrows are stored in sentence case — .eyebrow carries the uppercasing, so
 // this file does not shout at whoever proofreads it — and headings carry no
-// trailing full stop, following the 21 Sep punctuation pass.
+// trailing full stop except where the brief's own wording has one, which is
+// the hero, the methodology heading and the two closing headings.
 
-/** Every call to action on this page lands on the enquiry form. One constant,
- *  so they move together if that route ever moves. */
+/** Every conversation on this page lands on the enquiry form. One constant, so
+ *  they move together if that route ever moves. */
 export const CONTACT_HREF = "/contactus";
 
-/** The hub. The close links back to it rather than leaving the page as a
- *  cul-de-sac: this capability is one of five and the page should say so. */
+/** The hub. The page links back to it: this capability is one of five. */
 export const SERVICES_HREF = "/services";
 
-/** The route, held here so the call sites that link to this page import it
- *  rather than retyping it. capabilityGroups.ts is the one that matters. */
+/** The route, held here so the call sites that link in import it rather than
+ *  retyping it — `capabilityGroups.ts` and the home page's Growth System. */
 export const DIAGNOSTIC_HREF = "/strategy-positioning";
 
-/** The label the link takes wherever it appears. The arrow is part of the
- *  string, which is the convention aboutContent.ts set on 22 Sep with
- *  "Introduce yourself →" — the alternative is a pseudo-element that only some
- *  call sites get and that copy review cannot see. */
+/** The label the inbound link takes wherever it appears. The brief is explicit
+ *  that this must not be a generic "Learn more": the point of the link is to
+ *  signal that there is a methodology and a diagnostic behind it.
+ *
+ *  The arrow is part of the string, which is the convention aboutContent.ts
+ *  set with "Introduce yourself →" — the alternative is a pseudo-element that
+ *  only some call sites get and that copy review cannot see. */
 export const DIAGNOSTIC_LINK_LABEL =
   "Explore our Strategy & Positioning Diagnostic →";
 
+/** The two in-page anchors. Both are used by the hero's buttons and one by the
+ *  closing section, so they are constants rather than three typed strings. */
+export const DIAGNOSTIC_ANCHOR = "diagnostic";
+export const METHODOLOGY_ANCHOR = "methodology";
+
 // --- 01 Hero ----------------------------------------------------------------
-// The headline is split so the payoff takes the brand tone, which is the
-// guide's hero device and what HomeHero and AboutUsHero both do.
-//
-// The note under the lead is a plain statement of fact about this page and it
-// is worth keeping true: the instrument holds its answers in React state and
-// nothing else. No fetch, no localStorage, no analytics event. If any of those
-// are ever added, this sentence has to change in the same commit.
+// The headline is two lines and the second takes the brand tone — the guide's
+// hero device, and what HomeHero and AboutUsHero both do. Here the split is
+// the argument rather than decoration: where to compete, then why you win.
 
-export const diagnosticHero = {
+export const strategyHero = {
   eyebrow: "Strategy & Positioning",
-  headingLead: "The Strategy & Positioning",
-  headingAccent: "Diagnostic",
-  lead: "Six lenses we take to every engagement — market, customer, competition, positioning, messaging and growth priorities. Work through them and see which layer is least resolved in your own business.",
-  note: "Six questions. Your answers stay in this browser: nothing is submitted and nothing is stored.",
-  cta: { label: "Start the diagnostic", to: "#diagnostic" }
+  headingLead: "Know where to compete.",
+  headingAccent: "Know why you win.",
+  lead: "A structured diagnostic to clarify your market, audience, differentiation, message and growth priorities — then turn that clarity into practical marketing direction.",
+  primaryCta: { label: "Start the diagnostic", to: `#${DIAGNOSTIC_ANCHOR}` },
+  /** Sits under the primary control. An estimate of the visitor's time, which
+   *  is a claim about this page and is the one number in the hero. Twelve
+   *  questions at a considered pace is the basis for it. */
+  microcopy: "Around 5 minutes",
+  secondaryCta: {
+    label: "See how the process works",
+    to: `#${METHODOLOGY_ANCHOR}`
+  },
+  /** Labels the six-node path beneath the hero copy. */
+  pathLabel: "The six dimensions"
 };
 
-// --- 02 The method ----------------------------------------------------------
-// The page's ONE dark band, and the cap is three. It goes here rather than on
-// the instrument for a reason worth stating: the instrument is a set of form
-// controls, and every dark-ground contrast fault this codebase has produced
-// came from moving something interactive onto the panel family. The band-dark
-// rules cover headings, lead, body, small and eyebrow, and nothing else.
+// --- The six dimensions -----------------------------------------------------
+// ONE SOURCE FOR ALL THREE PLACES THEY APPEAR: the hero's path, the
+// methodology's six stages and the results' six scales. They were three lists
+// in the first draft of this page and that is precisely how a set of six
+// becomes a set of six-and-a-half.
 //
-// It also earns its place as punctuation rather than as a separator — the
-// _surfaces.scss rule. It is the argument for the order, and the order is what
-// the page is claiming to have.
+// `name` is the dimension. `imperative` is the one-line instruction that opens
+// each methodology stage. `description` is the stage body. The results use
+// `name` alone.
 
-export const diagnosticMethod = {
-  eyebrow: "How we diagnose",
-  heading: "Six lenses, taken in order",
-  lead: "Each lens depends on the one before it. Messaging cannot be written before the proposition is decided, and a proposition cannot be argued before the market, the buyer and the comparison are understood."
-};
-
-// --- 03 The lenses ----------------------------------------------------------
-
-export interface DiagnosticLens {
-  /** Stable key. Used as the radio group name, so it must not collide. */
-  id: string;
+export interface Dimension {
+  id: DimensionId;
   index: string;
-  /** The lens, as the method band and the reading name it. */
   name: string;
-  /** The same lens inside the readout, where the column is about 150px wide
-   *  and "Growth priorities" is the one name that will not fit. Explicit
-   *  rather than derived: a truncation rule would cut a different name the
-   *  moment one is added. */
-  short: string;
-  /** The one-line description on the method band. */
-  summary: string;
-  /** What the instrument asks. */
-  question: string;
-  /** Four statements, STORED LEAST RESOLVED FIRST. The level IS the position:
-   *  option 0 reads as 1 of 4, option 3 as 4 of 4. There is deliberately no
-   *  separate score field — two sources for one value is how the order and the
-   *  scoring drift apart, and neither would be visible until it rendered. */
-  options: string[];
-  /** Where the work starts when this is the earliest unresolved lens. Every
-   *  one of these names a capability from growthSystemData's approved list. */
-  reading: string;
+  imperative: string;
+  description: string;
 }
 
-export const diagnosticLenses: DiagnosticLens[] = [
+export const dimensions: Dimension[] = [
   {
     id: "market",
     index: "01",
     name: "Market",
-    short: "Market",
-    summary:
-      "Which segment you are actually competing in, and what is moving inside it.",
-    question: "How clearly is the market you compete in defined?",
-    options: [
-      "We sell to whoever shows interest.",
-      "We know the sector, but not the segment inside it.",
-      "We have a defined segment and a rough sense of its size.",
-      "The segment, its size and what is moving in it are written down."
-    ],
-    reading:
-      "Market and competitor intelligence. We would define the segment you are actually competing in, size it, and establish what is moving inside it — before any channel decision is made, because every later answer is drawn from this one."
+    imperative: "Understand where you are competing.",
+    description:
+      "Category, market dynamics, commercial opportunity and changing customer expectations."
   },
   {
-    id: "customer",
+    id: "audience",
     index: "02",
-    name: "Customer",
-    short: "Customer",
-    summary: "Who buys, what triggers the decision, and who else has to agree.",
-    question: "How well is the buyer understood beyond a job title?",
-    options: [
-      "We have never written down who the buyer is.",
-      "We have a job title and an industry.",
-      "We know the triggers and the objections that keep recurring.",
-      "We know who else is in the room, and what each of them needs in order to agree."
-    ],
-    reading:
-      "ICP and buyer insight. We would establish who actually buys, what triggers the decision, which objections recur, and who else has to agree before anything is signed. A proposition written without that is written for an audience of one guess."
+    name: "Audience",
+    imperative: "Define who matters most.",
+    description:
+      "Ideal customers, decision-makers, buying triggers, needs and objections."
   },
   {
     id: "competition",
     index: "03",
     name: "Competition",
-    short: "Competition",
-    summary:
-      "What a buyer sees when they build a shortlist, and where the comparison is lost.",
-    question: "How do you know what you are being compared against?",
-    options: [
-      "We rarely look at competitors.",
-      "We know the obvious names in the category.",
-      "We track how they position and what they charge.",
-      "We know the shortlist a buyer builds, and the point where we lose it."
-    ],
-    reading:
-      "Competitor intelligence. We would reconstruct the shortlist a buyer actually builds, what they are comparing on, and the point in that comparison where the decision goes elsewhere. Positioning is a claim about that shortlist, so it cannot be argued without it."
+    imperative: "Understand the alternatives.",
+    description:
+      "Direct competitors, indirect alternatives, positioning patterns and market whitespace."
   },
   {
     id: "positioning",
     index: "04",
     name: "Positioning",
-    short: "Positioning",
-    summary: "The reason to choose you that a competitor could not also claim.",
-    question:
-      "If a buyer asks why you rather than the alternative, what happens?",
-    options: [
-      "The answer depends on who they ask.",
-      "There is a line, but it describes what we do rather than why it matters.",
-      "There is an agreed answer and most of the team uses it.",
-      "The answer is agreed, specific, and not one a competitor could also claim."
-    ],
-    reading:
-      "The proposition. We would settle one agreed reason to choose you — specific enough that a competitor could not claim the same sentence, and written so that sales, marketing and the website are all using it. This is the decision everything downstream repeats."
+    imperative: "Define why you should be chosen.",
+    description:
+      "Differentiation, value proposition, proof and reasons to believe."
   },
   {
     id: "messaging",
     index: "05",
     name: "Messaging",
-    short: "Messaging",
-    summary: "One argument, adapted by audience, with the evidence attached.",
-    question:
-      "How consistent is the story across the places a buyer meets you?",
-    options: [
-      "Every channel says something different.",
-      "The website is current; everything else has drifted.",
-      "The core message holds, though the proof behind it varies.",
-      "One argument, adapted by audience, with evidence attached."
-    ],
-    reading:
-      "Messaging. We would build one argument out of the proposition and adapt it by audience and channel, with the evidence attached to the claims that need it — so that consistency comes from the argument rather than from copying the same paragraph around."
+    imperative: "Turn positioning into communication.",
+    description:
+      "Core narrative, messaging hierarchy and audience-specific communication."
   },
   {
-    id: "priorities",
+    id: "growth",
     index: "06",
-    name: "Growth priorities",
-    short: "Priorities",
-    summary:
-      "The single constraint the next quarter's work should be aimed at.",
-    question: "How is the next quarter's marketing decided?",
-    options: [
-      "By whatever comes up.",
-      "By channel budgets carried over from last year.",
-      "By a plan, though it is not aimed at one constraint.",
-      "By the single constraint we agree is limiting growth."
-    ],
-    reading:
-      "Go-to-market and campaign strategy. We would name the one constraint limiting growth this quarter and aim the plan at it, rather than spreading budget evenly across channels that are not the problem. With the five lenses above resolved, that constraint is usually already visible."
+    name: "Growth",
+    imperative: "Turn clarity into action.",
+    description:
+      "Marketing priorities, channels, objectives and a practical route forward."
   }
 ];
 
-// --- 04 The instrument ------------------------------------------------------
+/** Lookup by id, so no component has to scan the array. */
+export const dimensionsById: Record<DimensionId, Dimension> =
+  dimensions.reduce(
+    (map, dimension) => ({ ...map, [dimension.id]: dimension }),
+    {} as Record<DimensionId, Dimension>
+  );
 
-export const diagnosticSection = {
-  eyebrow: "The diagnostic",
-  heading: "Find the layer the answer lives in",
-  lead: "A channel problem is often a positioning problem that arrived late. Pick the statement closest to your business in each of the six lenses; the reading at the end is a structured view of your own answers, not a benchmark and not a comparison against anybody else.",
-  /** Shown above the six measures. */
-  readoutLabel: "Your reading",
-  /** The honest caption, and it is doing real work — four filled ticks next to
-   *  a lens name will be read as a score unless the page says what it is. */
-  readoutNote:
-    "Self-assessed clarity across the six lenses. It reads back what you have just described; it is not a score against other companies.",
-  /** Rendered as "01 / 06" beside each question. */
-  stepSeparator: "/",
-  next: "Next",
-  back: "Back",
-  finish: "See the reading",
-  /** Used on the readout rows once every lens has been answered and they
-   *  become a way back into the questions. */
-  revisitHint: "Select a lens to revisit it"
+// --- 02 Methodology ---------------------------------------------------------
+
+export const methodology = {
+  eyebrow: "The process",
+  heading: "Clarity before activity.",
+  lead: "Marketing becomes expensive when the fundamentals are unclear. Our diagnostic examines the decisions beneath campaigns, content and channels — establishing who you need to reach, what you should stand for and where growth is most likely to come from."
 };
 
-export const diagnosticResult = {
-  // NOT "Your reading", which is what this said until the page was looked at:
-  // the result panel and the readout beside it sit on the same baseline, so
-  // the phrase rendered TWICE, side by side, 700px apart. Nothing in the
-  // markup, the types or any gate could see it. The readout keeps the name —
-  // it is the thing being read — and the panel says what it is doing with it.
-  eyebrow: "What this says",
-  /** The lens name is appended and takes the brand tone. "Start here:" works
-   *  for all six names, which "X is where the work starts" does not — "Growth
-   *  priorities is" reads as a grammatical error. */
-  headingPrefix: "Start here:",
-  /** Prefixes the list of any other lenses sitting at the same level. */
-  tiePrefix: "Also at this level:",
-  /** Why the earliest lens wins a tie, stated rather than assumed. */
-  orderNote:
-    "The earliest unresolved lens is named first, because every lens after it depends on its answer.",
-  cta: { label: "Talk to us about this", to: CONTACT_HREF },
-  restart: "Start again",
-  /** All six at the top level. Not flattery: it moves the question to the rest
-   *  of the growth system, which is the honest next step and an existing page. */
-  resolved: {
-    heading: "Nothing here is the constraint",
-    body: "On your own reading, all six lenses are resolved. That usually moves the question from strategy to execution — whether demand, search, conversion and measurement are delivering against a positioning that is already clear.",
-    cta: { label: "See the five capabilities", to: SERVICES_HREF }
+// --- 03 The diagnostic ------------------------------------------------------
+
+export const diagnosticIntro = {
+  eyebrow: "The diagnostic",
+  heading: "How clear is your current positioning?",
+  lead: "Answer 12 questions across six areas. You will receive an immediate positioning score, a breakdown of where you are strongest and the areas that deserve attention.",
+  start: "Start diagnostic",
+  /** Shown beside the start control. Both halves are literally true of the
+   *  implementation and both are worth stating before somebody begins: no
+   *  form, and the answers stay on their machine. If either ever stops being
+   *  true, this sentence changes in the same commit. */
+  assurance:
+    "No email address, no sign-up. Your answers are scored in your browser and are not sent anywhere.",
+  /** The resume line, shown instead of `assurance` when stored answers are
+   *  found on load. */
+  resume: "We found answers you had already started. Pick up where you left off, or start again.",
+  resumeAction: "Continue",
+  restartAction: "Start again"
+};
+
+export interface DiagnosticQuestion {
+  dimension: DimensionId;
+  prompt: string;
+  /** Five statements, stored lowest score first. THE SCORE IS THE POSITION:
+   *  option 0 is worth 0 and option 4 is worth 4. There is deliberately no
+   *  separate score field, because two sources for one value is how the order
+   *  and the scoring drift apart, and neither would be visible until it
+   *  rendered. `MAX_PER_QUESTION` in the lib is the other half of that
+   *  contract. */
+  options: string[];
+}
+
+/** Twelve, in order, two per dimension and grouped by dimension. The scoring
+ *  reads `dimension` off each one rather than assuming the grouping, so a
+ *  reorder here cannot silently mis-file a score. */
+export const diagnosticQuestions: DiagnosticQuestion[] = [
+  {
+    dimension: "market",
+    prompt:
+      "How clearly have you defined the specific market or category in which you want to compete?",
+    options: [
+      "We have not clearly defined it",
+      "We describe it differently depending on the situation",
+      "We broadly understand it",
+      "It is clearly defined",
+      "It is clearly defined and supported by market evidence"
+    ]
+  },
+  {
+    dimension: "market",
+    prompt:
+      "How well do you understand where the strongest commercial opportunities and market gaps exist?",
+    options: [
+      "We do not currently know",
+      "Mainly intuition",
+      "We have some understanding",
+      "We have identified clear opportunities",
+      "Opportunities are supported by research and evidence"
+    ]
+  },
+  {
+    dimension: "audience",
+    prompt:
+      "How clearly defined are your highest-value customer segments or ideal customer profiles?",
+    options: [
+      "Not defined",
+      "Very broad",
+      "Partly defined",
+      "Clearly defined",
+      "Clearly defined using evidence and commercial value"
+    ]
+  },
+  {
+    dimension: "audience",
+    prompt:
+      "How well do you understand what causes those customers to buy, delay or reject a purchase?",
+    options: [
+      "Very little",
+      "Mostly assumptions",
+      "Some understanding",
+      "Strong understanding",
+      "Strong understanding supported by customer or sales evidence"
+    ]
+  },
+  {
+    dimension: "competition",
+    prompt:
+      "How well do you understand the businesses and alternatives customers compare you against?",
+    options: [
+      "We have not formally assessed them",
+      "We know the obvious competitors",
+      "We have done some analysis",
+      "We understand the competitive landscape well",
+      "We continually assess competitors and alternative choices"
+    ]
+  },
+  {
+    dimension: "competition",
+    prompt:
+      "How clearly can you identify meaningful market space that competitors do not already own?",
+    options: [
+      "We cannot currently identify one",
+      "Our difference is mostly generic",
+      "We have some potential differentiation",
+      "We have a clear area of differentiation",
+      "We have a clear, evidenced and defensible position"
+    ]
+  },
+  {
+    dimension: "positioning",
+    prompt:
+      "Could your team clearly explain in one sentence why the right customer should choose you?",
+    options: [
+      "No",
+      "Different people would give very different answers",
+      "We have a general answer",
+      "We have a clear answer",
+      "We have a clear, distinctive answer supported by proof"
+    ]
+  },
+  {
+    dimension: "positioning",
+    prompt:
+      "How consistently is that positioning understood across leadership, sales and marketing?",
+    options: [
+      "There is no common position",
+      "Significant inconsistency",
+      "Reasonably aligned",
+      "Strongly aligned",
+      "Fully aligned and consistently applied"
+    ]
+  },
+  {
+    dimension: "messaging",
+    prompt:
+      "How consistently do your website, sales materials, campaigns and content communicate the same core value?",
+    options: [
+      "They are disconnected",
+      "Considerably inconsistent",
+      "Some consistency",
+      "Mostly consistent",
+      "Highly consistent around a defined messaging architecture"
+    ]
+  },
+  {
+    dimension: "messaging",
+    prompt:
+      "How effectively does your messaging change according to audience, problem and stage of the buying journey?",
+    options: [
+      "It does not",
+      "Very little adaptation",
+      "Some adaptation",
+      "Clearly adapted",
+      "Deliberately structured around audience and buying stage"
+    ]
+  },
+  {
+    dimension: "growth",
+    prompt:
+      "How clearly are your marketing channels connected to where your ideal customers actually discover, evaluate and buy?",
+    options: [
+      "Channels are largely chosen without evidence",
+      "Mostly based on habit",
+      "Partly informed",
+      "Clearly aligned",
+      "Strongly aligned and continually measured"
+    ]
+  },
+  {
+    dimension: "growth",
+    prompt: "How clear are your marketing priorities for the next 90 days?",
+    options: [
+      "No clear priorities",
+      "Many activities but limited prioritisation",
+      "Some defined priorities",
+      "Clear priorities, measures and ownership",
+      "Clear priorities connected directly to commercial objectives"
+    ]
+  }
+];
+
+// --- 04 Result bands --------------------------------------------------------
+// The thresholds live in the lib. These are the words.
+//
+// NOTHING HERE CRITICISES THE VISITOR. No "poor", no "weak", no "failure". A
+// low score describes an opportunity that exists, not a business that is
+// failing, and the lowest band is the one most likely to be read by somebody
+// who has just been honest about their own company.
+
+export const bands: Record<BandId, { label: string; body: string }> = {
+  foundation: {
+    label: "Foundation",
+    body: "There are significant opportunities to create greater strategic clarity before increasing marketing activity."
+  },
+  developing: {
+    label: "Developing",
+    body: "Several fundamentals are in place, but inconsistency may be limiting how effectively the market understands your value."
+  },
+  established: {
+    label: "Established",
+    body: "Your strategic foundations are relatively clear. The opportunity is to strengthen weaker areas and make the position more consistent."
+  },
+  strong: {
+    label: "Strong",
+    body: "You have a strong level of strategic clarity. The priority is maintaining differentiation and translating that clarity consistently into growth."
   }
 };
 
-// --- 05 Close ---------------------------------------------------------------
-// Follows AboutClose's anatomy rather than the shared QuestionAndAnswer, which
-// is still un-converted: it renders heading_secondry--light and text_secondry
-// and hard-codes "Book a consultant - it's on us!". Putting legacy classes on a
-// new page to avoid a third close would be the wrong trade. The divergence
-// between About's close and the four template closes is already recorded in
-// the vault as a decision to take when those templates are next looked at.
-//
-// The CTA label is the brief's primary, the same one the navigation button and
-// the home hero carry. The brief is explicit that mixing CTA labels between
-// positions is worse than either label alone.
+// --- 05 Results -------------------------------------------------------------
 
-export const diagnosticClose = {
+export const resultsCopy = {
+  eyebrow: "Your result",
+  heading: "Your Strategy & Positioning Score",
+  /** Rendered as "68 / 100"; the denominator is here so it is not a literal
+   *  buried in the component. */
+  outOf: "100",
+  breakdownLabel: "By dimension",
+  strongestLabel: "Strongest area",
+  priorityLabel: "Priority area",
+  /** Used when all six dimensions scored the same and naming a strongest and a
+   *  priority would name the same one twice. */
+  uniformNote:
+    "All six areas scored the same, so there is no single strongest or priority area — the opportunity is to raise the whole picture together.",
+  focusHeading: "Where to focus next",
+  focusLead:
+    "The three areas with the most room to move, taken from your own answers.",
+  scaleNote:
+    "An indicative assessment, calculated from the twelve answers you gave. It is not a benchmark against other companies.",
+  restart: "Restart diagnostic",
+  restartConfirmQuestion: "Restart the diagnostic?",
+  restartConfirmBody: "This clears the twelve answers you have given.",
+  restartConfirm: "Yes, clear my answers",
+  restartCancel: "Keep my results",
+  print: "Print or save results"
+};
+
+// --- 06 Recommendations -----------------------------------------------------
+// One per dimension. Three are shown — the visitor's three lowest — and they
+// are fixed text chosen by their score, not generated. Each describes work
+// Pixelette would actually do, in the vocabulary the methodology above uses.
+
+export const recommendations: Record<
+  DimensionId,
+  { title: string; body: string }
+> = {
+  market: {
+    title: "Clarify the market opportunity",
+    body: "Define the category you are competing in, identify the commercial forces shaping it and establish where meaningful opportunities exist."
+  },
+  audience: {
+    title: "Sharpen the customer definition",
+    body: "Move beyond broad demographics and define your priority customer, buying triggers, objections and decision criteria."
+  },
+  competition: {
+    title: "Map the competitive whitespace",
+    body: "Understand how competitors position themselves, what customers see as alternatives and where a differentiated position can credibly be owned."
+  },
+  positioning: {
+    title: "Strengthen the reason to choose you",
+    body: "Turn capabilities into a clear value proposition built around meaningful differentiation and credible proof."
+  },
+  messaging: {
+    title: "Create a messaging architecture",
+    body: "Translate your position into a clear core narrative and establish how that message should adapt by audience and buying stage."
+  },
+  growth: {
+    title: "Convert strategy into priorities",
+    body: "Connect audiences and objectives to the channels most likely to influence growth and establish a focused 90-day marketing plan."
+  }
+};
+
+// --- 07 The CTA after results ----------------------------------------------
+// It appears ONLY after the visitor has their complete result. That ordering is
+// the brief's and it is also the only honest version: the page promises value
+// before it asks for anything, so the ask has to come after the value.
+
+export const resultsCta = {
+  heading: "A score is only the starting point.",
+  body: "The full Pixelette Strategy & Positioning process goes beyond the diagnostic. We combine market evidence, customer understanding, competitive analysis and commercial priorities to establish a position that can guide marketing, sales and growth.",
+  cta: { label: "Talk through my results →", to: CONTACT_HREF }
+};
+
+// --- 08 What the full process produces -------------------------------------
+
+export const outputs = {
+  eyebrow: "The engagement",
+  heading: "From diagnosis to direction.",
+  lead: "A full Strategy & Positioning engagement produces six things, each one an input to the next.",
+  items: [
+    {
+      index: "01",
+      label: "Market opportunity",
+      body: "Category definition, market dynamics and opportunity areas."
+    },
+    {
+      index: "02",
+      label: "Ideal customer profile",
+      body: "Priority audiences, decision-makers, needs, triggers and objections."
+    },
+    {
+      index: "03",
+      label: "Competitive landscape",
+      body: "Competitor positioning and whitespace analysis."
+    },
+    {
+      index: "04",
+      label: "Positioning",
+      body: "Differentiation, value proposition and reasons to believe."
+    },
+    {
+      index: "05",
+      label: "Messaging architecture",
+      body: "Core narrative, messaging hierarchy and audience-specific messages."
+    },
+    {
+      index: "06",
+      label: "Growth priorities",
+      body: "Channel priorities, measures and practical 90-day direction."
+    }
+  ],
+  closing:
+    "The objective is not another strategy document. It is a clearer basis for every marketing decision that follows."
+};
+
+// --- 09 Sample strategic output --------------------------------------------
+// EVERY SLOT DESCRIBES WHAT BELONGS IN IT. Nothing is filled in with a
+// plausible-looking answer, and that is the whole design of this section: a
+// sample with convincing content in it is indistinguishable from a real
+// client's work, and this site has already had to delete fifteen unsourced
+// figures for exactly that reason. A framework with its slots named is more
+// useful to a prospect anyway — it shows the shape of the thinking.
+
+export const sampleOutput = {
+  eyebrow: "Illustrative framework",
+  heading: "What the output looks like",
+  lead: "A shortened view of the framework an engagement fills in. The slots below describe what goes in each one; they are not a client's answers.",
+  /** Printed on the document itself, so the disclaimer travels with the
+   *  artefact rather than sitting only in the section header. */
+  stamp: "Illustrative framework — not a client engagement",
+  position: {
+    label: "Position",
+    /** The bracketed tokens are the point: this is a sentence structure, and
+     *  filling the brackets in is the engagement. */
+    template:
+      "For [priority customer], [brand] is the [category] that [primary value], because [proof]."
+  },
+  blocks: [
+    {
+      label: "Audience",
+      rows: [
+        { term: "Primary ICP", slot: "the segment with the highest commercial value" },
+        { term: "Buying trigger", slot: "the event that starts the search" },
+        { term: "Principal objection", slot: "the reason the decision stalls" }
+      ]
+    },
+    {
+      label: "Differentiation",
+      rows: [
+        { term: "Table stakes", slot: "what every credible provider must have" },
+        { term: "Differentiators", slot: "what only you can claim, and why it matters" },
+        { term: "Proof", slot: "the evidence that makes the claim safe to believe" }
+      ]
+    },
+    {
+      label: "Message",
+      rows: [
+        { term: "Primary narrative", slot: "one argument the whole company can repeat" },
+        { term: "Supporting messages", slot: "one per audience and buying stage" }
+      ]
+    },
+    {
+      label: "90-day priorities",
+      rows: [
+        { term: "01", slot: "the constraint to remove first" },
+        { term: "02", slot: "the proof to build" },
+        { term: "03", slot: "the channel to prove it in" }
+      ]
+    }
+  ]
+};
+
+// --- 10 Closing CTA ---------------------------------------------------------
+// The primary control changes wording once the diagnostic has been completed —
+// "Review my results" rather than "Start the diagnostic" — and in neither case
+// does it restart anything. Both scroll to the same anchor; what has changed
+// is what is waiting there.
+
+export const strategyClose = {
   eyebrow: "Next step",
-  heading: "Bring us the answer you already have",
-  lead: "Whether you have worked through the six lenses or already know which one is the problem, the first conversation starts in the same place: what is limiting growth, and which layer the answer sits in.",
-  cta: { label: "Build my growth plan", to: CONTACT_HREF },
+  heading: "Better marketing starts with a clearer position.",
+  lead: "Understand where you stand today and what should change next.",
+  primary: { label: "Start the diagnostic", completedLabel: "Review my results" },
+  secondary: { label: "Talk to Pixelette", to: CONTACT_HREF },
   aside: {
     body: "Strategy & Positioning is the first of five connected capabilities.",
     link: { label: "See the full growth system →", to: SERVICES_HREF }
   }
+};
+
+// --- 11 FAQ -----------------------------------------------------------------
+// Four, and the brief says not to pad it. They are rendered through the shared
+// Faqs / Accordion pair the service and sector pages already use, so this page
+// gains no new FAQ treatment.
+
+export const faqs = [
+  {
+    question: "Is the diagnostic free?",
+    answer:
+      "Yes. The online diagnostic provides an initial assessment of your current strategy and positioning."
+  },
+  {
+    question: "How long does it take?",
+    answer: "Approximately five minutes."
+  },
+  {
+    question: "Is the score a full marketing strategy?",
+    answer:
+      "No. It is an indicative diagnostic designed to identify strengths and areas that merit deeper investigation. A full strategy requires evidence, research and commercial context."
+  },
+  {
+    question: "What happens after the diagnostic?",
+    answer:
+      "You can use the result independently or speak with Pixelette about exploring the priority areas in more depth."
+  }
+];
+
+export const faqCopy = {
+  eyebrow: "Questions",
+  heading: "Before you begin"
 };

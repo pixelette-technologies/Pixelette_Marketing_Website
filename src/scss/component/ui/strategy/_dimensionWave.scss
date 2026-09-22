@@ -1,0 +1,158 @@
+// The six dimensions as a wave. The hero's figure.
+//
+// ADAPTED FROM A WITHDRAWN VERSION of this page, where it sat on a dark band.
+// The geometry and the two-axis mechanism are kept; every colour changed,
+// because it now sits on the light hero ground. On dark it used the marking
+// tone and the panel border; here the line and the circle edge take the
+// hairline ramp and the numeral takes the brand anchor, which is legible on
+// light and is barred on dark. That is colour being contextual — the component
+// states none of it.
+//
+// TWO AXES, ONE SET OF LABELS. The track is a positioning context; each point
+// is placed from custom properties the component sets, and the media query
+// swaps which pair is read. Nothing is duplicated except the two paths, both
+// aria-hidden.
+//
+// WHY THE TRACK HAS A FIXED HEIGHT. The svg is stretched with
+// preserveAspectRatio="none", so its viewBox height maps 1:1 onto the track's
+// height and the pixel offsets the component calculates land where the path
+// actually is. CHANGE ONE AND THE OTHER HAS TO MOVE WITH IT:
+//   horizontal  track 10rem     <-> H_BOX.height 160
+//   vertical    track 33.75rem  <-> V_BOX.height 540
+//
+// THE ONE MEDIA QUERY THIS PAGE HAS, and it is the site's own 767px. Six
+// labelled points across a 360px screen is four-point text; there is no clamp
+// that turns a horizontal figure into a vertical one. _responsive.scss asks
+// that anything wanting a breakpoint be checked for a clamp first, and this
+// was: the geometry is the thing changing, not a size.
+
+.dimensionWave {
+  margin-top: var(--sec-y-sm);
+
+  &__label {
+    margin-bottom: 0.5rem;
+  }
+
+  &__track {
+    position: relative;
+    // Room above the highest circle for its label, and below the lowest for
+    // the wave's trough. The labels sit outside the 10rem line box.
+    padding-block: 4.5rem 2rem;
+    height: 10rem;
+    box-sizing: content-box;
+  }
+
+  &__line {
+    position: absolute;
+    left: 0;
+    top: 4.5rem;
+    width: 100%;
+    height: 10rem;
+
+    & > path {
+      fill: none;
+      // The hairline ramp's strongest tone. --color-line would disappear at
+      // this length on the wash, and the brand would make a 1200px sine wave
+      // the loudest thing in the hero.
+      stroke: var(--color-line-strong);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+
+    &--v {
+      display: none;
+    }
+  }
+
+  &__points {
+    position: absolute;
+    left: 0;
+    top: 4.5rem;
+    width: 100%;
+    height: 10rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // NOTE FOR ANYONE ADDING data-reveal='stagger' TO THE LIST ABOVE: this
+  // transform is what centres each point on its position, and the reveal sets
+  // `transform` too, at equal specificity. It wins today only on source order.
+  // See the note in DimensionWave.tsx.
+  &__point {
+    position: absolute;
+    left: var(--x-h);
+    top: var(--y-h);
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  // The label sits above its circle and is taken out of flow so the circle
+  // stays centred on the path. A fixed width and centred text rather than a
+  // column: the points are not on a grid, they are on a curve.
+  &__name {
+    position: absolute;
+    bottom: calc(100% + 0.75rem);
+    width: 9rem;
+    text-align: center;
+    margin: 0;
+  }
+
+  // Hollow. The fill is the page ground rather than transparent so the wave
+  // does not draw straight through the numeral.
+  &__circle {
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-line-strong);
+    background: var(--color-page);
+  }
+
+  &__index {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-brand);
+  }
+
+  // --- The wave turns vertical ----------------------------------------------
+  @media (max-width: 767px) {
+    &__track {
+      padding-block: 3rem 2rem;
+      height: 33.75rem;
+    }
+
+    &__line {
+      top: 3rem;
+      height: 33.75rem;
+
+      &--h {
+        display: none;
+      }
+
+      &--v {
+        display: block;
+      }
+    }
+
+    &__points {
+      top: 3rem;
+      height: 33.75rem;
+    }
+
+    &__point {
+      left: var(--x-v);
+      top: var(--y-v);
+    }
+
+    &__name {
+      width: 8rem;
+      bottom: calc(100% + 0.5rem);
+    }
+  }
+}

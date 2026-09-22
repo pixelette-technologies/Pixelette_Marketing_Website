@@ -1,34 +1,29 @@
-// The instrument. The centrepiece of /strategy-positioning and the only
-// stateful surface on this site.
+// The instrument, and everything that comes out of it.
 //
 // IT SITS ON THE LIGHT GROUND, and that is the load-bearing decision in this
-// file. The obvious move is to give the page's dark band to its centrepiece;
+// file. The obvious move is to give a page's dark band to its centrepiece;
 // _pointItem.scss records what that costs. The Growth System's cards were
 // transparent on a --color-panel-border hairline, roughly 1.8:1 against the
 // gradient, and had to be reverted to a light surface on review feedback that
 // they "are not visible properly" — every glyph inside had passed its contrast
 // floor, because a contrast gate measures text against background and cannot
-// see that the container has gone missing. A panel of form controls has a
-// dozen such containers: option edges, a radio dot, a disabled button, four
-// tick segments. All of them stay on the ground the primitives are tuned for.
+// see that the container has gone missing. This panel has a dozen such
+// containers: five option edges, a radio dot, a disabled button, a progress
+// track, six score scales. All of them stay on the ground the primitives are
+// tuned for, and the two dark bands go to the methodology and the sample.
 //
 // TOKENS ARE SCOPED TO THE MECHANISM, not declared on :root — the convention
 // _reveal.scss and _marquee.scss follow. Deleting this partial takes its custom
 // properties with it and leaves nothing dangling in the token file.
 
 .diagnostic {
-  // NO TOP HAIRLINE. This section opens directly beneath the dark band and the
-  // band edge is the separation — a rule there is a second line 1px under a
-  // hard colour change. It carried one so that .rule-cap would have something
-  // to cap, and by eye that read as a crimson dash loose under a black band.
-  // The mark moved to .card-feature on the panel; see StrategyDiagnostic.tsx.
   padding-block: var(--sec-y);
 
-  // Matches the reveal's own curve and step, so the instrument's feedback and
-  // the page's arrival read as one piece of motion rather than two.
+  // Matches the reveal's own curve, so the instrument's feedback and the
+  // page's arrival read as one piece of motion rather than two.
   --dq-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dq-quick: 160ms;
-  --dq-fill: 320ms;
+  --dq-fill: 420ms;
 
   & > header {
     max-width: 34rem;
@@ -46,101 +41,20 @@
   // padding at 1.75rem, which is right for a card in a grid of four and mean
   // for the one designed object on a page. Everything else — ground, edge,
   // radius, shadow — is the shared card exactly, so this reads as the site's
-  // card enlarged and not as a new surface.
+  // card enlarged rather than as a new surface.
   //
-  // TWO COLUMNS THAT FOLD ON THEIR OWN, zero breakpoints. 30rem + 20rem either
-  // side of a 3.5rem gap is 856px, so against the 1160px wrap the pair sits on
-  // one line with the question column taking essentially every spare pixel —
-  // see the grow ratio below. They fold to stacked just under a 940px viewport,
-  // which puts a tablet in portrait on the stacked layout and a tablet in
-  // landscape on the pair.
+  // .card-feature on the call site supplies THE PAGE'S ONE SIGNATURE MARK, in
+  // the device's card form. It cannot be .rule-cap here: that caps a hairline
+  // drawn in --color-line, and an earlier version of this section put one on a
+  // rule that opened directly beneath a dark band, where it rendered as a
+  // loose crimson dash under black. The mark belongs on the object.
   &__panel {
     margin-top: var(--sec-y-sm);
-    display: flex;
-    flex-wrap: wrap;
-    gap: clamp(2rem, 1rem + 3vw, 3.5rem);
     padding: clamp(1.25rem, 0.6rem + 2.6vw, 2.5rem);
     background: var(--color-page);
     border: 1px solid var(--color-line-card);
     border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
-  }
-
-  // THE GROW RATIO IS 100 TO 1, and it is the thing that makes one rule serve
-  // both layouts. flex-grow is shared out WITHIN A LINE, so:
-  //
-  //   side by side — the two are on one line, the question takes 100/101 of
-  //     the spare width and the readout keeps its 20rem. Equal grow would have
-  //     given the readout about 430px, which is a six-row instrument with
-  //     150px of gap down the middle of it.
-  //   stacked — the readout is alone on its line, so it is the only thing with
-  //     a share and it takes the full width. Its rows are name / ticks / value
-  //     with the name on flex 1, so they simply widen.
-  //
-  // Seen at 768px, where the readout sat 320px wide under 690px of options and
-  // left the right half of the panel empty. Zero breakpoints, which is the
-  // house rule this had to be solved inside.
-  &__question {
-    flex: 100 1 30rem;
-    min-width: 0;
-  }
-
-  // The lens name and the step counter, on one baseline.
-  //
-  // SAME 40rem MEASURE AS THE OPTIONS, and that is the whole reason the cap is
-  // here: the counter is pushed to the end of this row, so without it "01 / 06"
-  // sat 115px to the right of the option rows it belongs to, alone in the gap
-  // between the two columns. Found by eye at 1440px.
-  &__meta {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem 1rem;
-    max-width: 40rem;
-  }
-
-  &__step {
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 0.6875rem;
-    letter-spacing: 0.14em;
-    color: var(--color-soft);
-  }
-
-  // A fieldset defaults to min-width: min-content, which would keep the panel
-  // from ever folding: the longest option string would set the floor of the
-  // flex item holding it. This is the one line that makes the two-column
-  // layout responsive at all.
-  &__field {
-    min-width: 0;
-    border: 0;
-    padding: 0;
-    margin: 0;
-  }
-
-  // The question is the legend, so the four options are a labelled group to a
-  // screen reader rather than four loose radios. Legends need display: block
-  // and their padding zeroed before they lay out like ordinary text.
-  &__legend {
-    display: block;
-    padding: 0;
-    margin-top: 1rem;
-    max-width: 30rem;
-  }
-
-  // The options are controls and take the column, but not all of it. Against
-  // the full wrap the question column resolves to about 700px, and four rows
-  // of one short sentence run that width read as a table rather than as a set
-  // of choices — seen at 1440px, not reasoned about. 40rem holds them a little
-  // wider than the heading measure above them, which is the relationship every
-  // other section on the site has between its header and its content.
-  &__options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.625rem;
-    margin-top: 1.75rem;
-    max-width: 40rem;
   }
 
   &__actions {
@@ -151,16 +65,18 @@
     margin-top: 2rem;
   }
 
-  // The primary control starts disabled: on arrival the only thing a visitor
-  // can do is choose a statement, and Next genuinely cannot proceed until they
-  // have. The SHARED .btn:disabled fill is wrong here, though — it is
-  // --color-line-strong under --color-page text, which renders the word "Next"
-  // at roughly 1.5:1. That is defensible for a submit button greying out for a
-  // second while a form posts, and indefensible for the first control on the
-  // page's centrepiece, which is in that state before anybody has touched it.
+  // Continue starts disabled, because until a statement is chosen it genuinely
+  // cannot proceed. The SHARED .btn:disabled fill is wrong for that: it is
+  // --color-page text on --color-line-strong, roughly 1.5:1, which is
+  // defensible for a submit button greying out for a second while a form posts
+  // and indefensible for a control a visitor is looking straight at on every
+  // one of twelve questions.
   //
-  // Outline and muted instead: inert, legible at 5.78, and scoped to this
-  // section so the enquiry form's submit button is untouched.
+  // Outline and muted instead: inert, legible at 5.78, and scoped here so the
+  // enquiry form's submit button is untouched. Same category as
+  // .band-dark .btn2 — a control restyled by its context, in the context's own
+  // stylesheet — and not a className escape hatch, because the call site is
+  // not involved.
   &__actions .btn:disabled {
     background: transparent;
     border-color: var(--color-line-strong);
@@ -168,20 +84,108 @@
   }
 }
 
+// --- The start panel --------------------------------------------------------
+
+.diagnosticStart {
+  & > .body {
+    max-width: 46ch;
+  }
+}
+
+// --- A question -------------------------------------------------------------
+
+.diagnosticQuestion {
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    // The same measure the options take, so the counter lands on their right
+    // edge rather than alone in the panel's gutter.
+    max-width: 44rem;
+  }
+
+  &__count {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.6875rem;
+    letter-spacing: 0.14em;
+    color: var(--color-soft);
+  }
+
+  // A fieldset defaults to min-width: min-content, which would let the longest
+  // option string set the floor of the panel and stop it ever narrowing. This
+  // is the one line that makes the question responsive at all.
+  &__field {
+    min-width: 0;
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  // The question is the legend, so the five options are a labelled group to a
+  // screen reader rather than five loose radios. Legends need display: block
+  // and their padding zeroed before they lay out like ordinary text.
+  &__prompt {
+    display: block;
+    padding: 0;
+    margin-top: 1.5rem;
+    max-width: 34rem;
+
+    // It takes focus on every question change so a screen reader is told the
+    // question moved. A mouse user should not see a ring for that, which is
+    // what :focus-visible decides.
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-brand);
+      outline-offset: 4px;
+    }
+  }
+
+  // Five rows rather than the four an earlier version had, which is why the
+  // measure is 44rem and not 40: a five-option ladder is taller, and holding
+  // it too narrow turns most of the options onto two lines.
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    margin-top: 1.75rem;
+    max-width: 44rem;
+  }
+}
+
+// --- Progress ---------------------------------------------------------------
+// A real role="progressbar" in the markup; this is only its appearance.
+
+.diagnosticProgress {
+  position: relative;
+  height: 2px;
+  margin-top: 1.25rem;
+  max-width: 44rem;
+  background: var(--color-line);
+  border-radius: 1px;
+  overflow: hidden;
+
+  &__fill {
+    display: block;
+    height: 100%;
+    background: var(--color-brand);
+    transition: width var(--dq-fill) var(--dq-ease);
+  }
+}
+
 // --- The option row ---------------------------------------------------------
 // A real <input type="radio"> restyled with appearance: none, NOT a div with
 // an onClick. The focus ring lands on the element the browser already focuses,
 // arrow keys already move within the group, and the checked state is already
-// exposed to assistive technology — none of which is true of the alternative,
-// and all of which Accordion.tsx had to be rewritten once to recover.
+// exposed to assistive technology.
 //
-// HOVER CHANGES BORDER COLOUR ONLY, which is the rule _surfaces.scss says is
-// the one most often broken by reflex. No lift, no shadow, no scale.
-//
-// The selected row is marked by a class React writes, not by :has(:checked).
-// React already knows which option is selected; a state class cannot be
-// defeated by a browser that has not shipped :has, and this row is a control
-// rather than a decoration.
+// HOVER CHANGES BORDER COLOUR ONLY, the rule _surfaces.scss says is the one
+// most often broken by reflex. No lift, no shadow, no scale.
 
 .dqOption {
   display: flex;
@@ -199,9 +203,9 @@
     border-color: var(--color-line-strong);
   }
 
-  // The brand edge and the tint together, because the edge alone at 1px is the
-  // same weight as the three rows that are not selected. --color-brand-tint is
-  // the token cut for exactly this — a highlight fill on a light ground.
+  // The brand edge and the tint together, because a 1px edge alone is the same
+  // weight as the four rows that are not selected. --color-brand-tint is the
+  // token cut for exactly this: a highlight fill on a light ground.
   &--on {
     border-color: var(--color-brand);
     background: var(--color-brand-tint);
@@ -242,31 +246,100 @@
   }
 }
 
-// --- The readout ------------------------------------------------------------
-// Six measures, four segments each, filled to the position of the chosen
-// statement. The fraction beside them is VISIBLE TEXT and carries the value;
-// the segments are aria-hidden decoration. A figure whose numbers cannot be
-// read is a figure people assume a score from, and the caption beneath says in
-// words what this one is — the same discipline the home page's growth figure
-// holds to by carrying no axis, no tick and no value at all.
+// --- The results ------------------------------------------------------------
 
-.diagnosticReadout {
-  // Grow 1 against the question column's 100. See the note there.
-  flex: 1 1 20rem;
-  min-width: 0;
+.diagnosticResults__heading {
+  margin-top: 1.25rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 4px;
+  }
+}
+
+.diagnosticResults__uniform {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+}
+
+// The number and its band, side by side. The score takes a fixed basis so the
+// band's prose starts on the same left edge whether the score is 8 or 100; the
+// 12rem basis is wide enough for "100 / 100" at the display size below.
+.diagnosticScore {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 1rem 2.5rem;
+  margin-top: 1.75rem;
+
+  &__value {
+    flex: 0 0 auto;
+    font-family: var(--font-display);
+    line-height: 1;
+    color: var(--color-ink);
+  }
+
+  // Deliberately larger than .h2 and smaller than .h1 — it is the one number
+  // on the page and it should read as a figure rather than as a heading.
+  &__number {
+    font-size: clamp(3.25rem, 2.4rem + 3.5vw, 5rem);
+    letter-spacing: -0.02em;
+    color: var(--color-brand);
+  }
+
+  &__outOf {
+    font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.75rem);
+    color: var(--color-muted);
+  }
+
+  &__band {
+    flex: 1 1 22rem;
+    min-width: 0;
+  }
+
+  // The band name. Mono and tracked, like every other label on the site, so it
+  // reads as a classification rather than as a verdict.
+  &__label {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brand);
+    margin-bottom: 0.625rem;
+  }
+}
+
+// --- The six scales ---------------------------------------------------------
+// Rows on a hairline with a track and a printed value. The number is text
+// rather than left to the bar: a figure whose value cannot be read is a figure
+// people assume things about, and the note underneath says what this one is.
+
+.diagnosticScales {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
 
   &__list {
     list-style: none;
-    margin-top: 1rem;
+    margin: 1rem 0 0;
+    padding: 0;
     display: flex;
     flex-direction: column;
   }
 
+  // Zero breakpoints: the name takes a fixed column, the track takes the rest
+  // and the value is fixed, so the row simply narrows. Below roughly 20rem of
+  // panel the track floors at its min-width and the row still holds together.
   &__row {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding-block: 0.6875rem;
+    gap: 0.75rem 1rem;
+    padding-block: 0.75rem;
     border-top: 1px solid var(--color-line);
 
     &:first-child {
@@ -274,158 +347,281 @@
     }
   }
 
-  // The lens, in the small mono label the .label primitive and .panel .plabel
-  // both use. Muted until the lens has been answered, ink once it has, brand
-  // while it is the one being asked — three states, one property.
   &__name {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 0 0 auto;
+    width: 7.5rem;
     font-family: var(--font-mono);
     font-size: 0.6875rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-muted);
-    transition: color var(--dq-quick) var(--dq-ease);
-  }
-
-  &__row--on &__name {
     color: var(--color-ink);
   }
 
-  &__row--current &__name {
-    color: var(--color-brand);
+  &__track {
+    flex: 1 1 auto;
+    min-width: 3rem;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-line);
+    overflow: hidden;
   }
 
-  &__ticks {
-    display: flex;
-    flex: 0 0 auto;
-    gap: 3px;
-  }
-
-  // The unfilled segment is --color-line-strong, not --color-line. On the
-  // section rules a hairline wants to disappear; here the empty segments have
-  // to read as a four-step scale BEFORE anything is answered, and at
-  // --color-line six rows of them looked like faint dotted placeholders rather
-  // than like an instrument waiting for input. Seen at 1440px and at 390px.
-  &__tick {
-    width: 0.75rem;
-    height: 0.25rem;
-    border-radius: 1px;
-    background: var(--color-line-strong);
-    transition: background-color var(--dq-fill) var(--dq-ease);
-  }
-
-  &__tick--on {
+  &__fill {
+    display: block;
+    height: 100%;
     background: var(--color-brand);
+    transition: width var(--dq-fill) var(--dq-ease);
   }
 
   &__value {
-    flex: 0 0 2rem;
+    flex: 0 0 2.75rem;
     text-align: right;
     font-family: var(--font-mono);
     font-variant-numeric: tabular-nums;
-    font-size: 0.6875rem;
-    color: var(--color-soft);
-  }
-
-  // Once every lens is answered the rows become the way back into any of them.
-  // Before that they are not controls at all: there is exactly one way forward
-  // through the questions and a second route through the same six would be a
-  // way to get lost rather than a shortcut.
-  //
-  // The button inherits the row's layout rather than nesting a second one, so
-  // the interactive and static states are pixel-identical.
-  &__jump {
-    display: flex;
-    align-items: center;
-    gap: inherit;
-    width: 100%;
-    padding: 0;
-    background: none;
-    border: 0;
-    text-align: left;
-    cursor: pointer;
-
-    &:hover .diagnosticReadout__name {
-      color: var(--color-brand);
-    }
+    font-size: 0.8125rem;
+    color: var(--color-body);
   }
 
   &__note {
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-line);
+    margin-top: 1.25rem;
   }
 }
 
-// --- The reading ------------------------------------------------------------
+// --- Strongest and priority -------------------------------------------------
 
-.diagnosticResult {
-  & > .eyebrow {
-    display: block;
-    margin-bottom: 1.25rem;
+.diagnosticPeaks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+
+  &__item {
+    flex: 1 1 12rem;
+    min-width: 0;
+
+    & > .label {
+      margin-bottom: 0.5rem;
+    }
   }
 
-  &__heading {
+  // The priority takes the brand tone and the strongest does not. Only one of
+  // the two is an instruction.
+  &__priority {
+    color: var(--color-brand);
+  }
+}
+
+// --- Where to focus next ----------------------------------------------------
+// OUTSIDE the panel, on the page ground. Three recommendations are a section
+// in their own right, and keeping them inside the card would have made one
+// object roughly 1400px tall.
+
+.diagnosticFocus {
+  margin-top: var(--sec-y-sm);
+
+  & > .body {
+    margin-top: 0.75rem;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 2rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  // The hanging numeral and one column, which is .capabilityList__group's
+  // shape on /services. The numeral is the URGENCY ORDER, not the dimension's
+  // own number — these are the three lowest, most urgent first, so 01 here is
+  // not 01 in the methodology.
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 2rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  &__index {
+    flex: 0 0 auto;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-brand);
+    padding-top: 0.35rem;
+  }
+
+  &__main {
+    flex: 1 1 28rem;
+    min-width: 0;
+
+    & > .label {
+      margin-bottom: 0.5rem;
+    }
+
+    & > .body {
+      margin-top: 0.5rem;
+    }
+  }
+
+  // A quiet way back into the two questions that produced this. Link weight,
+  // not button weight: it is a correction, not an action the page is asking
+  // for. The 44px floor is met here rather than left to a 13px line box.
+  &__revisit {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.25rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-brand);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-brand-hover);
+      text-decoration: underline;
+    }
+  }
+}
+
+// --- The ask, only after the results ----------------------------------------
+
+.diagnosticCta {
+  margin-top: var(--sec-y-sm);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  & > .h3 {
     max-width: 30rem;
-
-    // The lens name. Same hero device the rest of the site uses for the half
-    // of a heading that carries the point.
-    & > span {
-      color: var(--color-brand);
-    }
-
-    // It is focused when the reading appears, so a screen reader is told the
-    // panel has changed rather than being left on the button that changed it.
-    // Programmatic focus on a heading should not draw a ring for a mouse user;
-    // :focus-visible is what decides, and the global rule in _controls.scss
-    // supplies it when it applies.
-    &:focus {
-      outline: none;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-brand);
-      outline-offset: 4px;
-    }
   }
 
   & > .body {
-    margin-top: 1.25rem;
+    margin-top: 1rem;
   }
 
-  &__tie {
-    margin-top: 1.25rem;
-  }
-
-  &__order {
-    margin-top: 0.5rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--color-line);
+  & > .btn {
+    margin-top: 2rem;
   }
 }
 
-// The legend takes focus on every step change for the same reason. Same
-// treatment, so the two states of the panel behave identically.
-.diagnostic__legend:focus {
-  outline: none;
-}
+// --- Restart and print ------------------------------------------------------
 
-.diagnostic__legend:focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 4px;
+.diagnosticUtility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-line);
+
+  // Quiet by design. Neither is something the page wants a visitor to do, and
+  // "Restart" beside a filled button would read as the next step.
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    color: var(--color-muted);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-ink);
+      text-decoration: underline;
+    }
+  }
+
+  // The confirmation. Inline rather than window.confirm(), which cannot be
+  // styled, reads as a browser error and is suppressible.
+  &__confirm {
+    flex: 1 1 100%;
+  }
+
+  &__question {
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  &__confirmActions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
 }
 
 // --- Motion -----------------------------------------------------------------
-// The transitions above are feedback on a control, not decoration, so they are
-// short. Under a reduce preference they go entirely: the states they move
-// between are all still reachable, because every one of them is a colour
-// change and the end state is what carries the meaning.
+// These are feedback on a control rather than decoration, so they are short.
+// Under a reduce preference they go entirely: every state they move between is
+// still reachable, because the end state is what carries the meaning.
 @media (prefers-reduced-motion: reduce) {
   .dqOption,
   .dqOption__input,
-  .diagnosticReadout__name,
-  .diagnosticReadout__tick {
+  .diagnosticProgress__fill,
+  .diagnosticScales__fill {
     transition: none;
+  }
+}
+
+// --- Print ------------------------------------------------------------------
+// The results are worth keeping, so "Print or save results" opens the
+// browser's own dialogue and this makes the page worth what it prints: the
+// score, the six scales and the three recommendations, without the navigation,
+// the figure, the buttons or the sales section.
+//
+// Scoped to this page's own classes. Nothing here can affect any other route.
+@media print {
+  // .cookie-banner is the ONE rule here that is not scoped to this page, and
+  // it is deliberate. The consent banner is position: fixed, so it printed as
+  // a black bar across the middle of the results — and it is wrong on every
+  // page, not just this one. This is the only print stylesheet the site has,
+  // so the rule lives here until there is a better home for it. The class was
+  // added to CookieConsent.tsx for this and carries no other styling.
+  .cookie-banner,
+  .site-header,
+  .footer,
+  .strategyHero,
+  .methodology,
+  .outputs,
+  .sample,
+  .strategyFaq,
+  .strategyClose,
+  .diagnostic__actions,
+  .diagnosticUtility,
+  .diagnosticCta,
+  .diagnosticFocus__revisit {
+    display: none !important;
+  }
+
+  .diagnostic {
+    padding-block: 0;
+  }
+
+  .diagnostic__panel {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  // The tracks are background fills, which browsers drop by default when
+  // printing. Without this the six scales print as empty outlines and the
+  // percentages become the only record of the result.
+  .diagnosticScales__track,
+  .diagnosticScales__fill,
+  .diagnosticProgress__fill {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
   }
 }

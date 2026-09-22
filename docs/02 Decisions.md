@@ -661,3 +661,72 @@ hero sentence changes in the same commit.**
 
 Related: [[05 Components]], [[08 Design system constraints]],
 [[09 Outstanding]], [[10 Verification]]
+
+## The Strategy & Positioning page rebuilt to its full specification, 22 Sep 2026
+
+A second, definitive brief superseded the one that produced the first version.
+The route, the design system work and the `/services` link survived; the
+content model, the instrument and four of the five sections did not.
+
+**WHAT WAS KEPT, because the instruction was explicit not to throw work away:**
+
+- The route, its metadata, the breadcrumb schema and the `/services` link with
+  its exact label.
+- The option-row vocabulary — a real `<input type="radio">` restyled with
+  `appearance: none`, the brand edge and tint on the selected row, the local
+  readable disabled treatment for the primary control.
+- The panel: card tokens at a clamped padding, carrying `.card-feature` as the
+  page's one signature mark.
+- The rule that the instrument sits on the LIGHT ground and the dark bands go
+  to prose sections.
+- **A figure built by a parallel session and then withdrawn with it.** See
+  below.
+
+**WHAT CHANGED:** six lenses became the brief's six dimensions; six questions
+became twelve, two per dimension, scored 0–4 on five options; the reading
+became a 0–100 score, four bands, six percentage scales, a strongest and a
+priority area and three recommendations; and four new sections arrived — the
+engagement's outputs, an illustrative framework, a closing call to action and
+a four-question FAQ.
+
+### The wave came from the other session, and keeping it was the right call
+
+A parallel session had rebuilt the six lenses as a sine wave with six nodes,
+horizontal on a desktop and vertical below 768px, then withdrew it when its
+content was superseded. The brief asks for exactly that: a connected visual
+introduction to the six, explicitly not six rounded cards.
+
+So the drawing survived and the data did not. Three things changed with it —
+the dimensions replaced the lenses, the colours moved from the dark family to
+the light hero ground it now sits on, and **a latent bug came out**: the points
+carried `data-reveal='stagger'`, and every point is centred with
+`transform: translate(-50%, -50%)` while the reveal sets `transform` at equal
+specificity. It was inert only because of partial load order. The day the
+figure moved below the fold, every circle would have jumped half its own width
+off its point. The attribute is gone and both files say why.
+
+### The scoring is in `src/lib`, not in the component and not in the copy
+
+Three files, three readings: `diagnosticContent.ts` is the copy a reviewer
+checks, `strategyDiagnostic.ts` is the arithmetic, and the components render.
+The score is `actual / possible x 100`, rounded; ties resolve to the earliest
+dimension in the canonical order, never to whatever way `sort` fell. **41
+assertions cover it**, including every band boundary the brief names — see
+[[10 Verification]].
+
+### Storage: the earlier decision reversed, on instruction
+
+The first version stored nothing, and said so in the hero. The brief asks for
+localStorage so a refresh does not destroy twelve answers, so it stores them —
+and the hero sentence changed in the same commit, which is what that note said
+would have to happen. It is still true that nothing is sent anywhere.
+
+**The load is NOT an effect.** Reading storage in an effect and calling
+setState is the obvious shape, and it is both what React's own lint rules now
+flag and a hydration mismatch waiting to happen, because the server cannot
+read localStorage. `useSyncExternalStore` is the API built for a value the two
+environments legitimately disagree about. The closing section reads the same
+store, which is also how it offers "Review my results" without a provider.
+
+Related: [[05 Components]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]]

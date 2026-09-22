@@ -1,4 +1,10 @@
-export { default as DiagnosticHero } from "./DiagnosticHero";
-export { default as DiagnosticMethod } from "./DiagnosticMethod";
+export { default as StrategyHero } from "./StrategyHero";
+export { default as DimensionWave } from "./DimensionWave";
+export { default as Methodology } from "./Methodology";
+export { default as DiagnosticSection } from "./DiagnosticSection";
 export { default as StrategyDiagnostic } from "./StrategyDiagnostic";
-export { default as DiagnosticClose } from "./DiagnosticClose";
+export { default as DiagnosticResults } from "./DiagnosticResults";
+export { default as StrategyOutputs } from "./StrategyOutputs";
+export { default as SampleOutput } from "./SampleOutput";
+export { default as StrategyFaq } from "./StrategyFaq";
+export { default as StrategyClose } from "./StrategyClose";

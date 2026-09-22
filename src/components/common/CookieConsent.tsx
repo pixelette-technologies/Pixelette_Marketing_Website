@@ -91,7 +91,19 @@ const CookieConsent = () => {
   if (!visible) return null;
 
   return (
-    <div style={wrap} role="dialog" aria-label="Cookie consent" aria-live="polite">
+    // The class carries NO styling and changes nothing on screen — this
+    // component is still entirely inline-styled, which is recorded as an
+    // outstanding item. It exists so that a stylesheet can address the banner
+    // at all, and the first thing that needed to was print: a fixed overlay
+    // printed a black bar across the middle of the diagnostic results, and
+    // there was no selector in the whole codebase that could reach it.
+    <div
+      className='cookie-banner'
+      style={wrap}
+      role="dialog"
+      aria-label="Cookie consent"
+      aria-live="polite"
+    >
       <div style={inner}>
         <p style={textStyle}>
           We use analytics cookies to understand how visitors use our site so we

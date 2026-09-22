@@ -353,3 +353,46 @@ Related: [[01 The brief]], [[02 Decisions]]
   Help" wrap to three lines and the primary button overflows the right edge.
   Confirmed on `/aboutus`, so it predates this work and is on all 36 routes.
   It is the first thing the browser walk should settle at tablet width.
+
+## The Strategy & Positioning page, after the full rebuild (22 Sep)
+
+The definitive brief is implemented and gated. What it leaves open:
+
+- **Nobody has signed off the twelve questions or the sixty options.** They
+  came from the brief verbatim, so they are the client's words rather than
+  mine — but the brief is an instruction to build, not a sign-off that the
+  wording is right in front of a prospect. Worth one read by whoever owns the
+  positioning offer.
+- **"Around 5 minutes" is the only claim on the page about the page.** Twelve
+  questions at a considered pace is the basis for it; nobody has timed it.
+- **The three analytics events fire into GA4 and nothing reads them yet.**
+  `strategy_diagnostic_started`, `_completed` and `_cta_clicked` carry a name
+  and no payload. There is no funnel, no report and no owner, so today they
+  are only a record. **They are also the first custom events this site has
+  ever sent** — every previous gtag call was consent or page view.
+- **The conversion path is still the ordinary enquiry form.** "Talk through my
+  results →" lands on `/contactus` with nothing carried across, so whoever
+  reads the enquiries cannot tell that a visitor arrived with a score of 38
+  and Messaging as their priority. Passing the result would mean either a
+  query string, which puts a visitor's self-assessment in a URL and a referrer
+  header, or a field on the form. **Both need a decision that is not mine** —
+  it is the same unwired-conversion problem recorded at the top of this file.
+- **The page is reachable from `/services` and from nowhere else.** The home
+  page's Growth System card 01 shows the same "Strategy & Positioning" block
+  and does NOT link: `pointItem__cta` is `white-space: nowrap`, and the
+  brief's exact label is 46 characters in a 376px card, so it would overflow a
+  container that clips. Either a shorter label on that card or a wrapping CTA
+  would fix it; both are decisions about copy the brief specified.
+- **Still no navigation entry**, and the 11 Sep instruction that produced that
+  is still the only word on it.
+- **`.btn:disabled` is still a group-layer contrast fault.** White on
+  `--color-line-strong`, roughly 1.5:1. The diagnostic overrides it locally
+  and the enquiry form is untouched, so nothing regressed, but the shared rule
+  is wrong wherever else it is used.
+- **`CookieConsent` is still entirely inline-styled**, including its 9px text —
+  the item already on this list. It now carries one class, added so the print
+  stylesheet could hide it, and that class carries no styling. The rest of the
+  conversion is untouched.
+- **The print rule for the cookie banner is global**, sitting in this page's
+  partial because this is the only print stylesheet the site has. If a second
+  page ever prints, that rule should move somewhere shared.

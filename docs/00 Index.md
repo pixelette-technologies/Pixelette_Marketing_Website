@@ -78,6 +78,22 @@ the loop from the start**, and looking at it produced seven faults after all
 six gates were green. See [[02 Decisions]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
 
+**22 Sep, later the same day — that page was rebuilt to a definitive
+specification** that superseded the instruction above. Seven sections now: the
+six dimensions introduced as a wave, a six-stage methodology on a spine, a
+**twelve-question diagnostic scoring 0–100** across four bands with six
+dimension scales and three recommendations drawn from the visitor's own
+lowest-scoring areas, what a full engagement produces, an illustrative
+framework, a closing call to action and a four-question FAQ.
+
+The scoring lives in `src/lib/strategyDiagnostic.ts` and is covered by **41
+assertions including every band boundary**, then checked again through the
+browser so the unit numbers and the rendered numbers had to agree. Answers
+persist in localStorage — reversing the earlier no-storage decision, on
+instruction — and nothing is sent anywhere. Looking at it produced four more
+faults, one of which was **the cookie banner printing across the results**.
+See the same five notes.
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band, the

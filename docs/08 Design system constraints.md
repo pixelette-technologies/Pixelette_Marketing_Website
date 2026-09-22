@@ -193,3 +193,45 @@ and NOT a `className` escape hatch. The test is the one `PointItem` states:
 the call site cannot get it wrong, because the call site is not involved.
 
 The shared rule is still wrong everywhere else. See [[09 Outstanding]].
+
+## A third auto-fit track, and why it is not a fourth idiom — 22 Sep 2026
+
+The two sanctioned track minimums are 17rem, which seats four against the
+1160px wrap, and 18rem, which caps at three. A SIX-item set fits neither: on
+17rem it gives four and an orphaned pair.
+
+`/strategy-positioning`'s outputs section declares a 21rem track in its own
+partial, which seats exactly three, so six land as 3 + 3 and fall to 2 + 2 + 2
+and then one column. The sample framework's four blocks declare 24rem, which
+seats two, so they land 2 x 2 with no orphan.
+
+**Neither is a new idiom.** They are the same auto-fit mechanism with the one
+number their item count needs, and they live with their sections rather than
+in `_surfaces.scss` because they are one section's arithmetic. The rule stated
+above still holds: if a fourth SHAPE wants to exist, ask first.
+
+The sample's blocks were `flex: 1 1 18rem` before they were a grid, and
+produced the trailing-row stretch this file already documents — three across
+and the fourth grown to full width. Third time that fault has appeared, second
+time it has been fixed the same way. **Reach for auto-fit, not a flex basis,
+whenever a short final row is possible.**
+
+## The signature mark on a page that opens dark — restated
+
+`/strategy-positioning` carries no `.rule-cap` at all. Its one mark is
+`.card-feature` on the diagnostic panel, for the reason recorded above: the
+section beneath a dark band has no light hairline to cap, and drawing one
+anyway renders the segment as a loose crimson dash under black.
+
+## One page may declare a print stylesheet
+
+`/strategy-positioning` is the first route with `@media print`, because its
+results are worth keeping and the brief asked for the browser's own dialogue
+rather than a PDF service. It hides the page's own sections and keeps the
+score, the six scales and the recommendations, and it sets
+`print-color-adjust: exact` on the score bars — without which browsers drop
+background fills and six scales print as empty outlines.
+
+It also hides `.cookie-banner`, which is NOT scoped to this page. A fixed
+overlay printing across the content is wrong everywhere, and this is the only
+print stylesheet the site has. See [[09 Outstanding]].

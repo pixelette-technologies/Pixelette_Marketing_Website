@@ -204,3 +204,38 @@ and static states are pixel-identical.
 **No chart library.** Six rows of four spans.
 
 Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]
+
+## The strategy components, rebuilt 22 Sep
+
+`src/components/ui/strategy/` — eight, of which **two hydrate**.
+
+Server: `StrategyHero` (with `DimensionWave`), `Methodology`,
+`DiagnosticSection`, `StrategyOutputs`, `SampleOutput`, `StrategyFaq`.
+Client: `StrategyDiagnostic` (with `DiagnosticResults`), `StrategyClose`.
+
+**`DiagnosticSection` exists to keep the copy in the HTML.** It is a server
+component that owns the section, its real `<h2>`, the visual heading and the
+standfirst, and renders only the panel as a client child. The brief forbids a
+page whose content depends on a client-only component; splitting the section
+in two is what resolves that, and it also means the section reads correctly
+before hydration rather than showing an empty box.
+
+**`StrategyDiagnostic` holds two pieces of state, not five.** `working` is the
+whole view — answers, step, phase, resumable — and it is null until the visitor
+touches something. That null is what distinguishes "nothing has happened yet"
+from "twelve unanswered questions", which are the same answer array and very
+different situations. Stored answers arrive through `useSyncExternalStore`
+rather than an effect; see [[02 Decisions]].
+
+**`StrategyClose` is a client component for one boolean.** Its primary control
+reads "Start the diagnostic" or "Review my results", and it never restarts
+anything — both labels point at the same anchor. It reads the same external
+store the diagnostic writes, which is cheaper than a provider for one value
+and keeps the page itself a server component.
+
+**`Faqs` and `Accordion` are reused unchanged.** Accordion is already
+converted — real button, `aria-expanded`, panel always in the DOM, card tokens,
+hover on the border only — so the FAQ brings no legacy classes with it. This
+page adds a header and nothing else.
+
+Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]

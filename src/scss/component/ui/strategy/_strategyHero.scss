@@ -1,0 +1,56 @@
+// The interior hero.
+//
+// The headline is capped at the house 34rem measure against the 1160px wrap,
+// which is the composition AboutUsHero settled on: the right half of the band
+// is deliberately empty and the wash is the only other thing in it. .lead keeps
+// its own 62ch cap from the primitives, which lands just inside the heading's.
+//
+// The wave beneath is the full width of the container, so the section reads as
+// a narrow column of type over a wide figure rather than as one ragged block.
+//
+// No media query here. The type interpolates through clamp(), the caps are in
+// rem against a container that is already fluid, and .wash-left is redrawn for
+// narrow screens in _responsive — the single breakpoint the primitives have.
+
+.strategyHero {
+  padding-block: var(--sec-y);
+
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  & > .lead {
+    margin-top: 1.5rem;
+  }
+}
+
+.strategyHero__heading {
+  max-width: 34rem;
+
+  // "Know why you win." in the brand tone. The guide's hero device, and what
+  // HomeHero and AboutUsHero both do with the second half of a headline. Here
+  // the split is the argument rather than decoration — where to compete, then
+  // why you win — so it hangs off the element's own class and not off a
+  // position in the tree, which is how the home page's accent has gone dead
+  // twice under structural edits.
+  & > span {
+    color: var(--color-brand);
+  }
+}
+
+// The two controls and the time estimate on one wrapping row. The estimate
+// takes the full basis so it always sits BENEATH the buttons rather than
+// beside them: at 1440px it would otherwise trail off the end of the secondary
+// control and read as its caption.
+.strategyHero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  margin-top: 2rem;
+}
+
+.strategyHero__microcopy {
+  flex-basis: 100%;
+  margin: 0;
+}

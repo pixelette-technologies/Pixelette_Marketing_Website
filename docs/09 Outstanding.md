@@ -72,10 +72,14 @@ becomes a UI question on the existing page instead.
 Rebuilt to the Pixelette Technologies footer's structure: brand-led grid,
 "Part of Pixelette Group" band, legal line. Gaps, all needing management:
 
-- **Company identity for the legal line.** Theirs shows entity name, "Registered
-  in England and Wales", company number, registered office and VAT. None of
-  these exist anywhere in this repo for Pixelette Marketing. The copyright line
-  stands in until they are supplied.
+- ~~**Company identity for the legal line.**~~ **Answered 22 Sep 2026.**
+  Registered in England and Wales, company number 11716825, registered office
+  77 Fulham Palace Road, London W6 8JA, VAT GB 432 2377 17. All four are now
+  in the footer legal line and in the JSON-LD. **One part is still open:** the
+  registered entity NAME — whether Companies House holds "Pixelette Marketing"
+  or a suffixed form — was not part of what was supplied, so the line reads
+  "Pixelette Marketing is registered in England and Wales" and no suffix was
+  guessed. Worth confirming against the Companies House record for 11716825.
 - **Four legal pages do not exist**: Privacy Statement, Terms, Modern slavery,
   Accessibility. Their footer links all four; ours links none rather than 404.
   Privacy is the same blocker as the form's privacy link.
@@ -258,11 +262,16 @@ See [[02 Decisions]]. What it leaves open:
 - **The site now has no visible postal address on any page.** The locations
   section was removed on instruction; the phone and email survive in
   `HowItWork` and in the `LocalBusiness` JSON-LD, the address does not.
-- **The two addresses on this site do not agree**, and this predates the
-  removal: the deleted section showed 77 Fulham Palace Road, London W6 8JA;
-  the JSON-LD in `layout.tsx` declares 71-75 Shelton Street, London WC2H 9JQ.
-  The visible half has gone and **the schema half is the one left standing** —
-  which may be the wrong one.
+- ~~**The two addresses on this site do not agree.**~~ **Resolved 22 Sep 2026,
+  and the schema half was indeed the wrong one.** Management gave 77 Fulham
+  Palace Road, London W6 8JA as the registered office — the address the
+  deleted contact section had carried. `layout.tsx` declared 71-75 Shelton
+  Street, London WC2H 9JQ, which agreed with nothing else in the repo; both
+  the `Organization` and `LocalBusiness` nodes now carry the registered
+  office, and `Organization` also carries the VAT number and the company
+  number. `locatedData.ts` already held the right address and needed no
+  change — it remains exported and unreferenced since the locations section
+  was removed.
 - **A management note was rendering as body copy** on the live contact page,
   as that section's standfirst: *"Show locations in a different way, not really
   happy with how it's currently done here…"* No gate on this site reads prose,

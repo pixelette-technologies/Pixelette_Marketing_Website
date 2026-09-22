@@ -100,9 +100,11 @@ each on purpose:
   footer link to a 404 is worse than its absence.
 - **Social icons stay**, in the slot where they show ISO certificates — this
   company holds none, and management said on 11 Sep that Facebook stays.
-- **The legal line is the copyright.** Theirs states entity, registration,
-  company number, registered office and VAT. None of those are known for
-  Pixelette Marketing and none are guessed.
+- **The legal line carries the company identity**, as theirs does: registration,
+  company number, registered office and VAT, supplied by management on 22 Sep
+  2026. The copyright keeps its own line beside them. The registered ENTITY
+  name was not supplied, so the line names the company as the rest of the site
+  does rather than inventing a suffix.
 - **Group descriptions are the group's own**, verbatim from their footer.
 - **"Privacy choices" reuses ManageCookies**, which reopens the existing consent
   banner, rather than adding a second consent UI like their dialog.

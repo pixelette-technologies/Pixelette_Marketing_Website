@@ -61,6 +61,22 @@ const structuredData = {
         "@type": "ContactPoint",
         contactType: "sales",
         email: "sales@pixelettemarketing.com"
+      },
+      // Supplied by management, 22 Sep 2026. The registered office is the
+      // address the footer states; before this the graph carried a different
+      // one (71-75 Shelton Street) that agreed with nothing else in the repo.
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "77 Fulham Palace Road",
+        addressLocality: "London",
+        postalCode: "W6 8JA",
+        addressCountry: "GB"
+      },
+      vatID: "GB 432 2377 17",
+      identifier: {
+        "@type": "PropertyValue",
+        name: "Companies House company number",
+        value: "11716825"
       }
     },
     {
@@ -80,9 +96,9 @@ const structuredData = {
       email: "sales@pixelettemarketing.com",
       address: {
         "@type": "PostalAddress",
-        streetAddress: "71-75 Shelton Street",
+        streetAddress: "77 Fulham Palace Road",
         addressLocality: "London",
-        postalCode: "WC2H 9JQ",
+        postalCode: "W6 8JA",
         addressCountry: "GB"
       },
       areaServed: "GB",

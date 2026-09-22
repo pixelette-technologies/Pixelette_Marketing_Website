@@ -193,8 +193,11 @@ a.groupband__name:hover {
 }
 
 // --- 3. The legal line ------------------------------------------------------
-// Theirs carries the company identity here. Ours carries the copyright until
-// management supplies the entity details — see Footer.tsx.
+// Two items, as on Technologies: the copyright, and the company identity —
+// registration, company number, registered office, VAT. Management supplied
+// the identity on 22 Sep 2026; see Footer.tsx. The flex row puts one at each
+// end and wraps to two stacked lines when the identity no longer fits beside
+// the copyright, which on a narrow viewport it will not.
 .footerLegal {
   margin-top: 3.5rem;
   padding-top: 1.5rem;
@@ -204,6 +207,23 @@ a.groupband__name:hover {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.75rem 1.5rem;
+}
+
+// The identity is the quieter of the two: it is there to be found, not read.
+// It takes the remaining width of the row and sits right, falling to the left
+// once it has wrapped onto its own line. Tone is already handled — .footer
+// .legal in _surfaces.scss sets the mono face and the muted colour, and at
+// two classes it outranks anything this single-class rule could say about
+// colour, so this rule confines itself to the box.
+.legal--identity {
+  flex: 1 1 22rem;
+  text-align: right;
+}
+
+@media only screen and (max-width: 767px) {
+  .legal--identity {
+    text-align: left;
+  }
 }
 
 // --- The one fold -----------------------------------------------------------

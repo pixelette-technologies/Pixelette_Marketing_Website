@@ -37,11 +37,13 @@ import { industriesData } from "@/data/industries/industriesData";
 //   slot where Technologies shows its ISO certificates — this company holds
 //   none, and that ledger is not something to fill with a placeholder.
 //
-// - THE LEGAL LINE IS THE COPYRIGHT, NOT THE COMPANY IDENTITY. Theirs states the
-//   legal entity, where it is registered, the company number, the registered
-//   office and the VAT number. None of those facts exist anywhere in this repo
-//   for Pixelette Marketing, and they are not facts to guess. The structure is
-//   here for them; the values are with management.
+// - THE LEGAL LINE NOW CARRIES THE COMPANY IDENTITY, as theirs does: where the
+//   company is registered, the company number, the registered office and the
+//   VAT number. Management supplied all four on 22 Sep 2026, which closes the
+//   gap this comment used to record. The copyright keeps its own line beside
+//   them. The one thing NOT supplied is the exact registered entity name — the
+//   suffix, if any — so the line names the company as the rest of the site does
+//   and does not invent a "Ltd".
 //
 // The group descriptions are the group's own wording, taken VERBATIM from the
 // Technologies footer, so every sister site describes every company the same
@@ -239,6 +241,11 @@ export default function Footer() {
         <div className='footerLegal'>
           <Text className='legal'>
             © 2026 Pixelette Marketing. All rights reserved.
+          </Text>
+          <Text className='legal legal--identity'>
+            Pixelette Marketing is registered in England and Wales, company
+            number 11716825. Registered office: 77 Fulham Palace Road, London
+            W6 8JA. VAT GB 432 2377 17.
           </Text>
         </div>
       </Container>

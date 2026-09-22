@@ -1,0 +1,407 @@
+// The ring drawn in GrowthSystem.tsx, and the numbered outcomes beside it.
+// The component carries geometry and class names only; every fill, stroke and
+// type decision resolves from here, so the token gate has one place to check,
+// a brand change stays a token edit, and colour is read from the ground rather
+// than set at the call site.
+//
+// Replaces _growthDiagram.scss, which styled the four ascending columns. The
+// note in GrowthSystem.tsx explains why a chart was the wrong instrument for a
+// page that is not allowed to quote a figure.
+
+// --- the row ----------------------------------------------------------------
+//
+// This was `.growthSection > section > div` — an unclassed div selected three
+// levels deep. It is a named element now because it is a component's root, and
+// because the two children below are matched by class rather than by being the
+// first and second div in a list.
+
+.growthSystem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem 2.5rem;
+
+  & > header {
+    flex: 1 1 24rem;
+    min-width: 0;
+
+    // The guide's eyebrow-to-content gap, exactly: 20px. BY CLASS: the brief
+    // swapped the heading levels here, so a `> h3` selector would now be
+    // pointing at the title rather than the eyebrow.
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .sectionTitle {
+      margin-bottom: 1.5rem;
+    }
+
+    & > .lead {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+// --- the four outcomes ------------------------------------------------------
+//
+// Rows on a hairline, which is the third layout idiom and the one the
+// constraints doc says should be the last. It applies here for the reason that
+// doc gives: these four are ORDERED, not parallel, and a grid of equal boxes
+// claims the opposite. The 2x2 grid this replaces claimed it loudly enough
+// that the section needed a sentence underneath to restate the sequence.
+//
+// The numeral is what makes the order structural rather than editorial, so the
+// hairline row can carry a chain without a single arrow.
+
+.growthSystem__stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.growthSystem__stage {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1.125rem;
+  border-top: 1px solid var(--color-line);
+
+  // The hairline is a separator, not a border: the first row sits directly
+  // under the standfirst's own space and wants no line above it.
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  & > div {
+    min-width: 0;
+  }
+
+  & h4 {
+    color: var(--color-brand);
+    margin-bottom: 0.375rem;
+  }
+}
+
+// The numeral. Mono and muted, so it reads as an index and never competes with
+// the outcome's own name beside it. Fixed width so the four names align
+// whatever the numeral does.
+.growthSystem__stageIndex {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  line-height: 1.9;
+  color: var(--color-muted);
+  transition: color 0.15s ease;
+}
+
+// Selected. The rule in the marking tone, the numeral in the brand — the row
+// itself does NOT take a fill, because a filled row in a list of four turns
+// the list into a set of cards and that is the shape this idiom exists to
+// avoid.
+.growthSystem__stage--active {
+  border-top-color: var(--color-line-strong);
+
+  & + .growthSystem__stage {
+    border-top-color: var(--color-line-strong);
+  }
+
+  & .growthSystem__stageIndex {
+    color: var(--color-brand);
+  }
+}
+
+.growthSystem__closing {
+  margin-top: 2rem;
+}
+
+// --- the figure -------------------------------------------------------------
+//
+// Capped and centred rather than filling its flex track. At the 1160 wrap this
+// column resolves to roughly 512px, and a 512px circle beside a 450px column of
+// text is the figure shouting down the argument it illustrates.
+
+.growthSystem__figure {
+  flex: 1 1 18rem;
+  min-width: 0;
+  max-width: 29rem;
+  margin-inline: auto;
+}
+
+// The square the ring is inscribed in, inset so the stations can hang off its
+// edges. The inset is a percentage and the svg scales as one, so the whole
+// figure resizes without a media query — which matters, because the stylesheet
+// is allowed exactly one and it is spent.
+.growthSystem__ring {
+  position: relative;
+  aspect-ratio: 1;
+  // THE FIRST CONTAINER IN THE STYLESHEET, and it earns its place. Everything
+  // drawn in the svg is in viewBox units and therefore scales with the ring;
+  // everything drawn in HTML on top of it — the stations, the panel in the
+  // middle — was in rem and did not. At the 1160 wrap the two happened to
+  // agree. At 768, where the row has not yet folded and the figure column is
+  // at its narrowest, they did not: the panel stayed its full size inside a
+  // ring that had shrunk around it and the handoff words landed on top of it,
+  // "optimise TAKES IN interest" on one line. `cqi` makes the HTML scale on
+  // the same footing as the svg, so the figure is one drawing at every width.
+  //
+  // This is not a media query and does not spend the stylesheet's one
+  // breakpoint. It is also what lets the stations stay inside the inset below
+  // at every size rather than only at the two that were measured.
+  container-type: inline-size;
+  // The inset has to clear HALF the widest side station, because those two are
+  // centred on the ring's left and right edges. Pipeline is the widest at
+  // roughly 100px, so 13% of the capped figure — about 60px — carries it with
+  // room to spare, and the ring itself gets the rest.
+  margin-inline: 13%;
+}
+
+.growthSystem__circuit {
+  display: block;
+  width: 100%;
+  height: auto;
+  // The handoff words sit well inside the ring now, but a descender at the
+  // extremes has nothing to gain from being clipped at the box edge.
+  overflow: visible;
+}
+
+// --- arcs -------------------------------------------------------------------
+
+.growthSystem__path {
+  fill: none;
+  stroke: var(--color-line-strong);
+  stroke-width: 1.5;
+  transition:
+    stroke 0.18s ease,
+    stroke-width 0.18s ease;
+}
+
+// The return. Dashed, so the forward reading stays a progression that feeds
+// back rather than a wheel spinning in place — three solid arcs and one that
+// is visibly a correction.
+.growthSystem__path--return {
+  stroke-dasharray: 5 5;
+}
+
+.growthSystem__head {
+  fill: var(--color-line-strong);
+  transition: fill 0.18s ease;
+}
+
+// The selected stage's OUTGOING arc. Only one arc lights at a time and it is
+// the one leaving the station, which is the whole claim: this stage produces
+// what the next one runs on.
+.growthSystem__arc--active {
+  & .growthSystem__path {
+    stroke: var(--color-brand);
+    stroke-width: 2.25;
+  }
+
+  & .growthSystem__head {
+    fill: var(--color-brand);
+  }
+}
+
+// --- the handoffs -----------------------------------------------------------
+//
+// The word each arc carries, sitting ON the arc at its midpoint. Same
+// treatment as a station and the same opaque ground, one step quieter: no
+// border, muted, smaller. A station is a place and a handoff is a thing in
+// transit, and the type says which is which without a legend.
+
+.growthSystem__handoffs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.growthSystem__handoff {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  padding: 0.6cqi 2.4cqi;
+  background: var(--color-band);
+  font-family: var(--font-mono);
+  font-size: clamp(0.4375rem, 3cqi, 0.6875rem);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: var(--color-muted);
+  transition: color 0.18s ease;
+
+  // The four arc midpoints, which on a circle inscribed in this box are at
+  // 50% +/- sin(45deg)/2 — 14.64% and 85.36%. Same clockwise order as the
+  // stations: the handoff at index i leaves station i.
+  &--0 {
+    top: 14.64%;
+    left: 85.36%;
+  }
+
+  &--1 {
+    top: 85.36%;
+    left: 85.36%;
+  }
+
+  &--2 {
+    top: 85.36%;
+    left: 14.64%;
+  }
+
+  &--3 {
+    top: 14.64%;
+    left: 14.64%;
+  }
+
+  &--active {
+    color: var(--color-brand);
+  }
+}
+
+// --- the stations -----------------------------------------------------------
+
+.growthSystem__tabs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.growthSystem__node {
+  position: absolute;
+  pointer-events: auto;
+  transform: translate(-50%, -50%);
+  // Both in container units, so a station is always the same fraction of the
+  // ring it sits on. That is what keeps Pipeline and Revenue inside the 13%
+  // inset either side of the ring: at 3.6cqi the widest of them is about 14%
+  // of the ring across, which clears it at every width rather than at the one
+  // that was measured.
+  padding: 2cqi 3.4cqi;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  // An opaque ground, so each station cuts the arc it sits on rather than
+  // floating over it. A transparent pill here reads as a label that has come
+  // loose from the ring.
+  //
+  // The BAND, not the page. The first build of this used --color-page and put
+  // four white capsules onto the site's own warm ground — four holes in a cream
+  // field, which every gate passed and which is visible from across the room.
+  // Colour is read from the ground here, never assumed.
+  background: var(--color-band);
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 3.6cqi, 0.75rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-body);
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+
+  &:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+
+  &[aria-selected="true"] {
+    border-color: var(--color-brand);
+    background: var(--color-brand);
+    color: var(--color-page);
+  }
+
+  // Demand at the top, then clockwise. These four match angleOf() in the
+  // component exactly; change one and change the other.
+  &--0 {
+    top: 0;
+    left: 50%;
+  }
+
+  &--1 {
+    top: 50%;
+    left: 100%;
+  }
+
+  &--2 {
+    top: 100%;
+    left: 50%;
+  }
+
+  &--3 {
+    top: 50%;
+    left: 0;
+  }
+}
+
+// --- the core panel ---------------------------------------------------------
+//
+// What the selected stage takes in and hands on. Centred in the ring, capped
+// well inside it so it never runs into the handoff words at radius 96, and
+// given a fixed min-height so a value that wraps to two lines does not shunt
+// the panel around inside the circle.
+
+.growthSystem__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // Proportions of the ring, never absolute — the panel has to shrink with the
+  // drawing it sits inside, which the first rem-sized version did not. The
+  // handoff words have moved out onto the ring, so the middle is the panel's
+  // alone and it can take the room.
+  width: 58%;
+  min-height: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+
+.growthSystem__coreLabel {
+  font-family: var(--font-mono);
+  font-size: clamp(0.5rem, 3.3cqi, 0.625rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.growthSystem__coreValue {
+  font-size: clamp(0.75rem, 5.2cqi, 0.9375rem);
+  line-height: 1.35;
+  color: var(--color-ink);
+  margin: 0;
+  text-wrap: balance;
+}
+
+.growthSystem__coreRule {
+  display: block;
+  width: 8cqi;
+  border-top: 1px solid var(--color-line-strong);
+  margin-block: 0.5rem;
+}
+
+// The loop's argument, which the ring can draw but cannot state.
+.growthSystem__caption {
+  margin-top: 1.5rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+// The transitions are all ornament — every one of them is a colour or a width
+// settling into a state the markup already describes. Nothing is lost by
+// cutting them, so cut them.
+@media (prefers-reduced-motion: reduce) {
+  .growthSystem__path,
+  .growthSystem__head,
+  .growthSystem__handoff,
+  .growthSystem__stageIndex,
+  .growthSystem__node {
+    transition: none;
+  }
+}

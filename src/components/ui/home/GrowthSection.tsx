@@ -1,6 +1,6 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import GrowthDiagram from "./GrowthDiagram";
+import GrowthSystem from "./GrowthSystem";
 
 // Phase F. There is no eyebrow available here without writing copy, and the
 // content rule says ship the pattern without the missing element rather than
@@ -19,11 +19,6 @@ import GrowthDiagram from "./GrowthDiagram";
 // and it is the framework the rest of the site, the reporting and the sales
 // material are meant to repeat.
 //
-// THE CELLS READ DOWN, NOT ACROSS. The two <div>s are COLUMNS, so the first
-// holds Demand and Conversion and the second Pipeline and Revenue. Set them in
-// Z-order and the framework reads Demand, Conversion, Pipeline, Revenue, which
-// is not the order anything else on the site states it in.
-//
 // The section now carries a real eyebrow and a standfirst, both supplied by
 // the brief, so the anatomy is the house one: eyebrow, h2, standfirst. That
 // also settles the levels. The eyebrow is the h2 and the visual .h2 is the h3,
@@ -34,82 +29,47 @@ import GrowthDiagram from "./GrowthDiagram";
 // The accent moves with the heading. It keeps hanging off .sectionTitle > span
 // BY CLASS rather than by position: this accent has already gone dead twice
 // from structural edits, and a third would be silent.
+//
+// --- 22 Sep 2026 ------------------------------------------------------------
+// The four outcomes and the figure beside them are one component now, because
+// they share a selection: hovering an outcome lights its station on the ring,
+// and selecting a station lights the outcome. Two components cannot do that
+// without lifting the state to a parent, and this parent would then be a client
+// component for no other reason.
+//
+// SO THE HEADING BLOCK IS PASSED AS CHILDREN. The eyebrow, the title and the
+// standfirst have no state and no business shipping as client JavaScript; they
+// render here, on the server, and GrowthSystem places them. That is the whole
+// reason this file still exists.
+//
+// The closing line moved into GrowthSystem and lost its first sentence. It read
+// "Demand. Pipeline. Conversion. Revenue. Every channel should have a reason to
+// exist." — the first half restated the framework's order because the 2x2 grid
+// above it could not, reading down its columns rather than across. The
+// outcomes are a numbered list now and state their own order, so that sentence
+// was answering a question nothing asks any more. The second half is the
+// argument and it stays.
 
 export default function GrowthSection() {
   return (
     <Container className='main'>
       <div className='growthSection rule-cap'>
         <section>
-          <div>
-            <header>
-              <Heading className='eyebrow' level={2}>
-                Four commercial outcomes
-              </Heading>
+          <GrowthSystem>
+            <Heading className='eyebrow' level={2}>
+              Four commercial outcomes
+            </Heading>
 
-              <Heading className='h2 sectionTitle' level={3}>
-                Everything we do has to move{" "}
-                <span>a number that matters</span>
-              </Heading>
+            <Heading className='h2 sectionTitle' level={3}>
+              Everything we do has to move <span>a number that matters</span>
+            </Heading>
 
-              <Text className='lead'>
-                Marketing activity is not the objective. Commercial progress
-                is. We design each programme around the part of the growth
-                system that needs to move.
-              </Text>
-
-              <section>
-                <div>
-                  <div>
-                    <Heading className='h4' level={4}>
-                      Demand
-                    </Heading>
-                    <Text className='small'>
-                      Reach the right market with a proposition that earns
-                      attention and creates qualified interest.
-                    </Text>
-                  </div>
-                  <div>
-                    <Heading className='h4' level={4}>
-                      Conversion
-                    </Heading>
-                    <Text className='small'>
-                      Improve the journey from first touch to enquiry,
-                      opportunity and decision.
-                    </Text>
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <Heading className='h4' level={4}>
-                      Pipeline
-                    </Heading>
-                    <Text className='small'>
-                      Turn demand into sales-ready conversations and commercial
-                      opportunities.
-                    </Text>
-                  </div>
-                  <div>
-                    <Heading className='h4' level={4}>
-                      Revenue
-                    </Heading>
-                    <Text className='small'>
-                      Connect marketing performance to commercial return and
-                      optimise accordingly.
-                    </Text>
-                  </div>
-                </div>
-              </section>
-
-              <Text className='small growthSection__closing'>
-                Demand. Pipeline. Conversion. Revenue. Every channel should
-                have a reason to exist.
-              </Text>
-            </header>
-
-            <div>
-              <GrowthDiagram />
-            </div>
-          </div>
+            <Text className='lead'>
+              Marketing activity is not the objective. Commercial progress is.
+              We design each programme around the part of the growth system
+              that needs to move.
+            </Text>
+          </GrowthSystem>
         </section>
       </div>
     </Container>

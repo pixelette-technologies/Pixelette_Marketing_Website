@@ -637,5 +637,57 @@ explicitly or it is measuring a different project.
 
 Underneath both, a real finding: `Footer.tsx` has been genuinely unformatted
 since `76878ca`, at two text blocks in the group band and the legal line.
+
 Related: [[02 Decisions]], [[04 Phase 2 — Navigation and footer]],
 [[09 Outstanding]]
+
+
+## 22 Sep — `--only` closes the index race and not the working-tree one
+
+The entry above records `git commit --only -- <paths>` as the mitigation when
+another session holds the shared index, and that is still right as far as it
+goes. **It is not sufficient, and this commit is the proof.**
+
+`033faa1` was meant to be five vault notes. It contains those, and it also
+contains **seven sections written by another session** — the blog topics, the
+drawn banners, the footer column, the image-caching entry, the `git mv` entry,
+the prettier entry and the abandoned wave. They were swept in whole.
+
+**Why `--only` did not prevent it.** `--only` ignores the index and commits the
+named paths **from the working tree**. That is exactly what makes it safe
+against staging: nothing another session stages can reach the commit. But it
+also means the commit takes whatever is on disk at those paths *at the moment
+it runs*. The other session was editing the same five files. `git diff --stat`
+was read, showed 239 insertions across the five, and the commit a minute later
+wrote 427. The gap is their prose.
+
+So the two races are separate and need separate answers:
+
+| Race | Reaches the commit via | Closed by |
+|---|---|---|
+| Another session **stages** a file | the index | `--only` |
+| Another session **writes** a file you name | the working tree | nothing, by itself |
+
+**The practical mitigation is the size of the window.** A `git diff` in one
+tool call and a `git commit` in the next leaves a gap of seconds to minutes,
+and a vault note is precisely the file two sessions are most likely to be
+appending to at the same time. Writing the entry and committing it **in one
+shell invocation** — `cat >> note && git commit --only -- note` — cuts the
+window to milliseconds. This entry was committed that way.
+
+**What was not done about it.** Nothing was unpicked. Splitting `033faa1`
+means `reset` or `rebase`, and the entry above rules those out while another
+session is working, for the same reason it rules out a private index: it edits
+state that is not yours. Their work is in history and nothing is lost — the
+cost is that their vault prose sits under someone else's commit message, which
+is an attribution fault and not a data fault. **Prefer the attribution fault to
+the recovery.** If their session tries to commit those files and finds them
+clean, this entry is the explanation.
+
+**The narrower lesson.** `git diff --stat` before a commit is a check on
+*your* changes. When it disagrees with what the commit reports, that is not a
+rounding error — read the difference immediately. The insertion count is the
+cheapest signal that a shared file moved under you, and it was there in the
+commit output.
+
+Related: [[02 Decisions]], [[09 Outstanding]]

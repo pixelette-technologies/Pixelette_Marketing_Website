@@ -359,3 +359,75 @@ have never been rendered side by side, and the strip has never been scrolled.
 See [[10 Verification]].
 
 Related: [[01 The brief]], [[05 Components]], [[08 Design system constraints]], [[09 Outstanding]]
+
+## 21 Sep — the About page rebuilt
+
+A separate instruction, not the 8 Sep brief: make About premium, concise and
+defensible, and stop it presenting a team. Six sections now — hero, who we are
+/ how we work, the capability model, the principles, selected experience,
+close — against the nine it had. Visible copy falls from roughly 550 words to
+230.
+
+### What came off, and why it was the claims rather than the length
+
+- **`OurTeam`.** Five portraits with names and job titles. Nothing in this
+  repository substantiates them, and the instruction bars any headcount, staff
+  or office claim that the existing material does not already establish. It is
+  replaced by the capability model, which says how work is assembled without
+  saying who is employed.
+- **`WhoWeAre`.** A founding story, five paragraphs and a three-point list,
+  saying what six sentences now say.
+- **`OurValues`.** Collaboration, integrity, forward thinking, excellence —
+  the generic set, and two of its four cards were the same colour as the band
+  behind them.
+- **`OurServices`.** The six industry cards. They are the whole of
+  `/industries` and its eight children; carrying them here made the page
+  longer and told a visitor nothing the navigation does not.
+
+The logo strip stays, in `TrustedBrands`' stacked layout, under a weaker claim
+than the home page's: *Experience across the Pixelette ecosystem*, with
+*brands and ventures connected with work across our wider group and network*.
+The set includes portfolio ventures. Nothing on the page says Pixelette
+Marketing delivered to every mark shown.
+
+### The hero image, which was a judgement call
+
+`heroImageAbout.webp` is gone from this page — a bought retro collage of a
+typewriter and handwritten letters, under a headline about measurable growth.
+The instruction bars stock marketing graphics and asks for a headline that
+dominates, and both could not be honoured with it in place. The asset is
+untouched and still serves `BlogHeroSection`, so restoring it is one import.
+What replaces it is the asymmetry: the headline is capped at the house 34rem
+measure and the right half of the hero is deliberately air.
+
+### Three faults found by looking, after every gate was green
+
+This is the fourth time on this project that a rendered page has produced a
+fault no gate could see, and all three below were fixed before the work was
+handed over.
+
+1. **The signature cap was an orphan.** `.rule-cap` sat on a full-width rule
+   at the top of the identity section, with the two statement rules 90px
+   beneath it: three hairlines within a hundred pixels, the marking segment on
+   the faintest of them. The section rule went and the cap moved onto the
+   first statement's own hairline.
+2. **A 16ch cap on the capability names** forced a wrap into tracks wide
+   enough to hold them, so two of four broke at 1440px where only one had to.
+   `.h3` already carries `text-wrap: balance`; the cap was removed.
+3. **`.band-alt` on the principles section was a no-op.** `_base.scss` gives
+   the body `--color-band` already, so the wrapper declared a ground change
+   that does not happen. It was removed rather than left to be read as one.
+
+A fourth, deliberately not fixed: the principles name column went from 14rem
+to 18rem because *Commercially focused* was the only one of four that wrapped,
+which made its row half again as tall as its neighbours.
+
+### What was verified
+
+Both `.band-dark` (capability model, logo strip) and the single `.rule-cap`
+are within the caps; `route:walk` passes 35/35 against a dev server. The token
+gate passes and `src/data/aboutus/ourTeamData.ts` left the exemption list with
+the file. The page was rendered and read at 1440px and at 390px, which is more
+than most of this site can still say — see [[10 Verification]].
+
+Related: [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]

@@ -88,4 +88,35 @@ ground from the band in SCSS. New components follow that.
 
 Asserted by `route:walk`.
 
+## About page allocation (22 Sep 2026)
+
+Two of the three, deliberately leaving one unspent:
+
+1. The capability model — the section a buyer is on this page to understand
+2. Selected experience / client logos — forced, as everywhere
+
+The close is light, so the page ends on the site's own ground rather than on a
+third slab. Its one `.rule-cap` sits on the first identity statement's
+hairline; the reasoning, which was settled by looking at it, is in
+[[10 Verification]].
+
+## `.band-alt` currently paints nothing (found 22 Sep 2026)
+
+`_base.scss` sets `body { background-color: var(--color-band) }`, and
+`.band-alt` sets the same token. **Every `.band-alt` on the site is therefore a
+no-op**, including `ItemsSection`'s `ground="alt"` on the home page — the
+"page" and "alt" grounds render identically and only `dark` is a real change.
+
+This is not a bug and nothing should be repainted on the strength of it: the
+site's light rhythm is one warm cream punctuated by the dark family, and that
+is what it looks like. It is recorded because the class **reads** as a ground
+change at every call site, so anyone reasoning about the rhythm from the markup
+is reasoning from something that is not happening. The About page's principles
+section carries no wrapper at all for that reason.
+
+If a second light ground is ever wanted, `--color-page` white against the body
+cream is the one the tokens already support, and it would want deciding once
+for the whole site rather than per section.
+
+
 Related: [[05 Components]], [[10 Verification]]

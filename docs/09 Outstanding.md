@@ -1,6 +1,6 @@
 # 09 Outstanding
 
-As of **21 September 2026**. Management answered the 9 Sep questions on 11 Sep;
+As of **22 September 2026**. Management answered the 9 Sep questions on 11 Sep;
 what they cleared has been built, and what is left is below. The two blockers
 at the top have not moved since 11 Sep — both need management, not code.
 
@@ -143,6 +143,40 @@ Recorded because it is easy to lose and easier to commit by accident:
   `_itemsSection.scss`. Passes lint, types and the token gate. Not reviewed
   here, and not seen in a browser.
 
+## The About page (22 Sep)
+
+Rebuilt to a separate instruction — six sections, no team, no industries grid.
+See [[02 Decisions]]. What it leaves open:
+
+- **The hero image was removed on my judgement, not on an instruction.** The
+  instruction said keep the editorial imagery *if it still works well* and also
+  barred stock marketing graphics; `heroImageAbout.webp` is a bought retro
+  collage of a typewriter and handwritten letters sitting under a headline
+  about measurable growth, so the two could not both be honoured. **This wants
+  a yes or no.** The asset is untouched and still serves `BlogHeroSection`, so
+  restoring it is one import and one `<Image>`.
+- **"Introduce yourself →" lands on the ordinary enquiry form.** There is no
+  network route, and no field on the form that would tell a specialist's
+  introduction apart from a client enquiry once it arrives in the inbox. If
+  that line is meant to produce a usable stream rather than a signal of intent,
+  it needs either an option in the form's "What are you trying to improve?"
+  select or a route of its own. **Whoever reads the enquiries should be told
+  this is live** before the first one arrives.
+- **The four capability areas carry no descriptions.** None were supplied and
+  none were invented. If they are wanted, that is content, not design, and the
+  section's SCSS needs nothing.
+- **`public/aboutUs/at_1.webp` to `at_5.webp` are referenced by nothing** —
+  the five team portraits. Left in place, exactly as `growthBanner.webp` was,
+  until someone is sure the team section is not coming back.
+- **The close no longer shares wording with the rest of the site.** About's is
+  bespoke — *Start a conversation*, plus the network line — while the services,
+  industries and story templates still close on `QuestionAndAnswer` and "Book a
+  consultant - it's on us!". That component is unchanged and four routes still
+  use it; the divergence is deliberate for now and worth a decision when those
+  templates are next looked at.
+- **The page's metadata changed.** Title and description no longer say "more
+  than a team"; the canonical URL and keywords are untouched.
+
 ## Technical debt still open
 
 - **Card titles lost their heading tags** on both hub pages — 8 and 5. An
@@ -175,9 +209,15 @@ Recorded because it is easy to lose and easier to commit by accident:
 
 ## The standing risk
 
-**Almost nothing here has been viewed in a browser.** The Growth System band is
-the one exception, and looking at it immediately produced a fault no gate had
-caught. Every other page and breakpoint is structural-only, and the dropdown
+**Almost nothing here has been viewed in a browser.** Two exceptions now: the
+Growth System band, and — since 22 Sep — **the whole of `/aboutus`, read end to
+end at 1440px and at 390px**, which is the first time any page on this site has
+been looked at as a page rather than as markup. Both exercises produced faults
+no gate had caught: one on the Growth System, three on About. That is the
+argument for the browser walk, made twice, and it has still been done on two
+sections of a 35-route site.
+
+Every other page and breakpoint is structural-only, and the dropdown
 menus have never been rendered at all. The two case studies built on 11 Sep
 have been verified structurally — headings, figures, quotations, grounds, all
 35 routes — and **not once by eye**. See [[10 Verification]] for exactly what

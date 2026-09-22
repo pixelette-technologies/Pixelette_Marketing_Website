@@ -167,4 +167,70 @@ page is structurally sound and prove nothing about how it looks. The one time
 a section was actually opened in a browser it produced a fault no gate had
 caught. See [[09 Outstanding]].
 
+## 22 Sep — the About page, and the first page read end to end at two widths
+
+The rebuild is recorded in [[02 Decisions]]. What matters here is the method,
+because this is the **first page on the site to be looked at whole**, at
+desktop and at a phone width, rather than checked as markup.
+
+**Green before the commit:** `eslint`, `tsc --noEmit`, `lint:legacy-tokens`
+(0 findings), `test:contact` 36/36, `route:walk` 35/35, and the caps on the
+page itself — one `<h1>`, two `.band-dark`, one `.rule-cap`.
+
+**`next build` was NOT run, and that is a real gap.** Three other work streams
+have uncommitted files in this tree — the home page, the contact page and a
+scroll marquee — and a build compiles their in-flight state as well as this
+page's. It would also fight the running dev server over `.next`, which this
+note already warns about. So the route walk above ran against a **dev server**,
+not a production one. Per the stale-server rule it was confirmed live rather
+than assumed: the page was re-fetched after each edit and each time carried the
+change that had just been made.
+
+### What looking at it found — three faults, all invisible to every gate
+
+1. **The signature cap was an orphan.** `.rule-cap` sat on a full-width rule at
+   the top of the identity section with the two statement rules 90px below it.
+   Three hairlines inside a hundred pixels, and the marking segment landed on
+   the faintest of the three, reading as a red dash floating above the content.
+   The section rule went; the cap moved onto the first statement's own rule.
+2. **A `max-width: 16ch` on the capability names** forced a wrap into tracks
+   wide enough to hold them — two of four broke at 1440px where only one had
+   to, and every name broke on a phone. `.h3` already carries
+   `text-wrap: balance`, so the cap was simply wrong.
+3. **`.band-alt` was a no-op.** `_base.scss` gives the body `--color-band`
+   already, so the wrapper on the principles section declared a ground change
+   that does not happen. **This is not local to About** — see
+   [[08 Design system constraints]].
+
+A fourth was a spacing call rather than a fault: the principles name column
+went 14rem to 18rem because *Commercially focused* was the only one of four
+that wrapped, which made its row half again as tall as its neighbours.
+
+### The method, since it is cheaper than it sounds
+
+Chrome is already on this machine. `--headless=new --screenshot` renders a page
+without installing anything, and a fifty-line script driving the same binary
+over the DevTools protocol sets an exact viewport and captures beyond the fold.
+Both are throwaway; neither is in the repo.
+
+**Two things to know before trusting a screenshot of this site:**
+
+- **`--window-size` alone does not set the layout viewport.** The first mobile
+  capture was a 390px-wide crop of a page laid out far wider, which looks
+  exactly like horizontal overflow and is not. Use
+  `Emulation.setDeviceMetricsOverride` and read `Page.getLayoutMetrics` back —
+  content width 390 against a 390 viewport is the actual proof that nothing
+  overflows.
+- **ScrollReveal hides everything below the fold**, so a full-page capture of a
+  short viewport shows blank bands where the unrevealed sections are. It reads
+  as missing content. Set the emulated viewport to the whole page height and
+  the observer fires for every block.
+
+### What is still unverified on this page
+
+Hover and focus states, the dropdown menus (as everywhere), the reveal in
+motion, real devices as opposed to an emulated viewport, and the page under a
+production build.
+
+
 Related: [[08 Design system constraints]], [[09 Outstanding]]

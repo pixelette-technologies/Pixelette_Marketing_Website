@@ -106,6 +106,26 @@ the hub's own five labels. It is also **the first time the dropdowns have been
 rendered at all**, which item 1 below had listed as never done. See
 [[04 Phase 2 — Navigation and footer]] and [[09 Outstanding]].
 
+**22 Sep, the blog and the footer** — two posts written and published to
+`blogsData.ts`, filling the Tech and AI gap the existing three leave: one on
+being quotable to an AI rather than merely rankable, one on five checks before
+increasing spend, ordered as the five capabilities. Both carry third-party
+evidence only. Their banners were drawn first, rejected as patterns that said
+nothing about the article, and replaced with photographs. The footer lost its
+Who We Help column, What We Do became Services, and Strategy & Positioning
+gained its first footer link — **which leaves the five sector pages with no
+site-wide internal links**. See [[02 Decisions]], [[09 Outstanding]] and
+[[10 Verification]].
+
+**Two sessions worked in this repo at once on 22 Sep, and it cost three
+things**: a page that returned 500 while neither session's change was wrong on
+its own, a `git mv` swept into another session's commit so HEAD carried the
+wrong image under the right filename for two commits, and a set of vault edits
+committed under someone else's message. The rule that came out of it is in
+[[10 Verification]]: with a second session in the repo, nothing may sit
+staged — and unstaged is no safer, because a commit run with `-a` takes that
+too.
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band, the

@@ -913,5 +913,6 @@ they have lost their internal links from every page on the site. It is
 recorded in the component comment as well as here, because it is exactly the
 kind of change that looks like nothing in a browser and surfaces in a crawl
 three months later.
+
 Related: [[04 Phase 2 — Navigation and footer]], [[09 Outstanding]],
 [[10 Verification]]

@@ -83,6 +83,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
       />
       <HeroSingleBlogPage
         image={blog.image}
+        imageAlt={blog.imageAlt}
         profile={blog.authorProfile}
         name={blog.authorName}
         lastUpdateDate={blog.updateDate}

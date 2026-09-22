@@ -6,6 +6,7 @@ type BlogPost = {
   id: number;
   heading: string;
   image: string;
+  imageAlt?: string;
   description: string;
 };
 
@@ -28,6 +29,7 @@ const BlogCardGrid: React.FC<BlogDataDisplayProps> = ({ data }) => {
           <BlogCard
             icon={false}
             image={story.image}
+            imageAlt={story.imageAlt}
             title={story.heading}
             summary={
               story.description?.split(" ").slice(0, 7).join(" ") +

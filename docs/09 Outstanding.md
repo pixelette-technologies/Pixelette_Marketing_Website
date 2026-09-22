@@ -182,8 +182,9 @@ See [[02 Decisions]]. What it leaves open:
 - **Card titles lost their heading tags** on both hub pages — 8 and 5. An
   accessibility regression. Fix is a semantic prop on `ArrowCard`, which is
   shared with three routes, so it was raised not taken. See [[05 Components]].
-- **`/services` and `/industries` intro copy** still carries pre-brief narrow
-  positioning, contradicting the homepage. See [[07 Results and hub pages]].
+- ~~`/services` and `/industries` intro copy carries pre-brief narrow
+  positioning~~ — **closed 22 Sep.** Both pages restructured, not reworded.
+  See [[07 Results and hub pages]].
 - **`/results` meta description** is my prose and has the machine rhythm the
   Lead Generation copy was rewritten to remove. It now sits above real case
   studies whose words are management's, which makes the contrast sharper.
@@ -206,6 +207,44 @@ See [[02 Decisions]]. What it leaves open:
   11 Sep is **gone**: the file is no longer modified in the working tree. It
   was resolved at some point without this note being updated, which is the
   ordinary failure mode of a list like this one.
+
+## The sector pages — what is still open after 22 Sep
+
+- **The two testimonials are recycled across all five sector pages.**
+  BlockGuard and WebBookingPro appear **verbatim** on Web3, Fintech, Tech,
+  SaaS and AI, so the AI page proves its AI credentials with a DeFi launch
+  quote and a hotel-booking quote. Assign them honestly and Web3 keeps
+  BlockGuard, SaaS arguably keeps WebBookingPro, and **Fintech, Tech and AI
+  are left with no proof at all.** That is a deletion that leaves holes, and
+  it needs a real client reference rather than a rewrite. **The most important
+  thing on this list.**
+- **Fifteen performance figures were deleted, and some may have been real.**
+  250% whitelist sign-ups, 3x organic search, "doubling conversion rates" for
+  an AI logistics platform, and twelve more. None carried a client, a baseline
+  or a period, so none could stay. But some may have come from actual
+  campaigns that nobody wrote down — worth asking before the numbers are lost.
+  A figure with evidence behind it can go straight back.
+- **Several FAQ entries are advertisements wearing a question mark** —
+  "What makes Pixelette Marketing different from other crypto marketing
+  agencies?" is the clearest. Eight FAQ entries per sector page; not audited.
+- **`mq_1-3.webp` are still in `public/`** though nothing references them.
+  Left until the pages have been seen without them, the same treatment
+  `growthBanner.webp` got.
+
+## The contact page, after 22 Sep
+
+- **The site now has no visible postal address on any page.** The locations
+  section was removed on instruction; the phone and email survive in
+  `HowItWork` and in the `LocalBusiness` JSON-LD, the address does not.
+- **The two addresses on this site do not agree**, and this predates the
+  removal: the deleted section showed 77 Fulham Palace Road, London W6 8JA;
+  the JSON-LD in `layout.tsx` declares 71-75 Shelton Street, London WC2H 9JQ.
+  The visible half has gone and **the schema half is the one left standing** —
+  which may be the wrong one.
+- **A management note was rendering as body copy** on the live contact page,
+  as that section's standfirst: *"Show locations in a different way, not really
+  happy with how it's currently done here…"* No gate on this site reads prose,
+  so nothing had anything to say about it. Worth assuming there are others.
 
 ## The standing risk
 

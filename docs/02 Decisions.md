@@ -233,6 +233,89 @@ had already mispredicted: a figure chosen from a written description was
 rejected on sight, and a scratch comparison page flattered shapes that did not
 survive contact with the section around them.
 
+## The hub pages and the sector pages, 22 Sep
+
+### A grid of equal boxes is itself a claim
+
+Three sections were taken off a grid on the same day — eight services, five
+sectors, three market constraints — and the reason was the same each time.
+**A grid of equal boxes asserts that its contents are parallel,
+interchangeable and complete.** Five capabilities are ordered, not parallel.
+Five sectors are examples, not a boundary. Three constraints are an argument,
+not a menu. In all three cases the layout was making a claim the copy did not.
+
+Recorded as a rule in [[08 Design system constraints]]: reach for the grid
+when the items really are peers and the set really is complete.
+
+### "Digital" comes off the page, not out of the title
+
+"Digital marketing" differentiated when non-digital was the default. It now
+reads as either assumed or dated, and it narrows the offer at the moment the
+rest of the site widened it — but it is still what people type into search.
+So the h1 speaks to the reader and the title tag speaks to the crawler. The
+same split was applied on `/industries`.
+
+### Fifteen unsourced figures, against our own standard
+
+The sector pages published fifteen performance claims with no client, baseline
+or measurement period — 250% sign-ups, 3x organic search, "doubling conversion
+rates". Meanwhile BlockGuard's five figures, supplied by management **in
+writing**, are barred from the home page because nobody has stated the window
+they cover.
+
+**The site was applying a stricter standard to its true numbers than to its
+unverified ones.** That comparison, rather than the wording, is what settled
+it. Each figure sat under a genuine reader-problem question, so the questions
+were kept and only the fabricated result was replaced — with a description of
+approach, which claims no outcome and so needs no substantiation.
+
+### Competitor pages were read before the copy was written
+
+Click Consult's Sector Specialisms pages, The Marketing Practice, and Bray
+Leino's healthcare page. Three findings changed what was written:
+
+1. **The h1 is the sector name.** Literally `B2B`. Literally `Healthcare`.
+   Not one said "We are a [sector] marketing agency", which is exactly how all
+   five of ours opened.
+2. **The first paragraphs belong to the reader's problem.** Click's healthcare
+   page spends two paragraphs on regulation, YMYL and data-protection limits
+   before it says "we" once. **Knowing the constraint is the credential** — it
+   never has to be asserted.
+3. **Proof is checkable or absent.** Click gave a section to a ranking and
+   published the unflattering number: *54th of over 100 agencies*. Bray Leino
+   ships a credible sector page in about **120 words** with no adjectives at
+   all — a date, a membership, five logos, two case studies.
+
+Ours were **~4,300 words each**. The length was padding, not depth, and the
+padding is where the fifteen figures and the recycled testimonials lived.
+
+One deviation, deliberate: they use the bare noun as h1 and have the domain
+authority to rank on it. Ours keep the discipline — "Web3 marketing" — because
+it is the only h1 on the page.
+
+### What we could not write, and did not
+
+Five differentiated sector summaries were planned and abandoned. Looking for
+material to write from turned up **Tech and SaaS carrying a byte-identical
+service sentence**, and only Web3 with genuinely sector-specific substance. So
+writing five distinct summaries would have meant inventing sector claims for
+four sectors the pages beneath do not support — Trap 01, arrived at from a new
+direction. The templated filler was removed instead of being replaced with
+better-sounding filler.
+
+The same logic decided the testimonials: assigning them honestly leaves three
+pages with no proof, and **that hole is the finding**. It is recorded in
+[[09 Outstanding]] rather than papered over.
+
+### A section that described the website
+
+The first attempt at the sector list on `/industries` read: *"These five have
+their own page. They are where we have written the most, not the limits of
+where we work."* It was rejected on sight — **no agency writes about its own
+page structure**, and it read as an apology for a short list rather than as a
+statement about the work. Worth keeping as a failure mode: when a section is
+hard to justify, the temptation is to explain the site instead of the offer.
+
 ## Reversals of earlier recorded decisions
 
 The brief overruled three Phase A–F decisions. Each is recorded in the

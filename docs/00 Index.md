@@ -57,6 +57,16 @@ and at 390px, and looking at it produced three faults every gate had passed.
 See [[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]] and
 [[10 Verification]].
 
+**22 Sep, same day** — `/services` and `/industries` restructured and the
+five sector pages taken off their unsubstantiated claims. Eight service boxes
+became five capabilities, "Industries We Serve" became "Who we help", and
+**fifteen unsourced performance figures** came off the sector pages — which
+the site was publishing while barring BlockGuard's real, management-supplied
+numbers from the home page. Competitor sector pages were read in full to
+settle how it should be written. See [[02 Decisions]],
+[[07 Results and hub pages]], [[08 Design system constraints]],
+[[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band and

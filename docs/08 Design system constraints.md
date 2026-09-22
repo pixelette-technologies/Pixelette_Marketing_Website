@@ -78,6 +78,27 @@ row and its track count still falls to two and then one on its own.
 figures, under its own class, and still has the trailing-row stretch. Same
 shape, same fault, not yet taken — see [[09 Outstanding]].
 
+## Rows on a hairline — the third layout idiom, 22 Sep 2026
+
+Three call sites now share one shape: a list of short titled statements,
+separated by hairlines, each a flex row with a basis that folds on its own.
+
+- `.capabilityList` — the five capabilities on `/services`
+- `.sectorList` — the five sectors on `/industries`
+- `.constraintList` — the three market constraints on each sector page
+
+All three replaced a grid of equal boxes, and for the same reason each time:
+**a grid of equal boxes makes a claim about its contents** — that they are
+parallel, interchangeable, and a complete set. Five capabilities are ordered,
+not parallel. Five sectors are examples, not a boundary. Three constraints are
+an argument, not a menu.
+
+The rule that follows: reach for the grid when the items really are peers and
+the set really is complete. Otherwise use rows.
+
+**This is the third idiom and it should be the last.** If a fourth wants to
+exist, that is the point to ask whether one of the three already says it.
+
 ## Colour is contextual, never a prop
 
 The cautionary tale is `ArrowCard`'s `theme` boolean: switching colour from a

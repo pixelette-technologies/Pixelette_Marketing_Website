@@ -47,14 +47,67 @@ grid. Inline styles 7 → 0 on both. **Content untouched** — headings,
 standfirsts, both JSON-LD blocks, metadata, and every card title and summary,
 all verified present on the rendered pages.
 
-### They still carry pre-brief positioning
+### The pre-brief positioning is gone — 22 Sep
 
-Both open with the narrow framing the brief exists to replace — *"emerging
+Both opened with the narrow framing the brief exists to replace — *"emerging
 Fintech, SaaS, Web3 and technology brands"* and *"the sectors we understand
-best"* — while the homepage now says the offer is **not limited to those
-categories**. The brief does not cover these pages, and the instruction was to
-restyle without changing content, so the contradiction is live. See
-[[09 Outstanding]].
+best"* — while the homepage says the offer is **not limited to those
+categories**. Logged here as live from 11 Sep. Closed on 22 Sep, on
+instruction, and both pages were restructured rather than reworded.
+
+## `/services` — five capabilities, not eight boxes
+
+The hub sold **eight flat services** in a grid of eight equal cards while the
+home page sold **five connected capabilities**. One offer, two shapes, and the
+grid was the weaker: eight near-identical cards of near-identical prose, each
+ending in its own "View More", read as a menu rather than as a capability.
+
+**The copy is imported, not restated.** `capabilityGroups.ts` takes every
+title and description from `growthSystemData` — the objects the home page
+already renders. Holding the wording in two files is how the two pages came to
+disagree; the new file owns only the mapping of service page to capability.
+
+**Strategy & Positioning renders with no links, deliberately.** There is no
+strategy page because strategy is not bought off a menu. The block ships
+without the link row rather than inventing a destination.
+
+**Nothing was orphaned**, and that decided the shape. Stripping the per-card
+links for a single CTA would have cut roughly **34,000 words** of indexed
+content off the internal link graph — measured before deciding: each service
+page carries about 4,300 words against the hub's 850. The pages are not thin,
+they are **templated**, which is a different fault with a different fix.
+
+The h1 is "What we do". "Digital" comes off the visible page and stays in the
+title tag, where the search intent lives.
+
+## `/industries` — who we help, not the industries we serve
+
+Same day, and the contradiction here was sharper. The home page's Who we help
+section names **eleven markets**, closes on "And beyond", and **links here**
+from "Find your growth route" — landing on "the sectors we understand best"
+over five technology cards. The site widened its claim and withdrew it one
+click later, on the click it had just invited.
+
+Range first, then depth: the eleven markets, the approved positioning pair,
+then the five sectors with a line each about what makes that market hard.
+
+**The five card summaries were one sentence five times with the noun swapped**
+— "Partner with Pixelette Marketing to [verb] your [sector] … build trust …
+drive growth". That is the thin-content signal itself, and a sentence about
+what makes a market difficult cannot be written that way, because markets are
+not alike.
+
+**Written against what UK agencies actually do.** Click Consult's Sector
+Specialisms pages and The Marketing Practice were read in full. The first
+attempt at the section said *"these five have their own page … where we have
+written the most"*, which describes the WEBSITE rather than the work — no
+agency writes about its own page structure, and it read as an apology for a
+short list. Click's pattern replaced it: a heading owning the expertise rather
+than claiming a boundary, one sentence per sector about the client's market,
+and the breadth hedge given its own heading in plain speech.
+
+**Title tags changed on both**, which is a live SEO change on indexed pages.
+URLs are untouched, so nothing 404s and no redirect is needed.
 
 ## Lead Generation copy
 

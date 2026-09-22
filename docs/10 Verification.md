@@ -129,6 +129,33 @@ had already failed:
 Four throwaway variants built into the live component cost about twenty
 minutes and settled in one look what two rounds of discussion had not.
 
+## A pattern is not evidence — 22 Sep 2026
+
+The sector pages carried **fifteen unsourced performance claims**. Finding all
+fifteen took three passes, and the first two failed in ways worth keeping.
+
+**Pass one said thirteen.** The regex bounded the text after the number at 110
+characters, and one card's sentence ran longer, so it never matched. The count
+was reported as complete. **The user found the missing one by eye**, in a
+screenshot, after being told there were none left.
+
+**Pass two missed a fifteenth.** Re-run unbounded, it found the one that had
+been missed — and still could not see `"doubling conversion rates"`, because
+that claim contains no digits at all and every pattern so far had looked for
+digits.
+
+**Pass three read all fifteen card texts in full** and found it in seconds.
+
+The lesson is not "write a better regex". It is that **a grep proves presence,
+never absence**: a pattern that finds nothing has told you about the pattern,
+not about the file. Where the set is small enough to read — fifteen sentences —
+read it. Where a count is going to be reported as complete, the method has to
+be one that could have failed loudly, and a grep returning zero fails silently
+every time.
+
+This sits alongside the stale-server note above as the second way a check on
+this site has produced a confident wrong answer.
+
 ## Audit against the brief
 
 On 9 Sep the running site was checked block by block against every section of

@@ -75,14 +75,14 @@ const blogsData = [
           {
             id: 4,
             subheading: "Search",
-            image: "/blogs/blog-ai-search-banner.webp",
+            image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
             link: "/blog/4"
           },
           {
             id: 5,
             subheading: "Growth",
-            image: "/blogs/blog-spend-checks-banner.webp",
+            image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
             link: "/blog/5"
@@ -162,14 +162,14 @@ const blogsData = [
           {
             id: 4,
             subheading: "Search",
-            image: "/blogs/blog-ai-search-banner.webp",
+            image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
             link: "/blog/4"
           },
           {
             id: 5,
             subheading: "Growth",
-            image: "/blogs/blog-spend-checks-banner.webp",
+            image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
             link: "/blog/5"
@@ -249,14 +249,14 @@ const blogsData = [
           {
             id: 4,
             subheading: "Search",
-            image: "/blogs/blog-ai-search-banner.webp",
+            image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
             link: "/blog/4"
           },
           {
             id: 5,
             subheading: "Growth",
-            image: "/blogs/blog-spend-checks-banner.webp",
+            image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
             link: "/blog/5"
@@ -265,9 +265,9 @@ const blogsData = [
       },
       {
         id: 4,
-        image: "/blogs/blog-ai-search-banner.webp",
+        image: "/blogs/blog-ai-search-laptop.webp",
         imageAlt:
-          "A stack of fading search results beside a single highlighted answer block.",
+          "A laptop showing an AI search assistant asking what do you want to know.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
         updateDate: "Sep 22, 2026",
@@ -344,7 +344,7 @@ const blogsData = [
           {
             id: 5,
             subheading: "Growth",
-            image: "/blogs/blog-spend-checks-banner.webp",
+            image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
             link: "/blog/5"
@@ -353,9 +353,9 @@ const blogsData = [
       },
       {
         id: 5,
-        image: "/blogs/blog-spend-checks-banner.webp",
+        image: "/blogs/blog-marketing-spend-banner.webp",
         imageAlt:
-          "Five numbered markers along one line, the first picked out in crimson.",
+          "Two colleagues reviewing printed charts and a laptop graph together.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Temur Khan",
         updateDate: "Sep 22, 2026",
@@ -433,7 +433,7 @@ const blogsData = [
           {
             id: 4,
             subheading: "Search",
-            image: "/blogs/blog-ai-search-banner.webp",
+            image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
             link: "/blog/4"
           }

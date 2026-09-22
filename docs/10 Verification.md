@@ -260,4 +260,41 @@ motion, real devices as opposed to an emulated viewport, and the page under a
 production build.
 
 
+## 21 Sep — verifying a commit that is only part of the tree
+
+Two sessions were working in this repo at once, and `homeContent.ts` ended up
+holding three authors' work: the Who we help rebuild, a punctuation pass, and
+the other session's move of the AI section out of `ItemsSection`, which
+retyped `aiTechnologyData` in the same file. Committing Who we help alone
+would have left the committed `page.tsx` passing that data to `ItemsSection`,
+so the commit had to carry work nobody had asked for a review of.
+
+**The gates could not see the problem, because the gates run on the working
+tree.** Everything passed — types, lint, the token gate, the build, 35/35
+routes — while the thing actually being committed was a subset that had never
+been compiled by anything.
+
+**What settled it was checking the subset out as its own tree.** A worktree at
+HEAD, the candidate file set copied in, and tsc, the token gate and sass run
+there. Two notes for the next person who does this:
+
+- `next build` will NOT run in a worktree whose `node_modules` is a junction.
+  Turbopack rejects a symlink pointing outside the project root and panics.
+  Sass was run directly against `main.scss` instead, which is the part of the
+  build a missing partial would break.
+- Remove the junction with `cmd //c rmdir`, never `rm -rf`, which follows it
+  and would take the real `node_modules` with it.
+
+**It caught one.** The first attempt omitted
+`src/scss/component/ui/home/_index.scss`, so the new AI section's stylesheet
+was never forwarded and not one of its rules reached the output. **Sass did
+not error.** A partial nobody forwards is not a failure, it is simply absent,
+so this would have shipped as a section with no styles and nothing in any log
+to say so. The check that found it is grepping the compiled CSS for one class
+from each new partial.
+
+**The rule worth keeping:** when a commit is a subset of a dirty tree, the
+working tree passing its gates proves nothing about the commit. Check the
+subset out and run the gates against that.
+
 Related: [[08 Design system constraints]], [[09 Outstanding]]

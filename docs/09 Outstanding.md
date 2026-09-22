@@ -120,28 +120,50 @@ things it leaves open:
   to keeping text inside the viewBox. Moving the labels to HTML would pin
   them, at the cost of positioning them over the svg by hand.
 
-## In the working tree, uncommitted (21 Sep)
+## The punctuation pass is committed, and still broken (22 Sep)
 
-Recorded because it is easy to lose and easier to commit by accident:
+**This was recorded on 21 Sep as sitting uncommitted. It is now live.** The
+pass took trailing full stops off every heading, which is fine and now
+consistent, and removed every hyphen used as a dash, which left six sentences
+reading as dropped words. None has been fixed; they went into `main` inside
+`041baa9` and `15a0bed`.
 
-- **A punctuation pass** over `homeContent.ts`, `ContactUsForm.tsx` and
-  `caseStudies.ts` — trailing full stops off headings, and every hyphen used
-  as a dash removed. The full stops are fine. The dash removal left about six
-  sentences reading as dropped words: "the growth constraint **not** a
-  predetermined channel", "more measurable **not** become the pitch", "the
-  channels that matter most **connecting** strategy", "the outcome **with**
-  client evidence", "the delivery capacity you need **without** the
-  recruitment overhead", and the form's "Thanks **your** message has been
-  sent". Each needs a comma, a colon, or the dash back.
-- The same pass sets `proofCopy.eyebrow` to a single space, which renders an
-  empty element rather than no eyebrow, and changes the heading to
-  "Organisation we have worked with", singular. It also reverses the 11 Sep
-  "Trusted by" decision recorded in [[02 Decisions]], which was taken after
-  management confirmed logo permissions.
-- **A new `header='aside'` layout option on `ItemsSection`**, applied to "Why
-  Pixelette" on the home page — around 110 lines across the component and
-  `_itemsSection.scss`. Passes lint, types and the token gate. Not reviewed
-  here, and not seen in a browser.
+| Where | Reads |
+|---|---|
+| `homeContent.ts:78` | the growth constraint **not** a predetermined channel |
+| `homeContent.ts:202` | more measurable **not** become the pitch |
+| `homeContent.ts:317` | the outcome **with** client evidence wherever it is available |
+| `homeContent.ts:365` | the channels that matter most **connecting** strategy |
+| `homeContent.ts:371` | the delivery capacity you need **without** the recruitment overhead |
+| `ContactUsForm.tsx:259` | Thanks **your** message has been sent |
+
+Each needs a comma, a colon, or the dash back. The last is the sentence every
+visitor who successfully submits the enquiry form is shown.
+
+**Also live from the same pass:** `proofCopy.eyebrow` is a single space, which
+renders an empty element rather than no eyebrow, and the proof heading is
+"Organisation we have worked with", singular. That heading reverses the 11 Sep
+"Trusted by" decision recorded in [[02 Decisions]], which was taken after
+management confirmed logo permissions.
+
+## Who we help, after the rebuild (21 Sep)
+
+- **Eleven named markets is a claim, and nobody has signed it off.** The field
+  names Technology & Software, Financial Services, Professional Services,
+  Consumer & Retail, Property & Real Estate, Healthcare & Wellness, Education,
+  AI & Emerging Technology, Startups & Scale-ups, Web3 & Digital Assets and
+  B2B Services. "And beyond" keeps the list open, but the eleven still assert
+  markets Pixelette will say it works in. Management cleared the three
+  engagement descriptions and both case studies; they have not seen this.
+- **"Discuss the right engagement" is my copy** — the CTA that replaced the
+  three per-engagement links — and is the only line in that section management
+  has not supplied.
+- **The per-engagement sales signal is gone and cannot be recovered from one
+  control.** See [[02 Decisions]]. Sales can no longer tell from the
+  notification email which engagement a visitor came in on.
+- **The section has never been seen below 767px**, which is exactly where its
+  layout changes: the field becomes a column and every third mark pulls right.
+  That branch has been reasoned about and not once observed.
 
 ## The About page (22 Sep)
 

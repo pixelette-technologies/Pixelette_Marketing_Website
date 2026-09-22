@@ -513,4 +513,71 @@ gate passes and `src/data/aboutus/ourTeamData.ts` left the exemption list with
 the file. The page was rendered and read at 1440px and at 390px, which is more
 than most of this site can still say — see [[10 Verification]].
 
+## Who we help stops being a sector list, 21 Sep
+
+**The four sector cards are gone, and the reason is positioning rather than
+design.** AI & Software, FinTech, Web3 & Digital Assets and Technology &
+Platforms, each with a summary and a View More into a near-identical industry
+page. Four technology sectors, boxed and equal and presented as a set, read as
+a client boundary — this is what Pixelette does and nothing else — while the
+standfirst beneath them spent its words saying the offer was not limited to
+those categories. A sentence arguing against the layout above it loses.
+
+**A longer list would have made the same claim.** Twelve cards say what four
+say, only at greater length. What replaces them is a typographic field rather
+than a bigger grid: eleven markets set at three scales on one baseline, no
+box, no summary, no link, so the group reads as range rather than as a menu.
+
+**Nothing in the field links anywhere, and `to` is gone from the data shape.**
+The industry pages still exist and are still reachable from the nav and from
+`/industries`; they are simply not what this section is for. Removing the
+field rather than leaving it empty is the point — a field left sitting there
+is one a future edit fills without deciding to.
+
+**"And beyond" is inside the list, not after it.** It is the sentence the list
+would otherwise fail to say, so it is the last thing read rather than a
+footnote to the eleven marks it qualifies.
+
+**The composition is not positioned by hand.** It is a wrapping flex row, so
+the marks break wherever the width runs out and the asymmetry comes from the
+reflow. Add a market, rename one, and it reflows instead of breaking, which is
+the only version of this that survives a copy edit. Every size is a clamp, so
+the field needs no breakpoint of its own; the stylesheet's single 767px turns
+it into a column where every third mark pulls right.
+
+**Hover has no focus pair, because there is nothing to focus.** The marks are
+list items, not links. Putting `tabindex` on eleven inert words to make a
+colour change reachable would add eleven stops to the keyboard path and return
+nothing for them. Hover lifts a mark 2px into the brand tone and does nothing
+else: these are not controls and must not start looking like them.
+
+**The stages lose their doubled gap**, on the user's instruction from a
+rendered page. It was `calc(--sec-y-sm * 2)`, preserving the distance a
+hairline used to occupy between the sector cards and the stages. With the
+hairline gone and now the cards gone too, that was inherited machinery rather
+than a judgement, so the section has one interval between its groups instead
+of two.
+
+**Eleven named markets is itself a claim, and nobody has signed it off.** See
+[[09 Outstanding]].
+
+## One control on Ways to work with us, 21 Sep
+
+The three engagement cards each carried their own CTA into a seeded form —
+`?enquiry=diagnostic`, `=managed`, `=embedded` — and they are replaced by a
+single section CTA beneath the closing line.
+
+**What it costs is not recoverable, which is why it is written down.**
+`ENQUIRY_SEEDS` seeded the message box with "I would like to request a Growth
+Diagnostic" and its two siblings — visible, editable, and travelling in a
+field the notification email already renders — so sales could see which
+engagement a visitor came in on. The three keys and their URLs still work if
+one is bookmarked, but nothing on the site links them any more. A single
+control cannot keep the signal: picking one of the three answers a question on
+the visitor's behalf, which is the decision [[06 The enquiry form]] records,
+and a fourth seed would describe none of them.
+
+**The label is mine** and is the only copy in that section management has not
+supplied. See [[09 Outstanding]].
+
 Related: [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]

@@ -19,12 +19,12 @@
 }
 
 // --- 1. The grid ------------------------------------------------------------
-// Theirs is 1.6fr + two columns. Ours is 1.6fr + three: What We Do and Who We
-// Help are both crawl paths to indexed pages, so neither folds into the other.
-// The brand column keeps their 1.6 weighting.
+// 1.6fr + two, which is now the same shape as theirs. It was 1.6fr + three
+// until 22 Sep 2026, when the Who We Help column came out on instruction and
+// What We Do became Services. The brand column keeps their 1.6 weighting.
 .footerGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
   gap: 2.5rem 1.75rem;
 
   & > div {
@@ -227,9 +227,11 @@ a.groupband__name:hover {
 }
 
 // --- The one fold -----------------------------------------------------------
-// Brand across the top, the three link columns beneath it two across, the
+// Brand across the top, the two link columns beneath it side by side, the
 // group band stacked. Theirs goes to one column at 560px; at this site's
 // single breakpoint two columns of short links still fit a phone comfortably.
+// Since 22 Sep the two columns are the whole set rather than three wrapping
+// into a 2x2, so the fold now costs nothing.
 @media only screen and (max-width: 767px) {
   .footerGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

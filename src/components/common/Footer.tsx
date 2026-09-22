@@ -5,7 +5,6 @@ import ManageCookies from "./ManageCookies";
 import Link from "next/link";
 import { MdArrowOutward } from "react-icons/md";
 import { servicesData } from "@/data/services/servicesData";
-import { industriesData } from "@/data/industries/industriesData";
 
 // --- 18 Sep 2026: the group footer ------------------------------------------
 // Rebuilt to the structure of the Pixelette Technologies footer, so the sister
@@ -19,11 +18,18 @@ import { industriesData } from "@/data/industries/industriesData";
 //
 // WHERE IT DELIBERATELY DIFFERS, and why:
 //
-// - TWO SERVICE COLUMNS, not one. Theirs has three services under "Services";
-//   ours has eight services AND five sectors, and both lists are crawl paths to
-//   thirteen indexed pages. The columns keep the brief's labels, What We Do and
-//   Who We Help, over unchanged URLs. So the grid is brand + three, not
-//   brand + two.
+// - ONE SERVICE COLUMN, headed Services, and the grid is brand + two.
+//   22 Sep 2026, on instruction. It was two columns, What We Do over the eight
+//   service pages and Who We Help over the five sector pages, and the label
+//   pair came from the brief. The sector column is gone and the remaining
+//   column takes the plain noun.
+//
+//   WHAT THAT COSTS, so nobody has to rediscover it: the five sector pages
+//   /industries/web_3, fintech, tech, saas and ai were linked from every page
+//   on the site by this column and are now reachable only from the nav and
+//   from /industries. They are still in the sitemap and still indexed; they
+//   have simply lost their site-wide internal links. Strategy & Positioning
+//   moves the other way and gains its first footer link.
 //
 // - THE COMPANY COLUMN CARRIES ONLY PAGES THAT EXIST. Theirs lists Privacy
 //   Statement, Terms, Modern slavery and Accessibility. This app has none of
@@ -126,30 +132,22 @@ export default function Footer() {
 
           <div>
             <Heading className='eyebrow' level={2}>
-              What We Do
+              Services
             </Heading>
             <ul className='footerList'>
+              {/* Strategy & Positioning leads the column because it is 01 of the
+                  five capabilities on /services and the eight service pages
+                  beneath it all assume it. The href is a literal rather than
+                  DIAGNOSTIC_HREF from @/data/strategy: that module is being
+                  rewritten, and the footer should not wait on it. */}
+              <li>
+                <Link href='/strategy-positioning' className='flink small'>
+                  Strategy & Positioning
+                </Link>
+              </li>
               {servicesData.map(el => (
                 <li key={el.route}>
                   <Link href={`/services/${el.route}`} className='flink small'>
-                    {el.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <Heading className='eyebrow' level={2}>
-              Who We Help
-            </Heading>
-            <ul className='footerList'>
-              {industriesData.map(el => (
-                <li key={el.route}>
-                  <Link
-                    href={`/industries/${el.route}`}
-                    className='flink small'
-                  >
                     {el.title}
                   </Link>
                 </li>

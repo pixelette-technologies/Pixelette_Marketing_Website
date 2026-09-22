@@ -366,3 +366,52 @@ navbar, so it is on all 36 routes, and nobody has seen it before because
 nobody had looked at this site at tablet width.
 
 Related: [[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]]
+
+
+## 22 Sep — a subset commit when the shared index is not yours
+
+The 21 Sep entry above says that when a commit is a subset of a dirty tree,
+the working tree passing its gates proves nothing about the commit. This adds
+the failure mode one step earlier, in the index rather than the gates.
+
+**Three sessions were in this repo at once.** Preparing the company-identity
+commit, `git status` was read twice a few minutes apart. The second read
+showed the strategy page's entire change — 25 files, about 2035 lines —
+**staged in the shared index**, with `HEAD` unmoved. `git commit` at that
+moment would have committed all of it under this commit's message. The index
+is one file shared by every session in the working copy; it is not private to
+whoever staged last.
+
+Two things follow, and the second is the less obvious one:
+
+- **`git add` then `git commit` is a race.** Anything another session stages
+  between the two lands in the commit. `git commit --only -- <paths>` closes
+  it: it commits those paths from the working tree and ignores the index
+  entirely, so it cannot matter what else is staged or when.
+- **Do NOT route around it with a private index.** `GIT_INDEX_FILE` plus
+  `commit-tree` and `update-ref` looks like the careful answer and is the
+  dangerous one. It moves the branch while the other session's index still
+  holds a snapshot taken against the OLD `HEAD`; their next `git commit` then
+  writes that stale tree on top and **silently reverts** the files you just
+  committed, because for those paths their index still holds the pre-commit
+  content. Keeping the shared index in step with `HEAD`, which ordinary
+  `commit`/`commit --only` does, is what makes coexistence safe.
+
+The same reasoning rules out `git reset`, `git stash` and `git checkout --`
+while another session is working: each of them edits state that is not yours.
+
+**What to do instead is wait.** A staged index means somebody is mid-commit.
+Theirs landed as `6ec1eeb` while the subset worktree was being set up, the
+index cleared itself, and the commit went in afterwards against a tree whose
+only other dirty files belonged to a third session and were left alone.
+
+**The subset check itself found nothing this time**, which is worth recording
+as much as the time it did. HEAD plus five files as a detached worktree; tsc,
+eslint, the token gate and sass all green, and `.legal--identity` present in
+the compiled CSS. The change added no new partial, which is the one thing that
+check exists to catch, so a clean result was the expected result. The junction
+came off with `cmd //c rmdir` before `git worktree remove` ran, since that
+command removes the tree with the recursive delete the 21 Sep entry warns
+about.
+
+Related: [[02 Decisions]], [[09 Outstanding]]

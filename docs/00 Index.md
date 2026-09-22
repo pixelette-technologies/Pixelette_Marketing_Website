@@ -126,6 +126,24 @@ committed under someone else's message. The rule that came out of it is in
 staged — and unstaged is no safer, because a commit run with `-a` takes that
 too.
 
+**22 Sep, fifth change of the day** — `/strategy-positioning` cut from seven
+sections to three, on instruction. The six-dimension wave moved out of the hero
+and into the dark band, replacing the six-stage spine that was there; what a
+full engagement produces, the illustrative framework, the closing call to
+action and the FAQ were all removed. **The page now has no call to action for a
+visitor who does not take the diagnostic** — that was the closing section's
+job — which is the top item in [[09 Outstanding]].
+
+The move exposed a bug that had shipped and had already survived a screenshot
+review: **the wave's circles were its path's mirror image below 768px**, caught
+by comparing the two formulae rather than by looking. The figure also gained a
+hover ripple, which is the site's **fifth motion surface and its first on
+hover**, against a rule `_surfaces.scss` states outright — so it is registered
+there as an exception rather than left looking like an oversight. Trailing full
+stops came off every heading on the page, restoring the 21 Sep rule this page
+had been the only thing breaking. See [[02 Decisions]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band, the

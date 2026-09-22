@@ -200,10 +200,16 @@ The two sanctioned track minimums are 17rem, which seats four against the
 1160px wrap, and 18rem, which caps at three. A SIX-item set fits neither: on
 17rem it gives four and an orphaned pair.
 
-`/strategy-positioning`'s outputs section declares a 21rem track in its own
-partial, which seats exactly three, so six land as 3 + 3 and fall to 2 + 2 + 2
-and then one column. The sample framework's four blocks declare 24rem, which
-seats two, so they land 2 x 2 with no orphan.
+`/strategy-positioning` declared two of them: a 21rem track for a six-item
+set, which seats exactly three so the six landed 3 + 3 and fell to 2 + 2 + 2
+and then one column, and a 24rem track for a four-item set, which seats two so
+they landed 2 x 2 with no orphan.
+
+**BOTH SECTIONS WERE DELETED ON 22 SEP 2026**, hours after they were written,
+so neither track exists in the codebase any more. The note stays because the
+ARITHMETIC is the reusable part and it is the thing nobody wants to re-derive:
+against the 1160px wrap, 17rem seats four, 18rem three, 21rem three with room,
+24rem two. Recover the partials from `291592f` if either shape is wanted back.
 
 **Neither is a new idiom.** They are the same auto-fit mechanism with the one
 number their item count needs, and they live with their sections rather than
@@ -235,3 +241,33 @@ background fills and six scales print as empty outlines.
 It also hides `.cookie-banner`, which is NOT scoped to this page. A fixed
 overlay printing across the content is wrong everywhere, and this is the only
 print stylesheet the site has. See [[09 Outstanding]].
+
+## Motion on hover — one exception, and it is written down — 22 Sep 2026
+
+`_surfaces.scss` states it plainly: "NONE OF THIS LICENSES MOTION ON HOVER.
+Hover still changes border colour only — no lift, no shadow, no scale."
+
+The six-dimension wave on `/strategy-positioning` now breaks that. Hovering a
+circle sends a ring out of it on a loop — a scale on hover, asked for directly.
+It is registered at the top of `_surfaces.scss` as the **fifth motion
+surface**, beside the logo marquee, the hero parallax, the scroll reveal and
+the scroll-driven strip, because Trap 10 says a motion surface documented
+anywhere else gets read as leftover decoration and deleted by the next pass.
+
+**What makes an exception here survivable, and the test to apply to the next
+one:**
+
+1. **It carries no information.** All six names are already set in text beside
+   their circles, so touch — which gets no hover at all — and keyboard lose
+   nothing by never seeing it. Nothing appears on hover that is not already on
+   the page, which is the rule the home page's growth figure is held to.
+2. **It stops under a reduce preference**, and that was verified by emulating
+   the preference and reading `getAnimations()`, not by trusting the media
+   query.
+3. **It changes no cursor.** The circles are not links and there is nowhere for
+   them to go; a pointer would promise an action that does not exist. A hover
+   effect that implies clickability on something inert is a worse fault than
+   the motion rule it breaks.
+
+The rule itself is NOT withdrawn. This is one call site with a stated reason,
+not a licence for the next card grid.

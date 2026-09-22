@@ -207,11 +207,16 @@ Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]
 
 ## The strategy components, rebuilt 22 Sep
 
-`src/components/ui/strategy/` — eight, of which **two hydrate**.
+`src/components/ui/strategy/` — six, of which **one hydrates**.
 
-Server: `StrategyHero` (with `DimensionWave`), `Methodology`,
-`DiagnosticSection`, `StrategyOutputs`, `SampleOutput`, `StrategyFaq`.
-Client: `StrategyDiagnostic` (with `DiagnosticResults`), `StrategyClose`.
+Server: `StrategyHero`, `Methodology` (with `DimensionWave`),
+`DiagnosticSection`.
+Client: `StrategyDiagnostic`, with `DiagnosticResults`.
+
+**IT WAS EIGHT, AND TWO HYDRATED.** `StrategyOutputs`, `SampleOutput`,
+`StrategyFaq` and `StrategyClose` were deleted on instruction on 22 Sep 2026
+along with the four sections they rendered, and `DimensionWave` moved from the
+hero into the methodology band. All four are recoverable from `291592f`.
 
 **`DiagnosticSection` exists to keep the copy in the HTML.** It is a server
 component that owns the section, its real `<h2>`, the visual heading and the
@@ -227,15 +232,17 @@ from "twelve unanswered questions", which are the same answer array and very
 different situations. Stored answers arrive through `useSyncExternalStore`
 rather than an effect; see [[02 Decisions]].
 
-**`StrategyClose` is a client component for one boolean.** Its primary control
-reads "Start the diagnostic" or "Review my results", and it never restarts
-anything — both labels point at the same anchor. It reads the same external
-store the diagnostic writes, which is cheaper than a provider for one value
-and keeps the page itself a server component.
+**`StrategyClose` and `StrategyFaq` are gone**, and the two things they
+demonstrated are worth keeping even though the code is not. The close was a
+client component **for one boolean** — its label read "Start the diagnostic"
+or "Review my results" and it never restarted anything — and it got that
+boolean by reading the same external store the diagnostic writes, which is
+cheaper than a provider for one value and keeps the page itself a server
+component. The FAQ reused the shared `Faqs` and `Accordion` unchanged, which
+cost nothing because `Accordion` is already converted.
 
-**`Faqs` and `Accordion` are reused unchanged.** Accordion is already
-converted — real button, `aria-expanded`, panel always in the DOM, card tokens,
-hover on the border only — so the FAQ brings no legacy classes with it. This
-page adds a header and nothing else.
+The pattern to reuse is the first one: **a whole page can stay a server
+component while one label reacts to client state**, as long as the state lives
+in an external store both can read.
 
 Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]

@@ -3,7 +3,9 @@ import { Heading, Text } from "../feature";
 import Container from "./Container";
 import ManageCookies from "./ManageCookies";
 import Link from "next/link";
-import { MdArrowOutward } from "react-icons/md";
+// Used only by the group band, which is temporarily hidden — see the
+// TEMPORARILY HIDDEN block below. Restore this import with it.
+// import { MdArrowOutward } from "react-icons/md";
 import { servicesData } from "@/data/services/servicesData";
 
 // --- 18 Sep 2026: the group footer ------------------------------------------
@@ -14,6 +16,9 @@ import { servicesData } from "@/data/services/servicesData";
 //      over a <ul>.
 //   2. The group band: "Part of Pixelette Group", an intro, and the four group
 //      companies with this one marked "You are here".
+//      TEMPORARILY HIDDEN since 22 Sep 2026 — commented out in place, on
+//      instruction, and expected back. The footer is brand grid then legal
+//      line until it returns.
 //   3. The legal line.
 //
 // WHERE IT DELIBERATELY DIFFERS, and why:
@@ -56,6 +61,11 @@ import { servicesData } from "@/data/services/servicesData";
 // way. The intro is their sentence with the company name swapped, minus a
 // clause about engineering that only makes sense on their site.
 
+/* TEMPORARILY HIDDEN — 22 Sep 2026, on instruction. Kept, not deleted; the
+   band is expected back. Restore this const, the MdArrowOutward import above
+   and the JSX block marked with the same words, and change nothing else.
+   `.groupband` rules stay in _footer.scss untouched.
+
 const GROUP = [
   {
     name: "Pixelette Marketing",
@@ -78,6 +88,8 @@ const GROUP = [
     what: "Compliance readiness, cyber assurance, privacy, AI governance and ongoing compliance support."
   }
 ];
+
+*/
 
 export default function Footer() {
   return (
@@ -199,6 +211,13 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* TEMPORARILY HIDDEN — 22 Sep 2026, on instruction. Commented rather
+            than deleted because it is expected back. Restore this block, the
+            GROUP const and the MdArrowOutward import, all three marked with
+            these words. Nothing else was changed for it: `.groupband` and its
+            children are still in _footer.scss, and `GROUP` is still the only
+            place the four companies are described.
+
         <section className='groupband' aria-labelledby='group-heading'>
           <div className='groupband__intro'>
             <h2 id='group-heading' className='h4'>
@@ -236,15 +255,31 @@ export default function Footer() {
           </ul>
         </section>
 
+        */}
+
+        {/* The identity row, matched to the Technologies footer: five
+            discrete items across two blocks, one ranged left and one right,
+            and NO copyright line — theirs carries none.
+
+            THE NUMBERS ARE TECHNOLOGIES' OWN, on their own site: company
+            11716825, 77 Fulham Palace Road and VAT GB 432 2377 17 all appear
+            in their footer under 'Pixelette Technologies Ltd'. They were
+            supplied to this site on 22 Sep for Pixelette Marketing, and the
+            entity NAME was the one thing not supplied, which now looks like
+            the reason. Either Marketing trades under Technologies Ltd or the
+            wrong entity's details were handed over. Nothing is invented here:
+            the name is written as the rest of the site writes it, with no
+            suffix, until someone confirms which. See [[09 Outstanding]]. */}
         <div className='footerLegal'>
-          <Text className='legal'>
-            © 2026 Pixelette Marketing. All rights reserved.
-          </Text>
-          <Text className='legal legal--identity'>
-            Pixelette Marketing is registered in England and Wales, company
-            number 11716825. Registered office: 77 Fulham Palace Road, London
-            W6 8JA. VAT GB 432 2377 17.
-          </Text>
+          <p className='legal footerId'>
+            <span>Pixelette Marketing</span>
+            <span>Registered in England and Wales</span>
+            <span>Company number 11716825</span>
+          </p>
+          <p className='legal footerId footerId--end'>
+            <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>
+            <span>VAT GB 432 2377 17</span>
+          </p>
         </div>
       </Container>
     </footer>

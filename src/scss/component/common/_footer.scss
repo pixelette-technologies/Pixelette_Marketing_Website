@@ -34,9 +34,33 @@
     min-width: 0;
   }
 
+  // Matched to the Technologies footer, 22 Sep 2026. Theirs sets the column
+  // heading at 10.5px / 500 / .14em; ours was 11px at the .eyebrow default
+  // weight and .18em, which read heavier and wider than theirs.
   .eyebrow {
     margin-bottom: 0.75rem;
+    font-size: 0.65625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
   }
+}
+
+// --- The link rows ----------------------------------------------------------
+// THE ROW HEIGHT IS THE SPACING. Neither footer puts a gap on the list; the
+// anchor's own min-height is what separates one link from the next. Theirs is
+// 34px and .flink is 44px, which is where the extra air between our nav links
+// came from — 10px per row, and with eight rows in the Services column that is
+// 80px of drift by the bottom of it.
+//
+// SCOPED TO THE FOOTER, deliberately. .flink is shared with Navbar.tsx, and
+// the header's targets are not part of this. 34px still clears WCAG 2.2 AA,
+// whose Target Size (Minimum) floor is 24px; it gives up the 44px AAA-level
+// target the primitive was chosen for. That is the trade the match costs and
+// it is recorded rather than absorbed.
+.site-footer .flink,
+.site-footer .footerList__button {
+  min-height: 34px;
+  font-size: 0.875rem;
 }
 
 .footerList {
@@ -74,6 +98,8 @@
   & > .small {
     margin-top: 1.25rem;
     max-width: 34ch;
+    // 14px, as theirs. .small is 13px site-wide and stays that way.
+    font-size: 0.875rem;
     color: var(--color-footer-body);
   }
 }
@@ -83,7 +109,7 @@
 
   & > svg {
     display: block;
-    height: 2rem;
+    height: 3rem;
     width: auto;
   }
 }
@@ -130,10 +156,15 @@
   & > .h4 {
     color: var(--color-page);
     margin-bottom: 0.875rem;
+    // 19px against the .h4 scale's 18px, and theirs tightens the tracking.
+    font-size: 1.1875rem;
+    letter-spacing: -0.01em;
   }
 
   & > .small {
     max-width: 46ch;
+    font-size: 0.875rem;
+    line-height: 1.65;
     color: var(--color-footer-body);
   }
 }
@@ -209,19 +240,38 @@ a.groupband__name:hover {
   gap: 0.75rem 1.5rem;
 }
 
-// The identity is the quieter of the two: it is there to be found, not read.
-// It takes the remaining width of the row and sits right, falling to the left
-// once it has wrapped onto its own line. Tone is already handled — .footer
-// .legal in _surfaces.scss sets the mono face and the muted colour, and at
-// two classes it outranks anything this single-class rule could say about
-// colour, so this rule confines itself to the box.
-.legal--identity {
-  flex: 1 1 22rem;
+// The identity, matched to the Technologies footer on 22 Sep 2026. It was one
+// prose sentence ranged right beside a copyright line. Theirs is FIVE DISCRETE
+// ITEMS across two blocks — entity, jurisdiction, company number on the left;
+// registered office and VAT on the right — and carries no copyright at all.
+//
+// The three-class selector is not decoration: .footer .legal in _surfaces.scss
+// sets the mono face, the muted colour AND 11.5px at two classes, so a
+// single-class rule here could not raise the size to theirs.
+.footer .footerLegal .legal {
+  font-size: 0.78125rem;
+  font-weight: 400;
+}
+
+.footerId {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.625rem;
+  max-width: 76ch;
+  // Theirs fades the whole row rather than picking a dimmer token. Doing the
+  // same keeps it one step quieter than the links without inventing a colour
+  // the palette does not have.
+  opacity: 0.62;
+}
+
+.footerId--end {
+  justify-content: flex-end;
   text-align: right;
 }
 
 @media only screen and (max-width: 767px) {
-  .legal--identity {
+  .footerId--end {
+    justify-content: flex-start;
     text-align: left;
   }
 }

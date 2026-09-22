@@ -355,7 +355,7 @@ export const servicesData = [
     metaDescription: "Our Email Marketing Services are built around strategy, segmentation & scalable results – backed by email automation. Get in touch for a consultation 📞",
     metaKeywords: "email marketing agency, email marketing services, email automation, email solutions",
     mainHeading: "From connection to conversion,",
-    subHeading: "we’re the top email marketing agency for GROWTH",
+    subHeading: "we’re the email marketing agency for GROWTH",
     summary:
       "Pixelette Marketing delivers powerful email marketing strategies that drive results. Our purpose-driven email campaigns make sure every email builds relationships, increases engagement and powers your brand’s journey to success.",
     image: "/services/email-marketing.png",
@@ -1024,7 +1024,7 @@ export const servicesData = [
     
     route: "pr",
     mainHeading: "From buzz to brand authority,",
-    subHeading: "we’re the best digital PR agency for GROWTH",
+    subHeading: "we’re the digital PR agency for GROWTH",
     summary:
       "Pixelette Marketing’s PR services specialise in creating impactful narratives that resonate with your target audience and establish your brand as an industry leader. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency ensures your story reaches the right audience, every time.",
     image: "/services/pr-marketing.png",
@@ -1368,7 +1368,7 @@ export const servicesData = [
     mainHeading: "From influencer trust to sustained success,",
     subHeading: "we’re the influencer marketing agency for GROWTH",
     summary:
-      "Pixelette Marketing is the best influencer marketing agency for brands looking to connect authentically and achieve measurable results. Our influencer marketing services help you find the right influencers, build impactful campaigns and create meaningful engagement, all personalised to your goals.",
+      "Pixelette Marketing works with brands looking to connect authentically and achieve measurable results. Our influencer marketing services help you find the right influencers, build impactful campaigns and create meaningful engagement, all personalised to your goals.",
     image: "/services/influencer-marketing.png",
     research: {
       subHeading: "marketing can cost you money",
@@ -1532,7 +1532,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Don’t let missed  <span> connections cost you growth </span>`,
       answer:
-        "Failing to make use of influencer marketing means losing out on authentic reach and real engagement. Partner with Pixelette Marketing, the best influencer marketing agency, to produce campaigns that resonate, drive measurable results and position your brand at the forefront of your industry.",
+        "Failing to make use of influencer marketing means losing out on authentic reach and real engagement. Partner with Pixelette Marketing to produce campaigns that resonate, drive measurable results and position your brand at the forefront of your industry.",
       btnText: "Book a consultation – it’s on us!"
     },
     marketingServices: {
@@ -1995,7 +1995,7 @@ export const servicesData = [
     route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
     subHeading:
-      "we’re the best marketing analytics and reporting agency for GROWTH",
+      "we’re the marketing analytics and reporting agency for GROWTH",
     summary:
       "Pixelette Marketing’s analytics services for marketing turn complex data into actionable insights. From digital marketing analytics solutions to real-time web marketing analytics, we help businesses unlock their full potential through precise reporting and strategy optimisation.",
     image: "/services/marketing-analytics.png",
@@ -2389,7 +2389,7 @@ export const servicesData = [
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
     route: "lead_generation",
     mainHeading: " From prospects to loyal customers,",
-    subHeading: "  we’re the best lead generation agency for GROWTH",
+    subHeading: "we’re the lead generation agency for GROWTH",
     // INTERIM COPY, 8 Sep 2026. Lead Generation was the only service with an
     // empty summary, so its hero standfirst and its card on /services both
     // rendered blank. Written to be replaced.
@@ -2466,7 +2466,7 @@ export const servicesData = [
     },
     services: {
       heading: "Our lead generation services",
-      text: "We are called the best lead generation agency because we focus on connecting your business with the right prospects to fuel sustainable growth. Our services encompass everything from identifying and qualifying leads to developing targeted campaigns and tracking performance. With us managing your lead generation efforts and nurturing meaningful customer relationships, you don’t have much to worry about.",
+      text: "We focus on connecting your business with the right prospects to fuel sustainable growth. Our services encompass everything from identifying and qualifying leads to developing targeted campaigns and tracking performance. With us managing your lead generation efforts and nurturing meaningful customer relationships, you don’t have much to worry about.",
       data: [
         {
           heading: "Lead Generation Strategy & Planning Services",

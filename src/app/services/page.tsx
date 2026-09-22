@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/common";
-import { ArrowCard, Heading, Text } from "@/components/feature";
+import Link from "next/link";
+import { Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
+import { capabilityGroups } from "@/data/services/capabilityGroups";
 
 const baseUrl = "https://www.pixelettemarketing.com";
 
 export const metadata: Metadata = {
   title: "Digital Marketing Services | Pixelette Marketing",
   description:
-    "Explore Pixelette Marketing's full-service digital marketing offering — SEO, social media, paid ads, PR, email, influencer and lead generation for Fintech, SaaS, Web3 and technology brands.",
+    "Five connected capabilities — strategy, demand, search, pipeline and growth intelligence — covering SEO, social media, paid ads, PR, email, influencer and lead generation. For businesses across established and emerging sectors.",
   keywords:
     "digital marketing services, marketing agency services, SEO services, social media marketing, PPC, PR, email marketing, lead generation",
   alternates: { canonical: `${baseUrl}/services` },
   openGraph: {
     title: "Digital Marketing Services | Pixelette Marketing",
     description:
-      "Full-service digital marketing for emerging Fintech, SaaS, Web3 and technology brands.",
+      "Five connected capabilities covering the full marketing offer, for businesses across established and emerging sectors.",
     url: `${baseUrl}/services`,
     siteName: "Pixelette Marketing",
     type: "website",
@@ -32,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Digital Marketing Services | Pixelette Marketing",
     description:
-      "Full-service digital marketing for emerging Fintech, SaaS, Web3 and technology brands.",
+      "Five connected capabilities covering the full marketing offer, for businesses across established and emerging sectors.",
     images: ["/services/heroImageServices.webp"],
     creator: "@pixelettemarketing"
   },
@@ -95,12 +97,13 @@ export default function ServicesIndexPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Digital Marketing Services
+              What we do
             </Heading>
             <Text className='lead'>
-              Pixelette Marketing is a full-service digital marketing agency for
-              emerging Fintech, SaaS, Web3 and technology brands. Explore our
-              services below.
+              Pixelette Marketing works with businesses across established and
+              emerging sectors. The work is organised as five connected
+              capabilities rather than a menu of channels — the starting point
+              is what is actually limiting growth, not a predetermined service.
             </Text>
           </section>
         </Container>
@@ -108,19 +111,41 @@ export default function ServicesIndexPage() {
 
       <div className='hubList sec'>
         <Container className='main'>
-          <section className='hubList__grid' data-reveal='stagger'>
-            {servicesData.map(service => (
-              <ArrowCard
-                key={service.route}
-                mainHeading={service.title}
-                subHeading=''
-                summary={service.summary}
-                theme={false}
-                textfloat={false}
-                to={`/services/${service.route}`}
-              />
+          <div className='capabilityList' data-reveal='stagger'>
+            {capabilityGroups.map(group => (
+              <section className='capabilityList__group' key={group.index}>
+                <Text className='capabilityList__index'>{group.index}</Text>
+                <div className='capabilityList__main'>
+                  <Heading className='h3 capabilityList__title' level={2}>
+                    {group.title}
+                  </Heading>
+                  <Text className='body'>{group.body}</Text>
+
+                  {/* Absent, not empty, when a capability has no service page
+                      beneath it — see capabilityGroups.ts. */}
+                  {group.services.length > 0 && (
+                    <ul className='capabilityList__services'>
+                      {group.services.map(service => (
+                        <li key={service.route}>
+                          <Link href={`/services/${service.route}`}>
+                            {service.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </section>
             ))}
-          </section>
+          </div>
+
+          {/* ONE way out, where there used to be eight competing "View More"
+              links and no way to start a conversation. The service pages are
+              still reachable from every capability above, so nothing is
+              orphaned — they simply stop being the only exit. */}
+          <Link href='/contactus' className='btn capabilityList__cta'>
+            Talk to us about your growth plan
+          </Link>
         </Container>
       </div>
     </>

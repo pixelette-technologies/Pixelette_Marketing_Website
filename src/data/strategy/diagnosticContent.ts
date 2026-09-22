@@ -19,15 +19,16 @@ import type { BandId, DimensionId } from "@/lib/strategyDiagnostic";
 //     proprietary, algorithmic or AI-powered, because it is none of those. The
 //     permitted descriptions are the ones used below: structured diagnostic,
 //     strategic framework, indicative assessment.
-//   - The sample output invents no client. Every slot in it describes what
-//     belongs there rather than filling it with a plausible-looking answer,
-//     which is the only version of a sample that cannot be mistaken for a real
-//     engagement.
 //
 // Eyebrows are stored in sentence case — .eyebrow carries the uppercasing, so
-// this file does not shout at whoever proofreads it — and headings carry no
-// trailing full stop except where the brief's own wording has one, which is
-// the hero, the methodology heading and the two closing headings.
+// this file does not shout at whoever proofreads it.
+//
+// NO HEADING CARRIES A TRAILING FULL STOP. The brief this page was built to
+// wrote several of them with one, and they were kept verbatim on the grounds
+// that they were the client's words. That was wrong: the 21 Sep punctuation
+// pass took trailing full stops off every heading on the site, so this page
+// was the only one reintroducing them. They came off on instruction on
+// 22 Sep 2026, which restores the site's own rule rather than breaking one.
 
 /** Every conversation on this page lands on the enquiry form. One constant, so
  *  they move together if that route ever moves. */
@@ -62,8 +63,12 @@ export const METHODOLOGY_ANCHOR = "methodology";
 
 export const strategyHero = {
   eyebrow: "Strategy & Positioning",
-  headingLead: "Know where to compete.",
-  headingAccent: "Know why you win.",
+  // BOTH full stops came off, not just the trailing one. The pair renders as
+  // two lines, so the line break already does the work the first stop was
+  // doing — and leaving one in and taking one out would have read as a typo
+  // rather than as a style.
+  headingLead: "Know where to compete",
+  headingAccent: "Know why you win",
   lead: "A structured diagnostic to clarify your market, audience, differentiation, message and growth priorities — then turn that clarity into practical marketing direction.",
   primaryCta: { label: "Start the diagnostic", to: `#${DIAGNOSTIC_ANCHOR}` },
   /** Sits under the primary control. An estimate of the visitor's time, which
@@ -74,15 +79,15 @@ export const strategyHero = {
     label: "See how the process works",
     to: `#${METHODOLOGY_ANCHOR}`
   },
-  /** Labels the six-node path beneath the hero copy. */
+  /** Labels the six-node figure in the methodology band. */
   pathLabel: "The six dimensions"
 };
 
 // --- The six dimensions -----------------------------------------------------
-// ONE SOURCE FOR ALL THREE PLACES THEY APPEAR: the hero's path, the
-// methodology's six stages and the results' six scales. They were three lists
-// in the first draft of this page and that is precisely how a set of six
-// becomes a set of six-and-a-half.
+// ONE SOURCE FOR BOTH PLACES THEY APPEAR: the wave in the methodology band
+// and the six scales in the results. It was three lists in the first draft of
+// this page, and that is precisely how a set of six becomes a set of
+// six-and-a-half.
 //
 // `name` is the dimension, and it is the ONLY field rendered anywhere today:
 // the wave labels its six points with it and the results scale their six rows
@@ -166,7 +171,7 @@ export const dimensionsById: Record<DimensionId, Dimension> =
 
 export const methodology = {
   eyebrow: "The process",
-  heading: "Clarity before activity.",
+  heading: "Clarity before activity",
   lead: "Marketing becomes expensive when the fundamentals are unclear. Our diagnostic examines the decisions beneath campaigns, content and channels — establishing who you need to reach, what you should stand for and where growth is most likely to come from."
 };
 
@@ -447,156 +452,24 @@ export const recommendations: Record<
 // before it asks for anything, so the ask has to come after the value.
 
 export const resultsCta = {
-  heading: "A score is only the starting point.",
+  heading: "A score is only the starting point",
   body: "The full Pixelette Strategy & Positioning process goes beyond the diagnostic. We combine market evidence, customer understanding, competitive analysis and commercial priorities to establish a position that can guide marketing, sales and growth.",
   cta: { label: "Talk through my results →", to: CONTACT_HREF }
 };
 
-// --- 08 What the full process produces -------------------------------------
-
-export const outputs = {
-  eyebrow: "The engagement",
-  heading: "From diagnosis to direction.",
-  lead: "A full Strategy & Positioning engagement produces six things, each one an input to the next.",
-  items: [
-    {
-      index: "01",
-      label: "Market opportunity",
-      body: "Category definition, market dynamics and opportunity areas."
-    },
-    {
-      index: "02",
-      label: "Ideal customer profile",
-      body: "Priority audiences, decision-makers, needs, triggers and objections."
-    },
-    {
-      index: "03",
-      label: "Competitive landscape",
-      body: "Competitor positioning and whitespace analysis."
-    },
-    {
-      index: "04",
-      label: "Positioning",
-      body: "Differentiation, value proposition and reasons to believe."
-    },
-    {
-      index: "05",
-      label: "Messaging architecture",
-      body: "Core narrative, messaging hierarchy and audience-specific messages."
-    },
-    {
-      index: "06",
-      label: "Growth priorities",
-      body: "Channel priorities, measures and practical 90-day direction."
-    }
-  ],
-  closing:
-    "The objective is not another strategy document. It is a clearer basis for every marketing decision that follows."
-};
-
-// --- 09 Sample strategic output --------------------------------------------
-// EVERY SLOT DESCRIBES WHAT BELONGS IN IT. Nothing is filled in with a
-// plausible-looking answer, and that is the whole design of this section: a
-// sample with convincing content in it is indistinguishable from a real
-// client's work, and this site has already had to delete fifteen unsourced
-// figures for exactly that reason. A framework with its slots named is more
-// useful to a prospect anyway — it shows the shape of the thinking.
-
-export const sampleOutput = {
-  eyebrow: "Illustrative framework",
-  heading: "What the output looks like",
-  lead: "A shortened view of the framework an engagement fills in. The slots below describe what goes in each one; they are not a client's answers.",
-  /** Printed on the document itself, so the disclaimer travels with the
-   *  artefact rather than sitting only in the section header. */
-  stamp: "Illustrative framework — not a client engagement",
-  position: {
-    label: "Position",
-    /** The bracketed tokens are the point: this is a sentence structure, and
-     *  filling the brackets in is the engagement. */
-    template:
-      "For [priority customer], [brand] is the [category] that [primary value], because [proof]."
-  },
-  blocks: [
-    {
-      label: "Audience",
-      rows: [
-        { term: "Primary ICP", slot: "the segment with the highest commercial value" },
-        { term: "Buying trigger", slot: "the event that starts the search" },
-        { term: "Principal objection", slot: "the reason the decision stalls" }
-      ]
-    },
-    {
-      label: "Differentiation",
-      rows: [
-        { term: "Table stakes", slot: "what every credible provider must have" },
-        { term: "Differentiators", slot: "what only you can claim, and why it matters" },
-        { term: "Proof", slot: "the evidence that makes the claim safe to believe" }
-      ]
-    },
-    {
-      label: "Message",
-      rows: [
-        { term: "Primary narrative", slot: "one argument the whole company can repeat" },
-        { term: "Supporting messages", slot: "one per audience and buying stage" }
-      ]
-    },
-    {
-      label: "90-day priorities",
-      rows: [
-        { term: "01", slot: "the constraint to remove first" },
-        { term: "02", slot: "the proof to build" },
-        { term: "03", slot: "the channel to prove it in" }
-      ]
-    }
-  ]
-};
-
-// --- 10 Closing CTA ---------------------------------------------------------
-// The primary control changes wording once the diagnostic has been completed —
-// "Review my results" rather than "Start the diagnostic" — and in neither case
-// does it restart anything. Both scroll to the same anchor; what has changed
-// is what is waiting there.
-
-export const strategyClose = {
-  eyebrow: "Next step",
-  heading: "Better marketing starts with a clearer position.",
-  lead: "Understand where you stand today and what should change next.",
-  primary: { label: "Start the diagnostic", completedLabel: "Review my results" },
-  secondary: { label: "Talk to Pixelette", to: CONTACT_HREF },
-  aside: {
-    body: "Strategy & Positioning is the first of five connected capabilities.",
-    link: { label: "See the full growth system →", to: SERVICES_HREF }
-  }
-};
-
-// --- 11 FAQ -----------------------------------------------------------------
-// Four, and the brief says not to pad it. They are rendered through the shared
-// Faqs / Accordion pair the service and sector pages already use, so this page
-// gains no new FAQ treatment.
-
-export const faqs = [
-  {
-    question: "Is the diagnostic free?",
-    answer:
-      "Yes. The online diagnostic provides an initial assessment of your current strategy and positioning."
-  },
-  {
-    question: "How long does it take?",
-    answer: "Approximately five minutes."
-  },
-  {
-    question: "Is the score a full marketing strategy?",
-    answer:
-      "No. It is an indicative diagnostic designed to identify strengths and areas that merit deeper investigation. A full strategy requires evidence, research and commercial context."
-  },
-  {
-    question: "What happens after the diagnostic?",
-    answer:
-      "You can use the result independently or speak with Pixelette about exploring the priority areas in more depth."
-  }
-];
-
-export const faqCopy = {
-  eyebrow: "Questions",
-  heading: "Before you begin"
-};
+// --- Sections 08 to 11 were here, and came off on instruction, 22 Sep 2026 --
+//
+// Four sections were removed from this page in one instruction: what a full
+// engagement produces, the illustrative sample framework, the closing call to
+// action and the four-question FAQ. Their copy went with them rather than
+// being left in this file unread.
+//
+// WHAT THAT COSTS, recorded here because the copy file is where a reviewer
+// will look for it: the closing section held the page's only call to action
+// for a visitor who does NOT take the diagnostic, and the only link back to
+// /services. The diagnostic's own "Talk through my results" is still there,
+// but it appears only after all twelve questions are answered. A visitor who
+// reads the page and does not start the instrument now reaches the end of it
+// with nowhere to go. See [[09 Outstanding]].
+//
+// All four are recoverable from 291592f.

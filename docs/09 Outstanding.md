@@ -491,3 +491,22 @@ once and the tree was briefly broken in a way neither had caused alone.**
 `/strategy-positioning` returned 500 while `page.tsx` imported components the
 other session had just deleted. No gate can see that, because it is not a
 property of anyone's change.
+
+## After the four sections came off (22 Sep)
+
+- **The page has no call to action for a visitor who does not take the
+  diagnostic.** The closing section held the only one, plus the only link back
+  to `/services`. "Talk through my results" is still there but appears only
+  after twelve answers. Somebody who reads the page and does not start the
+  instrument reaches the end with nowhere to go. **This is the most important
+  thing on this list** and it is a content decision, not a code one.
+- **The page no longer ends on a closing band.** Every other route on this site
+  finishes on `band-closing` or a dark band; this one stops on the diagnostic's
+  own light ground and goes straight to the footer.
+- **`imperative` and `description` on the six dimensions are still unrendered**
+  — twelve sentences of the brief's copy sitting in the copy file. Kept in case
+  the methodology stages return. If they are not coming back, delete them.
+- **The ripple is the site's fifth motion surface and its first on hover**,
+  against a rule `_surfaces.scss` states explicitly. Registered there with its
+  reasoning. If the group answer on motion ever comes back "no", this reverts
+  with the others.

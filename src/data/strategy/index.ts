@@ -14,11 +14,6 @@ export {
   bands,
   resultsCopy,
   recommendations,
-  resultsCta,
-  outputs,
-  sampleOutput,
-  strategyClose,
-  faqs,
-  faqCopy
+  resultsCta
 } from "./diagnosticContent";
 export type { Dimension, DiagnosticQuestion } from "./diagnosticContent";

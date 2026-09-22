@@ -691,3 +691,30 @@ cheapest signal that a shared file moved under you, and it was there in the
 commit output.
 
 Related: [[02 Decisions]], [[09 Outstanding]]
+
+## 22 Sep — the ripple, and a build that was not the source
+
+The hover ripple was verified by hovering a REAL MOUSE over a circle through
+the DevTools protocol and reading `getAnimations()`, not by checking that a
+class was present: six ripple elements, zero animating at rest, exactly one
+animating under the cursor (`dimensionWave-ripple`, `state=running`, caught
+mid-fade at opacity 0.16), and zero animating with `prefers-reduced-motion`
+emulated. No exceptions.
+
+**And the first attempt reported a failure that was not real.** The hover test
+said nothing was animating, and the circle measured 1384 x 18px instead of
+52 x 52. The instinct was to go hunting in the selector. The actual cause was
+that **the served stylesheet was 21 bytes** — the whole site's CSS, not just
+the figure's — and those 21 bytes were the words "Internal Server Error".
+
+The source compiled clean the whole time: `sass` against `main.scss` produced
+104KB with 27 rules for the figure. What had broken was the production build,
+because `.next` is shared with another session that was building concurrently.
+The check that separated the two was compiling the source directly and
+comparing it with what the server actually returned.
+
+**The rule worth keeping:** when a style "is not applying", get the bytes the
+browser was served before touching the selector. A stale or broken build looks
+exactly like a CSS bug, and it is a much cheaper thing to rule out.
+
+Related: [[02 Decisions]], [[08 Design system constraints]]

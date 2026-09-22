@@ -32,6 +32,18 @@
 //    the site but it is NOT the first one's mechanism: no keyframes, no timer,
 //    it moves only while the reader is moving. See _scrollMarquee.scss.
 //
+// 5. THE WAVE'S RIPPLE — added 22 Sep 2026, and the one that contradicts the
+//    paragraph below rather than extending it. Hovering a circle on the
+//    six-dimension figure on /strategy-positioning sends a ring out of it on a
+//    loop. Asked for directly. It is a SCALE ON HOVER, which the rule at the
+//    foot of this block forbids in terms, so it is an exception and is written
+//    down as one rather than being left to look like a mistake.
+//
+//    What keeps it defensible: it is purely decorative. All six names are
+//    already set in text beside their circles, so touch, keyboard and screen
+//    readers lose nothing by never seeing it, and it stops under a reduce
+//    preference. See _dimensionWave.scss.
+//
 // A correction to what this paragraph used to claim: "nothing else on the site
 // moves" was already untrue when it was written. framer-motion animates the
 // navbar dropdown, the mobile drawer, the blog category dropdown and the

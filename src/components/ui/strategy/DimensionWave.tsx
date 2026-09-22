@@ -165,6 +165,13 @@ const DimensionWave = () => {
                   {name}
                 </Heading>
                 <span className='dimensionWave__circle'>
+                  {/* The ripple. An empty span rather than a pseudo-element on
+                      the circle, because the circle already needs its own box
+                      for the border and the fill, and a ::before would have to
+                      fight the grid centring that puts the numeral in the
+                      middle. aria-hidden because it is decoration with no
+                      information in it — see _dimensionWave.scss. */}
+                  <span className='dimensionWave__ripple' aria-hidden='true' />
                   <Text className='dimensionWave__index'>{index}</Text>
                 </span>
               </li>

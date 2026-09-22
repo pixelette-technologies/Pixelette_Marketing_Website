@@ -589,15 +589,15 @@
   // page, not just this one. This is the only print stylesheet the site has,
   // so the rule lives here until there is a better home for it. The class was
   // added to CookieConsent.tsx for this and carries no other styling.
+  // .outputs, .sample, .strategyFaq and .strategyClose were in this list until
+  // 22 Sep 2026, when those four sections came off the page. Their selectors
+  // went with them: a print rule for markup that cannot exist is the kind of
+  // dead line that makes the next reader wonder what they have missed.
   .cookie-banner,
   .site-header,
   .footer,
   .strategyHero,
   .methodology,
-  .outputs,
-  .sample,
-  .strategyFaq,
-  .strategyClose,
   .diagnostic__actions,
   .diagnosticUtility,
   .diagnosticCta,

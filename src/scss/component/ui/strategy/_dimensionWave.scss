@@ -39,6 +39,12 @@
 .dimensionWave {
   margin-top: var(--sec-y-sm);
 
+  // Scoped to the mechanism rather than declared on :root, the convention
+  // _reveal.scss and _marquee.scss follow. Deleting this partial takes the
+  // property with it. The curve is the reveal's own, so the figure's response
+  // and the page's arrival read as one hand.
+  --dw-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
   &__label {
     margin-bottom: 0.5rem;
   }
@@ -112,7 +118,11 @@
 
   // Hollow. The fill is the page ground rather than transparent so the wave
   // does not draw straight through the numeral.
+  //
+  // `position: relative` is for the ripple below, which is absolutely
+  // positioned against this box.
   &__circle {
+    position: relative;
     display: grid;
     place-items: center;
     width: 3.25rem;
@@ -120,6 +130,42 @@
     border-radius: 50%;
     border: 1px solid var(--color-line-strong);
     background: var(--color-page);
+  }
+
+  // --- The ripple -----------------------------------------------------------
+  // Asked for directly on 22 Sep 2026, and it is worth being plain about what
+  // it costs: _surfaces.scss says "NONE OF THIS LICENSES MOTION ON HOVER.
+  // Hover still changes border colour only — no lift, no shadow, no scale."
+  // This is a scale on hover. It is a deliberate exception rather than an
+  // oversight, and it is registered at the top of _surfaces.scss with the
+  // other motion surfaces so the next pass reads it as intended rather than as
+  // leftover decoration.
+  //
+  // IT IS PURELY DECORATIVE, and that is what makes it safe. Every one of the
+  // six names is already set in text beside its circle, so a touch user — who
+  // gets no hover at all — and a keyboard user lose nothing by never seeing
+  // it. Nothing appears on hover that is not already on the page, which is the
+  // rule the growth figure's hover labels are held to.
+  //
+  // NO CURSOR CHANGE, deliberately. The circles are not links and there is
+  // nowhere for them to go; a pointer cursor would promise an action that does
+  // not exist. A ring that expands and fades reads as the figure responding,
+  // not as a control.
+  //
+  // One element, not three. A ripple is usually built from several rings on
+  // staggered delays; one ring on a loop says the same thing with a third of
+  // the paint, and this figure has six of them.
+  &__ripple {
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px solid var(--color-brand-signal);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &__circle:hover &__ripple {
+    animation: dimensionWave-ripple 1100ms var(--dw-ease) infinite;
   }
 
   &__index {
@@ -200,5 +246,31 @@
 
   &__index {
     color: var(--color-footer-eyebrow);
+  }
+}
+
+// The ripple's keyframes. It starts ON the circle's own edge and grows to just
+// under twice it, fading as it goes — so the ring reads as leaving the circle
+// rather than as a second circle appearing around it.
+//
+// It ends at opacity 0, so the loop restarts invisibly and needs no pause.
+@keyframes dimensionWave-ripple {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.85);
+  }
+}
+
+// The accessibility floor is not part of the exception. A looping animation is
+// exactly the category a reduce preference is asking about, and the figure
+// loses nothing by being still: the ripple carries no information.
+@media (prefers-reduced-motion: reduce) {
+  .dimensionWave__circle:hover .dimensionWave__ripple {
+    animation: none;
   }
 }

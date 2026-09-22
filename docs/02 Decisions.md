@@ -916,3 +916,50 @@ three months later.
 
 Related: [[04 Phase 2 — Navigation and footer]], [[09 Outstanding]],
 [[10 Verification]]
+
+## Four sections off, a ripple on, and the full stops taken back off — 22 Sep
+
+Three instructions in one.
+
+**Four sections removed:** what a full engagement produces, the illustrative
+sample framework, the closing call to action and the four-question FAQ. The
+page is three sections now — hero, methodology, diagnostic — down from seven.
+Their components, stylesheets and copy were deleted rather than left
+unreferenced; all of it is in `291592f`.
+
+**What that costs, and it is not cosmetic.** The closing section held the
+page's only call to action for a visitor who does NOT take the diagnostic, and
+its only link back to `/services`. The diagnostic's own "Talk through my
+results" survives but appears only after twelve answers. A visitor who reads
+the page and does not start the instrument now reaches the end of it with
+nowhere to go. Raised in [[09 Outstanding]], not fixed — it is a content
+decision.
+
+The dark budget falls to one band of three, and the page loses its
+`band-closing`, so it now ends on the diagnostic's own light ground.
+
+**The trailing full stops came off every heading.** The brief this page was
+built to wrote several with one and they were kept verbatim as the client's
+words. That was the wrong call: the 21 Sep punctuation pass took trailing full
+stops off every heading on the site, so this page was the only thing
+reintroducing them. Removing them restores the site's rule rather than
+breaking one. The hero lost BOTH of its stops rather than just the trailing
+one — the pair renders as two lines, so the break already does the work, and
+one in, one out would have read as a typo.
+
+### The ripple is a stated exception, not an oversight
+
+Hovering a circle on the wave now sends a ring out of it on a loop.
+`_surfaces.scss` says in terms: "NONE OF THIS LICENSES MOTION ON HOVER. Hover
+still changes border colour only — no lift, no shadow, no scale." This is a
+scale on hover. It was asked for directly, so it is registered at the top of
+`_surfaces.scss` as the fifth motion surface, with its reasoning, rather than
+left to look like a rule somebody forgot.
+
+What keeps it defensible: it carries no information. All six names are already
+set in text beside their circles, so touch — which gets no hover at all — and
+keyboard lose nothing. It stops under a reduce preference. And it gets **no
+cursor change**, deliberately: the circles are not links and a pointer would
+promise an action that does not exist.
+
+Related: [[05 Components]], [[08 Design system constraints]], [[10 Verification]]

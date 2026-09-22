@@ -4,7 +4,3 @@ export { default as Methodology } from "./Methodology";
 export { default as DiagnosticSection } from "./DiagnosticSection";
 export { default as StrategyDiagnostic } from "./StrategyDiagnostic";
 export { default as DiagnosticResults } from "./DiagnosticResults";
-export { default as StrategyOutputs } from "./StrategyOutputs";
-export { default as SampleOutput } from "./SampleOutput";
-export { default as StrategyFaq } from "./StrategyFaq";
-export { default as StrategyClose } from "./StrategyClose";

@@ -1,11 +1,7 @@
 import {
   DiagnosticSection,
   Methodology,
-  SampleOutput,
-  StrategyClose,
-  StrategyFaq,
-  StrategyHero,
-  StrategyOutputs
+  StrategyHero
 } from "@/components/ui/strategy";
 import type { Metadata } from "next";
 
@@ -21,27 +17,31 @@ import type { Metadata } from "next";
 // 11 Sep instruction that Strategy & Positioning takes no nav entry was
 // management's and the brief that produced this page did not reverse it.
 //
-// SEVEN SECTIONS, in the definitive brief's own order:
+// THREE SECTIONS:
 //
-//   1. Hero — the six dimensions introduced as a wave
-//   2. Methodology — the six stages on a spine                    DARK
+//   1. Hero — headline, two controls, no figure
+//   2. Methodology — the six dimensions as a wave                  DARK
 //   3. The diagnostic — twelve questions, a score and a reading
-//   4. What the engagement produces
-//   5. The sample framework                                       DARK
-//   6. The closing call to action
-//   7. FAQ
 //
-// THE FAQ IS LAST, AFTER THE CLOSE, which is where the brief numbers it and
-// also where the service template already puts Faqs. Two reasons agreeing is
-// worth more than either alone.
+// IT WAS SEVEN. The definitive brief specified four more — what the engagement
+// produces, an illustrative sample framework, a closing call to action and a
+// four-question FAQ — and all four came off in one instruction on 22 Sep 2026.
+// They are recoverable from 291592f.
+//
+// WHAT THAT LEAVES OPEN, and it is not cosmetic: the closing section was the
+// page's only call to action for somebody who does NOT take the diagnostic,
+// and its only link back to /services. The diagnostic's own "Talk through my
+// results" survives but appears only after twelve answers, so a visitor who
+// reads the page without starting the instrument now reaches the end of it
+// with nowhere to go. Raised, not fixed — see [[09 Outstanding]].
 //
 // THE DARK BUDGET. _surfaces.scss allows three .band-dark per route and
-// route-walk fails the build on a fourth. This page spends two — the
-// methodology and the sample — and THE CENTREPIECE GETS NEITHER. The reasoning
-// is in Methodology.tsx and is the same reasoning that had to be applied in
-// reverse to the Growth System's cards on 11 Sep: a dark ground recolours
-// prose and nothing else, and the diagnostic is a dozen containers, edges and
-// controls that would each need their own answer.
+// route-walk fails the build on a fourth. This page now spends ONE, on the
+// methodology, and THE CENTREPIECE GETS NONE. The reasoning is in
+// Methodology.tsx and is the same reasoning that had to be applied in reverse
+// to the Growth System's cards on 11 Sep: a dark ground recolours prose and
+// nothing else, and the diagnostic is a dozen containers, edges and controls
+// that would each need their own answer.
 //
 // THE ONE SIGNATURE MARK is .card-feature on the diagnostic panel — the
 // device's card form. There is no .rule-cap on this route; an earlier version
@@ -49,10 +49,9 @@ import type { Metadata } from "next";
 // rendered as a loose crimson dash under black.
 //
 // WHAT IS CLIENT-SIDE, AND WHAT DELIBERATELY IS NOT. Only the diagnostic panel
-// and the closing section's primary label hydrate. Every heading, every
-// paragraph, the six stages, the six outputs, the sample framework and the FAQ
-// are server-rendered, so a crawler and a reader with JavaScript off both get
-// the page's actual argument rather than an empty box.
+// hydrates. The hero, the methodology band, the figure and the diagnostic's own
+// heading and standfirst are server-rendered, so a crawler and a reader with
+// JavaScript off both get the page's argument rather than an empty box.
 //
 // NOTHING ON THIS PAGE CLAIMS A RESULT. No clients, logos, testimonials,
 // customer counts, percentages, research or awards, and the diagnostic is
@@ -124,10 +123,6 @@ export default function StrategyPositioningPage() {
       <StrategyHero />
       <Methodology />
       <DiagnosticSection />
-      <StrategyOutputs />
-      <SampleOutput />
-      <StrategyClose />
-      <StrategyFaq />
     </>
   );
 }

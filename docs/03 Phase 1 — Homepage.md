@@ -7,7 +7,7 @@ rendered page, not assumed.
 |---|---|---|---|
 | 01 | Hero | `HomeHero` — headline kept, everything under it replaced | `.wash` |
 | 02 | Proof | `TrustedBrands` — new stacked layout | dark 1/3 |
-| 03 | Commercial outcomes | `GrowthSection` — relabelled | page, `.rule-cap` |
+| 03 | Commercial outcomes | `GrowthSection` + `GrowthSystem` — see below | page, `.rule-cap` |
 | 04 | Why Pixelette | `ItemsSection` | page |
 | 05 | Growth System | `ItemsSection` — cards, thirds | dark 2/3 |
 | 06 | AI and technology | `AiTechnologySection` — scroll-driven strip | page |
@@ -68,3 +68,28 @@ The names now run the full width of the page as a strip whose offset follows
 the scroll. Six homepage sections still share `ItemsSection`; this one is
 `AiTechnologySection` with its own `AiTechnologyContent` type. Full reasoning,
 including why the static row is what ships in the HTML, in [[02 Decisions]].
+
+## 22 Sep — section 03 is two components, and the figure is no longer a chart
+
+The fourth figure to occupy this section's right-hand column, and the first
+that is not a drawing of quantities. `GrowthDiagram` and `_growthDiagram.scss`
+are deleted; `GrowthSystem` and `_growthSystem.scss` replace them.
+
+**Why the split.** The four outcomes and the figure share a selection —
+hovering an outcome lights its station on the ring, and selecting a station
+lights the outcome — so they have to be one component. `GrowthSection` stays a
+server component and **passes the eyebrow, heading and standfirst through as
+children**: they have no state and no business shipping as client JavaScript.
+That is the only reason the outer file still exists.
+
+**The 2×2 grid is a numbered list.** The grid read down its columns, so the
+framework's order lived in a comment and in a sentence restating it underneath.
+The list states its own order; the sentence loses its first half. Full
+reasoning in [[02 Decisions]].
+
+**It is the home page's only stateful surface.** `/strategy-positioning` holds
+the site's other one. Four tabs and one panel, no storage, nothing sent
+anywhere.
+
+Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]],
+[[10 Verification]]

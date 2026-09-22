@@ -86,12 +86,18 @@ separated by hairlines, each a flex row with a basis that folds on its own.
 - `.capabilityList` — the five capabilities on `/services`
 - `.sectorList` — the five sectors on `/industries`
 - `.constraintList` — the three market constraints on each sector page
+- `.growthSystem__stages` — the four commercial outcomes on the home page
+  (**added 22 Sep**, replacing a 2×2 grid; it also carries a mono numeral,
+  because this list's order is the framework's and had been surviving only in
+  a sentence underneath restating it)
 
-All three replaced a grid of equal boxes, and for the same reason each time:
+All four replaced a grid of equal boxes, and for the same reason each time:
 **a grid of equal boxes makes a claim about its contents** — that they are
 parallel, interchangeable, and a complete set. Five capabilities are ordered,
 not parallel. Five sectors are examples, not a boundary. Three constraints are
-an argument, not a menu.
+an argument, not a menu. Four commercial outcomes are a **chain**, and the grid
+was claiming so loudly otherwise that the section needed a line of prose to
+contradict it.
 
 The rule that follows: reach for the grid when the items really are peers and
 the set really is complete. Otherwise use rows.
@@ -271,3 +277,36 @@ one:**
 
 The rule itself is NOT withdrawn. This is one call site with a stated reason,
 not a licence for the next card grid.
+
+## The first container query, and why it is not a second breakpoint — 22 Sep 2026
+
+`.growthSystem__ring` declares `container-type: inline-size`. It is the only
+one in the stylesheet, and the rule above — **one media query, `max-width:
+767px`, and resist adding a second** — is untouched by it. A container query
+asks about an element, not the viewport, so it is not a breakpoint and does not
+spend the one this design system allows.
+
+**What forced it.** The home page's growth figure layers HTML over svg in one
+box. Everything inside the svg is in viewBox units and therefore scales with
+the figure. Everything drawn on top — the four stations, the handoff words, the
+panel in the middle — was in `rem` and did not.
+
+At the 1160 wrap the two happened to agree, which is why it shipped. At 768px,
+where the row has not yet folded and the figure column is at its narrowest,
+they did not: the panel stayed its full size inside a ring that had shrunk
+around it, and the labels landed on top of it. The figure rendered `optimise
+TAKES IN interest` across one line. A station also ran off the right of the
+viewport.
+
+**The rule that follows.** *When a component mixes svg and HTML in one box, the
+HTML has to be sized in container units or the two are only aligned at the
+widths somebody happened to measure.* `cqi` for type and padding, percentages
+for position and box size, and nothing in that figure in `rem` at all. The
+existing `clamp()` guidance still applies — the clamps are there to stop the
+type going absurd at the extremes, not to do the scaling.
+
+This is worth checking against elsewhere. `DimensionWave` on
+`/strategy-positioning` is the other svg figure on this site with HTML near it,
+and its circles were already found to be their path's mirror image below 768px.
+
+Related: [[02 Decisions]], [[05 Components]], [[10 Verification]]

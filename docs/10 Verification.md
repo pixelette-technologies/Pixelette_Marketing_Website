@@ -718,3 +718,158 @@ browser was served before touching the selector. A stale or broken build looks
 exactly like a CSS bug, and it is a much cheaper thing to rule out.
 
 Related: [[02 Decisions]], [[08 Design system constraints]]
+
+## 22 Sep — the fourth figure, and three more faults after six green gates
+
+The Growth section's four columns were replaced by a ring. This is the **fourth
+figure** to occupy that column and the fourth time looking at it found things no
+check in this repo can see. The 21 Sep entry above records attempts one and two;
+this records what killed attempt three and what looking found in attempt four.
+
+### What killed the accepted figure, and no gate could have
+
+Attempt three — four ascending columns, named on hover — passed every gate on
+21 Sep and shipped. It was removed on 22 Sep because **it was boring**, which is
+not a category any check here has, and the reason it was boring is worth the
+entry:
+
+Four named columns at four heights is a quantitative shape. The home page is
+under a standing bar on unqualified proof figures, so the figure was stripped of
+axis, tick, gridline and value, and its hover gave a name and never a number.
+All of that was correct — and it left a chart that reads as a measurement,
+carries no measurement, and can never be allowed to carry one.
+
+**It was boring because it had been hollowed out to stay honest.** The gates
+were green throughout and were never going to say otherwise. Neither was a
+screenshot review, which had already passed this figure once. It took somebody
+looking at the page and saying so.
+
+### Three faults in the replacement, all after six green gates
+
+Lint, the token gate, types, 36 contact tests, the build and 35/35 on the route
+walk — all green on the first build of the ring. Then:
+
+**1. White capsules on a cream ground.** The four stations took
+`var(--color-page)`. The section sits on `var(--color-band)`. Four white holes
+in a warm field, visible from across the room. The token gate passed it because
+**the token gate checks that a colour is a token, never that it is the right
+one** — which is the whole of what that gate proves and is worth restating here.
+
+Caught by probing the computed background of `.growthSection` in the browser
+rather than by reading the stylesheet, which is what had produced the mistake in
+the first place.
+
+**2. A word that broke out of the ring it was inside.** "qualified interest" was
+set horizontally at its arc's midpoint, at a radius chosen to keep it clear of
+the circle. It crossed the circle anyway and landed under an arrowhead.
+
+The geometry: **a horizontal word centred on a 45-degree point extends
+tangentially, so its far end sits at a greater radius than its own centre.**
+Pulling the radius in far enough to fix it put the words on top of the panel in
+the middle. The words now ride their own arcs, which is also the truer picture —
+a handoff is something the link carries, not something floating near it.
+
+**3. The figure collapsed into itself at 768px — the one that matters.**
+
+Everything inside the svg is in viewBox units and scales with the figure.
+Everything drawn in HTML over it — the stations, the handoff words, the panel —
+was in `rem` and did not. At the 1160 wrap the two happened to agree, which is
+why it looked right. At 768, where the row has not yet folded and the figure
+column is at its narrowest, they did not. The panel stayed full size inside a
+ring that had shrunk around it and the labels landed on top of it. The figure
+rendered `optimise TAKES IN interest` across one line, with `decisions`
+overlapping `decision`. A station also ran off the right edge of the viewport.
+
+**Nothing in this repo could have caught it.** It is not an overflow — the
+document's `scrollWidth` equalled the window's, so even a width check would have
+passed. It is two correct coordinate systems disagreeing about scale, inside one
+box, at one width.
+
+The fix is the first container query in the stylesheet, and the rule it leaves
+behind is in [[08 Design system constraints]].
+
+### The method, and what it cost
+
+Headless Chrome over CDP, driven from Node — the method the earlier entries
+describe. Three widths: 1440, 768 and 390. Every fault above was visible within
+seconds of the first screenshot at the width that showed it, and faults 1 and 2
+were both in the very first desktop capture.
+
+**768 is where the money was.** Desktop and phone both looked fine after the
+first two fixes; the fault that made the figure unreadable lives in the band
+where the two-column row has not yet folded. That band is checked on almost
+nothing else on this site.
+
+### Interaction was checked, not assumed
+
+The state changes were verified rather than eyeballed, because a screenshot of a
+default state proves nothing about a tab pattern:
+
+- A synthetic `dispatchEvent(new MouseEvent(...))` **reported the wrong answer**
+  — selection did not change — while a real `Input.dispatchMouseEvent` over the
+  same element worked every time. React synthesises `mouseenter` from
+  `mouseover`/`mouseout` pairs and needs the boundary crossing that only real
+  pointer input supplies. **A dispatched event is not a proof of a hover.** Both
+  were run; the real one is the one to trust.
+- Reading state immediately after dispatching an event reads it **before React
+  has committed**, which reported "click did nothing" twice before a wait was
+  added. Two of the three apparent faults in the first probe run were this, not
+  the page.
+- Keyboard was walked properly: arrow keys in both directions with wrap, Home,
+  End, focus following selection, and the roving tabindex checked to be exactly
+  one `0` and three `-1`. `aria-labelledby` was resolved to its element rather
+  than assumed to point somewhere.
+
+### What is still not seen
+
+The fold itself. The row breaks somewhere around 1090px and nobody has looked at
+it. 768 is the only point in the 760–1100 band that has been observed, and it
+is the band that produced the worst of the three faults. Logged in
+[[09 Outstanding]].
+
+Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]]
+
+## 22 Sep — a broken HEAD that nobody's change was wrong enough to cause
+
+Found while committing the figure above. `main` did not build from a clean
+checkout, and no single commit was at fault.
+
+**What happened.** Two sessions were in the repo. This one staged a `git rm` of
+`GrowthDiagram.tsx` and `_growthDiagram.scss` and left the matching edit to
+`_index.scss` — the file that forwards them — unstaged, pending the rest of the
+work. The other session committed. `291592f refactor(strategy): the process
+section becomes the figure` carries both deletions, because they were staged and
+a commit takes what is staged.
+
+So HEAD had the two files deleted and `_index.scss` still forwarding
+`./growthDiagram`, which is a stylesheet that cannot compile:
+
+```
+Error: Can't find stylesheet to import.
+4 | @forward "./growthDiagram";
+```
+
+**This is the rule from the `git mv` incident, arriving a second time and
+costing more.** That entry already says: with a second session in the repo,
+nothing may sit staged. The `git rm` was staged for perhaps forty minutes and it
+was enough. `git rm` is easy to forget about here precisely because it stages as
+a side effect of doing the thing — there is no separate `git add` step to
+notice.
+
+**How it was proved rather than assumed.** `git cat-file -e HEAD:<path>` for the
+deleted files, `git show HEAD:<path>` for the forward, then a detached worktree
+at HEAD with `npx sass` run against it. The last step is the one that matters:
+the first two establish an inconsistency, and only compiling it establishes that
+the inconsistency breaks. Both sessions' working trees built fine throughout,
+which is exactly why nobody noticed.
+
+**It was fixed by the next commit** — `cd82664` carries the `_index.scss` change
+— and the same detached-worktree check was re-run afterwards to confirm it,
+rather than inferred from the working tree building.
+
+**The narrower lesson.** `git commit --only <paths>` protects your commit from
+another session's staged work. It does nothing about **your own** staged work
+being taken by somebody else's commit. That direction needs the discipline, not
+the flag.
+
+Related: [[09 Outstanding]]

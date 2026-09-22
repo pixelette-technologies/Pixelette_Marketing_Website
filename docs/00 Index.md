@@ -144,17 +144,45 @@ stops came off every heading on the page, restoring the 21 Sep rule this page
 had been the only thing breaking. See [[02 Decisions]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
 
+**22 Sep, sixth change of the day — the home page's growth figure, for the
+fourth time.** The four ascending columns came off and a ring replaced them:
+four stations, each arc carrying what one stage hands the next, a dashed return
+arc labelled `optimise`, and a panel in the middle showing what the selected
+stage takes in and hands on. The four outcomes beside it are a numbered list
+rather than a 2×2 grid, and the two are linked — hovering either side lights
+the other.
+
+**Why the columns had to go is the part worth keeping.** Four named columns at
+four heights is a quantitative shape, so on a page under a standing bar on
+unqualified proof figures it had been stripped of axis, tick, gridline and
+value. All of that was correct, and what was left was a chart that reads as a
+measurement, carries no measurement and can never be allowed to carry one. **It
+was boring because it had been hollowed out to stay honest.** The copy already
+contained a better shape: every outcome names an input and an output, and the
+last ends "and optimise accordingly", which is a return path into the first.
+
+Looking at it produced **three more faults after all six gates were green**,
+one of which made the figure illegible at 768px — HTML sized in `rem` layered
+over an svg sized in viewBox units, which agree at the width somebody happened
+to measure and nowhere else. The fix is the stylesheet's first container query.
+The same commit also **un-broke `main`**: a `git rm` left staged here had been
+swept into the other session's commit, leaving HEAD with a stylesheet that
+could not compile. See [[02 Decisions]], [[03 Phase 1 — Homepage]],
+[[05 Components]], [[08 Design system constraints]], [[09 Outstanding]] and
+[[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
-1. **Almost nothing has been viewed in a browser.** The Growth System band, the
-   whole of the About page and the whole of `/strategy-positioning` have now
-   been seen; each look immediately produced faults no gate had caught. Every
-   other page and breakpoint is still structural-only. The What We Do dropdown
-   has now been rendered, at both widths, which leaves Who We Help as the one
-   menu never seen. The 21 Sep realignment is made entirely of
-   computed measurements and adds to this debt rather than settling any of it.
-   **And the navigation is broken at 768px on all 36 routes**, which the
-   diagnostic's tablet check found and nobody had seen before.
-   See [[10 Verification]].
+1. **Almost nothing has been viewed in a browser.** The Growth System band —
+   now at three widths, 1440, 768 and 390 — the whole of the About page and the
+   whole of `/strategy-positioning` have been seen; **each look, every time,
+   immediately produced faults no gate had caught.** That band alone has now
+   done it four times running. Every other page and breakpoint is still
+   structural-only. The What We Do dropdown has been rendered at both widths,
+   which leaves Who We Help as the one menu never seen. The 21 Sep realignment
+   is made entirely of computed measurements and adds to this debt rather than
+   settling any of it. **And the navigation is broken at 768px on all 36
+   routes**, which the diagnostic's tablet check found and nobody had seen
+   before. See [[10 Verification]].
 2. **The form's privacy-notice link is broken in production**, and the 11 Sep
    reply did not supply the URL that fixes it. See [[09 Outstanding]].

@@ -100,29 +100,59 @@ of Google's modelled data for visitors who decline).
 
 The first-visit banner still carries its own inline styles and 9px text.
 
-## The Growth section figure (21 Sep)
+## The Growth section figure (21 Sep) — mostly closed 22 Sep
 
-The home page collage is replaced by four drawn columns, named on hover. Four
-things it leaves open:
+The four columns were replaced by a ring on 22 Sep. Three of the four items
+below closed with them; they are kept because what closed each one is the
+useful part.
 
-- **Nobody has signed off the shape.** Four named columns at four heights
-  state an order of magnitude between Demand, Pipeline, Conversion and
-  Revenue — a claim about Pixelette's own funnel. It carries no axis, tick or
-  value and the hover gives a name and never a number, so nothing is
-  quotable. **The moment a number is added to it, it crosses the proof-figure
-  bar** and needs the same measure, period, client and permission treatment
-  the BlockGuard figures are held against. Worth a line to management for
-  awareness rather than for approval.
-- **`public/home/growthBanner.webp` is now referenced by nothing.** Left in
-  place until someone is sure the figure stays.
-- **The hover names never appear on touch**, which is deliberate: they are
-  redundant with the grid beside the figure, which is also why the svg is
-  `aria-hidden`. **If that grid ever moves or changes, the figure loses its
-  text alternative** and the decision in [[02 Decisions]] has to be reopened.
-- **The hover label scales with the column** — around 20px where it is widest,
-  around 11px once it has wrapped to full width on a phone. That is inherent
-  to keeping text inside the viewBox. Moving the labels to HTML would pin
-  them, at the cost of positioning them over the svg by hand.
+- ~~**Nobody has signed off the shape.**~~ **Closed, by removal.** The
+  quantitative claim was the reason four columns had to be stripped of axis,
+  tick and value to stay the right side of the proof-figure bar — and stripping
+  them is what made the figure boring. A ring claims relation, not magnitude,
+  so there is nothing on it to sign off and nothing that could later cross the
+  bar. The rule this leaves behind is in [[02 Decisions]]: *when the only way
+  to make a figure defensible is to remove what makes it a figure, the
+  instrument is wrong.*
+- **`public/home/growthBanner.webp` is STILL referenced by nothing.** Four
+  figures later and nobody has taken the decision to delete it. **This one is
+  open.**
+- ~~**The hover names never appear on touch.**~~ **Closed.** The stations are
+  real `<button>`s in a tablist, so touch and keyboard reach them. The svg is
+  still `aria-hidden`, but it now carries arcs and arrowheads only — no words —
+  so it has nothing to expose.
+- ~~**The hover label scales with the column.**~~ **Closed, and it became the
+  more interesting fault.** The labels did move to HTML, exactly as this item
+  suggested, and pinning them in `rem` is what broke the figure at 768px. See
+  [[10 Verification]] and the container-query rule in
+  [[08 Design system constraints]].
+
+## What the ring leaves open (22 Sep)
+
+- **One line of copy on this section is mine**, not the brief's: "Revenue does
+  not end the system. It optimises what feeds it." The ring can draw the return
+  path and label it `optimise`, but it cannot say why the system does not end
+  at revenue. **Worth a wording check**, not an approval — it restates the
+  brief's own "and optimise accordingly".
+- **The in/out pairs in the panel are readings, not quotations.** `takesIn` and
+  `handsOn` for each stage were derived from the outcome copy beside them and
+  are not written anywhere in the brief. They make no claim a reader could
+  quote, but they are four pairs of words on the home page that management has
+  not seen.
+- **The figure has been seen at 1440, 768 and 390 — and nowhere between.** The
+  row folds somewhere around 1090px and that fold has not been looked at. The
+  760–1100 band is where the figure column is narrowest relative to the text
+  beside it, and 768 is the only point in it anyone has observed.
+- **The HTML and the svg agree only by convention.** The station and handoff
+  positions are percentages in `_growthSystem.scss`; the arcs and arrowheads
+  derive from `angleOf()` in the component. Nothing checks that the two still
+  describe the same circle. Change the ring's inset, or reorder the stages, and
+  they part company with no error.
+- **`aria-live` was considered and not used.** The tabpanel updates on hover as
+  well as on selection, and announcing every pointer crossing would be worse
+  than announcing none. Screen-reader users get the panel through the tab
+  pattern instead. If this is ever tested with an actual screen reader and that
+  turns out to be wrong, it is a two-line change.
 
 ## The punctuation pass is committed, and still broken (22 Sep)
 
@@ -305,10 +335,16 @@ settle it are desktop, about 800px, and a phone.
 **The Growth section figure is the counter-example, and it is worth the
 contrast.** It was looked at three times on 21 Sep and the first two versions
 were rejected on sight, both having passed all six gates. Twenty minutes of
-looking settled what two rounds of discussion had not. The desktop view of
-that one section is now the most-observed thing in the repo; nothing else on
-the page has had the same treatment, and the figure itself has still never
-been seen at a phone width, where its hover labels do not exist at all.
+looking settled what two rounds of discussion had not. That one section is the
+most-observed thing in the repo and nothing else on the page has had the same
+treatment.
+
+**22 Sep sharpens the contrast again.** The figure was replaced a fourth time
+and looked at at three widths, and looking produced **three more faults after
+all six gates were green** — including one, at 768px, that made the figure
+illegible. Four rounds, four times the gates said yes, four times the browser
+said no. There is no longer a reasonable reading of this repo's history in
+which a green gate run is evidence that a layout is correct.
 
 Related: [[01 The brief]], [[02 Decisions]]
 

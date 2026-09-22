@@ -246,3 +246,55 @@ component while one label reacts to client state**, as long as the state lives
 in an external store both can read.
 
 Related: [[02 Decisions]], [[08 Design system constraints]], [[10 Verification]]
+
+## `GrowthSystem` — 22 Sep
+
+The home page's four commercial outcomes and the ring beside them, in one
+client component. Replaces `GrowthDiagram`, which was four svg columns and no
+state.
+
+**Shape.** `GrowthSection` (server) renders the eyebrow, heading and standfirst
+and passes them as `children`. `GrowthSystem` places them, renders the ordered
+list of four outcomes beneath, and the figure in the second column. One piece
+of state — the selected index, defaulting to 0 — drives both sides.
+
+**Why children rather than props.** The heading block is three static elements.
+Passing them through keeps them server-rendered and out of the client bundle,
+and keeps the copy in the same file as the rest of the section's prose rather
+than in a props object one level up. A `mainHeading` / `subHeading` / `detail`
+signature — the shape `ResearchSection` and its neighbours use — would have
+moved three strings into the parent to no benefit.
+
+**Data lives in the component.** `STAGES` holds the four names, the outcome
+copy, and each stage's `takesIn` / `handsOn` / `handoff`. This section's copy
+has never been in `homeContent.ts`; it was inline in `GrowthSection` before
+this and it is inline here. The in/out pairs are **readings of the outcome copy
+beside them, never new claims** — the chain was already in the brief's words.
+
+**Geometry is derived, not typed out.** `angleOf(i)` puts Demand at the top and
+the rest clockwise, and the arcs, the arrowheads and the CSS positions of the
+stations all resolve from it. Four hand-placed coordinates would have drifted
+the first time the order changed. The four station positions in
+`_growthSystem.scss` are the one place that restates it, and they say so.
+
+**Tabs, not tooltips.** `role="tablist"` with roving tabindex, arrow keys in
+both axes (a ring has no honest orientation, so `aria-orientation` is unset),
+Home and End, automatic activation. It is a genuine tab pattern because the
+panel in the middle carries content that appears nowhere else on the page — see
+[[02 Decisions]] for why that is the deciding test and not a style preference.
+
+**The list is pointer-only and that is deliberate.** The four `<li>`s set the
+selection on `mouseenter` and are not focusable. They are not a second set of
+controls; the stations are the controls and they are reachable by keyboard and
+by touch. Every word in the list is visible at all times whatever is selected,
+so a reader who never triggers the hover loses nothing but a highlight.
+
+**Known cost.** The svg is `aria-hidden` and carries the arcs and arrowheads
+only. The handoff words moved out of it into HTML — they had to, for the reason
+in [[10 Verification]] — which means the figure is now HTML and svg layered in
+one box and the two only agree because the box is a container. Change the ring's
+inset without changing the station and handoff percentages and they part
+company silently.
+
+Related: [[02 Decisions]], [[03 Phase 1 — Homepage]],
+[[08 Design system constraints]], [[10 Verification]]

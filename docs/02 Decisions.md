@@ -177,6 +177,12 @@ and the copy is management's.
 
 ## The Growth section figure, 21 Sep
 
+> **Superseded on 22 Sep.** The four columns were replaced by a ring. The
+> reasoning below still stands as the record of how the columns were arrived
+> at and what they were allowed to claim — and the thing that eventually
+> removed them is the quantitative claim this entry flags twice. See
+> **[[#The chart comes off — 22 Sep]]** at the end of this note.
+
 **The Growth section's collage is gone, replaced by a drawn figure.**
 `growthBanner.webp` was an Edwardian figure, falling dollar bills and the
 Statue of Liberty. Nothing in it depicted Demand, Pipeline, Conversion or
@@ -963,3 +969,109 @@ cursor change**, deliberately: the circles are not links and a pointer would
 promise an action that does not exist.
 
 Related: [[05 Components]], [[08 Design system constraints]], [[10 Verification]]
+
+## The chart comes off — 22 Sep
+
+**The four columns are gone, replaced by a ring.** The user's word for the
+chart was "boring", and it was — but not for a reason a redraw would have
+fixed.
+
+**Four named columns at four heights is a quantitative shape.** The 21 Sep
+entry above says so, twice, and defends it by stripping the figure of anything
+a reader could quote: no axis, no tick, no gridline, no value, and a hover that
+gives a name and never a number. All of that was correct. None of it helped.
+What was left was a chart that reads as a measurement, carries no measurement,
+and can never be allowed to carry one, because the standing bar on unqualified
+proof figures applies to this page. It was not boring by accident. **It was
+boring because it had been hollowed out to stay honest**, and the hollowing was
+the only thing keeping it defensible.
+
+That is the general form worth keeping: **when the only way to make a figure
+defensible is to remove what makes it a figure, the instrument is wrong, not
+the execution.**
+
+### The shape was already in the copy
+
+Every one of the four outcomes names an input and an output. The right market
+becomes qualified interest. Demand becomes sales-ready conversations. First
+touch becomes a decision. Performance becomes commercial return — "and optimise
+accordingly", which is a return path into the first.
+
+So the shape the section's own words describe is a **closed loop**, and the
+section is called the Growth System. Four columns could only say "these are
+four things". The arcs say "this one produces what the next one runs on", which
+is the claim the section is actually making and the one it can defend.
+
+**A loop claims relation, not magnitude.** That is the whole reason this works
+where the chart did not: there is nothing on it a reader could quote as a
+figure, and nothing on it that needs one. The proof-figure bar does not apply,
+rather than being narrowly cleared.
+
+### Why a ring and not a chain down the page
+
+Attempt one on 21 Sep failed by restating the four names in a second vertical
+stack beside the first. The outcomes are a numbered list now, so **a vertical
+figure on the right would repeat that failure exactly**. The ring is the one
+arrangement that cannot be mistaken for the column it sits beside.
+
+The return arc is dashed and labelled `optimise`, so the forward reading stays
+a progression that feeds back rather than a wheel spinning in place. That
+distinction is carried by the stroke, not by a caption.
+
+### It is a tabpanel, and that is not decoration
+
+The 21 Sep hover was CSS alone and legitimate **only because its label was
+redundant** — every name already set in text beside it. The panel in the middle
+of the ring is not redundant: what a stage takes in and hands on appears
+nowhere else on the page. So it cannot be `aria-hidden` and it cannot be
+hover-only.
+
+Four controls selecting one of four panels is the tab pattern, so it is built
+as tabs — `role="tablist"`, roving tabindex, arrow keys, Home and End,
+automatic activation. **That also settles touch**, where the old figure's
+hover-only label was simply unreachable and [[09 Outstanding]] had it listed as
+deliberate.
+
+Pointer hover on either side selects too, and selection is sticky: leaving does
+not reset it. A figure that snaps back to Demand each time a pointer crosses it
+flickers, and there is no state here worth protecting.
+
+### The 2×2 grid becomes a numbered list
+
+That grid read **down** its columns — Demand and Conversion in the first,
+Pipeline and Revenue in the second — so the framework's order survived only in
+a source comment and in a sentence underneath restating it. **A chain that has
+to explain its own sequence in prose underneath is not drawn correctly.**
+
+The closing line loses its first half. "Demand. Pipeline. Conversion. Revenue."
+was answering a question nothing asks once the items are numbered. "Every
+channel should have a reason to exist" is the argument and it stays.
+
+This makes the hairline-rows idiom's fourth call site. It qualifies on the same
+test [[08 Design system constraints]] states: these four are **ordered, not
+parallel**, and a grid of equal boxes claims the opposite — loudly enough here
+that the section needed a sentence to contradict it.
+
+### One line of new copy, and it is flagged
+
+"Revenue does not end the system. It optimises what feeds it." The ring can
+draw the return path and label it, but it cannot say why the system does not
+end at revenue, and that is the argument the loop exists to make. It is the
+only prose on this section that is not the brief's. Raised in
+[[09 Outstanding]] for a wording check, not for approval.
+
+### What the browser found, and the gates could not
+
+Three faults, all after six green gates. They are in [[10 Verification]] in
+full. The one with a rule in it: **everything drawn in the svg is in viewBox
+units and scales with the figure; everything drawn in HTML over it was in `rem`
+and did not.** At the 1160 wrap the two happened to agree. At 768px they did
+not, and the figure read "optimise TAKES IN interest" across one line. The fix
+is the first container query in the stylesheet — see
+[[08 Design system constraints]].
+
+**`public/home/growthBanner.webp` is still referenced by nothing**, three
+figures later. Unchanged by this.
+
+Related: [[03 Phase 1 — Homepage]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]

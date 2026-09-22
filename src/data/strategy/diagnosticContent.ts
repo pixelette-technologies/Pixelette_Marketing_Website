@@ -84,9 +84,17 @@ export const strategyHero = {
 // in the first draft of this page and that is precisely how a set of six
 // becomes a set of six-and-a-half.
 //
-// `name` is the dimension. `imperative` is the one-line instruction that opens
-// each methodology stage. `description` is the stage body. The results use
-// `name` alone.
+// `name` is the dimension, and it is the ONLY field rendered anywhere today:
+// the wave labels its six points with it and the results scale their six rows
+// by it.
+//
+// `imperative` AND `description` ARE NOT RENDERED. They were the body of the
+// methodology's six stages, which came off on instruction on 22 Sep 2026 when
+// the wave took that section's place. They are kept rather than deleted
+// because they are the brief's own copy and the stages may come back — but a
+// reviewer reading this file should know that these twelve sentences are not
+// on the page. If the stages are not restored, delete them; unread copy in a
+// copy document is how a file stops being trustworthy.
 
 export interface Dimension {
   id: DimensionId;

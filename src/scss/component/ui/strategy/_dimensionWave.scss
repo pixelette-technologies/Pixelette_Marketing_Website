@@ -1,12 +1,22 @@
-// The six dimensions as a wave. The hero's figure.
+// The six dimensions as a wave. The methodology band's figure.
 //
-// ADAPTED FROM A WITHDRAWN VERSION of this page, where it sat on a dark band.
-// The geometry and the two-axis mechanism are kept; every colour changed,
-// because it now sits on the light hero ground. On dark it used the marking
-// tone and the panel border; here the line and the circle edge take the
-// hairline ramp and the numeral takes the brand anchor, which is legible on
-// light and is barred on dark. That is colour being contextual — the component
-// states none of it.
+// IT LIVES ON THE DARK BAND NOW, in the methodology section, having moved down
+// from the hero on 22 Sep 2026. The light-ground values below are still the
+// BASE and the dark ones are restated under .band-dark at the foot of this
+// file, rather than the base simply being changed — which is deliberate:
+//
+//   1. The component passes no ground prop and no call site can get it wrong.
+//      _pointItem.scss is the cautionary tale — ArrowCard's `theme` boolean
+//      produced four live contrast failures at once, and the fix was to make
+//      colour contextual. This figure follows that.
+//   2. Put it back in the hero, or in any other light section, and it
+//      recolours itself. Nothing has to be remembered.
+//
+// The dark values are not the light ones darkened. On the panel ground the
+// brand anchor measures 2.77 and is BARRED, so the numeral takes the marking
+// tone that .band-dark already gives its eyebrows; the line and the circle
+// edge take --color-panel-muted, which is a LIGHT tone on this ground at 5.53,
+// because a figure the eye cannot follow is not a figure.
 //
 // TWO AXES, ONE SET OF LABELS. The track is a positioning context; each point
 // is placed from custom properties the component sets, and the media query
@@ -51,9 +61,9 @@
 
     & > path {
       fill: none;
-      // The hairline ramp's strongest tone. --color-line would disappear at
-      // this length on the wash, and the brand would make a 1200px sine wave
-      // the loudest thing in the hero.
+      // The light-ground base. --color-line would disappear at this length,
+      // and the brand anchor would make a 1200px sine wave the loudest thing
+      // in whatever section it sat in. Restated for dark at the foot.
       stroke: var(--color-line-strong);
       stroke-width: 2;
       stroke-linecap: round;
@@ -154,5 +164,41 @@
       width: 8rem;
       bottom: calc(100% + 0.5rem);
     }
+  }
+}
+
+// --- The dark ground --------------------------------------------------------
+// Read from the band, never passed in. See the header of this file.
+//
+// Every value here is measured against --color-panel-a, the gradient's worst
+// case, using the figures _surfaces.scss records for this family:
+//
+//   the label      --color-panel-muted    5.39   (10.5px mono, needs 4.5)
+//   the numeral    --color-footer-eyebrow 5.34   (13px mono, needs 4.5)
+//   line + edge    --color-panel-muted    5.53   (graphic, needs 3.0)
+//   the name       handled by .band-dark .h4 at 19.30
+//
+// The circle fill is --color-panel-b, the gradient's END rather than its
+// start, because the points sit in the lower two thirds of the band where the
+// 135deg gradient has already resolved to it. A transparent fill was the
+// alternative and is worse: the wave passes through each circle's centre,
+// which is exactly where the numeral is, so the line would strike through it.
+
+.band-dark .dimensionWave {
+  &__label {
+    color: var(--color-panel-muted);
+  }
+
+  &__line > path {
+    stroke: var(--color-panel-muted);
+  }
+
+  &__circle {
+    border-color: var(--color-panel-muted);
+    background: var(--color-panel-b);
+  }
+
+  &__index {
+    color: var(--color-footer-eyebrow);
   }
 }

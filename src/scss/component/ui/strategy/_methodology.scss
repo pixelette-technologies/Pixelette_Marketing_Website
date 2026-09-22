@@ -1,25 +1,22 @@
-// The six stages, on the page's first dark band.
+// The process section, on the page's first dark band.
 //
-// A SPINE, NOT A LIST OF CARDS. One hairline runs down the band and each stage
-// hangs off it with a node on the line. That is a connected sequence at 1440px
-// and an elegant vertical journey at 390px WITHOUT BEING TWO LAYOUTS — which
-// is the only version that fits the site's zero-breakpoint rule and also the
-// only version where the mobile reading is the real one rather than a
-// degraded copy of the desktop one.
+// IT IS A HEADER AND A FIGURE NOW, and that is all this file styles. It held
+// the six stages on a SPINE — a hairline down the band with a node per stage,
+// and a numeral, a name, an imperative and a description hanging off each one.
+// That came off on instruction on 22 Sep 2026 and the wave took its place, so
+// roughly eighty lines of spine geometry went with it rather than being left
+// to match markup that no longer exists.
 //
-// Each stage's own content folds on flex bases: the head takes 16rem and the
-// description 26rem either side of a 3rem gap, so the pair sits across the
-// spine at full width and stacks beneath itself once the column narrows. No
-// media query.
+// The spine is worth knowing about if the stages ever come back, because it
+// solved a real problem: a vertical spine is a connected sequence at 1440px
+// AND an elegant vertical journey at 390px without being two layouts, which is
+// the only shape that fits the site's zero-breakpoint rule. Recover it from
+// 8a92fc2 rather than rebuilding it.
 //
-// THE SPINE OFFSET IS A CUSTOM PROPERTY because two rules need the same
-// number: the list's padding-left, which is where the content starts, and each
-// node's negative offset, which is where the line is. Written twice they drift
-// and the nodes end up beside the spine rather than on it.
-//
-// Colour is contextual. --color-brand is 2.77 on this ground and is barred, so
-// the marking tone carries the numerals and the nodes, exactly as
-// CapabilityModel's numerals do.
+// WHAT IS LEFT NEEDS ALMOST NOTHING. .band-dark already colours the eyebrow,
+// the heading and the lead; the figure colours itself from the same band, in
+// _dimensionWave.scss; and the figure carries its own top margin. So this is
+// the section rhythm and the house header anatomy, and nothing else.
 
 .methodology {
   padding-block: var(--sec-y);
@@ -36,83 +33,5 @@
     & > .lead {
       margin-top: 1.5rem;
     }
-  }
-
-  &__stages {
-    --spine-gap: clamp(1.5rem, 0.75rem + 2vw, 2.75rem);
-
-    margin: var(--sec-y-sm) 0 0;
-    padding: 0 0 0 var(--spine-gap);
-    list-style: none;
-    border-left: 1px solid var(--color-panel-border);
-  }
-
-  &__stage {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem 3rem;
-    padding-bottom: clamp(2.25rem, 1.5rem + 2.4vw, 3.5rem);
-
-    // The last stage would otherwise leave the spine running past it into the
-    // band's own padding, which reads as an unfinished line.
-    &:last-child {
-      padding-bottom: 0;
-    }
-
-    // The node on the spine. 9px, centred on the 1px line: the line sits at
-    // -var(--spine-gap) - 1px from the content edge, so a 9px dot needs its
-    // left edge 4px further out again.
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0.4rem;
-      left: calc(-1 * var(--spine-gap) - 5px);
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--color-footer-eyebrow);
-    }
-  }
-
-  &__head {
-    flex: 1 1 16rem;
-    min-width: 0;
-  }
-
-  // A row of its own, so the name and the description below it start on the
-  // same line. See the note in Methodology.tsx: with the numeral inside the
-  // head column, every description sat a line higher than its own heading.
-  &__index {
-    flex: 0 0 100%;
-    font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 0.8125rem;
-    letter-spacing: 0.08em;
-    color: var(--color-footer-eyebrow);
-    margin-bottom: 0.25rem;
-  }
-
-  // .band-dark already carries the page white onto .h3 and .h3 already carries
-  // text-wrap: balance. Nothing else is needed.
-  &__name {
-    margin-bottom: 0.5rem;
-  }
-
-  // The imperative. It is the stage's instruction rather than its description,
-  // so it takes the display face at body size — heavier than the paragraph
-  // beside it without being a second heading.
-  &__imperative {
-    font-family: var(--font-display);
-    font-size: var(--fs-lead);
-    line-height: 1.4;
-    color: var(--color-page);
-  }
-
-  // .body caps itself at 66ch, so this basis only decides WHEN the description
-  // stops sitting beside the head, never how wide the prose runs.
-  &__body {
-    flex: 1 1 26rem;
-    min-width: 0;
   }
 }

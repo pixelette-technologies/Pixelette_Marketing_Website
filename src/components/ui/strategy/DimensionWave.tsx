@@ -139,9 +139,22 @@ const DimensionWave = () => {
                     // a pixel offset inside the 160px track.
                     "--x-h": `${((i + 0.5) / count) * 100}%`,
                     "--y-h": `${H_BOX.mid - H_BOX.amplitude * swing}px`,
-                    // Vertical: mirrored. x swings either side of the centre
-                    // line as a percentage of the track's width.
-                    "--x-v": `${50 + (V_BOX.amplitude / V_BOX.width) * 100 * swing}%`,
+                    // Vertical: x swings either side of the centre line as a
+                    // percentage of the track's width.
+                    //
+                    // MINUS, NOT PLUS, and the sign is the whole point. The
+                    // path is sampled as `mid - amplitude * sin(theta)` on
+                    // both axes, so a point placed at `+ sin` is the path's
+                    // MIRROR IMAGE. The horizontal pair always agreed because
+                    // --y-h is also written as a subtraction; this one was a
+                    // plus, so on every screen under 768px the six circles sat
+                    // on the opposite side of the centre line from the wave
+                    // they are supposed to be on, crossing it twice.
+                    //
+                    // It is invisible at a glance — the figure still looks
+                    // like a wave with six circles near it — and it was caught
+                    // by comparing the two formulae rather than by looking.
+                    "--x-v": `${50 - (V_BOX.amplitude / V_BOX.width) * 100 * swing}%`,
                     "--y-v": `${((i + 0.5) / count) * V_BOX.height}px`
                   } as React.CSSProperties
                 }

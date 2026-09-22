@@ -5,8 +5,10 @@
 // is deliberately empty and the wash is the only other thing in it. .lead keeps
 // its own 62ch cap from the primitives, which lands just inside the heading's.
 //
-// The wave beneath is the full width of the container, so the section reads as
-// a narrow column of type over a wide figure rather than as one ragged block.
+// It carried the six-dimension wave beneath the copy until 22 Sep 2026, when
+// that moved down to the methodology band on instruction. Nothing here was
+// sized to it, so nothing had to change: the section is the type column and
+// the section rhythm, and it now closes on the microcopy under the buttons.
 //
 // No media query here. The type interpolates through clamp(), the caps are in
 // rem against a container that is already fluid, and .wash-left is redrawn for

@@ -485,3 +485,43 @@ because these are real radios rather than divs with click handlers.
   been seen on any page.
 
 Related: [[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]]
+
+## 22 Sep — a fault that looking had already missed
+
+The six-dimension wave moved from the hero into the dark methodology band, and
+the move exposed a bug that had shipped in `8a92fc2` and survived a mobile
+screenshot review.
+
+**The vertical wave's circles were the path's mirror image.** The points were
+placed at `50 + amplitude·sin θ`; the path was sampled at
+`mid − amplitude·sin θ`. Under 768px every circle sat on the opposite side of
+the centre line from the wave, crossing it twice. On the horizontal axis the
+two always agreed, because `--y-h` is also written as a subtraction — so the
+desktop figure was correct throughout and gave no hint.
+
+**Why the earlier look did not catch it.** A wave with six labelled circles
+near it still reads as a wave with six labelled circles. Nothing overlapped,
+nothing was truncated, no text was unreadable, and the figure filled its box.
+Every heuristic a person applies to a screenshot passed.
+
+**What caught it was comparing the two formulae** — the one that places a
+circle and the one that samples the path — and noticing they differed by a
+sign. It was then confirmed the way it should have been checked in the first
+place: by measuring, in the browser, the distance from each circle's centre to
+the nearest point on the rendered path.
+
+| | vertical (390px) | horizontal (1440px) |
+|---|---|---|
+| before | roughly 150px off | 0.0–0.8px |
+| after | 0.0–0.4px | 0.0–0.8px |
+
+The residual is the path-sampling resolution, not error.
+
+**The lesson worth keeping.** This file has said three times that looking
+catches what the gates cannot. This is the other half: **looking does not catch
+everything either.** A figure built from a formula should be checked against
+its own formula, and a figure that claims points lie on a line should be
+measured rather than admired. Neither the type checker, the token gate, the
+route walk nor a screenshot could see this; a four-line measurement could.
+
+Related: [[02 Decisions]], [[05 Components]]

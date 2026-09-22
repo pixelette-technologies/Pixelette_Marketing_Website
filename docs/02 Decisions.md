@@ -730,3 +730,59 @@ store, which is also how it offers "Review my results" without a provider.
 
 Related: [[05 Components]], [[08 Design system constraints]],
 [[09 Outstanding]], [[10 Verification]]
+
+## The process section becomes the figure, 22 Sep 2026
+
+On instruction: the methodology's six stages — numeral, name, imperative and
+description on a vertical spine — came off the dark band, and the wave that had
+been in the hero took their place.
+
+**IT MOVED RATHER THAN BEING COPIED.** The figure names all six dimensions and
+the section it now sits in used to list all six by name, so leaving it in the
+hero as well would have put the same six words on the page twice, 800px apart,
+with the second instance adding nothing. The hero keeps the composition it
+already had — headline at the 34rem measure, the right half of the band
+deliberately empty — which is what AboutUsHero settled on after its own collage
+came off, and it needed nothing to replace the figure.
+
+**What is off the page:** the twelve sentences of imperative and description.
+They stay in `dimensions` in the copy file, marked as unrendered, because they
+are the brief's own words and the stages may come back. If they do not, they
+should be deleted — unread copy in a copy document is how the file stops being
+trustworthy. The spine geometry was deleted outright and is recoverable from
+`8a92fc2`; rebuilding it from scratch would be the waste.
+
+### The figure recolours itself, and that is not decoration
+
+It carries no ground prop and `Methodology.tsx` passes it nothing. Its
+light-ground values are still the base in `_dimensionWave.scss` and the dark
+ones are restated under `.band-dark`, so putting it back in the hero — or in
+any light section — needs no change and nobody has to remember anything. That
+is the rule `_pointItem.scss` exists to demonstrate: `ArrowCard`'s `theme`
+boolean produced four live contrast failures at once, and the fix was to make
+colour contextual.
+
+The dark values are not the light ones darkened. The brand anchor measures 2.77
+on the panel ground and is barred, so the numerals take the marking tone;
+the line and the circle edges take `--color-panel-muted`, which is a LIGHT tone
+here at 5.53 — the instruction was to make the diagram light so it reads on the
+dark ground, and that is the token that does it.
+
+### A geometry bug the move exposed
+
+The vertical wave placed its six circles at `50 + amplitude·sin θ` while the
+vertical path was sampled at `mid − amplitude·sin θ`. **The points were the
+path's mirror image**, so on every screen under 768px the circles sat on the
+opposite side of the centre line from the wave and crossed it twice.
+
+It shipped in `8a92fc2`, in the hero, and it survived a mobile screenshot
+review — because a wave with six circles near it still looks like a wave with
+six circles. **It was caught by comparing the two formulae, not by looking**,
+and then confirmed by measuring every circle's centre against the rendered path
+in the browser: 0.0–0.8px on both axes after the fix, against roughly 150px
+before it on the vertical.
+
+That is the counterpart to every other note in [[10 Verification]]: looking
+catches what the gates cannot, and arithmetic catches what looking cannot.
+
+Related: [[05 Components]], [[08 Design system constraints]], [[10 Verification]]

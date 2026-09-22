@@ -1,7 +1,6 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { strategyHero } from "@/data/strategy";
-import DimensionWave from "./DimensionWave";
 
 // The interior hero. `.wash-left` is the guide's offset interior ground, and
 // the wrapper is what lets the gradient run full-bleed behind the container
@@ -23,10 +22,17 @@ import DimensionWave from "./DimensionWave";
 // That is also why neither needs a click handler: no JavaScript is involved in
 // either scroll, so both work before hydration and with JS off entirely.
 //
-// NO IMAGE. Every hero image in public/ is bought stock, and the brief bars
-// stock photography outright. The composition is the measure — 34rem against
-// the 1160px wrap leaves the right side deliberately empty — and the figure
-// beneath the copy is the visual.
+// NO IMAGE AND NO FIGURE. Every hero image in public/ is bought stock and the
+// brief bars stock photography outright. The six-dimension wave lived here
+// until 22 Sep 2026, when it MOVED DOWN to the methodology band on
+// instruction — so the six names are stated once on this page rather than
+// twice, which is what they were doing while the figure sat above a section
+// that also listed them.
+//
+// The composition is the measure: 34rem against the 1160px wrap leaves the
+// right side of the band deliberately empty, and the wash is the only other
+// thing in it. That is the same composition AboutUsHero settled on after its
+// own collage came off, and it needs nothing to replace the figure.
 
 const StrategyHero = () => {
   const {
@@ -67,8 +73,6 @@ const StrategyHero = () => {
                 belongs where the action is. */}
             <Text className='small strategyHero__microcopy'>{microcopy}</Text>
           </div>
-
-          <DimensionWave />
         </section>
       </Container>
     </div>

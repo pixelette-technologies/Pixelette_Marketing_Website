@@ -1,8 +1,11 @@
-import { servicesData } from "@/data/services/servicesData";
+import { capabilityGroups } from "@/data/services/capabilityGroups";
 import { industriesData } from "@/data/industries/industriesData";
+import { servicesData } from "@/data/services/servicesData";
 
 export interface NavItem {
-  route: string;
+  /** An absolute path. Items under one group no longer share a parent route —
+   *  see the Strategy & Positioning group below — so each carries its own. */
+  href: string;
   title: string;
 }
 
@@ -22,14 +25,30 @@ export interface NavGroup {
 //
 // THE FIVE CAPABILITIES ARE GROUP LABELS, NOT PAGES. The brief is explicit
 // that the individual service pages remain underneath them for search intent,
-// so the dropdown groups the eight existing pages under the capability they
-// belong to rather than inventing five new landing pages.
+// so the dropdown groups the existing pages under the capability they belong
+// to rather than inventing five new landing pages.
+//
+// 22 SEP 2026: THE DROPDOWN IS NOW DERIVED FROM /services, NOT RESTATED.
+// It used to hold its own copy of the mapping — four labels and eight routes,
+// typed out a second time — and the two drifted the moment the hub gained a
+// fifth block. The hub showed five capabilities and the dropdown showed four,
+// because "Strategy & Positioning" had had nothing to point at when this file
+// was written and the dropdown was never revisited when the diagnostic shipped.
+//
+// capabilityGroups is the same source the /services page renders, so the
+// dropdown is now that page's contents by construction: same five labels, same
+// order, same links beneath each. A capability can no longer appear in one and
+// not the other.
 
 /** Looks up routes in a source list and FAILS THE BUILD on a miss.
  *
  *  A typo here would otherwise silently drop a link from the navigation, which
  *  is the kind of fault nobody notices until traffic does. */
-function pick(routes: string[], source: readonly NavItem[]): NavItem[] {
+function pick(
+  routes: string[],
+  source: readonly { route: string; title: string }[],
+  prefix: string
+): NavItem[] {
   return routes.map(route => {
     const found = source.find(entry => entry.route === route);
     if (!found) {
@@ -38,46 +57,66 @@ function pick(routes: string[], source: readonly NavItem[]): NavItem[] {
           `Known routes: ${source.map(entry => entry.route).join(", ")}`
       );
     }
-    return { route: found.route, title: found.title };
+    return { href: `${prefix}/${found.route}`, title: found.title };
   });
 }
 
-// Two of the brief's groups are NOT rendered, and the omissions are the same
-// judgement in both places: "Strategy & Positioning" has no service page, and
-// Launch / Scale / Established & Enterprise have no stage pages. A dropdown
-// group with no destinations under it is a dead label, and the house content
-// rule is to ship the pattern without the missing element rather than invent
-// one to fill it.
-//
-// Neither capability is lost — both are sold on the homepage, in the Growth
-// System and in Who We Help. They join the navigation when there is somewhere
-// for them to point.
-export const whatWeDoGroups: NavGroup[] = [
-  {
-    label: "Demand & Performance",
-    items: pick(
-      ["social_media_marketing", "ads_ppc", "influencer_marketing", "pr"],
-      servicesData
-    )
-  },
-  {
-    label: "Search & Authority",
-    items: pick(["seo_and_content_marketing"], servicesData)
-  },
-  {
-    label: "Pipeline & Conversion",
-    items: pick(["lead_generation", "email_marketing"], servicesData)
-  },
-  {
-    label: "Growth Intelligence",
-    items: pick(["marketing_analytics_and_reporting"], servicesData)
-  }
-];
+export const whatWeDoGroups: NavGroup[] = capabilityGroups.map(group => ({
+  label: group.title,
+  items: [
+    // The capability's own destination, where it has one, ahead of the service
+    // pages filed under it. Today that is Strategy & Positioning and only
+    // Strategy & Positioning: it is the one capability sold as itself rather
+    // than through a service page beneath it.
+    //
+    // IT TAKES THE PAGE'S TITLE, NOT THE HUB'S LINK LABEL. On /services the
+    // link reads "Explore our Strategy & Positioning Diagnostic →", which is a
+    // sentence sitting in a block of prose. Its siblings here are page titles
+    // in a list of page titles, and a sentence among them would read as a
+    // promotion rather than a destination.
+    ...(group.featured
+      ? [{ href: group.featured.route, title: "The Diagnostic" }]
+      : []),
+    ...group.services.map(service => ({
+      href: `/services/${service.route}`,
+      title: service.title
+    }))
+  ]
+}))
+  // A capability with no destinations at all is a dead label — the house rule
+  // is to ship the pattern without the missing element rather than invent one
+  // to fill it. None of the five is empty today; this is what keeps the
+  // dropdown honest if a sixth capability is approved before it has anywhere
+  // to point.
+  .filter(group => group.items.length > 0);
+
+// EVERY SERVICE PAGE MUST BE REACHABLE FROM THE DROPDOWN. The old `pick` call
+// for this menu listed the eight routes by hand and threw on a typo; deriving
+// the menu instead means a route that falls out of the mapping falls out of the
+// navigation silently, which is the exact fault that check existed to prevent.
+// So the guarantee is restated as a count, which catches more than the typo
+// did: a new service page added to servicesData and never filed under a
+// capability fails the build too, rather than shipping unreachable.
+const linkedServices = whatWeDoGroups
+  .flatMap(group => group.items)
+  .filter(item => item.href.startsWith("/services/")).length;
+
+if (linkedServices !== servicesData.length) {
+  throw new Error(
+    `The What We Do dropdown links ${linkedServices} service pages but ` +
+      `${servicesData.length} exist. Every service page must sit under a ` +
+      `capability — check ROUTES_BY_CAPABILITY in data/services/capabilityGroups.ts.`
+  );
+}
 
 export const whoWeHelpGroups: NavGroup[] = [
   {
     label: "Selected sector experience",
-    items: pick(["ai", "fintech", "web_3", "saas", "tech"], industriesData)
+    items: pick(
+      ["ai", "fintech", "web_3", "saas", "tech"],
+      industriesData,
+      "/industries"
+    )
   }
 ];
 

@@ -19,6 +19,13 @@ interface NavbarDropDownProps {
 // and a heading that looks clickable but is not is worse than one that plainly
 // is not.
 //
+// ITEMS CARRY THEIR OWN HREF. This used to build each one as
+// `/${mainRoute}/${item.route}`, which assumed every destination in the panel
+// sat under the trigger's route. The Strategy & Positioning capability breaks
+// that assumption: it is a What We Do group whose destination is the diagnostic
+// at /strategy-positioning, a top-level page. `mainRoute` still addresses the
+// trigger itself, which genuinely is the panel's parent page.
+//
 // THE TRIGGER IS A LINK NOW. "Services" and "Industries" were plain text, so
 // /services and /industries were in the sitemap but reachable from nowhere in
 // the navigation. The brief puts "What We Do" and "Who We Help" in the top
@@ -84,13 +91,13 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
               <p className='eyebrow'>{group.label}</p>
               {group.items.map(item => (
                 <Link
-                  key={item.route}
-                  href={`/${mainRoute}/${item.route}`}
+                  key={item.href}
+                  href={item.href}
                   passHref
                   onClick={() => {
                     setActive(false);
                     if (onLinkClick) {
-                      onLinkClick(item.route);
+                      onLinkClick(item.href);
                     }
                   }}
                 >

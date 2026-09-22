@@ -1,8 +1,8 @@
 // D5. Off the legacy Sass alias. Five media queries gone: the header is a
-// wrapping flex pair and the cards are auto-fit, which replaces a flex basis
-// re-derived at 900px and a 600px rule that set `flex: 1 1 calc(400px - 1rem)`
-// — a fixed basis dressed as a fluid one, and the reason the cards stopped
-// filling the row on a phone.
+// wrapping flex pair and the rows are a wrapping flex list, which replaces a
+// flex basis re-derived at 900px and a 600px rule that set
+// `flex: 1 1 calc(400px - 1rem)` — a fixed basis dressed as a fluid one, and
+// the reason the cards stopped filling the row on a phone.
 
 .web3Question {
   padding-block: var(--sec-y);
@@ -31,10 +31,41 @@
       text-align: right;
     }
   }
+}
 
-  & > section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-    gap: 1rem;
-  }
+// --- 22 Sep 2026: the three image cards became three constraints ------------
+// WAS `repeat(auto-fit, minmax(min(17rem, 100%), 1fr))` holding three cards,
+// each with a stock photo above a question. The photos were the same three
+// files on all five sector pages, so they carried no sector meaning; the grid
+// made three short statements look like a menu of three products; and the
+// question form collided with the eight-item FAQ further down the same page.
+// See Web3Questions.tsx for the full reasoning.
+//
+// Rows on a hairline, which is the shape /services and /industries now use, so
+// a visitor moving between them meets one language rather than three. No fill,
+// no border box, no shadow: this is already .band-alt, and a card inside a
+// tinted band is the nested-box pattern _surfaces.scss rules out.
+.constraintList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  list-style: none;
+}
+
+// Three across against the wrap, two in the middle, one on a phone — all from
+// the basis, no breakpoint. 18rem rather than the old 17rem because these are
+// sentences now rather than captions under an image.
+.constraintList__item {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+// The constraint is the thing being named, so it takes the brand tone and the
+// body sits under it in ordinary ink. Not .h3: these sit below the section h2
+// and above body copy, and .h4 is the step that leaves that gap intact.
+.constraintList__title {
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
 }

@@ -4,38 +4,35 @@ export const industriesData = [
   {
     id: 1,
     title: "Web 3 Marketing",
-    metaTitle: "Leading Web3 Marketing Agency | Pixelette Marketing",
+    metaTitle: "Web3 Marketing Agency | Pixelette Marketing",
     metaDescription: "Build community. Drive demand. Go global. Our Web3 Digital Marketing Services are custom-made for projects shaping the next internet. Book a call ☎️",
     metaKeywords: "web3 marketing, web3 digital marketing services, web3 marketing agency",
     route: "web_3",
     hubLine:
       "Token launches, community and credibility, in a market where trust is the hardest thing to earn and the easiest to lose.",
-    mainHeading: "We’re a web3 marketing agency",
-    subHeading: "turning blocks into breakthroughs",
+    mainHeading: "Web3 marketing",
+    subHeading: "For teams launching tokens, protocols and digital-asset products",
     summary:
-      "Partner with Pixelette Marketing to align your goals with meaningful marketing efforts to build trust, drive adoption and make a lasting impact in the Web3 ecosystem.",
+      "Web3 buyers arrive sceptical and leave quickly. Trust is the hardest thing to earn in this market and the easiest to lose, and most of the work is reputational before it is promotional: community, credibility, and explaining clearly something most people have never used.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `We solve  <span> web3 marketing’s toughest questions</span>`,
+      heading: `What <span> web3 marketing</span> has to solve`,
       text: "Crypto brands often face hurdles like low visibility, user adoption gaps, and community engagement. Here’s how companies availing our web3 marketing services have transformed their pain points into measurable growth.",
       data: [
         {
-          image: "/industries/mq_1.webp",
           heading:
-            "Are your token launches falling short of reaching the right audience?",
-          text: "Boosted whitelist sign-ups by 250% for a token presale campaign."
+            "Reaching holders, not audiences",
+          text: "Presale and whitelist work aimed at the holders who stay, rather than the widest reach the cheapest traffic can buy."
         },
         {
-          image: "/industries/mq_2.webp",
           heading:
-            "Facing challenges in building credibility and attracting non-crypto-native users?",
-          text: "2X community growth through targeted influencer partnerships for blockchain startups."
+            "Credibility with people who are not crypto-native",
+          text: "Influencer and community work chosen for standing in the space rather than follower count, and written for people who are not crypto-native."
         },
         {
-          image: "/industries/mq_3.webp",
           heading:
-            "Is your brand getting lost in the noise of a rapidly expanding blockchain landscape?",
-          text: "Increased organic website traffic by 300% through strategic content marketing for a new DeFi platform."
+            "Being findable in a market that never stops announcing",
+          text: "Content and search built around what people actually ask about a protocol before they commit, not around launch-day announcements."
         }
       ]
     },
@@ -181,32 +178,29 @@ export const industriesData = [
     route: "fintech",
     hubLine:
       "Growth inside a regulated market, where compliance shapes what you are allowed to say and trust decides who listens.",
-    mainHeading: "We’re a fintech marketing agency",
-    subHeading: "converting prospects into assets",
+    mainHeading: "Fintech marketing",
+    subHeading: "For regulated products, where what you may say shapes what you can sell",
     summary:
-      "Partner with Pixelette Marketing to position your goals with marketing strategies designed to drive growth, build trust and create a lasting footprint in the fintech industry.",
+      "In financial services, compliance shapes the message before marketing ever sees it. Claims need substantiating, promotions need sign-off, and trust decides who gets a hearing at all. The work is building demand inside those limits rather than around them.",
     image: "/industries/fintech.png",
     ourSolutions: {
-      heading: `We solve <span> fintech marketing’s toughest questions</span>`,
+      heading: `What <span> fintech marketing</span> has to solve`,
       text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here’s how our fintech marketing solutions have turned these challenges into measurable success stories.",
       data: [
         {
-          image: "/industries/mq_1.webp",
           heading:
-            "Struggling to earn user trust in a competitive fintech landscape?",
-          text: "Increased app sign-ups by 200% through strategic influencer partnerships and educational content."
+            "Trust, earned inside the compliance limits",
+          text: "Acquisition work built to survive compliance review, so campaigns ship instead of stalling in approval."
         },
         {
-          image: "/industries/mq_2.webp",
           heading:
-            "Is your fintech platform facing challenges in scaling user acquisition?",
-          text: "Boosted conversions by 300% for a neobank launch using targeted paid ad campaigns and optimised funnels."
+            "Acquisition that scales without stalling in approval",
+          text: "Funnels and paid campaigns designed around the evidence a regulated product has to show before anyone will sign up."
         },
         {
-          image: "/industries/mq_3.webp",
           heading:
-            "Finding it hard to stand out in a crowded digital ecosystem?",
-          text: "Achieved 150% growth in organic traffic for a payments platform through focused SEO and content strategies."
+            "Standing apart where every competitor says the same things",
+          text: "Search and content aimed at the questions buyers ask about safety, custody and cost, which is where most of the intent sits."
         }
       ]
     },
@@ -347,31 +341,28 @@ export const industriesData = [
     route: "tech",
     hubLine:
       "Long buying cycles and technical buyers, where the decision is made by a committee you rarely get in the room.",
-    mainHeading: "We’re a tech marketing agency ",
-    subHeading: "connecting innovation to the world",
+    mainHeading: "Technology marketing",
+    subHeading: "For long sales cycles and buying committees you rarely get in the room",
     summary:
-      "Partner with Pixelette Marketing to connect your technology product and platform solutions with the right audience, as well as drive growth, build trust, and position your company as an industry leader.",
+      "Technology purchases are rarely decided by the person you are talking to. The cycle is long, the evaluation is technical, and the decision is made by a committee with competing priorities. Much of the job is arming your champion for meetings you will never attend.",
     image: "/industries/tech.png",
     ourSolutions: {
-      heading: `We solve tech <span> marketing’s toughest questions</span>`,
+      heading: `What <span> tech marketing</span> has to solve`,
       text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here’s how our tech marketing strategies have helped companies overcome these challenges.",
       data: [
         {
-          image: "/industries/mq_1.webp",
-          heading: "Struggling to break through in a crowded tech landscape?",
-          text: "Increased visibility by 250% for a client through targeted social media and content marketing campaigns."
+          heading: "Cutting through a category everyone is already shouting in",
+          text: "Positioning and content a champion can forward, written for the people who will read it without you in the room."
         },
         {
-          image: "/industries/mq_2.webp",
           heading:
-            "Finding it hard to communicate complex tech solutions effectively?",
-          text: "Simplified messaging company, boosting lead generation by 300% through strategic PR and educational content."
+            "Explaining something complex to a mixed committee",
+          text: "Messaging simplified to the one thing a technical buyer and a finance buyer can both agree on."
         },
         {
-          image: "/industries/mq_3.webp",
           heading:
-            "Facing challenges in scaling adoption for emerging technologies?",
-          text: "Achieved 2x user growth by combining influencer marketing with targeted PPC campaigns, for visibility and qualified traffic on platform."
+            "Adoption that holds after the pilot ends",
+          text: "Influencer and paid work aimed at the buyers who adopt and stay, rather than at the traffic that is cheapest to acquire."
         }
       ]
     },
@@ -517,32 +508,29 @@ export const industriesData = [
     route: "saas",
     hubLine:
       "Demand that converts to trial, trials that convert to revenue, and retention that makes both worth paying for.",
-    mainHeading: "We’re a SaaS marketing agency ",
-    subHeading: "transforming software into market success",
+    mainHeading: "SaaS marketing",
+    subHeading: "For products where the sale is only the start of the revenue",
     summary:
-      "Partner with Pixelette Marketing to connect your SaaS solutions with the right audience, driving growth, building trust and establishing your company as a market leader.",
+      "SaaS growth is a chain rather than an event: demand that converts to trial, trials that convert to paid, and retention that makes the acquisition cost worth paying. A break anywhere in that chain shows up as a marketing problem long after it stopped being one.",
     image: "/industries/saas.png",
     ourSolutions: {
-      heading: `We solve SaaS <span> marketing’s toughest questions </span>`,
+      heading: `What <span> SaaS marketing</span> has to solve`,
       text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here’s how our SaaS marketing strategies have delivered results.",
       data: [
         {
-          image: "/industries/mq_1.webp",
           heading:
-            "Struggling to communicate the full value of your software to potential users?",
-          text: "Created an onboarding process for a workflow management SaaS, increasing active user engagement by 50% within the first month."
+            "Showing the value before the trial runs out",
+          text: "Onboarding and lifecycle treated as part of the funnel, because activation decides whether the acquisition was worth paying for."
         },
         {
-          image: "/industries/mq_2.webp",
           heading:
-            "Finding it hard to generate consistent, high-quality leads?",
-          text: "Delivered a 200% boost in qualified leads through integrated content marketing and targeted ad campaigns."
+            "Pipeline that fits, not just pipeline that fills",
+          text: "Demand aimed at fit rather than volume, so the sales team spends its time on accounts that renew."
         },
         {
-          image: "/industries/mq_3.webp",
           heading:
-            "Finding it hard to generate consistent, high-quality leads?",
-          text: "Helped a SaaS tool secure its place as an industry leader by driving 3x growth in organic search traffic through thought leadership content and strategic partnerships."
+            "Being found by the problem, not the category",
+          text: "Search and thought leadership built on the problems the product solves, rather than on the category it sits in."
         }
       ]
     },
@@ -683,32 +671,29 @@ export const industriesData = [
     route: "ai",
     hubLine:
       "A market where claims move faster than proof, and buyers want evidence before they want vision.",
-    mainHeading: "We’re an AI marketing agency",
-    subHeading: "transforming intelligence into influence",
+    mainHeading: "AI marketing",
+    subHeading: "For a market where claims move faster than proof",
     summary:
-      "Partner with Pixelette Marketing to bridge the gap between your AI innovations and their transformative impact, reaching the right audience to drive adoption, establish trust and solidify your leadership in the AI industry.",
+      "AI buyers have heard everything already. The market is loud, the claims outrun the evidence, and scepticism is the default setting. Showing what a product does on a real use case now travels further than describing what the technology could do.",
     image: "/industries/ai.png",
     ourSolutions: {
-      heading: `We solve <span> AI marketing’s toughest questions </span>`,
+      heading: `What <span> AI marketing</span> has to solve`,
       text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here’s how our strategic marketing turns these challenges into measurable success.",
       data: [
         {
-          image: "/industries/mq_1.webp",
           heading:
-            "Unsure how to position your AI solution to solve real-world problems?",
-          text: "Developed use-case-focused campaigns driving a 200% increase in enterprise client interest."
+            "Positioning against a real problem, not a capability",
+          text: "Use-case-led campaigns that show the work on a real problem instead of describing the capability."
         },
         {
-          image: "/industries/mq_2.webp",
           heading:
-            "Struggling to align your AI solutions with industry-specific needs?",
-          text: "Created industry-specific messaging for an AI logistics platform, doubling conversion rates from targeted outreach."
+            "Speaking to one industry at a time",
+          text: "Messaging built for one industry at a time, because AI for everything persuades no one in particular."
         },
         {
-          image: "/industries/mq_3.webp",
           heading:
-            "Need to demonstrate the measurable ROI of your AI offerings?",
-          text: "Generated data-driven case studies and testimonials  leading to a 50% boost in qualified lead generation."
+            "Proof a sceptical buyer will actually accept",
+          text: "Evidence before vision: in this market the buyer wants to see it working before they want to hear where it is going."
         }
       ]
     },

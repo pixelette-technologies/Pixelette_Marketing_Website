@@ -1,41 +1,40 @@
-// D5. Five media queries stepping the hero image down through four widths,
-// replaced by a wrapping flex pair and a max-width. The image is fluid, so it
-// does not need to be re-pinned at 1000, 750, 550 and 430px.
+// The interior hero.
 //
-// The section now sits on .wash-left, the guide's interior hero ground. Phase E
-// built both washes and applied only the centred one to the home page, so the
-// offset variant chosen for interior pages in the hero strategy had zero call
-// sites until now. This is the first.
+// It was a wrapping flex pair — collage left, copy right. The collage is gone
+// (see the note in AboutUsHero.tsx), so this is a single column capped at the
+// house measure and the flex row goes with the second item it held.
+//
+// THE MEASURE IS THE COMPOSITION. 34rem against the 1160px wrap leaves the
+// right half of the hero empty on purpose: the headline is meant to dominate
+// and the wash is the only other thing in the band. The .lead keeps its own
+// 62ch cap from the primitives, which lands just inside the heading's.
+//
+// No media query. The type interpolates, the caps are in rem against a
+// container that is already fluid, and .wash-left is redrawn for narrow
+// screens in _responsive — the single breakpoint the whole stylesheet has.
 
 .heroSectionAbout {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 3.125rem;
   padding-block: var(--sec-y);
 
-  & > img {
-    flex: 1 1 20rem;
-    min-width: 0;
-    max-width: 39.125rem;
-    height: auto;
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
   }
 
-  & > div {
-    flex: 1 1 20rem;
-    min-width: 0;
+  & > .h1 {
+    max-width: 34rem;
 
-    & > :is(h1, h2) {
+    // The payoff in the brand tone, the statement in ink. The guide's own hero
+    // device, and what HomeHero does with its second line.
+    & > span {
       color: var(--color-brand);
-
-      & > span {
-        color: var(--color-ink);
-      }
     }
+  }
 
-    & > p {
-      margin: 1.5rem 0rem;
-      color: var(--color-ink);
-    }
+  & > .lead {
+    margin-top: 1.5rem;
+  }
+
+  & > .btn {
+    margin-top: 2rem;
   }
 }

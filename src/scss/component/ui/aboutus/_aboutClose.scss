@@ -1,89 +1,66 @@
-// Phase F, About. The page ended on THREE dark bands in a row — OurTeam, the
-// client logo strip, and the "Become a partner" close — which read as one
-// undifferentiated slab rather than three sections. The settled rule already
-// says the dark family is a device, three per page maximum and never the
-// separator between two ordinary sections; three consecutively is the failure
-// that rule exists to prevent.
+// The close.
 //
-// The clients strip CANNOT be the one that goes light. Every logo in it is
-// knockout white — one carries a white fill attribute, the rest are baked
-// raster patterns — so a light ground there needs fifteen retinted third-party
-// marks. That was settled as Option A. So the close is the section that moves
-// and the close is the section that goes white.
+// This file used to hold the order shuffle that stopped three dark bands
+// stacking at the foot of this page — team, logos, close. Two of those three
+// sections no longer exist and the close is its own component now, so there is
+// nothing left to reorder: the page ends dark band, light close, in DOM order,
+// and the tab sequence and the reading order have never diverged.
 //
-// ORDER, NOT DOM. The content rule forbids reordering sections; it explicitly
-// allows ordering utilities that keep source order. The three components are
-// still authored team -> clients -> close, and a screen reader still reads them
-// in that sequence. Checked before relying on it: OurTeam and TrustedBrands
-// contain no focusable elements at all — images only, no links — so the single
-// focusable thing among the three is the CTA in the close, and the tab sequence
-// is byte-identical either way. `order` costs nothing here. It would NOT be
-// safe if the logo strip ever became links.
+// THE ASYMMETRY IS THE MESSAGE. The call to action takes a 30rem basis and the
+// network note a 20rem one, and the note is pinned to the bottom of the row so
+// it finishes level with the button rather than floating beside the heading.
+// Equal columns would make the two read as a pair of offers, which is exactly
+// what the note must not be.
 //
-// Selectors hang off the components' own classes, not :nth-child. The vault
-// records a positional selector in this same folder silently dying when the
-// user restructured the markup under it.
+// Below roughly 52rem of container the note drops beneath the button, keeping
+// its hairline, and stays the quietest thing on the page.
+
 .aboutClose {
+  padding-block: var(--sec-y);
+
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
+}
 
-  & > .ourTeamBand {
-    order: 1;
+.aboutClose__primary {
+  flex: 1 1 30rem;
+  min-width: 0;
+
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
   }
 
-  & > .questionAndAnswerBand {
-    order: 2;
+  & > .h2 {
+    max-width: 34rem;
   }
 
-  & > .trustedBrands {
-    order: 3;
+  & > .lead {
+    margin-top: 1.5rem;
   }
 
-  // One vertical rhythm across all three. OurTeam already carries --sec-y on
-  // .ourTeam and sets the measure; the other two are pulled onto it here rather
-  // than in their own partials, because both components are SHARED — the strip
-  // also runs on the home page, which has been signed off by eye, and the close
-  // also runs on the services and industries templates, which have not been
-  // looked at once. Scoping to .aboutClose changes About and nothing else.
-  & > .trustedBrands {
-    padding-block: var(--sec-y);
+  & > .btn {
+    margin-top: 2rem;
   }
+}
 
-  & > .questionAndAnswerBand > .questionAndAnswer {
-    padding-block: var(--sec-y);
-  }
+.aboutClose__network {
+  flex: 0 1 20rem;
+  min-width: 0;
+  border-top: 1px solid var(--color-line);
+  padding-top: 1rem;
+}
 
-  // The close, on white.
-  //
-  // Every colour in this block is the dark-ground palette read backwards, and
-  // the eyebrow is the one that matters: --color-brand-signal measures 3.61 on
-  // white and fails the 4.5:1 floor for small text. The tokens file says so at
-  // the declaration — the signal tone is barred from text and the footer is the
-  // one place it speaks. The anchor is the light-ground tone at 6.98. This is
-  // the exact inverse of the eight dark-ground failures the vault records, and
-  // it is the same mistake if made in this direction.
-  //
-  // Heading 20.0 on white, body copy 9.10, eyebrow and accent 6.98.
-  & > .questionAndAnswerBand {
-    background: var(--color-page);
-    color: var(--color-body);
-
-    & .questionAndAnswer {
-      & > header > p {
-        color: var(--color-brand);
-      }
-
-      & > h2 {
-        color: var(--color-ink);
-
-        & > span {
-          color: var(--color-brand);
-        }
-      }
-
-      & > p {
-        color: var(--color-body);
-      }
-    }
-  }
+// .link supplies the brand tone and the underline. This is the size and the
+// tap target: the note above it is .small, so a body-sized link under it would
+// outweigh the thing it qualifies, and 44px is the floor .flink meets for the
+// navigation and this link has to meet for itself.
+.aboutClose__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
 }

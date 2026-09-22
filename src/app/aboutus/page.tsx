@@ -1,74 +1,74 @@
-import { QuestionAndAnswer, TrustedBrands } from "@/components/common";
-import { proofCopy } from "@/data/home";
+import { TrustedBrands } from "@/components/common";
 import {
+  AboutClose,
+  AboutIdentity,
   AboutUsHero,
-  OurServices,
-  OurTeam,
-  OurValues,
-  WhoWeAre
+  CapabilityModel,
+  Principles
 } from "@/components/ui/aboutUs";
-import type { Metadata } from 'next'
- 
+import { aboutExperience } from "@/data/aboutus";
+import type { Metadata } from "next";
+
+// The About page, rebuilt 21 September 2026.
+//
+// SIX SECTIONS, AND THE LIST IS CLOSED: hero, who we are / how we work, the
+// capability model, the principles, selected experience, close. Four sections
+// came off it — the founding story, the values cards, the industries grid and
+// the team — and three of those four were removed for what they claimed
+// rather than for their length. The team section in particular presented five
+// people with names and job titles who cannot be substantiated.
+//
+// The industries grid is not replaced. Those six cards are the whole of
+// /industries and its eight children, and carrying them here made this page
+// longer without telling a visitor anything the navigation does not.
+//
+// THE DARK BUDGET. _surfaces.scss allows three .band-dark per route and
+// route-walk fails the build on a fourth. This page spends two: the capability
+// model, which is the section a buyer is here to understand, and the logo
+// strip, which has no choice — every logo in it is knockout white. The close
+// is light, so the page ends on the page's own ground rather than on a third
+// slab.
+//
+// THE ONE .rule-cap is on AboutIdentity, the first section after the hero.
+
 export const metadata: Metadata = {
-  title: 'About Us | Your Digital Marketing Partners',
-  description: 'At Pixelette Marketing, we’re more than a team. We’re your digital marketing solutions partner on the path from 0 to 1. Let’s build something big.',
-  keywords: ['digital marketing solutions', 'digital marketing agency'],
+  title: "About | Pixelette Marketing",
+  description:
+    "Pixelette Marketing brings strategy, creative thinking, technology and performance together to help ambitious businesses turn attention into commercial outcomes.",
+  keywords: ["digital marketing solutions", "digital marketing agency"],
   alternates: {
-    canonical: 'https://www.pixelettemarketing.com/aboutus',
+    canonical: "https://www.pixelettemarketing.com/aboutus"
   },
   openGraph: {
-    title: 'About Us | Your Digital Marketing Partners',
-    description: 'At Pixelette Marketing, we’re more than a team. We’re your digital marketing solutions partner on the path from 0 to 1. Let’s build something big.',
-  },
-}
+    title: "About | Pixelette Marketing",
+    description:
+      "Pixelette Marketing brings strategy, creative thinking, technology and performance together to help ambitious businesses turn attention into commercial outcomes."
+  }
+};
 
 export default function AboutUs() {
   return (
     <>
       <AboutUsHero />
-      <WhoWeAre />
-      <OurValues />
-      <OurServices />
-      {/* Authored team -> clients -> close, and it stays that way. The close
-          is lifted between the other two VISUALLY, by `order` in
-          _aboutClose.scss, so three dark bands stop stacking without any
-          content being reordered. */}
-      <div className='aboutClose' data-reveal='group'>
-        <OurTeam />
-        {/* 11 Sep 2026. This was `topHeading heading='Our clients'` — the
-            inline layout with its eyebrow suppressed, which made it the third
-            different claim about the same six logos: "Our clients" here,
-            "Trusted by / Leading Brands" on the eight service pages, and the
-            brief's sentence on the home page.
+      <AboutIdentity />
+      <CapabilityModel />
+      <Principles />
+      {/* The shared strip, in its stacked layout — the one that can hold a
+          sentence above the logos. The claim is this page's own and is
+          deliberately weaker than the home page's "Trusted by": the set
+          includes portfolio ventures and group work, so the wording says
+          ecosystem and stops short of saying Pixelette Marketing delivered to
+          every brand shown.
 
-            It takes the home page's treatment now, reading proofCopy rather
-            than restating it, so there is ONE definition of what this row of
-            logos is claimed to be. "Our clients" was also the strongest of the
-            three claims and the least accurate: the set includes portfolio
-            ventures, which is exactly what "brands and ventures" exists to say.
-
-            NO `cta`, deliberately, and this is not an oversight. The order
-            shuffle in _aboutClose.scss is only safe because OurTeam and
-            TrustedBrands contain no focusable elements — its own comment says
-            so and says it would not be safe if the strip ever became links.
-            The strip renders visually AFTER the close but sits BEFORE it in
-            the DOM, so a CTA here would be reached by keyboard before a link
-            the user can already see above it. The home page has no such
-            shuffle and keeps its CTA. */}
-        <TrustedBrands
-          layout='stacked'
-          eyebrow={proofCopy.eyebrow}
-          heading={proofCopy.heading}
-          standfirst={proofCopy.standfirst}
-        />
-        <QuestionAndAnswer
-          subheading={true}
-          heading={"We turn ideas into measurable wins"}
-          text={
-            "Pixelette Marketing teams up with brands like yours – bold, ambitious and ready to shape the future. Together, we create campaigns that deliver results you can see and success you can feel."
-          }
-        />
-      </div>
+          NO `cta`. The close is directly beneath it and a second call to
+          action 200px above the first is two asks, not one. */}
+      <TrustedBrands
+        layout='stacked'
+        eyebrow={aboutExperience.eyebrow}
+        heading={aboutExperience.heading}
+        standfirst={aboutExperience.standfirst}
+      />
+      <AboutClose />
     </>
   );
 }

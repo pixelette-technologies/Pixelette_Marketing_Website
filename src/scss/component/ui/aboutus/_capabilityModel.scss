@@ -1,0 +1,79 @@
+// The capability model. The page's one designed diagram, and its second and
+// last dark band.
+//
+// THE SPINE. Each cell draws its own top hairline in the panel border tone, so
+// at full width the four sit on one line broken by three gaps and read as a
+// segmented rule running across the band — connected blocks rather than four
+// separate boxes. As the tracks fall to two and then one, the same hairline
+// becomes the separator between the cells it was spanning. One rule, three
+// layouts, no breakpoint.
+//
+// The grid is the sanctioned 'auto' idiom verbatim — 17rem track minimum,
+// 1.25rem gap — which is the one of the two that seats FOUR against the 1160px
+// wrap: 4 x 272 + 3 x 20 is 1148. The 'thirds' track is 18rem and caps at
+// three, which would leave this section with a row of three and an orphan.
+//
+// Every colour resolves from .band-dark or from the panel family. Nothing here
+// is switched from a call site.
+
+.capabilityModel {
+  padding-block: var(--sec-y);
+
+  & > header {
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .h2 {
+      max-width: 34rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
+    }
+  }
+
+  &__grid {
+    margin-top: var(--sec-y-sm);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: 1.25rem;
+  }
+
+  &__item {
+    border-top: 1px solid var(--color-panel-border);
+    padding-top: 1.25rem;
+    // The air beneath the name. A min-height was tried first and rejected: it
+    // holds the four names on one baseline at full width and then forces four
+    // tall blocks to be scrolled past on a phone, where the instruction asks
+    // for materially tighter spacing. Padding gives the same presence where
+    // there is room and costs nothing where there is not.
+    //
+    // 3rem was the first value and it was too much by eye: the band already
+    // carries --sec-y beneath it, so 48px of cell padding plus 96px of section
+    // padding left 150px of empty black under a row of four short names.
+    padding-bottom: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  }
+
+  // The numeral. The site's own device — PointItem sets the Growth System's
+  // 01-04 in mono at the brand tone, and on a dark ground the brand anchor is
+  // barred at 2.77:1, so this takes the marking tone that .band-dark gives its
+  // eyebrows. Measured 5.34 against the gradient's worst case.
+  &__index {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-footer-eyebrow);
+    margin-bottom: 1.25rem;
+  }
+
+  // .band-dark already carries the page white onto .h3, and .h3 already
+  // carries text-wrap: balance, which is what splits "Strategy & positioning"
+  // evenly across its track. It needs nothing else.
+  //
+  // A 16ch cap was tried and removed: it forced a break into a track wide
+  // enough to hold the name, so two of the four wrapped at 1440px where only
+  // one had to, and on a phone it broke every name that the 350px column would
+  // have set on one line.
+}

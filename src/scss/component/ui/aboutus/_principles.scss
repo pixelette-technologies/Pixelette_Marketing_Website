@@ -1,0 +1,58 @@
+// What guides the work.
+//
+// An index, not a card grid: four rows on hairlines, the name on the left and
+// the line that qualifies it on the right. It is the only section on the page
+// that is neither a card nor a column, which is why it sits between two that
+// are — the dark capability spine above it and the logo strip below.
+//
+// THE WRAP IS THE MOBILE LAYOUT. The name column has a 14rem basis and the
+// qualifier a 24rem one, so below roughly 40rem of container the qualifier
+// drops beneath the name it belongs to and the row hairlines carry on
+// separating one principle from the next. No breakpoint, and nothing about the
+// treatment changes as it happens.
+
+.principles {
+  padding-block: var(--sec-y);
+
+  & > header {
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .h2 {
+      max-width: 34rem;
+    }
+  }
+
+  &__list {
+    margin-top: var(--sec-y-sm);
+    border-top: 1px solid var(--color-line);
+  }
+
+  &__row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.75rem clamp(1.5rem, 0.75rem + 2.6vw, 3rem);
+    padding-block: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+    border-bottom: 1px solid var(--color-line);
+
+    // The name. flex-grow 0 so it holds its column instead of splitting the
+    // row in half with the qualifier — the point of the treatment is that the
+    // four names line up and the four sentences line up beside them.
+    //
+    // 18rem, not the 14rem this started at. At 14rem "Commercially focused"
+    // was the only name of the four that wrapped, which made its row half
+    // again as tall as the other three and broke the even rhythm the hairlines
+    // are there to create. 18rem sets all four on one line at full width.
+    & > .h3 {
+      flex: 0 1 18rem;
+      min-width: 0;
+    }
+
+    & > .body {
+      flex: 1 1 24rem;
+      min-width: 0;
+    }
+  }
+}

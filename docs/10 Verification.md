@@ -873,3 +873,72 @@ being taken by somebody else's commit. That direction needs the discipline, not
 the flag.
 
 Related: [[09 Outstanding]]
+
+
+## 23 Sep — a number copied is not a number measured
+
+The mobile drawer was rebuilt to the Pixelette Technologies drawer, and the
+instruction included adopting its breakpoint. Theirs switches at 860px; ours
+switched at 767, which is exactly why this file and [[09 Outstanding]] have
+carried "the navigation breaks at 768px on all 36 routes" since 22 Sep.
+
+**Taking 860 fixed 768 and broke 861.** With the breakpoint moved, a width walk
+showed no overflow at 390 or at 768 — and 37px of horizontal overflow at 861,
+with the CTA hanging off the right edge. The fault had not been fixed. It had
+been moved to a width nobody had looked at yet, which is the worse outcome,
+because the item that named 768 would have been closed and the walk that found
+it was only run because the number was being changed anyway.
+
+The bar was then measured rather than assumed: 870, 880, 890, 897, 905, 961.
+Last overflowing width 897, first clean width 898. Their 860 serves a 677px
+bar; ours is 838px of links plus a 129px wordmark plus a CTA that cannot
+shrink. The breakpoint went to 960 and the walk was repeated end to end — 360,
+390, 600, 768, 900, 960, 961, 1024, 1440 — with no overflow at any width and
+the panel measuring exactly `0..viewport` wherever the drawer shows.
+
+**The lesson.** This file records a stale server, a grep that proved its own
+pattern rather than the file, and a figure that had to be checked against its
+own formula. This is a fourth shape: **a value taken from a reference is a
+claim about the reference, not about us.** Anything copied from another site —
+a breakpoint, a min-height, a column count — has to be re-derived against our
+own furniture before it means anything, and walking the widths is the only way
+to do that.
+
+### What the browser showed, and what it did not
+
+The dropdowns had never been rendered before 22 Sep and the mobile drawer had
+never been rendered at all. Both were driven over CDP here:
+
+- **The reference first.** Panel opened, each section expanded, markup and
+  computed styles read from the live DOM. That is where the `<details>` and the
+  shared `name` came from — out of the outerHTML, not inferred from a picture.
+- **Ours after.** All nine What We Do destinations and all five sectors read
+  back with their hrefs; the accordion confirmed exclusive by opening a second
+  group and watching the first close; the panel measured `0..390` and `0..768`
+  once the full-bleed fix was in.
+- **Space opens the drawer from the keyboard**, confirmed. **Enter did not
+  register** under synthetic CDP key events. That is most likely a harness
+  artifact rather than a real fault, but it was not proved either way and is
+  recorded as unproved rather than as working.
+- A link click navigated to `/results` AND closed the drawer, which is the one
+  behaviour native HTML does not provide on a client-routed site.
+
+### A test that produced two false faults in one run
+
+Worth recording beside the stale server, because the shape is the same: a check
+that fails for its own reasons and reports the code as broken.
+
+The first behaviour run said the keyboard did nothing and the link did not
+navigate. Both were wrong. The link row had been pushed out of the viewport by
+a section left expanded earlier in the same run, so the click landed on
+nothing; and the navigation that "failed" was a dev server compiling a route
+for the first time, which took longer than the four-second wait. Re-run with
+the group collapsed and a fourteen-second wait, both passed.
+
+**The tell was in the output and was nearly missed.** The drawer had closed,
+and the only thing that closes it is the `onClick` on a link — so the link HAD
+been hit, and the only question left was timing, not correctness. A failing
+check whose own evidence contradicts its conclusion is reporting on itself.
+
+Related: [[02 Decisions]], [[04 Phase 2 — Navigation and footer]],
+[[09 Outstanding]]

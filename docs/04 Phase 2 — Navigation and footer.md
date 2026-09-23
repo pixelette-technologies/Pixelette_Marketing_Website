@@ -116,3 +116,69 @@ left alone; it is on [[09 Outstanding]].
 
 Related: [[02 Decisions]], [[07 Results and hub pages]], [[09 Outstanding]],
 [[10 Verification]]
+
+
+## 23 Sep — the mobile drawer, rebuilt to the Technologies drawer
+
+Asked for by name, with the Pixelette Technologies preview as the reference.
+It was read in a browser before anything was written: at 390px, 768px and
+900px, with the panel opened and each section expanded, and the markup and
+computed styles read out of the live DOM rather than guessed from a screenshot.
+
+**It is `<details>`/`<summary>` and carries no JavaScript state.** That is what
+the reference does, and it is the better mechanism rather than merely the
+matching one:
+
+- `<summary>` is focusable and activates on Space with no handler, so the
+  drawer is keyboard-operable by construction. The drawer it replaces was a
+  `<figure>` with an `onClick` — not focusable, and not reachable from a
+  keyboard at all. That is the same fault the desktop dropdown had in
+  September and had already fixed.
+- The groups share a `name` attribute, which is the HTML spec's own exclusive
+  -disclosure mechanism, so **one open section closes the others with no code**.
+  Confirmed in the browser rather than assumed.
+- It works before hydration.
+
+`useState` and `framer-motion` are both gone from this component, along with
+the hamburger icons.
+
+### The shape, and the one place it does not copy the reference
+
+Six top-level rows and a full-width CTA, matching theirs. What We Do and Who We
+Help are the two disclosure rows; Results, Insights, About and Contact are
+plain rows at the same level, as Work and About are on theirs. Each group opens
+with its hub link first — "What we do overview" to `/services`, "Who we help
+overview" to `/industries` — which is their "overview" device, and which earns
+its place here for the same reason the desktop trigger became a link: without
+it both hubs are in the sitemap and reachable from nowhere in the navigation.
+
+**The five capabilities stay labels inside the panel rather than becoming rows.**
+Their top level is three pillars that each own a page. Ours would have been five
+capabilities over eight service pages, and three of the five hold a single link,
+so promoting them would have produced three rows that open to reveal one link
+each. Settled on instruction, against the row-for-row alternative.
+
+**There is no Home row.** The wordmark links home on every page, as it does on
+the reference. It was the one duplicate the old drawer carried and the desktop
+bar never did.
+
+### Two faults found by looking, after the structure was already right
+
+1. **The drawer was not full width.** `left: 0; right: 0` resolved against
+   `.main_nav`, which carries `position: relative` and sits inside the page
+   gutter, so "full width" meant the width of the content box. The fix was not
+   `100vw` and not a negative margin. That `position: relative` existed only
+   for the drawer that had just been deleted, so removing it makes the nearest
+   positioned ancestor `.site-header` — `position: sticky`, therefore a
+   containing block, and spanning the viewport.
+
+   What else depended on that anchor was checked BEFORE it was removed: the
+   desktop dropdown panels position against `.navdropDown`, which carries its
+   own `position: relative`. Checked again after, by measuring: the panel's
+   left edge and the "What We Do" label's left edge are both 521px at 1440.
+
+2. The panel then re-applies the page gutter as its own `padding-inline`, using
+   the same `clamp()` `container_main` uses, so the ground and the row rules
+   reach the screen edges while the text stays in line with page content.
+
+Related: [[02 Decisions]], [[09 Outstanding]], [[10 Verification]]

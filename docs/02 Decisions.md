@@ -1075,3 +1075,51 @@ figures later. Unchanged by this.
 
 Related: [[03 Phase 1 — Homepage]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]
+
+
+## 23 Sep — the mobile navigation
+
+### Native `<details>` over a state-driven drawer
+
+The reference is built this way and matching it was the instruction, but it
+would have been the right choice regardless. The drawer it replaces was a
+`<figure>` with an `onClick`: not focusable, and not openable from a keyboard
+at all. `<summary>` is focusable and activates on Space with nothing written,
+and the exclusive accordion is an HTML attribute rather than a reducer. Less
+code is the smaller half of the argument.
+
+What HTML does not do is close on client-side navigation, because the reference
+is served per page and a click there reloads the document. That is the only
+JavaScript left in the component: a ref, an `onClick` on each link, and an
+effect on the pathname for the cases `onClick` cannot see — the back button, a
+redirect, and a link to the route already open.
+
+### 960px, which is MEASURED AND NOT COPIED
+
+This is the decision most likely to be undone by someone tidying up, so the
+reasoning belongs here and not only in the stylesheet.
+
+The reference switches to its drawer at 860px, and the obvious move was to take
+that number. **It would have moved the fault rather than fixed it.** This bar
+has an intrinsic minimum of 898px — a 129px wordmark, 838px of links, and a CTA
+that is `white-space: nowrap` and so cannot shrink — and at 861px it overflowed
+the viewport by 37px. Theirs fits at 860 because their bar is 677px wide.
+
+Walked at 870, 880, 890, 897, 905 and 961: the last width that overflows is
+897, the first clean one is 898. **960** takes that with about 60px of headroom
+rather than the 2px that 900 would have left.
+
+The general rule is the part worth keeping: *a breakpoint is a fact about your
+own layout.* A number lifted from a site whose furniture is a different size is
+a guess wearing a measurement's clothes.
+
+### The CTA keeps the solid button
+
+Theirs is outlined. Ours is the crimson `.btn.primary`, which is what the
+desktop bar carries, and splitting the treatment would have made one action
+look like two different weights of thing depending on window width. The
+mismatch with the reference is deliberate and is the smaller of the two costs.
+Raised for management rather than decided for them — see [[09 Outstanding]].
+
+Related: [[04 Phase 2 — Navigation and footer]], [[09 Outstanding]],
+[[10 Verification]]

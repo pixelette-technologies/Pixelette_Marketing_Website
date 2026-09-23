@@ -171,6 +171,24 @@ could not compile. See [[02 Decisions]], [[03 Phase 1 — Homepage]],
 [[05 Components]], [[08 Design system constraints]], [[09 Outstanding]] and
 [[10 Verification]].
 
+**23 Sep — the mobile navigation, rebuilt to the Pixelette Technologies
+drawer.** Asked for by name, with their preview as the reference; the reference
+was read in a browser first — panel opened, sections expanded, markup and
+computed styles taken off the live DOM — before a line was written. It is
+`<details>`/`<summary>` with **no JavaScript state**: the groups share a `name`,
+which is HTML's own exclusive-disclosure mechanism, so one open section closes
+the others with no code, and `<summary>` is keyboard-operable for free where the
+old `<figure onClick>` could not be focused at all.
+
+**It also closes the oldest live fault on the list.** The bar was still on at
+768px because the drawer only took over at 767. The instruction was to adopt the
+reference's 860 — and that would have **moved the break rather than fixed it**:
+this bar has an intrinsic minimum of 898px and overflowed by 37px at 861. Theirs
+fits at 860 because their bar is 677px where ours is 838. Measured across nine
+widths and settled at 960. The lesson is in [[10 Verification]]: *a value taken
+from a reference is a claim about the reference, not about us.* See also
+[[02 Decisions]], [[04 Phase 2 — Navigation and footer]] and [[09 Outstanding]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —
@@ -178,11 +196,12 @@ Two things are still true and worth repeating anywhere this is read:
    whole of `/strategy-positioning` have been seen; **each look, every time,
    immediately produced faults no gate had caught.** That band alone has now
    done it four times running. Every other page and breakpoint is still
-   structural-only. The What We Do dropdown has been rendered at both widths,
-   which leaves Who We Help as the one menu never seen. The 21 Sep realignment
-   is made entirely of computed measurements and adds to this debt rather than
-   settling any of it. **And the navigation is broken at 768px on all 36
-   routes**, which the diagnostic's tablet check found and nobody had seen
-   before. See [[10 Verification]].
+   structural-only. The What We Do dropdown has been rendered at both widths
+   and the whole mobile drawer was walked across nine on 23 Sep, which leaves
+   the desktop Who We Help panel as the one menu never opened. The 21 Sep
+   realignment is made entirely of computed measurements and adds to this debt
+   rather than settling any of it. ~~**And the navigation is broken at 768px on
+   all 36 routes.**~~ **That one is closed** — 23 Sep, `45e1ca2`, by the drawer
+   rebuild, which had to move the breakpoint anyway. See [[10 Verification]].
 2. **The form's privacy-notice link is broken in production**, and the 11 Sep
    reply did not supply the URL that fixes it. See [[09 Outstanding]].

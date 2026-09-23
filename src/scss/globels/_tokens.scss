@@ -106,6 +106,48 @@
   --color-ok: #1e7e34; // 4.83 on white
   --color-danger: #c0392b; // 5.06 on white
 
+  // --- Sector tones, 23 Sep 2026 ----------------------------------------
+  // EIGHT HUES THAT ARE NOT THE BRAND, AND THE ONLY ONES ON THE SITE. They
+  // exist for the Who we help grid on the home page, where each sector's
+  // icon sits on a differently tinted chip so nine cards can be scanned by
+  // colour as well as by word. From a supplied design; not our invention.
+  //
+  // THEY LIVE HERE RATHER THAN SCOPED TO _dynamicMarket.scss, and that is a
+  // reversal worth stating. Scoping them the way _reveal.scss scopes its
+  // timing would have kept the palette from growing — but the token gate
+  // (scripts/lint-legacy-tokens.mjs) fails the build on a hex literal
+  // anywhere in src/, and it is right to: the whole point is that one file
+  // answers "what colours does this site use". A scoped palette that the
+  // gate cannot see is exactly the thing the gate was written to prevent.
+  //
+  // THE RULE THAT KEEPS THEM FROM SPREADING is therefore social and is
+  // written here instead: these nine pairs are for the sector grid. A
+  // component that wants "a bit of colour" takes the brand or it takes
+  // nothing. If a second section ever needs them, that is the moment to ask
+  // whether the site is still two-tone, not the moment to reuse --tone-teal.
+  //
+  // Every -mark is a mid-dark saturated hue and every -tint a near-white of
+  // the same hue, so each mark clears 3:1 on its own chip with room over.
+  // The marks are non-text but they are the only thing in the chip and are
+  // read as information, so they are held to the non-text threshold rather
+  // than waved through as decoration. No -mark is ever set on type.
+  --tone-violet-tint: #eeebfb;
+  --tone-violet-mark: #5b46b8; // 5.94 on its tint
+  --tone-rose-tint: #fbe9f0;
+  --tone-rose-mark: #b02a5e; // 5.40
+  --tone-green-tint: #e6f4ea;
+  --tone-green-mark: #24774a; // 4.85
+  --tone-pink-tint: #fdeaf3;
+  --tone-pink-mark: #bd2f78; // 4.75
+  --tone-amber-tint: #fbf0e0;
+  --tone-amber-mark: #8f6316; // 4.70
+  --tone-blue-tint: #e7f0fb;
+  --tone-blue-mark: #1f5fa8; // 5.60
+  --tone-indigo-tint: #eaeafa;
+  --tone-indigo-mark: #4a45ab; // 6.46
+  --tone-teal-tint: #e2f3f2;
+  --tone-teal-mark: #15746f; // 4.88
+
   // --- Signature device -------------------------------------------------
   // Signal-capped section rules: a short segment of the marking tone on a
   // section's top hairline, and the same segment on the leading edge of

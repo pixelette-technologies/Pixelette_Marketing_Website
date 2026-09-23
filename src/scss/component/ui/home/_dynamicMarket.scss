@@ -3,59 +3,421 @@
 // existed below 1366px — all of it machinery for overlapping this section into
 // the empty panel EngagementStalls was holding open. See that component.
 
-.dynamicMarket {
-  & > div {
-    & > header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: end;
-      justify-content: space-between;
-      gap: 1.25rem 2.5rem;
+// --- 23 Sep 2026 -------------------------------------------------------------
+// The section is TWO BANDS now, from a supplied design: nine sector cards, a
+// rule, then the three growth stages under their own eyebrow. What was here
+// before was a wrapping typographic field of eleven markets and a prose close.
+//
+// .marketField AT THE FOOT OF THIS FILE IS STILL LIVE. /industries renders it
+// from the same data and was deliberately left alone in this pass, so the
+// rules stay even though nothing on the home page calls them any more. Grep
+// before deleting: the only call site is src/app/industries/page.tsx.
 
-      & > div {
-        flex: 1 1 22rem;
+.dynamicMarket__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+}
 
-        // The guide's eyebrow-to-heading gap, exactly: 20px.
-        & > *:first-child {
-          margin-bottom: 1.25rem;
-        }
-      }
+// The basis is wide on purpose. The rail is a margin note, so the head should
+// stay one column until there is real room for two rather than splitting at
+// the first opportunity and leaving the standfirst in a 20rem gutter.
+.dynamicMarket__headMain {
+  flex: 1 1 34rem;
+}
 
-      // The 33.1rem cap here was a hand-measured number doing the job the
-      // measure cap now does properly. .lead carries the guide's 62ch, which
-      // holds the line length whatever the type size interpolates to.
-      & > p {
-        flex: 1 1 20rem;
-      }
-    }
+// The guide's eyebrow-to-heading gap, exactly: 20px.
+.dynamicMarket__headMain > .eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+// Both bands take the same two-line heading treatment.
+.dynamicMarket__heading {
+  margin-bottom: 1.25rem;
+}
+
+// The authored break. A block-level span rather than a <br> so the first line
+// can still wrap on its own at phone widths instead of running out of the box.
+.dynamicMarket__line {
+  display: block;
+}
+
+// A colour treatment and nothing else. Not italic, not bolder, not a
+// different face — the design changes exactly one property here and so does
+// this, which is why it is a span and not an <em>.
+.dynamicMarket__accent {
+  color: var(--color-brand);
+}
+
+// The rail. Mono, uppercase and tracked — the eyebrow's treatment at the
+// eyebrow's size, but in --color-muted rather than brand, because a second
+// brand-coloured mono line beside the real eyebrow would read as a second
+// eyebrow.
+//
+// THE CRIMSON SEGMENT UNDER IT IS NOT THE SIGNATURE DEVICE. That is 3px of
+// --color-brand-signal and it marks a section OPENING or a feature card's
+// leading edge; this is a 1px terminal rule closing one block of margin copy.
+// Keeping them visually distinct is the point — do not reach for
+// --sig-cap-width here, because doing so is how a signature becomes a habit.
+.dynamicMarket__aside {
+  position: relative;
+  flex: 0 1 13rem;
+  padding: 0.25rem 0 1rem 1rem;
+  border-inline-start: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.9;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.dynamicMarket__aside::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 1rem;
+  bottom: 0;
+  width: 2.5rem;
+  height: 1px;
+  background: var(--color-brand);
+}
+
+// --- The sector grid ---------------------------------------------------------
+// auto-fit with a 17.5rem floor, so the nine cards hold three columns down to
+// roughly a 900px container, fall to two, then to one. NO MEDIA QUERY: the
+// count is derived from the available width, which means adding or removing a
+// sector reflows the grid instead of breaking a hand-set column rule.
+.sectorGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(17.5rem, 100%), 1fr));
+  gap: 1rem;
+  margin-top: var(--sec-y-sm);
+  padding: 0;
+  list-style: none;
+}
+
+// The nine tints. THE VALUES ARE NOT HERE: they are --tone-*-tint and
+// --tone-*-mark in _tokens.scss, and the note beside them says why they were
+// promoted to :root instead of being scoped to this file the way _reveal.scss
+// scopes its timing. Read that note before adding a ninth hue.
+//
+// What IS here is the indirection: a card sets --sector-tint and --sector-mark
+// once, and the chip, the title and the fallback wash all read those two
+// rather than each naming a tone. That is what keeps SectorTone in the data a
+// single word.
+
+.sectorCard--violet {
+  --sector-tint: var(--tone-violet-tint);
+  --sector-mark: var(--tone-violet-mark);
+}
+
+.sectorCard--rose {
+  --sector-tint: var(--tone-rose-tint);
+  --sector-mark: var(--tone-rose-mark);
+}
+
+.sectorCard--green {
+  --sector-tint: var(--tone-green-tint);
+  --sector-mark: var(--tone-green-mark);
+}
+
+.sectorCard--pink {
+  --sector-tint: var(--tone-pink-tint);
+  --sector-mark: var(--tone-pink-mark);
+}
+
+.sectorCard--amber {
+  --sector-tint: var(--tone-amber-tint);
+  --sector-mark: var(--tone-amber-mark);
+}
+
+.sectorCard--blue {
+  --sector-tint: var(--tone-blue-tint);
+  --sector-mark: var(--tone-blue-mark);
+}
+
+.sectorCard--indigo {
+  --sector-tint: var(--tone-indigo-tint);
+  --sector-mark: var(--tone-indigo-mark);
+}
+
+.sectorCard--teal {
+  --sector-tint: var(--tone-teal-tint);
+  --sector-mark: var(--tone-teal-mark);
+}
+
+// The one tone that was already a token. Spent once, on the ninth card.
+.sectorCard--brand {
+  --sector-tint: var(--color-brand-tint);
+  --sector-mark: var(--color-brand);
+}
+
+.sectorCard {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  min-height: 7.5rem;
+  padding: 1.25rem;
+  overflow: hidden;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease;
+}
+
+// The register's rule, and it is the one broken most often by reflex: hover
+// changes BORDER COLOUR ONLY. No lift, no shadow change, no scale.
+.sectorCard:hover {
+  border-color: var(--color-line-strong);
+}
+
+// The art window. Two background layers in one declaration, which is what
+// makes the missing-photography case free rather than a branch:
+//
+//   --sector-art SET    the photograph covers the window and the wash beneath
+//                       it is never seen.
+//   --sector-art UNSET  var() falls through to `none`, the first layer draws
+//                       nothing, and the tone wash is what shows.
+//
+// So a card with no image is a deliberate gradient in the same geometry, not
+// an empty box, and filling in SectorCard.image is the only change needed
+// when the photography arrives.
+//
+// The mask is what stops either one colliding with the copy: fully
+// transparent for the first 62% of the window, reaching full strength at the
+// right edge. -webkit- first for Safari, which still needs the prefix.
+//
+// A MASK READS ALPHA AND NOTHING ELSE, so the stop colour is irrelevant as
+// long as it is opaque; --color-ink is there because the token gate bars a
+// bare 000 (written without its hash here, per the gate's own convention)
+// and an opaque token is more honest than exempting the line.
+.sectorCard__art {
+  position: absolute;
+  inset: 0 0 0 42%;
+  background-image: var(--sector-art, none),
+    linear-gradient(115deg, var(--sector-tint) 0%, var(--color-page) 78%);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, var(--color-ink) 62%);
+  mask-image: linear-gradient(90deg, transparent 0%, var(--color-ink) 62%);
+  pointer-events: none;
+}
+
+// Both sit above the art. Without this the copy is painted under it and the
+// mask stops being the thing that protects legibility.
+.sectorCard__chip,
+.sectorCard__text {
+  position: relative;
+}
+
+.sectorCard__chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  background: var(--sector-tint);
+  color: var(--sector-mark);
+}
+
+// The icons are exported without width or height for exactly this: one 24x24
+// export sized by the chip it lands in. See assets/sectors/index.ts.
+.sectorCard__chip > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.sectorCard__text {
+  min-width: 0;
+}
+
+.sectorCard__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.25;
+  letter-spacing: -0.008em;
+  color: var(--color-ink);
+  margin-bottom: 0.4375rem;
+}
+
+// The ninth card's title takes the brand tone, because the ninth card is not a
+// sector and the grid should say so before the sentence does.
+.sectorCard--terminal .sectorCard__title {
+  color: var(--color-brand);
+}
+
+// Capped in characters rather than pixels, so the measure holds whatever the
+// card width resolves to and the copy stops before the art rather than
+// swimming into it.
+.sectorCard__body {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-body);
+  max-width: 26ch;
+}
+
+// --- The second band ---------------------------------------------------------
+.dynamicMarket__rule {
+  margin-top: var(--sec-y-sm);
+}
+
+// Same wrapping-flex shape as the head, and for the same reason: three items
+// that should sit on one line when there is room and stack in reading order
+// when there is not, with no breakpoint deciding for them.
+//
+// NO `margin-left: auto` ON THE CTA. space-between already right-aligns it
+// while all three share a line; forcing it would also shunt it to the right
+// margin on the wrapped row, alone, where it reads as an orphan.
+.dynamicMarket__band {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem 2.5rem;
+  margin-top: var(--sec-y-sm);
+}
+
+.dynamicMarket__bandHead {
+  flex: 1 1 22rem;
+}
+
+.dynamicMarket__bandHead > .eyebrow {
+  margin-bottom: 1rem;
+}
+
+.dynamicMarket__bandHead > .dynamicMarket__heading {
+  margin-bottom: 0;
+}
+
+.dynamicMarket__bandBody {
+  flex: 1 1 17rem;
+  max-width: 36ch;
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--color-body);
+}
+
+.dynamicMarket__cta {
+  flex: 0 0 auto;
+}
+
+.dynamicMarket__cta > svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+// --- The growth stages -------------------------------------------------------
+// STACKED IS THE DEFAULT and the row is the enhancement, which is why this is
+// the file's one min-width query rather than another max-width.
+//
+// The three-across arrangement cannot be derived with auto-fit here, because
+// the divider between stages is a left border: under auto-fit a stage that
+// wraps to a new row keeps a border that now has nothing to its left. So the
+// column count has to be known, and knowing it is what the query buys. 62rem
+// is where three stages stop being cramped rather than where any other
+// stylesheet happens to break.
+.dynamicMarket__stages {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: var(--sec-y-sm);
+}
+
+.growthStage {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.125rem;
+}
+
+.growthStage__chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-brand);
+}
+
+.growthStage__chip > svg {
+  width: 1.625rem;
+  height: 1.625rem;
+}
+
+.growthStage__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.1875rem;
+  line-height: 1.25;
+  letter-spacing: -0.008em;
+  color: var(--color-brand);
+  margin-bottom: 0.4375rem;
+}
+
+.growthStage__body {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+@media (min-width: 62rem) {
+  .dynamicMarket__stages {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  // The gap is spent as padding instead, so the divider can sit in the middle
+  // of it. 1.75rem either side is the same 3.5rem interval the stacked
+  // arrangement uses, measured between the text rather than between the boxes.
+  .growthStage {
+    padding-inline: 1.75rem;
+  }
+
+  .growthStage:first-child {
+    padding-inline-start: 0;
+  }
+
+  .growthStage:last-child {
+    padding-inline-end: 0;
+  }
+
+  .growthStage:not(:first-child) {
+    border-inline-start: 1px solid var(--color-line);
   }
 }
 
-// Phase F. The D8 colour block that sat here is deleted rather than swapped.
+// =============================================================================
+// /INDUSTRIES ONLY FROM HERE DOWN.
 //
-// It set the h2 to ink and the h3 to the brand anchor, which was correct while
-// both were display headings. Now that the h2 is the eyebrow and the h3 is the
-// section heading, the same two rules would do exactly the wrong thing twice:
-// strip the eyebrow's brand colour, and paint the largest heading on the page
-// crimson. The primitives already carry both, so the right move is to stop
-// restating them here.
+// The typographic market field, built 21 Sep to replace four linked sector
+// cards on the home page and retired from the home page on 23 Sep when the
+// nine-card grid above took its place. It is still the top of
+// src/app/industries/page.tsx, which reads the same `markets` and `beyond`
+// from whoWeHelpData and was deliberately left unchanged in that pass.
+//
+// It lives in a home partial because that is where it was written and because
+// every partial is forwarded into one stylesheet anyway, so moving it would be
+// churn with no rendered difference. The heading is here so that a later
+// reader does not delete it as dead.
+// =============================================================================
 
-// --- The market field, 21 Sep -----------------------------------------------
-// Replaces the four-card auto-fit grid. The grid is what is being avoided, so
-// this is a WRAPPING FLEX ROW and nothing else: a row has no columns to fall
-// into, so the marks pack against each other and break wherever the width runs
-// out. That is where the asymmetry comes from. It is not positioned by hand,
-// which is the only version of this that survives a copy edit — add a market,
-// rename one, and the composition reflows instead of breaking.
+// The grid is what is being avoided, so this is a WRAPPING FLEX ROW and
+// nothing else: a row has no columns to fall into, so the marks pack against
+// each other and break wherever the width runs out. That is where the
+// asymmetry comes from.
 //
 // align-items: baseline is the whole trick. Three type scales sitting on one
 // baseline give each line an uneven top edge for free, and it is the reason
 // this reads as a composition rather than as a tag cloud.
-//
-// NO BREAKPOINT IS NEEDED FOR THE FIELD ITSELF. Every size is a clamp, so the
-// scales compress with the viewport and the row simply wraps more often. The
-// one media query at the end of this file is the stylesheet's existing 767px
-// and does a different job.
 .marketField {
   display: flex;
   flex-wrap: wrap;
@@ -148,7 +510,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .marketField__mark {
+  .marketField__mark,
+  .sectorCard {
     transition: none;
   }
 
@@ -157,52 +520,7 @@
   }
 }
 
-// --- The close, 21 Sep ------------------------------------------------------
-// Market, then stage, and this bridges them. Measure-capped so it reads as a
-// closing remark rather than as the opening of another section.
-.dynamicMarket__positioning {
-  margin-top: var(--sec-y-sm);
-  max-width: 46rem;
-}
-
-.dynamicMarket__positioning > *:first-child {
-  margin-bottom: 0.75rem;
-}
-
-// --- 8 Sep 2026 brief: the stage group --------------------------------------
-// The section carries two groups, markets above and growth stages below.
-//
-// THE HAIRLINE BETWEEN THEM IS GONE, 21 Sep. It was argued here as
-// load-bearing, the thing that stopped three non-linking stages reading as
-// three more sector cards, and with the cards themselves now gone there is
-// nothing left for the stages to be mistaken for.
-//
-// THE DOUBLED GAP IT CARRIED IS NOT KEPT, as of 21 Sep, on the user's
-// instruction from a rendered page. It was calc(--sec-y-sm * 2), preserving
-// the rendered distance the hairline used to occupy — --sec-y-sm above the
-// rule plus --sec-y-sm above the stages. With the rule gone and the sector
-// cards gone with it, that distance was inherited machinery rather than a
-// judgement, and beside the close above it the stages read as detached.
-//
-// One --sec-y-sm now, the same step the close takes, so the section has ONE
-// interval between its groups instead of two different ones.
-.dynamicMarket {
-  & > div {
-    & > .dynamicMarket__stages {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-      gap: 1.25rem;
-      margin-top: var(--sec-y-sm);
-    }
-
-    & > .dynamicMarket__cta {
-      display: inline-flex;
-      margin-top: 2rem;
-    }
-  }
-}
-
-// The stylesheet's one breakpoint, and the field's one use of it.
+// The field's one breakpoint.
 //
 // A wrapping row on a phone packs two or three marks per line and leaves a
 // ragged right edge that reads as an accident rather than as a composition.

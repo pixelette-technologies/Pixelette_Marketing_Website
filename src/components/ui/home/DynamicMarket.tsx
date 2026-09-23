@@ -1,7 +1,9 @@
 import { Container } from "@/components/common";
-import { Heading, PointItem, Text } from "@/components/feature";
-import { whoWeHelpData } from "@/data/home";
+import { Heading, Text } from "@/components/feature";
+import { ArrowEast } from "@/assets/sectors";
+import { whoWeHelpData, type SplitHeading } from "@/data/home";
 import Link from "next/link";
+import type { CSSProperties } from "react";
 
 // D4. This section used to be pulled 481px up the page with a negative margin
 // so it would sit inside the 750px of empty panel EngagementStalls was holding
@@ -14,99 +16,150 @@ import Link from "next/link";
 // Phase F. Guide anatomy: the eyebrow is the h2, the heading is the h3, the
 // standfirst is .lead.
 //
-// --- 21 Sep 2026: the four sector cards are gone ----------------------------
-// AI & Software, FinTech, Web3 & Digital Assets and Technology & Platforms,
-// with their summaries and their four View More links. The reason is
-// positioning rather than design: four boxed, equal, linked technology sectors
-// read as a client boundary, and the standfirst underneath spent its words
-// arguing against the layout above it.
+// --- 23 Sep 2026: nine sector cards, from a supplied design ------------------
+// This replaces the typographic field of eleven markets that replaced the four
+// linked sector cards on 21 Sep. The reasoning for both turns is in
+// homeContent.ts beside the data; the short version is that the September
+// objection was to FOUR TECHNOLOGY cards reading as a client boundary, and a
+// nine-card grid that spans technology, money, health, retail, property,
+// services, education and industry — and closes on "And beyond" — makes the
+// opposite claim with the layout instead of against it.
 //
-// A TYPOGRAPHIC FIELD REPLACES THEM, not a longer grid — twelve cards would
-// make the same claim as four. Eleven markets are set as type at three scales,
-// with no box, no summary and no link, so the group reads as range rather than
-// as a menu. "And beyond" closes it as part of the composition.
+// THE FIELD'S MARKUP IS NOT GONE, it moved: /industries still renders
+// .marketField from the same data and was deliberately left alone in this
+// pass, so _dynamicMarket.scss still carries those rules. See the note there
+// before deleting anything that looks unused.
 //
-// It is a <ul>, because it is a list and a screen reader should be able to
-// count it. The scale a mark takes is a compositional role and carries no
-// meaning, so nothing is lost by the field being read in source order at one
-// voice — which is also why there is no aria-label dressing it up as a figure.
+// STILL A <ul>, for the same reason the field was: it is a list of nine and a
+// screen reader should be able to count it. Each card is a listitem with a
+// heading inside, which is what makes the grid navigable by heading as well as
+// by list.
 //
-// data-reveal='stagger' cascades the marks in on scroll. The primitive caps
-// the delay and ScrollReveal returns without touching the DOM under a reduced
-// motion preference, so the effect degrades to nothing on its own.
+// data-reveal='stagger' cascades the cards in on scroll, and again on the
+// three stages. The primitive caps the delay and ScrollReveal returns without
+// touching the DOM under a reduced motion preference, so the effect degrades
+// to nothing on its own.
 //
-// The three growth stages and the single route out are unchanged, and the
-// closing statement bridges market to stage.
+// THE SECTION NOW CARRIES TWO BANDS. Markets above, growth stages below,
+// separated by a rule and re-opened with their own eyebrow. That is a second
+// eyebrow inside one <section>, which the rest of the site does not do — it is
+// the design's structure, and the heading outline below keeps it legal.
 
-const SCALE_CLASS: Record<string, string> = {
-  lead: "marketField__mark--lead",
-  mid: "marketField__mark--mid",
-  quiet: "marketField__mark--quiet"
-};
+/** The two-line heading treatment, used by both bands.
+ *
+ *  `lead` takes its own line; `tail` and `accent` share the second. The break
+ *  is a block-level span rather than a <br>, so the first line can still wrap
+ *  on its own at phone widths instead of overflowing. */
+const SplitTitle = ({ heading }: { heading: SplitHeading }) => (
+  <>
+    <span className='dynamicMarket__line'>{heading.lead}</span>
+    {heading.tail}{" "}
+    <span className='dynamicMarket__accent'>{heading.accent}</span>
+  </>
+);
 
 const DynamicMarket = () => {
-  const { eyebrow, heading, lead, markets, beyond, stages, cta, positioning } =
+  const { eyebrow, heading, lead, aside, sectors, stagesBand, stages, cta } =
     whoWeHelpData;
 
   return (
     <div className='dynamicMarket sec'>
       <Container className='main'>
-        <header>
-          <div>
+        <header className='dynamicMarket__head'>
+          <div className='dynamicMarket__headMain'>
             <Heading className='eyebrow' level={2}>
               {eyebrow}
             </Heading>
-            <Heading className='h2' level={3}>
-              {heading}
+            <Heading className='h2 dynamicMarket__heading' level={3}>
+              <SplitTitle heading={heading} />
             </Heading>
+            <Text className='lead'>{lead}</Text>
           </div>
-          <Text className='lead'>{lead}</Text>
+
+          {/* The thesis, in the rail. Mono and small on purpose: it is a
+              margin note on the grid below, not a second standfirst, and it is
+              the reason the grid is allowed to be a grid at all. */}
+          <p className='dynamicMarket__aside'>{aside}</p>
         </header>
 
-        <ul className='marketField' data-reveal='stagger'>
-          {markets.map(mark => (
+        <ul className='sectorGrid' data-reveal='stagger'>
+          {sectors.map(({ title, body, icon: Icon, tone, image, terminal }) => (
             <li
-              key={mark.label}
+              key={title}
               className={[
-                "marketField__mark",
-                SCALE_CLASS[mark.scale],
-                mark.accent && "marketField__mark--accent"
+                "sectorCard",
+                `sectorCard--${tone}`,
+                terminal && "sectorCard--terminal"
               ]
                 .filter(Boolean)
                 .join(" ")}
+              // The art is a custom property rather than an <Image>, because
+              // it is decoration bleeding out of a masked window and carries
+              // no information a screen reader could use. Unset — which is
+              // every card today — the stylesheet's var() falls through to the
+              // tone wash on its own, so there is no empty-state branch here.
+              style={
+                image
+                  ? ({ "--sector-art": `url("${image}")` } as CSSProperties)
+                  : undefined
+              }
             >
-              {mark.label}
+              <span className='sectorCard__art' aria-hidden='true' />
+
+              <span className='sectorCard__chip'>
+                <Icon />
+              </span>
+
+              <div className='sectorCard__text'>
+                {/* h4: the section eyebrow is the h2 and the visual .h2 is the
+                    h3, so the cards sit one level below. Same visual-level /
+                    semantic-level split the rest of the home page uses. */}
+                <Heading className='sectorCard__title' level={4}>
+                  {title}
+                </Heading>
+                <p className='sectorCard__body'>{body}</p>
+              </div>
             </li>
           ))}
-
-          {/* Inside the list rather than after it: it is the last thing read,
-              and a sentence sitting outside the <ul> would be announced as
-              unrelated to the eleven marks it qualifies. The rule before it is
-              a pseudo-element, so no empty span exists to be read out. */}
-          <li className='marketField__mark marketField__beyond'>{beyond}</li>
         </ul>
 
-        <div className='dynamicMarket__positioning'>
-          <Heading className='h3' level={4}>
-            {positioning.heading}
-          </Heading>
-          <Text className='body'>{positioning.body}</Text>
+        <hr className='rule dynamicMarket__rule' />
+
+        {/* The second band. Its eyebrow is a <p> and not a heading: the
+            section already has its h2, and promoting this to one would either
+            outrank the cards it follows or open a sibling section that does
+            not exist. The h3 beneath it is a peer of the first band's. */}
+        <div className='dynamicMarket__band'>
+          <div className='dynamicMarket__bandHead'>
+            <p className='eyebrow'>{stagesBand.eyebrow}</p>
+            <Heading className='h2 dynamicMarket__heading' level={3}>
+              <SplitTitle heading={stagesBand.heading} />
+            </Heading>
+          </div>
+
+          <p className='dynamicMarket__bandBody'>{stagesBand.body}</p>
+
+          <Link href={cta.to} className='btn dynamicMarket__cta'>
+            {cta.label}
+            <ArrowEast />
+          </Link>
         </div>
 
-        {/* The hairline that used to sit here was removed on 21 Sep, on the
-            user's instruction and from an actual rendered page. It was put in
-            to stop the three stages reading as three more sector cards; with
-            the cards gone there is nothing left for them to be confused with.
-            The gap it carried is kept on the stages. */}
         <div className='dynamicMarket__stages' data-reveal='stagger'>
-          {stages.map((el, index) => (
-            <PointItem key={index} {...el} />
+          {stages.map(({ title, body, icon: Icon }) => (
+            <div className='growthStage' key={title}>
+              <span className='growthStage__chip'>
+                <Icon />
+              </span>
+              <div>
+                <Heading className='growthStage__title' level={4}>
+                  {title}
+                </Heading>
+                <p className='growthStage__body'>{body}</p>
+              </div>
+            </div>
           ))}
         </div>
-
-        <Link href={cta.to} className='btn2 dynamicMarket__cta'>
-          {cta.label}
-        </Link>
       </Container>
     </div>
   );

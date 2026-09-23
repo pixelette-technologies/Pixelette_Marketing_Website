@@ -1,4 +1,18 @@
-import type { PointItemContent } from "@/components/feature";
+import type { ComponentType } from "react";
+import {
+  BagIcon,
+  BarsIcon,
+  ChipIcon,
+  CoinsIcon,
+  FactoryIcon,
+  GraduationIcon,
+  GroupIcon,
+  HeartIcon,
+  HouseIcon,
+  PlusMarkIcon,
+  SproutIcon,
+  TowerIcon
+} from "@/assets/sectors";
 import type { ItemsSectionContent } from "@/components/ui/home";
 
 // The homepage copy from the Website Replacement Architecture &
@@ -209,33 +223,34 @@ export const aiTechnologyData: AiTechnologyContent = {
 };
 
 // --- 07 Who we help ---------------------------------------------------------
-// REBUILT 21 SEP. This section used to be four linked sector cards — AI &
-// Software, FinTech, Web3 & Digital Assets, Technology & Platforms — each with
-// a summary and a View More into a near-identical industry page.
+// REBUILT 21 SEP as a typographic field of eleven markets, and REBUILT AGAIN
+// 23 SEP as nine sector cards from a supplied design. Both rebuilds are worth
+// keeping in view, because the second one reverses the first.
 //
-// It was removed on the user's instruction, and the reason is positioning
-// rather than design. Four technology sectors, boxed and equal, read as a
-// client boundary: this is what Pixelette does, and nothing else. The standfirst
-// beneath them said the offer was not limited to those categories, which is a
-// sentence arguing against the layout above it. The layout won.
+// 21 Sep retired four linked sector cards (AI & Software, FinTech, Web3 &
+// Digital Assets, Technology & Platforms) on the argument that boxed, equal,
+// linked sectors read as a client boundary. That argument was about FOUR
+// TECHNOLOGY CARDS, and it still holds against them. What is here now is not
+// that: nine cards spanning technology, money, health, retail, property,
+// services, education and industry, closed by a ninth that says the list is
+// not the limit. Range is what the grid itself now asserts, so the layout and
+// the standfirst finally agree instead of arguing.
 //
-// What replaces them is a TYPOGRAPHIC FIELD, not a bigger grid. A directory of
-// twelve cards would make exactly the same claim as four, only longer. The
-// markets are set as type at three scales with no boxes, no summaries and no
-// links, so the group reads as range rather than as a menu — and "And beyond"
-// is part of the composition rather than a footnote to it.
+// STILL NOTHING LINKS. The industry pages remain reachable from the nav and
+// from /industries; a card here is a statement of range, not a door. `to` is
+// absent from SectorCard for the same reason it was removed in September — an
+// empty field is an invitation to quietly reintroduce the menu.
 //
-// NOTHING IN THE FIELD LINKS ANYWHERE. The industry pages still exist and are
-// still reachable from the nav and from /industries; they are simply not what
-// this section is for any more. `to` is therefore gone from the data shape, so
-// a future edit cannot quietly reintroduce a link by filling a field that was
-// left sitting there.
+// THE TYPOGRAPHIC FIELD IS NOT DELETED. `markets` and `beyond` below are still
+// live: /industries renders them at the top of its hub page and was left alone
+// in this pass. Do not remove them because the home page stopped calling them.
 //
-// The three growth stages and the one route out are UNCHANGED. They are the
-// other axis the section has always carried — market, then stage — and the
-// closing statement now bridges the two.
+// The three growth stages are the section's other axis — market, then stage —
+// and they now sit under their own eyebrow with their own standfirst, which is
+// what the 21 Sep `positioning` block used to do in prose. `positioning` is
+// also still live on /industries and also stays.
 
-/** One market in the landscape.
+/** One market in the landscape. /INDUSTRIES ONLY since 23 Sep.
  *
  *  `scale` places it in the composition: three leads carry the field, four
  *  mids fill it and four quiets set the texture. It is a compositional role,
@@ -250,28 +265,169 @@ export interface MarketMark {
   accent?: boolean;
 }
 
+/** The chip tint behind a sector's mark.
+ *
+ *  NINE HUES THAT ARE NOT IN THE TOKEN FILE, and that is deliberate on both
+ *  counts. The design puts a differently tinted chip behind each sector so the
+ *  grid can be scanned by colour as well as by word; nine hues promoted to
+ *  :root would roughly double the site's palette to serve one section, and
+ *  would be reached for by the next component that wanted a bit of colour.
+ *
+ *  So they are scoped to the mechanism, exactly as _reveal.scss scopes its
+ *  timing tokens and _marquee.scss scopes its gap. The values live in
+ *  _dynamicMarket.scss as --sector-tone-* and exist nowhere else. `brand` is
+ *  the one that is a real token, and it is spent once, on the terminal card. */
+export type SectorTone =
+  | "violet"
+  | "rose"
+  | "green"
+  | "pink"
+  | "amber"
+  | "blue"
+  | "indigo"
+  | "teal"
+  | "brand";
+
+/** One sector card. */
+export interface SectorCard {
+  title: string;
+  body: string;
+  icon: ComponentType;
+  tone: SectorTone;
+  /** Public path to the card's art, e.g. "/home/sectors/technology.webp".
+   *
+   *  OPTIONAL, AND ABSENT ON ALL NINE AS THIS SHIPS. The design shows a
+   *  photograph bleeding in from each card's right edge and fading out under
+   *  the copy; no such photography exists in this repository yet. A card with
+   *  no `image` renders its tone wash in that same window instead — a
+   *  deliberate gradient, not a grey box — so the grid is complete and
+   *  presentable today and gains its photography by filling this field in.
+   *  Nothing else has to change when the assets arrive. */
+  image?: string;
+  /** The ninth card. It is not a sector: it is the sentence the eight would
+   *  otherwise fail to say, and it takes the brand tone and a title in the
+   *  brand colour to mark that it is a different kind of thing. */
+  terminal?: boolean;
+}
+
+/** One growth stage. Distinct from PointItemContent, which stacks its optional
+ *  icon above the title; these set the mark beside the text. */
+export interface GrowthStage {
+  title: string;
+  body: string;
+  icon: ComponentType;
+}
+
+/** A heading broken across two lines, the second half in the brand tone.
+ *
+ *  The break is AUTHORED rather than left to text-wrap, because both headings
+ *  in this section are written as two sentences and the design breaks them at
+ *  the full stop. `accent` is a colour treatment and nothing more, which is
+ *  why it renders as a span and not an <em> — italicising it would be a
+ *  different design decision. */
+export interface SplitHeading {
+  lead: string;
+  tail: string;
+  accent: string;
+}
+
 export interface WhoWeHelpContent {
   eyebrow: string;
-  heading: string;
+  heading: SplitHeading;
   lead: string;
+  /** The mono note in the head's right rail. It is the section's thesis in one
+   *  breath, and it is the reason the grid below is allowed to be a grid. */
+  aside: string;
+  sectors: SectorCard[];
+  /** /INDUSTRIES ONLY. See the note on MarketMark. */
   markets: MarketMark[];
-  /** The terminal mark. Held apart from `markets` because it is not a market —
-   *  it is the sentence the list would otherwise fail to say. */
+  /** /INDUSTRIES ONLY. The typographic field's terminal mark. */
   beyond: string;
-  stages: PointItemContent[];
+  /** The second band's own head. The section carries two arguments — which
+   *  markets, then which stage — and the design gives the second one its own
+   *  eyebrow rather than running it on from the first. */
+  stagesBand: {
+    eyebrow: string;
+    heading: SplitHeading;
+    body: string;
+  };
+  stages: GrowthStage[];
   cta: { label: string; to: string };
-  /** The close. Concise on purpose: it completes the argument that the
-   *  approach adapts to the market, and is not a second content section. */
+  /** /INDUSTRIES ONLY since 23 Sep, where it is the hub's positioning block.
+   *  The home section says this with `stagesBand` now. */
   positioning: { heading: string; body: string };
 }
 
 export const whoWeHelpData: WhoWeHelpContent = {
   eyebrow: "Who we help",
-  heading: "Across sectors. Built around your market",
-  lead: "Pixelette Marketing works with businesses across established and emerging sectors. We don't apply a sector template. We shape the strategy around the audience, proposition, buying journey, commercial model and growth ambition of each business.",
-  // Order is the composition. The three scales are interleaved rather than
-  // grouped, so the field wraps into an uneven shape at every width instead of
-  // settling into rows of equals.
+  heading: {
+    lead: "Across sectors.",
+    tail: "Built around",
+    accent: "your market."
+  },
+  lead: "Pixelette Marketing is built to work with businesses across established and emerging sectors. We don't apply a sector template. We shape the strategy around your audience, proposition, buying journey, commercial model and growth ambition.",
+  aside: "Different markets. One principle: understand before we act.",
+  // Reading order is the design's: three across, three down. The eight sectors
+  // are peers and the order carries no ranking — only the ninth is fixed,
+  // because a sentence that says "and beyond" has to come last.
+  sectors: [
+    {
+      title: "Technology & Innovation",
+      body: "Software, SaaS, AI, Web3 and emerging technology.",
+      icon: ChipIcon,
+      tone: "violet"
+    },
+    {
+      title: "Financial Services",
+      body: "Fintech, payments, banking, insurance and investment services.",
+      icon: CoinsIcon,
+      tone: "rose"
+    },
+    {
+      title: "Healthcare & Wellness",
+      body: "Health, care, wellness and health technology.",
+      icon: HeartIcon,
+      tone: "green"
+    },
+    {
+      title: "Consumer & Retail",
+      body: "Consumer brands, e-commerce, retail and lifestyle.",
+      icon: BagIcon,
+      tone: "pink"
+    },
+    {
+      title: "Property & Real Estate",
+      body: "Property, development, PropTech and related services.",
+      icon: HouseIcon,
+      tone: "amber"
+    },
+    {
+      title: "Professional & B2B Services",
+      body: "Consultancies, legal, recruitment and business services.",
+      icon: GroupIcon,
+      tone: "blue"
+    },
+    {
+      title: "Education & Learning",
+      body: "Education, training and EdTech.",
+      icon: GraduationIcon,
+      tone: "indigo"
+    },
+    {
+      title: "Industrial & Commercial",
+      body: "Manufacturing, engineering, logistics and other commercial operations.",
+      icon: FactoryIcon,
+      tone: "teal"
+    },
+    {
+      title: "And beyond",
+      body: "Different markets. Same principle: understand it first.",
+      icon: PlusMarkIcon,
+      tone: "brand",
+      terminal: true
+    }
+  ],
+  // --- /industries only, from here to `stagesBand` --------------------------
   markets: [
     { label: "Technology & Software", scale: "lead" },
     { label: "Financial Services", scale: "mid", accent: true },
@@ -286,21 +442,38 @@ export const whoWeHelpData: WhoWeHelpContent = {
     { label: "B2B Services", scale: "quiet" }
   ],
   beyond: "And beyond",
+  stagesBand: {
+    eyebrow: "How we work with you",
+    heading: {
+      lead: "Marketing for where",
+      tail: "you are now —",
+      accent: "and what's next."
+    },
+    body: "Every business is at a different stage. We tailor our approach to your goals, resources and market, helping you build momentum at every step."
+  },
   stages: [
     {
       title: "Launch",
-      body: "Find the position. Build the message. Create demand. Prove the first channels."
+      body: "Find the position. Build the message. Create demand. Prove the first channels.",
+      icon: SproutIcon
     },
     {
       title: "Scale",
-      body: "Increase qualified pipeline. Improve conversion. Systemise repeatable growth."
+      body: "Increase qualified pipeline. Improve conversion. Systemise repeatable growth.",
+      icon: BarsIcon
     },
     {
       title: "Established & Enterprise",
-      body: "Strengthen authority, attribution, channel coordination, conversion and alignment with more complex buying and sales journeys."
+      body: "Strengthen authority, attribution, channel coordination and alignment with more complex buying and sales journeys.",
+      icon: TowerIcon
     }
   ],
-  cta: { label: "Find your growth route", to: "/industries" },
+  // The label is the design's. THE DESTINATION IS UNCHANGED and is not
+  // something the design specifies: this control has been the only route from
+  // the home page into the sector hub since 21 Sep, and "explore your
+  // opportunity" reads true of that hub. If it is ever pointed at /contactus
+  // instead, /industries loses its home-page entrance and only the nav is left.
+  cta: { label: "Let's explore your opportunity", to: "/industries" },
   positioning: {
     heading: "Sector knowledge matters. Commercial understanding matters more",
     body: "Different markets have different customers, buying cycles and competitive pressures. Our job is to understand those differences and build the marketing approach around them."

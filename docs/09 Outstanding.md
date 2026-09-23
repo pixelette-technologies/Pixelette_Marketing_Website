@@ -390,10 +390,14 @@ Related: [[01 The brief]], [[02 Decisions]]
 
 ## Found while looking at the diagnostic, and not this page's fault
 
-- **The navigation breaks at 768px on every route.** "What We Do" and "Who We
-  Help" wrap to three lines and the primary button overflows the right edge.
-  Confirmed on `/aboutus`, so it predates this work and is on all 36 routes.
-  It is the first thing the browser walk should settle at tablet width.
+- ~~**The navigation breaks at 768px on every route.**~~ **Closed 23 Sep**, in
+  `45e1ca2`. The bar was still on at 768 because the drawer only took over at
+  767. It now takes over at 960, and the whole range was walked — 360, 390,
+  600, 768, 900, 960, 961, 1024, 1440 — with no horizontal overflow at any
+  width. **960 is measured, not inherited**: the bar has an intrinsic minimum
+  of 898px, so the reference's own 860 would have moved the break to 861
+  rather than closing it. See [[10 Verification]] and
+  [[04 Phase 2 — Navigation and footer]].
 
 ## The Strategy & Positioning page, after the full rebuild (22 Sep)
 
@@ -463,10 +467,8 @@ The definitive brief is implemented and gated. What it leaves open:
   Help" at 390px. This is the same banner already recorded twice on this list
   — inline-styled, 9px, and printing across the diagnostic's results — and it
   is not the drawer's fault. It is now three sightings of one component.
-- **The 768px navigation break is untouched** and still the first thing the
-  browser walk should settle. The dropdown was seen at 1440px and 390px; the
-  width it is known to fail at was not revisited, because this change does not
-  affect the top-level bar that breaks there.
+- ~~**The 768px navigation break is untouched**~~ — **closed 23 Sep** by the
+  mobile drawer rebuild, which had to move the breakpoint anyway. See above.
 
 ## The blog, after 22 Sep
 
@@ -546,3 +548,32 @@ property of anyone's change.
   against a rule `_surfaces.scss` states explicitly. Registered there with its
   reasoning. If the group answer on motion ever comes back "no", this reverts
   with the others.
+
+
+## Left open by the mobile drawer (23 Sep)
+
+- **The CTA is solid where the reference's is outlined.** Ours takes the
+  crimson `.btn.primary`, because that is what the desktop bar carries and
+  splitting the treatment would make one action look like two different weights
+  of thing depending on window width. It is the one deliberate departure from a
+  drawer that was otherwise asked to match exactly, so it is **a wording-level
+  decision for management rather than a bug**: one line either way.
+- **"Menu" is the trigger's label and nobody has approved it.** It is the
+  reference's word, in a bordered pill rather than a hamburger. Same status as
+  "The Diagnostic" further up this list — a label chosen in the absence of one.
+- **The 960px breakpoint is a fact about today's bar and nothing enforces it.**
+  It clears the bar's 898px minimum by about 60px. Add a top-level link, widen
+  the CTA, or change the wordmark, and the minimum moves with no test failing
+  and no gate complaining. The stylesheet says so at the rule; this is the
+  second place, because the stylesheet is not where anyone looks first.
+- **Enter on the drawer trigger is unproved.** Space opens it, confirmed in the
+  browser. Enter did not register under synthetic CDP key events, which is
+  most likely the harness rather than the markup — `<summary>` handles both
+  natively — but it was not demonstrated and should be checked on a real
+  device rather than assumed.
+- **Who We Help is still the one menu never seen on desktop.** The What We Do
+  dropdown was rendered on 22 Sep and the whole mobile drawer on 23 Sep. The
+  desktop Who We Help panel has still never been opened in a browser.
+- **The cookie banner still prints across the drawer**, covering the lower rows
+  at 390px. Recorded here for the fourth time, against the same component, and
+  still not the drawer's fault.

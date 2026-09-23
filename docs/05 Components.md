@@ -333,3 +333,48 @@ behind an interaction. See [[02 Decisions]].
 `GrowthSection` is now the section's frame and nothing else: the container, the
 `.rule-cap` hairline and the rhythm. That split has survived five different
 figures.
+
+## `DynamicMarket` — rebuilt 23 Sep
+
+A server component, as it has always been. No state, no JavaScript beyond the
+site-wide scroll reveal.
+
+**Shape.** A `<header>` splitting into a main column and a mono rail; a
+`<ul class="sectorGrid">` of nine `<li class="sectorCard">`; a hairline; a
+`.dynamicMarket__band` holding the second eyebrow, heading, standfirst and the
+call to action; and `.dynamicMarket__stages` holding three `.growthStage`s.
+
+**Still a `<ul>`, for the reason the field was one.** It is a list of nine and
+a screen reader should be able to count it. Each card is a listitem with a
+heading inside, which makes the grid navigable by heading as well as by list.
+
+**`SplitTitle` is the only local component**, and it exists because both bands
+take the same two-line heading: first line, break, second line with its tail in
+the brand tone. The break is a block-level `<span>` rather than a `<br>`, so
+the first line can still wrap on its own at phone widths instead of running out
+of the box. The accent is a `<span>` and not an `<em>` — it changes colour and
+nothing else, and italicising it would be a different design decision.
+
+**A card's art is a custom property, not an `<Image>`.** It is decoration
+bleeding out of a masked window and carries nothing a screen reader could use,
+so it is `--sector-art` set inline on the listitem and read by a
+`aria-hidden` span. When it is unset the stylesheet's `var()` falls through to
+the tone wash on its own, so **there is no empty-state branch in the component
+at all**.
+
+**A card's tone is one word in the data.** `SectorTone` is a union of nine
+names; the stylesheet maps each to `--sector-tint` and `--sector-mark` once,
+and the chip, the title and the fallback wash all read those two rather than
+each naming a hue. That indirection is what keeps the data a single word and
+the palette swappable in one place.
+
+**The stages are not `PointItem`.** That component stacks its optional icon
+above the title and carries no `className` hatch, deliberately; the design sets
+the mark beside the text. Bespoke markup here respects that rule where a
+variant on `PointItem` would erode it. `stages` is typed `GrowthStage[]` — a
+title, a body and an icon — so the two shapes are not mistaken for each other
+later. See [[02 Decisions]].
+
+**What it no longer renders**, though the data is still there: `markets`,
+`beyond` and `positioning`. All three are `/industries`-only now and are
+labelled as such at their declarations.

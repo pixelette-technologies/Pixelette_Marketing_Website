@@ -1062,3 +1062,93 @@ leaving a truncated file that the production build then type-checked. `rm -rf
 looks exactly like a real type error. If `tsc --noEmit` is clean and the build's
 type check is not, read the path before reading the message — a path under
 `.next/` is an artifact, not your code.*
+
+## 23 Sep — a gate caught the comment that explained the gate
+
+`_dynamicMarket.scss` masks the card art with an opaque token rather than a
+bare hex, because `lint:legacy-tokens` bars the literal. A comment was added
+saying so, and the comment contained the literal:
+
+```
+// bare #000 and an opaque token is more honest than exempting the line.
+```
+
+`lint:legacy-tokens` fails on it. The script's docblock states the rule it was
+breaking outright — *"KEEP THE MATCHER DUMB. It does not parse comments, so a
+provenance note that writes a retired value with a hash would trip the gate on
+its own documentation. The convention throughout this codebase is to write such
+notes BARE."*
+
+**The process fault is the interesting part, not the typo.** The token gate ran
+clean, then the comment was written, then `eslint` and `tsc` ran clean, and the
+gate was never run again. **A gate that has passed is not a gate that passes** —
+it is a statement about the tree at the moment it ran, and every edit after it
+is unverified. It surfaced only because the user reported an unrelated dev
+server error a while later and the gates were re-run against the current tree
+while investigating.
+
+*The cheap rule: the last thing to run before reporting should be the full gate
+set, not the gate set minus whatever was edited after it.*
+
+## 23 Sep — the Who we help rebuild, and five green gates that prove nothing about the layout
+
+Run against the tree as committed in `8edeb79`:
+
+| Gate | Result |
+|---|---|
+| `npx tsc --noEmit` | exit 0 |
+| `npm run lint:check` | 0 errors, 0 warnings |
+| `npm run lint:legacy-tokens` | 0 findings, 282 files |
+| `npx sass main.scss` | exit 0, 116KB |
+| `npm run build` | compiled, 15 static pages |
+
+Then served on a production `next start` and checked over HTTP: `/` and
+`/industries` both 200, no error markers, all nine cards present with their
+tone classes, the terminal card marked, the art layer, chips and titles all
+rendering, and `.marketField` still rendering on the hub.
+
+**Every one of those is a structural check, and the section is a layout
+change.** What was verified is that the right elements exist with the right
+class names. What was not verified is anything the change was actually about:
+whether the masked fade keeps the copy legible over art, whether nine cards
+of unequal title length settle, whether the authored heading breaks land where
+the design puts them, whether the stage dividers sit right at `62rem`. **No
+screenshot was taken at any width.**
+
+This is the same shape as every entry in this file. The Growth System band has
+now produced faults on four separate looks after green gates; the About page
+produced three; `/strategy-positioning` produced seven, then four. The
+prediction here is not that this section is fine. It is that **nobody has
+looked**, and the base rate says looking will find something.
+
+*Recorded rather than quietly carried, because a section that ships on gates
+alone and then turns out to be right would be the first on this site.*
+
+## 23 Sep — an EADDRINUSE that was not a code error, and a 500 that was not either
+
+Two failures in one session that both looked like the change and were neither.
+
+**A background `next start -p 3124` exited 1 with `EADDRINUSE`.** A server was
+already on that port from an earlier invocation in the same session. The fix
+was to read `Get-NetTCPConnection -LocalPort 3124` and the owning process's
+command line **before killing anything** — it was `next start -p 3124` from
+this session, so it was safe to stop. A PID found by port is not automatically
+yours; on this repo, with two sessions running, it is quite likely not.
+
+**A `next dev` on port 3000 returned 500 with `Can't find stylesheet to import:
+@forward "./growthSystem"`.** The file was present, 22,757 bytes, 730 lines,
+plain UTF-8 with no BOM, and `npx sass --load-path=src/scss src/scss/main.scss`
+compiled the whole stylesheet to 116KB with exit 0. The error was a cached
+resolution failure from a moment when the other session had that file mid-write
+— the same Turbopack on-disk cache fault recorded in the entry above, from the
+opposite side.
+
+**What was deliberately not done: the other session's dev server was left
+running.** Restarting it would have been the fix, and a second `next dev` on
+this project shares `.next` and could have corrupted theirs. The diagnosis was
+completed with a standalone `sass` compile, which touches nothing, and the
+restart was left to the person who owned the process.
+
+*Three entries in this file now describe two sessions in one repo costing
+something. This is the first where the answer was to prove the diagnosis with a
+tool that writes nothing and hand the fix back.*

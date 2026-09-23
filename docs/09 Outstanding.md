@@ -609,3 +609,47 @@ tethered questions were removed. What that leaves open:
 
 Related: [[02 Decisions]], [[03 Phase 1 — Homepage]], [[05 Components]],
 [[08 Design system constraints]], [[10 Verification]]
+
+## Who we help, after the 23 Sep rebuild
+
+The 21 Sep item above is **partly superseded and partly still live**. The
+eleven named markets it flags are no longer on the home page, but they are
+still on `/industries`, which was left alone — so the unsigned-off claim moved
+rather than closed, and the last bullet's "never seen below 767px" now applies
+to a hub page rather than to the home page.
+
+- **The nine sector photographs do not exist.** Every card declares an optional
+  `image` and none is set, so all nine render a tone gradient in the masked
+  window where the design shows a photograph. It is presentable and it is not
+  what was designed. Nine files into `public/home/sectors/` and nine `image`
+  fields is the whole of the work. **Nobody has been asked for the images.**
+- **Nine sector names and nine one-line scopes are a claim, and management has
+  not seen them.** They are the design's copy, not the brief's: Technology &
+  Innovation, Financial Services, Healthcare & Wellness, Consumer & Retail,
+  Property & Real Estate, Professional & B2B Services, Education & Learning,
+  Industrial & Commercial, and *And beyond*. This is the same gate the eleven
+  markets failed on 21 Sep, and the design being supplied by the user is not
+  the same thing as the copy being signed off.
+- **The standfirst changed on a page nobody asked to change.** The design's
+  wording moved the sentence into the second person, and `/industries` reads
+  the same `lead`. The hub's opening paragraph is different today and the hub
+  was not part of the instruction.
+- **`/industries` and the home page now describe the same sectors twice**, in
+  two shapes, from two fields in one file, free to drift. Eleven markets at
+  three type scales there, nine cards here. That was the instruction; the drift
+  is the standing cost of it.
+- **"Let's explore your opportunity" points at `/industries` on my judgement.**
+  The design supplies the label and not the destination. It reads conversational
+  enough to belong on `/contactus`, and moving it there would leave the sector
+  hub with no route from the home page. Worth a decision from someone who knows
+  which of those matters more.
+- **The section has not been seen in a browser, at any width.** Not at 1440, not
+  at 768, not at 390. Five gates are green and on this repo that has never once
+  meant the layout is right. Specific things nobody has looked at: whether the
+  masked art fade actually keeps the copy legible, whether nine cards of unequal
+  title length settle or stagger, whether the two-line headings break where the
+  design breaks them, and whether the `62rem` stage row is the right place for
+  it.
+- **Eight new hues are enforced by a sentence, not by scope.** See
+  [[08 Design system constraints]]. The first component that reaches for
+  `--tone-teal` will not be stopped by anything.

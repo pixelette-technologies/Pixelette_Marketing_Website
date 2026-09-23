@@ -225,6 +225,50 @@ on-disk cache**, so every restart replayed a 500 about a file that was present
 and readable. Clearing `.next/dev/cache` fixed it. Three distinct costs of two
 sessions in one repo now. See [[10 Verification]].
 
+**23 Sep, the home page's Who we help section — rebuilt to a supplied design,
+and it reverses the 21 Sep rebuild.** The typographic field of eleven markets
+is gone from the home page. Nine cards in a 3×3 grid replace it: a tinted icon
+chip, a sector name and a one-line scope apiece, with art bleeding in from each
+card's right edge. A mono note in the head's rail carries the thesis. Below a
+hairline, the three growth stages now open under their own eyebrow with their
+own standfirst and a crimson call to action.
+
+**The September argument against cards was narrower than it read.** 21 Sep
+retired four *technology* sector cards because four boxed, equal, linked
+sectors assert a client boundary while the standfirst underneath argues the
+opposite — and that is still true of those four. Nine cards spanning
+technology, money, health, retail, property, services, education and industry,
+closed by a ninth that says the list is not the limit, make the opposite claim
+with the layout instead of against it. Nothing links; a card is a statement of
+range, not a door.
+
+**The token gate reversed a design decision, correctly.** The design tints each
+chip a different hue, and the intent was to scope those eight pairs to the
+component the way `_reveal.scss` scopes its timing. `lint:legacy-tokens` fails
+the build on a hex literal anywhere in `src/`, and a scoped palette it cannot
+see is the precise thing it exists to prevent — so the site's palette grew by
+sixteen tokens on `:root`, with the rule that keeps them from spreading written
+beside them instead of enforced by scope. See [[08 Design system constraints]].
+
+**The photography does not exist and the cards do not pretend otherwise.** Each
+card takes an optional `image`; with none set, the same masked window renders a
+tone gradient rather than a grey box, so the grid is presentable now and gains
+its art by filling in one field. All nine are unset today. See
+[[09 Outstanding]].
+
+**`/industries` was deliberately left alone**, so `markets`, `beyond` and
+`positioning` are still live and `.marketField` still ships — dead on the home
+page, load-bearing on the hub. The section's copy is the design's verbatim,
+which **also changed the hub's standfirst**, since both read the same `lead`.
+
+Five gates green — `tsc`, `eslint`, the token gate, `sass` and `next build` —
+and **the section has not been looked at in a browser**, which on this repo has
+never once been a neutral fact. One fault did come out of re-running the gates:
+a comment written to explain a token substitution contained the hex literal it
+was explaining, and the gate is deliberately blind to comments. See
+[[02 Decisions]], [[03 Phase 1 — Homepage]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

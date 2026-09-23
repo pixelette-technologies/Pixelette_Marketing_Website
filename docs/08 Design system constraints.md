@@ -395,3 +395,98 @@ They are also decorative in the strict sense and marked `aria-hidden`: every
 station's name is set in text beside its icon, so nothing reaches a reader
 through the icon alone. **That is the test to apply to the next one.** It is
 not a licence for an icon set on the next card grid.
+
+## The palette stopped being two-tone — 23 Sep
+
+The site had a brand anchor, a marking tone, a neutral ramp, two grounds, a
+hairline ramp and two dark families. Every colour on every page came from those.
+**It now also has eight hues that are not the brand**, `--tone-*-tint` and
+`--tone-*-mark` in `_tokens.scss`, one pair per sector chip in Who we help.
+
+**They were going to be scoped to the component, and the token gate refused
+them.** `_reveal.scss` scopes its timing tokens, `_marquee.scss` scopes its
+gap, and the same move here would have kept `:root` two-tone and made the
+palette die with the section. `lint:legacy-tokens` fails the build on a hex
+literal anywhere under `src/`, and its own docblock gives the reason: a brand
+change should be one edit to `_tokens.scss` rather than a hunt through the
+partials. **A palette the gate cannot see is the thing the gate exists to
+prevent**, so the values went to `:root` and the gate stayed intact.
+
+**What that costs, stated plainly: the rule is social now.** Scope would have
+made it impossible for another component to reach these. Instead there is a
+sentence beside the declarations saying they are for the sector grid, that a
+component wanting "a bit of colour" takes the brand or takes nothing, and that
+a second section needing them is the moment to ask whether the site is still
+two-tone — not the moment to reuse `--tone-teal`. That is an honour system
+where the rest of this file describes enforcement, and it should be read as the
+weakest constraint in it.
+
+**Every mark clears the non-text threshold on its own chip with room over**:
+5.94 violet, 5.40 rose, 4.85 green, 4.75 pink, 4.70 amber, 5.60 blue, 6.46
+indigo, 4.88 teal, and brand at 6.04 on `--color-brand-tint`. The marks are
+non-text but they are the only thing inside the chip, so they are held to 3:1
+rather than waved through as decoration. **No `-mark` is ever set on type** —
+the card titles are `--color-ink`, and the terminal card's is `--color-brand`.
+
+## An icon set on a card grid — the case the 23 Sep icon rule anticipated
+
+The entry above on icons carrying meaning closes with *"it is not a licence for
+an icon set on the next card grid."* The next card grid arrived the same day,
+and this is the test being applied rather than waived.
+
+**Nine icons, one per sector, and every one passes the stated test**: the
+sector's name is set in text beside its mark, so nothing reaches a reader
+through the icon alone, and all nine are `aria-hidden`. They render with
+`currentColor` and take their colour from the chip, so the token gate is
+untroubled and colour is still read from the ground.
+
+**They are drawn to one spec and exported without a size**: 24×24, no fill,
+`currentColor` stroke at 1.6, round caps and joins. They live in
+`src/assets/sectors/` rather than `assets/common/` because the existing folders
+hold filled paths exported at whatever dimensions their source file happened to
+be, and one 27px filled glyph dropped into a row of nine line icons is visible.
+Size is set by the chip, which is how the same mark is 24px on a sector card
+and 26px on a growth stage without a second export.
+
+**What would fail the test** is an icon whose card has no name in text, an icon
+that changes what the copy means, or a set imported from a library at whatever
+sizes it ships. The first two have not happened; the third is the one worth
+watching.
+
+## A `min-width` query, and why it is the honest answer here — 23 Sep
+
+`_responsive.scss` says to resist a second breakpoint and reach for a clamp,
+and `_dynamicMarket.scss` now carries a `min-width: 62rem` query anyway. The
+reasoning is worth keeping because the usual escape does not apply.
+
+**Every other block in the section is derived.** The head and the second band
+are wrapping flex rows with flex bases, so they reflow with no breakpoint at
+all. The nine cards are `auto-fit` with a `17.5rem` floor and fall three, two,
+one on their own.
+
+**The stage row cannot be, because the divider is a left border.** Under
+`auto-fit` a stage that wraps to a new row keeps a border with nothing to its
+left, and there is no selector for *"first in its row"*. So the column count
+has to be known, and the query is what buys it: stacked by default, three
+across above 62rem, with the gap spent as padding so the line sits in the
+middle of it rather than against a box edge.
+
+**Stacked is the default and the row is the enhancement**, which is why it is a
+`min-width` and not another `max-width`. 62rem is where three stages stop being
+cramped, not a value copied from another stylesheet — the lesson from the nav
+breakpoint two days earlier.
+
+## A mask reads alpha, and the token gate reads text — 23 Sep
+
+The sector card's art is faded under the copy with
+`mask-image: linear-gradient(90deg, transparent 0%, var(--color-ink) 62%)`.
+
+**`--color-ink` is not a colour choice.** A mask uses the alpha channel and
+ignores the hue entirely, so any opaque value works. The gate bars a bare hex
+literal, and an opaque token is a more honest answer than adding a file to the
+exemption list for one declaration.
+
+**The same gate then caught a comment explaining exactly that**, because its
+matcher is deliberately dumb and does not parse comments — the convention,
+stated in the script, is to write such values bare and without their hash. See
+[[10 Verification]].

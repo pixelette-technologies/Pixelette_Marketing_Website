@@ -1256,3 +1256,93 @@ now reaches 70px either side along the tangent, about 15 degrees, with the
 badge taking it to roughly 21. Every arrowhead was being drawn underneath a
 badge, and the arcs looked like they simply stopped at the cards. Moved to 66
 degrees, which is also where the reference puts them. See [[10 Verification]].
+
+## 23 Sep — Who we help becomes nine sector cards, from a supplied design
+
+The third shape this section has taken. Four linked technology cards until
+21 Sep, a typographic field of eleven markets until now, and a 3×3 grid of nine
+cards from a design supplied as an image.
+
+**It reverses the 21 Sep decision recorded above, and the reversal is narrower
+than it looks.** That entry argues that boxed, equal, linked sectors read as a
+client boundary, and that a longer list makes the same claim as a short one —
+*"twelve cards say what four say, only at greater length."* The first half
+still holds and the second does not survive contact with what the nine
+actually are. Four cards all naming technology assert a boundary because they
+agree with each other. Nine spanning technology, money, health, retail,
+property, services, education and industry agree about nothing except that
+Pixelette does not need them to agree, and the ninth says so outright. The
+layout and the standfirst finally make the same claim instead of arguing.
+
+**Nothing links, and `to` is still absent from the data shape.** That part of
+21 Sep is kept deliberately. The industry pages are reachable from the nav and
+from `/industries`; a card here is a statement of range, not a door, and an
+empty `to` sitting in the type is an invitation to quietly reintroduce the menu.
+
+**"And beyond" is a card rather than a line, and it is marked as a different
+kind of thing.** It takes the brand tone where the other eight take a hue, and
+its title is the only one set in brand colour. It is still the sentence the
+eight would otherwise fail to say; it is no longer a footnote in a smaller
+size.
+
+**The eight chip hues were going to be scoped to the component, and the token
+gate was right to refuse them.** The intention was `--sector-*` custom
+properties in `_dynamicMarket.scss`, following the precedent `_reveal.scss`
+sets for its timing tokens and `_marquee.scss` for its gap — deleting the
+section would take the palette with it and leave nothing on `:root` for the
+next component to help itself to. `lint:legacy-tokens` fails the build on a hex
+literal anywhere under `src/`, and its docblock states the reason: one file
+answers *what colours does this site use*. **A scoped palette the gate cannot
+see is exactly what the gate exists to prevent.** So sixteen tokens went to
+`:root` and the rule that stops them spreading is written beside them rather
+than enforced by scope. That is weaker, and it is recorded as weaker in
+[[08 Design system constraints]].
+
+**The photography does not exist, and the fallback is a decision rather than a
+placeholder.** The design shows a photograph bleeding into each card from the
+right and fading out under the copy. No such photography is in this repository.
+`SectorCard.image` is optional; the art layer declares the image and a tone
+gradient as two background layers in one rule, so an unset `--sector-art`
+resolves to `none`, draws nothing, and the gradient is what shows — in the same
+geometry, behind the same mask. **The empty state has no branch and no grey
+box**, and the only change when the assets arrive is filling in one field.
+
+**`/industries` was left alone on instruction**, which is why `markets`,
+`beyond` and `positioning` are still in `whoWeHelpData` and `.marketField` is
+still in a home-page stylesheet. Three fields and a block of CSS that the home
+page no longer touches now exist solely for the hub, and every one of them is
+labelled at its declaration so a later reader does not delete them as dead. The
+cost of the instruction is one source of truth describing the same sectors
+twice, in two shapes, free to drift.
+
+**The copy is the design's verbatim, and one line of it reaches further than
+the section.** The standfirst moved from third person to second — *"the
+audience, proposition … of each business"* became *"your audience,
+proposition"* — and `/industries` reads the same `lead`, so the hub's
+standfirst changed without the hub being touched.
+
+**The call to action's label is the design's; its destination is not, because
+the design does not specify one.** "Let's explore your opportunity" reads
+conversational enough to point at `/contactus`, and it was left on
+`/industries`. This control has been the only route from the home page into the
+sector hub since 21 Sep. Pointing it at the form would orphan the hub behind
+the nav, which is a navigation decision the image cannot be read as making.
+
+**The three growth stages gained a head of their own.** They were a bare row
+under a prose close; the design gives them an eyebrow, a two-line heading and a
+standfirst. That puts **two eyebrows inside one section**, which nothing else
+on this site does. The heading outline is what keeps it legal: the section
+eyebrow stays the `h2`, both display headings are `h3`s, and the second
+eyebrow is a `<p>` — promoting it to a heading would either outrank the cards
+above it or open a sibling section that does not exist.
+
+**The stages are not `PointItem`.** That component stacks an optional icon
+above its title; the design sets the mark beside the text, and `PointItem`
+carries no `className` escape hatch by deliberate design — *"an unused hatch is
+how a shared card acquires six bespoke per-section overrides and stops being
+shared."* Writing bespoke stage markup respects that rule; adding a variant to
+`PointItem` for one call site would break it. `stages` is typed `GrowthStage[]`
+now rather than `PointItemContent[]`, so the two are not confused later.
+
+Related: [[03 Phase 1 — Homepage]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]

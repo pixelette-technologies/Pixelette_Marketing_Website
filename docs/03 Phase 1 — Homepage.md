@@ -111,3 +111,39 @@ The two components are unchanged in their division of labour, but
 `GrowthSystem` is a **server component** now — the tablist was the only reason
 it ever shipped as client JavaScript. See [[02 Decisions]] and
 [[05 Components]].
+
+## 23 Sep — section 07 is a card grid again, and this time it is nine
+
+`DynamicMarket` still holds two groups, so the table above is unchanged. What
+is inside them is not.
+
+**The markets group.** A 3×3 grid of nine cards — tinted icon chip, sector
+name, one-line scope — replacing the wrapping typographic field of eleven
+marks. The ninth is *And beyond*, which takes the brand tone and a
+brand-coloured title so the grid says it is a different kind of thing before
+the sentence does. A mono note in the head's right rail carries the section's
+thesis. Nothing links.
+
+**The stages group opens for itself now.** It was a bare row under a prose
+close; it has its own eyebrow, its own two-line heading and its own standfirst,
+separated from the cards by a hairline. Each stage is an outlined circular
+icon beside a brand-coloured serif title, with vertical dividers between the
+three. The `positioning` block that used to close the section is gone from the
+home page and still renders on `/industries`.
+
+**Thirteen icons entered the repo for this**, in `src/assets/sectors/`, drawn
+to one spec — 24×24, no fill, `currentColor` stroke at 1.6 — because the
+existing icon folders hold filled paths exported at whatever size their source
+happened to be, and mixing one into a row of nine is visible. They carry no
+size of their own; the chip sizes them. See [[08 Design system constraints]].
+
+**The card art is declared and absent.** Each card takes an optional `image`
+and renders a tone gradient in the same masked window until one is supplied.
+All nine are unset. See [[02 Decisions]] and [[09 Outstanding]].
+
+**One line of copy reached past this page.** The standfirst is the design's and
+moved into the second person; `/industries` reads the same field, so the hub's
+standfirst changed too.
+
+Related: [[02 Decisions]], [[05 Components]],
+[[08 Design system constraints]], [[10 Verification]]

@@ -6,12 +6,17 @@ at the top have not moved since 11 Sep — both need management, not code.
 
 ## Live in production and needs fixing
 
-- **The privacy-notice link is still broken.** `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL`
+- ~~**The privacy-notice link is still broken.**~~ **Fixed in code 23 Sep 2026**:
+  `/privacy` exists (adapted, on instruction, from the Pixelette Technologies
+  statement) and the form links to it as a route, not an env var. The env var
+  is gone from the code and `.env.example`. See the 23 Sep section at the foot
+  of this note for what still needs a human. Original entry:
+  `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL`
   is the placeholder string `asdas`. Because it is non-empty the governance
   gate **passes**, so the form renders normally and its "read the privacy
   notice" link 404s — on a form collecting names, emails and company details.
   A config value, fixable in minutes without a code change. **Highest priority.**
-- **No privacy policy page exists** at all. Only `/cookie-policy`.
+- ~~**No privacy policy page exists** at all.~~ `/privacy` added 23 Sep 2026; legal review of it is open (see foot of note).
 - Management's answer was "legal compliance, same as for Pix Tech, task for
   Asif and I". That assigns an owner but supplies no URL, so this is unchanged.
   The question to go back with: point at the Pixelette Technologies policy (if
@@ -33,7 +38,7 @@ at the top have not moved since 11 Sep — both need management, not code.
 
 **The only two left on the marketing site:**
 
-1. **The privacy policy URL** (above). Blocks go-live.
+1. ~~**The privacy policy URL**~~ — `/privacy` built 23 Sep from the Pix Tech statement, on instruction. Its controller line and retention periods need legal sign-off before go-live.
 2. **What period the BlockGuard figures cover.** Management supplied five
    figures with no measurement window. The brief's gate asks for measure,
    period, client and permission; three of the four are now held. Inside a case
@@ -660,3 +665,40 @@ to a hub page rather than to the home page.
 - **Eight new hues are enforced by a sentence, not by scope.** See
   [[08 Design system constraints]]. The first component that reaches for
   `--tone-teal` will not be stopped by anything.
+
+## 23 Sep 2026 — positioning, Who We Help and site-wide consistency
+
+Built to a consolidated positioning brief. What it left for a human:
+
+- **The privacy statement's controller.** `/privacy` names Pixelette Marketing
+  with company number 11716825, 77 Fulham Palace Road and VAT GB 432 2377 17 —
+  the footer's details, which are also Pixelette Technologies Ltd's own. If
+  Marketing trades under Technologies Ltd, the controller line must say so.
+  The retention periods (24 months, six years) are the group's, adopted as
+  written. **Needs legal review before launch.**
+- **The form still needs its two remaining env vars on Vercel**:
+  `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION` (and the server's
+  `CONTACT_PRIVACY_NOTICE_VERSION`, which must match — the page says 1.0) and
+  `NEXT_PUBLIC_CONTACT_CONSENT_TEXT`. The local `.env` still holds `dasda` for
+  both, and the consent line prints it. `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL`
+  can be deleted from every environment.
+- **The logo strip says "Experience across the Pixelette ecosystem"** on the
+  home page, `/aboutus` and all eight service pages. The brief preferred
+  "Organisations we've worked with"; that is only true if all six logos are
+  direct Pixelette Marketing clients. Management to confirm, then switch.
+- **Service-page statistics no longer render** (`servicesData.status`, four
+  percentages per page with no client, baseline or period). Kept in data; each
+  returns when substantiated. **The research figures still render** and several
+  sources look generic or truncated ("Nielsen, 202", "Marketing Insights,
+  2023", "LeadGen Journal, 2023", "Automation Trends, 2022"). Verify or remove.
+- **The Web3 FAQ says "Absolutely, we offer tokenomics consulting."** Confirm
+  the service exists; it also carries regulatory exposure.
+- **`/contactus` promises "We sign an NDA"** in its process steps. Confirm.
+- **Home hero headline is split across an h1 and an h2** ("Marketing that
+  matters" / "to your bottom line"). Structural; not touched.
+- **`/success_stories` and `/story/[id]`** are still built and reachable by URL
+  with legacy Pixelette Technologies content and a metadata claim about
+  "Fintech, SaaS, Web3 and technology clients". Hidden, noindexed, untouched.
+- **The growth figure's small type** measured 9.5–10.1px at 1440 in the
+  browser walk (`growthSystem__feedbackLead`, `__coreFlow`), under the 11px
+  floor recorded on 23 Sep. Not changed in this pass.

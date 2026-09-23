@@ -180,7 +180,7 @@ export const methodology = {
 export const diagnosticIntro = {
   eyebrow: "The diagnostic",
   heading: "How clear is your current positioning?",
-  lead: "Answer 12 questions across six areas. You will receive an immediate positioning score, a breakdown of where you are strongest and the areas that deserve attention.",
+  lead: "Answer twelve questions across six areas. You will receive an immediate positioning score, a breakdown of where you are strongest and the areas that deserve attention.",
   start: "Start diagnostic",
   /** Shown beside the start control. Both halves are literally true of the
    *  implementation and both are worth stating before somebody begins: no

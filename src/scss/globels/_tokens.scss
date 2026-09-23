@@ -109,7 +109,7 @@
   // --- Sector tones, 23 Sep 2026 ----------------------------------------
   // EIGHT HUES THAT ARE NOT THE BRAND, AND THE ONLY ONES ON THE SITE. They
   // exist for the Who we help grid on the home page, where each sector's
-  // icon sits on a differently tinted chip so nine cards can be scanned by
+  // icon sits on a differently tinted chip so eight cards can be scanned by
   // colour as well as by word. From a supplied design; not our invention.
   //
   // THEY LIVE HERE RATHER THAN SCOPED TO _dynamicMarket.scss, and that is a
@@ -121,7 +121,7 @@
   // gate cannot see is exactly the thing the gate was written to prevent.
   //
   // THE RULE THAT KEEPS THEM FROM SPREADING is therefore social and is
-  // written here instead: these nine pairs are for the sector grid. A
+  // written here instead: these eight pairs are for the sector grid. A
   // component that wants "a bit of colour" takes the brand or it takes
   // nothing. If a second section ever needs them, that is the moment to ask
   // whether the site is still two-tone, not the moment to reuse --tone-teal.

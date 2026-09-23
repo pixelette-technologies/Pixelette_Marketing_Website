@@ -15,9 +15,9 @@ export const servicesData = [
     image: "/services/heroImageServices.webp",
     research: {
       subHeading: "one size does not fit all",
-      mainHeading: "In social media marketing",
+      mainHeading: "In social media marketing,",
       detail:
-        "Each social media platform has its unique audience and potential. Using the same strategy of copy pasting content in the same format everywhere may satisfy internally set social media KPIs, but it equals to brands losing out on millions of dollars in unrealised profits.",
+        "Each social media platform has its unique audience and potential. Using the same strategy of copy-pasting content in the same format everywhere may satisfy internally set social media KPIs, but it means brands lose out on significant unrealised revenue.",
       data: [
         {
           value: 73,
@@ -69,14 +69,14 @@ export const servicesData = [
     },
     services: {
       heading: "Our social media marketing services",
-      text: "We are a leading social media marketing company solely for the reason that we focus on understanding each client’s brand and audience before delivering a social media strategy. Our services include everything from creative content development to analysing its performance, so that you can finally focus on other areas of the business that need your attention. ",
+      text: "We focus on understanding each client’s brand and audience before delivering a social media strategy. Our services include everything from creative content development to analysing its performance, so that you can finally focus on other areas of the business that need your attention. ",
       data: [
         {
           heading: "Social Media Strategy & Planning Services",
           data: [
             {
               title: "Social Media Strategy Development",
-              text: "Our social media strategy services include SMM planning cycles and social media marketing plan with research on your target audience, as well as identifying and setting goals. "
+              text: "Our social media strategy services include SMM planning cycles and a social media marketing plan with research on your target audience, as well as identifying and setting goals. "
             },
             {
               title: "Content Calendar Creation",
@@ -94,7 +94,7 @@ export const servicesData = [
           data: [
             {
               title: "Graphic Design & Visual Content",
-              text: "Our graphic design and visual content services include designing templates for images, infographics and all related assets that feature your brand logo and follow your branding identity."
+              text: "Our graphic design and visual content services include designing templates for images, infographics and all related assets that feature your brand logo and follow your brand identity."
             },
             {
               title: "Copywriting & Caption Writing",
@@ -130,7 +130,7 @@ export const servicesData = [
           data: [
             {
               title: "Paid Social Media Campaigns",
-              text: "Our paid social media campaigns services include creating and managing ads on platforms like Facebook, Instagram, LinkedIn, and Twitter, maximising reach and delivering measurable results for your brand."
+              text: "Our paid social media campaign services include creating and managing ads on platforms like Facebook, Instagram, LinkedIn, and Twitter, maximising reach and delivering measurable results for your brand."
             },
             {
               title: "Influencer Marketing Campaigns",
@@ -138,7 +138,7 @@ export const servicesData = [
             },
             {
               title: "Retargeting Campaigns",
-              text: "Our retargeting campaigns services include reconnecting with potential customers, delivering tailored ads to drive conversions effectively."
+              text: "Our retargeting campaign services include reconnecting with potential customers, delivering tailored ads to drive conversions effectively."
             }
           ]
         },
@@ -150,7 +150,7 @@ export const servicesData = [
               text: "Our performance tracking services include monitoring key metrics and providing actionable insights to optimise your social media strategy."
             },
             {
-              title: "Monthly / Quarterly Reporting",
+              title: "Monthly/Quarterly Reporting",
               text: "Our monthly/quarterly reporting services include delivering detailed reports with insights and recommendations to improve your social media performance."
             },
             {
@@ -181,7 +181,7 @@ export const servicesData = [
 
           data: [
             {
-              title: "Instagram Marketing ",
+              title: "Instagram Marketing",
               text: "Our Instagram marketing services include producing dynamic, engaging content that showcases your brand and drives interaction."
             },
             {
@@ -213,7 +213,7 @@ export const servicesData = [
     review: {
       mainHeading:
         "When you partner with Pixelette Marketing for social media solutions,",
-      subHeading: "expect campaigns  that connects and converts",
+      subHeading: "expect campaigns that connect and convert",
       details: [
         "Grow your brand visibility and engagement across platforms.",
         "Drive meaningful conversations that build trust with your audience.",
@@ -239,7 +239,7 @@ export const servicesData = [
     },
     faqs: [
       {
-        question: " What social media platforms do you offer services for?",
+        question: "What social media platforms do you offer services for?",
         answer:
           "We specialise in all major platforms, including Facebook, Instagram, Twitter, LinkedIn, TikTok, YouTube, and Pinterest."
       },
@@ -284,9 +284,9 @@ export const servicesData = [
     },
     marketingServices: {
       title: "From likes to leads",
-      heading: `Industry-focused <span> social media marketing solutions </span>`,
+      heading: `Social media marketing for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "Emerging industries demand innovative and agile solutions, and we’ve dedicated ourselves to mastering the nuances of each. Our expertise ensures your social media campaigns address the unique challenges of fast-paced and competitive markets – helping your brand stay relevant, stand out and grow amidst countless others vying for the same spotlight.",
+        "Emerging markets demand innovative and agile solutions, and each has its own nuances. We plan social media campaigns around the unique challenges of fast-paced and competitive markets – helping your brand stay relevant, stand out and grow amidst countless others vying for the same spotlight.",
       data: [
         {
           heading: "Crypto Social Media Marketing ",
@@ -296,12 +296,7 @@ export const servicesData = [
         {
           heading: "Fintech Social Media Marketing ",
           detail:
-            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. Our team has mastered digital marketing for fintech companies, so we specialise in delivering fintech marketing solutions that boost engagement, build trust, and bring you customers. "
-        },
-        {
-          heading: "Startup Social Media Marketing",
-          detail:
-            "In order to build your startup’s presence from scratch and get noticed, opt for our social media marketing services for startups. Our solutions take your brand from idea to execution, with a marketing strategy for startups designed for fast growth and lasting impact."
+            "If you’re struggling with finding visibility for your fintech brand, our services for fintech social media marketing speak an easier, inviting language of finance to the end-user. We plan fintech campaigns around how financial products are bought, delivering fintech marketing solutions that boost engagement, build trust, and bring you customers. "
         },
         {
           heading: "SaaS Social Media Marketing",
@@ -309,9 +304,9 @@ export const servicesData = [
             "We will help you crack the code of customer engagement with a social media strategy for SaaS that converts curiosity into loyalty. We say this because we know that social media for SaaS isn’t just about posting updates, it’s about creating connections that keep users coming back. "
         },
         {
-          heading: "AI/ML Digital Marketing",
+          heading: "AI/ML Social Media Marketing",
           detail:
-            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users as compared to your competitors. From personalised campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand. "
+            "Our AI marketing strategies weed out the tech jargon and make you far more visible to end-users than your competitors. From personalised campaigns to new, daring ideas, we’re here to make social media for AI companies the best. Think of us as your go-to AI marketing consultant that readily turns the product innovation you bring into a real, memorable brand. "
         },
         {
           heading: "Tech Social Media Marketing",
@@ -331,7 +326,7 @@ export const servicesData = [
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "We’ll hop on a call to learn about your business, target audience, and the challenges you're facing with your social media presence. We'll also assess your current content and engagement metrics.."
+          text: "We’ll hop on a call to learn about your business, target audience, and the challenges you're facing with your social media presence. We'll also assess your current content and engagement metrics."
         },
         {
           icon: PlainIcon,
@@ -393,7 +388,7 @@ export const servicesData = [
     status: {
       heading:
         "Our email marketing services are widely sought after by various emerging brands",
-      text: "Email marketing solutions delivered by the Pixelette Marketing team are trusted by growing brands seeking impactful audience engagement and measurable results.",
+      text: "Email marketing solutions from the Pixelette Marketing team are built for growing brands seeking impactful audience engagement and measurable results.",
       data: [
         {
           value: 50,
@@ -409,13 +404,13 @@ export const servicesData = [
         },
         {
           value: 45,
-          detail: "improvement in email-driven conversions in first quarter"
+          detail: "improvement in email-driven conversions in the first quarter"
         }
       ]
     },
     services: {
       heading: "Our email marketing services",
-      text: "We are a leading email marketing agency because we prioritise understanding your audience and crafting custom campaigns that resonate. Our services cover everything from creating compelling email content to analysing performance metrics, ensuring your messages drive engagement and conversions while you focus on other critical areas of your business.",
+      text: "We prioritise understanding your audience and crafting custom campaigns that resonate. Our services cover everything from creating compelling email content to analysing performance metrics, ensuring your messages drive engagement and conversions while you focus on other critical areas of your business.",
       data: [
         {
           heading: "Email Marketing Strategy & Planning Services",
@@ -446,16 +441,16 @@ export const servicesData = [
               text: "Our email design services deliver eye-catching layouts and engaging email graphics, creating visually compelling campaigns that captivate your audience."
             },
             {
-              title: "Email Copywriting ",
+              title: "Email Copywriting",
               text: "Our email copywriting creates persuasive, audience-focused content for email marketing, elevating your email marketing content strategy and conversions."
             },
             {
-              title: "Custom Email Template & Graphic Design ",
+              title: "Custom Email Template & Graphic Design",
               text: "Our custom email template services that include email graphics deliver visually cohesive campaigns suited to your brand’s identity."
             },
             {
-              title: "Email Testing & Deliverability Optimisation ",
-              text: "Our email testing and optimisation services fine-tune campaigns to maximise deliverability, engagement,and overall performance."
+              title: "Email Testing & Deliverability Optimisation",
+              text: "Our email testing and optimisation services fine-tune campaigns to maximise deliverability, engagement and overall performance."
             }
           ]
         },
@@ -467,7 +462,7 @@ export const servicesData = [
               text: "Our email list management expertise ensures accurate segmentation and personalisation, helping every email campaign effectively reach its intended audience."
             },
             {
-              title: "Email Campaign Scheduling & Sending ",
+              title: "Email Campaign Scheduling & Sending",
               text: "Our email campaign scheduling ensures timely delivery, maximising impact and engagement with a well-planned email campaign schedule."
             },
             {
@@ -484,11 +479,11 @@ export const servicesData = [
           heading: "Email Advertising & Paid Campaign Services",
           data: [
             {
-              title: "Paid Email Campaign ",
+              title: "Paid Email Campaign",
               text: "Our paid email campaign solutions boost visibility and conversions through targeted email advertising marketing strategies suited to your brand."
             },
             {
-              title: "Email Retargeting Campaign ",
+              title: "Email Retargeting Campaign",
               text: "Our email retargeting campaigns reconnect with potential customers using personalised content to nurture leads and drive conversions."
             },
             {
@@ -502,15 +497,15 @@ export const servicesData = [
           heading: "Email Analytics & Reporting Services",
           data: [
             {
-              title: "Email Open Rate & Click-Through Tracking ",
+              title: "Email Open Rate & Click-Through Tracking",
               text: "Our email open rate and click-through tracking services provide actionable insights with email marketing analytics, helping you boost engagement."
             },
             {
-              title: "Monthly/Quarterly Email Marketing Reporting ",
+              title: "Monthly/Quarterly Email Marketing Reporting",
               text: "Our email marketing reporting services provide detailed campaign insights, offering a comprehensive view of performance and actionable recommendations."
             },
             {
-              title: "Unsubscribe & Email Engagement Analysis ",
+              title: "Unsubscribe & Email Engagement Analysis",
               text: "Our unsubscribe and email engagement analysis services optimise your strategy, reduce churn and improve retention."
             }
           ]
@@ -519,7 +514,7 @@ export const servicesData = [
           heading: "Specialised Email Campaign Services",
           data: [
             {
-              title: "Event Promotion Email Campaigns ",
+              title: "Event Promotion Email Campaigns",
               text: "Our event promotion email campaigns are designed to increase attendance and engagement through strategic email advertising marketing."
             },
             {
@@ -568,8 +563,8 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelate Marketing for email marketing services,",
-      subHeading: "expect campaigns  that connects and converts",
+        "When you partner with Pixelette Marketing for email marketing services,",
+      subHeading: "expect campaigns that connect and convert",
       details: [
         "Increase open rates and drive higher engagement with campaigns.",
         "Build lasting relationships through personalised, value-driven email content.",
@@ -602,9 +597,9 @@ export const servicesData = [
     },
     marketingServices: {
       title: "",
-      heading: `Industry-focused <span> email marketing solutions </span>`,
+      heading: `Email marketing for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "In today’s fast-evolving industries, well thought out email marketing strategies are key to standing out. Our expertise in crafting email campaigns for diverse sectors ensures your brand’s messages resonate, drive engagement and deliver results, no matter how competitive the market.",
+        "In today’s fast-evolving industries, well-thought-out email marketing strategies are key to standing out. We craft email campaigns around the market you sell into, so your brand’s messages resonate and drive engagement, however competitive it is.",
       data: [
         {
           heading: "Crypto Email Marketing",
@@ -615,11 +610,6 @@ export const servicesData = [
           heading: "Fintech Email Marketing",
           detail:
             "Our fintech email marketing services help simplify complex financial products for your audience. We craft clear, compelling email content that builds trust, boosts engagement, and drives customer acquisition in the competitive fintech landscape."
-        },
-        {
-          heading: "Startup Email Marketing",
-          detail:
-            "For startups aiming to make an impact, our startup email marketing strategies are designed to drive awareness, engage early adopters and accelerate growth. We create dynamic campaigns that foster loyalty and turn prospects into long-term customers."
         },
 
         {
@@ -652,7 +642,7 @@ export const servicesData = [
           "We follow best practices to maintain high deliverability rates, such as list hygiene, proper email formatting, and using reputable email service providers (ESPs)."
       },
       {
-        question: " What is your approach to email list building?",
+        question: "What is your approach to email list building?",
         answer:
           "We employ ethical and effective methods for list building, including website forms, social media contests, and targeted advertising."
       },
@@ -704,7 +694,7 @@ export const servicesData = [
     id: 3,
     title: "SEO & Content Marketing",
     metaTitle: "Technical + Content SEO Agency | Pixelette Marketing",
-    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to increase your business' visibility and growth. Let's talk some SEO strategy!",
+    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to increase your business's visibility and growth. Let's talk some SEO strategy!",
     metaKeywords: "seo agency, seo services, seo management services",
     
     route: "seo_and_content_marketing",
@@ -717,12 +707,12 @@ export const servicesData = [
       mainHeading: "There’s no universal",
       subHeading: "formula for success in SEO",
       detail:
-        "Many businesses fall into the trap of using generic SEO approaches, ignoring the nuances of search algorithms and audience behaviour. These missteps often lead to missed opportunities and suboptimal rankings. We address these challenges by creating an SEO content marketing strategy to your unique needs and goals. ",
+        "Many businesses fall into the trap of using generic SEO approaches, ignoring the nuances of search algorithms and audience behaviour. These missteps often lead to missed opportunities and suboptimal rankings. We address these challenges by creating an SEO content marketing strategy tailored to your unique needs and goals. ",
       data: [
         {
           value: 75,
           message:
-            "of websites suffer from poor search engine optimisation, leading to missed ranking opportunities",
+            "of websites suffer from poor search engine optimisation, leading to missed ranking opportunities.",
           source: "Search Engine Journal, 2023"
         },
         {
@@ -770,7 +760,7 @@ export const servicesData = [
     },
     services: {
       heading: "Our SEO services",
-      text: "We are a trusted SEO agency because we prioritise understanding your brand, audience, and goals before crafting a custom SEO strategy. Our services cover everything from in-depth keyword research to on-page and off-page optimisation, ensuring your website ranks higher and drives results, so you can focus on growing your business.",
+      text: "We prioritise understanding your brand, audience, and goals before crafting a custom SEO strategy. Our services cover everything from in-depth keyword research to on-page and off-page optimisation, ensuring your website ranks higher and drives results, so you can focus on growing your business.",
       data: [
         {
           heading: "SEO Strategy & Planning Services",
@@ -784,12 +774,12 @@ export const servicesData = [
               text: "Our keyword research services deliver actionable insights through SEO keyword strategy, helping your business rank for the most competitive terms."
             },
             {
-              title: "SEO Competitor Analysis & Benchmarking ",
+              title: "SEO Competitor Analysis & Benchmarking",
               text: "Our in-depth competitor analysis services help evaluate your competitors' SEO tactics, keyword strategies, and content performance to identify gaps and opportunities. "
             },
             {
-              title: "Local SEO Strategy & Planning ",
-              text: "Our affordable local SEO services help small businesses dominate their local market."
+              title: "Local SEO Strategy & Planning",
+              text: "Our affordable local SEO services help small businesses compete in their local market."
             }
           ]
         },
@@ -798,18 +788,18 @@ export const servicesData = [
           data: [
             {
               title: "SEO Content Writing & Optimisation",
-              text: "Our SEO content writing services ensure your brand’s message is impactful and visible through blogs and optimised web content"
+              text: "Our SEO content writing services ensure your brand’s message is impactful and visible through blogs and optimised web content."
             },
             {
-              title: "Blog & Article Writing for SEO ",
+              title: "Blog & Article Writing for SEO",
               text: "Our SEO blog writing services involve creating compelling content that drives organic traffic by ranking for keywords and search intent on search engines."
             },
             {
-              title: "Meta Titles & Meta Description Creation ",
+              title: "Meta Titles & Meta Description Creation",
               text: "Our meta tags and meta description services include creating search engine optimised and character limit compliant descriptions and titles so that your pages rank well. "
             },
             {
-              title: "SEO Image & Video Optimisation ",
+              title: "SEO Image & Video Optimisation",
               text: "Our SEO image and video optimisation services help increase your visual content’s discoverability with our SEO organic marketing techniques."
             }
           ]
@@ -818,19 +808,19 @@ export const servicesData = [
           heading: "SEO Management Services",
           data: [
             {
-              title: "Website Optimisation & Technical SEO ",
+              title: "Website Optimisation & Technical SEO",
               text: "Our website optimisation and technical SEO services cover site audits, error resolutions, website architecture and copy optimisation to enhance user experience and rankings."
             },
             {
-              title: "On-Page Optimisation ",
+              title: "On-Page Optimisation",
               text: "Our on-page SEO services include everything from metadata to internal linking in order to improve content visibility and relevance."
             },
             {
               title: "Backlink Building & Outreach",
-              text: "As the best SEO link building agency, we secure quality backlinks from websites associated with your niche and help bump up your domain authority and search rankings."
+              text: "We pursue quality backlinks from websites associated with your niche and help bump up your domain authority and search rankings."
             },
             {
-              title: "Site Speed & Performance Optimisation ",
+              title: "Site Speed & Performance Optimisation",
               text: "Our website SEO audit services identify and fix bottlenecks because faster sites mean better search rankings and leads captured on page."
             }
           ]
@@ -843,8 +833,8 @@ export const servicesData = [
               text: "Our paid search campaign service includes our team designing and executing high-performing SEO and PPC strategies to maximise ROI for your ad spend."
             },
             {
-              title: "Google Ads Campaign Management ",
-              text: "Optimise every ad dollar with our SEO PPC services, designed to integrate precise keyword targeting, audience segmentation, and performance tracking for maximum impact."
+              title: "Google Ads Campaign Management",
+              text: "Optimise every pound of ad spend with our SEO PPC services, designed to integrate precise keyword targeting, audience segmentation, and performance tracking for maximum impact."
             }
           ]
         },
@@ -852,12 +842,12 @@ export const servicesData = [
           heading: "SEO Analytics & Reporting Services",
           data: [
             {
-              title: "SEO Traffic & Conversion Tracking ",
+              title: "SEO Traffic & Conversion Tracking",
               text: "Our SEO traffic tracking services help you monitor user behaviour, traffic sources and conversion paths to identify areas of improvement in SEO strategies to maximise ROI."
             },
             {
-              title: "Monthly/ Quarterly SEO Reporting ",
-              text: " Our white label SEO reporting services provide detailed, actionable insights on traffic trends, keyword effectiveness, and content performance, enabling you to fine-tune your monthly and quarterly strategies. "
+              title: "Monthly/Quarterly SEO Reporting",
+              text: "Our white-label SEO reporting services provide detailed, actionable insights on traffic trends, keyword effectiveness, and content performance, enabling you to fine-tune your monthly and quarterly strategies. "
             }
           ]
         },
@@ -866,8 +856,8 @@ export const servicesData = [
           heading: "Specialised SEO Campaign Services",
           data: [
             {
-              title: "Event-Based SEO Campaign ",
-              text: "Capitalise on high-traffic opportunities with our event-based SEO campaigns. We optimise your content and site structure around major events, holidays to capture increased search interest and drive engagement during peak periods. "
+              title: "Event-Based SEO Campaign",
+              text: "Capitalise on high-traffic opportunities with our event-based SEO campaigns. We optimise your content and site structure around major events and holidays to capture increased search interest and drive engagement during peak periods. "
             }
           ]
         },
@@ -875,8 +865,8 @@ export const servicesData = [
           heading: "SEO Brand Management Services",
           data: [
             {
-              title: "Crisis Management SEO ",
-              text: "Our event promotion email campaigns are designed to increase attendance and engagement through strategic email advertising marketing."
+              title: "Crisis Management SEO",
+              text: "When negative coverage starts to rank, we help accurate, authoritative content about your brand hold its place in the results."
             }
           ]
         }
@@ -886,7 +876,7 @@ export const servicesData = [
     review: {
       mainHeading:
         "When you partner with Pixelette Marketing for SEO solutions, ",
-      subHeading: "expect campaigns  that ranks and converts",
+      subHeading: "expect campaigns that rank and convert",
       details: [
         "Grow search visibility with strategies suited to your audience only.",
         "Drive meaningful engagement through optimised content and keywords.",
@@ -913,24 +903,19 @@ export const servicesData = [
 
     marketingServices: {
       title: "",
-      heading: `Industry-focused   <span> SEO solutions </span>  `,
+      heading: `SEO for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "Emerging industries require dynamic and adaptive SEO strategies, and we specialise in understanding the complexities of each. Our expertise ensures your SEO efforts tackle the unique challenges of fast-evolving and competitive markets – helping your brand climb search rankings, attract the right audience and achieve sustainable growth in a crowded digital landscape.",
+        "Emerging industries require dynamic and adaptive SEO strategies, and each has its own complexities. We shape your SEO around the unique challenges of fast-evolving and competitive markets – helping your brand climb search rankings, attract the right audience and achieve sustainable growth in a crowded digital landscape.",
       data: [
         {
           heading: "Crypto SEO ",
           detail:
-            "Our crypto SEO strategies are created only for blockchain and cryptocurrency markets. From targeted keyword strategies to creating content for crypto forums and niche platforms, we ensure your brand captures the attention of the right audience and become a search engine leader in the blockchain industry."
+            "Our crypto SEO strategies are created only for blockchain and cryptocurrency markets. From targeted keyword strategies to creating content for crypto forums and niche platforms, we ensure your brand captures the attention of the right audience and becomes a search engine leader in the blockchain industry."
         },
         {
           heading: "Fintech SEO ",
           detail:
             "Use our fintech SEO services to connect with the modern digital finance user. We simplify complex financial jargon into relatable, optimised content that drives trust and engagement, ensuring your brand thrives in the fintech ecosystem."
-        },
-        {
-          heading: "Startup SEO ",
-          detail:
-            "Launching a new venture? Our startup SEO services build your online presence from scratch. From keyword planning to content creation, we set your brand on a trajectory for fast and sustainable growth."
         },
         {
           heading: "SaaS SEO ",
@@ -940,7 +925,7 @@ export const servicesData = [
         {
           heading: "AI/ML SEO ",
           detail:
-            "Our AI/ML SEO services enhance visibility for artificial intelligence and machine learning platforms by showcasing technical innovations in user-friendly formats. Through targeted campaigns, we bridge the gap between new age technology and its ideal audience."
+            "Our AI/ML SEO services enhance visibility for artificial intelligence and machine learning platforms by showcasing technical innovations in user-friendly formats. Through targeted campaigns, we bridge the gap between new-age technology and its ideal audience."
         },
         {
           heading: "Tech SEO ",
@@ -954,7 +939,7 @@ export const servicesData = [
       {
         question: "What SEO services do you offer?",
         answer:
-          "We offer a wide range of SEO services, including keyword research, on-page optimisation, off-page optimisation, technical SEO, and 1 local SEO.  "
+          "We offer a wide range of SEO services, including keyword research, on-page optimisation, off-page optimisation, technical SEO and local SEO."
       },
       {
         question: "How long does it take to see results from SEO?",
@@ -969,7 +954,7 @@ export const servicesData = [
       {
         question: "Do you provide any guarantees for SEO results?",
         answer:
-          "We use proven strategies and track your progress closely to ensure you see significant improvements in your search engine visibility."
+          "No one can honestly guarantee search rankings. We set measurable targets with you, track progress closely and report against them."
       },
       {
         question: "How do you stay updated on the latest SEO trends?",
@@ -1019,14 +1004,14 @@ export const servicesData = [
     id: 4,
     title: "PR",
     metaTitle: "Public Relations Agency for Next-Gen Companies",
-    metaDescription: "Pixelette Marketing's Public Relations Services focus on strategic outreach, credible storytelling & lasting visibility. 200+ stories out and counting. Let's talk!",
+    metaDescription: "Pixelette Marketing's Public Relations Services focus on strategic outreach, credible storytelling & lasting visibility. Let's talk!",
     metaKeywords: "public relations agency, public relations services, pr outreach service",
     
     route: "pr",
     mainHeading: "From buzz to brand authority,",
     subHeading: "we’re the digital PR agency for GROWTH",
     summary:
-      "Pixelette Marketing’s PR services specialise in creating impactful narratives that resonate with your target audience and establish your brand as an industry leader. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency ensures your story reaches the right audience, every time.",
+      "Pixelette Marketing’s PR services specialise in creating impactful narratives that resonate with your target audience and establish your brand as an industry leader. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency helps your story reach the right audience.",
     image: "/services/pr-marketing.png",
     research: {
       subHeading: "PR is costly to businesses",
@@ -1038,19 +1023,19 @@ export const servicesData = [
           value: 67,
           message:
             "of businesses struggle to establish trust due to inconsistent messaging and poor public relations strategies.",
-          source: "HubSpot 2023"
+          source: "HubSpot, 2023"
         },
         {
           value: 50,
           message:
             "fewer positive brand mentions compared to their competitors in companies lacking a strong PR strategy. ",
-          source: "PR News 2023"
+          source: "PR News, 2023"
         },
         {
           value: 73,
           message:
             "of consumers hesitate to engage with brands they perceive as untrustworthy or disconnected from their audience.",
-          source: " Edelman Trust Barometer 2023"
+          source: "Edelman Trust Barometer, 2023"
         }
       ]
     },
@@ -1091,15 +1076,15 @@ export const servicesData = [
           heading: "PR Strategy & Planning Services",
           data: [
             {
-              title: "PR Strategy Developmen",
-              text: "Our PR strategy development services include a roadmap personalised to your goals. This consists of planning like defining your brand’s voice to mapping out media and audience touchpoints."
+              title: "PR Strategy Development",
+              text: "Our PR strategy development services include a roadmap personalised to your goals. This covers planning, from defining your brand’s voice to mapping out media and audience touchpoints."
             },
             {
-              title: "Brand Messaging & Positioning ",
+              title: "Brand Messaging & Positioning",
               text: "Our brand messaging services involve creating clear, consistent narratives that reinforce your position as a leader in your field."
             },
             {
-              title: "Crisis Communication Planning ",
+              title: "Crisis Communication Planning",
               text: "Our crisis management services ensure your brand is prepared for any scenario, safeguarding your brand's reputation through timely and effective communication."
             },
             {
@@ -1120,11 +1105,11 @@ export const servicesData = [
               text: "Our thought leadership content creation services are to educate your audience with insightful narratives, inspire trust through impactful storytelling and position your brand as a leader in its field."
             },
             {
-              title: "Speech & Interview Preparation ",
+              title: "Speech & Interview Preparation",
               text: "Our speechwriting and interview coaching services equip leaders for impactful public appearances by refining their messaging, building confidence and aligning their delivery with the brand’s vision."
             },
             {
-              title: "Case Study & Success Story Creation ",
+              title: "Case Study & Success Story Creation",
               text: "Our case study and success story creation services showcase your achievements with strong narratives that build trust and attract new opportunities."
             }
           ]
@@ -1134,15 +1119,15 @@ export const servicesData = [
           data: [
             {
               title: "Media Outreach & Relationship Management",
-              text: "Our website optimisation and technical SEO services cover site audits, error resolutions, website architecture and copy optimisation to enhance user experience and rankings."
+              text: "Our media outreach services identify the journalists and publications that cover your market, and pitch them stories that fit what they write about."
             },
             {
               title: "Influencer Outreach & Collaboration",
-              text: "Our influencer outreach services connect your brand with influencers whose audiences size up with your goals. We help facilitate authentic collaborations that drive engagement."
+              text: "Our influencer outreach services connect your brand with influencers whose audiences align with your goals. We help facilitate authentic collaborations that drive engagement."
             },
             {
               title: "Blogger & Journalist Outreach",
-              text: "Our blogger and journalist outreach program identifies and engages with niche writers to expand your reach and enhance your brand’s credibility."
+              text: "Our blogger and journalist outreach programme identifies and engages with niche writers to expand your reach and enhance your brand’s credibility."
             },
             {
               title: "Community Engagement & Event Promotion",
@@ -1162,11 +1147,11 @@ export const servicesData = [
               text: "Our native advertising and sponsored content services easily integrate your brand into trusted platforms and publications, bringing about deeper connections with your audience and enhancing your credibility."
             },
             {
-              title: "Partnership & Endorsement Campaign ",
+              title: "Partnership & Endorsement Campaign",
               text: "Our partnership and endorsement campaign services connect your brand with trusted names, building credibility and attracting new audiences through impactful collaborations."
             },
             {
-              title: "Digital PR Campaign ",
+              title: "Digital PR Campaign",
               text: "Our digital PR campaign services are executed by making use of online channels to boost visibility, engage your audience, and drive powerful results."
             }
           ]
@@ -1175,12 +1160,12 @@ export const servicesData = [
           heading: "PR Analytics & Reporting Services",
           data: [
             {
-              title: "Media Coverage & Performance Tracking ",
+              title: "Media Coverage & Performance Tracking",
               text: "Our media coverage and performance tracking services ensure you stay informed on campaign impact, optimising for future successes."
             },
             {
               title: "Monthly/Quarterly PR Reporting",
-              text: " Our monthly and quarterly PR reporting services offer insights into your campaigns, including media reach, sentiment analysis and engagement metrics."
+              text: "Our monthly and quarterly PR reporting services offer insights into your campaigns, including media reach, sentiment analysis and engagement metrics."
             }
           ]
         },
@@ -1193,10 +1178,10 @@ export const servicesData = [
             },
             {
               title: "Event PR Campaign",
-              text: "Our monthly and quarterly PR reporting services offer insights into your campaigns, including media reach, sentiment analysis Our event publicity and promotion services focus on managing every element of event marketing, including pre-event awareness campaigns, securing media coverage, on-site engagement strategies, and post-event analysis.and engagement metrics."
+              text: "Our event publicity and promotion services manage every element of event marketing, including pre-event awareness campaigns, media outreach, on-site engagement strategies and post-event analysis."
             },
             {
-              title: "CSR (Corporate Social Responsibility) Campaign ",
+              title: "CSR (Corporate Social Responsibility) Campaign",
               text: "Our CSR campaign services involve developing strategies to showcase your organisation’s commitment to social responsibility."
             }
           ]
@@ -1206,7 +1191,7 @@ export const servicesData = [
           data: [
             {
               title: "LinkedIn Outreach & Engagement",
-              text: "Our LinkedIn outreach and engagement services focus on creating custom connection strategies to encourage professional relationships, and positioning your brand as a thought leader within your industry."
+              text: "Our LinkedIn outreach and engagement services focus on creating custom connection strategies to encourage professional relationships and position your brand as a thought leader within your industry."
             },
             {
               title: "YouTube & Video Content PR",
@@ -1259,32 +1244,27 @@ export const servicesData = [
     },
 
     questionAndAnswer: {
-      question: `Lost rankings equal  <span> lost customers </span>`,
+      question: `Untold stories are <span> missed opportunities </span>`,
       answer:
-        "Don’t let your competitors outshine you. Book a consultation with Pixelette Marketing today and see how our professional SEO services can transform your business.",
+        "Don’t let your competitors outshine you. Book a consultation with Pixelette Marketing today and see how our PR services can raise your profile.",
       btnText: "Book a consultation – it’s on us!"
     },
 
     marketingServices: {
       title: "",
-      heading: `Industry-focused <span> PR services </span>`,
+      heading: `PR for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "Emerging industries demand strategic and adaptable PR approaches, and we thrive on understanding their complexities. Our experience helps your public relations efforts overcome the unique challenges of fast-changing, competitive markets, positioning your brand to stand out, connect with the right audience and achieve lasting success in a crowded digital landscape.",
+        "Emerging industries demand strategic and adaptable PR approaches, and each has its own complexities. We shape your public relations around the unique challenges of fast-changing, competitive markets, positioning your brand to stand out, connect with the right audience and achieve lasting success in a crowded digital landscape.",
       data: [
         {
           heading: "Crypto PR ",
           detail:
-            "Our Crypto PR services focus on driving visibility for blockchain brands, including DeFi platforms, crypto wallets and more. We create press releases targeting platforms like CoinDesk and CryptoSlate, form partnerships with industry influencers and execute campaigns that resonate with cryptocurrency investors and enthusiasts."
+            "Our crypto PR services focus on driving visibility for blockchain brands, including DeFi platforms, crypto wallets and more. We create press releases targeting platforms like CoinDesk and CryptoSlate, form partnerships with industry influencers and execute campaigns that resonate with cryptocurrency investors and enthusiasts."
         },
         {
           heading: "Fintech PR",
           detail:
-            "Our Fintech PR services are designed to bridge the gap between complex financial technology and customer understanding. From crafting targeted campaigns for online banks to securing coverage in media outlets frequented by your target audience, we help your fintech solutions gain trust and engagement among end users and stakeholders."
-        },
-        {
-          heading: "Startup PR",
-          detail:
-            "Our startup PR services cater to emerging businesses across various sectors, helping them secure coverage from top media outlets. We write compelling founder stories, build brand personas and craft pitches that attract not just early adopters, but also VCs."
+            "Our fintech PR services are designed to bridge the gap between complex financial technology and customer understanding. From crafting targeted campaigns for online banks to securing coverage in media outlets frequented by your target audience, we help your fintech solutions gain trust and engagement among end users and stakeholders."
         },
         {
           heading: "SaaS PR ",
@@ -1299,7 +1279,7 @@ export const servicesData = [
         {
           heading: "Tech PR ",
           detail:
-            "We specialise in Tech PR services for all sectors that come under tech like martech, healthtech, greentech, IT, biotech and more. By connecting with influential voices in media platforms and engaging with niche forums, we create public relations campaigns that showcase your tech solutions and strengthen your position in the market. "
+            "Our tech PR services cover technology businesses such as martech, greentech, IT and software. By connecting with influential voices in media platforms and engaging with niche forums, we create public relations campaigns that showcase your tech solutions and strengthen your position in the market. "
         }
       ]
     },
@@ -1308,12 +1288,12 @@ export const servicesData = [
       {
         question: "What PR and outreach services do you offer?",
         answer:
-          " We offer a range of services, including press release distribution, media relations, influencer marketing, crisis communication, and event planning."
+          "We offer a range of services, including press release distribution, media relations, influencer marketing, crisis communication, and event planning."
       },
       {
         question: "How do you build media relationships?",
         answer:
-          "We cultivate strong relationships with journalists, bloggers, and influencers through consistent communication, personalised pitches, and by providing valuable information."
+          "We build relationships with journalists, bloggers and influencers through consistent communication, personalised pitches, and by providing valuable information."
       },
       {
         question: "How do you measure the success of PR campaigns?",
@@ -1380,7 +1360,7 @@ export const servicesData = [
           value: 70,
           message:
             "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
-          source: " HubSpot 2023"
+          source: "HubSpot, 2023"
         },
         {
           value: 55,
@@ -1392,7 +1372,7 @@ export const servicesData = [
           value: 55,
           message:
             "of businesses admit to underestimating the potential of influencer marketing, resulting in missed ROI opportunities.",
-          source: "Edelman Trust Barometer 2023"
+          source: "Edelman Trust Barometer, 2023"
         }
       ]
     },
@@ -1404,7 +1384,7 @@ export const servicesData = [
     status: {
       heading:
         "Our influencer marketing services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we’ve helped clients unlock these opportunities through purpose built influencer marketing campaigns that deliver precise influencer targeting and impactful results.",
+      text: "At Pixelette Marketing, we help brands unlock these opportunities through purpose-built influencer marketing campaigns that deliver precise influencer targeting and impactful results.",
       data: [
         {
           value: 60,
@@ -1430,7 +1410,7 @@ export const servicesData = [
     },
     services: {
       heading: "Our influencer marketing services",
-      text: "We are a top influencer marketing agency because we specialise in connecting brands with the right voices to amplify their message authentically. Our services include everything from identifying and vetting influencers to creating campaigns and analysing results. With us handling the influencer strategy and building meaningful connections with your audience, you can finally focus on other aspects of growing your business.",
+      text: "We specialise in connecting brands with the right voices to amplify their message authentically. Our services include everything from identifying and vetting influencers to creating campaigns and analysing results. With us handling the influencer strategy and building meaningful connections with your audience, you can finally focus on other aspects of growing your business.",
       data: [
         {
           heading: "Influencer Strategy & Planning Services",
@@ -1455,15 +1435,15 @@ export const servicesData = [
           data: [
             {
               title: "Influencer Outreach & Collaboration",
-              text: "Our influencer outreach services connect your brand with influencers whose audiences size up with your goals. We help facilitate authentic collaborations that drive engagement."
+              text: "Our influencer outreach services connect your brand with influencers whose audiences align with your goals. We help facilitate authentic collaborations that drive engagement."
             },
             {
               title: "Influencer Relationship Management",
               text: "Our influencer agency specialises in building and maintaining strong relationships with influencers to maintain loyalty and long-term collaborations."
             },
             {
-              title: "Ambassadorship Program Management",
-              text: "Our influencer marketing agency develops and manages influencer ambassadorship programs to build ongoing relationships with influencers who embody your brand values."
+              title: "Ambassadorship Programme Management",
+              text: "Our influencer marketing agency develops and manages influencer ambassadorship programmes to build ongoing relationships with influencers who embody your brand values."
             },
             {
               title: "Event Promotion & Live Coverage",
@@ -1537,9 +1517,9 @@ export const servicesData = [
     },
     marketingServices: {
       title: "",
-      heading: `Industry-focused <span> influencer marketing solutions </span>`,
+      heading: `Influencer marketing for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "In an age where authenticity drives decisions, industry-focused influencer marketing services are essential to connecting with your audience meaningfully. We specialise in personalising campaigns to the unique demands of each sector, ensuring your brand partners with influencers who truly resonate with your market. Our expertise helps you stand out, build trust and drive impactful engagement in even the most competitive industries.",
+        "In an age where authenticity drives decisions, industry-focused influencer marketing services are essential to connecting with your audience meaningfully. We personalise campaigns to the unique demands of each market, ensuring your brand partners with influencers who truly resonate with your market. The aim is to help you stand out, build trust and drive engagement in even the most competitive markets.",
       data: [
         {
           heading: "Crypto Influencer Marketing ",
@@ -1552,14 +1532,9 @@ export const servicesData = [
             "Our fintech influencer marketing services connect your brand with influencers who simplify complex financial concepts. We create engaging content such as tutorials, reviews, and social posts that resonate with tech-savvy finance enthusiasts and professional audiences."
         },
         {
-          heading: "Startup Influencer Marketing ",
-          detail:
-            "Our startup influencer marketing services help emerging businesses make a splash in competitive markets. We identify engaging influencers who align with your mission, creating campaigns that highlight your unique value proposition and attract early adopters."
-        },
-        {
           heading: "SaaS Influencer Marketing  ",
           detail:
-            "Our SaaS influencer marketing services highlight the functionality and benefits of your software through collaborations with influencers who specialise in tech reviews and professional productivity tools. Our campaigns are known to drive subscriptions and boost user engagement."
+            "Our SaaS influencer marketing services highlight the functionality and benefits of your software through collaborations with influencers who specialise in tech reviews and professional productivity tools. Our campaigns aim to drive subscriptions and boost user engagement."
         },
         {
           heading: "AI Influencer Marketing ",
@@ -1575,7 +1550,7 @@ export const servicesData = [
     },
     faqs: [
       {
-        question: " What influencer marketing services do you offer?",
+        question: "What influencer marketing services do you offer?",
         answer:
           "We help you identify, select, and collaborate with relevant influencers to reach your target audience. This includes campaign strategy, influencer outreach, content creation, performance tracking, and budget management."
       },
@@ -1633,14 +1608,14 @@ export const servicesData = [
     id: 6,
     title: "Ads & PPC",
     metaTitle: "Paid Social Advertising Agency | Pay Per Click (PPC) Agency",
-    metaDescription: "We're a world-renowned Paid Ads Agency that creates high-performance campaigns across Google, Meta, LinkedIn, Twitter, etc to maximise ROIs.",
+    metaDescription: "Paid ads and PPC campaigns across Google, Meta, LinkedIn and X, planned and optimised to improve return on ad spend.",
     metaKeywords: "paid social advertising agency, paid ads agency, pay per click agency, ppc agency, paid ads services",
     
     route: "ads_ppc",
     mainHeading: "From clicks to conversions, ",
     subHeading: "we’re the Ads & PPC management agency for GROWTH",
     summary:
-      "Pixelette Marketing maximises your ad spend with precision-targeted campaigns that deliver measurable results. From keyword strategy and creative ad images to performance optimisation, our social media ads & PPC services drive higher click-through rates, stronger conversions and unbeatable ROI.",
+      "Pixelette Marketing maximises your ad spend with precision-targeted campaigns that deliver measurable results. From keyword strategy and creative ad images to performance optimisation, our social media ads & PPC services drive higher click-through rates, stronger conversions and better ROI.",
     image: "/services/ads-marketing.png",
     research: {
       subHeading: "digital advertising",
@@ -1657,7 +1632,7 @@ export const servicesData = [
         {
           value: 70,
           message:
-            "higher conversion rate in companies that use retargeting ads compared to those that don’t",
+            "higher conversion rate in companies that use retargeting ads compared to those that don’t.",
           source: "HubSpot, 2022"
         },
         {
@@ -1690,7 +1665,7 @@ export const servicesData = [
         {
           value: 60,
           detail:
-            "CTR increased through optimised ad banner design and audience segmentation."
+            "increase in CTR through optimised ad banner design and audience segmentation."
         },
         {
           value: 45,
@@ -1707,7 +1682,7 @@ export const servicesData = [
           heading: "Ads & PPC Strategy & Planning Services",
           data: [
             {
-              title: "Ads & PPC Strategy & Planning Services",
+              title: "Ads & PPC Campaign Strategy",
               text: "Our ads & PPC campaign services consist of aligning campaigns with your business objectives. From strategic planning to execution, we optimise every element to drive measurable success."
             },
             {
@@ -1736,8 +1711,8 @@ export const servicesData = [
               text: "Our video production services include crafting compelling ads that captivate your audience. We deliver results-driven video ad production that enhances your brand’s presence."
             },
             {
-              title: "Display & Banner Ad Creation	",
-              text: "We prioritise making your display ads stand out and capture attention across platforms. This includes creating visually appealing advertising banners to designing engaging ad banner designs."
+              title: "Display & Banner Ad Creation",
+              text: "We prioritise making your display ads stand out and capture attention across platforms. This includes everything from creating visually appealing advertising banners to designing engaging ad banner designs."
             },
             {
               title: "A/B Testing & Ad Variation",
@@ -1749,12 +1724,12 @@ export const servicesData = [
           heading: "Ad Campaign Management Services",
           data: [
             {
-              title: "Campaign Setup & Optimisation	",
+              title: "Campaign Setup & Optimisation",
               text: "Our campaign setup and optimisation services include developing ad campaign strategies that run smoothly and efficiently across platforms to meet your business goals."
             },
             {
               title: "Bid Management & Budget Optimisation",
-              text: "Our bid management and budget optimisation services ensure that every dollar of your ad spend works hard, maximising your ROI while maintaining cost efficiency."
+              text: "Our bid management and budget optimisation services ensure that every pound of your ad spend works hard, maximising your ROI while maintaining cost efficiency."
             },
             {
               title: "Conversion Rate Optimisation (CRO)",
@@ -1770,7 +1745,7 @@ export const servicesData = [
           heading: "Paid Search & PPC Campaign Services",
           data: [
             {
-              title: "Google Ads Managemen",
+              title: "Google Ads Management",
               text: "Our Google Ads management services optimise your campaigns by using comprehensive competitor analysis, audience targeting and keyword strategies to drive results."
             },
             {
@@ -1778,7 +1753,7 @@ export const servicesData = [
               text: "Our Bing Ads campaign management services focus on maximising performance through ad campaigns, targeting the right audience with optimised bids for cost-effective results."
             },
             {
-              title: "Social Media Ads (Facebook, Instagram, LinkedIn, etc.) ",
+              title: "Social Media Ads (Facebook, Instagram, LinkedIn, etc.)",
               text: "Our social media ads services involve crafting and managing campaigns across platforms like Facebook, Instagram, and LinkedIn to reach your audience, drive engagement and grow your business."
             },
             {
@@ -1799,7 +1774,7 @@ export const servicesData = [
               text: "Our monthly/quarterly PPC reporting services provide detailed performance insights, helping you track your campaigns' success and identify areas for improvement, ensuring continued growth."
             },
             {
-              title: "Ad Spend Analysis & Cost-Per-Lead (CPL) Reporting	",
+              title: "Ad Spend Analysis & Cost-Per-Lead (CPL) Reporting",
               text: "Our ad spend analysis and CPL reporting services help you track and optimise your ad budget, ensuring you're achieving the best results with your cost-per-lead metrics."
             }
           ]
@@ -1833,7 +1808,7 @@ export const servicesData = [
               text: "Our Amazon PPC and sponsored product ad services help increase visibility and drive sales on the Amazon platform, leveraging keyword targeting and optimised bids for maximum impact."
             },
             {
-              title: "Twitter & TikTok Ad Management	",
+              title: "Twitter & TikTok Ad Management",
               text: "Our Twitter and TikTok ad management services help you grow your presence on these dynamic platforms, leveraging creative ad strategies to boost engagement and reach your target audience."
             }
           ]
@@ -1842,11 +1817,11 @@ export const servicesData = [
           heading: "Brand Protection & Ad Compliance Services",
           data: [
             {
-              title: "Ad Compliance & Policy Management ",
+              title: "Ad Compliance & Policy Management",
               text: "Our ad compliance and policy management services ensure that your campaigns adhere to all regulations and platform policies, protecting your brand’s reputation and ensuring smooth execution."
             },
             {
-              title: "Click Fraud Monitoring & Prevention ",
+              title: "Click Fraud Monitoring & Prevention",
               text: "Our click fraud monitoring and prevention services safeguard your ad spend by detecting and blocking fraudulent clicks, ensuring your budget is spent on legitimate traffic."
             },
             {
@@ -1888,30 +1863,25 @@ export const servicesData = [
     questionAndAnswer: {
       question: `No ad spend, <span> no revenue growth </span>`,
       answer:
-        "Partner with Pixelette Marketing, the top ads & PPC agency to create high-impact campaigns that drive conversions, boost ROI and fuel your business growth in a competitive market so that you can say “money well spent!",
+        "Partner with Pixelette Marketing to create high-impact campaigns that drive conversions, boost ROI and fuel your business growth in a competitive market, so that you can say “money well spent!”",
       btnText: "Book a consultation – it’s on us!"
     },
 
     marketingServices: {
       title: "",
-      heading: `    Industry-focused   <span> ads & PPC solutions </span>`,
+      heading: `Ads & PPC for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
         "Each industry has unique challenges and opportunities when it comes to advertising, and our social media ads & PPC ad strategies are built to address them. By understanding the specific demands of your sector, we create campaigns that effectively reach your target audience, optimise ad spend and drive meaningful results, helping your business thrive in a competitive market.",
       data: [
         {
           heading: "Crypto Ads & PPC",
           detail:
-            "Our Crypto ads & PPC services are only for the blockchain and cryptocurrency markets. We help your brand gain visibility and trust within the crypto community by using carefully studied and planned ad campaigns as well as advanced competitor analysis on search engines. "
+            "Our crypto ads & PPC services are only for the blockchain and cryptocurrency markets. We help your brand gain visibility and trust within the crypto community by using carefully studied and planned ad campaigns as well as advanced competitor analysis on search engines. "
         },
         {
           heading: "Fintech Ads & PPC",
           detail:
-            "Our Fintech ads & PPC services are crafted to engage decision-makers in the financial technology space. By making use of our ad copywriting and precise audience targeting service, you can position your brand as a leader in the fintech industry and on search results."
-        },
-        {
-          heading: "Startup Ads & PPC",
-          detail:
-            "Our Startup ads & PPC services boost visibility for new, innovative businesses. We provide ad copywriting and implement scalable PPC campaign management strategies that deliver fast, measurable growth to set your startup on the path to success."
+            "Our fintech ads & PPC services are crafted to engage decision-makers in the financial technology space. By making use of our ad copywriting and precise audience targeting service, you can position your brand as a leader in the fintech industry and on search results."
         },
         {
           heading: "SaaS Ads & PPC",
@@ -1921,12 +1891,12 @@ export const servicesData = [
         {
           heading: "AI Ads & PPC ",
           detail:
-            "Our ads & PPC services for AI companies and platforms connect your brand with an audience that is eager to embrace AI solutions, they only need to be connected with you – and that we do with paid social ads and PPC campaigns. "
+            "Our ads & PPC services for AI companies and platforms connect your brand with an audience that is eager to embrace AI solutions. They only need to be connected with you – and that we do with paid social ads and PPC campaigns. "
         },
         {
           heading: "Tech Ads & PPC",
           detail:
-            "Our Tech ads & PPC services empower technology companies to highlight their coolest solutions. By developing captivating ad creatives and implementing focused targeting strategies, we help you connect with the right audience and solidify your industry leadership."
+            "Our tech ads & PPC services empower technology companies to highlight their coolest solutions. By developing captivating ad creatives and implementing focused targeting strategies, we help you connect with the right audience and solidify your industry leadership."
         }
       ]
     },
@@ -1990,7 +1960,7 @@ export const servicesData = [
     id: 7,
     title: "Marketing Analytics & Reporting",
     metaTitle: "Marketing Analytics Agency | Pixelette Marketing",
-    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth. Avail a free consultation with us today.",
+    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth. Book a free consultation with us today.",
     metaKeywords: "marketing analytics agency, marketing analytics services, analytics agency",
     route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
@@ -2008,13 +1978,13 @@ export const servicesData = [
         {
           value: 67,
           message:
-            "A lack of effective reporting leads to 67% of leaders failing to gain critical insights into their performance metrics.",
+            "of leaders fail to gain critical insights into their performance metrics due to a lack of effective reporting.",
           source: "Forrester, 2022"
         },
         {
           value: 30,
           message:
-            "Poor analytics lead to a 30% higher cost-per-acquisition for most digital campaigns",
+            "higher cost-per-acquisition for most digital campaigns as a result of poor analytics.",
           source: "SEMrush, 2023"
         },
         {
@@ -2033,7 +2003,7 @@ export const servicesData = [
     status: {
       heading:
         "Our marketing analytics and reporting services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we excel at transforming complex data into impactful strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
+      text: "At Pixelette Marketing, we turn complex data into practical strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
       data: [
         {
           value: 150,
@@ -2057,7 +2027,7 @@ export const servicesData = [
     },
     services: {
       heading: "Our marketing analytics services",
-      text: "We are a premier marketing analytics and reporting company because we prioritise understanding your business objectives and audience in order to create personalised strategies. Our services cover everything from data collection and performance tracking to detailed reporting and analysis, empowering you to make quick, data-backed decisions.",
+      text: "We prioritise understanding your business objectives and audience in order to create personalised strategies. Our services cover everything from data collection and performance tracking to detailed reporting and analysis, empowering you to make quick, data-backed decisions.",
       data: [
         {
           heading: "Marketing Analytics Planning Services",
@@ -2127,10 +2097,6 @@ export const servicesData = [
             {
               title: "Behavioural Data Analysis",
               text: "Enhance your lead scoring with behavioural data insights, giving you a deeper understanding of prospect intent."
-            },
-            {
-              title: "Lead Tracking & Lead Scoring",
-              text: "Our lead tracking and lead scoring solutions help prioritise high-value prospects, enhancing your sales funnel and ensuring you focus efforts where they matter most."
             },
             {
               title: "Integration with CRM/Marketing Automation Tools",
@@ -2205,7 +2171,7 @@ export const servicesData = [
             },
             {
               title: "Data Cleaning and Enrichment",
-              text: "Ensure your data is accurate, up-to-date, and actionable with our data cleaning and enrichment services."
+              text: "Ensure your data is accurate, up to date and actionable with our data cleaning and enrichment services."
             },
             {
               title: "Database Integration and Migration",
@@ -2284,14 +2250,14 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Every missed data point is a  <span> missed opportunity for growth </span>`,
       answer:
-        "Partner with Pixelette Marketing, the leader in marketing analytics and reporting services, to uncover actionable strategies, maximise ROI and position your business as a data-driven industry leader.",
+        "Partner with Pixelette Marketing to uncover actionable strategies, maximise ROI and position your business as a data-driven industry leader.",
       btnText: "Book a consultation – it’s on us!"
     },
     marketingServices: {
       title: "",
-      heading: `Industry-focused marketing <span> analytics reporting solutions </span> `,
+      heading: `Marketing analytics and reporting for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "Our expertise lies in addressing the complexities of industry-specific data to uncover opportunities that fuel targeted growth. From analysing niche markets to refining performance metrics, we help your business remain competitive, engage the right audience and achieve impactful results in change-oriented markets.",
+        "We work through the complexities of market-specific data to uncover opportunities that fuel targeted growth. From analysing niche markets to refining performance metrics, we help your business remain competitive, engage the right audience and achieve impactful results in change-oriented markets.",
       data: [
         {
           heading: "Crypto Marketing Analytics",
@@ -2301,12 +2267,7 @@ export const servicesData = [
         {
           heading: "Fintech Marketing Analytics",
           detail:
-            "Our fintech marketing analytics services make sure that financial technology companies maintain compliance while driving customer satisfaction. Our advanced market analytics solutions simplify complex financial data, enabling better decision-making and customer-focused strategies."
-        },
-        {
-          heading: "Startup Marketing Analytics",
-          detail:
-            "Our startup marketing analytics services help early-stage businesses with everything from identifying growth opportunities to optimising budget allocation. We guide startups toward efficient customer acquisition and sustainable scaling. "
+            "Our fintech marketing analytics services work within financial technology companies’ compliance requirements while driving customer satisfaction. Our advanced market analytics solutions simplify complex financial data, enabling better decision-making and customer-focused strategies."
         },
         {
           heading: "SaaS Marketing Analytics",
@@ -2343,7 +2304,7 @@ export const servicesData = [
           "We present our findings in clear, concise, and easy-to-understand reports, often including visualisations such as charts and graphs."
       },
       {
-        question: " How often will I receive marketing reports?",
+        question: "How often will I receive marketing reports?",
         answer:
           "The frequency of reporting can be customised to your needs. We can provide weekly, monthly, or quarterly reports."
       },
@@ -2370,7 +2331,7 @@ export const servicesData = [
         {
           icon: PlainIcon,
           heading: "Plan",
-          text: "You’ll receive a customised marketing analytics strategy that outlines tools, dashboard, and workflows to track performance and achieve measurable outcomes."
+          text: "You’ll receive a customised marketing analytics strategy that outlines tools, dashboards and workflows to track performance and achieve measurable outcomes."
         },
         {
           icon: ExecuteIcon,
@@ -2388,7 +2349,7 @@ export const servicesData = [
     metaDescription: "Partner with Pixelette Marketing, a Lead Generation Agency that fills your pipeline with qualified prospects & sales-ready leads. 1st consultation is on us! 🤙🏼",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
     route: "lead_generation",
-    mainHeading: " From prospects to loyal customers,",
+    mainHeading: "From prospects to loyal customers,",
     subHeading: "we’re the lead generation agency for GROWTH",
     // INTERIM COPY, 8 Sep 2026. Lead Generation was the only service with an
     // empty summary, so its hero standfirst and its card on /services both
@@ -2410,7 +2371,7 @@ export const servicesData = [
       subHeading: "stalls business success",
       mainHeading: "A broken lead pipeline ",
       detail:
-        "Generating consistent, high-quality leads is no easy feat, facing obstacles like identifying ideal prospects, nurturing them effectively and maintaining conversion momentum can quickly overwhelm your sales funnel",
+        "Generating consistent, high-quality leads is no easy feat. Obstacles like identifying ideal prospects, nurturing them effectively and maintaining conversion momentum can quickly overwhelm your sales funnel.",
       data: [
         {
           value: 50,
@@ -2421,7 +2382,7 @@ export const servicesData = [
         {
           value: 79,
           message:
-            "drop in conversions from initial contact to sale for businesses that fail to nurture leads",
+            "drop in conversions from initial contact to sale for businesses that fail to nurture leads.",
           source: "LeadGen Journal, 2023"
         },
         {
@@ -2440,7 +2401,7 @@ export const servicesData = [
     status: {
       heading:
         "Our lead generation services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we excel at transforming complex data into impactful strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
+      text: "At Pixelette Marketing, we turn complex data into practical strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
       data: [
         {
           value: 60,
@@ -2472,20 +2433,20 @@ export const servicesData = [
           heading: "Lead Generation Strategy & Planning Services",
           data: [
             {
-              title: "Lead Generation Strategy Development	",
-              text: "Our services include developing customised lead generation strategies that align with your business goals, ensuring consistent, quality leads to drive your sales pipeline"
+              title: "Lead Generation Strategy Development",
+              text: "Our services include developing customised lead generation strategies that align with your business goals, ensuring consistent, quality leads to drive your sales pipeline."
             },
             {
               title: "Target Audience Research & Persona Development",
-              text: "With detailed research target audience and persona research, we create accurate target audience persona development plans to guide all sales marketing strategies."
+              text: "With detailed target audience and persona research, we create accurate persona development plans to guide all sales and marketing strategies."
             },
             {
-              title: "Funnel Strategy & Planning	",
+              title: "Funnel Strategy & Planning",
               text: "We craft comprehensive digital funnel strategies to optimise your lead generation campaign, guiding prospects through every stage of the funnel effectively."
             },
             {
               title: "Sales & Marketing Alignment",
-              text: "Our services create sales marketing alignment by streamlining your sales and marketing strategy for better communication and improvement of lead conversion rates."
+              text: "Our services create sales and marketing alignment by streamlining your sales and marketing strategy for better communication and improvement of lead conversion rates."
             }
           ]
         },
@@ -2497,24 +2458,16 @@ export const servicesData = [
               text: "Our landing page design services focus on creating pages that convert. From landing page wireframe design to landing page design & conversion rate optimisation, we ensure every page performs at its peak."
             },
             {
-              title: "Lead Magnet Creation Services (eBooks, Guides, etc.)	",
+              title: "Lead Magnet Creation Services (eBooks, Guides, etc.)",
               text: "We offer lead magnet creation services to attract potential leads through resources such as eBooks, whitepapers and guides tailored to your audience."
             },
             {
-              title: "Email Drip Campaign Content Creation	",
+              title: "Email Drip Campaign Content Creation",
               text: "Our email content creation services include crafting personalised email sequences that engage and nurture quality leads, building trust over time."
             },
             {
-              title: "Case Study & Testimonial Content Creation	",
+              title: "Case Study & Testimonial Content Creation",
               text: "Showcase your brand’s value through impactful case studies and client testimonials, proving your expertise to potential leads."
-            },
-            {
-              title: "Automated Reporting Setup",
-              text: "Save time and reduce errors with automated reporting solutions, delivering consistent updates on your marketing performance."
-            },
-            {
-              title: "Mobile-Friendly Dashboard Design",
-              text: "Access your marketing insights anytime, anywhere, with mobile-optimised dashboards designed for on-the-go decision-making."
             }
           ]
         },
@@ -2543,12 +2496,12 @@ export const servicesData = [
           heading: "Paid Lead Generation Campaign Services",
           data: [
             {
-              title: "PPC (Pay-Per-Click) Lead Generation ",
+              title: "PPC (Pay-Per-Click) Lead Generation",
               text: "Our PPC lead generation services help you reach your primary audience through targeted Google Ads lead generation, retargeting ad campaigns and ROI ads strategies."
             },
             {
-              title: "Social Media Ads for Lead Gen ",
-              text: "We offer our expertise in social media lead generation to create impactful ads on platforms like Facebook, LinkedIn and Instagram to drive high-quality leads to your leads funnel strategy."
+              title: "Social Media Ads for Lead Gen",
+              text: "We offer our expertise in social media lead generation to create impactful ads on platforms like Facebook, LinkedIn and Instagram to drive high-quality leads to your lead funnel strategy."
             },
             {
               title: "Retargeting Campaign for Lead Gen",
@@ -2569,15 +2522,11 @@ export const servicesData = [
             },
             {
               title: "Monthly/Quarterly Lead Generation Reporting",
-              text: "Receive comprehensive lead reports with actionable insights, helping you fine-tune your sales marketing strategies for continuous improvement."
+              text: "Receive comprehensive lead reports with actionable insights, helping you fine-tune your sales and marketing strategies for continuous improvement."
             },
             {
               title: "Lead Source & Channel Performance Analysis",
               text: "Our lead generation analytics services evaluate the performance of different lead sources, helping you allocate resources effectively and boost ROI."
-            },
-            {
-              title: "Tool Comparison and Recommendation",
-              text: "We analyse leading CRM platforms to recommend the best-fit solution tailored to your business needs."
             }
           ]
         },
@@ -2585,8 +2534,8 @@ export const servicesData = [
           heading: "Specialised Lead Generation Campaign Services",
           data: [
             {
-              title: "Event-Based Lead Generation ",
-              text: "Boost virtual event success by running event lead management and webinar lead generation campaigns designed for quality consistent leads."
+              title: "Event-Based Lead Generation",
+              text: "Boost virtual event success by running event lead management and webinar lead generation campaigns designed for consistent, quality leads."
             },
             {
               title: "Product Launch Lead Generation Campaign",
@@ -2615,7 +2564,7 @@ export const servicesData = [
           heading: "Lead Quality & Brand Management Services",
           data: [
             {
-              title: "Lead Quality Assessment & Improvement ",
+              title: "Lead Quality Assessment & Improvement",
               text: "We evaluate and enhance the quality of your leads using lead quality assessment and advanced lead scoring models for better results."
             },
             {
@@ -2661,16 +2610,16 @@ export const servicesData = [
     },
 
     questionAndAnswer: {
-      question: ` No leads, no sales.  <span>  Let’s change that </span>`,
+      question: `No leads, no sales.  <span>  Let’s change that </span>`,
       answer:
         "Partner with Pixelette Marketing to build targeted campaigns that attract, nurture and convert high-quality prospects, helping your business grow, thrive and achieve measurable success!",
       btnText: "Book a consultation – it’s on us!"
     },
     marketingServices: {
       title: "",
-      heading: `Industry-focused   <span>  lead generation solutions    </span>    `,
+      heading: `Lead generation for <span><span style="white-space: nowrap">technology-led</span> markets</span>`,
       detail:
-        "Lead generation in today’s dynamic markets demands precision and agility, and we’ve mastered the art of connecting your business with the right audience. Our strategies help you overcome competitive challenges, ensuring your brand grows and thrives in a crowded landscape.",
+        "Lead generation in today’s dynamic markets demands precision and agility, and the work starts with connecting your business with the right audience. Our strategies help you overcome competitive challenges, ensuring your brand grows and thrives in a crowded landscape.",
       data: [
         {
           heading: "Crypto Lead Generation",
@@ -2683,14 +2632,9 @@ export const servicesData = [
             "By combining our PPC leads and LinkedIn lead generation services, we connect you with decision-makers in the fintech space. Our customised approach enhances lead qualification and maximises advertising ROI."
         },
         {
-          heading: "Startup Lead Generation",
-          detail:
-            "Our lead generation advertising is designed to help startups build a solid customer base. With audience persona research and lead magnet creation services, we ensure sustainable growth."
-        },
-        {
           heading: "SaaS Lead Generation",
           detail:
-            "Drive subscriptions and free trials with targeted sales marketing strategies for SaaS. From lead nurturing services to retargeting ad campaigns, we focus on delivering high-quality leads for your growth."
+            "Drive subscriptions and free trials with targeted sales and marketing strategies for SaaS. From lead nurturing services to retargeting ad campaigns, we focus on delivering high-quality leads for your growth."
         },
         {
           heading: "AI Lead Generation ",
@@ -2708,7 +2652,7 @@ export const servicesData = [
       {
         question: "What lead generation services do you offer?",
         answer:
-          " We offer a variety of lead generation services, including PPC advertising, content marketing, social media marketing, email marketing, and landing page optimisation."
+          "We offer a variety of lead generation services, including PPC advertising, content marketing, social media marketing, email marketing, and landing page optimisation."
       },
       {
         question: "How do you ensure high-quality leads?",
@@ -2724,7 +2668,7 @@ export const servicesData = [
         question:
           "What industries do you have experience generating leads for?",
         answer:
-          "We have experience generating leads for businesses across various industries, including e-commerce, technology, healthcare, education, and more."
+          "We are built to generate leads for businesses across sectors, including consumer and retail, technology, healthcare and education."
       },
       {
         question:

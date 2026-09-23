@@ -269,6 +269,39 @@ was explaining, and the gate is deliberately blind to comments. See
 [[02 Decisions]], [[03 Phase 1 — Homepage]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]] and [[10 Verification]].
 
+**23 Sep, later — the Who We Help section was walked** (1440, 900, 390 and
+a numeric sweep at eight widths) and no fault was found, the first section to
+manage it. See [[10 Verification]].
+
+**23 Sep, last — one positioning, site-wide.** Built to a consolidated brief
+on positioning, Who We Help and consistency. The eight home-page sectors are now
+**the site's only sector taxonomy**, in `src/data/industries/whoWeHelp.ts`,
+read by the home page, `/industries` and the Who We Help menu. The home section
+became a compact preview: eight cards four across, "Explore who we help", no
+"And beyond" card. `/industries` was rebuilt in the brief's order: hero, the
+eight, "Don't see your sector?", **deeper experience** (the five specialist
+pages on a dark band, linked), then business stage. The menu's "Selected
+sector experience" became "Deeper experience".
+
+Also in the same pass: the home page lost "More than marketing activity",
+which restated sections 03, 05 and 06. The logo strip makes the About page's
+**ecosystem claim** everywhere, including the eight service pages, which said
+"Trusted by / Leading Brands". About renders the **five capabilities** instead
+of a second, four-area model. Service pages stopped rendering their
+**unsourced statistics blocks**, dropped "Startup" from their industry cards
+and lost their superlatives. Sector pages lost five track-record sentences.
+**`/privacy` exists**, adapted on instruction from the Pixelette Technologies
+statement, and the form links to it as a route. A copy QA fixed roughly two
+hundred defects.
+
+Gates all green, route walk 39/39, and every changed page was looked at in
+headless Chrome at 1440, 900 and 390. Looking produced three faults: the
+deeper-experience band was first on `.band-alt`, which is the page ground to
+the digit, so it separated nothing; the "Don't see your sector?" hairline
+stopped at 44rem; and "technology-" broke at its hyphen in eight service
+headings. All three fixed. **What needs a human is at the foot of
+[[09 Outstanding]].**
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —
@@ -284,5 +317,6 @@ Two things are still true and worth repeating anywhere this is read:
    rather than settling any of it. ~~**And the navigation is broken at 768px on
    all 36 routes.**~~ **That one is closed** — 23 Sep, `45e1ca2`, by the drawer
    rebuild, which had to move the breakpoint anyway. See [[10 Verification]].
-2. **The form's privacy-notice link is broken in production**, and the 11 Sep
-   reply did not supply the URL that fixes it. See [[09 Outstanding]].
+2. ~~**The form's privacy-notice link is broken in production.**~~ Fixed in
+   code on 23 Sep: `/privacy` exists and the link is a route, not an env var.
+   Its controller line needs legal review. See [[09 Outstanding]].

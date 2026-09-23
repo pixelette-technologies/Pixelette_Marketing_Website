@@ -17,7 +17,6 @@ import {
   proofCopy,
   resultsCopy,
   waysToWorkData,
-  whyPixeletteData,
   widerAdvantageData
 } from "@/data/home";
 
@@ -48,7 +47,6 @@ export default function Home() {
         cta={proofCopy.cta}
       />
       <GrowthSection />
-      <ItemsSection content={whyPixeletteData} header='aside' topRule />
       <ItemsSection
         content={growthSystemData}
         ground='dark'

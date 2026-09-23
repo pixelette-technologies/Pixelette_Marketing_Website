@@ -1,6 +1,7 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { aboutCapabilities } from "@/data/aboutus";
+import { growthSystemData } from "@/data/home";
 
 // The capability model. It replaces OurTeam — five invented portraits with
 // names and job titles, under a heading claiming a team that cannot be
@@ -14,6 +15,9 @@ import { aboutCapabilities } from "@/data/aboutus";
 // bottom of the cell. The numerals are the site's own device — PointItem sets
 // the Growth System's 01–04 the same way — so this reads as house vocabulary
 // rather than a new mannerism.
+//
+// 23 SEP 2026: FIVE, NOT FOUR. The cells are the site's five capabilities now;
+// the four areas this was built with were a second description of the offer.
 //
 // NO DESCRIPTIONS, DELIBERATELY. None were supplied for the four areas and the
 // content rule is to ship the pattern without the missing element rather than
@@ -29,7 +33,10 @@ import { aboutCapabilities } from "@/data/aboutus";
 // and nothing on this component switches colour from a call site.
 
 const CapabilityModel = () => {
-  const { eyebrow, heading, lead, items } = aboutCapabilities;
+  const { eyebrow, heading, lead } = aboutCapabilities;
+  // The five capabilities, from the one source the home page, /services and
+  // the What We Do menu all read. See the note on aboutCapabilities.
+  const items = growthSystemData.items;
 
   return (
     <div className='band-dark'>

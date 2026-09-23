@@ -7,6 +7,7 @@ import Link from "next/link";
 // TEMPORARILY HIDDEN block below. Restore this import with it.
 // import { MdArrowOutward } from "react-icons/md";
 import { servicesData } from "@/data/services/servicesData";
+import { COOKIE_POLICY_HREF, PRIVACY_HREF } from "@/data/legal";
 
 // --- 18 Sep 2026: the group footer ------------------------------------------
 // Rebuilt to the structure of the Pixelette Technologies footer, so the sister
@@ -37,10 +38,11 @@ import { servicesData } from "@/data/services/servicesData";
 //   moves the other way and gains its first footer link.
 //
 // - THE COMPANY COLUMN CARRIES ONLY PAGES THAT EXIST. Theirs lists Privacy
-//   Statement, Terms, Modern slavery and Accessibility. This app has none of
-//   those pages, and a footer link to a 404 is worse than its absence — the
-//   same reasoning that kept "Privacy" out of the previous footer. Each joins
-//   the column when its page does.
+//   Statement, Terms, Modern slavery and Accessibility. A footer link to a 404
+//   is worse than its absence, so each joins the column when its page does.
+//   Privacy joined on 23 Sep 2026, when /privacy was written from the
+//   Technologies statement; Terms, Modern slavery and Accessibility still have
+//   no page.
 //
 // - SOCIAL ICONS STAY. Theirs has none. Management answered on 11 Sep that the
 //   Facebook page stays ("there is a lot of content there"), which only means
@@ -110,7 +112,7 @@ export default function Footer() {
               <Logo />
             </span>
             <Text className='small'>
-              Growth marketing built around commercial outcomes - connecting
+              Growth marketing built around commercial outcomes, connecting
               strategy, demand, search, pipeline, conversion and growth
               intelligence.
             </Text>
@@ -193,7 +195,12 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='/cookie-policy' className='flink small'>
+                <Link href={PRIVACY_HREF} className='flink small'>
+                  Privacy
+                </Link>
+              </li>
+              <li>
+                <Link href={COOKIE_POLICY_HREF} className='flink small'>
                   Cookies &amp; analytics
                 </Link>
               </li>
@@ -272,12 +279,12 @@ export default function Footer() {
             suffix, until someone confirms which. See [[09 Outstanding]]. */}
         <div className='footerLegal'>
           <p className='legal footerId'>
-            <span>Pixelette Marketing</span>
-            <span>Registered in England and Wales</span>
+            <span>Pixelette Marketing</span>{" "}
+            <span>Registered in England and Wales</span>{" "}
             <span>Company number 11716825</span>
           </p>
           <p className='legal footerId footerId--end'>
-            <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>
+            <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>{" "}
             <span>VAT GB 432 2377 17</span>
           </p>
         </div>

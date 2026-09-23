@@ -11,10 +11,10 @@ import {
   Importance,
   ResearchSection,
   ServicesHero,
-  ServicesSection,
-  Status
+  ServicesSection
 } from "@/components/ui/services";
 import { servicesData } from "@/data/services/servicesData";
+import { proofCopy } from "@/data/home";
 import { Metadata } from "next";
 
 type PageProps = {
@@ -79,7 +79,6 @@ export default async function Page({ params }: PageProps) {
 
   const researchData = pageData?.research;
   const importanceData = pageData?.importance;
-  const statusData = pageData?.status;
   const serviceData = pageData?.services;
   const contactData = pageData?.howWeWork;
   const questionAndAnswer = pageData?.questionAndAnswer;
@@ -153,7 +152,17 @@ export default async function Page({ params }: PageProps) {
         text={pageData?.summary}
         image={pageData?.image || "/services/heroImageServices.webp"}
       />
-      <TrustedBrands />
+      {/* 23 Sep 2026: "Trusted by / Leading Brands" came off. The row includes
+          portfolio ventures and group work, so it takes the one claim the
+          home page and /aboutus make about the same six logos. The inline
+          layout cannot hold a sentence (its heading is nowrap), hence stacked. */}
+      <TrustedBrands
+        layout='stacked'
+        eyebrow={proofCopy.eyebrow}
+        heading={proofCopy.heading}
+        standfirst={proofCopy.standfirst}
+        cta={proofCopy.cta}
+      />
 
       <ResearchSection
         mainHeading={researchData?.mainHeading}
@@ -168,11 +177,15 @@ export default async function Page({ params }: PageProps) {
         data={importanceData?.data || []}
       />
 
-      <Status
-        heading={statusData?.heading}
-        text={statusData?.text}
-        data={statusData?.data || []}
-      />
+      {/* 23 Sep 2026: <Status> NO LONGER RENDERS. Every service page carried
+          four percentages presented as Pixelette results ("60% increase in
+          social shares in the first four months", "50 prime media placements
+          secured for clients in a single quarter") under a heading saying the
+          service was "widely sought after by various emerging brands". None has
+          a client, a baseline or a period behind it, which is what the brief's
+          metric gate bars; the home page dropped the same kind of figure on
+          8 Sep. The data stays in servicesData.status so the block can return,
+          figure by figure, once each one is substantiated. */}
 
       <ServicesSection
         heading={serviceData?.heading}

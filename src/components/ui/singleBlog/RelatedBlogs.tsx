@@ -92,7 +92,7 @@ const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
   return (
     <Container className='main'>
       <div className='contentSlider'>
-        <Heading className='heading_secondry'>Related Articles</Heading>
+        <Heading className='heading_secondry'>Related articles</Heading>
 
         <section>
           <Slider ref={slider} {...settings}>
@@ -108,7 +108,7 @@ const RelatedBlogs: FC<ContentSliderProps> = ({ data }) => {
                 <h3>{el.title}</h3>
                 {el.link && (
                   <Link href={el.link} >
-                    Read Blog
+                    Read article
                     <MdArrowForward />
                   </Link>
                 )}

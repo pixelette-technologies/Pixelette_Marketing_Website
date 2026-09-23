@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Field, Form, Formik, FormikHelpers, useFormikContext } from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
 import { IMPROVE_OPTIONS } from "@/lib/contactContract";
+import { PRIVACY_HREF } from "@/data/legal";
 import {
   Button,
   FormInput,
@@ -75,7 +76,10 @@ const EnquirySeed: React.FC = () => {
 };
 
 const ContactUsForm: React.FC = () => {
-  const privacyNoticeUrl = process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL?.trim() ?? "";
+  // A route on this site, not configuration. It used to be
+  // NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL, which shipped as placeholders that
+  // still passed the gate below. See data/legal.ts.
+  const privacyNoticeUrl = PRIVACY_HREF;
   const noticeVersion = process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION?.trim() ?? "";
   const consentText = process.env.NEXT_PUBLIC_CONTACT_CONSENT_TEXT?.trim() ?? "";
   const governanceReady = Boolean(privacyNoticeUrl && noticeVersion && consentText);
@@ -155,7 +159,7 @@ const ContactUsForm: React.FC = () => {
   if (!governanceReady) {
     return (
       <div className='contactUsForm' role='status'>
-        <Heading className='h3'>contact form temporarily unavailable</Heading>
+        <Heading className='h3'>Contact form temporarily unavailable</Heading>
         <p>
           The governed privacy notice and consent configuration must be approved before this form
           can accept enquiries.
@@ -198,12 +202,12 @@ const ContactUsForm: React.FC = () => {
             </div>
             <div className='contactUsFormFlex'>
               <FormInput
-                label='First Name'
+                label='First name'
                 name='firstName'
                 place='Enter your first name'
               />
               <FormInput
-                label='Last Name'
+                label='Last name'
                 name='lastName'
                 place='Enter your last name'
               />
@@ -256,7 +260,7 @@ const ContactUsForm: React.FC = () => {
             </Button>
             {submitState === "success" && (
               <p role='status' style={{ marginTop: "0.625rem", color: "var(--color-ok)" }}>
-                Thanks your message has been sent. We&apos;ll be in touch shortly.
+                Thanks, your message has been sent. We&apos;ll be in touch shortly.
               </p>
             )}
             {submitState === "error" && (

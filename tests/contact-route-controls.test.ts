@@ -41,6 +41,9 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
 
 test("form remains unavailable until privacy and consent configuration is complete", () => {
   assert.match(form, /const governanceReady = Boolean\(privacyNoticeUrl && noticeVersion && consentText\)/);
+  // The notice is a route on this site, not a deploy-time URL that can ship as
+  // a placeholder and still pass the gate.
+  assert.match(form, /const privacyNoticeUrl = PRIVACY_HREF;/);
   assert.match(form, /if \(!governanceReady\)/);
   assert.match(form, /type='checkbox' name='consent'/);
   assert.match(form, /Read the privacy notice/);

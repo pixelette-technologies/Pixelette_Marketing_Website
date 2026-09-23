@@ -96,7 +96,7 @@ const DiagnosticResults: FC<DiagnosticResultsProps> = ({
               <li key={dimension.id} className='diagnosticScales__row'>
                 <span className='diagnosticScales__name'>
                   {dimensionsById[dimension.id].name}
-                </span>
+                </span>{" "}
                 <span className='diagnosticScales__track' aria-hidden='true'>
                   <span
                     className='diagnosticScales__fill'

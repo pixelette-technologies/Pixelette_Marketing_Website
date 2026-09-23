@@ -59,13 +59,15 @@ export const aboutIdentity = [
 export const aboutCapabilities = {
   eyebrow: "How we build",
   heading: "Built around the brief, not the org chart.",
-  lead: "Different challenges need different expertise. Our delivery model brings the right capabilities around each engagement rather than forcing every client through a fixed agency structure.",
-  items: [
-    { index: "01", title: "Strategy & positioning" },
-    { index: "02", title: "Creative & content" },
-    { index: "03", title: "Demand & acquisition" },
-    { index: "04", title: "Technology & AI" }
-  ]
+  lead: "Different challenges need different expertise. Our delivery model brings the right capabilities around each engagement rather than forcing every client through a fixed agency structure."
+  // NO `items` SINCE 23 SEP 2026. There were four here — Strategy &
+  // positioning, Creative & content, Demand & acquisition, Technology & AI —
+  // numbered 01–04 in the same device the home page uses for its five
+  // capabilities, so the site described its offer two different ways. The
+  // component now renders the five from growthSystemData, the one service
+  // architecture. They are read there rather than imported here because
+  // homeContent already imports this file, and a module cycle between the two
+  // would evaluate one of them half-built.
 };
 
 // --- 04 Principles ----------------------------------------------------------

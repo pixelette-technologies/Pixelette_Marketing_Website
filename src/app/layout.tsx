@@ -39,7 +39,8 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.pixelettemarketing.com"),
   title: "Pixelette Marketing",
-  description: "Pixelette Marketing Website"
+  description:
+    "Commercially focused marketing and growth for businesses across established and emerging sectors."
 };
 
 import "slick-carousel/slick/slick.css";
@@ -56,7 +57,7 @@ const structuredData = {
       url: "https://www.pixelettemarketing.com",
       logo: "https://www.pixelettemarketing.com/favicon.svg",
       description:
-        "Full-service digital marketing agency delivering precision-driven marketing for Fintech, SaaS, Web3 and technology brands.",
+        "Commercially focused marketing and growth company, built to work with businesses across established and emerging sectors, with deeper experience in technology-led markets.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",
@@ -102,7 +103,7 @@ const structuredData = {
         addressCountry: "GB"
       },
       areaServed: "GB",
-      priceRange: "$$$",
+      priceRange: "£££",
       parentOrganization: { "@id": "https://www.pixelettemarketing.com/#organization" }
     }
   ]

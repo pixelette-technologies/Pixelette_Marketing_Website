@@ -1,5 +1,5 @@
 import { capabilityGroups } from "@/data/services/capabilityGroups";
-import { industriesData } from "@/data/industries/industriesData";
+import { deeperExperience } from "@/data/industries/whoWeHelp";
 import { servicesData } from "@/data/services/servicesData";
 
 export interface NavItem {
@@ -39,27 +39,6 @@ export interface NavGroup {
 // dropdown is now that page's contents by construction: same five labels, same
 // order, same links beneath each. A capability can no longer appear in one and
 // not the other.
-
-/** Looks up routes in a source list and FAILS THE BUILD on a miss.
- *
- *  A typo here would otherwise silently drop a link from the navigation, which
- *  is the kind of fault nobody notices until traffic does. */
-function pick(
-  routes: string[],
-  source: readonly { route: string; title: string }[],
-  prefix: string
-): NavItem[] {
-  return routes.map(route => {
-    const found = source.find(entry => entry.route === route);
-    if (!found) {
-      throw new Error(
-        `Navigation references an unknown route: "${route}". ` +
-          `Known routes: ${source.map(entry => entry.route).join(", ")}`
-      );
-    }
-    return { href: `${prefix}/${found.route}`, title: found.title };
-  });
-}
 
 export const whatWeDoGroups: NavGroup[] = capabilityGroups.map(group => ({
   label: group.title,
@@ -109,14 +88,25 @@ if (linkedServices !== servicesData.length) {
   );
 }
 
+// --- Who We Help: deeper experience, 23 Sep 2026 -----------------------------
+// The label was "Selected sector experience" over five technology pages,
+// which made the menu say the company's sectors were those five. They are not:
+// the eight sectors are on /industries (the trigger links there, and the
+// drawer's first row is its overview), and these five are the areas where the
+// wider group brings more depth. The label now says exactly that, matching
+// the band on the hub.
+//
+// DERIVED, NOT LISTED. deeperExperience is the list the hub renders, in the
+// same order with the same short labels, so the menu and the page cannot
+// drift the way What We Do and /services once did. It throws on an unknown
+// route, which is the guarantee the old pick() gave this menu.
 export const whoWeHelpGroups: NavGroup[] = [
   {
-    label: "Selected sector experience",
-    items: pick(
-      ["ai", "fintech", "web_3", "saas", "tech"],
-      industriesData,
-      "/industries"
-    )
+    label: "Deeper experience",
+    items: deeperExperience.map(area => ({
+      href: area.href,
+      title: area.label
+    }))
   }
 ];
 

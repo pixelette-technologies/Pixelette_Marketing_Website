@@ -98,7 +98,7 @@ const CaseStudySection: FC<CaseStudySectionProps> = ({
               <li key={index}>
                 {item.value && (
                   <span className='caseStudy__figure'>{item.value}</span>
-                )}
+                )}{" "}
                 <span className='caseStudy__label'>{item.label}</span>
               </li>
             ))}
@@ -117,7 +117,7 @@ const CaseStudySection: FC<CaseStudySectionProps> = ({
             <Text className='lead'>{quote.detail}</Text>
           </blockquote>
           <figcaption>
-            <span className='caseStudy__quoteName'>{quote.name}</span>
+            <span className='caseStudy__quoteName'>{quote.name}</span>{" "}
             <span className='caseStudy__quoteRole'>{quote.role}</span>
           </figcaption>
         </figure>

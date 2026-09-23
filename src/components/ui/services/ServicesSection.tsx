@@ -29,7 +29,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
             <Heading
               className='heading_large font_family_glory'
             >
-              We manage You grow
+              We manage. You grow.
             </Heading>
             <div>
               <Heading

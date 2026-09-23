@@ -7,3 +7,4 @@ export type {
 export { default as GrowthSection } from "./GrowthSection";
 export { default as DynamicMarket } from "./DynamicMarket";
 export { default as AiTechnologySection } from "./AiTechnologySection";
+export { SplitTitle, SectorGrid, StageList } from "./WhoWeHelpParts";

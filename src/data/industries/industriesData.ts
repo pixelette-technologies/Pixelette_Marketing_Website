@@ -1,9 +1,18 @@
 import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
 
+// THESE FIVE ARE DEEPER EXPERIENCE, NOT THE SECTOR LIST. Since 23 Sep 2026 the
+// site's sectors are the eight in data/industries/whoWeHelp.ts, and these five
+// pages sit beneath them as the areas the wider Pixelette group knows best.
+// The pages and their URLs are kept for search; only their framing changed.
+//
+// `label` is the area's short name, used wherever the five are listed together
+// (the Who We Help menu and the /industries cards). `title` is the page's own
+// name and still feeds the structured data, so it keeps the "Marketing".
 export const industriesData = [
   {
     id: 1,
-    title: "Web 3 Marketing",
+    title: "Web3 Marketing",
+    label: "Web3 & Digital Assets",
     metaTitle: "Web3 Marketing Agency | Pixelette Marketing",
     metaDescription: "Build community. Drive demand. Go global. Our Web3 Digital Marketing Services are custom-made for projects shaping the next internet. Book a call ☎️",
     metaKeywords: "web3 marketing, web3 digital marketing services, web3 marketing agency",
@@ -16,8 +25,8 @@ export const industriesData = [
       "Web3 buyers arrive sceptical and leave quickly. Trust is the hardest thing to earn in this market and the easiest to lose, and most of the work is reputational before it is promotional: community, credibility, and explaining clearly something most people have never used.",
     image: "/industries/industriesHero.webp",
     ourSolutions: {
-      heading: `What <span> web3 marketing</span> has to solve`,
-      text: "Crypto brands often face hurdles like low visibility, user adoption gaps, and community engagement. Here’s how companies availing our web3 marketing services have transformed their pain points into measurable growth.",
+      heading: `What <span> Web3 marketing</span> has to solve`,
+      text: "Crypto brands often face hurdles like low visibility, user adoption gaps, and community engagement. Here is where the work usually starts.",
       data: [
         {
           heading:
@@ -42,22 +51,22 @@ export const industriesData = [
         {
           icon: BookIcon,
           heading: "Book",
-          text: "Choose a convenient time for a free consultation and share key details about your web3 project. Include any existing platforms, crypto tokens or blockchain initiatives to help us understand your current position."
+          text: "Choose a convenient time for a free consultation and share key details about your Web3 project. Include any existing platforms, crypto tokens or blockchain initiatives to help us understand your current position."
         },
         {
           icon: AuditIcon,
           heading: "Audit",
-          text: "We’ll hop on a call to talk about your web3 project’s vision, target community and unique challenges. We’ll review your digital presence, analyse competitor strategies and also assess current and predicted market conditions to identify growth opportunities."
+          text: "We’ll hop on a call to talk about your Web3 project’s vision, target community and unique challenges. We’ll review your digital presence, analyse competitor strategies and also assess current and predicted market conditions to identify growth opportunities."
         },
         {
           icon: PlainIcon,
           heading: "Plan",
-          text: "You’ll receive a detailed web3 marketing strategy built specifically to your goals. Our plan includes platform recommendations, audience growth tactics, content ideas for your blockchain community, insights into emerging trends in the web3 space and a clear execution timeline with transparent pricing."
+          text: "You’ll receive a detailed Web3 marketing strategy built specifically to your goals. Our plan includes platform recommendations, audience growth tactics, content ideas for your blockchain community, insights into emerging trends in the Web3 space and a clear execution timeline with transparent pricing."
         },
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "With your approval, we’ll get to work. We’ll manage every aspect of your web3 marketing, including launching influencer partnerships to optimising campaigns for token adoption and community growth so that your project truly shines in the blockchain ecosystem."
+          text: "With your approval, we’ll get to work. We’ll manage every aspect of your Web3 marketing, from launching influencer partnerships to optimising campaigns for token adoption and community growth so that your project truly shines in the blockchain ecosystem."
         }
       ]
     },
@@ -82,14 +91,14 @@ export const industriesData = [
     questionAndAnswer: {
       question: `Web3 is moving fast.  <span>Are you? </span>`,
       answer:
-        "Stop waiting for success to find you. With the right marketing, your new crypto, web3 project can dominate the conversation.",
+        "Stop waiting for success to find you. With the right marketing, your new crypto or Web3 project can be part of the conversation.",
       btnText: "Book a consultation – it’s on us!"
     },
     faqs: [
       {
         question: "What makes Pixelette Marketing different from other crypto marketing agencies?",
         answer:
-          "Pixelette Marketing offers specialised, data-driven strategies for web3/blockchain/crypto projects, combining years of industry expertise with marketing solutions to unlock growth for new and existing web3 businesses."
+          "Pixelette Marketing offers specialised, data-driven strategies for Web3/blockchain/crypto projects, combining sector knowledge with marketing solutions to unlock growth for new and existing Web3 businesses."
       },
       {
         question: "How much does crypto marketing cost?",
@@ -101,40 +110,40 @@ export const industriesData = [
       },
       {
         question: "How is crypto marketing different from traditional marketing?",
-        answer: "Crypto marketing requires targeting a niche, tech-savvy audience by using community-driven platforms like Telegram, Discord and blockchain-specific tools. It’s not everyone’s cup of tea, with our exception, of course."
+        answer: "Crypto marketing requires targeting a niche, tech-savvy audience by using community-driven platforms like Telegram, Discord and blockchain-specific tools. It’s not everyone’s cup of tea."
       },
       {
         question: "What Web3 industries do you cover in your crypto marketing services?",
-        answer: "We cover DeFi, NFTs, DAOs, metaverse projects, crypto exchanges and several other web3 industries."
+        answer: "We cover DeFi, NFTs, DAOs, metaverse projects, crypto exchanges and several other Web3 industries."
       },
       {
         question: "What kind of crypto marketing services does Pixelette Marketing provide?",
-        answer: "Our services include crypto community management, crypto influencer outreach and marketing, crypto PR, web3 content marketing, web3 paid ads, token sale strategies and a lot more."
+        answer: "Our services include crypto community management, crypto influencer outreach and marketing, crypto PR, Web3 content marketing, Web3 paid ads, token sale strategies and a lot more."
       },
       {
         question: "Do your services cover Discord and Telegram management and crypto community building?",
-        answer: "Yes, we specialise in managing and growing communities on platforms like Discord and Telegram for a web3 brand’s engagement and loyalty."
+        answer: "Yes, we specialise in managing and growing communities on platforms like Discord and Telegram for a Web3 brand’s engagement and loyalty."
       },
       {
-        question: "How do you approach Token Sale Marketing?",
+        question: "How do you approach token sale marketing?",
         answer: "We create token sale marketing campaigns suited only to your brand, targeting investors through community engagement, influencer partnerships and data-driven advertising."
       }
     ],
     marketingServices: {
       title: "",
-      heading: `Our web3 <span>marketing services  </span> `,
+      heading: `Our Web3 <span>marketing services  </span> `,
       detail:
-        "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
+        "We collaborate with you to create Web3 marketing campaigns that unlock your business’s potential and position you for sustained success.",
       data: [
         {
           heading: "Crypto Content Marketing",
           detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
+            "Boost your brand’s visibility and create connections with new audiences and potential investors through our crypto content marketing services. Creating the right type of content on channels frequented by crypto and Web3 users will allow your brand to build credibility and foster trust with your target audience."
         },
         {
           heading: "Crypto Community Management",
           detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
+            "Communities are the backbone of any successful Web3 project. Our crypto community management services focus on building and managing engaged Web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
         },
         {
           heading: "Crypto PR Marketing",
@@ -149,22 +158,22 @@ export const industriesData = [
         {
           heading: "Crypto Influencer Marketing",
           detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
+            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. We work with influencers in crypto, Web3 and blockchain who can magnify your brand, build credibility and create you a solid community."
         },
         {
           heading: "Crypto Paid Ads & PPC",
           detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
+            "Paid search and social campaigns aimed at the audiences most likely to engage with your project, planned within each platform’s crypto advertising policies."
         },
         {
           heading: "Web3 Email Marketing",
           detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
+            "Drive engagement and build loyalty with our Web3 email marketing services. From token announcements to project updates, our Web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
         },
         {
           heading: "Crypto Brand Building",
           detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
+            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our approach will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the Web3 space."
         }
       ]
     }
@@ -172,6 +181,7 @@ export const industriesData = [
   {
     id: 2,
     title: "Fintech Marketing",
+    label: "Fintech",
     metaTitle: "Fintech Digital Marketing Agency | Pixelette Marketing",
     metaDescription: "Launching in fintech means pressure from day 1. Our Fintech Marketing Services help prove value & earn users in the toughest financial markets.",
     metaKeywords: "fintech marketing, fintech digital marketing agency, fintech marketing services",
@@ -185,17 +195,17 @@ export const industriesData = [
     image: "/industries/fintech.png",
     ourSolutions: {
       heading: `What <span> fintech marketing</span> has to solve`,
-      text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here’s how our fintech marketing solutions have turned these challenges into measurable success stories.",
+      text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here is where the work usually starts.",
       data: [
         {
           heading:
             "Trust, earned inside the compliance limits",
-          text: "Acquisition work built to survive compliance review, so campaigns ship instead of stalling in approval."
+          text: "Funnels and paid campaigns designed around the evidence a regulated product has to show before anyone will sign up."
         },
         {
           heading:
             "Acquisition that scales without stalling in approval",
-          text: "Funnels and paid campaigns designed around the evidence a regulated product has to show before anyone will sign up."
+          text: "Acquisition work built to survive compliance review, so campaigns ship instead of stalling in approval."
         },
         {
           heading:
@@ -225,7 +235,7 @@ export const industriesData = [
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "With your approval, we’ll get to work. From influencer partnerships to SEO strategies, we manage every aspect to ensure your fintech project stands out in the market."
+          text: "With your approval, we’ll get to work. From influencer partnerships to SEO strategies, we manage every aspect to help your fintech project stand out in the market."
         }
       ]
     },
@@ -255,26 +265,26 @@ export const industriesData = [
     },
     faqs: [
       {
-        question: "What Fintech marketing services do you offer?",
-        answer: "We specialise in marketing for Fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
+        question: "What fintech marketing services do you offer?",
+        answer: "We specialise in marketing for fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
       },
       {
-        question: "How do you approach marketing for the Fintech industry?",
-        answer: "We understand the unique challenges and opportunities within the Fintech sector. Our approach emphasises data-driven strategies, innovative marketing tactics, and a deep understanding of financial regulations."
+        question: "How do you approach marketing for the fintech industry?",
+        answer: "We understand the unique challenges and opportunities within the fintech sector. Our approach emphasises data-driven strategies, innovative marketing tactics, and a working knowledge of how regulation shapes financial promotions."
       },
       {
         question: "How do you ensure compliance with financial regulations?",
-        answer: "We work closely with legal and compliance teams to ensure all marketing activities adhere to relevant regulations and industry best practices."
+        answer: "We work alongside your legal and compliance teams, so marketing goes through your approval process and reflects the rules that apply to financial promotions."
       }
       ,
       {
-        question: "How do you build trust and credibility in the Fintech space?",
+        question: "How do you build trust and credibility in the fintech space?",
         answer: "We focus on building trust and credibility through transparent communication, clear and concise messaging, and showcasing strong security measures."
       }
       ,
       {
-        question: "How do I get started with Fintech marketing services from Pixelette Marketing?",
-        answer: "Schedule a free consultation with our Fintech marketing experts to discuss your business goals and explore our tailored solutions."
+        question: "How do I get started with fintech marketing services from Pixelette Marketing?",
+        answer: "Schedule a free consultation with our team to discuss your business goals and explore our tailored solutions."
       }
     ],
     marketingServices: {
@@ -291,7 +301,7 @@ export const industriesData = [
         {
           heading: "Fintech Community Management",
           detail:
-            "Strong communities drive trust and advocacy in fintech. Our community management services for fintech focus on promoting vibrant and engaged communities on platforms like LinkedIn and Twitter to spread out your message and deepen user connections."
+            "Strong communities drive trust and advocacy in fintech. Our community management services for fintech focus on promoting vibrant and engaged communities on platforms like LinkedIn and Twitter to spread your message and deepen user connections."
         },
         {
           heading: "Fintech PR Marketing",
@@ -335,6 +345,7 @@ export const industriesData = [
   {
     id: 3,
     title: "Tech Marketing",
+    label: "Technology",
     metaTitle: "B2B & B2C Tech Marketing Agency | Pixelette Marketing",
     metaDescription: "Tech Marketing Services built for complexity. We help tech companies of all sizes turn technical products into market-ready brands. Let's connect!",
     metaKeywords: "tech marketing agency, b2b tech marketing agency, tech marketing services",
@@ -348,7 +359,7 @@ export const industriesData = [
     image: "/industries/tech.png",
     ourSolutions: {
       heading: `What <span> tech marketing</span> has to solve`,
-      text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here’s how our tech marketing strategies have helped companies overcome these challenges.",
+      text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here is where the work usually starts.",
       data: [
         {
           heading: "Cutting through a category everyone is already shouting in",
@@ -387,7 +398,7 @@ export const industriesData = [
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we manage every detail to make sure your tech company stands out in the market."
+          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we manage every detail to help your tech company stand out in the market."
         }
       ]
     },
@@ -440,7 +451,7 @@ export const industriesData = [
       }
       ,
       {
-        question: "How do you ensure success in PPC?",
+        question: "How do you manage PPC performance?",
         answer: "We optimise bids, track performance, and use data-driven strategies to maximise your return on investment."
       }
     ],
@@ -501,7 +512,8 @@ export const industriesData = [
   },
   {
     id: 4,
-    title: "Saas Marketing",
+    title: "SaaS Marketing",
+    label: "SaaS",
     metaTitle: "SaaS Marketing Agency | Pixelette Marketing",
     metaDescription: "Convert users, reduce churn and increase MRR with our SaaS Marketing Services built for every stage of the funnel. Book a discovery call (it's on us).",
     metaKeywords: "saas marketing agency, saas marketing services, digital marketing for saas companies",
@@ -515,7 +527,7 @@ export const industriesData = [
     image: "/industries/saas.png",
     ourSolutions: {
       heading: `What <span> SaaS marketing</span> has to solve`,
-      text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here’s how our SaaS marketing strategies have delivered results.",
+      text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here is where the work usually starts.",
       data: [
         {
           heading:
@@ -555,7 +567,7 @@ export const industriesData = [
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From email strategies to SEO, we manage every detail to ensure your SaaS product stands out in the market."
+          text: "Once approved, we’ll implement your marketing campaigns. From email strategies to SEO, we manage every detail to help your SaaS product stand out in the market."
         }
       ]
     },
@@ -580,16 +592,16 @@ export const industriesData = [
     questionAndAnswer: {
       question: `SaaS solutions are scaling fast.  <span>Are you? </span>`,
       answer:
-        "Set your SaaS product apart. Our marketing strategies connect your software with the right audience, fueling adoption and driving success in the market.",
+        "Set your SaaS product apart. Our marketing strategies connect your software with the right audience, fuelling adoption and driving success in the market.",
       btnText: "Book a consultation – it’s on us!"
     },
     faqs: [
       {
-        question: "What is SaaS Marketing?",
-        answer: "SaaS Marketing focuses on promoting Software as a Service (SaaS) solutions to businesses and individuals. It involves strategies to acquire new customers, increase revenue, and build brand loyalty."
+        question: "What is SaaS marketing?",
+        answer: "SaaS marketing focuses on promoting Software as a Service (SaaS) solutions to businesses and individuals. It involves strategies to acquire new customers, increase revenue, and build brand loyalty."
       },
       {
-        question: "What SaaS Marketing services do you offer?",
+        question: "What SaaS marketing services do you offer?",
         answer: "We offer a range of services, including demand generation, content marketing, account-based marketing (ABM), paid advertising, and sales enablement."
       },
       {
@@ -603,8 +615,8 @@ export const industriesData = [
       }
       ,
       {
-        question: "How do I get started with SaaS Marketing services from Pixelette Marketing?",
-        answer: "Schedule a free consultation with our SaaS marketing experts to discuss your business goals and explore our tailored solutions."
+        question: "How do I get started with SaaS marketing services from Pixelette Marketing?",
+        answer: "Schedule a free consultation with our team to discuss your business goals and explore our tailored solutions."
       }
     ],
     marketingServices: {
@@ -626,7 +638,7 @@ export const industriesData = [
         {
           heading: "SaaS PR Marketing",
           detail:
-            "Shape the narrative around your SaaS brand with strategic PR efforts. Our SaaS PR Services help you secure impactful media placements and craft compelling stories that highlight your unique value proposition."
+            "Shape the narrative around your SaaS brand with strategic PR efforts. Our SaaS PR services help you secure impactful media placements and craft compelling stories that highlight your unique value proposition."
         },
         {
           heading: "SaaS SEO Services",
@@ -665,6 +677,7 @@ export const industriesData = [
   {
     id: 5,
     title: "AI Marketing",
+    label: "AI",
     metaTitle: "AI Digital Marketing Agency | Pixelette Marketing",
     metaDescription: "Got the tech but struggling to sell? Our AI Marketing Solutions help cut through the noise, earn trust & convert visitors into committed users. Let’s connect.",
     metaKeywords: "ai digital marketing agency, ai marketing solutions",
@@ -678,7 +691,7 @@ export const industriesData = [
     image: "/industries/ai.png",
     ourSolutions: {
       heading: `What <span> AI marketing</span> has to solve`,
-      text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here’s how our strategic marketing turns these challenges into measurable success.",
+      text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here is where the work usually starts.",
       data: [
         {
           heading:
@@ -718,7 +731,7 @@ export const industriesData = [
         {
           icon: ExecuteIcon,
           heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we make sure your AI brand achieves standout success."
+          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we manage every detail of delivery."
         }
       ]
     },
@@ -819,7 +832,7 @@ export const industriesData = [
         {
           heading: "AI SEO Services",
           detail:
-            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimise your digital presence to attract organic traffic and generate high-quality leads that keep coming in the long-term."
+            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimise your digital presence to attract organic traffic and generate high-quality leads that keep coming in over the long term."
         },
         {
           heading: "AI Influencer Marketing",
@@ -834,7 +847,7 @@ export const industriesData = [
         {
           heading: "AI Email Marketing",
           detail:
-            "Opt for our AI email marketing services to nurture leads, provide updates and drive engagement to subscribers. From launch announcements to product tutorials, our campaigns turn email lists into loyal customers."
+            "Opt for our AI email marketing services to nurture leads, provide updates and drive engagement with subscribers. From launch announcements to product tutorials, our campaigns turn email lists into loyal customers."
         },
         {
           heading: "AI Marketing Analytics",

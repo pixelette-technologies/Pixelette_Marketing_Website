@@ -24,20 +24,9 @@
   }
 }
 
-// The same auto-fit track the home page uses for its sector cards, so a
-// visitor arriving from the navigation meets a grid they have already seen.
-// Zero breakpoints: the track seats four against the 1160px wrap, three and
-// two as it narrows, one on a phone.
-.hubList__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
-  gap: 1.25rem;
-}
-
 // --- 22 Sep 2026: /services stops being a grid of eight boxes ---------------
-// .hubList__grid above is UNCHANGED and still in use — /industries renders on
-// it. Only /services moved, so the shared rule stays exactly as it was rather
-// than being generalised to cover two different layouts.
+// (.hubList__grid, the shared eight-card grid both hubs once used, was removed
+// on 23 Sep 2026 when /industries stopped rendering it too.)
 //
 // WHY A LIST AND NOT A BETTER GRID. Eight equal boxes of near-identical prose
 // made eight services look like one undifferentiated menu, and the feedback
@@ -158,94 +147,162 @@
   margin-top: var(--sec-y);
 }
 
-// --- 22 Sep 2026: /industries stops being a boundary ------------------------
-// The page opened "Industries We Serve — the sectors we understand best" over
-// five technology cards, while the home page's Who we help section names
-// eleven markets and closes on "And beyond" — AND LINKS HERE. So the site
-// widened its sector claim and then took it back one click later, on the click
-// the home page itself invited. That is what these two blocks fix.
+// --- /industries: Who we help, 23 Sep 2026 ----------------------------------
+// Rebuilt as the site's single source of truth for sector positioning. The
+// eight sector cards and the stages are the home page's components and take
+// their rules from _dynamicMarket.scss. What is here is only what the hub has
+// and the home page does not: the hero's padding, the two band heads, the
+// unlisted-sector aside, and the five deeper-experience cards.
 //
-// The market field is reused rather than restyled: same data, same treatment,
-// because a visitor arriving from that CTA should recognise what they landed
-// on. The rules live in _dynamicMarket.scss at the top level, not nested under
-// .dynamicMarket, so nothing had to move for the second call site.
+// REMOVED WITH THE OLD PAGE: .hubPositioning, .hubLinks and .sectorList —
+// the positioning pair, and the "Sector specialisms" list that presented five
+// technology pages as the edge of the market.
 
-// The approved positioning pair — "Sector knowledge matters. Commercial
-// understanding matters more." It sits between the range and the five sector
-// pages deliberately: it is the sentence that explains why a short list of
-// pages is not a short list of sectors.
-.hubPositioning {
-  margin-top: var(--sec-y);
+// The hero carries the home section's head (.dynamicMarket__head) so the claim
+// is set the same way on arrival; this adds only the interior hero's padding.
+.whoHero {
+  padding-block: var(--sec-y);
 
-  & > .body {
-    margin-top: 1rem;
+  & .lead {
+    max-width: 40rem;
   }
 }
 
-// The five sector pages, demoted from five cards to a row of links. Card
-// weight is what made them read as the offer; link weight makes them what they
-// are, which is further reading.
-.hubLinks {
-  margin-top: var(--sec-y);
+// The sectors sit directly under the hero, which already carries a full
+// section of bottom padding. A second full section of top padding plus the
+// grid's own margin left a band of empty ground between the claim and the
+// eight markets it is about, which read as two unrelated blocks. Seen at 1920.
+.whoSectors {
   padding-top: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
 
-  & > .body {
-    margin-top: 1rem;
+  & .sectorGrid {
+    margin-top: 0;
   }
 }
 
-// The five sectors, each with a line about its market. The first attempt was
-// a bare row of five links under a sentence about the website's own page
-// structure — it read as thin because it WAS thin, and it explained the site
-// rather than the work.
-//
-// Two across, not the auto-fit four the cards used: the lines are sentences,
-// and four columns of sentence is a column of two-word rows. The 22rem basis
-// drops it to one column on its own, no breakpoint.
-.sectorList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem 2.5rem;
-  list-style: none;
-  margin-top: 2rem;
-}
+// The two band heads — deeper experience, then stage. Eyebrow, h2, standfirst,
+// on the guide's gaps, capped at a reading measure.
+.whoBand__head {
+  max-width: 44rem;
 
-.sectorList__item {
-  flex: 1 1 22rem;
-  min-width: 0;
-}
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+  }
 
-// Link weight, not card weight — these are further reading under a capability
-// claim, not the claim itself. The sector name is the only brand-tone thing in
-// the row so it reads as the entry point.
-.sectorList__link {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 1.125rem;
-  color: var(--color-brand);
-  margin-bottom: 0.5rem;
-
-  &:hover {
-    color: var(--color-brand-hover);
-    text-decoration: underline;
+  & > .lead {
+    margin-top: 1.25rem;
   }
 }
 
-// The breadth block. Its own section rather than a trailing clause, on the
-// pattern Click Consult uses — the hedge earns a heading because a list of
-// five is otherwise read as the whole answer.
+.whoBand__cta {
+  display: inline-flex;
+  margin-top: var(--sec-y-sm);
+}
+
+// "Don't see your sector?" A transition, not a ninth card. It separates on
+// the site's ordinary hairline and stays small: one heading, one paragraph,
+// one way to start the conversation.
 .hubAside {
   margin-top: var(--sec-y);
   padding-top: var(--sec-y-sm);
   border-top: 1px solid var(--color-line);
 
+  // The measure is on the copy, not the block: capping the block cut the
+  // hairline off two thirds of the way across the page.
   & > .body {
     margin-top: 1rem;
+    max-width: 44rem;
   }
 }
 
 .hubAside__cta {
   display: inline-flex;
   margin-top: 2rem;
+}
+
+// --- Deeper experience ------------------------------------------------------
+// Five linked cards on the .band-dark ground. The sector cards' box — border,
+// radius, shadow, border-only hover — so this is the same visual family, but
+// with no chip and no art: these are pages to read, not markets to scan, and
+// the arrow is what says so.
+//
+// A LIGHT SURFACE ON THE DARK BAND, and every colour inside it is the
+// light-ground token, stated rather than inherited — the rule _pointItem.scss
+// records learning the hard way. .band-dark sets a panel text colour on the
+// band; the card resets it so nothing inside can pick up a dark-ground tone.
+//
+// FLEX WITH A GROWING BASIS, NOT A GRID, because five does not divide. At the
+// 1160px wrap the basis seats three, and the two on the second row grow to
+// fill it rather than leaving a hole; on a phone they stack.
+.specialistGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: var(--sec-y-sm);
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    display: flex;
+    flex: 1 1 20rem;
+    min-width: 0;
+  }
+}
+
+.specialistCard {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  color: var(--color-body);
+  transition: border-color 0.2s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-line-strong);
+  }
+}
+
+.specialistCard__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-brand);
+}
+
+.specialistCard__body {
+  margin-top: 0.625rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+// margin-top: auto pins the arrow to the card's foot, so a row of cards with
+// lines of different length still ends on one line.
+.specialistCard__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-brand);
+
+  & > svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specialistCard {
+    transition: none;
+  }
 }

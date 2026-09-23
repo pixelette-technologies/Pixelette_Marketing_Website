@@ -214,7 +214,7 @@ export default function GrowthSystem() {
           <p className='growthSystem__feedback'>
             <span className='growthSystem__feedbackLead'>
               Learn. Optimise. Repeat.
-            </span>
+            </span>{" "}
             Insights from performance feed the next cycle.
           </p>
 

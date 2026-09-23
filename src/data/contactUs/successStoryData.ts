@@ -16,11 +16,11 @@ const successStoryData = [
   },
   {
     icon: PeopleIcon,
-    text: "Learn why we outperform traditional agencies and in-house teams with unmatched efficiency"
+    text: "See how our approach compares with a traditional agency or an in-house team"
   },
   {
     icon: RankIcon,
-    text: "Join the ranks of businesses that have turned inaction into unstoppable success"
+    text: "Leave with clear next steps, whether or not we work together"
   }
 ];
 

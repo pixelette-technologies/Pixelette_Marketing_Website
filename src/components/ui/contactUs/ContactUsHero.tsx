@@ -5,8 +5,8 @@ const ContactUsHero = ({ asPageTitle = false }: { asPageTitle?: boolean }) => {
   return (
     <div>
       <ContactSection
-        heading={`Stop watching others win and start your success story <span> NOW </span>`}
-        text='Book an intro call with us, free of any charge, so that you can'
+        heading={`Stop watching others win and start your success story <span>now</span>`}
+        text='Book an intro call with us, free of charge, so that you can:'
         data={successStoryData}
         headingLevel={asPageTitle ? 1 : 2}
       />

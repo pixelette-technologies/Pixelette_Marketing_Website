@@ -23,7 +23,7 @@ const BlogHeroSection = () => {
           <Text
             className='text_primary'
           >
-            Your marketing knowlege repository for emerging industries
+            Your marketing knowledge repository
           </Text>
         </section>
       </div>

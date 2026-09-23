@@ -37,7 +37,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
         </Text>
         <Link href='/contactus'>
           <Button className='primary'>
-            {"Book a consultant - it's on us!"}
+            {"Book a consultation – it’s on us!"}
           </Button>
         </Link>
       </div>

@@ -36,7 +36,10 @@
   &__grid {
     margin-top: var(--sec-y-sm);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    // 12rem, down from 17rem on 23 Sep 2026: the grid holds the five
+    // capabilities now, not four areas, and at 17rem the fifth fell to a row of
+    // its own at the 1160px wrap. At 12rem all five share one row there.
+    grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
     gap: 1.25rem;
   }
 

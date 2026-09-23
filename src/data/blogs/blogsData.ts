@@ -8,10 +8,10 @@ const blogsData = [
         imageAlt: "A banner for the fintech financial promotions article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading: "Marketing a UK fintech without breaching FCA rules",
         description:
-          "In 2024 the FCA had 19,766 financial promotions amended or withdrawn, almost double the year before. If you market a fintech to UK consumers, the financial-promotion regime is not a footnote, it is the line between compounding trust and a takedown. Here is how to market boldly and stay inside it.",
+          "In 2024 the FCA had 19,766 financial promotions amended or withdrawn, almost double the year before. If you market a fintech to UK consumers, the financial-promotion regime is not a footnote; it is the line between compounding trust and a takedown. Here is how to market boldly and stay inside it.",
         dataContent: [
           {
             id: 1,
@@ -95,7 +95,7 @@ const blogsData = [
         imageAlt: "A banner for the Web3 advertising article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Temur Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading: "How to market a Web3 product when the ad platforms say no",
         description:
           "More than half of all crypto tokens launched since 2021 are no longer actively traded, and the survivors rarely make it on technology alone. With Google and Meta gating crypto ads to a thin certified lane, the brands that win build where the platforms cannot switch them off.",
@@ -182,7 +182,7 @@ const blogsData = [
         imageAlt: "A banner for the SaaS metrics article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading:
           "The marketing metrics an early-stage SaaS founder should track",
         description:
@@ -270,7 +270,7 @@ const blogsData = [
           "A laptop showing an AI search assistant asking what do you want to know.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
-        updateDate: "Sep 22, 2026",
+        updateDate: "22 September 2026",
         heading: "Your buyers are asking an AI, not a search engine",
         description:
           "Search still happens, but a growing share of it ends without a click. Your buyer asks an assistant, reads a summary and forms a shortlist before any website loads. If your page cannot be quoted accurately, it is not in that summary, and the shortlist is made without you.",
@@ -358,7 +358,7 @@ const blogsData = [
           "Two colleagues reviewing printed charts and a laptop graph together.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Temur Khan",
-        updateDate: "Sep 22, 2026",
+        updateDate: "22 September 2026",
         heading:
           "Five things to check before you increase your marketing spend",
         description:

@@ -73,10 +73,11 @@ function DrawerGroup({
   groups: NavGroup[];
   onNavigate: () => void;
 }) {
-  // A single group whose label only repeats the row above it earns no
-  // subheading — Who We Help is the case today. The rule is the house one:
-  // ship the pattern without the missing element rather than draw furniture.
-  const showLabels = groups.length > 1;
+  // Every group shows its label. Until 23 Sep a single group was left
+  // unlabelled, because Who We Help's one label only repeated the row above
+  // it. Its label is "Deeper experience" now, and it carries the distinction
+  // the whole section depends on: without it the five specialist links read
+  // as the complete list of sectors, directly under "Who we help overview".
 
   return (
     <details className='navDrawer__group' name='pm-nav-mobile'>
@@ -95,7 +96,7 @@ function DrawerGroup({
         </Link>
         {groups.map(group => (
           <div className='navDrawer__sub' key={group.label}>
-            {showLabels && <p className='eyebrow'>{group.label}</p>}
+            <p className='eyebrow'>{group.label}</p>
             <ul className='navDrawer__list'>
               {group.items.map(item => (
                 <li key={item.href}>

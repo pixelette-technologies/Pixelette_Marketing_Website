@@ -35,7 +35,7 @@ const HeroSingleBlogPage: React.FC<HeroSingleBlogPageProps> = ({
             <Text>{name}</Text>
           </div>
           <div>
-            <Text>Last Updated: {lastUpdateDate}</Text>
+            <Text>Last updated: {lastUpdateDate}</Text>
           </div>
         </section>
       </div>

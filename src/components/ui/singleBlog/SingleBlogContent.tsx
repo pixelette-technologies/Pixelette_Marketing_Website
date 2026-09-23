@@ -70,7 +70,7 @@ const SingleBlogContent: React.FC<SingleBlogContent> = ({
                   aria-expanded={active}
                   aria-controls={tocId}
                 >
-                  <h2>Table of content</h2>
+                  <h2>Table of contents</h2>
                   <motion.div
                     animate={
                       active

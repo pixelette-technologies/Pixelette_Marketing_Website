@@ -298,3 +298,38 @@ company silently.
 
 Related: [[02 Decisions]], [[03 Phase 1 — Homepage]],
 [[08 Design system constraints]], [[10 Verification]]
+
+## `GrowthSystem` — rebuilt 23 Sep
+
+A **server component** now. It was `"use client"` from 22 Sep for a tablist,
+and the rebuild to a supplied reference removed the last piece of state on it.
+
+**Shape.** One `<header>` holding the eyebrow, title, standfirst, the numbered
+list of four outcomes and the closing line; one `.growthSystem__figure`
+holding the plot. The plot holds the annotation, the loop (an svg of arcs and
+arrowheads plus the medallion) and four `.growthSystem__station`s.
+
+**A station is one element carrying its badge and its card.** It briefly also
+carried a question tethered outside it; that came off the same day, and the
+wrapper stayed because the badge has to overlap the card and the pair has to
+be positioned on the ring as one thing.
+
+**No JavaScript at all.** The pairing between the numbered list and the ring —
+hover an outcome, light its station, and the reverse — is `:has()` in the
+stylesheet. Eight rules, written out rather than looped, because a loop would
+hide exactly the index drift that has broken this figure before.
+
+**The stage table is the single source of the four.** `STAGES` carries the
+name, the approved `detail` for the list, the `summary` for the card and the
+icon. `angleOf(i)` locks the index to the
+angle, and the arcs, the gradients and the arrowheads all derive from it; the
+station positions in `_growthSystem.scss` match it by hand and say so at the
+rule.
+
+**What it lost.** `handoff` — the word each arc used to carry — and the
+`takesIn`/`handsOn` pair the middle panel swapped between. Both were content
+behind an interaction. See [[02 Decisions]].
+
+`GrowthSection` is now the section's frame and nothing else: the container, the
+`.rule-cap` hairline and the rhythm. That split has survived five different
+figures.

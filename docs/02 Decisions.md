@@ -1123,3 +1123,136 @@ Raised for management rather than decided for them — see [[09 Outstanding]].
 
 Related: [[04 Phase 2 — Navigation and footer]], [[09 Outstanding]],
 [[10 Verification]]
+
+## 23 Sep — the growth figure rebuilt to a supplied reference, fifth attempt
+
+A design was supplied as an image and the instruction was that the home page's
+"Everything we do has to move a number that matters" widget should be like it.
+It is the fifth figure in that slot. The four before it — a stepped chain, an
+inward coil, four ascending columns, and the ring of bare pills those columns
+became — are recorded above.
+
+**What the reference is.** The same four stations on the same ring, but each
+one is now a white card carrying an icon badge, its name, and a one-line
+summary; each card has a bordered note tethered to it holding **the question
+that stage answers**; the middle is a fixed medallion reading *Commercial
+impact / Measure → Learn → Optimise*; and the dashed return path carries a
+written annotation, *Learn. Optimise. Repeat. — insights from performance feed
+the next cycle.*
+
+### The fork that had to go back to the requester
+
+The reference is drawn on roughly a **1760px canvas** — a 1070px figure beside
+a 690px text column. `--container-wrap` is **1160px** site-wide. There is no
+arrangement in which both survive, so three options were put up:
+
+1. Keep the composition, shrink the figure to the ~690px it can have, and
+   accept that everything inside lands at 62% of the reference.
+2. Give the figure the full 1120px by moving the heading and the numbered list
+   above it — every element at its designed size, different composition.
+3. Keep the composition and drop the tethered notes, folding each question into
+   its own card — legible type, but the tethered note is a distinct part of the
+   reference's look.
+
+**The instruction was 1.** So the composition is the reference's and the size
+is not. The practical floor that came out of it is **11px**, which is
+`.eyebrow`'s size and therefore a size this site already sets. One line is
+below it — the medallion's *Measure → Learn → Optimise*, at about 9px, because
+26 tracked characters have to cross a disc that cannot grow without touching
+the cards north and south of it. That one is in [[09 Outstanding]].
+
+### The tablist is gone, and with it the client boundary
+
+Attempt 4 put its real content — what each stage takes in and hands on —
+**behind an interaction**, so a reader saw one quarter of it at a time and a
+printed page saw none. The reference puts everything on screen at once. That is
+a better trade twice over: a question is what a reader actually arrives with,
+and four of them visible together are an argument where four handoff nouns
+revealed one at a time were a mechanism.
+
+So there is no state left. `GrowthSystem` was `"use client"` for the tablist
+alone, and **the pairing that made the list and the figure one component — hover
+an outcome, light its station — now costs nothing at all**: `:has()` reads the
+hover across the two columns in the stylesheet. Verified in a browser in both
+directions, four rows and four stations, eight for eight. That also retires the
+contrivance where `GrowthSection` passed the heading block down as children to
+keep it off the client bundle; there is no client bundle.
+
+### Three places the reference was not followed
+
+- **Conversion's summary loses its trailing full stop.** The reference sets
+  that one with a stop and the other three without. Four fragments in identical
+  boxes take identical punctuation, and the 21 Sep rule already took trailing
+  stops off everything here that is not a sentence.
+- **Revenue's summary was rewritten.** The reference sets it at 55 characters
+  against the other three's 24, 31 and 33 — and on a card sized for those three
+  it ran to six lines, making the Revenue card half again as tall as the others
+  and throwing the ring off its own symmetry. It also restated, almost word for
+  word, the question tethered six pixels to its left. It reads *Connect
+  performance to commercial return* now, condensed off the same approved line
+  in the list. **This is a judgement made here and nobody has signed it off.**
+- **The cards are all one height.** Measured, the four came out at 106, 124,
+  124 and 141px, because the summaries wrap to two, two, two and three lines.
+  Four cards of four heights centred on a circle do not read as a ring. The
+  floor is the tallest of them.
+
+### Icons
+
+Five, from Lucide via `react-icons`, which was already a dependency but had
+only ever been used for chevrons and a search glyph. This is **the first time
+an icon carries meaning in page content on this site**. They render with
+`currentColor`, so the token gate is untroubled and colour stays contextual.
+
+Related: [[03 Phase 1 — Homepage]], [[05 Components]],
+[[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]
+
+## 23 Sep, same day — the tethered questions come back off
+
+The four bordered notes above were built, looked at, and then **removed on
+instruction**. What is left is the ring, the four cards, the medallion and the
+feedback annotation.
+
+**It reversed the fork settled earlier the same day.** The reason that fork was
+hard — 1160px of container against a reference drawn on 1760 — was almost
+entirely the notes. The east and west ones had to fit between their card and
+the edge of the box, so the plot's inset was `half a station (8.5) + a tether
+(2.5) + a note (15) = 26cqi`, which held the ring to 48cqi and dragged
+everything else down with it. Removing them makes the inset `half a station
+plus a pixel of air`, and the ring goes to 76cqi.
+
+Measured at 1440, before and after:
+
+| | with notes | without |
+|---|---|---|
+| ring | 343px | 537px |
+| card | 121px | 155px |
+| medallion | 186px | 254px |
+| card name | 10.7px | 13.4px |
+| card summary | 11.7px | 14.5px |
+| medallion flow line | **9.0px** | 12.0px |
+
+**So the item this rebuild put at the top of [[09 Outstanding]] is closed by
+the same instruction that closed the notes**: nothing in the figure is below
+11px any more, and the 9px exception is gone.
+
+**What it costs, and it should not be written down quietly.** The questions
+were the one thing in the figure that was not a restatement of the numbered
+list beside it. The cards now carry condensed versions of copy set out in full
+three hundred pixels to their left, which is the exact failure that sank
+attempt 1 — *"it put the four names on screen a second time, three hundred
+pixels from the grid that already carried them."* What keeps this version
+honest is that the ring makes a claim the list cannot: **the order closes, and
+revenue feeds demand.** The figure is earning its space on its shape rather
+than on its words, which is a thinner argument than it had an hour ago and is
+worth revisiting if the section is ever reworked again.
+
+It also removes four pieces of unapproved copy from the page, which cuts the
+other way and is recorded in [[09 Outstanding]].
+
+**One fault came out of the change and it is a good one.** Enlarging the ring
+made the arrowheads disappear. They were being drawn at 80 of the 90 degrees,
+which had cleared the small cards — but a card is centred on its ring point and
+now reaches 70px either side along the tangent, about 15 degrees, with the
+badge taking it to roughly 21. Every arrowhead was being drawn underneath a
+badge, and the arcs looked like they simply stopped at the cards. Moved to 66
+degrees, which is also where the reference puts them. See [[10 Verification]].

@@ -942,3 +942,123 @@ check whose own evidence contradicts its conclusion is reporting on itself.
 
 Related: [[02 Decisions]], [[04 Phase 2 — Navigation and footer]],
 [[09 Outstanding]]
+
+## 23 Sep — six green gates, then six faults, and two of them only a measurement could find
+
+The growth figure rebuilt to a supplied reference. **All six gates were green
+before the first screenshot**: tsc clean, eslint clean, the token gate at zero
+findings, 36/36 on the form chain, the build compiling, and the route walk
+passing. Then it was looked at, and looking produced six faults.
+
+The four a person sees:
+
+1. **Four cards at four heights.** The summaries wrap to two, two, two and
+   three lines, so the cards measured 106, 124, 124 and 141px. Four different
+   heights centred on a circle do not read as a ring at all.
+2. **The medallion's flow line ran out of its own disc**, 183px of text inside
+   a 171px circle, overflowing at both ends.
+3. **The arrowheads did not read as arrowheads.** They were drawn, they were
+   the right colour, and at nine units on a two-pixel stroke of the same colour
+   they looked like the stroke getting thicker.
+4. **`cycle.` alone on its own line** at the end of the annotation.
+
+The two that only a measurement could find:
+
+5. **The cards sat 3.6px over the medallion where the arithmetic had promised
+   7px of clearance.** A station is a badge stacked on a card and the badge
+   stands proud of it, so centring the station centres the badge and the card
+   together and leaves the card low. At this scale it looks like nothing. A
+   probe comparing the card's centre against the ring's radius is what named
+   it, and the same probe afterwards returned **0.0px of error on both axes**.
+6. **The narrow collapse's tethers had detached from their cards and stacked at
+   the top of the figure.** What was visible was *one stray dot* above the
+   centre panel — not four missing connectors. Two causes at once, both in
+   [[08 Design system constraints]]: a container query adds no specificity, and
+   a `static` element rehomes its absolutely positioned pseudo-elements.
+
+**What the browser was asked, beyond looking.** Five widths — 1440, 768, 600,
+560 and 390 — plus a numeric sweep at 946, 960, 1024 and 1160 checking each
+note's rectangle against the plot's on all four edges. Every edge returned 0
+overflow and the document never grew a horizontal scrollbar. The hover pairing
+was driven with `Input.dispatchMouseEvent` at real coordinates over all four
+list rows and all four stations: **eight for eight, in both directions, with no
+JavaScript on the page at all.**
+
+*The count so far is unchanged and worth restating: every time a section of
+this site has been opened in a browser, it has produced faults every gate
+passed. This is the fifth such occasion on this one band.*
+
+## 23 Sep — `route:walk` walks whatever is on 3001, including somebody else's
+
+The route walk reported `/sitemap.xml returned 401` twice in a row against a
+tree that built clean. Nothing was wrong with the tree. `scripts/route-walk.mjs`
+**does not start a server** — it defaults to `http://localhost:3001` and walks
+whatever answers there, and what answered was a foreign process (PID 5640) that
+had taken the port.
+
+This is the fourth time a check in this repo has been run against the wrong
+server. The previous three "passed" suspiciously cleanly; this one failed
+instead, which is the more fortunate direction but the same fault.
+
+*The rule: pass the base URL explicitly — `npm run route:walk --
+http://localhost:<your port>` — against a server you started yourself from the
+build you are verifying. A default port is an assumption about the machine, not
+a fact about your build.* Run that way it passed **38/38**.
+
+## 23 Sep — an in-place rewrite broke the other session's dev server
+
+`perl -0pi -e` on a stylesheet unlinks and recreates the file. Another session
+had `next dev` running against this repo, its watcher caught the file in the
+window where it did not exist, and it **cached the resolution failure**: the
+whole site served 500 from `Can't find stylesheet to import` long after the file
+was back and `npx sass` compiled it clean. Touching the file, its `_index.scss`
+and `main.scss` did not clear it.
+
+That is a third distinct cost of two sessions in one repo, after the 500 that
+neither change caused and the `git rm` swept into someone else's commit.
+
+*The rule: with a second session in the repo, edit files in place with a writer
+that truncates and rewrites rather than one that unlinks and recreates. And do
+not restart the other session's server to fix what you broke — build your own
+and serve it on your own port.*
+
+## 23 Sep — the arrowheads were always drawn, twice, and twice invisible
+
+Worth keeping because the same fault arrived twice from opposite directions and
+neither time was anything missing from the markup.
+
+**First time, small.** Nine units of triangle on a two-pixel stroke of its own
+colour at the saturated end of a gradient. It rendered, it was the right shape,
+and it read as the stroke getting slightly thicker. Fixed by drawing it bigger.
+
+**Second time, covered.** Removing the tethered notes let the ring grow from
+343px to 537px, and at that size the arrowheads vanished again — this time
+because each one was underneath a badge. The arithmetic: a card is centred on
+its ring point and is 141px tall, so along the tangent it reaches 70px either
+side of the station, which on a radius of 268 is about 15 degrees; the badge
+above it takes the covered span to roughly 21. The arrowhead was at 10 degrees
+before the station. It was being drawn inside the white card.
+
+*The rule: an element's angular footprint on a ring is set by its size and the
+ring's radius, and it changes every time either does. A clearance measured once
+is not a clearance.* Both fixes were found by looking at a 2x crop of one
+station, not by reading the svg.
+
+## 23 Sep — killing a dev server mid-write leaves a build-breaking artifact
+
+After the notes came off, `npx tsc --noEmit` was clean and `npm run build`
+failed:
+
+```
+.next/dev/types/validator.ts(148,1): error TS1128: Declaration or statement expected.
+```
+
+Nothing in `src/` was wrong. `next dev` generates route validators under
+`.next/dev/types`, and the server had been killed part-way through writing one,
+leaving a truncated file that the production build then type-checked. `rm -rf
+.next/dev` and it compiled.
+
+*Worth knowing because the error names a `.ts` file with a line number and
+looks exactly like a real type error. If `tsc --noEmit` is clean and the build's
+type check is not, read the path before reading the message — a path under
+`.next/` is an artifact, not your code.*

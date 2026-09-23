@@ -93,3 +93,21 @@ anywhere.
 
 Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]],
 [[10 Verification]]
+
+## 23 Sep — section 03's figure, for the fifth time
+
+The ring of bare pills is now the reference's ring of cards: an icon badge and
+a one-line summary on each station, and a fixed *Commercial impact* medallion
+in the middle where the swapping panel used to be. Everything the figure says
+is on screen at once, so the section no longer has content that only exists
+under a pointer.
+
+The reference also tethered a question to each card. Those were built and then
+removed the same day, which let the ring grow by half again — 343px to 537px —
+and took every label on the figure back above the site's 11px floor. See
+[[02 Decisions]].
+
+The two components are unchanged in their division of labour, but
+`GrowthSystem` is a **server component** now — the tablist was the only reason
+it ever shipped as client JavaScript. See [[02 Decisions]] and
+[[05 Components]].

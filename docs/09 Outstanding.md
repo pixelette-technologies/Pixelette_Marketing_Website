@@ -577,3 +577,35 @@ property of anyone's change.
 - **The cookie banner still prints across the drawer**, covering the lower rows
   at 390px. Recorded here for the fourth time, against the same component, and
   still not the drawer's fault.
+
+## The home page growth figure, after the 23 Sep rebuild
+
+The ring was rebuilt to a supplied reference and then cut back when the four
+tethered questions were removed. What that leaves open:
+
+- **Every word on the figure except the four outcome names is unapproved.** The
+  four card summaries, "Commercial impact", "Measure → Learn → Optimise" and
+  "Learn. Optimise. Repeat. — insights from performance feed the next cycle"
+  all came from the supplied design, so their provenance is the requester
+  rather than management. Nobody named has signed them off. Same status as
+  "The Diagnostic" and the drawer's "Menu".
+- **One of them is mine, not the reference's.** Revenue's card reads *Connect
+  performance to commercial return*. The reference set it at 55 characters,
+  which ran to six lines on the card and broke the ring's symmetry. It is a
+  condensation of management's own approved line in the list beside it, but the
+  wording is a judgement made here. One line either way.
+- **The figure now restates the list beside it.** With the questions gone, the
+  four cards carry condensed versions of copy set out in full three hundred
+  pixels to their left. That is the failure that sank the first attempt at this
+  figure. It survives on the strength of what the ring's *shape* says — the
+  order closes, revenue feeds demand — which is a thinner argument than the
+  questions gave it. Worth revisiting if the section is reworked.
+- ~~**The medallion's flow line is at 9px**, below the site's 11px floor.~~
+  **Closed the same day** by removing the notes: the ring grew from 343px to
+  537px and nothing on the figure is below 11px now.
+- **The cookie banner was dismissed in every screenshot taken of this section**,
+  so whether it prints across the figure at 390px is untested. It has done so
+  against four other components already.
+
+Related: [[02 Decisions]], [[03 Phase 1 — Homepage]], [[05 Components]],
+[[08 Design system constraints]], [[10 Verification]]

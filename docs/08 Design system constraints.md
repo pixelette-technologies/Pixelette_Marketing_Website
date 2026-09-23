@@ -310,3 +310,88 @@ This is worth checking against elsewhere. `DimensionWave` on
 and its circles were already found to be their path's mirror image below 768px.
 
 Related: [[02 Decisions]], [[05 Components]], [[10 Verification]]
+
+## A second container query, and the rule it is the second instance of — 23 Sep
+
+`.growthSystem__figure` declares `container-type: inline-size` and the
+stylesheet now carries a container query on it, `max-width: 590px`, which
+stands the growth figure up as a column. It is the **second** container query
+in the codebase and the rule above is still untouched: the entire stylesheet
+has **one media query, `max-width: 767px`**. A container query asks about an
+element, not the viewport, so it is not a breakpoint and does not spend the one
+this design system allows.
+
+**It had to be a container query rather than a media query**, and this is the
+cleanest example yet of why. What decides whether the ring fits is *how wide
+the figure is*, and the figure is narrow at 900px of viewport — where the row
+has not yet wrapped and it is sharing the container with the text column — as
+well as on a phone. A media query gets the phone right and that case wrong.
+
+Measured across the range, the figure bottoms out at 595px just before the row
+wraps at about 1000px of viewport, jumps to 921px the moment it does, and falls
+back under 590 only at about 620 viewport. So the collapse fires on a genuinely
+small screen and **never in the middle of the range**, which is where a figure
+like this lands by default. The flex-basis is what buys that, and it is the
+number to re-check if either column changes.
+
+## When a component mixes svg and HTML, the HTML is sized in `cqi` — restated with a correction
+
+The 22 Sep rule holds and the growth figure is its fullest application: four
+cards, a medallion and an annotation layered over one svg, **with not one
+dimension in `rem`**. Positions, box sizes, padding and type are all `cqi` or
+percentages of a `cqi` box, so the whole thing is one drawing at 595px and at
+921px rather than two things that agree at the width somebody measured.
+
+**It also paid for itself in a single edit.** When the four tethered questions
+were removed, the ring, the cards, the badges and the medallion all
+re-proportioned off the same unit — four numbers changed and the drawing
+rebuilt itself at the new scale. Had any of it been in `rem`, that would have
+been a redraw.
+
+**The correction is about what you centre.** A station is a badge stacked on a
+card, and the badge stands proud of it — 3.8cqi at the sizes it settled on.
+`translate(-50%, -50%)` on the station therefore centres **the badge and the
+card together**, which leaves the card itself half the badge's overhang low, so
+the ring runs through the card's upper third rather than its middle. Measured,
+the north card sat 3.6px *over* the medallion where the arithmetic had promised
+7px of clearance. The fix is `translate(-50%, calc(-50% - 1.9cqi))`, and **that
+number has to move whenever the badge does** — it did, when the ring grew.
+
+*The rule: when you position an element on a path, name which part of it the
+path is supposed to pass through. A box with a hat on it has two centres.*
+
+## A container query adds no specificity, and that is a trap — 23 Sep
+
+The narrow collapse above reset `.growthSystem__note` and it silently did
+nothing, because the wide layout sets those offsets on
+`.growthSystem__note--0` and its siblings. **A container query wraps rules; it
+does not weight them.** (0,1,1) loses to (0,2,1) wherever it is written.
+
+What it looked like was not a note in the wrong place — it was **one stray dot
+floating above the centre panel**. A tether is a pseudo-element on the note, so
+when the collapse set the note to `position: static`, all four pseudo-elements
+fell through to the nearest positioned ancestor, which is the plot, and stacked
+at the top of the figure.
+
+*Two rules out of one bug: a container query's overrides have to be written at
+the same weight as the layout they replace, and an element with absolutely
+positioned pseudo-elements cannot be made `static` without rehoming them.*
+
+**The call site is gone** — the tethered notes were removed hours later and
+`.growthSystem__note` with them. This entry stays because the rule is about
+container queries and pseudo-elements rather than about that component, and
+because the bug presented as *one stray dot* rather than as four missing
+connectors, which is the part worth recognising again.
+
+## Icons carry meaning in page content — first time, 23 Sep
+
+`react-icons` was a dependency for chevrons, a search glyph and a filter mark.
+The growth figure is the first place on this site where **an icon is part of
+what a section says** — five Lucide marks, one per station plus one in the
+medallion. They render with `currentColor`, so the token gate is untroubled and
+colour is still read from the ground.
+
+They are also decorative in the strict sense and marked `aria-hidden`: every
+station's name is set in text beside its icon, so nothing reaches a reader
+through the icon alone. **That is the test to apply to the next one.** It is
+not a licence for an icon set on the next card grid.

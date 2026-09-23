@@ -189,10 +189,47 @@ widths and settled at 960. The lesson is in [[10 Verification]]: *a value taken
 from a reference is a claim about the reference, not about us.* See also
 [[02 Decisions]], [[04 Phase 2 — Navigation and footer]] and [[09 Outstanding]].
 
+**23 Sep, the home page growth figure for the fifth time — rebuilt to a
+supplied design.** The four stations are cards now: an icon badge, the stage
+name and a one-line summary apiece, a fixed *Commercial impact* medallion where
+the swapping panel was, gradient arcs with arrowheads between them and a dashed
+return path carrying its own annotation.
+
+**The tablist went with it, and so did the client boundary.** Attempt 4 kept
+its real content — what each stage takes in and hands on — behind a pointer, so
+a reader saw a quarter of it at a time. Everything is on screen at once now,
+the hover pairing between the numbered list and the ring is `:has()` in the
+stylesheet, and **the component ships no JavaScript at all**.
+
+The reference is drawn on a 1760px canvas against our 1160px container, so a
+fork went back and the instruction was to keep the composition and give up the
+size. That put the figure at 62% of the reference with type at 10px — until
+**the four tethered questions were removed, also on instruction**, which turned
+out to be the constraint holding everything small. The ring went 343px to
+537px and nothing on the figure is below 11px now. What it costs is that the
+cards restate the list beside them; the ring survives on what its *shape* says.
+
+**Six gates green before the first screenshot, then six faults from looking**,
+two of which only a measurement could find: cards sitting 3.6px over the
+medallion because a badge gives a card two centres, and four tethers that had
+detached and stacked at the top of the figure, visible as one stray dot. The
+arrowheads were invisible twice, for opposite reasons — too small, then drawn
+underneath a badge. See [[02 Decisions]], [[03 Phase 1 — Homepage]],
+[[05 Components]], [[08 Design system constraints]], [[09 Outstanding]] and
+[[10 Verification]].
+
+**It also cost the other session in this repo a working dev server.** An
+in-place `perl -0pi` rewrite unlinks and recreates; the watcher caught the
+stylesheet in the gap and **Turbopack wrote the resolution failure into its
+on-disk cache**, so every restart replayed a 500 about a file that was present
+and readable. Clearing `.next/dev/cache` fixed it. Three distinct costs of two
+sessions in one repo now. See [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —
-   now at three widths, 1440, 768 and 390 — the whole of the About page and the
+   walked again on 23 Sep across nine widths for the rebuilt figure, and it
+   produced six more faults after six green gates — the whole of the About page and the
    whole of `/strategy-positioning` have been seen; **each look, every time,
    immediately produced faults no gate had caught.** That band alone has now
    done it four times running. Every other page and breakpoint is still

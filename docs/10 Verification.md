@@ -1152,3 +1152,62 @@ restart was left to the person who owned the process.
 *Three entries in this file now describe two sessions in one repo costing
 something. This is the first where the answer was to prove the diagnosis with a
 tool that writes nothing and hand the fix back.*
+
+
+## 23 Sep — the Who we help section walked, and the prediction above did not hold
+
+The entry above ends: *"a section that ships on gates alone and then turns out
+to be right would be the first on this site."* It was walked the same day and
+**no fault was found.** 1440, 900 and 390 by eye, plus a numeric sweep at 1440,
+1160, 1024, 900, 768, 640, 500 and 390 comparing every card's rectangle against
+the grid's on both edges.
+
+- the grid resolves 3 → 2 → 1 columns, with **zero overflow at every width**
+  and no horizontal page scroll anywhere
+- at two columns, nine cards leave the ninth alone on the last row. It is *And
+  beyond*, the terminal card, so the orphan reads as a close rather than as a
+  gap — the one arrangement that could have embarrassed the auto-fit track
+- the cards stretch to their row, so unequal title lengths sit level
+- the authored two-line headings break where the design breaks them
+
+So the base rate is now one section in six. **It is not evidence that looking
+can be skipped** — it is evidence that a change built to a settled design, on
+an idiom the stylesheet already had, is a different risk class from a figure
+being invented. Both of the faults this walk *did* produce were mine, in the
+harness, and they are the part worth keeping.
+
+## 23 Sep — two ways a scroll-reveal lies to a screenshot
+
+Both cost a wrong answer inside ten minutes, and every future browser walk on
+this site will hit them.
+
+**A jumpy programmatic scroll under-reports IntersectionObserver.** Sweeping
+the page with `window.scrollTo(0, y)` in 400px steps and then measuring
+reported all nine sector cards revealed and **all three growth stages still at
+opacity 0**. That reads exactly like a live bug — content that never becomes
+visible. It is not one: scrolled to normally and given two seconds, all three
+report `data-revealing="shown"` with indices 1, 2 and 3. A 103px-tall block can
+pass from below the fold to above the viewport between two sampled frames
+without the observer ever being handed an intersecting state.
+
+**`captureBeyondViewport` photographs the unrevealed state.** The first
+screenshot of this section showed six of nine cards and none of the stages,
+against a plain cream ground. Nothing was wrong. Everything below the fold was
+still at opacity 0 because nothing had scrolled past it, and capturing beyond
+the viewport renders that faithfully. A later attempt that scrolled the whole
+page and returned to the top produced a **completely blank** capture of a
+1425×1344 region.
+
+*The method that works, and the only one used for the images above: set a
+viewport tall enough to hold the whole section, `scrollIntoView` it, wait ~2s
+for the cascade, then assert `[data-revealing="hidden"]` is zero inside the
+section before believing the picture.* Every capture in this pass prints that
+count, which is how the 390 run was caught rendering with three stages still
+hidden — the viewport was 2400px against a 2541px section.
+
+**The general rule this belongs to:** on a page with scroll-driven effects, a
+screenshot is a picture of *a scroll position and a history*, not of the page.
+Three of this repo's recorded false readings are now harness artefacts rather
+than faults, against a much longer list of real faults found by looking. Prove
+the harness before trusting what it shows you — and prove it in the same pass,
+because the failure mode is a picture that looks like a bug.

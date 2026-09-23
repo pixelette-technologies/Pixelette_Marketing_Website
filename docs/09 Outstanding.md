@@ -643,13 +643,20 @@ to a hub page rather than to the home page.
   enough to belong on `/contactus`, and moving it there would leave the sector
   hub with no route from the home page. Worth a decision from someone who knows
   which of those matters more.
-- **The section has not been seen in a browser, at any width.** Not at 1440, not
-  at 768, not at 390. Five gates are green and on this repo that has never once
-  meant the layout is right. Specific things nobody has looked at: whether the
-  masked art fade actually keeps the copy legible, whether nine cards of unequal
-  title length settle or stagger, whether the two-line headings break where the
-  design breaks them, and whether the `62rem` stage row is the right place for
-  it.
+- ~~**The section has not been seen in a browser, at any width.**~~ **Walked
+  the same day**, at 1440, 900 and 390, plus a numeric sweep at eight widths.
+  It is the first section on this site to survive a look with no fault found —
+  see [[10 Verification]]. What that covers: the nine cards settle at three,
+  two and one column with no overflow and no horizontal page scroll, the
+  unequal title lengths sit level because the cards stretch to their row, and
+  the authored two-line headings break where the design breaks them.
+  **What it does not cover, and these are still open:** the masked art fade is
+  untested because all nine `image` fields are unset, so the window has only
+  ever rendered its tone wash; no hover state was exercised; and the cookie
+  banner was dismissed before every capture, so whether it prints across the
+  cards at 390 is still unknown. The `62rem` stage row was not interrogated —
+  it looks right at the three widths seen and has not been probed either side
+  of its own breakpoint.
 - **Eight new hues are enforced by a sentence, not by scope.** See
   [[08 Design system constraints]]. The first component that reaches for
   `--tone-teal` will not be stopped by anything.

@@ -302,6 +302,18 @@ stopped at 44rem; and "technology-" broke at its hyphen in eight service
 headings. All three fixed. **What needs a human is at the foot of
 [[09 Outstanding]].**
 
+**24 Sep — "Tools we work in" on `/services`.** The old home page's tool
+marquee returned as fourteen names, grouped by job, inside Growth Intelligence —
+not on the home page, not as logos, and worded to claim no partnership. PyTorch
+and Jira left out, GA4 added. **The list is unconfirmed by management.** See
+[[02 Decisions]] and [[09 Outstanding]].
+
+**25 Sep — superseded: the tools are a logo band now.** On instruction, the
+list became a dark band on the client-logo device — the old white marks,
+scrolling — between the five capabilities and the call to action on
+`/services`. Same fourteen, same wording rule, still unconfirmed. See
+[[02 Decisions]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

@@ -696,9 +696,36 @@ Built to a consolidated positioning brief. What it left for a human:
 - **`/contactus` promises "We sign an NDA"** in its process steps. Confirm.
 - **Home hero headline is split across an h1 and an h2** ("Marketing that
   matters" / "to your bottom line"). Structural; not touched.
-- **`/success_stories` and `/story/[id]`** are still built and reachable by URL
+- ~~**`/success_stories` and `/story/[id]`** are still built and reachable by URL
   with legacy Pixelette Technologies content and a metadata claim about
-  "Fintech, SaaS, Web3 and technology clients". Hidden, noindexed, untouched.
+  "Fintech, SaaS, Web3 and technology clients". Hidden, noindexed, untouched.~~
+  **Deleted 25 Sep 2026, on instruction** — both routes, their components
+  (`ui/stories`, `ui/singleIndustriesPage`), `storiesData`, their two style
+  folders and four images used nowhere else. Both return 404, and
+  `route:walk` now asserts they do. `talkBusinessData.ts` is left behind,
+  unimported; it was the story page's last caller.
 - **The growth figure's small type** measured 9.5–10.1px at 1440 in the
   browser walk (`growthSystem__feedbackLead`, `__coreFlow`), under the 11px
   floor recorded on 23 Sep. Not changed in this pass.
+
+## Tools we work in (24 Sep)
+
+- **The tool list needs management's confirmation before launch.** Fourteen
+  tools now render in a logo band on `/services` (25 Sep): Google Analytics 4,
+  Hotjar, Semrush, Ahrefs, Mailchimp, Apollo.io, LinkedIn, Sprout Social,
+  Buffer, CoSchedule, Canva, Grammarly, Loom, Calendly. It is the old site's
+  list with GA4 added, and nobody has signed it off. The question to take back:
+  is each of these in current use, and is anything missing?
+- **PyTorch and Jira were left out pending the same answer.** Either returns
+  with one line in `src/data/services/toolsWeWorkIn.ts` if management wants it
+  named.
+- ~~**The fifteen white logo components in `src/assets/common` are still
+  unimported.**~~ Thirteen are in use again since 25 Sep, in the band; PyTorch
+  and Jira remain unimported.
+- **Google Analytics 4 is a text wordmark in a row of logos.** There is no GA4
+  mark in the repo and none was drawn or downloaded. If management wants a
+  logo, it needs sourcing from Google's brand resources as a white mark.
+- **The brief said software logos must not become the proposition** — quoted
+  in `595bb24` when the old band came off. The band is on `/services` rather
+  than the home page and after the capabilities rather than before them, but
+  it is logos again. Worth a nod from management at the same time as the list.

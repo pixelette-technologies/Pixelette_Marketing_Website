@@ -1346,3 +1346,112 @@ now rather than `PointItemContent[]`, so the two are not confused later.
 
 Related: [[03 Phase 1 — Homepage]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]
+
+## 24 Sep — the tool list comes back, as "Tools we work in", on /services
+
+The old home page ended on a crimson marquee headed *"Our range of marketing
+tech and platforms"*: fifteen vendor logos, Jira twice, scrolling in two rows.
+It came off on 8 Sep (`595bb24`) because the brief says software logos must not
+become the proposition, and that freed a dark band. An audit against the old
+live site then found the cost: **the new site names no tools anywhere.** Growth
+Intelligence promises analytics, attribution, dashboards and workflow
+automation in the abstract, and a buyer checking whether we would work in
+their stack has nothing to check against.
+
+**It is back on `/services`, not on the home page.** The home page was flagged
+as already twice the old one's length. On `/services` it sits inside capability
+05, Growth Intelligence, beneath its service link, because joining those tools
+up into a commercial decision is that capability's job. It is five short rows
+grouped by job — analytics and insight, search, email and outreach, social and
+content, workflow — so the list reads against the capabilities rather than as a
+wall.
+
+**The heading is "Tools we work in" and it claims nothing more.** No
+"partners", "trusted by", "certified" or "official": a subscription is not a
+partnership, and every one of those words asserts a relationship with the
+vendor that nobody has evidence for. The one line under it says only that
+these are the tools the team works in, grouped by use.
+
+**Two came off the old fifteen and one went on.** PyTorch is a
+machine-learning framework, not marketing tooling, and on a services page it
+reads as a claim about ML work the site makes nowhere else. Jira is project
+management. **Both are excluded pending confirmation**, not ruled out. Google
+Analytics 4 is added because it is the one tool we can prove is in use — this
+site loads its own GA4 property. Fourteen in all.
+
+**Names, not logos.** The fifteen marks are still in `src/assets/common`, and
+every one is knockout white with its fill hard-coded — invisible on `/services`'
+light ground without retinting third-party brand marks, which is a brand-usage
+question rather than a CSS one. There is no GA4 mark at all. So all fourteen
+are set in the page's own type: one consistent treatment, coloured by tokens,
+and no vendor branding standing in for the offer. No band, no motion — the
+marquee was a motion surface and this adds none.
+
+**The list is unconfirmed**, and says so at its definition in
+`src/data/services/toolsWeWorkIn.ts`. See [[09 Outstanding]].
+
+**Looked at in headless Chrome at 1440, 900 and 390, and looking removed a
+hairline.** The block first sat on a rule the width of the capability's
+column, on the theory that starting right of the numeral marked it as part of
+05. At 390 the numeral stacks, the column starts at the gutter, and the rule
+was identical to the separators between capabilities — it read as a sixth row.
+It separates on space and its eyebrow now. No horizontal overflow at any of
+the three widths.
+
+Related: [[07 Results and hub pages]], [[08 Design system constraints]],
+[[09 Outstanding]]
+
+## 25 Sep — superseded a day later: the tools become a logo band
+
+**On instruction, with the client-logo band as the reference**: the same dark
+section, the same white marks, the same marquee. The 24 Sep text list is gone,
+and so are its `tools` field on `capabilityGroups` and its `.capabilityTools`
+styles.
+
+**It is the client band, not a copy of it.** `TrustedBrands` took an `items`
+prop — marks with a name each — and a `className` modifier, so both bands are
+one component and cannot drift. The client strip renders exactly what it did;
+checked on `/`, `/aboutus` and a service page.
+
+**Where it sits:** its own full-bleed band after the five capabilities and
+before "Talk to us about your growth plan", which moved into its own `.sec-sm`
+section below it. After, because the tools are how the work is done rather
+than what is sold. Before the button, so the page ends on the way out rather
+than on a dark band running into the dark footer. It is `/services`' first and
+only dark band, well inside the three-per-page cap.
+
+**The motion needed no new exception.** `_marquee.scss` already sanctions the
+marquee for "the client-logo strip and the platform strip", which was this
+band. 90s instead of 40s, so fourteen marks move about as slowly as six.
+
+**The marks are the old band's own** — thirteen of the fifteen white svg
+components in `src/assets/common`, which is also why it has to be dark. Each
+wrapper carries `role="img"` and the vendor's name, because the svgs are
+aria-hidden. GA4 has no mark, so it is a white wordmark in body type.
+
+**Looked at in headless Chrome at 1440, 900 and 390; one fault.** Every svg was
+set to one height, and Semrush — seven times wider than tall — came out at
+185px and read as the headline vendor. Capped at 8rem wide, it letterboxes
+without distorting. No horizontal overflow at any width.
+
+**What the 24 Sep reasoning said against this still stands**, and is recorded
+rather than argued away: the 8 Sep brief says software logos must not become
+the proposition. Putting it on `/services`, after the capabilities, is the
+mitigation. See [[09 Outstanding]].
+
+## 25 Sep — community management is named again
+
+The old home page sold Community Management as one of nine services. The
+five-capability rewrite dropped it without a decision: it survived only as
+"Crypto Community Management" on the Web3 page. The audit found the cost —
+**BlockGuard, the lead case on `/results`, is mostly a community result** (975
+Telegram and Discord members, 29,974 engagements), so the site's best proof
+pointed at a service the offer no longer named.
+
+It is back as one phrase in Demand & Performance's sub-list, after "social
+media", in `homeContent.ts` — agreed with the user. **No page and no menu
+entry**: the menu lists pages, and there is no content for a page. The old
+card copy was not revived; the sub-list is short phrases.
+
+Looked at on the home page at 1440, 900 and 390: card 02 still wraps to three
+lines like its neighbours, so the row stays level. No overflow.

@@ -8,6 +8,7 @@ interface Web3CardsProps {
 }
 
 interface Web3QuestionsProps {
+  eyebrow?: string;
   heading?: string;
   text?: string;
   data?: Web3CardsProps[];
@@ -40,17 +41,26 @@ interface Web3QuestionsProps {
 //
 // Rows, not cards, on the pattern /services and /industries now use: three
 // equal boxes of short text is the shape both hub pages were just taken off.
-const Web3Questions: FC<Web3QuestionsProps> = ({ heading, text, data }) => {
+//
+// 25 Sep 2026: the header moved onto the stacked eyebrow / h2 / standfirst
+// opening every current section uses. It was a legacy light heading with
+// HTML spans in the copy and a right-aligned paragraph beside it.
+const Web3Questions: FC<Web3QuestionsProps> = ({
+  eyebrow,
+  heading,
+  text,
+  data
+}) => {
   return (
     <div className='band-alt'>
       <Container className='main'>
         <section className='web3Question'>
-          <header>
-            <h2
-              dangerouslySetInnerHTML={{ __html: heading || "Heading" }}
-              className='heading_secondry--light'
-            ></h2>
-            <Text className='text_secondry'>{text}</Text>
+          <header className='whoBand__head'>
+            {eyebrow && <Text className='eyebrow'>{eyebrow}</Text>}
+            <Heading className='h2' level={2}>
+              {heading}
+            </Heading>
+            {text && <Text className='lead'>{text}</Text>}
           </header>
 
           <ul className='constraintList' data-reveal='stagger'>

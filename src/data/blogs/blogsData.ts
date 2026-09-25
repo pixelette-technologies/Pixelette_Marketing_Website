@@ -1,9 +1,24 @@
-const blogsData = [
-  {
-    title: "Marketing insights",
-    data: [
+// 25 Sep 2026: Insights is organised by the categories below, in this order,
+// set by the final correction pass. A post names its category; the groups the
+// landing page filters by are built from the posts, and a category with no
+// post in it is left out rather than shown empty. Until today every post sat
+// in one group, "Marketing insights", so the filter had one option.
+//
+// A post naming a category that is not in this list fails the build.
+export const INSIGHT_CATEGORIES = [
+  "Growth",
+  "Search",
+  "Demand",
+  "Conversion",
+  "Measurement",
+  "AI & technology",
+  "Market & regulatory developments"
+] as const;
+
+const posts = [
       {
         id: 1,
+        category: "Market & regulatory developments",
         image: "/blogs/blog-fintech-banner.webp",
         imageAlt: "A banner for the fintech financial promotions article.",
         authorProfile: "/blogs/authorImage.png",
@@ -51,9 +66,9 @@ const blogsData = [
           {
             id: 6,
             titleOne: "Work with Pixelette Marketing",
-            titleTwo: "compliant, conversion-led content for fintech",
+            titleTwo: "conversion-led content, planned around sign-off",
             description:
-              "Pixelette Marketing builds compliant, conversion-led content for fintech and Web3 brands, with sign-off baked into the workflow. Explore our fintech marketing and our SEO and content services, or book an intro call to talk strategy."
+              "Pixelette Marketing builds conversion-led content for fintech and Web3 brands, working alongside your legal and compliance teams so every asset moves through your approval process. Explore our fintech marketing and our SEO and content services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -91,6 +106,7 @@ const blogsData = [
       },
       {
         id: 2,
+        category: "Demand",
         image: "/blogs/blog-web3-banner.webp",
         imageAlt: "A banner for the Web3 advertising article.",
         authorProfile: "/blogs/authorImage.png",
@@ -140,7 +156,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "Web3 growth through community and earned reach",
             description:
-              "Pixelette Marketing grows Web3 brands through community, content and earned reach rather than ad spend that gets rejected. Explore our Web3 marketing and social media services, or book an intro call to talk strategy."
+              "Pixelette Marketing grows Web3 brands through community, content and earned reach rather than ad spend that gets rejected. Explore our Web3 marketing and social media services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -178,6 +194,7 @@ const blogsData = [
       },
       {
         id: 3,
+        category: "Measurement",
         image: "/blogs/blog-saas-banner.webp",
         imageAlt: "A banner for the SaaS metrics article.",
         authorProfile: "/blogs/authorImage.png",
@@ -228,7 +245,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "measurement that ties spend to revenue",
             description:
-              "Pixelette Marketing builds measurement that connects spend to revenue, not vanity dashboards. Explore our analytics and reporting and our SaaS marketing services, or book an intro call to talk strategy."
+              "Pixelette Marketing builds measurement that connects spend to revenue, not vanity dashboards. Explore our analytics and reporting and our SaaS marketing services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -265,6 +282,7 @@ const blogsData = [
       },
       {
         id: 4,
+        category: "Search",
         image: "/blogs/blog-ai-search-laptop.webp",
         imageAlt:
           "A laptop showing an AI search assistant asking what do you want to know.",
@@ -315,7 +333,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "content built to be found and quoted",
             description:
-              "Pixelette Marketing builds search and authority work for technology brands, from page structure to the evidence behind each claim. Explore our SEO and content marketing and our analytics and reporting services, or book an intro call."
+              "Pixelette Marketing builds search and authority work for technology brands, from page structure to the evidence behind each claim. Explore our SEO and content marketing and our analytics and reporting services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -353,6 +371,7 @@ const blogsData = [
       },
       {
         id: 5,
+        category: "Growth",
         image: "/blogs/blog-marketing-spend-banner.webp",
         imageAlt:
           "Two colleagues reviewing printed charts and a laptop graph together.",
@@ -404,7 +423,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "five connected capabilities, not a channel menu",
             description:
-              "Pixelette Marketing organises the work as strategy, demand, search, pipeline and growth intelligence, starting from whatever is actually limiting growth. Explore what we do, or book an intro call and we will run these checks with you."
+              "Pixelette Marketing organises the work as strategy, demand, search, pipeline and growth intelligence, starting from whatever is actually limiting growth. Explore what we do, or tell us what needs to grow and we will run these checks with you."
           }
         ],
         relatedBlogs: [
@@ -439,8 +458,34 @@ const blogsData = [
           }
         ]
       }
-    ]
-  }
 ];
+
+export type InsightCategory = (typeof INSIGHT_CATEGORIES)[number];
+
+for (const post of posts) {
+  if (!(INSIGHT_CATEGORIES as readonly string[]).includes(post.category)) {
+    throw new Error(
+      `Insight ${post.id} names an unknown category: "${post.category}".`
+    );
+  }
+}
+
+// A related-article card shows the category of the post it links to, taken
+// from that post rather than typed beside the link. The hand-typed labels
+// ("Fintech", "SaaS") predate the categories and no longer matched the filter.
+for (const post of posts) {
+  for (const related of post.relatedBlogs) {
+    const target = posts.find(p => `/blog/${p.id}` === related.link);
+    if (!target) {
+      throw new Error(`Insight ${post.id} links to a missing post: ${related.link}`);
+    }
+    related.subheading = target.category;
+  }
+}
+
+const blogsData = INSIGHT_CATEGORIES.map(title => ({
+  title,
+  data: posts.filter(post => post.category === title)
+})).filter(group => group.data.length > 0);
 
 export default blogsData;

@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Container, TrustedBrands } from "@/components/common";
+import { Container } from "@/components/common";
 import Link from "next/link";
 import { Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
 import { capabilityGroups } from "@/data/services/capabilityGroups";
-import { tools, toolsBandCopy } from "@/data/services/toolsWeWorkIn";
 
 const baseUrl = "https://www.pixelettemarketing.com";
 
@@ -164,28 +163,14 @@ export default function ServicesIndexPage() {
         </Container>
       </div>
 
-      {/* 25 Sep 2026. The old site's tool band, back on the client-logo
-          device so the two read as one recurring thing — asked for in exactly
-          those terms. It sits AFTER the five capabilities, because the tools
-          are how the work gets done, not what is being sold, and BEFORE the
-          call to action so the page still ends on the way out rather than on
-          a dark band running into the footer. The list is unconfirmed; see
-          toolsWeWorkIn.ts. */}
-      <TrustedBrands
-        layout='stacked'
-        className='trustedBrands--tools'
-        eyebrow={toolsBandCopy.eyebrow}
-        heading={toolsBandCopy.heading}
-        standfirst={toolsBandCopy.standfirst}
-        items={tools.map(({ name, Mark }) => ({
-          name,
-          mark: Mark ? (
-            <Mark />
-          ) : (
-            <span className='trustedBrands__wordmark'>{name}</span>
-          )
-        }))}
-      />
+      {/* 25 Sep 2026, later: THE TOOL BAND IS OFF THIS PAGE. It was "Tools we
+          work in / The platforms behind the work", fourteen vendors on the
+          client-logo device. Nobody at Pixelette has confirmed the list, and
+          the only tool on it with any evidence behind it is GA4, because this
+          site loads a GA4 property. The final correction pass set the rule:
+          an absent stack is better than an incomplete or misleading one. The
+          list and its reasoning stay in toolsWeWorkIn.ts so the band can come
+          back, tool by tool, once management confirms what is actually used. */}
 
       <div className='sec-sm'>
         <Container className='main'>
@@ -194,7 +179,7 @@ export default function ServicesIndexPage() {
               still reachable from every capability above, so nothing is
               orphaned — they simply stop being the only exit. */}
           <Link href='/contactus' className='btn'>
-            Talk to us about your growth plan
+            Tell us what needs to grow
           </Link>
         </Container>
       </div>

@@ -9,7 +9,13 @@ export const metadata: Metadata = {
   title: "Privacy Statement | Pixelette Marketing",
   description:
     "How Pixelette Marketing collects, uses, shares and protects personal information, how long we keep it, and the rights you have over it.",
-  alternates: { canonical: "https://www.pixelettemarketing.com/privacy" }
+  alternates: { canonical: "https://www.pixelettemarketing.com/privacy" },
+  openGraph: {
+    title: "Privacy Statement | Pixelette Marketing",
+    url: "https://www.pixelettemarketing.com/privacy",
+    siteName: "Pixelette Marketing",
+    type: "website"
+  }
 };
 
 // --- 23 Sep 2026 ------------------------------------------------------------

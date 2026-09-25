@@ -56,7 +56,14 @@ const fromSitemap = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map(m => m[1].replace(/^https?:\/\/[^/]+/, ""))
   .map(p => (p === "" ? "/" : p));
 
-for (const gone of ["/success_stories", "/story/1"]) {
+// 25 Sep 2026, later: the two soft 404s join the list. Unknown sector and
+// service slugs used to render an empty template with a 200.
+for (const gone of [
+  "/success_stories",
+  "/story/1",
+  "/industries/undefined",
+  "/services/undefined"
+]) {
   const r = await get(gone);
   if (r.status !== 404) fail(`${gone} returned ${r.status}; it was deleted and must 404`);
 }

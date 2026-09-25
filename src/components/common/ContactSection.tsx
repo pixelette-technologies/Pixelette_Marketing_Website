@@ -22,6 +22,15 @@ interface ContactSectionProps {
    *  is noise. */
   cta?: { label: string; to: string };
   headingLevel?: 1 | 2;
+  /** Small label above the heading. */
+  eyebrow?: string;
+  /** Anchor for in-page links to the form ("#enquiry"). */
+  id?: string;
+  /** False where this section's own heading already says what the form's
+   *  intro says. The form opens on "Start here / Tell us what needs to grow."
+   *  and a section headed with the same line would print it twice, side by
+   *  side. /contactus and the five deeper-experience pages set it false. */
+  formIntro?: boolean;
 }
 
 const ContactSection: FC<ContactSectionProps> = ({
@@ -30,14 +39,18 @@ const ContactSection: FC<ContactSectionProps> = ({
   data,
   closing,
   cta,
-  headingLevel = 2
+  headingLevel = 2,
+  eyebrow,
+  id,
+  formIntro = true
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
   return (
-    <div className='band-closing'>
+    <div className='band-closing' id={id}>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
+            {eyebrow && <Text className='eyebrow'>{eyebrow}</Text>}
             {heading && (
               <HeadingTag
                 className={headingLevel === 1 ? "h1p" : "h2"}
@@ -70,7 +83,7 @@ const ContactSection: FC<ContactSectionProps> = ({
             {closing && <Text className='small'>{closing}</Text>}
           </section>
           <div>
-            <ContactUsForm />
+            <ContactUsForm showIntro={formIntro} />
           </div>
         </section>
       </Container>

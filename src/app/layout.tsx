@@ -120,7 +120,7 @@ export default function RootLayout({
     // present. Without it every link click became an animated scroll from the
     // previous page's position, measured by Next before it had moved.
     <html
-      lang='en'
+      lang='en-GB'
       data-scroll-behavior='smooth'
       className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable}`}
     >

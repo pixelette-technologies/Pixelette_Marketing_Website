@@ -6,3 +6,13 @@
     }
   }
 }
+
+// The optional header (25 Sep 2026, the deeper-experience pages). The list
+// keeps its own padding; the header only needs the section's top edge.
+.faqs__head {
+  padding-top: var(--sec-y);
+}
+
+.faqs__head + .faqs {
+  padding-bottom: var(--sec-y);
+}

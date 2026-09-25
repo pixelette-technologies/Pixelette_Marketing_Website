@@ -304,8 +304,8 @@ export const waysToWorkData: ItemsSectionContent = {
 //
 // The steps are NUMBERED rather than marked with the four process icons. The
 // brief numbers them 01-04 and they are a sequence, so a mark would drop the
-// one piece of information the ordering carries. The icons keep their call
-// site in talkBusinessData for /story.
+// one piece of information the ordering carries. The icons are still used by
+// the service pages' own process block (servicesData.howWeWork).
 
 export const growthProcessData: ItemsSectionContent = {
   eyebrow: "From first conversation to commercial impact",

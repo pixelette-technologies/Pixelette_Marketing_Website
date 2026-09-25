@@ -35,10 +35,13 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
         >
           {text}
         </Text>
+        {/* 25 Sep 2026: was "Book a consultation – it's on us!", on all eight
+            service pages. It promised a free consultation nobody has confirmed
+            and it was the legacy agency CTA the rest of the site has dropped.
+            The label is the form's own heading, so the button and the page it
+            opens say the same thing. */}
         <Link href='/contactus'>
-          <Button className='primary'>
-            {"Book a consultation – it’s on us!"}
-          </Button>
+          <Button className='primary'>Tell us what needs to grow</Button>
         </Link>
       </div>
     </section>

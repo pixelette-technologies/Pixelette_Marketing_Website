@@ -7,7 +7,13 @@ export const metadata: Metadata = {
   title: "Cookie Policy | Pixelette Marketing",
   description:
     "How Pixelette Marketing uses cookies, the analytics cookies we set only with your consent, and how to change your choice.",
-  alternates: { canonical: "https://www.pixelettemarketing.com/cookie-policy" }
+  alternates: { canonical: "https://www.pixelettemarketing.com/cookie-policy" },
+  openGraph: {
+    title: "Cookie Policy | Pixelette Marketing",
+    url: "https://www.pixelettemarketing.com/cookie-policy",
+    siteName: "Pixelette Marketing",
+    type: "website"
+  }
 };
 
 // 18 Sep 2026. Taken onto the design system. The page was a bare <article>

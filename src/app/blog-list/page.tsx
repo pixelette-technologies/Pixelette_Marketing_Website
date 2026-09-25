@@ -2,14 +2,14 @@ import { BlogDataDisplay, BlogHeroSection } from "@/components/ui/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog | Pixelette Marketing",
+  title: "Insights | Pixelette Marketing",
   description:
-    "Marketing insights, guides and trends from the Pixelette Marketing team, with a focus on technology-led markets.",
+    "Practical thinking on growth, marketing and the markets changing both, from the Pixelette Marketing team.",
   alternates: { canonical: "https://www.pixelettemarketing.com/blog-list" },
   openGraph: {
-    title: "Blog | Pixelette Marketing",
+    title: "Insights | Pixelette Marketing",
     description:
-      "Marketing insights, guides and trends from the Pixelette Marketing team, with a focus on technology-led markets.",
+      "Practical thinking on growth, marketing and the markets changing both, from the Pixelette Marketing team.",
     url: "https://www.pixelettemarketing.com/blog-list",
     type: "website"
   }

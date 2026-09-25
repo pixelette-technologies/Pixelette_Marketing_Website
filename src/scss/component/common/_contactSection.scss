@@ -37,6 +37,11 @@
       margin-bottom: 1rem;
     }
 
+    & > .eyebrow {
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
     & > div {
       & > * {
         &:not(:last-child) {

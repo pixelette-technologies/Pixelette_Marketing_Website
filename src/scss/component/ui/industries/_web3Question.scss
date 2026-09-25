@@ -7,30 +7,29 @@
 .web3Question {
   padding-block: var(--sec-y);
 
+  // 25 Sep 2026: the header is .whoBand__head now (eyebrow, h2, standfirst,
+  // stacked). The wrapping pair with a right-aligned paragraph went with the
+  // legacy heading it was built around.
   & > header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-
-    & > h2 {
-      flex: 1 1 18rem;
-      max-width: 23.75rem;
-      color: var(--color-ink);
-
-      & > span {
-        color: var(--color-brand);
-      }
-    }
-
-    & > p {
-      flex: 1 1 20rem;
-      max-width: 34.75rem;
-      text-align: right;
-    }
+    margin-bottom: 2.5rem;
   }
+}
+
+// "Where Pixelette can help": a heading and two paragraphs, no ground of its
+// own. The second paragraph is where each page states what the work is NOT,
+// which is the line a regulated or sceptical buyer is reading for.
+.sectorHelp {
+  padding-block: var(--sec-y);
+
+  & > .body {
+    margin-top: 1rem;
+    max-width: 44rem;
+  }
+}
+
+.sectorEvidence__more {
+  display: inline-flex;
+  margin-top: 2rem;
 }
 
 // --- 22 Sep 2026: the three image cards became three constraints ------------
@@ -68,4 +67,21 @@
 .constraintList__title {
   color: var(--color-brand);
   margin-bottom: 0.5rem;
+}
+
+.sectorEvidence__head {
+  padding-top: var(--sec-y);
+}
+
+.sectorEvidence__more {
+  margin-bottom: var(--sec-y);
+}
+
+// The case study is the /results component, which carries a full section's
+// padding of its own. Inside this block the header above already opens the
+// section, so its top padding would read as a hole, and its bottom one would
+// push "See client results" a section away from the story it belongs to.
+// No ground: .band-alt was tried and is the page ground to the digit.
+.sectorEvidence .caseStudy {
+  padding-block: 2.5rem 0;
 }

@@ -1,6 +1,7 @@
 import HeroSingleBlogPage from "@/components/ui/singleBlog/HeroSingleBlogPage";
 import SingleBlogContent from "@/components/ui/singleBlog/SingleBlogContent";
-import { ContactUsHero } from "@/components/ui/contactUs";
+import { ContactSection } from "@/components/common";
+import { finalConversionCopy } from "@/data/home";
 import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
 import blogsData from "@/data/blogs/blogsData";
 import type { Metadata } from "next";
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const blog = blogsData.flatMap(c => c.data).find(item => item.id === parseInt(id, 10));
   if (!blog) {
     return {
-      title: "Blog | Pixelette Marketing",
+      title: "Insights | Pixelette Marketing",
       alternates: { canonical: `${SITE}/blog/${id}` }
     };
   }
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       : "";
   return {
     title: `${blog.heading} | Pixelette Marketing`,
-    description: desc || `Read "${blog.heading}" on the Pixelette Marketing blog.`,
+    description: desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,
     alternates: { canonical: `${SITE}/blog/${id}` },
     openGraph: {
       title: `${blog.heading}`,
@@ -94,7 +95,14 @@ export default async function SingleBlogPage({ params }: PageProps) {
         data={blog.dataContent}
       />
       <RelatedBlogs data={blog.relatedBlogs} />
-      <ContactUsHero />
+      {/* 25 Sep 2026: was ContactUsHero, the /contactus opening. That is
+          "Start here" as a page heading now, so articles close on the
+          /results close instead. */}
+      <ContactSection
+        heading={finalConversionCopy.heading}
+        text={finalConversionCopy.lead}
+        closing={finalConversionCopy.closing}
+      />
     </div>
   );
 }

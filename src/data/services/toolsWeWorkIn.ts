@@ -15,6 +15,11 @@ import {
   Sprout
 } from "@/assets/common";
 
+// NOT RENDERED ANYWHERE SINCE 25 SEP 2026. The band came off /services under
+// the final correction pass: the list is unconfirmed, and an absent stack is
+// better than an incomplete or misleading one. Kept so it can return tool by
+// tool once management confirms what is actually in use.
+//
 // "Tools we work in" — the old site's "Our range of marketing tech and
 // platforms" band, back on /services rather than on the home page.
 //

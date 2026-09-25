@@ -51,40 +51,45 @@
           width: 1.5rem;
           height: 1.5rem;
         }
+
+        // Links since 25 Sep 2026. Same tone as the text they replaced; the
+        // underline on hover is the affordance.
+        & > a {
+          color: inherit;
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
 
-  & > section {
+  // 25 Sep 2026: four numbered steps in an <ol>, where three icon cards sat in
+  // a <section>. The card geometry is unchanged; the icon box holds the step
+  // number instead, in the marking tone the icons used (see the note above).
+  & > ol {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
     gap: 1.5rem;
+    list-style: none;
 
-    & > blockquote {
+    & > li {
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
+      align-items: flex-start;
+      gap: 1.25rem;
       padding: 1.375rem 1.25rem;
       background-color: var(--color-panel-b);
       border: 1px solid var(--color-panel-border);
       border-radius: var(--radius-card);
 
-      & > section {
-        flex: 0 0 auto;
-        color: var(--color-brand-signal);
-        height: 3.5rem;
-        width: 3.5rem;
-
-        & > svg {
-          height: 100%;
-          width: 100%;
-        }
-      }
-
       & > div {
         min-width: 0;
 
-        & > :is(h1, h2) {
+        & > :is(h2, h3) {
           margin-bottom: 0.625rem;
           color: var(--color-page);
         }
@@ -95,6 +100,16 @@
       }
     }
   }
+}
+
+.howItworks__index {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: var(--color-brand-signal);
 }
 
 // The dark ground. Was bg_secondry--light, which resolves to --color-ink

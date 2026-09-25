@@ -3,6 +3,11 @@
 //
 // Takes .wash-left, the guide's interior hero ground — the third of the four
 // interior heroes to get the ground the hero strategy chose for it.
+//
+// 25 Sep 2026: the text column takes the primitives' type roles (.eyebrow,
+// .h1p, .lead, .btn) instead of colouring two legacy headings by hand. The
+// positioning line is __sub: display face at the h3 size, but a <p>, because
+// it is the h1's subtitle rather than a heading of anything beneath it.
 
 .industriesHero {
   display: flex;
@@ -23,17 +28,28 @@
     flex: 1 1 20rem;
     min-width: 0;
 
-    & > h1 {
-      color: var(--color-brand);
+    & > .eyebrow {
+      display: block;
+      margin-bottom: 1.25rem;
     }
 
-    & > h2 {
-      color: var(--color-ink);
+    & > .lead {
+      margin-top: 1.25rem;
     }
 
-    & > p {
-      margin: 1.5rem 0rem;
-      color: var(--color-body);
+    & > .btn {
+      display: inline-flex;
+      margin-top: 2rem;
     }
   }
+}
+
+.industriesHero__sub {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.26;
+  letter-spacing: -0.008em;
+  color: var(--color-brand);
+  text-wrap: balance;
 }

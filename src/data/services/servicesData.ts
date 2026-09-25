@@ -5,7 +5,7 @@ export const servicesData = [
     id: 1,
     title: "Social Media Marketing",
     metaTitle: "Social Media Marketing Agency | Pixelette Marketing",
-    metaDescription: "Grow your audience with social media marketing services that turn scrolls into action. Designed for reach, relevance and results. Let's talk strategy today!",
+    metaDescription: "Social media marketing planned around the audiences, platforms and outcomes that matter to your business, and measured on what it produces.",
     metaKeywords: "social media marketing agency, social media marketing services, social media solutions",
     route: "social_media_marketing",
     mainHeading: "From starting out to standing out,",
@@ -13,60 +13,6 @@ export const servicesData = [
     summary:
       "Pixelette Marketing specialises in helping emerging brands establish a powerful social media presence, ensuring every post, campaign and connection capitalises on untapped potential and drives meaningful growth from day one.",
     image: "/services/heroImageServices.webp",
-    research: {
-      subHeading: "one size does not fit all",
-      mainHeading: "In social media marketing,",
-      detail:
-        "Each social media platform has its unique audience and potential. Using the same strategy of copy-pasting content in the same format everywhere may satisfy internally set social media KPIs, but it means brands lose out on significant unrealised revenue.",
-      data: [
-        {
-          value: 73,
-          message:
-            "of brands post identical content across multiple platforms, ignoring each platform's unique audience, or even image dimensions.",
-          source: "Sprout Social, 2022"
-        },
-        {
-          value: 23,
-          message:
-            "lower engagement rates seen for businesses that do not have a purpose-built content approach for each platform.",
-          source: "Social Media Examiner, 2023"
-        },
-        {
-          value: 95,
-          message:
-            "of marketers admit they struggle with understanding platform-specific algorithms and best practices, leading to ineffective strategies.",
-          source: " HubSpot, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important social media really is, ",
-      subHeading: "according to leaders of billion dollar brands",
-      data: []
-    },
-    status: {
-      heading:
-        "Our social media marketing services are widely sought after by various emerging brands",
-      text: "Social media solutions delivered by the Pixelette Marketing team are designed to deeply understand audience behaviour and drive growth from the minute we partner together with a brand. ",
-      data: [
-        {
-          value: 60,
-          detail: " increase in social shares in the first four months"
-        },
-        {
-          value: 45,
-          detail: " growth in social media followers in the first six months"
-        },
-        {
-          value: 30,
-          detail: "increase in user acquisition within the first quarter"
-        },
-        {
-          value: 50,
-          detail: "increase in avg. brand visibility within the first quarter"
-        }
-      ]
-    },
     services: {
       heading: "Our social media marketing services",
       text: "We focus on understanding each client’s brand and audience before delivering a social media strategy. Our services include everything from creative content development to analysing its performance, so that you can finally focus on other areas of the business that need your attention. ",
@@ -273,14 +219,13 @@ export const servicesData = [
         question:
           " How do I get started with social media marketing services from Pixelette Marketing?",
         answer:
-          "Simply contact us for a free consultation. We'll discuss your business goals and develop a customised strategy."
+          "Send us an enquiry. We'll discuss your business goals and develop a customised strategy."
       }
     ],
     questionAndAnswer: {
       question: `Missed posts mean <span> missed opportunities </span>`,
       answer:
-        "Don’t let your competitors steal the spotlight. Level up your social media game with strategies that drive real results.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us which audiences matter, where social is falling short and what it needs to deliver. We will come back with the most relevant next step.",
     },
     marketingServices: {
       title: "From likes to leads",
@@ -321,7 +266,7 @@ export const servicesData = [
         {
           icon: BookIcon,
           heading: "Book",
-          text: "Pick a time that works for you from our calendar, absolutely free. Don’t forget to include links to your current social media accounts so we can get a head start."
+          text: "Send us an enquiry. Don’t forget to include links to your current social media accounts so we can get a head start."
         },
         {
           icon: AuditIcon,
@@ -347,67 +292,13 @@ export const servicesData = [
     title: "Email Marketing",
     route: "email_marketing",
     metaTitle: "Email Marketing Agency | Pixelette Marketing",
-    metaDescription: "Our Email Marketing Services are built around strategy, segmentation & scalable results – backed by email automation. Get in touch for a consultation 📞",
+    metaDescription: "Email marketing built around strategy, segmentation and automation, from onboarding sequences to lifecycle campaigns, measured against commercial outcomes.",
     metaKeywords: "email marketing agency, email marketing services, email automation, email solutions",
     mainHeading: "From connection to conversion,",
     subHeading: "we’re the email marketing agency for GROWTH",
     summary:
       "Pixelette Marketing delivers powerful email marketing strategies that drive results. Our purpose-driven email campaigns make sure every email builds relationships, increases engagement and powers your brand’s journey to success.",
     image: "/services/email-marketing.png",
-    research: {
-      subHeading: "mistakes can cost millions",
-      mainHeading: "In email marketing,",
-      detail:
-        "Email marketing is one of the most powerful tools for growth, but poorly executed strategies often mean brands miss out on opportunities to build strong customer relationships and drive conversions.",
-      data: [
-        {
-          value: 55,
-          message:
-            "of marketers still rely on generic email templates, leading to lower engagement and reduced open rates.",
-          source: "HubSpot, 2023"
-        },
-        {
-          value: 40,
-          message:
-            "of brands fail to segment their email lists, losing out on personalised communication that could increase revenue by 760%.",
-          source: "Campaign Monitor, 202"
-        },
-        {
-          value: 69,
-          message:
-            "of recipients unsubscribe from emails due to irrelevant content, which is a direct result of poor strategy and lack of data utilisation.",
-          source: "Litmus, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important email marketing really is, ",
-      subHeading: "according to leaders of billion dollar brands",
-      data: []
-    },
-    status: {
-      heading:
-        "Our email marketing services are widely sought after by various emerging brands",
-      text: "Email marketing solutions from the Pixelette Marketing team are built for growing brands seeking impactful audience engagement and measurable results.",
-      data: [
-        {
-          value: 50,
-          detail: "increase in email open rates within the first three months"
-        },
-        {
-          value: 40,
-          detail: "growth in email list subscriber base in the first six months"
-        },
-        {
-          value: 35,
-          detail: "rise in click-through rates within the first quarter"
-        },
-        {
-          value: 45,
-          detail: "improvement in email-driven conversions in the first quarter"
-        }
-      ]
-    },
     services: {
       heading: "Our email marketing services",
       text: "We prioritise understanding your audience and crafting custom campaigns that resonate. Our services cover everything from creating compelling email content to analysing performance metrics, ensuring your messages drive engagement and conversions while you focus on other critical areas of your business.",
@@ -592,8 +483,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Unsent emails are  <span> lost opportunities </span>`,
       answer:
-        "Don’t let your competitors capture your audience first. Boost your email marketing with strategies that deliver impactful results and long-lasting growth.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us what your email programme needs to achieve and where it is falling short. We will come back with the most relevant next step.",
     },
     marketingServices: {
       title: "",
@@ -660,7 +550,7 @@ export const servicesData = [
         question:
           "How do I get started with email marketing services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our team to discuss your email marketing goals and explore our services."
+          "Send us an enquiry to discuss your email marketing goals and explore our services."
       }
     ],
     howWeWork: {
@@ -669,7 +559,7 @@ export const servicesData = [
         {
           icon: BookIcon,
           heading: "Book",
-          text: "Pick a time that works for you from our calendar, no strings attached. Share your website URL and tell us about the challenges you're facing so we can better understand your needs."
+          text: "Send us an enquiry. Share your website URL and tell us about the challenges you're facing so we can better understand your needs."
         },
         {
           icon: AuditIcon,
@@ -694,7 +584,7 @@ export const servicesData = [
     id: 3,
     title: "SEO & Content Marketing",
     metaTitle: "Technical + Content SEO Agency | Pixelette Marketing",
-    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to increase your business's visibility and growth. Let's talk some SEO strategy!",
+    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to make your business easier to find, in traditional search and AI-assisted discovery.",
     metaKeywords: "seo agency, seo services, seo management services",
     
     route: "seo_and_content_marketing",
@@ -703,61 +593,6 @@ export const servicesData = [
     summary:
       "Pixelette Marketing specialises in crafting effective SEO strategies that drive tangible growth. Whether you’re aiming for local SEO visibility or global outreach, our professional SEO services ensure your business stands out in a competitive digital landscape.",
     image: "/services/seo-marketing.png",
-    research: {
-      mainHeading: "There’s no universal",
-      subHeading: "formula for success in SEO",
-      detail:
-        "Many businesses fall into the trap of using generic SEO approaches, ignoring the nuances of search algorithms and audience behaviour. These missteps often lead to missed opportunities and suboptimal rankings. We address these challenges by creating an SEO content marketing strategy tailored to your unique needs and goals. ",
-      data: [
-        {
-          value: 75,
-          message:
-            "of websites suffer from poor search engine optimisation, leading to missed ranking opportunities.",
-          source: "Search Engine Journal, 2023"
-        },
-        {
-          value: 40,
-          message:
-            "of businesses fail to adapt their SEO strategies to search engine algorithm updates.",
-          source: "HubSpot, 2023"
-        },
-        {
-          value: 68,
-          message:
-            "of marketers admit they lack a clear SEO keyword strategy, resulting in low organic traffic.",
-          source: "SEMrush, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important SEO services really is, ",
-      subHeading: "according to leaders of billion dollar brands",
-      data: []
-    },
-    status: {
-      heading:
-        "Our SEO services are widely sought after by various emerging brands",
-      text: "SEO solutions delivered by the Pixelette Marketing team are built to understand search intent and drive measurable growth from the moment we begin optimising a brand's online presence.",
-      data: [
-        {
-          value: 70,
-          detail: " increase in organic traffic within the first three months"
-        },
-        {
-          value: 50,
-          detail: " growth in keyword rankings within the first quarter"
-        },
-        {
-          value: 40,
-          detail:
-            " boost in leads generated via search engines in the first six months"
-        },
-        {
-          value: 60,
-          detail: " improvement in website visibility within the first quarter"
-        }
-      ]
-    },
     services: {
       heading: "Our SEO services",
       text: "We prioritise understanding your brand, audience, and goals before crafting a custom SEO strategy. Our services cover everything from in-depth keyword research to on-page and off-page optimisation, ensuring your website ranks higher and drives results, so you can focus on growing your business.",
@@ -965,14 +800,13 @@ export const servicesData = [
         question:
           "How do I get started with SEO services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our SEO experts to discuss your business goals and receive a customised SEO strategy."
+          "Send us an enquiry to discuss your business goals and receive a customised SEO strategy."
       }
     ],
     questionAndAnswer: {
       question: `Lost rankings equal <span> lost customers </span>`,
       answer:
-        "Don’t let your competitors outshine you. Book a consultation with Pixelette Marketing today and see how our professional SEO services can transform your business.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us where search visibility is holding growth back. We will review it and come back with the most relevant next step.",
     },
     howWeWork: {
       heading: `How  <span> we work </span>`,
@@ -980,7 +814,7 @@ export const servicesData = [
         {
           icon: BookIcon,
           heading: "Book",
-          text: "Reserve a spot on our calendar for a free consultation. Don’t forget to share your website URL so we can review your current SEO performance."
+          text: "Send us an enquiry. Don’t forget to share your website URL so we can review your current SEO performance."
         },
         {
           icon: AuditIcon,
@@ -1004,70 +838,15 @@ export const servicesData = [
     id: 4,
     title: "PR",
     metaTitle: "Public Relations Agency for Next-Gen Companies",
-    metaDescription: "Pixelette Marketing's Public Relations Services focus on strategic outreach, credible storytelling & lasting visibility. Let's talk!",
+    metaDescription: "PR from Pixelette Marketing: strategic outreach, credible storytelling and coverage that builds lasting visibility.",
     metaKeywords: "public relations agency, public relations services, pr outreach service",
     
     route: "pr",
     mainHeading: "From buzz to brand authority,",
     subHeading: "we’re the digital PR agency for GROWTH",
     summary:
-      "Pixelette Marketing’s PR services specialise in creating impactful narratives that resonate with your target audience and establish your brand as an industry leader. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency helps your story reach the right audience.",
+      "Pixelette Marketing’s PR services specialise in creating impactful narratives that resonate with your target audience and build your brand's credibility. Whether it's building trust through media relations or increasing your presence through strategic influencer collabs, our public relations agency helps your story reach the right audience.",
     image: "/services/pr-marketing.png",
-    research: {
-      subHeading: "PR is costly to businesses",
-      mainHeading: "Why not investing in good",
-      detail:
-        "The importance of a cohesive PR strategy is routinely underestimated by organisations. Inconsistent messaging and poorly executed campaigns often result in missed opportunities to connect with audiences and grow your brand’s reputation. Our approach focuses on aligning your public relations goals with targeted outreach efforts to deliver measurable results and sustained growth.",
-      data: [
-        {
-          value: 67,
-          message:
-            "of businesses struggle to establish trust due to inconsistent messaging and poor public relations strategies.",
-          source: "HubSpot, 2023"
-        },
-        {
-          value: 50,
-          message:
-            "fewer positive brand mentions compared to their competitors in companies lacking a strong PR strategy. ",
-          source: "PR News, 2023"
-        },
-        {
-          value: 73,
-          message:
-            "of consumers hesitate to engage with brands they perceive as untrustworthy or disconnected from their audience.",
-          source: "Edelman Trust Barometer, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important PR and communication really is,",
-      subHeading: "according to leaders of billion dollar brands",
-      data: []
-    },
-    status: {
-      heading:
-        "Our public relations services are widely sought after by various emerging brands",
-      text: "Pixelette Marketing's PR solutions are designed to align with your audience's intent, creating impactful public relations strategies that increase your brand's visibility and deliver measurable results. From day one, we focus on building a strong online presence that drives meaningful growth.",
-      data: [
-        {
-          value: 120,
-          detail: "growth in earned media mentions within six months"
-        },
-        {
-          value: 35,
-          detail: "increase in influencer-driven engagement across campaigns"
-        },
-        {
-          value: 50,
-          detail:
-            "prime media placements secured for clients in a single quarter"
-        },
-        {
-          value: 25,
-          detail: " improvement in sentiment ratings for client’s brand"
-        }
-      ]
-    },
     services: {
       heading: "Our PR services",
       text: "At Pixelette Marketing, we focus on understanding your brand, audience and objectives to develop personalised PR strategies that strengthen your presence. Our comprehensive services include media outreach, reputation management and creating impactful narratives, making sure your brand captures attention and delivers results, allowing you to concentrate on growing your business.",
@@ -1246,8 +1025,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Untold stories are <span> missed opportunities </span>`,
       answer:
-        "Don’t let your competitors outshine you. Book a consultation with Pixelette Marketing today and see how our PR services can raise your profile.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us what you want to be known for and who needs to hear it. We will come back with the most relevant next step.",
     },
 
     marketingServices: {
@@ -1309,7 +1087,7 @@ export const servicesData = [
         question:
           "How do I get started with PR and outreach services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our PR and outreach specialists to discuss your specific needs and explore our services."
+          "Send us an enquiry to discuss your specific needs and explore our services."
       }
     ],
     howWeWork: {
@@ -1343,71 +1121,13 @@ export const servicesData = [
     id: 5,
     title: "Influencer Marketing",
     metaTitle: "Influencer Marketing Agency for B2C & B2B Brands",
-    metaDescription: "End-to-end influencer marketing services built for brands that want more than likes. Drive leads and scale campaigns across top social platforms. ⚡️",
+    metaDescription: "Influencer marketing for brands that want more than likes: creators chosen for credibility with your audience, and campaigns measured on outcomes.",
     route: "influencer_marketing",
     mainHeading: "From influencer trust to sustained success,",
     subHeading: "we’re the influencer marketing agency for GROWTH",
     summary:
       "Pixelette Marketing works with brands looking to connect authentically and achieve measurable results. Our influencer marketing services help you find the right influencers, build impactful campaigns and create meaningful engagement, all personalised to your goals.",
     image: "/services/influencer-marketing.png",
-    research: {
-      subHeading: "marketing can cost you money",
-      mainHeading: "Why overlooking influencer ",
-      detail:
-        "Many brands struggle with navigating the complexities of social media influencer marketing. Challenges like identifying authentic influencers, managing contracts and tracking performance can derail even the best campaigns. At Pixelette Marketing, we specialise in streamlining these processes, ensuring your influencer advertising is efficient, impactful and only driven by results.",
-      data: [
-        {
-          value: 70,
-          message:
-            "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
-          source: "HubSpot, 2023"
-        },
-        {
-          value: 55,
-          message:
-            "of marketers admit they lack a clear influencer marketing strategy, leading to ineffective campaigns and missed opportunities.",
-          source: "Nielsen, 202"
-        },
-        {
-          value: 55,
-          message:
-            "of businesses admit to underestimating the potential of influencer marketing, resulting in missed ROI opportunities.",
-          source: "Edelman Trust Barometer, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important search engine optimisation really is,",
-      subHeading: "according to major company founders and leaders",
-      data: []
-    },
-    status: {
-      heading:
-        "Our influencer marketing services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we help brands unlock these opportunities through purpose-built influencer marketing campaigns that deliver precise influencer targeting and impactful results.",
-      data: [
-        {
-          value: 60,
-          detail:
-            " growth delivered in influencer-driven brand visibility within the first six months."
-        },
-        {
-          value: 45,
-          detail:
-            "boost in engagement rates achieved for campaigns in the first quarter."
-        },
-        {
-          value: 25,
-          detail:
-            "rise in conversion rates and increase in client ROI through strategic collabs."
-        },
-        {
-          value: 30,
-          detail:
-            " uplift in audience retention secured across influencer-led campaigns within the first quarter"
-        }
-      ]
-    },
     services: {
       heading: "Our influencer marketing services",
       text: "We specialise in connecting brands with the right voices to amplify their message authentically. Our services include everything from identifying and vetting influencers to creating campaigns and analysing results. With us handling the influencer strategy and building meaningful connections with your audience, you can finally focus on other aspects of growing your business.",
@@ -1512,8 +1232,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Don’t let missed  <span> connections cost you growth </span>`,
       answer:
-        "Failing to make use of influencer marketing means losing out on authentic reach and real engagement. Partner with Pixelette Marketing to produce campaigns that resonate, drive measurable results and position your brand at the forefront of your industry.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us who you need to reach and why they should trust the message. We will come back with the most relevant next step.",
     },
     marketingServices: {
       title: "",
@@ -1574,7 +1293,7 @@ export const servicesData = [
         question:
           "How do I get started with influencer marketing services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our influencer marketing experts to discuss your campaign goals and explore our services."
+          "Send us an enquiry to discuss your campaign goals and explore our services."
       }
     ],
     howWeWork: {
@@ -1617,63 +1336,6 @@ export const servicesData = [
     summary:
       "Pixelette Marketing maximises your ad spend with precision-targeted campaigns that deliver measurable results. From keyword strategy and creative ad images to performance optimisation, our social media ads & PPC services drive higher click-through rates, stronger conversions and better ROI.",
     image: "/services/ads-marketing.png",
-    research: {
-      subHeading: "digital advertising",
-      mainHeading: "The higher cost of ignoring ",
-      detail:
-        "Not investing time (or money) in ads or PPC can have a significant impact on your brand’s growth and visibility. Without strategic online campaigns, you risk falling behind competitors who are actively engaging their audiences.",
-      data: [
-        {
-          value: 45,
-          message:
-            " of businesses fail to optimise their PPC campaigns, resulting in wasted budgets.",
-          source: "WordStream, 2023"
-        },
-        {
-          value: 70,
-          message:
-            "higher conversion rate in companies that use retargeting ads compared to those that don’t.",
-          source: "HubSpot, 2022"
-        },
-        {
-          value: 60,
-          message:
-            " lower click-through rates due to poor ad audience targeting.",
-          source: "SEMrush, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important ads & PPC really is, ",
-      subHeading: "according to major business leaders",
-      data: []
-    },
-    status: {
-      heading:
-        "Our ads & PPC solutions are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, our social ads & PPC services are built on a deep understanding of audience behaviour, ensuring every campaign is strategically crafted to drive growth from the moment we collaborate with your brand. We focus on delivering targeted ads that not only reach the right audience but also convert.",
-      data: [
-        {
-          value: 150,
-          detail: "growth achieved in ad-driven sales within three months."
-        },
-        {
-          value: 35,
-          detail:
-            "decrease in CPC through strategic bid adjustments and precise audience targeting."
-        },
-        {
-          value: 60,
-          detail:
-            "increase in CTR through optimised ad banner design and audience segmentation."
-        },
-        {
-          value: 45,
-          detail:
-            "boost in ad engagement within the first quarter through targeted audience refinements."
-        }
-      ]
-    },
     services: {
       heading: "Our ads and PPC services ",
       text: "We are a results-driven advertising services agency, dedicated to optimising your advertising efforts for maximum impact. From bespoke social media campaign setups and Google Ads management to strategic retargeting and conversion optimisation, our ads & PPC services are designed to increase visibility, drive traffic and boost conversions, all while maximising your ROI.",
@@ -1863,8 +1525,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `No ad spend, <span> no revenue growth </span>`,
       answer:
-        "Partner with Pixelette Marketing to create high-impact campaigns that drive conversions, boost ROI and fuel your business growth in a competitive market, so that you can say “money well spent!”",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us what paid media needs to deliver and where the current spend is going. We will come back with the most relevant next step.",
     },
 
     marketingServices: {
@@ -1896,7 +1557,7 @@ export const servicesData = [
         {
           heading: "Tech Ads & PPC",
           detail:
-            "Our tech ads & PPC services empower technology companies to highlight their coolest solutions. By developing captivating ad creatives and implementing focused targeting strategies, we help you connect with the right audience and solidify your industry leadership."
+            "Our tech ads & PPC services empower technology companies to show what their products do. By developing captivating ad creatives and implementing focused targeting strategies, we help you connect with the right audience and build a stronger market position."
         }
       ]
     },
@@ -1925,7 +1586,7 @@ export const servicesData = [
         question:
           "How do I get started with PPC services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our PPC experts to discuss your campaign goals and receive a customised strategy."
+          "Send us an enquiry to discuss your campaign goals and receive a customised strategy."
       }
     ],
 
@@ -1960,71 +1621,15 @@ export const servicesData = [
     id: 7,
     title: "Marketing Analytics & Reporting",
     metaTitle: "Marketing Analytics Agency | Pixelette Marketing",
-    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth. Book a free consultation with us today.",
+    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth.",
     metaKeywords: "marketing analytics agency, marketing analytics services, analytics agency",
     route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
     subHeading:
       "we’re the marketing analytics and reporting agency for GROWTH",
     summary:
-      "Pixelette Marketing’s analytics services for marketing turn complex data into actionable insights. From digital marketing analytics solutions to real-time web marketing analytics, we help businesses unlock their full potential through precise reporting and strategy optimisation.",
+      "Pixelette Marketing’s analytics services for marketing turn complex data into actionable insights. From digital marketing analytics solutions to real-time web marketing analytics, we help businesses make better decisions through precise reporting and strategy optimisation.",
     image: "/services/marketing-analytics.png",
-    research: {
-      subHeading: "world isn’t recommended",
-      mainHeading: "Flying blind in a data-driven",
-      detail:
-        "Challenges like attributing revenue, analysing campaign performance and identifying growth opportunities can derail even the most well-planned marketing strategies.",
-      data: [
-        {
-          value: 67,
-          message:
-            "of leaders fail to gain critical insights into their performance metrics due to a lack of effective reporting.",
-          source: "Forrester, 2022"
-        },
-        {
-          value: 30,
-          message:
-            "higher cost-per-acquisition for most digital campaigns as a result of poor analytics.",
-          source: "SEMrush, 2023"
-        },
-        {
-          value: 79,
-          message:
-            "of marketers struggle with attributing revenue to specific campaigns.",
-          source: "HubSpot, 2023"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important marketing analytics really is, ",
-      subHeading: "according to major business leaders and scholars",
-      data: []
-    },
-    status: {
-      heading:
-        "Our marketing analytics and reporting services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we turn complex data into practical strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
-      data: [
-        {
-          value: 150,
-          detail: "improvement delivered in ROI tracking for clients"
-        },
-        {
-          value: 25,
-          detail: "reduction in CPA thereby optimising campaign performance"
-        },
-        {
-          value: 40,
-          detail:
-            " increase in lead conversions through enhanced marketing analytics reporting"
-        },
-        {
-          value: 30,
-          detail:
-            " faster campaign insights achieved for quicker adjustments and improved outcomes."
-        }
-      ]
-    },
     services: {
       heading: "Our marketing analytics services",
       text: "We prioritise understanding your business objectives and audience in order to create personalised strategies. Our services cover everything from data collection and performance tracking to detailed reporting and analysis, empowering you to make quick, data-backed decisions.",
@@ -2250,8 +1855,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `Every missed data point is a  <span> missed opportunity for growth </span>`,
       answer:
-        "Partner with Pixelette Marketing to uncover actionable strategies, maximise ROI and position your business as a data-driven industry leader.",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us which decisions your reporting should support and where the data falls short today. We will come back with the most relevant next step.",
     },
     marketingServices: {
       title: "",
@@ -2312,7 +1916,7 @@ export const servicesData = [
         question:
           " How do I get started with marketing analytics and reporting services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our analytics experts to discuss your reporting requirements and explore our services."
+          "Send us an enquiry to discuss your reporting requirements and explore our services."
       }
     ],
     howWeWork: {
@@ -2346,7 +1950,7 @@ export const servicesData = [
     id: 8,
     title: "Lead Generation",
     metaTitle: "Lead Generation Services for B2B & Beyond",
-    metaDescription: "Partner with Pixelette Marketing, a Lead Generation Agency that fills your pipeline with qualified prospects & sales-ready leads. 1st consultation is on us! 🤙🏼",
+    metaDescription: "Lead generation built for qualified pipeline rather than volume, with nurture and a clean handoff to sales.",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
     route: "lead_generation",
     mainHeading: "From prospects to loyal customers,",
@@ -2367,64 +1971,6 @@ export const servicesData = [
     summary:
       "Getting more traffic is rarely the hard part. Turning it into people your sales team actually wants to call is. Pixelette Marketing runs lead generation that covers the targeting, the landing pages and the follow-up, so the enquiries that reach you are worth picking up the phone for.",
     image: "/services/lead-generation.png",
-    research: {
-      subHeading: "stalls business success",
-      mainHeading: "A broken lead pipeline ",
-      detail:
-        "Generating consistent, high-quality leads is no easy feat. Obstacles like identifying ideal prospects, nurturing them effectively and maintaining conversion momentum can quickly overwhelm your sales funnel.",
-      data: [
-        {
-          value: 50,
-          message:
-            "fewer leads in companies without a structured lead generation strategy compared to competitors.",
-          source: "Marketing Insights, 2023"
-        },
-        {
-          value: 79,
-          message:
-            "drop in conversions from initial contact to sale for businesses that fail to nurture leads.",
-          source: "LeadGen Journal, 2023"
-        },
-        {
-          value: 30,
-          message:
-            "lower conversion rates in companies that don’t automate lead management.",
-          source: "Automation Trends, 2022"
-        }
-      ]
-    },
-    importance: {
-      mainHeading: "How important marketing analytics is,",
-      subHeading: "according to major business leaders and scholars",
-      data: []
-    },
-    status: {
-      heading:
-        "Our lead generation services are widely sought after by various emerging brands",
-      text: "At Pixelette Marketing, we turn complex data into practical strategies. Our customised marketing analytics solutions are crafted to deliver measurable results and help your business thrive in an ever-changing market.",
-      data: [
-        {
-          value: 60,
-          detail:
-            "more qualified leads in six months through targeted digital funnel strategy"
-        },
-        {
-          value: 45,
-          detail:
-            "increase in landing page conversion rates with landing page design & optimisation"
-        },
-        {
-          value: 30,
-          detail:
-            " improvement in lead nurturing campaigns with effective email content creation"
-        },
-        {
-          value: 40,
-          detail:
-            " better ROI ads performance using advanced lead generation analytics"
-        }
-      ]
-    },
     services: {
       heading: "Our lead generation services",
       text: "We focus on connecting your business with the right prospects to fuel sustainable growth. Our services encompass everything from identifying and qualifying leads to developing targeted campaigns and tracking performance. With us managing your lead generation efforts and nurturing meaningful customer relationships, you don’t have much to worry about.",
@@ -2539,7 +2085,7 @@ export const servicesData = [
             },
             {
               title: "Product Launch Lead Generation Campaign",
-              text: "Supercharge your product launches with personalised lead generation campaigns on your platform of choice."
+              text: "Support product launches with personalised lead generation campaigns on your platform of choice."
             }
           ]
         },
@@ -2612,8 +2158,7 @@ export const servicesData = [
     questionAndAnswer: {
       question: `No leads, no sales.  <span>  Let’s change that </span>`,
       answer:
-        "Partner with Pixelette Marketing to build targeted campaigns that attract, nurture and convert high-quality prospects, helping your business grow, thrive and achieve measurable success!",
-      btnText: "Book a consultation – it’s on us!"
+        "Tell us who your best customers are and where the pipeline is thin. We will come back with the most relevant next step.",
     },
     marketingServices: {
       title: "",
@@ -2639,7 +2184,7 @@ export const servicesData = [
         {
           heading: "AI Lead Generation ",
           detail:
-            "Position your AI solutions as industry-leading with our LinkedIn strategies, targeted retargeting ads and an optimised lead collection process designed specifically for AI products and platforms."
+            "Reach the buyers evaluating AI products with LinkedIn strategies, targeted retargeting ads and an optimised lead collection process designed specifically for AI products and platforms."
         },
         {
           heading: "Tech Lead Generation",
@@ -2674,7 +2219,7 @@ export const servicesData = [
         question:
           "How do I get started with lead generation services from Pixelette Marketing?",
         answer:
-          "Schedule a free consultation with our lead generation experts to discuss your business goals and explore our services."
+          "Send us an enquiry to discuss your business goals and explore our services."
       }
     ],
     howWeWork: {

@@ -1,7 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Field, Form, Formik, FormikHelpers, useFormikContext } from "formik";
+import {
+  ErrorMessage,
+  Field,
+  Form,
+  Formik,
+  FormikHelpers,
+  useFormikContext
+} from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
 import { IMPROVE_OPTIONS } from "@/lib/contactContract";
 import { PRIVACY_HREF } from "@/data/legal";
@@ -75,7 +82,13 @@ const EnquirySeed: React.FC = () => {
   return null;
 };
 
-const ContactUsForm: React.FC = () => {
+interface ContactUsFormProps {
+  /** The eyebrow, heading and standfirst above the fields. Off where the
+   *  section around the form already carries them — see ContactSection. */
+  showIntro?: boolean;
+}
+
+const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
   // A route on this site, not configuration. It used to be
   // NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL, which shipped as placeholders that
   // still passed the gate below. See data/legal.ts.
@@ -172,16 +185,21 @@ const ContactUsForm: React.FC = () => {
     <div
       className='contactUsForm'
     >
-      {/* The brief's form eyebrow and heading. */}
-      <Text className='eyebrow'>Start here</Text>
-      {/* The brief's form heading. It was `heading_secondry font_family_glory`,
-          one of the twelve legacy variants, on a form that renders on six
-          routes; .h3 is the same size on the guide's scale. */}
-      <Heading className='h3'>Tell us what needs to grow.</Heading>
-      <p className='body'>
-        Give us enough context to make the first conversation useful. We will
-        review the enquiry and come back with the most relevant next step.
-      </p>
+      {showIntro && (
+        <>
+          {/* The brief's form eyebrow and heading. */}
+          <Text className='eyebrow'>Start here</Text>
+          {/* The brief's form heading. It was `heading_secondry font_family_glory`,
+              one of the twelve legacy variants, on a form that renders on six
+              routes; .h3 is the same size on the guide's scale. */}
+          <Heading className='h3'>Tell us what needs to grow.</Heading>
+          <p className='body'>
+            Give us enough context to make the first conversation useful. We
+            will review the enquiry and come back with the most relevant next
+            step.
+          </p>
+        </>
+      )}
       <Formik
         initialValues={initialValues}
         validationSchema={contactUSvalidationSchema}
@@ -255,6 +273,11 @@ const ContactUsForm: React.FC = () => {
                 </a>
               </span>
             </label>
+            {/* 25 Sep 2026: the consent rule had no visible message, so a
+                visitor who filled everything but the box pressed the button
+                and nothing happened. Found by testing the empty and filled
+                states in a browser. */}
+            <ErrorMessage component='div' name='consent' className='form-error' />
             <Button type='submit' className='primary-full' disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Request a growth conversation"}
             </Button>

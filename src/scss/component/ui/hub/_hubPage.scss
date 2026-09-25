@@ -142,10 +142,9 @@
   }
 }
 
-.capabilityList__cta {
-  display: inline-flex;
-  margin-top: var(--sec-y);
-}
+// .capabilityList__cta went on 25 Sep 2026: the tool band now sits between the
+// list and the call to action, so the button lives in its own .sec-sm section
+// and takes its spacing from there.
 
 // --- /industries: Who we help, 23 Sep 2026 ----------------------------------
 // Rebuilt as the site's single source of truth for sector positioning. The

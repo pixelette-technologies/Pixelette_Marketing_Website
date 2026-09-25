@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/common";
+import { Container, TrustedBrands } from "@/components/common";
 import Link from "next/link";
 import { Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
 import { capabilityGroups } from "@/data/services/capabilityGroups";
+import { tools, toolsBandCopy } from "@/data/services/toolsWeWorkIn";
 
 const baseUrl = "https://www.pixelettemarketing.com";
 
@@ -155,16 +156,44 @@ export default function ServicesIndexPage() {
                       ))}
                     </ul>
                   )}
+
                 </div>
               </section>
             ))}
           </div>
+        </Container>
+      </div>
 
+      {/* 25 Sep 2026. The old site's tool band, back on the client-logo
+          device so the two read as one recurring thing — asked for in exactly
+          those terms. It sits AFTER the five capabilities, because the tools
+          are how the work gets done, not what is being sold, and BEFORE the
+          call to action so the page still ends on the way out rather than on
+          a dark band running into the footer. The list is unconfirmed; see
+          toolsWeWorkIn.ts. */}
+      <TrustedBrands
+        layout='stacked'
+        className='trustedBrands--tools'
+        eyebrow={toolsBandCopy.eyebrow}
+        heading={toolsBandCopy.heading}
+        standfirst={toolsBandCopy.standfirst}
+        items={tools.map(({ name, Mark }) => ({
+          name,
+          mark: Mark ? (
+            <Mark />
+          ) : (
+            <span className='trustedBrands__wordmark'>{name}</span>
+          )
+        }))}
+      />
+
+      <div className='sec-sm'>
+        <Container className='main'>
           {/* ONE way out, where there used to be eight competing "View More"
               links and no way to start a conversation. The service pages are
               still reachable from every capability above, so nothing is
               orphaned — they simply stop being the only exit. */}
-          <Link href='/contactus' className='btn capabilityList__cta'>
+          <Link href='/contactus' className='btn'>
             Talk to us about your growth plan
           </Link>
         </Container>

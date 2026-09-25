@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Container from "./Container";
 import { Heading, Text } from "../feature";
 import Image from "next/image";
@@ -15,6 +15,11 @@ interface TrustedBrandsProps {
   /** Rendered in 'stacked' only. */
   standfirst?: string;
   cta?: { label: string; to: string };
+  /** Replaces the client logos with another set of marks, each carrying the
+   *  name a screen reader announces. /services' tool band, 25 Sep 2026. */
+  items?: { name: string; mark: ReactNode }[];
+  /** A modifier on the band, for the one caller that needs one. */
+  className?: string;
 }
 
 // The logo row used to be rendered four times over and scrolled with a CSS
@@ -69,7 +74,9 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({
   eyebrow,
   layout = "inline",
   standfirst,
-  cta
+  cta,
+  items,
+  className
 }) => {
   const stacked = layout === "stacked";
 
@@ -91,28 +98,48 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({
   // TIME — the motion had already gone, so the copies were just six logos
   // rendered as twenty-four. The two belong together. If the animation ever
   // goes again, this second call goes with it.
+  //
+  // 25 Sep 2026. `items` puts a different set of marks on the same device —
+  // the tool band on /services, which was asked for to look exactly like this
+  // one. Those marks are inline SVG components whose own svgs are
+  // aria-hidden, so the name goes on the wrapper as role="img". The duplicate
+  // group stays silent either way.
   const renderGroup = (duplicate: boolean) => (
     <div className='marquee__group' aria-hidden={duplicate || undefined}>
-      {imagesArray.map((icon, index) => (
-        <div key={index} className='icon-wrapper'>
-          <Image
-            src={icon}
-            alt={duplicate ? "" : `Brand Logo ${index}`}
-            width={200}
-            height={50}
-          />
-        </div>
-      ))}
+      {items
+        ? items.map(item => (
+            <div
+              key={item.name}
+              className='icon-wrapper'
+              role={duplicate ? undefined : "img"}
+              aria-label={duplicate ? undefined : item.name}
+            >
+              {item.mark}
+            </div>
+          ))
+        : imagesArray.map((icon, index) => (
+            <div key={index} className='icon-wrapper'>
+              <Image
+                src={icon}
+                alt={duplicate ? "" : `Brand Logo ${index}`}
+                width={200}
+                height={50}
+              />
+            </div>
+          ))}
     </div>
   );
 
   return (
     <div
-      className={
-        stacked
-          ? "trustedBrands trustedBrands--stacked band-dark"
-          : "trustedBrands band-dark"
-      }
+      className={[
+        "trustedBrands",
+        stacked && "trustedBrands--stacked",
+        "band-dark",
+        className
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       <Container className='main'>
         {topHeading ? (

@@ -99,3 +99,51 @@
     }
   }
 }
+
+// --- The tool band, 25 Sep 2026 ---------------------------------------------
+// /services' "Tools we work in" on this same device, asked for to look exactly
+// like the client strip. Only three things differ, and all three are here.
+//
+// SIZE. The client logos are rasters in a 200 x 50 box; the tool marks are the
+// old platform band's inline svgs, drawn at 17-31px tall. Left alone they read
+// as a strip of footnotes beside a strip of logos. Every svg is set to one
+// height instead, width following its own viewBox and capped, so the thirteen
+// marks sit on a common line whatever their artwork's native size.
+//
+// THE WORDMARK. Google Analytics 4 has no mark in the repo and none was drawn
+// or downloaded, so it is set as text. It takes the page white the logos are
+// drawn in, and body weight 600, so it sits with them rather than reading as a
+// caption.
+//
+// SPEED. Fourteen marks is a longer track than six, and at the client strip's
+// 40s it would move more than twice as fast. 90s keeps it about as slow.
+.trustedBrands--tools {
+  .trustedBrandsBand > div > section {
+    --marquee-duration: 90s;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+
+    // The max-width is Semrush's, found by looking: its artwork is seven times
+    // wider than tall, so at a shared height it came out at 185px and read as
+    // the headline vendor. Capped, the svg keeps its box and its viewBox
+    // letterboxes the drawing inside it, so nothing distorts.
+    svg {
+      height: 1.625rem;
+      width: auto;
+      max-width: 8rem;
+    }
+  }
+}
+
+.trustedBrands__wordmark {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--color-page);
+}

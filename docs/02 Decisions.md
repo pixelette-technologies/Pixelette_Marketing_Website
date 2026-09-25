@@ -1347,6 +1347,60 @@ now rather than `PointItemContent[]`, so the two are not confused later.
 Related: [[03 Phase 1 — Homepage]], [[05 Components]],
 [[08 Design system constraints]], [[09 Outstanding]], [[10 Verification]]
 
+## 24 Sep — the old site audited against the new
+
+**The new site was compared page by page with the live one it replaces**:
+`www.pixelettemarketing.com` against `pixelette-marketing-website.vercel.app`.
+Every URL in both sitemaps (23 old, 28 new) was fetched from both hosts, along
+with every internal link found on those pages. Headings and text were then
+compared line by line. Both home pages were also rendered in headless Chrome at
+1440 and 390, because the old site builds its menus, logo marquees and cookie
+banner in the browser. The result is a 50-finding ledger, each finding quoting
+both sites and linking both URLs, published as a private artifact:
+https://claude.ai/artifact/HxohvkJhWpmHmnrS7yRiXa.
+
+**The finding that frames the rest: the pitch changed more than the pages.**
+Every old URL still resolves. What moved is the claim — from a full-service
+agency for Fintech, SaaS, Web3 and tech to a cross-sector growth partner — and
+the proof standard: more than forty unattributed percentages, the "300
+influencers" claim, the team and one testimonial came off, and `/results` with
+sourced figures went on.
+
+**The old site is carrying live faults the rebuild fixes**, which matters when
+anyone argues for keeping it:
+
+- an internal design note published as body text on `/contactus`: *"Show
+  locations in a different way, not really happy with how it's currently done
+  here…"*
+- a Startup card linking to `/industries/undefined`
+- a form citing a "Cookie & Privacy Policy" that returns 404
+- "pick a time from our calendar", with no calendar
+- service and sector menus that exist only after hover, so the home page's
+  server HTML links five internal pages against the new site's 23
+
+**The verdicts, all given by the user on 25 Sep:**
+
+- **C-06, the consent sentence — fixed on Vercel.** The env value was the old
+  site's half-sentence ending "in line with the", which ran into the form's own
+  link and printed "…in line with the Read the privacy notice". It is now a
+  complete sentence. The code needed no change: `ContactUsForm` appends the
+  link itself, so the value must never name the notice. See
+  [[06 The enquiry form]].
+- **R-02, `/success_stories` and `/story/[id]` — deleted.** They were not
+  redirected to `/results`: the user's instruction was "we don't need it".
+- **H-15, the home page at twice the old length — approved as is.** Roughly
+  9,700px against 5,000 at 1440, and 14,300 against 6,900 at 390. The content
+  is signed off. **Do not treat the length as an open item.**
+- **H-07, community management — named again** (below).
+- **H-09, the tool band — restored** (below).
+
+**What was recommended for return and is still open** is in
+[[09 Outstanding]]: the Positive Prime testimonial, the free-first-call and
+priced-plan promise, a named team, the founding year and a contact-page office
+card. Each carries a condition. The rule the audit applied throughout: most of
+what the rebuild removed came off for lack of substantiation, and nothing comes
+back without it.
+
 ## 24 Sep — the tool list comes back, as "Tools we work in", on /services
 
 The old home page ended on a crimson marquee headed *"Our range of marketing
@@ -1455,3 +1509,89 @@ card copy was not revived; the sub-list is short phrases.
 
 Looked at on the home page at 1440, 900 and 390: card 02 still wraps to three
 lines like its neighbours, so the row stays level. No overflow.
+
+## 25 Sep — the final correction pass
+
+Built to a management brief, "Final website correction pass". A consistency
+pass, not a redesign: no new components beyond small props, no home page
+change, no URL change.
+
+**The five deeper-experience pages** (`/industries/ai`, `fintech`, `saas`,
+`tech`, `web_3`) share one architecture now, in `industriesData.ts` and
+`industries/[slug]/page.tsx`: hero → what marketing has to solve → where
+Pixelette can help → the five capabilities (the home page's `ItemsSection`,
+dark, titles imported from `growthSystemData`) → the four process stages →
+evidence → FAQ → "Tell us what needs to grow." (`#enquiry`). Off every page:
+the nine "Crypto SEO Services"-style cards, the Book/Audit/Plan/Execute block
+promising a free consultation and transparent pricing, the "X is moving fast.
+Are you?" band, and FAQs that restated the service list.
+
+Calls worth knowing:
+
+- **Fintech says outright that Pixelette is not a law firm or regulatory
+  adviser**, in the brief's own sentence about working alongside legal and
+  compliance. Its first FAQ declines to promise FCA compliance.
+- **Web3 promises no token performance, returns or market outcomes**, and its
+  evidence is the BlockGuard case study rendered from the `/results` object
+  itself, so the figures cannot diverge between pages.
+- **WebBookingPro is the Technology page's evidence**, because management's
+  own copy calls it "an accommodation technology solution". Qualitative, as
+  supplied. A judgement call; see [[09 Outstanding]].
+- AI, SaaS and Fintech show no evidence section: there is none to show.
+- The URLs stay `web_3` and `tech`. `/industries/web3` and
+  `/industries/technology` redirect (307) to them.
+
+**Contact.** "Stop watching others win…" and "Book an intro call with us, free
+of charge" are gone; the h1 is "Tell us what needs to grow." with the brief's
+standfirst, and the form's own intro is switched off there (new `formIntro`
+prop on `ContactSection`) so the line is not printed twice. The process is
+Understand / Diagnose / Recommend / Start, verbatim. The NDA sentence is gone
+and not replaced. Blog posts, which borrowed the contact opening as their
+close, take the `/results` close instead.
+
+**Tools band: removed.** Nothing in the project verifies the list, and
+management never confirmed it; only GA4 is evidenced. The brief's rule
+decided it. `toolsWeWorkIn.ts` stays, marked unrendered.
+
+**Insights.** Eyebrow "Insights", h1 "Practical thinking on growth, marketing
+and the markets changing both." Posts carry a `category` from a fixed list of
+seven; only categories with a post render, so no empty filters.
+
+**Claims.** Service pages stopped rendering `ResearchSection`: 24 percentages
+attributed to a publisher and year only, three of the publishers apparently
+non-existent, two citations truncated to "202". Unimported
+`singleIndustriesData.ts` (60%, 80%, "$20,000", about another company),
+`web3Services.ts` and `talkBusinessData.ts` deleted. Every "free
+consultation" and calendar promise on the service pages became "Send us an
+enquiry". "Book a consultation – it's on us!" (QuestionAndAnswer),
+"Book a call" / "Get a proposal" (ServicesHero) and the eight closing
+answers were brought onto "Tell us what needs to grow". Legitimate figures
+kept: BlockGuard's (management-supplied) and the blog posts' third-party
+statistics, which cite their sources in the text.
+
+Related: [[09 Outstanding]], [[10 Verification]]
+
+### 25 Sep, review of the correction pass against its brief
+
+A second read of the brief, section by section, found the first pass short in
+five places. All fixed:
+
+- **§8 said remove, and the pass had only hidden.** The service pages'
+  `research`, `status` and `importance` data (24 blocks, every unverifiable
+  percentage and "leaders of billion dollar brands") is now deleted, with
+  `ResearchSection`, `Status` and `Importance` and their stylesheets. Nothing
+  is parked for later: a figure comes back written fresh, with a linked
+  source.
+- **§13/§14 on the service pages**: five meta descriptions still said "Let's
+  talk", "1st consultation is on us! 🤙🏼" and similar; body copy still said
+  "unlock", "industry leader", "coolest" and "Supercharge". Rewritten. The
+  unused `btnText` fields holding the old CTA are gone.
+- **§11**: related-article cards showed hand-typed labels ("Fintech") that no
+  longer matched the new categories. They are derived from the linked post's
+  category now.
+- **§16**: the consent checkbox had no error message, so an unticked box
+  blocked the submit silently. Found only by exercising the form.
+- **§17 metadata**: `<html lang>` is `en-GB`, service pages' `og:locale` is
+  `en_GB`, `/privacy` and `/cookie-policy` gained Open Graph tags, and three
+  descriptions this pass had written or lengthened were brought under 165
+  characters.

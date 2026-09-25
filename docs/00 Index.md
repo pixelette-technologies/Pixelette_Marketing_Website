@@ -25,7 +25,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
-## Status as of 22 Sep 2026
+## Status as of 25 Sep 2026
 
 Merged to `main` and pushed on 9 Sep: 19 commits, `e68c016..c583c4e`.
 
@@ -308,11 +308,42 @@ not on the home page, not as logos, and worded to claim no partnership. PyTorch
 and Jira left out, GA4 added. **The list is unconfirmed by management.** See
 [[02 Decisions]] and [[09 Outstanding]].
 
+**24 Sep — the old site audited against the new.** Fifty findings, each
+quoting both sites and linking both URLs, in a private artifact linked from
+[[02 Decisions]]. The pitch changed more than the pages: every old URL still
+resolves. The old site is carrying live faults the rebuild fixes, including an
+internal design note published on its contact page.
+
+**25 Sep — the audit's verdicts, built and shipped.** The consent sentence was
+fixed on Vercel. `/success_stories` and `/story/[id]` were deleted. The home
+page's length was **approved as is**. Community management is named in Demand
+& Performance again, and the tool band is back on `/services`. Pushed
+`8101ead..41d8a3b`; confirmed live on Vercel. What the audit still recommends —
+a testimonial, a pricing promise, a team, a founding year, an office card —
+waits on management in [[09 Outstanding]]. Also that day: a dev server
+returning 404 on every route, traced to a stale Turbopack cache, not the code.
+See [[10 Verification]].
+
 **25 Sep — superseded: the tools are a logo band now.** On instruction, the
 list became a dark band on the client-logo device — the old white marks,
 scrolling — between the five capabilities and the call to action on
 `/services`. Same fourteen, same wording rule, still unconfirmed. See
 [[02 Decisions]].
+
+**25 Sep, last — the final correction pass.** Built to a management brief of
+the same name. The five deeper-experience pages were rebuilt on one
+architecture (hero, what marketing has to solve, where Pixelette can help,
+the five capabilities, the four process stages, evidence only where real,
+FAQ, "Tell us what needs to grow."), on components the site already had. The
+contact page was rewritten (Understand, Diagnose, Recommend, Start; no NDA
+claim; no free call). **The tool band came off `/services` again** — no
+verified list exists, and the brief's rule is that an absent stack beats an
+incomplete one. The blog became Insights with seven categories. The service
+pages lost their 24 unverifiable "research" percentages, every "free
+consultation" and calendar promise, and "Book a consultation – it's on us!".
+Unknown sector and service slugs 404 now. All gates green, route walk 28/28,
+every changed page looked at in headless Chrome. **Not committed.** See
+[[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

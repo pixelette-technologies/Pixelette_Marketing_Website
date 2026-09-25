@@ -54,4 +54,17 @@ them breaks the suite.
 The form renders "temporarily unavailable" unless three env values are set. One
 of them is currently a placeholder — see [[09 Outstanding]].
 
+**The consent line is two pieces, and the env value is only the first.**
+`NEXT_PUBLIC_CONTACT_CONSENT_TEXT` is printed, then `ContactUsForm` appends its
+own "Read the privacy notice" link. So the value must be a complete sentence
+that does not mention the notice. Until 25 Sep, production held the old site's
+half-sentence ending "in line with the", and visitors read *"…in line with the
+Read the privacy notice"*. It is now *"I agree that Pixelette Marketing may use
+the details above to respond to my enquiry."* Two things follow:
+
+- The value is inlined at build time (`NEXT_PUBLIC_`), so **changing it on
+  Vercel does nothing until a redeploy**.
+- Nothing on the server checks it. The notice VERSION is the recorded part of
+  consent; this text is display only.
+
 Related: [[09 Outstanding]], [[10 Verification]]

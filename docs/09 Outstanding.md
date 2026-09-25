@@ -682,6 +682,12 @@ Built to a consolidated positioning brief. What it left for a human:
   `NEXT_PUBLIC_CONTACT_CONSENT_TEXT`. The local `.env` still holds `dasda` for
   both, and the consent line prints it. `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL`
   can be deleted from every environment.
+  **25 Sep: the consent text is set on Vercel and confirmed live** — *"I agree
+  that Pixelette Marketing may use the details above to respond to my
+  enquiry."*, followed by the form's own "Read the privacy notice" link. The
+  value had been the old site's half-sentence ending "in line with the", which
+  ran straight into the link (audit finding C-06). The notice-version pair was
+  not checked, and whether the local `.env` was updated is not known.
 - **The logo strip says "Experience across the Pixelette ecosystem"** on the
   home page, `/aboutus` and all eight service pages. The brief preferred
   "Organisations we've worked with"; that is only true if all six logos are
@@ -729,3 +735,77 @@ Built to a consolidated positioning brief. What it left for a human:
   in `595bb24` when the old band came off. The band is on `/services` rather
   than the home page and after the capabilities rather than before them, but
   it is logos again. Worth a nod from management at the same time as the list.
+
+## Left by the old-vs-new audit (24–25 Sep)
+
+The audit is in [[02 Decisions]]. Its report is a private artifact:
+https://claude.ai/artifact/HxohvkJhWpmHmnrS7yRiXa. Findings are cited below by
+its IDs. **Closed:** C-06 (consent sentence), R-02 (legacy stories deleted),
+H-15 (page length, approved as is), H-07 (community management named), H-09
+(tool band). What is still open:
+
+**Old-site content recommended for return, each waiting on management:**
+
+- **The Kim Serafini (CEO, Positive Prime) testimonial.** It needs Positive
+  Prime's permission, and confirmation that they were a direct Pixelette
+  Marketing client. It was the third named client voice and the only one
+  outside Web3 and hospitality tech. If it comes back, it goes in ONE place —
+  `/results` or beside the home page's two — not the eight service pages it
+  used to repeat across. It was taken out of the service data in `4145e88`.
+- **"The first call is free; the plan comes with timelines and pricing."** The
+  old home process promised both. The new one says neither, although the five
+  sector pages still carry "a clear execution timeline with transparent
+  pricing". One line under the home process, **only if both are still true**.
+- **A named team**, only if the people are real, current and have consented.
+  The five portraits came off on 21 Sep for want of substantiation (see the
+  About entry in [[02 Decisions]]).
+- **The founding year**, "began in 2020". Check it against Companies House
+  (11716825) first, since the registered entity may predate the brand.
+- **A London office card on `/contactus`**: phone, email, 77 Fulham Palace
+  Road. The new site has these only in the footer. Keep the card, not the old
+  "stationed all around the globe" heading, which one office does not support.
+
+**New-site faults the audit found, not yet fixed:**
+
+- **`/industries/undefined` returns 200** with an empty "Services" template —
+  a soft 404 on both sites. It was the old Startup card's link target; nothing
+  links to it now. Unknown sector slugs should 404.
+- **`src/data/talkBusinessData.ts` is unimported** since the story page went.
+  It holds the old Book / Audit / Plan / Execute copy, including the "pick a
+  time from our calendar" promise for a calendar that never existed. The
+  deletion was attempted on 25 Sep and blocked as outside that change's scope.
+  It is harmless where it is; removing it needs asking for.
+
+**Seen from here, not a site fault:** on 25 Sep `www.pixelettemarketing.com`
+did not resolve from this machine ("Server failed" from the local resolver),
+although it served normally on 24 Sep. It looks like the local network's DNS
+rather than the domain. Worth confirming from another network before it is
+taken for anything else.
+
+## Left by the final correction pass (25 Sep)
+
+- **Not committed.** The whole pass sits in the working tree, alongside
+  another session's uncommitted vault edits.
+- **The eight service pages are still legacy** beneath the fixes: "we're the
+  SEO agency for GROWTH" heroes, nine-card service grids, "How we work" icon
+  steps, sector cards. They were outside the pass's rebuild list. They are the
+  next obvious rebuild, on the deeper-experience architecture.
+- **WebBookingPro as Technology evidence** — confirm management is content
+  with it appearing there as well as on `/results`.
+- **The US number, +1 773 270 9034**, appears only on `/contactus`. Nothing
+  else on the site or in the structured data carries it. Confirm it is live.
+- **The tool list** can return tool by tool once management confirms usage.
+- **The service `research` figures** can return one at a time, each with a
+  real, linked source.
+- **Local `.env` still holds `dasda`** for the consent text and notice
+  version, so every local form prints "dasda". Production is set; local is
+  not.
+- **Correction, same day:** the service `research` and `status` figures and
+  the three components that rendered them were deleted on review, not parked.
+  The item above about them returning refers to new, sourced figures only.
+- Four descriptions predating the pass are still over ~165 characters:
+  `/services` (227), `/strategy-positioning` (174), `/results` (169). Minor.
+- Process step names ("Growth Plan", "Execute & Optimise") and the five
+  capability names stay in title case, matching the approved home page,
+  against the brief's sentence-case rule. They are names, not headings, but
+  it is a call management may want to make.

@@ -1211,3 +1211,108 @@ Three of this repo's recorded false readings are now harness artefacts rather
 than faults, against a much longer list of real faults found by looking. Prove
 the harness before trusting what it shows you — and prove it in the same pass,
 because the failure mode is a picture that looks like a bug.
+
+## 25 Sep — every page 404 on the dev server, and nothing wrong with the code
+
+**`next dev` on port 3000 answered every route with Next's own "404: This page
+could not be found."** That included `/`, `/services` and `/aboutus`. The
+production site was fine, and so was the route manifest in `.next/dev/server`,
+which listed every page as compiled. The dev log held nothing but
+browser-extension hydration noise.
+
+**Proved by elimination, without touching the user's server:**
+
+| Server | Result |
+|---|---|
+| the running `next dev` on 3000 | 404 everywhere |
+| `next start` on the existing production build, port 3490 | 200 everywhere |
+| a fresh `next dev` in a detached worktree of the same tree, own `.next` | 200 everywhere |
+
+Same code, same Next 16.3.0. Only the dev server's stored state differed: its
+Turbopack cache in `.next/dev/cache` was 427 MB and dated from 23 Sep. **The
+fix is to stop it, delete `.next/dev`, and restart** — handed to the user,
+because it was their process. Which event poisoned the cache is NOT known. The
+previous day's `next build` runs wrote into the same `.next` root. That is a
+possibility, not a finding.
+
+**This is the second time the on-disk Turbopack cache has outlived its cause**
+(see the 23 Sep entries above, where it replayed a 500). For this repo, "every
+route fails on dev, and a production build of the same tree is fine" should
+send you to `.next/dev` before any code.
+
+**Two harness costs worth keeping:**
+
+- **A junctioned `node_modules` does not work for a worktree.** Turbopack
+  refuses it: *"Symlink [project]/node_modules is invalid, it points out of the
+  filesystem root"*. The worktree needs its own `npm ci`, which took about a
+  minute.
+- **`git worktree remove` failed on Windows with "Filename too long"** inside
+  the scratchpad path. It still unregistered the worktree. `rm -rf` cleared
+  the files, and `git worktree prune` confirmed nothing was left registered.
+
+## 25 Sep — what shipped, and how it was confirmed live
+
+`8101ead..41d8a3b` was pushed to `origin/main` on instruction, in four commits:
+
+- the tool band (`0617590`)
+- the stories deletion (`a44b74c`)
+- community management (`b8544a4`)
+- these notes (`41d8a3b`)
+
+**Before committing:** all six gates passed, all 36 contact tests passed, and
+`route:walk` passed 28/28 against a production build. The walk now also
+asserts that `/success_stories` and `/story/1` return 404. The tool band was
+looked at in the browser at 1440, 900 and 390, and one fault was fixed:
+Semrush at 185px. The community-management card was looked at at the same
+three widths.
+
+**After pushing, live on Vercel within about 45 seconds of polling**:
+`/success_stories` returned 404, `/services` carried "Tools we work in", and
+the home page carried "community management". A commit being on `main` is not
+evidence it is deployed. What was checked is the deployed URL.
+
+## 25 Sep — the final correction pass, and what looking found
+
+Gates: `tsc`, eslint, the token gate, sass, `next build`, 36/36 contact
+tests. `route:walk` 28/28 against `next start`, now also asserting that
+`/industries/undefined` and `/services/undefined` return 404.
+
+Browser: headless Chrome over CDP, reduced motion on, at 1440, 900 and 390.
+Probed all five sector pages, `/contactus`, `/services`, one service page,
+`/blog-list`, `/blog/1`, `/`, `/industries`, `/results` and `/aboutus`: no
+page-level horizontal overflow, one h1 each, no image without alt. Every
+internal link on those pages returned 200. Screenshots looked at: AI (1440,
+390), Web3 (1440, twice), contact (1440), `/services`, a service page (1440,
+390 hero) and Insights.
+
+**Looking found one fault.** The Web3 evidence block sat on `.band-alt`,
+which is the page ground to the digit (the 23 Sep lesson, repeated), and the
+case study's own section padding stacked under the block's header, leaving a
+hole above the story and pushing "See client results" a section away. Fixed:
+no ground, the case study's padding reduced inside the block.
+
+Harness note: Git Bash rewrote the first `/industries/ai` argument into a
+Windows path, so the first walk silently skipped it. `MSYS_NO_PATHCONV=1`
+fixes it.
+
+### 25 Sep, the review pass
+
+Everything the first pass had not exercised:
+
+- **Form, at 390 and 1440, through real key input over CDP** (synthetic
+  `input` events did not reach the textarea): empty submit shows four field
+  errors and sends nothing; a bad email is caught; an unticked consent box
+  now says so (it said nothing before, see [[02 Decisions]]); a mocked 200
+  shows the thank-you and resets the form; a mocked 500 shows the error. The
+  API was intercepted with `Fetch.enable`, so no enquiry was sent.
+- **Menus**: the mobile drawer opened at 390 and lists all eight services and
+  all five sector pages; the desktop Who We Help panel was opened at 1440 for
+  the first time and shows the five under "Deeper experience".
+- **21 routes, including all eight service pages, at 1440, 768 and 390**: no
+  page overflow, one h1, no image without alt; every internal link 200.
+- **Every sitemap route**: title, description and canonical present, none
+  duplicated.
+
+Harness: port 3001 was taken mid-session by an unrelated `node app.local.js`,
+and the first metadata sweep silently queried it. Confirm who answers a port
+before trusting what it says; this pass moved to 3002.

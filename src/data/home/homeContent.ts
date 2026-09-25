@@ -126,6 +126,11 @@ export const growthSystemData: ItemsSectionContent = {
       capabilities: [
         "Paid search and social",
         "social media",
+        // 25 Sep 2026. Back by name: the old site sold it as one of nine
+        // services, and BlockGuard — the lead case on /results — is mostly a
+        // community result (975 Telegram and Discord members). The proof was
+        // pointing at a service the offer no longer named.
+        "community management",
         "campaign execution",
         "demand generation",
         "influencer and partner activity",

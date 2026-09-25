@@ -4,8 +4,8 @@ import { industriesData } from "@/data/industries/industriesData";
 import blogsData from "@/data/blogs/blogsData";
 
 // Generates /sitemap.xml at build time (Next.js App Router metadata route).
-// Lists every public, indexable route. /success_stories and /story/[id] are excluded:
-// they are noindex legacy content (Portfolio hidden 2 Jun 2026), so they must not be advertised here.
+// Lists every public, indexable route. /success_stories and /story/[id] were
+// deleted on 25 Sep 2026 — placeholder legacy content, never listed here.
 const BASE = "https://www.pixelettemarketing.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {

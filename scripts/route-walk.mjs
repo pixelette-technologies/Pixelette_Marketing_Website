@@ -14,10 +14,12 @@
  * at most one .rule-cap mark per route. Both are stated in _surfaces.scss.
  *
  * The route list is DISCOVERED rather than hard-coded, so it cannot drift:
- *   - /sitemap.xml is the canonical list of public routes
- *   - /success_stories and /story/[id] are deliberately absent from it (they
- *     are noindex legacy content), so they are added and their ids scraped
- *     from the index page
+ * /sitemap.xml is the canonical list of public routes.
+ *
+ * /success_stories and /story/[id] were DELETED on 25 Sep 2026 — placeholder
+ * legacy content. They used to be walked from here; now the walk asserts they
+ * are gone, so a revert or a stray restore fails loudly instead of quietly
+ * putting the placeholder pages back.
  *
  *   node scripts/route-walk.mjs [baseUrl]
  *
@@ -54,18 +56,18 @@ const fromSitemap = [...sitemap.body.matchAll(/<loc>([^<]+)<\/loc>/g)]
   .map(m => m[1].replace(/^https?:\/\/[^/]+/, ""))
   .map(p => (p === "" ? "/" : p));
 
-const stories = await get("/success_stories");
-if (stories.status !== 200) fail(`/success_stories returned ${stories.status}`);
-const storyPaths = [...new Set([...stories.body.matchAll(/href="(\/story\/[^"]+)"/g)].map(m => m[1]))];
+for (const gone of ["/success_stories", "/story/1"]) {
+  const r = await get(gone);
+  if (r.status !== 404) fail(`${gone} returned ${r.status}; it was deleted and must 404`);
+}
 
-const routes = [...new Set([...fromSitemap, "/success_stories", ...storyPaths])].sort();
+const routes = [...new Set(fromSitemap)].sort();
 
 const groups = {
-  static: routes.filter(r => !/^\/(services|industries|blog|story)\//.test(r)),
+  static: routes.filter(r => !/^\/(services|industries|blog)\//.test(r)),
   services: routes.filter(r => r.startsWith("/services/")),
   industries: routes.filter(r => r.startsWith("/industries/")),
-  blog: routes.filter(r => r.startsWith("/blog/")),
-  story: routes.filter(r => r.startsWith("/story/"))
+  blog: routes.filter(r => r.startsWith("/blog/"))
 };
 
 for (const [name, list] of Object.entries(groups)) {

@@ -36,7 +36,7 @@ import { IoIosArrowDown } from "react-icons/io";
 //
 // Results is the new /results page. It replaces the Portfolio link that was
 // hidden on 2 Jun 2026 because /success_stories serves legacy Pixelette
-// Technologies content — that route stays hidden and stays out of the sitemap.
+// Technologies content — that route was deleted outright on 25 Sep 2026.
 
 // --- 23 Sep 2026: the drawer is native HTML -----------------------------------
 // Rebuilt to the Pixelette Technologies drawer, which is what it was asked to

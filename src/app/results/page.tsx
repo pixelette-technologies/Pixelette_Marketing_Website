@@ -12,10 +12,10 @@ const baseUrl = "https://www.pixelettemarketing.com";
 // The destination for every "See client results" link the brief puts on the
 // homepage — the hero, the proof band and the results section.
 //
-// IT IS NOT /success_stories. That route serves legacy Pixelette Technologies
-// content, was hidden from the navigation on 2 Jun 2026 and is deliberately
-// kept out of the sitemap; pointing the brief's CTAs at it would have put
-// another company's case studies behind a Pixelette Marketing promise.
+// IT IS NOT /success_stories. That route served legacy Pixelette Technologies
+// content, was hidden from the navigation on 2 Jun 2026 and was deleted on
+// 25 Sep 2026; pointing the brief's CTAs at it would have put another
+// company's case studies behind a Pixelette Marketing promise.
 //
 // The page WAS deliberately thin: the brief's publication gates bar publishing
 // any metric without a documented baseline and client approval, and bar

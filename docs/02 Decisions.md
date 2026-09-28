@@ -1665,3 +1665,77 @@ branch `feat/hero-intelligent-editorial` (`28785d3`), in the worktree
   unrendered, for reuse. Nothing below the hero was changed.
 
 **Status: awaiting visual approval. Not merged, not live.**
+
+
+## 28 Sep 2026, later — the Living Signal: redrawn, then rebuilt to a supplied image
+
+All on the local branch `feat/hero-intelligent-editorial`, in the worktree
+`D:/Projects/Pixelette_Marketing_Website-hero`. Nothing merged or pushed.
+
+**First redraw (`0ad8f31`) — threads, not lines.** The hero brief ends with
+seven questions and says to refine until every answer is yes. Three were no.
+Five single hairlines meeting at a point is a *diagram* of convergence — it
+read as a starburst — and as a still frame (the brief's question 7) it could
+not hold half the screen. Each flow became a bundle of fine threads, frayed at
+its source and gathered at the point, all five arriving from the left so they
+braid in rather than radiate. Crimson kept to each bundle's core; one thread
+per bundle on a phone, where two made the drawing read as five red lines.
+
+**The concept image supersedes the brief's description of the figure.** The
+user supplied the image they had in mind and ruled it the absolute truth for
+form. Where it and the brief disagreed, the user settled each point:
+
+- **Colour: the brand's, not the image's.** The image is blue, violet and
+  orange. Translated, token by token, read at runtime so the token gate stays
+  green: blues → `--color-footer-bg` (deep wine), `--color-body` and
+  `--color-panel-muted` (plum-greys, dusty rose); violet → `--color-brand-hover`;
+  the orange band and lit point → `--color-brand-signal`; the haze →
+  `--color-brand-tint` and `--color-brand-wash`; the point's core →
+  `--color-page`.
+- **Labels: added, against the brief.** The brief says *do not label the
+  visual*; the image carries two groups — *Insight / Strategy / Action /
+  Growth* and *People / Ideas / Technology / Real results* — and the user
+  asked for them, on the understanding they may be dropped after review. Set
+  as HTML type (small tracked capitals, right-aligned, a vertical hairline
+  above and a short rule below), inside the aria-hidden figure because they
+  are part of the picture, and faded in once the drawing has resolved. The
+  words live in `heroCopy.signalLabels`.
+- **Alignment: as the image.** Everything converges on a point at the right
+  edge. The recommendation was to pull it inside the frame or mirror it
+  towards the headline, because an edge point leads the eye off the screen;
+  the user chose the image.
+
+**The form, as built (`3906c3a`).** One sideways teardrop: two wings of
+hairlines above and below a warmer central band, a crown of warm lines from
+the upper right, three long framing arcs, about 5,000 points of varied size
+placed along the lines and in a teardrop envelope — never on a grid — a haze
+behind the wings, and a lit point. The CSS mask came off, because the point
+sits at the right edge where a mask would dim it. Proportions: about
+1 : 1.07 side by side (the image's), 1.35 : 1 when stacked at tablet width —
+1.7 : 1 flattened the teardrop into a streak — and square on a phone.
+
+**Then, on instruction — larger, smoother, a richer pointer (uncommitted):**
+
+- **Larger by taking the gap, not the copy's share.** Side by side, the figure
+  reaches back across the column gap to within 1rem of the copy (the gap's own
+  clamp less 1rem, so it tracks the gap). 480×514 became 536×584 at 1440px and
+  the headline stayed at 63.2px to the pixel. The figure's left edge is its
+  faintest part, so nothing crowds the text.
+- **Smoother.** Easing changed from ease-out to smootherstep — ease-out moved
+  every point fastest in its first frame, which read as a jolt. The resolve is
+  a little longer (about 4.2s). Lines grow to an interpolated tip rather than
+  a sample at a time; signals glide along the line rather than stepping; the
+  settled state runs at full frame rate, because at half rate the travelling
+  signals visibly stepped.
+- **Pointer.** Three cached depth layers (lines and haze, fine points, large
+  points) shift by 3, 8 and 16px against the pointer, and a soft crimson light
+  about a quarter of the figure wide follows it, lighting the threads beneath.
+  Both eased. This goes further than the brief's "felt rather than noticed",
+  on instruction.
+
+**Where the build still differs from the image, knowingly:** a one-hue brand
+palette cannot reproduce the image's blue-to-orange contrast, so the wings and
+band separate more quietly; the figure is a column, not a poster; and on a
+phone the labels are about 9px and cross some lines.
+
+**Status: awaiting visual approval. Not merged, not live.**

@@ -833,3 +833,31 @@ taken for anything else.
 - The local worktree `D:/Projects/Pixelette_Marketing_Website-hero` holds a
   `node_modules` junction to this repo's. **Remove the junction before
   removing the worktree** (see [[10 Verification]]).
+
+
+## 28 Sep, later — the hero figure
+
+- **The third drawing awaits approval**, and the user has two calls to make on
+  it: **keep or drop the labels**, and whether the phone version's ~9px labels
+  are acceptable. See [[02 Decisions]].
+- **The last round is uncommitted.** Larger, smoother and the pointer light
+  sit as working-tree changes to `LivingSignal.tsx` and `_heroHome.scss` in
+  the worktree, on top of `3906c3a`. It was stopped, on the user's word,
+  before its checks finished. Before it is committed:
+  - `tsc` and `eslint` on the final change — the resolve's haze cached into
+    an offscreen layer — which has not been type-checked or built;
+  - a rebuild, then re-measure the resolve's frame pacing (below);
+  - look at the hover screenshot — the pointer light has **not yet been
+    seen**;
+  - look at 900 and 390px again: the enlargement is scoped to side-by-side
+    widths, but that is a claim until looked at;
+  - `_surfaces.scss` registers the figure's motion and says "a few pixels of
+    depth shift"; it does not mention the pointer light yet.
+- **Resolve frame pacing is unproven.** Settled, the figure holds 60fps. The
+  first four seconds dropped frames in headless Chrome — see
+  [[10 Verification]]. Measure on a real browser with a GPU before calling it
+  smooth.
+- **Not re-run since the first drawing:** the route walk, axe, and the
+  throttled-phone LCP/CLS. The figure is now denser and runs at full frame
+  rate, so the 1.4–1.7s LCP and ~2% main-thread figures belong to a different
+  drawing.

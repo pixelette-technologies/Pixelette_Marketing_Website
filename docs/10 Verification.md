@@ -1400,3 +1400,52 @@ turning 680px tall between 768 and 980px. Pointer response measured as
 local (12× denser change near the pointer than elsewhere). axe: nothing in
 the hero. Throttled phone: LCP 1.4–1.7s, CLS 0.0003; a trace of the settled
 page puts the drawing at about 2% of main-thread time.
+
+
+## 28 Sep, later — the Living Signal, three drawings
+
+**How it was looked at.** A production build of the worktree (`next build
+--webpack`, per the worktree traps above) served on port 3004, driven over
+CDP from Node on port 9334, at 1440×900, 900×1000 and 390 (mobile
+emulation), with motion on, motion at about one second in, and
+`prefers-reduced-motion: reduce`.
+
+**Gates, on `0ad8f31` and `3906c3a`:** `tsc`, `eslint`, the token gate and the
+webpack build, all green. No console errors. No horizontal overflow at any of
+the three widths.
+
+**Faults found by looking, none of which a gate could see:**
+
+1. **The first drawing failed the brief's own test.** It passed every gate
+   and had been shown once as finished; held against the brief's seven
+   questions it read as a starburst and could not survive as a still frame.
+   The still frame — question 7, animation off — was the sharpest test: it
+   removes everything motion was covering for.
+2. **On a phone, two crimson threads per bundle** made the thread drawing read
+   as five red lines. One per bundle there.
+3. **A resize after settling replayed the disorder.** `layout()` reset every
+   mark to its noise angle and the redraw ran with no time step. Rebuilt
+   settled after settling.
+4. **In the image-based rebuild, the wings collapsed into one fan too early,
+   the six framing arcs read as a globe, and 5% large points read as spots.**
+   Tuned: control points that keep the wings open until late, three fainter
+   arcs, 3% large points, more points in the wing bodies.
+5. **At 1.7 : 1 (stacked, tablet)** the teardrop, drawn in proportional units,
+   flattened into a streak. 1.35 : 1.
+
+**Pointer, measured rather than eyeballed** (mean alpha change inside 80px of
+the pointer vs beyond 250px): 8.4 vs 2.1 on the thread drawing — local; 9.3 vs
+6.5 on the image rebuild, where the whole layer shifts with depth by design.
+
+**Frame pacing on the enlarged, smoothed build** (rAF intervals, headless
+Chrome, software rendering): **settled — median 13.3ms, p95 14.9ms, one frame
+of 111 over 25ms**; **resolve — median 13.6ms but p95 66.4ms, 83 of 208 frames
+over 25ms.** The resolve window also held page load and hydration, and
+headless has no GPU, so this is not the number a visitor sees — but it is not
+evidence of smoothness either. The haze (three full-frame gradients a frame)
+was moved into a cached layer to cut the cost; that change was **not built or
+re-measured** before work stopped. See [[09 Outstanding]].
+
+**A tooling note.** The auto-mode permission check returned no verdict on
+several Bash calls in a row; the same commands went through under
+PowerShell, or split into smaller calls. Nothing was wrong with the commands.

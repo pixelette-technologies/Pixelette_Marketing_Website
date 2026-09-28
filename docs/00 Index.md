@@ -381,6 +381,30 @@ section, with approval between each**. Phase 1A, the hero only, is built on
 a local branch and **waiting for visual approval; it is not merged and not
 live.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
+**28 Sep, later — the hero's figure, three drawings in an afternoon.** The
+Phase 1A brief came back as a full written instruction, and what the branch
+already held matched it. Looked at against the brief's own seven tests, the
+figure failed three: five single hairlines meeting at a point read as a
+starburst, the still frame was too thin to carry half the screen, and the
+field was uniform scatter. Redrawn as bundles of threads (`0ad8f31`).
+
+**Then the user supplied the concept image they had meant all along**, and
+made it the absolute reference for form, in brand colours rather than its
+own. A gap analysis came first — the build was a sparse pen drawing where the
+image is a dense, lit, full-frame illustration — and the figure was rebuilt
+to it (`3906c3a`): two wings and a warm central band converging on a lit
+point at the right edge, about 5,000 points, a haze, framing arcs, and **the
+image's two label groups, added on instruction against the brief's "do not
+label the visual"**, to be judged on review.
+
+**Last, on instruction: larger, smoother, a richer pointer.** The figure grew
+from 480×514 to 536×584 by reaching into the column gap, so the headline did
+not shrink; the motion eases in and out now and glides where it stepped; the
+pointer moves three depth layers and carries a soft crimson light across the
+threads. **This last round is uncommitted in the worktree and was stopped
+before its final checks** — see [[09 Outstanding]]. Still awaiting approval;
+not merged, not live. See [[02 Decisions]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

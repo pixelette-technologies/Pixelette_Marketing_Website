@@ -1595,3 +1595,73 @@ five places. All fixed:
   `en_GB`, `/privacy` and `/cookie-policy` gained Open Graph tags, and three
   descriptions this pass had written or lengthened were brought under 165
   characters.
+
+## 28 Sep 2026 — the Creative Transformation: built, stopped, rolled back
+
+**What was asked.** A management brief, "Phase 1 — Creative transformation,
+homepage + industries + evidence architecture", superseding the earlier rule
+not to redesign the home page. It asked for a more dynamic, less card-heavy
+experience: an animated hero, proof moved early (BlockGuard), the five
+capabilities as an interactive system, Demand → Pipeline → Conversion →
+Revenue as a scroll journey, a dark AI section, "Who We Help" renamed
+"Industries" and Results taken out of the primary nav.
+
+**What was built** (`abc9477`, 64 files; notes `b487cf3`): all of the above,
+audited twice against the brief and pushed live. The full record — every
+chapter, every fault found by looking — is in `02 Decisions.md` and
+`10 Verification.md` on `backup/main-before-restore-2026-09-28`.
+
+**Why it was stopped.** Management judged it the wrong creative direction:
+"dynamic" had been read as animated diagrams, growth-system graphics,
+dashboard-style visuals and process visualisations, and BlockGuard had
+become the site's opening identity. The instruction:
+
+- preserve the work separately, do not delete it;
+- restore the clean pre-redesign home page as the baseline;
+- no Growth Engine, no animated Demand → Revenue feature, no more animated
+  diagrams, BlockGuard not near the top, no fake work, no generic stock;
+- keep the approved positioning and copy for reuse;
+- **from now on, section by section, and wait between sections.**
+
+**How it was rolled back.** `main` was restored to the tree of `ee628e2` as a
+new commit, `06bb8fe`, rather than by resetting: history is intact and the
+push needed no force. The previous `main` is on
+`backup/main-before-restore-2026-09-28`, pushed to GitHub; a local
+`archive/creative-redesign-2026-09-28` branch and tag hold the same work. The
+restore also dropped `8d1a11f`, a vault-only note, which has been re-applied.
+
+**Reusable from the archive, only if asked:** the one-sentence hero lead, the
+three editorial statements, the brief's Industries headline and lead
+("Different markets. Different challenges."), the qualitative WebBookingPro
+treatment, and the evidence architecture (studies carrying their own figures,
+anchors on `/results`).
+
+## 28 Sep 2026 — "Intelligent Editorial", locked; Phase 1A, the hero
+
+**The direction.** Commercial intelligence, made visually compelling. Three
+ingredients: *commercial editorial* (type, restraint, whitespace), *a living
+signal* (an abstract language of signal emerging from noise) and *a commercial
+canvas* (interactive typography, later, for What We Do and Industries). No
+other direction is to be combined with it.
+
+**Phase 1A — the hero only.** Built on the restored baseline on the local
+branch `feat/hero-intelligent-editorial` (`28785d3`), in the worktree
+`D:/Projects/Pixelette_Marketing_Website-hero`.
+
+- Content left, visual right, about 55/45. One `<h1>` on two lines, verbatim
+  ("Marketing that matters / to your bottom line."), sized from its own
+  column (`10.4cqi`) so it holds two lines from 1440 down to about 900px. No
+  moving or rotating words.
+- The brief's supporting line; "Build my growth plan" as the button;
+  "Explore what we do" as a text link; "Strategy · Demand · Search ·
+  Pipeline · Intelligence" as a quiet line of type, not pills or links.
+- **The Living Signal** replaces the collage: one canvas of fine hairlines
+  that starts as noise and, once per view, lets five unlabelled flows find
+  direction and resolve into a single line. Crimson only on the flows.
+  Ambient drift afterwards at half rate; a small local re-orientation near a
+  fine pointer; nothing on touch; one resolved still frame under reduced
+  motion; paused off screen. No dependency added.
+- The 8 Sep eyebrow, lead, reach and closing line stay in `homeContent.ts`,
+  unrendered, for reuse. Nothing below the hero was changed.
+
+**Status: awaiting visual approval. Not merged, not live.**

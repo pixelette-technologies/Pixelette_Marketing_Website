@@ -784,8 +784,10 @@ taken for anything else.
 
 ## Left by the final correction pass (25 Sep)
 
-- **Not committed.** The whole pass sits in the working tree, alongside
-  another session's uncommitted vault edits.
+- ~~**Not committed.**~~ **Closed 25 Sep, evening:** committed and pushed on
+  instruction as `6280ec2` (code) and `ee628e2` (vault, including the other
+  session's audit notes, which had been sitting uncommitted), and confirmed
+  live on Vercel. See [[10 Verification]].
 - **The eight service pages are still legacy** beneath the fixes: "we're the
   SEO agency for GROWTH" heroes, nine-card service grids, "How we work" icon
   steps, sector cards. They were outside the pass's rebuild list. They are the
@@ -809,3 +811,25 @@ taken for anything else.
   capability names stay in title case, matching the approved home page,
   against the brief's sentence-case rule. They are names, not headings, but
   it is a call management may want to make.
+
+## 28 Sep — after the redesign was stopped
+
+- **Phase 1A hero awaits visual approval.** Local branch
+  `feat/hero-intelligent-editorial` only; not merged, not live. Next sections
+  are not to be started until it is approved, and then one at a time.
+- **Two accessibility faults are live again** — the rollback restored them
+  along with everything else. The footer's identity line is 2.64:1 (a 0.62
+  opacity over an already-muted token; without it, 5.04), and the logo link
+  has no accessible name. Both were fixed in the redesign and reverted with
+  it. Neither is a visual-direction change; they need a go-ahead because the
+  current instruction is not to touch anything outside the section in hand.
+- **The desktop nav wraps "What We / Do" at about 1000px.** Pre-existing on
+  the baseline; the redesign had hidden it by removing Results.
+- **Decisions the redesign had made, now undone and open again:** "Who We
+  Help" vs "Industries" as the nav label; whether Results stays in the
+  primary nav; the /industries page layout.
+- **BlockGuard's measurement period** is still unknown, and the new direction
+  says BlockGuard must not sit near the top of the home page.
+- The local worktree `D:/Projects/Pixelette_Marketing_Website-hero` holds a
+  `node_modules` junction to this repo's. **Remove the junction before
+  removing the worktree** (see [[10 Verification]]).

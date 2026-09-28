@@ -342,8 +342,44 @@ incomplete one. The blog became Insights with seven categories. The service
 pages lost their 24 unverifiable "research" percentages, every "free
 consultation" and calendar promise, and "Book a consultation – it's on us!".
 Unknown sector and service slugs 404 now. All gates green, route walk 28/28,
-every changed page looked at in headless Chrome. **Not committed.** See
-[[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+every changed page looked at in headless Chrome. See [[02 Decisions]],
+[[09 Outstanding]] and [[10 Verification]].
+
+**25 Sep, evening — reviewed against the brief, then shipped.** A second read
+of the brief, section by section, found nine things the pass had missed or
+only half done, all fixed before anything was committed: the unverifiable
+service figures were hidden rather than deleted; service meta descriptions
+still said "1st consultation is on us! 🤙🏼"; hype copy ("unlock", "industry
+leader", "Supercharge") was still live; related-article labels disagreed with
+the new Insights categories; **the consent checkbox blocked a submit without
+saying why**; and the form states, the mobile menu, all eight service pages,
+768px and the site's metadata had not been tested. A final run of 159 checks
+against the rendered HTML of all 28 routes passed. **Committed and pushed on
+instruction, `41d8a3b..ee628e2`, and live on Vercel about 30 seconds later**,
+confirmed on the deployed URL. See [[10 Verification]].
+
+**28 Sep — a creative redesign built, shipped, stopped and rolled back, all
+in one day.** A management brief ("Creative Transformation") asked for the
+home page to be redesigned as a more dynamic experience. It was built —
+a growth-engine hero, BlockGuard proof directly under it, a capability ring,
+a scroll-lit Demand → Revenue journey, a dark AI chapter, Industries renamed
+and rebuilt, Results out of the nav — audited twice against the brief, and
+pushed live (`abc9477`, notes `b487cf3`).
+
+**The same day management stopped it as the wrong creative direction**: it
+had read "dynamic" as animated diagrams, dashboard visuals and excessive
+information architecture, and it opened on BlockGuard. On instruction,
+**`main` was restored to `ee628e2`'s tree** as a new commit (`06bb8fe`, no
+history rewritten), pushed, and confirmed live on Vercel within a minute.
+Nothing is lost: the whole redesign is on `backup/main-before-restore-2026-09-28`
+(on GitHub) and on the local `archive/creative-redesign-2026-09-28` branch and
+tag. This note and the 25 Sep "shipped" note were re-applied on top.
+
+**The direction is now locked as "Intelligent Editorial"** — commercial
+intelligence, made visually compelling — and the work goes **section by
+section, with approval between each**. Phase 1A, the hero only, is built on
+a local branch and **waiting for visual approval; it is not merged and not
+live.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 
@@ -360,6 +396,15 @@ Two things are still true and worth repeating anywhere this is read:
    rather than settling any of it. ~~**And the navigation is broken at 768px on
    all 36 routes.**~~ **That one is closed** — 23 Sep, `45e1ca2`, by the drawer
    rebuild, which had to move the breakpoint anyway. See [[10 Verification]].
+   **25 Sep moved this a long way but did not close it.** Every main route —
+   21, including all eight service pages — was *measured* in headless Chrome
+   at 1440, 768 and 390 (no overflow, one h1, no image without alt), and the
+   desktop Who We Help panel was opened for the first time, so no menu is
+   unseen now. The five sector pages, `/contactus`, `/services`, Insights and
+   one service page were also *looked at*, and looking found one fault the
+   measurements had passed. Measured is not seen: the home page, About,
+   `/strategy-positioning`, `/results` and seven of the eight service pages
+   have not been looked at whole since their last change.
 2. ~~**The form's privacy-notice link is broken in production.**~~ Fixed in
    code on 23 Sep: `/privacy` exists and the link is a route, not an env var.
    Its controller line needs legal review. See [[09 Outstanding]].

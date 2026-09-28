@@ -811,3 +811,34 @@ taken for anything else.
   capability names stay in title case, matching the approved home page,
   against the brief's sentence-case rule. They are names, not headings, but
   it is a call management may want to make.
+
+## 28 Sep — the creative transformation, Phase 1
+
+- **Not committed.** Everything is in the working tree. Commit and push only
+  on instruction.
+- **Brief §30, "Remove duplication"** — deferred on instruction pending
+  research. Candidates already visible: the Industries lead is close to the
+  home preview's lead; the capability section's lead restates the
+  connected-system idea its figure now draws; the BlockGuard quote appears on
+  the home page, `/industries`, `/results` and the Web3 page.
+- **BlockGuard's measurement period** is still unknown. The home page carries
+  the figures inside the case study with a source line; management should
+  still supply the window.
+- **Copy management has not seen:** the one-sentence hero lead; the journey's
+  support line (adapted from the old lead); the Industries preview lead
+  (taken from the brief's Industries copy); the "Measured outcomes" /
+  "Qualitative outcomes" labels; the source line under the figures; "How we
+  work" and "More evidence" as labels. The three editorial statements are the
+  brief's own.
+- **The credibility logos are CSS silhouettes** of white marks. They read
+  correctly at 1440 and 390, but several are raster patterns inside SVG and
+  proper dark exports would be sharper.
+- **`/results` is now reachable only from the footer and the "View the case
+  study" / "Read the story" links.** Confirm that is the intended weight.
+- **The growth engine's envelope is funnel-like.** Judged by eye to read as a
+  working system rather than a flowchart; worth a management look, since the
+  brief names "PowerPoint diagram" as a thing to avoid.
+- ~~**The anchor links** were unchecked.~~ Checked against the served HTML:
+  `/results` carries `id="blockguard"` and `id="webbookingpro"`,
+  `/industries` carries the sector ids, the home page links to them, and no
+  Results link remains in the menu.

@@ -1595,3 +1595,116 @@ five places. All fixed:
   `en_GB`, `/privacy` and `/cookie-policy` gained Open Graph tags, and three
   descriptions this pass had written or lengthened were brought under 165
   characters.
+
+## 28 Sep 2026 — the creative transformation, Phase 1
+
+Built to the management brief "Phase 1 — Creative transformation, homepage +
+industries + evidence architecture". **It supersedes the earlier instructions
+not to redesign the home page.** Positioning, the five-capability
+architecture and the approved copy are kept; the experience is rebuilt.
+Section 30 ("Remove duplication") arrived empty and is **deferred on
+instruction** until there is research behind it.
+
+### Settled before building
+
+- **BlockGuard on the home page, as a case study** (user's choice, 28 Sep).
+  The standing rule in `caseStudies.ts` bars the figures as standalone home-
+  page proof until a measurement period is known. The brief puts them
+  directly under the hero. Resolution: they travel only inside the case
+  study — client named, before→after drawn as pairs, campaign totals
+  labelled as such, the full study one link away, and a source line saying
+  "Figures as reported in the BlockGuard case study." The period is still
+  not invented.
+- **Figures verified against `caseStudies.ts` and stated once.** They now
+  live in `blockGuardEvidence` as numbers with their approved display
+  strings; the `/results` impact list is built from them and renders
+  character-for-character as before. "16.9k" stays lower-case, as approved,
+  though the brief wrote "16.9K".
+
+### The home page, chapter by chapter
+
+1. **Hero.** One `<h1>` on two lines (it had been split across an h1 and an
+   h2). The last words run *pipeline. / conversion. / revenue. / bottom
+   line.* once — **CSS only**: a clipped reel whose resting state is the
+   final line, the passing words as generated content with empty alt text,
+   so the `<h1>` text is exactly the headline and nothing hides it. Lead cut
+   to one sentence; `reach` removed; secondary CTA **"Explore what we do"**
+   (the brief's); the closing line becomes three short principles. **The
+   collage and its parallax are gone.**
+2. **The growth engine.** A canvas **simulation**, not a looping drawing:
+   signals pass five gates, some fall away, survivors change colour, and
+   what reaches revenue fills an output register at the foot. The meters
+   beside each gate are the simulation's own throughput. **No numerals
+   anywhere**, deliberately — a ticking counter in the hero would read as a
+   client claim. Runs only on screen; one settled frame under reduced motion.
+3. **Credibility line.** The six logos moved OFF the dark band, rendered as
+   ink silhouettes with `filter: brightness(0)` on a light row. That spends
+   the page's dark ground where the brief asks for it (intelligence) rather
+   than in the first scroll. Alt text was "Brand Logo 0–5"; it is empty now
+   and the list is named by its label.
+4. **Proof, not promises** (`ProofFeature`, shared with `/industries`).
+   Progressions as a track to scale — the "5" mark sits 3% along the "160"
+   line, and that sliver is the story. Totals as large numerals with no
+   track, because a bar with no baseline would invent one. Counted once on
+   entry; the server HTML always carries the final values.
+5. **Editorial interruption** — "More marketing activity / isn't a growth
+   strategy." Three statements in total (brief §22 says not to use all
+   four): this, the journey's own title "Marketing should have somewhere to
+   go.", and "If it doesn't move the business, why are we measuring it?"
+   before the dark chapter.
+6. **Connected growth system.** GROWTH at the centre, the five around it;
+   hover, focus or click selects, the wire carries one signal, the others
+   recede. Content is `growthSystemData` + `capabilityGroups` — the brief's
+   example sub-lists were not used, the approved ones were. Below a 56rem
+   container it is an accordion. Carries the page's one `.rule-cap`.
+7. **Commercial journey.** Replaces growth figure no. 5 (the ring of cards),
+   which said everything twice. A rail through four stages that fills with
+   scroll position — no pinning, no scroll-jacking. Horizontal when wide,
+   vertical when narrow. Unlit stages stay readable in the muted tone.
+8. **Intelligence — the only dark band.** A four-channel instrument, one per
+   approved mark, with a "Human decision" rule across all four. **Nothing
+   depicts MarketNerve**; the `visual` prop is the slot for approved product
+   imagery later. The scroll-driven strip is gone.
+9. **Industries preview.** Eight names as a typographic index linking to
+   their rows on `/industries`; a specimen card beside it shows the hovered
+   sector. Phones get the scope inline instead.
+10. **How we work.** Process as one line with four stops; the three
+    engagements as rows, management's wording verbatim. **One CTA** where
+    there were two to the same form. The growth-process dark band is
+    released.
+11. **More evidence** — WebBookingPro via `EvidenceStory`: smaller, no
+    figures, and it **says** "Qualitative outcomes"; it throws if handed a
+    study with figures.
+12. **Group advantage**, compact; the **close** is "Start here / Tell us what
+    needs to grow" with the form intro off, as the sector pages do. Kept in
+    a new `homeCloseCopy` because `finalConversionCopy.heading` is shared by
+    the blog, `/results` and `/contactus`.
+
+**Removed:** `HeroCollage`, `GrowthSection`, `GrowthSystem`,
+`AiTechnologySection`, `DynamicMarket`, `ScrollMarquee` and their partials;
+`SectorGrid` and `SplitTitle`; the home page's "Results that matter" section.
+
+### Navigation and Industries
+
+- **"Who We Help" → "Industries"** in the bar, the drawer, the drawer's hub
+  link, the page title, OG/Twitter and both breadcrumb schemas.
+  `whoWeHelpGroups` is `industriesGroups`.
+- **Results out of the primary nav** (bar and drawer). The route, the footer
+  link and the sitemap entry are kept; nothing deleted.
+- `/industries`: the brief's hero copy; **`SectorIndex`** — large numerals,
+  one generated mark per sector (the same six-by-six grammar, a different
+  constellation, tone from the sector palette), alternating sides, rows not
+  links; "Don't see your sector?"; deeper experience unchanged on its dark
+  band; **Evidence in practice** (BlockGuard full size, WebBookingPro beneath
+  it, smaller); stages.
+- **Rows carry anchors** (`#technology-and-innovation` …) so the home
+  preview can land on them; the target row is tinted briefly on arrival.
+
+### Motion register, revised
+
+`_surfaces.scss` is rewritten rather than excepted: the brief asks for motion
+as design. The rules kept, and every new effect held to them: the server HTML
+is always the finished state; nothing loops that is not ambient **and**
+paused off screen; every effect has a still form under reduced motion; no
+layout shift. Controls now transition and arrows nudge 3px; cards still do
+not lift or scale.

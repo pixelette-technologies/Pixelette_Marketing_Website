@@ -358,6 +358,37 @@ against the rendered HTML of all 28 routes passed. **Committed and pushed on
 instruction, `41d8a3b..ee628e2`, and live on Vercel about 30 seconds later**,
 confirmed on the deployed URL. See [[10 Verification]].
 
+**28 Sep — the creative transformation, Phase 1 (home, Industries,
+evidence).** Built to a management brief that **supersedes every earlier
+instruction not to redesign the home page**. The positioning, the five
+capabilities and the approved copy stay; the presentation is rebuilt so the
+site itself is the creative demonstration. The home page is eleven chapters
+now, not heading-copy-cards eleven times: a hero whose headline runs
+*pipeline. → conversion. → revenue. → bottom line.* once and settles, beside
+a **growth engine** (a canvas simulation of signals passing five gates);
+a light credibility line; **"Proof, not promises"** — BlockGuard directly
+under the hero, figures as progressions drawn to scale and counted once; an
+editorial interruption; the five capabilities as a **connected ring**
+(accordion on phones); Demand → Pipeline → Conversion → Revenue as a
+**journey that lights as you scroll**; the **one dark chapter**, "AI-accelerated.
+Human-led.", with a signal instrument; a typographic Industries preview;
+How we work; WebBookingPro as smaller, labelled-qualitative evidence; the
+group advantage; "Tell us what needs to grow".
+
+**Who We Help is "Industries" everywhere, and Results is out of the primary
+navigation** — `/results` stays live for search, direct links and the new
+"View the case study" links. `/industries` opens "Different markets.
+Different challenges.", sets the eight as a numbered editorial index with a
+generated mark per sector, keeps deeper experience on its own dark band, and
+gains **"Evidence in practice"**. The BlockGuard figures travel only inside
+the case study, which is how the standing rule on them is met rather than
+set aside. **Section 30 of the brief (remove duplication) is deferred on
+instruction** pending research. All gates green, route walk 28/28, looked at
+in headless Chrome at 1440, 1024, 768, 390 and 360 with motion on and off —
+and looking found **seven faults the gates passed**. **Not committed.** See
+[[02 Decisions]], [[08 Design system constraints]], [[09 Outstanding]] and
+[[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

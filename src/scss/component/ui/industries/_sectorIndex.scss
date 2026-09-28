@@ -1,0 +1,213 @@
+// The eight sectors on /industries, and the mark each one carries. 28 Sep
+// 2026 — see SectorIndex.tsx and SectorMark.tsx.
+
+// --- Tone ------------------------------------------------------------------------
+// The sector tone pairs from _tokens.scss, resolved once to two local names so
+// the mark and the home preview's chip read the same variables.
+@each $tone in "violet", "rose", "green", "pink", "amber", "blue", "indigo", "teal" {
+  .sectorMark--#{$tone},
+  .sectorTone--#{$tone} {
+    --mark: var(--tone-#{$tone}-mark);
+    --tint: var(--tone-#{$tone}-tint);
+  }
+}
+
+// --- The mark ----------------------------------------------------------------------
+
+.sectorMark {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.sectorMark__dot {
+  fill: var(--color-line-strong);
+}
+
+.sectorMark__shape {
+  fill: var(--tint);
+  stroke: var(--mark);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+.sectorMark__node {
+  fill: var(--color-page);
+  stroke: var(--mark);
+  stroke-width: 1.5;
+}
+
+// Drawn again on hover or focus. Once per entry, never on a loop.
+@keyframes sectorMarkDraw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+// --- The index -----------------------------------------------------------------------
+
+.sectorIndex {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-ink);
+  container-type: inline-size;
+}
+
+.sectorRow {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr) 7rem;
+  align-items: center;
+  gap: 1.25rem;
+  padding-block: clamp(1.5rem, 1rem + 1.5vw, 2.5rem);
+  border-bottom: 1px solid var(--color-line);
+  transition: background-color 600ms ease;
+
+  // :active as well, so a tap on a touch screen — which never hovers —
+  // gets the same response (brief, section 23: "selected industry states
+  // respond to pointer/touch").
+  &:hover .sectorMark__shape,
+  &:active .sectorMark__shape {
+    animation: sectorMarkDraw 900ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  &:hover .sectorRow__title,
+  &:active .sectorRow__title {
+    color: var(--color-brand);
+  }
+}
+
+// Arriving from the home page's preview: the row that was linked to is held
+// on the tint for a moment so the reader can see where they landed.
+.sectorRow:target {
+  animation: sectorRowArrive 2.4s ease;
+}
+
+@keyframes sectorRowArrive {
+  0%,
+  40% {
+    background-color: var(--color-brand-tint);
+  }
+}
+
+.sectorRow__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.6rem + 2.4vw, 3.75rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  // --color-muted, not line-strong: the hairline tone measured 1.51:1 and
+  // axe failed it. A numeral this size needs 3:1; muted gives 5.78.
+  color: var(--color-muted);
+}
+
+.sectorRow__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  transition: color 250ms ease;
+}
+
+.sectorRow__body {
+  margin-top: 0.625rem;
+  max-width: 34rem;
+  color: var(--color-body);
+  line-height: 1.55;
+}
+
+.sectorRow__mark {
+  width: 7rem;
+}
+
+// Wide: the numeral and the mark trade sides on alternate rows, and the
+// text column steps in, so the list reads as a sequence of plates rather
+// than a table.
+@container (min-width: 48rem) {
+  .sectorRow {
+    grid-template-columns: 7rem minmax(0, 1fr) 10rem;
+    gap: 2.5rem;
+  }
+
+  .sectorRow__mark {
+    width: 10rem;
+  }
+
+  .sectorRow--flip {
+    grid-template-columns: 10rem minmax(0, 1fr) 7rem;
+
+    & > .sectorRow__mark {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    & > .sectorRow__text {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    & > .sectorRow__num {
+      grid-column: 3;
+      grid-row: 1;
+      text-align: right;
+    }
+  }
+}
+
+// Narrow: the mark sits under the numeral, small, and the text takes the
+// rest of the row.
+@container (max-width: 30rem) {
+  .sectorRow,
+  .sectorRow--flip {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .sectorRow__mark {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectorRow,
+  .sectorRow:hover .sectorMark__shape,
+  .sectorRow:target {
+    animation: none;
+    transition: none;
+  }
+}
+
+// --- The page's hero and evidence band, 28 Sep 2026 ------------------------------
+
+.industriesIntro {
+  padding-block: clamp(3rem, 2rem + 4vw, 6rem) clamp(1rem, 0.5rem + 2vw, 2.5rem);
+
+  & > .h1p {
+    margin-top: 1.25rem;
+    max-width: 16ch;
+    font-size: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  & > .lead {
+    margin-top: 1.75rem;
+    max-width: 40rem;
+  }
+}
+
+.industriesIntro__accent {
+  display: block;
+  font-style: italic;
+  color: var(--color-brand);
+}
+
+// WebBookingPro sits directly under the BlockGuard feature, sharing its
+// section, so it closes the evidence band rather than opening a new one.
+.industriesEvidence {
+  padding-bottom: var(--sec-y);
+}

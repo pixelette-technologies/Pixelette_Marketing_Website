@@ -151,30 +151,50 @@ export const sectors: SectorCard[] = [
   }
 ];
 
-// --- The home page's preview ------------------------------------------------
-// Establishes breadth and hands off. The fuller explanation — the unlisted
-// sector, the deeper experience and the stages — is on /industries only.
+// --- 28 Sep 2026: "Who we help" becomes "Industries" ------------------------
+// The creative transformation brief, sections 13 and 14. The navigation label,
+// the page's eyebrow and every internal label change to "Industries", and the
+// page is repositioned around what the company is BUILT TO SUPPORT, not where
+// it has a client history. "Industries We Work With" is barred by name,
+// because it implies exactly that history.
 //
-// "AND BEYOND" IS GONE AS A NINTH CARD, on instruction. It sat in the grid as
-// though it were a ninth industry. Its job is done by the hub's "Don't see
-// your sector?" block, one click away, and by the CTA here.
+// The eight sectors, their order and their one-line scopes are UNCHANGED; the
+// brief says to keep the approved taxonomy and not revert to the older one.
+//
+// The page's heading and lead are the brief's own. The home preview keeps the
+// 23 Sep "Across sectors. Built around your market", so the preview and the
+// page it links to do not open on the same line. The 23 Sep rail aside
+// ("Different markets. One principle…") is gone: the new heading says its
+// first half.
 
-export const whoWeHelpPreview = {
-  eyebrow: "Who we help",
+/** A stable anchor for each sector, so the home page's preview can link
+ *  straight to that sector's row on /industries. */
+export const sectorSlug = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+export const industriesPreview = {
+  eyebrow: "Industries",
   heading: whoWeHelpHeading,
-  lead: "Pixelette Marketing is built to work with businesses across established and emerging sectors. We shape the strategy around your audience, proposition, buying journey, commercial model and growth ambition.",
-  cta: { label: "Explore who we help", to: "/industries" }
+  lead: "Our approach adapts to the market, audience, buying journey and commercial challenge rather than applying the same marketing playbook everywhere.",
+  cta: { label: "Explore industries", to: "/industries" }
 };
 
-// --- The /industries hub ------------------------------------------------------
 // The URL stays /industries: it is indexed, it is in the sitemap and nothing
-// is gained by moving it. The label everywhere is "Who we help".
-
-export const whoWeHelpPage = {
-  eyebrow: "Who we help",
-  heading: whoWeHelpHeading,
-  lead: "Pixelette Marketing is built to work with businesses across established and emerging sectors. We don't apply a sector template. We shape the strategy around your audience, proposition, buying journey, commercial model and growth ambition.",
-  aside: "Different markets. One principle: understand before we act.",
+// is gained by moving it — and now the label matches it.
+export const industriesPage = {
+  eyebrow: "Industries",
+  heading: { lead: "Different markets.", accent: "Different challenges." },
+  lead: "Pixelette Marketing is built to support organisations across established and emerging sectors. Our approach adapts to the market, audience, buying journey and commercial challenge rather than applying the same marketing playbook everywhere.",
+  // Brief, section 18. BlockGuard leads because its evidence is quantitative;
+  // WebBookingPro follows, smaller, because its evidence is not.
+  evidence: {
+    eyebrow: "Evidence in practice",
+    secondaryEyebrow: "Also in practice"
+  },
   unlisted: {
     heading: "Don't see your sector?",
     body: "Our approach isn't limited to the markets above. We start by understanding your customer, commercial model, buying journey and growth challenge — then build the marketing approach around them.",

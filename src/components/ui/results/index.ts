@@ -4,3 +4,5 @@ export type {
   CaseStudyImpact,
   CaseStudySectionProps
 } from "./CaseStudySection";
+export { default as ProofFeature } from "./ProofFeature";
+export { default as EvidenceStory } from "./EvidenceStory";

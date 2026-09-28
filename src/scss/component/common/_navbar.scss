@@ -323,3 +323,33 @@ details[open] > .navDrawer__groupSummary > .navDrawer__chev {
     white-space: nowrap;
   }
 }
+
+// --- Opening transitions, 28 Sep 2026 -----------------------------------------
+// The creative transformation brief (section 23) asks for navigation that
+// "transitions smoothly". The desktop panels already animate through
+// framer-motion; the drawer is native <details> and snapped open in one frame.
+// A keyframe on the opened content gives it an arrival without any state:
+// the animation runs each time the element becomes visible, which for a
+// <details> body is each time it opens. Closing stays instant, which is the
+// right way round for a menu you are dismissing.
+.navDrawer[open] > .navDrawer__panel {
+  animation: navDrawerIn 220ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.navDrawer__group[open] > .navDrawer__groupBody {
+  animation: navDrawerIn 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@keyframes navDrawerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navDrawer[open] > .navDrawer__panel,
+  .navDrawer__group[open] > .navDrawer__groupBody {
+    animation: none;
+  }
+}

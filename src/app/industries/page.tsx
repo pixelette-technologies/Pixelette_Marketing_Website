@@ -2,34 +2,43 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import { SectorGrid, SplitTitle, StageList } from "@/components/ui/home";
+import { StageList } from "@/components/ui/home";
+import { SectorIndex } from "@/components/ui/industries";
+import { EvidenceStory, ProofFeature } from "@/components/ui/results";
 import { ArrowEast } from "@/assets/sectors";
 import { industriesData } from "@/data/industries/industriesData";
 import {
   deeperExperience,
-  sectors,
-  stages,
-  whoWeHelpPage
+  industriesPage,
+  stages
 } from "@/data/industries/whoWeHelp";
+import {
+  measuredStudies,
+  qualitativeStudies
+} from "@/data/results/caseStudies";
 
 const baseUrl = "https://www.pixelettemarketing.com";
 
-// The title and keywords are unchanged: this is an indexed page and the
-// search intent behind "web3 marketing" and the rest still lands here. The
-// description changed on 23 Sep because it said the company "works with"
-// businesses in every sector, which reads as a client list; it now says what
-// the page says — built to work with, deeper experience in.
+// The keywords are unchanged: this is an indexed page and the search intent
+// behind "web3 marketing" and the rest still lands here. 28 Sep 2026: the
+// title is "Industries" now, matching the navigation (brief, section 13), and
+// the description says "built to support", the brief's own claim, rather than
+// anything that reads as a client list.
+const title = "Industries | Pixelette Marketing";
+const description =
+  "Pixelette Marketing is built to support organisations across established and emerging sectors, with deeper experience in AI, fintech, SaaS, technology and Web3.";
+const shareDescription =
+  "Different markets. Different challenges. Marketing built around the market, audience, buying journey and commercial challenge.";
+
 export const metadata: Metadata = {
-  title: "Who We Help | Pixelette Marketing",
-  description:
-    "Pixelette Marketing is built to work with businesses across established and emerging sectors, with deeper experience in AI, fintech, SaaS, technology and Web3.",
+  title,
+  description,
   keywords:
     "web3 marketing, fintech marketing, saas marketing, ai marketing, technology marketing agency",
   alternates: { canonical: `${baseUrl}/industries` },
   openGraph: {
-    title: "Who We Help | Pixelette Marketing",
-    description:
-      "Marketing for businesses across established and emerging sectors. We build the strategy around your market, not a sector template.",
+    title,
+    description: shareDescription,
     url: `${baseUrl}/industries`,
     siteName: "Pixelette Marketing",
     type: "website",
@@ -38,57 +47,56 @@ export const metadata: Metadata = {
         url: "/industries/industriesHero.webp",
         width: 1200,
         height: 630,
-        alt: "Who Pixelette Marketing helps"
+        alt: "Industries Pixelette Marketing is built to support"
       }
     ]
   },
   twitter: {
     card: "summary_large_image",
-    title: "Who We Help | Pixelette Marketing",
-    description:
-      "Marketing for businesses across established and emerging sectors. We build the strategy around your market, not a sector template.",
+    title,
+    description: shareDescription,
     images: ["/industries/industriesHero.webp"],
     creator: "@pixelettemarketing"
   },
   robots: { index: true, follow: true }
 };
 
-// --- 23 Sep 2026: the single source of truth for who we help ----------------
-// Rebuilt to a positioning brief. This page is now where the sector story is
-// told in full, and it tells it in the brief's order:
+// --- 28 Sep 2026: Industries -------------------------------------------------
+// Rebuilt to the creative transformation brief, sections 13–18. The order:
 //
-//   1. Hero             the claim — across sectors, built around your market
-//   2. Sectors          the eight, the same cards the home page previews
-//   3. Unlisted         "Don't see your sector?", a transition, not a ninth card
-//   4. Deeper           the five specialist pages, on their own band
-//   5. Stages           launch, scale, established — maturity, not industry
+//   1. Hero             "Different markets. Different challenges."
+//   2. The eight        a numbered editorial index (SectorIndex), not cards
+//   3. Unlisted         "Don't see your sector?", a transition
+//   4. Deeper           the five specialist pages, on the page's dark band
+//   5. Evidence         BlockGuard dominant, WebBookingPro secondary
+//   6. Stages           launch, scale, established — maturity, not industry
 //
-// WHAT WENT: the eleven-mark typographic field (a second, conflicting
-// taxonomy), the "Sector knowledge matters" positioning pair, and the "Sector
-// specialisms … where we have built the most specialist knowledge" block. That
-// last one is the claim the brief bars: it made five technology pages read as
-// the edge of the market and asserted a depth nobody had evidenced.
+// THE TWO CLAIMS STAY VISIBLY APART (brief, section 16). The eight are
+// markets the company is BUILT TO SUPPORT, set on the light ground as an index
+// with no links. The five are where WIDER EXPERIENCE adds depth, set on the
+// one dark band as linked cards. Different ground, different form, different
+// verb — a reader sees the change of claim before reading it.
 //
-// THE DEEPER EXPERIENCE BAND IS VISUALLY SEPARATE ON PURPOSE. It sits on
-// .band-dark, full bleed, so the page shows a change of subject before the
-// copy says so, with white cards on it as the home page's Growth System band
-// has. It was .band-alt first, and looking at it showed that .band-alt is the
-// page ground to the digit (248 245 243 both), so it separated nothing. This
-// is the page's only dark band, well inside the cap of three.
+// EVIDENCE IS NEW HERE (brief, section 18) and it is weighted, not balanced:
+// BlockGuard at full size with its figures, WebBookingPro beneath it, smaller,
+// labelled qualitative, with no number of any kind. Both link to /results,
+// which stays live for direct links and search even though it has left the
+// primary navigation.
 //
-// Its cards link; the sector cards do not. That asymmetry is the rest of the
-// distinction: the eight are the market, the five are further reading.
+// The 23 Sep history of this page — the eleven-mark field and the "sector
+// specialisms" block, both removed for claiming too much — is in git and in
+// [[02 Decisions]].
 
 export default function IndustriesIndexPage() {
-  const { eyebrow, heading, lead, aside, unlisted, deeper, stagesBand } =
-    whoWeHelpPage;
+  const { eyebrow, heading, lead, evidence, unlisted, deeper, stagesBand } =
+    industriesPage;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
-      { "@type": "ListItem", position: 2, name: "Who We Help", item: `${baseUrl}/industries` }
+      { "@type": "ListItem", position: 2, name: "Industries", item: `${baseUrl}/industries` }
     ]
   };
 
@@ -115,35 +123,29 @@ export default function IndustriesIndexPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
-      {/* 1. Hero. The head and the rail are the home section's own classes,
-          so the claim a visitor read on the home page is set the same way
-          when they arrive here from "Explore who we help". */}
+      {/* 1. Hero — the brief's headline and copy. */}
       <div className='wash-left'>
         <Container className='main'>
-          <header className='whoHero dynamicMarket__head'>
-            <div className='dynamicMarket__headMain'>
-              <Text className='eyebrow'>{eyebrow}</Text>
-              <Heading className='h1p dynamicMarket__heading' level={1}>
-                <SplitTitle heading={heading} />
-              </Heading>
-              <Text className='lead'>{lead}</Text>
-            </div>
-            <p className='dynamicMarket__aside'>{aside}</p>
+          <header className='industriesIntro'>
+            <Text className='eyebrow'>{eyebrow}</Text>
+            <Heading className='h1p industriesIntro__title' level={1}>
+              <span>{heading.lead}</span>{" "}
+              <span className='industriesIntro__accent'>{heading.accent}</span>
+            </Heading>
+            <Text className='lead'>{lead}</Text>
           </header>
         </Container>
       </div>
 
       <div className='sec whoSectors'>
         <Container className='main'>
-          {/* 2. The eight. No heading of their own: the h1 directly above is
-              their heading, and a second "Sectors" title would restate it.
-              The grid is labelled for assistive technology instead. */}
-          <section aria-label='Sectors we help'>
-            <SectorGrid sectors={sectors} compact level={2} />
+          {/* 2. The eight, as a numbered editorial index. No heading of
+              their own: the h1 directly above is their heading. */}
+          <section aria-label='Industries'>
+            <SectorIndex level={2} />
           </section>
 
-          {/* 3. The transition. Small on purpose — a hairline and a
-              paragraph, not a section with its own ground. */}
+          {/* 3. The transition. */}
           <section className='hubAside'>
             <Heading className='h3' level={2}>
               {unlisted.heading}
@@ -156,7 +158,7 @@ export default function IndustriesIndexPage() {
         </Container>
       </div>
 
-      {/* 4. Deeper experience. */}
+      {/* 4. Deeper experience — a different claim on a different ground. */}
       <div className='band-dark sec'>
         <Container className='main'>
           <header className='whoBand__head'>
@@ -186,7 +188,30 @@ export default function IndustriesIndexPage() {
         </Container>
       </div>
 
-      {/* 5. Stage, kept apart from sector. */}
+      {/* 5. Evidence in practice (brief, section 18). BlockGuard dominant,
+          WebBookingPro secondary and qualitative. */}
+      {measuredStudies.map((study, i) => (
+        <ProofFeature
+          key={study.client}
+          study={study}
+          eyebrow={i === 0 ? evidence.eyebrow : evidence.secondaryEyebrow}
+        />
+      ))}
+      {qualitativeStudies.length > 0 && (
+        <div className='industriesEvidence'>
+          <Container className='main'>
+            {qualitativeStudies.map(study => (
+              <EvidenceStory
+                key={study.client}
+                study={study}
+                eyebrow={evidence.secondaryEyebrow}
+              />
+            ))}
+          </Container>
+        </div>
+      )}
+
+      {/* 6. Stage, kept apart from sector. */}
       <div className='sec'>
         <Container className='main'>
           <header className='whoBand__head'>

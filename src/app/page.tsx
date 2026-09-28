@@ -1,24 +1,26 @@
 import {
   HomeHero,
-  GrowthSection,
-  ItemsSection,
-  DynamicMarket,
-  AiTechnologySection
+  CredibilityStrip,
+  EditorialStatement,
+  ConnectedSystem,
+  JourneySection,
+  IntelligenceSection,
+  IndustriesPreview,
+  HowWeWork,
+  GroupAdvantage
 } from "@/components/ui/home";
-import {
-  ContactSection,
-  TeamSection,
-  TrustedBrands
-} from "@/components/common";
+import { EvidenceStory, ProofFeature } from "@/components/ui/results";
+import { ContactSection, Container } from "@/components/common";
 import {
   finalConversionCopy,
-  growthSystemData,
-  growthProcessData,
-  proofCopy,
-  resultsCopy,
-  waysToWorkData,
-  widerAdvantageData
+  homeCloseCopy,
+  interruptionCopy,
+  measurementStatement
 } from "@/data/home";
+import {
+  measuredStudies,
+  qualitativeStudies
+} from "@/data/results/caseStudies";
 
 import type { Metadata } from 'next'
  
@@ -35,48 +37,85 @@ export const metadata: Metadata = {
   },
 }
 
+// THE HOME PAGE, 28 SEP 2026 — the creative transformation brief, section 29.
+// The positioning, the five capabilities and the copy are the approved ones;
+// what changed is the presentation. Each section is a chapter with its own
+// form, rather than heading-copy-cards eleven times over:
+//
+//    1  Hero + growth engine            HomeHero
+//       Credibility line                CredibilityStrip
+//    2  Early proof — BlockGuard        ProofFeature
+//    3  Editorial interruption          EditorialStatement
+//    4  Connected growth system         ConnectedSystem
+//    5  Commercial journey              JourneySection
+//       Punctuation                     EditorialStatement
+//    6  Intelligence — the dark chapter IntelligenceSection
+//    7  Industries preview              IndustriesPreview
+//    8  How we work / ways to engage    HowWeWork
+//    9  Additional evidence             EvidenceStory (WebBookingPro)
+//   10  The Pixelette advantage         GroupAdvantage
+//   11  Tell us what needs to grow      ContactSection
+//
+// GONE FROM THIS PAGE: the "Results that matter" section and its "See client
+// results" links (brief, section 20 — proof is shown here, not sent
+// elsewhere), the five capability cards, the growth ring, the Who we help
+// cards and the scroll-driven strip.
+//
+// DARK GROUNDS: ONE. The intelligence chapter, which the brief asks to be the
+// page's single deliberate change of atmosphere. The logo row that used to
+// be a forced second dark band is now a light line (see CredibilityStrip).
+//
+// The one .rule-cap is on the connected growth system.
+
+// The lead proof is the first measured study; any further measured studies
+// and every qualitative one follow in "More evidence". Adding a study to
+// caseStudies.ts is the whole of adding it here (brief, section 20).
+const [leadStudy, ...moreMeasured] = measuredStudies;
+
 export default function Home() {
   return (
     <>
       <HomeHero />
-      <TrustedBrands
-        layout='stacked'
-        eyebrow={proofCopy.eyebrow}
-        heading={proofCopy.heading}
-        standfirst={proofCopy.standfirst}
-        cta={proofCopy.cta}
+      <CredibilityStrip />
+      {leadStudy && <ProofFeature study={leadStudy} />}
+      <EditorialStatement
+        lead={interruptionCopy.lead}
+        turn={interruptionCopy.turn}
+        support={interruptionCopy.support}
       />
-      <GrowthSection />
-      <ItemsSection
-        content={growthSystemData}
-        ground='dark'
-        grid='thirds'
-        variant='card'
+      <ConnectedSystem />
+      <JourneySection />
+      <EditorialStatement
+        lead={measurementStatement.lead}
+        turn={measurementStatement.turn}
+        align='end'
       />
-      <AiTechnologySection />
-      <DynamicMarket />
-      <TeamSection
-        mainHeading={resultsCopy.eyebrow}
-        subHeading={resultsCopy.heading}
-        lead={resultsCopy.lead}
-        cta={resultsCopy.cta}
-      />
-      <ItemsSection
-        content={waysToWorkData}
-        grid='thirds'
-        variant='card'
-      />
-      <ItemsSection
-        content={growthProcessData}
-        ground='dark'
-        variant='card'
-      />
-      <ItemsSection content={widerAdvantageData} topRule />
+      <IntelligenceSection />
+      <IndustriesPreview />
+      <HowWeWork />
+      {moreMeasured.map(study => (
+        <ProofFeature key={study.client} study={study} eyebrow='More evidence' />
+      ))}
+      {qualitativeStudies.map((study, i) => (
+        <section className='sec' key={study.client}>
+          <Container className='main'>
+            <EvidenceStory
+              study={study}
+              eyebrow={i === 0 && !moreMeasured.length ? 'More evidence' : undefined}
+              level={2}
+            />
+          </Container>
+        </section>
+      ))}
+      <GroupAdvantage />
       <ContactSection
-        heading={finalConversionCopy.heading}
+        id='enquiry'
+        eyebrow={homeCloseCopy.eyebrow}
+        heading={homeCloseCopy.heading}
         text={finalConversionCopy.lead}
         closing={finalConversionCopy.closing}
         cta={finalConversionCopy.secondaryCta}
+        formIntro={false}
       />
     </>
   );

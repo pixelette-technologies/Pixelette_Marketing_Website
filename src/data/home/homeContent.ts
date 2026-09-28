@@ -25,14 +25,36 @@ export const RESULTS_HREF = "/results";
 
 // --- 01 Hero ----------------------------------------------------------------
 
+// --- 28 Sep 2026: the creative transformation brief -------------------------
+// The brief keeps the headline and asks for everything around it to be
+// shorter. The lead was two sentences and forty-five words; it is one now,
+// carrying the same commercial meaning — attention to demand, pipeline,
+// customers and growth, run as one accountable system. `reach` came off: the
+// Industries preview further down makes the cross-sector claim with eight
+// names instead of a sentence.
+//
+// The secondary CTA is "Explore what we do", the brief's own choice. "See
+// client results" pointed at /results, which leaves the primary navigation in
+// the same brief — the proof is on the home page itself now, one scroll down.
+//
+// The closing line is split into its three statements, because the brief sets
+// it as a short visual line rather than as small print.
+//
+// `sequence` is the typographic motion (brief section 5): it plays once and
+// settles on the headline's own last words, which are the ones in the <h1>.
+
 export const heroCopy = {
   eyebrow: "Growth marketing built around commercial outcomes",
-  lead: "Pixelette Marketing helps ambitious businesses turn attention into demand, qualified pipeline, customers and measurable growth. We combine positioning, demand generation, search, content, paid media, lifecycle marketing, conversion and growth intelligence into one accountable growth system.",
-  reach: "For ambitious businesses across sectors, from launch through scale.",
+  headline: { lead: "Marketing that matters", tail: "to your", settle: "bottom line." },
+  sequence: ["pipeline.", "conversion.", "revenue."],
+  lead: "We help ambitious businesses turn attention into demand, qualified pipeline, customers and measurable growth, with strategy, search, paid media, conversion and growth intelligence run as one accountable system.",
   primaryCta: { label: "Build my growth plan", to: "/contactus" },
-  secondaryCta: { label: "See client results", to: RESULTS_HREF },
-  closing:
-    "Strategy first. Commercial outcomes. No vanity metrics without context."
+  secondaryCta: { label: "Explore what we do", to: "/services" },
+  principles: [
+    "Strategy first.",
+    "Commercial outcomes.",
+    "No vanity metrics without context."
+  ]
 };
 
 // --- 02 Proof ---------------------------------------------------------------
@@ -179,6 +201,59 @@ export const growthSystemData: ItemsSectionContent = {
     }
   ],
   cta: { label: "Explore what we do", to: "/services" }
+};
+
+// --- The commercial journey, 28 Sep 2026 ------------------------------------
+// The four commercial outcomes (8 Sep brief) as one journey, per the creative
+// transformation brief, section 10. The stage names and lines are the approved
+// ones, moved here from GrowthSystem.tsx when that figure was retired — so
+// this is the same framework, not new copy. The headline is the brief's own
+// section 22 statement; it is the journey's title rather than a free-standing
+// slab because the journey IS the answer to it.
+//
+// The old lead ("Marketing activity is not the objective. Commercial progress
+// is.") is gone from here: the editorial interruption above now says it, in
+// larger type, two sections earlier.
+
+export const journeyCopy = {
+  eyebrow: "Four commercial outcomes",
+  statement: { lead: "Marketing should have", turn: "somewhere to go." },
+  support:
+    "We design each programme around the part of the growth system that needs to move.",
+  stages: [
+    {
+      name: "Demand",
+      line: "Reach the right market with a proposition that earns attention and creates qualified interest."
+    },
+    {
+      name: "Pipeline",
+      line: "Turn demand into sales-ready conversations and commercial opportunities."
+    },
+    {
+      name: "Conversion",
+      line: "Improve the journey from first touch to enquiry, opportunity and decision."
+    },
+    {
+      name: "Revenue",
+      line: "Connect marketing performance to commercial return and optimise accordingly."
+    }
+  ]
+};
+
+// --- The editorial interruption and the punctuation, 28 Sep 2026 ------------
+// Brief sections 8 and 22. Three statements in all; see EditorialStatement for
+// why three and which three.
+
+export const interruptionCopy = {
+  lead: "More marketing activity",
+  turn: "isn't a growth strategy.",
+  support:
+    "The question is what needs to change for the business to move."
+};
+
+export const measurementStatement = {
+  lead: "If it doesn't move the business,",
+  turn: "why are we measuring it?"
 };
 
 // --- 06 AI and technology-enabled delivery ----------------------------------
@@ -375,4 +450,17 @@ export const finalConversionCopy = {
   lead: "Tell us where growth is stuck or where you want to get to. We will use the first conversation to understand the commercial objective, what you have already tried, what the numbers say and whether Pixelette is the right fit.",
   closing:
     "No generic proposal. No channel recommendation before we understand the problem."
+};
+
+// --- The home page's close, 28 Sep 2026 -------------------------------------
+// The creative transformation brief names the final section "Tell us what
+// needs to grow", which is the line the five sector pages and /contactus
+// already close on. It is a separate object rather than a change to
+// finalConversionCopy above, because the blog, /results and /contactus read
+// that one's heading beside a form whose own intro already says "Tell us what
+// needs to grow." — changing it there would print the line twice. Here the
+// form's intro is switched off, as the sector pages do it.
+export const homeCloseCopy = {
+  eyebrow: "Start here",
+  heading: "Tell us what needs to grow"
 };

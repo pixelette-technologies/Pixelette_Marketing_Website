@@ -9,7 +9,7 @@ import { Button, NavbarDropDown } from "../feature";
 import {
   navCta,
   whatWeDoGroups,
-  whoWeHelpGroups,
+  industriesGroups,
   type NavGroup
 } from "@/data/navigation";
 import { IoIosArrowDown } from "react-icons/io";
@@ -37,6 +37,17 @@ import { IoIosArrowDown } from "react-icons/io";
 // Results is the new /results page. It replaces the Portfolio link that was
 // hidden on 2 Jun 2026 because /success_stories serves legacy Pixelette
 // Technologies content — that route was deleted outright on 25 Sep 2026.
+//
+// --- 28 Sep 2026: the creative transformation brief -------------------------
+// Two changes to the bar, both the brief's (sections 13 and 17):
+//
+//   WHO WE HELP IS "INDUSTRIES". Cleaner, and it avoids implying a client
+//   history in every listed sector. Desktop trigger, drawer group and drawer
+//   hub link all changed together; the URL was always /industries.
+//   RESULTS IS OUT OF THE PRIMARY NAVIGATION. Two case studies do not make a
+//   destination. /results itself stays — for search, direct links and the
+//   "View the case study" links on the home and Industries pages — and it is
+//   still in the footer and the sitemap. Nothing was deleted.
 
 // --- 23 Sep 2026: the drawer is native HTML -----------------------------------
 // Rebuilt to the Pixelette Technologies drawer, which is what it was asked to
@@ -74,10 +85,10 @@ function DrawerGroup({
   onNavigate: () => void;
 }) {
   // Every group shows its label. Until 23 Sep a single group was left
-  // unlabelled, because Who We Help's one label only repeated the row above
+  // unlabelled, because the Industries group's one label only repeated the row above
   // it. Its label is "Deeper experience" now, and it carries the distinction
   // the whole section depends on: without it the five specialist links read
-  // as the complete list of sectors, directly under "Who we help overview".
+  // as the complete list of sectors, directly under "Industries overview".
 
   return (
     <details className='navDrawer__group' name='pm-nav-mobile'>
@@ -132,7 +143,10 @@ export default function Navbar() {
       <Container className='main'>
         <div className='main_nav'>
           <nav className='site-nav'>
-            <Link href={"/"}>
+            {/* Named, 28 Sep 2026: the logo is an svg with no text, so the
+                link announced as nothing — axe's link-name failure, on every
+                page. */}
+            <Link href={"/"} aria-label='Pixelette Marketing home'>
               <LogoBlack />
             </Link>
             <div>
@@ -145,13 +159,10 @@ export default function Navbar() {
                 groups={whatWeDoGroups}
               />
               <NavbarDropDown
-                name='Who We Help'
+                name='Industries'
                 mainRoute='industries'
-                groups={whoWeHelpGroups}
+                groups={industriesGroups}
               />
-              <Link href={"/results"} className='flink'>
-                Results
-              </Link>
               <Link href={"/blog-list"} className='flink'>
                 Insights
               </Link>
@@ -184,18 +195,15 @@ export default function Navbar() {
                   onNavigate={closeDrawer}
                 />
                 <DrawerGroup
-                  label='Who We Help'
+                  label='Industries'
                   hub='/industries'
-                  hubLabel='Who we help overview'
-                  groups={whoWeHelpGroups}
+                  hubLabel='Industries overview'
+                  groups={industriesGroups}
                   onNavigate={closeDrawer}
                 />
 
                 {/* Plain rows, at the same level as the groups and without a
                     chevron — theirs does exactly this with Work and About. */}
-                <Link href='/results' className='navDrawer__link' onClick={closeDrawer}>
-                  Results
-                </Link>
                 <Link href='/blog-list' className='navDrawer__link' onClick={closeDrawer}>
                   Insights
                 </Link>

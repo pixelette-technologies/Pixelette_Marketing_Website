@@ -52,9 +52,38 @@
 // flat sentence was wrong and reasoning built on it was reasoning from a false
 // premise.
 //
-// NONE OF THIS LICENSES MOTION ON HOVER. Hover still changes border colour
-// only — no lift, no shadow change, no scale — and the reveal does not extend
-// to cards responding to the cursor or to anything else in this file.
+// --- 28 Sep 2026: THE CREATIVE TRANSFORMATION BRIEF, AND WHAT IT CHANGES ------
+// The brief supersedes the earlier instruction not to redesign the home page,
+// and it asks for motion as part of the design: "purposeful motion", "strong
+// transitions", "intelligent micro-interactions" (sections 1, 23 and 24). So
+// this register is REVISED, not excepted, and the list above changes:
+//
+//   2. THE HERO PARALLAX IS GONE, with the collage it moved. The hero's
+//      figure is now THE GROWTH ENGINE, a canvas simulation that runs only
+//      while on screen and draws one still frame under a reduce preference.
+//      See GrowthEngine.tsx. The headline's last words also run a CSS-only
+//      sequence once on load and stop (_heroHome.scss).
+//   4. THE SCROLL-DRIVEN STRIP IS GONE. The four names it carried are the
+//      channel labels on the intelligence section's instrument now, which
+//      draws in once and drifts slowly while visible (_intelligence.scss).
+//
+// And these are new, all on the home and Industries pages:
+//
+//   - the proof figures count up and their tracks fill, ONCE (ProofFigures)
+//   - the capability ring sends one signal down a wire per selection
+//   - the commercial journey lights stage by stage as the page scrolls
+//   - a sector's mark redraws on hover; the preview's specimen swaps
+//   - controls transition, and arrows nudge towards where they go
+//     (_controls.scss)
+//
+// THE RULES THAT SURVIVE, and every one of the above is held to them: nothing
+// is hidden waiting for an animation (the server always sends the finished
+// state); nothing loops that is not ambient AND paused off screen; every
+// moving part has a still equivalent under prefers-reduced-motion; nothing
+// shifts layout. Hover MAY now respond — a selected node becoming prominent,
+// a row redrawing its mark — but cards still do not lift, scale or throw
+// shadows at the cursor, which the brief also rules out ("bouncing",
+// "animation on every element").
 //
 // Cards are noticeably rounder than controls (12px against 4px). That
 // contrast is part of the look and is not ours to retune.

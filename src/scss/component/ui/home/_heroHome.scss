@@ -1,265 +1,223 @@
-// D4. Twenty-eight media queries across eleven breakpoints, down to one.
-//
-// The copy column was still shaped around furniture that no longer exists.
-// When Phase E dropped the bg_tertiary band from behind the copy — a second
-// ground fighting the wash — it left the geometry that band had needed:
-// padding-left: 13.75rem rising to 13.125rem and back down again over five
-// breakpoints, margin-left: -15rem, margin-bottom: -5.4375rem and a pair of
-// 1.875rem corner radii on a surface with nothing to round. What rendered was
-// 220px of empty gutter beside a heading, and below 1200px a column dragged
-// 240px to the left of its own container. That is the gap in the hero.
-//
-// The collage is the other half. It was five absolutely positioned images at
-// fixed rem offsets inside a fixed 662x410 box, with a second set of hard
-// pixel sizes for every image below 1065px, and it was switched off entirely
-// below 988px in favour of a single flat mobile image. The offsets are
-// percentages of the design box now and the box carries its aspect ratio, so
-// the composition scales instead of being re-pinned at each width, and the six
-// per-image overrides go.
-//
-// The one media query left is the collage-to-mobile-image swap, which is a
-// genuine content swap rather than a layout tweak and cannot be interpolated.
-// It sits at the guide's own 767px rather than inventing a twelfth breakpoint.
+// The home hero. Rebuilt 28 Sep 2026 to the creative transformation brief —
+// see HomeHero.tsx for what went and why. The collage, its parallax layers and
+// the mobile stand-in image are gone, and every rule for them with them.
 
-.heroHome {
+.homeHero {
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem) clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+// Copy and engine side by side, folding with no breakpoint: the engine's
+// basis is what decides when it drops beneath the copy.
+.homeHero__grid {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 3.1875rem;
-  padding-block: var(--sec-y);
+  gap: clamp(2rem, 1rem + 3vw, 4rem);
+}
 
-  // --- The collage ---------------------------------------------------------
-  // The hero widget, and the most distinctive thing on the page. Static since
-  // D2 took the mouse-parallax out; its positioning was always SCSS-owned, so
-  // removing the motion did not move the images.
-  & > div {
-    flex: 1 1 24rem;
-    min-width: 0;
+.homeHero__copy {
+  flex: 1.3 1 32rem;
+  min-width: 0;
 
-    // The five images used to bleed well outside the 662x410 box they were
-    // positioned in — the clock tower alone is 628px tall and sat at
-    // top: -13.75rem, so the composition ran from -220px to +408px vertically
-    // and from -110px to +539px across. It was held on screen by a
-    // padding-top: 14.375rem on this column, and container_main still carries
-    // overflow: hidden, so anything that outgrew that padding was cut. The
-    // container narrowed by 206px in D0, which is exactly the kind of change
-    // that turns a scaffolded overflow into a clipped one.
-    //
-    // The box is the composition's real extent now — 649x628, the union of all
-    // five images — and every offset is a percentage inside it. Nothing
-    // overflows, so nothing needs padding to survive and nothing can be
-    // clipped. Same picture, same stacking order, no scaffolding.
-    & > section {
-      position: relative;
-      width: 100%;
-      max-width: 40.5625rem; // 649px
-      aspect-ratio: 649 / 628;
-      margin-inline: auto;
-
-      // Phase F. This box is `position: relative` with `z-index: auto`, which
-      // does NOT open a stacking context — so the collage's internal z-indexes
-      // of 2, 80 and 80 were competing in the ROOT stacking context against
-      // every other positioned element on the page. Harmless while nothing
-      // above them was positioned; the moment the header became sticky at
-      // z-index 60, two of the five images would have scrolled OVER it.
-      //
-      // `isolation: isolate` contains those three values here, where they were
-      // always meant to apply. The collage now stacks against itself and the
-      // section as a whole stacks against the page as one layer.
-      isolation: isolate;
-
-      & > img {
-        position: absolute;
-        height: auto;
-      }
-
-      & > * {
-        // --- The parallax ---------------------------------------------------
-        // HeroCollage writes --px and --py on this section, unitless, -1 to 1
-        // across the box. The pixels live here, in --depth, so each layer's
-        // travel sits beside the percentages that place it and the two cannot
-        // drift apart.
-        //
-        // Depth follows the stacking order, because that is what makes it read
-        // as depth rather than as a wobble: the near images travel furthest,
-        // the far ones barely move. The version D2 removed gave every image the
-        // SAME offset, which is why it never actually parallaxed.
-        //
-        // The transform is declared unconditionally but --depth defaults to 0,
-        // so nothing moves until the media query below opts a layer in.
-        --depth: 0px;
-        transform: translate3d(
-          calc(var(--px, 0) * var(--depth)),
-          calc(var(--py, 0) * var(--depth)),
-          0
-        );
-        // Long and eased, so the collage settles behind the pointer rather than
-        // tracking it exactly. Tracking exactly is what makes this kind of
-        // effect feel cheap.
-        transition: transform 500ms cubic-bezier(0.22, 0.61, 0.36, 1);
-
-        // Men picture — 402x408
-        &:first-child {
-          top: 35%;
-          left: 16.9%;
-          width: 61.9%;
-          z-index: 2;
-        }
-        // Building — 342x362
-        &:nth-child(2) {
-          top: 42.2%;
-          left: 0%;
-          width: 52.7%;
-          z-index: 80;
-        }
-        // Background round — 353x354
-        &:nth-child(3) {
-          top: 25.5%;
-          left: 21.6%;
-          width: 54.4%;
-        }
-        // Laptop — 199x218
-        &:nth-child(4) {
-          top: 60.5%;
-          left: 69.3%;
-          width: 30.7%;
-          z-index: 80;
-        }
-        // Clock tower — 162x628, the full height of the box
-        &:nth-child(5) {
-          top: 0%;
-          left: 63.2%;
-          width: 25%;
-        }
-      }
-
-      // The second sanctioned motion exception, and the last. Like the marquee
-      // it is opt-in rather than opt-out: the depths only exist for a visitor
-      // who has a fine pointer AND has not asked for reduced motion. Everyone
-      // else keeps --depth: 0px and the static collage that shipped before it.
-      //
-      // The amplitudes are deliberately small — 14px at the very front, 4px at
-      // the back. The whole composition is 649px wide; anything larger stops
-      // being depth and starts being a carousel.
-      @media (prefers-reduced-motion: no-preference) and (pointer: fine) {
-        & > * {
-          // Scoped to the media query on purpose. will-change promotes each
-          // image to its own compositor layer, and there is no reason to pay
-          // for five of those on a device that will never move them.
-          will-change: transform;
-
-          // Background round — the backdrop, so it holds almost still.
-          &:nth-child(3) {
-            --depth: 4px;
-          }
-          // Clock tower — far, but taller than the box, so a little more.
-          &:nth-child(5) {
-            --depth: 6px;
-          }
-          // Men picture — the subject, mid-ground.
-          &:first-child {
-            --depth: 9px;
-          }
-          // Building — front plane.
-          &:nth-child(2) {
-            --depth: 13px;
-          }
-          // Laptop — nearest and smallest, so it travels furthest.
-          &:nth-child(4) {
-            --depth: 16px;
-          }
-        }
-      }
-    }
-  }
-
-  // --- The mobile stand-in -------------------------------------------------
-  & > img {
-    display: none;
-  }
-
-  // --- The copy ------------------------------------------------------------
-  // No band, so no geometry for one. Both headings keep their own elements.
-  //
-  // The 8 Sep brief turns one paragraph into five siblings — eyebrow, two
-  // headings, standfirst, reach line, an action PAIR and a closing line — so
-  // the blanket `& > p { margin: 1.5rem 0 }` that spaced the single paragraph
-  // is gone. On five children it would have set the eyebrow as far from its
-  // own headline as the headline sits from the buttons.
-  & > section {
-    flex: 1 1 22rem;
-    min-width: 0;
-
-    & > div {
-      max-width: 34rem;
-
-      // The guide's eyebrow-to-heading gap, exactly: 20px — the same constant
-      // every section header on this page uses.
-      & > .eyebrow {
-        margin-bottom: 1.25rem;
-      }
-
-      & > .lead {
-        margin-top: 1.5rem;
-      }
-
-      & > .body {
-        margin-top: 0.75rem;
-      }
-
-      & > .small {
-        margin-top: 1rem;
-      }
-    }
+  & > .eyebrow {
+    margin-bottom: 1.5rem;
   }
 }
 
-// The collage carries five images and the clock tower alone is 628px tall in a
-// 410px box. Below the guide's mobile width there is no room to compose them,
-// so the flat stand-in takes over. This is the swap, and it is the only
-// breakpoint this file has left.
-@media only screen and (max-width: 767px) {
-  .heroHome {
-    & > div {
-      display: none;
-    }
+.homeHero__engine {
+  flex: 1 1 22rem;
+  min-width: 0;
+}
 
-    & > img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
+.homeHero__title {
+  // A step above the scale's h1 at the top end. This is the only headline on
+  // the site that is the whole argument, and the brief asks the first
+  // viewport to create immediate visual interest.
+  font-size: clamp(2.5rem, 1.6rem + 3.2vw, 4.25rem);
+  line-height: 1.02;
+}
+
+.homeHero__line {
+  display: block;
+}
+
+.homeHero__line--accent {
+  color: var(--color-brand);
+  font-style: italic;
+}
+
+// --- The typographic sequence ----------------------------------------------
+// A window one line tall, and a reel inside it holding four lines: the three
+// passing words (generated content, empty alt text) and the settled words
+// (real text). The reel's RESTING position is the last line, so without the
+// animation — no support, reduce preference, or before this stylesheet
+// loads — the headline reads correctly. The animation starts from the first
+// line and hands back to that resting state.
+//
+// THE GEOMETRY, corrected 28 Sep after the real italic face was loaded. Each
+// word gets a slot of 1.5em — far taller than the headline's own line — so
+// the descenders of the word above and the ascenders of the word below are
+// both outside the window. The window is then pulled back to the headline's
+// line height with equal negative margins, `1lh` being the line height the
+// window inherits from the <h1>. Aligned by its top, that puts the slot's
+// centre, and so the word's baseline, exactly where the rest of the line's
+// baseline is. At 1.14em with bottom alignment it sat low and let the tails
+// of "pipeline." show above "conversion.", which only became visible once
+// the italic stopped being synthesised.
+.homeHero__window {
+  --reel-line: 1.5em;
+
+  display: inline-block;
+  height: var(--reel-line);
+  overflow: hidden;
+  vertical-align: top;
+  margin-block: calc((1lh - var(--reel-line)) / 2);
+}
+
+.homeHero__reel {
+  display: flex;
+  flex-direction: column;
+  line-height: var(--reel-line);
+  transform: translateY(calc(-3 * var(--reel-line)));
+  animation: homeHeroReel 2.6s cubic-bezier(0.7, 0, 0.2, 1) 0.45s both;
+
+  &::before {
+    // Interpolated so Sass passes the slash through rather than reading it
+    // as division. The empty string after it is the alternative text.
+    content: #{'var(--hero-reel) / ""'};
+    white-space: pre;
   }
 }
 
-// Phase F. The accent swaps ends. It was on the first line, which made
-// "Marketing That Matters" the loudest thing on the page and left the half
-// that actually names the benefit in plain ink. The guide's hero device puts
-// the statement in ink and the payoff in the brand tone — Certified reads
-// "Your next enterprise deal is waiting on a certificate you don't have yet."
-// in ink, then "We fix that in 10 weeks." in teal. Same shape here.
-.heroHome {
-  & > section > div {
-    & > h1 {
-      color: var(--color-ink);
-    }
-
-    & > h2 {
-      color: var(--color-brand);
-    }
+@keyframes homeHeroReel {
+  0%,
+  16% {
+    transform: translateY(0);
+  }
+  28%,
+  44% {
+    transform: translateY(calc(-1 * var(--reel-line)));
+  }
+  56%,
+  72% {
+    transform: translateY(calc(-2 * var(--reel-line)));
+  }
+  86%,
+  100% {
+    transform: translateY(calc(-3 * var(--reel-line)));
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .homeHero__reel {
+    animation: none;
+  }
+}
 
-// The action pair the brief specifies. The primary is the filled control, the
-// secondary is .btn2's outline. They WRAP rather than shrink: the 52px minimum
-// tap target in _controls is not negotiable on a phone, so two lines is the
-// correct answer at narrow widths and two half-width buttons is not.
-.heroHome__actions {
+.homeHero__lead {
+  margin-top: 1.75rem;
+  max-width: 36rem;
+}
+
+.homeHero__actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 0.75rem;
   margin-top: 2rem;
+}
+
+// The brief's short visual line. Three statements on one hairline, each led
+// by a small signal tick rather than a bullet.
+.homeHero__principles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 2.25rem 0 0;
+  padding: 1.25rem 0 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+
+  & > li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  & > li::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-brand-signal);
+  }
+}
+
+// --- The growth engine -------------------------------------------------------
+// The canvas sits right of a label column. The labels are placed from the
+// same fractions the drawing uses (GATE_Y), so they cannot drift apart.
+.growthEngine {
+  position: relative;
+  height: clamp(22rem, 16rem + 18vw, 34rem);
+  margin: 0;
+}
+
+.growthEngine__plot {
+  position: absolute;
+  inset: 0 0 0 6.5rem;
+  width: calc(100% - 6.5rem);
+  height: 100%;
+}
+
+.growthEngine__stages {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 6.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.growthEngine__stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 0.375rem;
+}
+
+.growthEngine__label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.growthEngine__stage:last-child .growthEngine__label {
+  color: var(--color-brand);
+}
+
+// Each gate's recent throughput, relative to the busiest gate. Written by the
+// simulation as --meter; a hairline track with a signal fill.
+.growthEngine__meter {
+  position: relative;
+  display: block;
+  width: 4.5rem;
+  height: 2px;
+  background: var(--color-line);
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--color-brand-signal);
+    transform-origin: left;
+    transform: scaleX(var(--meter, 0));
+    transition: transform 400ms linear;
+  }
 }

@@ -1,0 +1,165 @@
+// The commercial journey. 28 Sep 2026 — see CommercialJourney.tsx.
+//
+// One line through four stages. Horizontal when there is room for four
+// columns of copy, vertical otherwise; the switch is a container query on the
+// track's parent, and the component reads the orientation back from the
+// rendered box rather than keeping a breakpoint of its own.
+
+.journey__head {
+  & > .statement__text {
+    margin-top: 1.5rem;
+    font-size: clamp(2.25rem, 1.3rem + 4vw, 5rem);
+  }
+
+  & > .lead {
+    margin-top: 1.75rem;
+    max-width: 34rem;
+  }
+}
+
+.journey > .container_main {
+  container-type: inline-size;
+}
+
+.journey__track {
+  --journey: 1;
+  --node: 14px;
+
+  position: relative;
+  display: grid;
+  gap: 2.5rem;
+  margin: clamp(3rem, 2rem + 3vw, 5rem) 0 0;
+  padding: 0 0 0 2.5rem;
+  list-style: none;
+
+  // The rail and its fill. Vertical by default.
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: calc(var(--node) / 2 - 1px);
+    top: 0.4rem;
+    bottom: 0.4rem;
+    width: 2px;
+  }
+
+  &::before {
+    background: var(--color-line);
+  }
+
+  &::after {
+    background: var(--color-brand);
+    transform-origin: top;
+    transform: scaleY(var(--journey));
+  }
+}
+
+.journey__stage {
+  position: relative;
+}
+
+.journey__node {
+  position: absolute;
+  left: -2.5rem;
+  top: 0.35rem;
+  width: var(--node);
+  height: var(--node);
+  border-radius: 50%;
+  background: var(--color-page);
+  border: 2px solid var(--color-line-strong);
+  transition: background-color 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
+}
+
+.journey__num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  color: var(--color-muted);
+  transition: color 350ms ease;
+}
+
+.journey__name {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.75rem, 1.4rem + 1.4vw, 2.625rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+  transition: color 350ms ease;
+}
+
+.journey__line {
+  margin-top: 0.75rem;
+  max-width: 22rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  transition: color 350ms ease;
+}
+
+// Lit — and, without the mechanism, every stage is lit.
+.journey__track:not([data-armed]) .journey__stage,
+.journey__stage.is-lit {
+  .journey__node {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+    box-shadow: 0 0 0 5px var(--color-brand-tint);
+  }
+
+  .journey__num {
+    color: var(--color-brand);
+  }
+
+  .journey__name {
+    color: var(--color-ink);
+  }
+
+  .journey__line {
+    color: var(--color-body);
+  }
+}
+
+// The destination is set in the brand tone once it is reached.
+.journey__stage.is-lit:last-child .journey__name,
+.journey__track:not([data-armed]) .journey__stage:last-child .journey__name {
+  color: var(--color-brand);
+  font-style: italic;
+}
+
+@container (min-width: 50rem) {
+  .journey__track {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2rem;
+    padding: 2.75rem 0 0;
+
+    &::before,
+    &::after {
+      left: 0;
+      right: 0;
+      top: calc(var(--node) / 2 - 1px);
+      bottom: auto;
+      width: auto;
+      height: 2px;
+    }
+
+    &::after {
+      transform-origin: left;
+      transform: scaleX(var(--journey));
+    }
+  }
+
+  .journey__node {
+    left: 0;
+    top: -2.75rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey__node,
+  .journey__num,
+  .journey__name,
+  .journey__line {
+    transition: none;
+  }
+}

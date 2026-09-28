@@ -88,9 +88,7 @@ if (linkedServices !== servicesData.length) {
   );
 }
 
-// --- Industries: deeper experience, 23 Sep 2026 ------------------------------
-// (The menu was labelled "Who We Help" until 28 Sep 2026; it is "Industries"
-// now, per the creative transformation brief, section 13.)
+// --- Who We Help: deeper experience, 23 Sep 2026 -----------------------------
 // The label was "Selected sector experience" over five technology pages,
 // which made the menu say the company's sectors were those five. They are not:
 // the eight sectors are on /industries (the trigger links there, and the
@@ -102,7 +100,7 @@ if (linkedServices !== servicesData.length) {
 // same order with the same short labels, so the menu and the page cannot
 // drift the way What We Do and /services once did. It throws on an unknown
 // route, which is the guarantee the old pick() gave this menu.
-export const industriesGroups: NavGroup[] = [
+export const whoWeHelpGroups: NavGroup[] = [
   {
     label: "Deeper experience",
     items: deeperExperience.map(area => ({

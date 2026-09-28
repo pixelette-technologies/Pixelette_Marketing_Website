@@ -10,3 +10,5 @@ export { default as ContentDisplaySection } from "./ContentDisplaySection";
 export { default as Faqs } from "./Faqs";
 export { default as CookieConsent } from "./CookieConsent";
 export { default as ScrollReveal } from "./ScrollReveal";
+export { default as ScrollMarquee } from "./ScrollMarquee";
+export type { ScrollMarqueeProps } from "./ScrollMarquee";

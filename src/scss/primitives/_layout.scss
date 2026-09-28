@@ -46,18 +46,3 @@
   height: var(--sig-cap-height);
   background: var(--color-brand-signal);
 }
-
-// Visually hidden, still read. 28 Sep 2026: the first call sites are the
-// count-up figures, where the moving digits are aria-hidden and this carries
-// the final value once, so a screen reader never hears a number mid-count.
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}

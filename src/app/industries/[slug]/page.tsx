@@ -125,7 +125,7 @@ export default async function Page({ params }: PageProps) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Industries",
+        name: "Who We Help",
         item: `${baseUrl}/industries`
       },
       {

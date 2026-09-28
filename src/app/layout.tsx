@@ -17,14 +17,8 @@ import {
 // Newsreader and Outfit are variable fonts, so no weight is declared — the
 // full range ships and the display role is set to 400 in the stylesheet.
 // IBM Plex Mono has static cuts only and must name its weights.
-// 28 Sep 2026: the italic cut is loaded too. The creative transformation
-// pages set their accent lines in Newsreader italic, and with only the upright
-// face shipped every one of them was a slant the browser faked — and Chrome did
-// not fake it on generated content, so the hero's passing words rendered
-// upright beside italic ones.
 const newsreader = Newsreader({
   subsets: ["latin"],
-  style: ["normal", "italic"],
   variable: "--font-newsreader",
   display: "swap"
 });

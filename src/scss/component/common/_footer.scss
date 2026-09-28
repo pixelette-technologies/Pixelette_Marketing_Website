@@ -258,11 +258,10 @@ a.groupband__name:hover {
   flex-wrap: wrap;
   gap: 0.25rem 1.625rem;
   max-width: 76ch;
-  // 28 Sep 2026: the 0.62 fade copied from Technologies is gone. On top of
-  // --color-footer-muted it measured 2.64:1, which axe flags on every page and
-  // WCAG AA does not allow for 12.5px text. The muted token alone is 5.04,
-  // still a step quieter than the links at 7.49, so the hierarchy the fade
-  // was for survives without it.
+  // Theirs fades the whole row rather than picking a dimmer token. Doing the
+  // same keeps it one step quieter than the links without inventing a colour
+  // the palette does not have.
+  opacity: 0.62;
 }
 
 .footerId--end {

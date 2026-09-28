@@ -1,8 +1,6 @@
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
-import { caseAnchor } from "@/data/results/caseStudies";
 import type { ClientQuote } from "@/data/teamData";
-import type { CaseStudyEvidence } from "@/data/results/caseStudies";
 import { FC } from "react";
 
 export interface CaseStudyImpact {
@@ -21,9 +19,6 @@ export interface CaseStudyContent {
    *  See the note below. */
   impactStyle: "figures" | "statements";
   impact: CaseStudyImpact[];
-  /** Measured outcomes as numbers, for ProofFeature. Absent on a
-   *  qualitative study. See caseStudies.ts, 28 Sep 2026. */
-  evidence?: CaseStudyEvidence;
   /** Trailing line. Only one of the two case studies has one. */
   closing?: string;
   quote: ClientQuote;
@@ -74,13 +69,7 @@ const CaseStudySection: FC<CaseStudySectionProps> = ({
 
   const inner = (
     <Container className='main'>
-      {/* The id is the anchor "View the case study" links to from the home
-          page and /industries, 28 Sep 2026. Derived from the client name so
-          a new study gets one without anyone remembering to add it. */}
-      <article
-        className='caseStudy'
-        id={caseAnchor(client)}
-      >
+      <article className='caseStudy'>
         <header>
           <Heading className='eyebrow' level={2}>
             {client}

@@ -1316,3 +1316,40 @@ Everything the first pass had not exercised:
 Harness: port 3001 was taken mid-session by an unrelated `node app.local.js`,
 and the first metadata sweep silently queried it. Confirm who answers a port
 before trusting what it says; this pass moved to 3002.
+
+### 25 Sep, the final check, and what shipped
+
+**Before committing, the brief was checked against rendered HTML rather than
+source**: every sitemap route fetched from a production build, tags stripped,
+and 159 assertions run against the text a visitor gets. 155 passed. The four
+that did not were all false positives, each read in context: "NDA" matched
+inside ordinary words ("standard"); "get a proposal" matched a process step
+on the SEO page ("You'll get a proposal that highlights a roadmap"), not the
+old button; "Success Story Creation" is a PR deliverable, not the legacy CTA;
+"benchmarking against industry leaders" is not a claim to be one. **Checking
+source alone would have missed any copy that reaches the page by another
+route; checking rendered text is what makes a zero meaningful.**
+
+What the 155 covered, by the brief's sections: the A–H order on all five
+sector pages; each page's required positioning and the fintech compliance
+sentence verbatim; the contact copy and all four steps verbatim, and "Tell
+us what needs to grow." printed once; the Insights hero and categories; 45
+forbidden phrases and placeholder URLs absent site-wide; BlockGuard's figures
+identical on `/results` and Web3; the privacy link on every page carrying the
+form; the two soft 404s and the two redirects. **The only percentages left on
+the site are four third-party figures in blog posts**, each naming its source
+in the sentence (the FCA, Nielsen, the Rule of 40, Google and Yahoo's sender
+rules).
+
+The browser checks were re-run on the same build: 63 layout checks (21 routes
+× 1440, 768, 390) with none flagged, and the form states at both widths —
+empty submit now shows five errors, consent among them.
+
+**Shipped:** `41d8a3b..ee628e2` pushed to `origin/main` on instruction, in two
+commits: `6280ec2` (the code, 47 files) and `ee628e2` (the vault). The
+working tree was clean before the push and was the tree just built and
+checked, so HEAD needed no separate proof. **Live on Vercel within about 30
+seconds of polling**, confirmed on the deployed URL, not inferred from the
+push: `/contactus` carried the new copy, `/industries/ai` and `/blog-list`
+returned 200 with the new Insights heading, `/industries/undefined` returned
+404, and `/services` no longer carried the tool band.

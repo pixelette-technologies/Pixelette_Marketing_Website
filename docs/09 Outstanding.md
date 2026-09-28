@@ -784,8 +784,10 @@ taken for anything else.
 
 ## Left by the final correction pass (25 Sep)
 
-- **Not committed.** The whole pass sits in the working tree, alongside
-  another session's uncommitted vault edits.
+- ~~**Not committed.**~~ **Closed 25 Sep, evening:** committed and pushed on
+  instruction as `6280ec2` (code) and `ee628e2` (vault, including the other
+  session's audit notes, which had been sitting uncommitted), and confirmed
+  live on Vercel. See [[10 Verification]].
 - **The eight service pages are still legacy** beneath the fixes: "we're the
   SEO agency for GROWTH" heroes, nine-card service grids, "How we work" icon
   steps, sector cards. They were outside the pass's rebuild list. They are the

@@ -12,7 +12,6 @@ import { capabilitiesCopy, type CapabilityIcon } from "@/data/home";
 import BrickScene, { BASE, BRICK, BRICKS, SCENE } from "./BrickScene";
 import BrickSceneMotion from "./BrickSceneMotion";
 import EditorialCopy from "./EditorialCopy";
-import RailLabel from "./RailLabel";
 import RoomBackdrop from "./RoomBackdrop";
 
 // 03 — "Five capabilities / One commercial objective". Locked implementation
@@ -105,10 +104,6 @@ export default function CapabilitiesSection() {
             <EditorialCopy
               copy={capabilitiesCopy}
               titleId='capabilities-title'
-            />
-            <RailLabel
-              lines={capabilitiesCopy.rail}
-              className='homeScene__rail'
             />
           </div>
         </Container>

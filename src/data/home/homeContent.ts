@@ -28,9 +28,9 @@ export const RESULTS_HREF = "/results";
 // --- 28 Sep 2026: the locked implementation specification, sections 01-04 --
 // The hero and the three sections under it are transcribed from a locked
 // management specification and its approved reference image. The spec is
-// the source for every sentence it writes out; the image is the source for
-// the small right-hand rail labels, which it shows and the spec does not
-// spell out (included on instruction, verbatim from the image).
+// the source for every sentence it writes out. The small right-hand rail
+// labels the image shows on 02-04 were included at first and removed on
+// instruction on 29 Sep 2026; the hero's own two label groups stay.
 //
 // NO FULL STOPS ON ANY HEADLINE OR SHORT VISUAL STATEMENT here. The spec
 // says so section by section; do not "correct" them back.
@@ -81,8 +81,6 @@ export interface EditorialSectionCopy {
   accent?: string;
   lead: string;
   cta: { label: string; to: string };
-  /** The small right-hand rail label, one entry per line. */
-  rail: readonly string[];
 }
 
 // --- 02 More activity isn't the answer ---------------------------------------
@@ -97,7 +95,6 @@ export const activityCopy: EditorialSectionCopy & {
   accent: "Better decisions are",
   lead: "We help you focus on what will actually move the business — then build the marketing around it.",
   cta: { label: "Our approach", to: APPROACH_HREF },
-  rail: ["Less", "noise", "Better", "decisions", "Real", "impact"],
   // The spec's list, in its order, and no others. Stored in sentence case;
   // the notes set them in capitals as the reference does.
   notes: [
@@ -131,7 +128,6 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   accent: "One commercial objective",
   lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
   cta: { label: "Explore all services", to: "/services" },
-  rail: ["People", "Ideas", "Capabilities", "Stronger", "outcomes"],
   // The site's five capability names, in the hub's order.
   capabilities: [
     { name: "Strategy & Positioning", icon: "compass" },
@@ -154,7 +150,6 @@ export const relevanceCopy: EditorialSectionCopy & {
   accent: "Relevance isn’t",
   lead: "We help you reach the right people, with the right message, at the right time — and turn that into real commercial impact.",
   cta: { label: "Our approach", to: APPROACH_HREF },
-  rail: ["Relevance", "creates", "opportunity"],
   annotation: ["Quacking good", "at standing out"]
 };
 

@@ -47,8 +47,23 @@ import { useEffect, useRef } from "react";
 //     signals travel inwards, at half frame rate.
 //   - Nothing runs while the figure is off screen or the tab is hidden.
 //   - prefers-reduced-motion: the resolved composition, drawn once.
-//   - Fine pointer only: the two layers shift by a few pixels at different
-//     depths. No repulsion, no trail.
+//
+// THE POINTER — 29 Sep 2026, an enhancement on instruction (not a redesign).
+// Fine pointer only; it replaces the earlier few-pixel depth shift.
+//   - THE MAGNET. Anywhere near the figure — above it, below it or on it —
+//     the lines and points lean towards the pointer: below the figure the
+//     wings are drawn down, above it they are drawn up. The pull fades out
+//     towards the point, so every line still arrives at FOCUS.
+//   - ON THE FIGURE (inside the teardrop): the lines glow, and the orange
+//     signals multiply and run at many times their speed with long lit
+//     tails, start to end — light at speed, arriving at the point.
+//   - THE POINTS near the pointer glow, and are drawn in by it with real
+//     physics: each is a mass on a spring to its place, pulled by a softened
+//     inverse-square force. They gather round the pointer, lag and swing
+//     when it moves fast, and spring home with one overshoot when it goes.
+//     The few large points are heavier: slower, and they travel less.
+//   - Both ease in and out. While the pointer is engaged the scene is drawn
+//     live at full frame rate; otherwise the cached layers are used as before.
 
 type Pt = [number, number];
 type Rgb = [number, number, number];
@@ -72,10 +87,12 @@ const DUSK = 2;
 const BRAND = 3;
 const SIGNAL = 4;
 const ALPHAS = [0.32, 0.58, 0.85];
+const HALO_ALPHAS = [0.22, 0.4, 0.62];
 
 interface Line {
   fam: Family;
   pts: Float32Array; // px, x/y interleaved
+  live: Float32Array; // pts, bent by the magnet
   strong: boolean;
   delay: number;
 }
@@ -96,12 +113,31 @@ interface Signal {
   line: number;
   s: number;
   speed: number;
+  warp: boolean; // one of the extra travellers seen only on hover
 }
 
 // --- Timing -----------------------------------------------------------------
 
 const SETTLED = 3.5;
 const GLOW_AT = 2.2;
+
+// --- The pointer ------------------------------------------------------------
+
+const MAGNET = 0.55; // share of the distance to the pointer a point moves
+const REACH_X = 0.36; // the field's spread, of width
+const REACH_Y = 0.55; // and of height, broad so a pointer outside still pulls
+const PULL_CAP = 0.17; // the most a point moves, of height
+const WARP = 18; // how many times faster the signals run at full hover
+
+// The points near the pointer, each a small mass on a spring to its place,
+// pulled by a softened inverse-square force (Plummer: strongest a little way
+// out, zero at the pointer itself, so they gather round it, not onto it).
+const DOT_REACH = 180; // px: beyond this the force is nil
+const DOT_SOFT = 40; // px: the softening length
+const DOT_PULL = 1.6e6; // the force's strength
+const DOT_SPRING = 16; // per unit mass: every point rings at ~4 rad/s
+const DOT_DAMPING = 0.3; // of critical, so a flung point overshoots once
+const DOT_GLOW = 110; // px: how near the pointer a point starts to glow
 
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const ease = (x: number) => 1 - Math.pow(1 - clamp01(x), 3);
@@ -182,24 +218,88 @@ export default function LivingSignal({
     let lines: Line[] = [];
     let dots: Dot[] = [];
     let signals: Signal[] = [];
+    let wings: number[] = [];
     let grads: Record<Family, CanvasGradient> | null = null;
     // The settled scene, cached: lines, haze and far points; near points.
     let far: HTMLCanvasElement | null = null;
     let near: HTMLCanvasElement | null = null;
+    // The hover glow: the lines redrawn thick at quarter resolution, so
+    // scaling it back up is itself most of the blur.
+    let bloom: HTMLCanvasElement | null = null;
+    let bloomCtx: CanvasRenderingContext2D | null = null;
+    // The same, for the glow round the points near the pointer.
+    let sheen: HTMLCanvasElement | null = null;
+    let sheenCtx: CanvasRenderingContext2D | null = null;
+    // The points' physics, one slot per dot: offset from rest, velocity,
+    // mass; and, written each live frame, where each is drawn and how
+    // brightly it glows.
+    let ox = new Float32Array(0);
+    let oy = new Float32Array(0);
+    let vx = new Float32Array(0);
+    let vy = new Float32Array(0);
+    let mass = new Float32Array(0);
+    let dpx = new Float32Array(0);
+    let dpy = new Float32Array(0);
+    let glow = new Float32Array(0);
+    let dotsAwake = false;
+    let dotPull = 0;
+
+    // The figure's box inside the (larger) canvas, in CSS px.
+    let offX = 0;
+    let offY = 0;
+    // A context drawing in the figure's px, at `s` device px per CSS px.
+    const toScene = (c: CanvasRenderingContext2D, s: number) =>
+      c.setTransform(s, 0, 0, s, offX * s, offY * s);
+    // Clear, or lay a same-sized layer over, the whole canvas, bleed and all.
+    const wipe = (c: CanvasRenderingContext2D) => {
+      c.save();
+      c.setTransform(1, 0, 0, 1, 0, 0);
+      c.clearRect(0, 0, c.canvas.width, c.canvas.height);
+      c.restore();
+    };
+    const stamp = (
+      c: CanvasRenderingContext2D,
+      src: HTMLCanvasElement,
+      filter?: string
+    ) => {
+      c.save();
+      c.setTransform(1, 0, 0, 1, 0, 0);
+      if (filter) c.filter = filter;
+      c.drawImage(src, 0, 0, c.canvas.width, c.canvas.height);
+      c.restore();
+    };
 
     // --- The scene ---------------------------------------------------------
 
     const layout = () => {
+      // 29 Sep: the canvas bleeds past the figure (see .livingSignal__canvas)
+      // so the magnet can carry lines and points beyond the figure's box
+      // without their being cut at its edge. The scene is still laid out in
+      // the figure's own box, w × h; (offX, offY) is where that box sits in
+      // the canvas, and toScene() puts every context into it.
       const rect = canvas.getBoundingClientRect();
-      w = rect.width;
-      h = rect.height;
+      const box = figure.getBoundingClientRect();
+      w = box.width;
+      h = box.height;
+      offX = box.left - rect.left;
+      offY = box.top - rect.top;
       const narrow = w < 520;
       dpr = Math.min(window.devicePixelRatio || 1, narrow ? 1.5 : 2);
-      canvas.width = Math.round(w * dpr);
-      canvas.height = Math.round(h * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width = Math.round(rect.width * dpr);
+      canvas.height = Math.round(rect.height * dpr);
+      toScene(ctx, dpr);
       far = null;
       near = null;
+      const quarter = () => {
+        const q = document.createElement("canvas");
+        q.width = Math.max(1, Math.round(canvas.width / 4));
+        q.height = Math.max(1, Math.round(canvas.height / 4));
+        const qc = q.getContext("2d");
+        if (qc) toScene(qc, dpr / 4);
+        return [q, qc] as const;
+      };
+      [bloom, bloomCtx] = quarter();
+      [sheen, sheenCtx] = quarter();
 
       seed = 20260928;
       const k = narrow ? 0.5 : 1;
@@ -300,6 +400,7 @@ export default function LivingSignal({
           lines.push({
             fam,
             pts,
+            live: pts.slice(),
             strong: fam === "frame" || rand() < 0.3,
             delay: delayOf[fam] + rand() * 0.45
           });
@@ -381,10 +482,23 @@ export default function LivingSignal({
         );
       }
 
+      // A rebuilt scene starts at rest. Mass goes with area, so the few
+      // large points are the slow, heavy ones.
+      const n = dots.length;
+      ox = new Float32Array(n);
+      oy = new Float32Array(n);
+      vx = new Float32Array(n);
+      vy = new Float32Array(n);
+      dpx = new Float32Array(n);
+      dpy = new Float32Array(n);
+      glow = new Float32Array(n);
+      mass = Float32Array.from(dots, d => 0.5 + d.r * d.r);
+      dotsAwake = false;
+
       // --- Signals: a few small travellers, for the settled state ----------
       signals = [];
       const travellers = Math.round(26 * k);
-      const wings: number[] = [];
+      wings = [];
       lines.forEach((l, i) => {
         if (l.fam !== "frame" && l.fam !== "crown") wings.push(i);
       });
@@ -392,7 +506,18 @@ export default function LivingSignal({
         signals.push({
           line: wings[Math.floor(rand() * wings.length)],
           s: 0.25 + rand() * 0.75,
-          speed: 0.045 + rand() * 0.04
+          speed: 0.045 + rand() * 0.04,
+          warp: false
+        });
+      }
+      // And a larger pool that only shows while the pointer is on the figure.
+      const warpers = Math.round(140 * k);
+      for (let n = 0; n < warpers; n++) {
+        signals.push({
+          line: wings[Math.floor(rand() * wings.length)],
+          s: rand(),
+          speed: 0.05 + rand() * 0.05,
+          warp: true
         });
       }
 
@@ -441,6 +566,202 @@ export default function LivingSignal({
       };
     };
 
+    // --- The magnet ----------------------------------------------------------
+
+    // Where the pointer is, in the canvas's own px, and whether it is in the
+    // magnet's zone or on the teardrop itself.
+    const pointer = {
+      cx: 0,
+      cy: 0,
+      has: false,
+      x: 0,
+      y: 0,
+      inZone: false,
+      onFigure: false
+    };
+    // The magnet follows the pointer with a little lag; k is its strength.
+    const mag = { x: 0, y: 0, k: 0 };
+    let hover = 0;
+
+    // The field: every point leans towards the magnet, most strongly at a
+    // middle distance, and not at all at FOCUS. Written into fx/fy.
+    let fx = 0;
+    let fy = 0;
+    const field = (x: number, y: number) => {
+      fx = 0;
+      fy = 0;
+      if (mag.k <= 0) return;
+      const anchor = Math.pow(clamp01((FOCUS[0] * w - x) / (0.55 * w)), 0.7);
+      if (anchor <= 0) return;
+      const ddx = mag.x - x;
+      const ddy = mag.y - y;
+      const sx = REACH_X * w;
+      const sy = REACH_Y * h;
+      const g = Math.exp(
+        -(ddx * ddx) / (2 * sx * sx) - (ddy * ddy) / (2 * sy * sy)
+      );
+      const p = MAGNET * mag.k * g * anchor;
+      const cap = PULL_CAP * h;
+      fy = cap * Math.tanh((ddy * p) / cap);
+      fx = cap * 0.4 * Math.tanh((ddx * p * 0.3) / (cap * 0.4));
+    };
+
+    const deform = () => {
+      for (const l of lines) {
+        const p = l.pts;
+        const q = l.live;
+        for (let i = 0; i < p.length; i += 2) {
+          field(p[i], p[i + 1]);
+          q[i] = p[i] + fx;
+          q[i + 1] = p[i + 1] + fy;
+        }
+      }
+    };
+
+    // Inside the teardrop: the same envelope the loose points are drawn in.
+    const onShape = (x: number, y: number) => {
+      const nx = x / w;
+      const ny = y / h;
+      if (nx < -0.02 || nx > FOCUS[0] + 0.03) return false;
+      const half = 0.4 * Math.pow(Math.max(0, 1 - nx / FOCUS[0]), 0.55) + 0.04;
+      return Math.abs(ny - FOCUS[1]) < half;
+    };
+
+    const approach = (from: number, to: number, rate: number, dt: number) => {
+      const next = from + (to - from) * (1 - Math.exp(-rate * dt));
+      return Math.abs(next - to) < 0.001 ? to : next;
+    };
+
+    const updatePointer = (dt: number) => {
+      pointer.inZone = false;
+      pointer.onFigure = false;
+      if (pointer.has && w && h) {
+        // In the scene's px: the figure's box, not the bleeding canvas.
+        const rect = figure.getBoundingClientRect();
+        pointer.x = pointer.cx - rect.left;
+        pointer.y = pointer.cy - rect.top;
+        pointer.inZone =
+          pointer.x > -0.1 * w &&
+          pointer.x < 1.1 * w &&
+          pointer.y > -0.5 * h &&
+          pointer.y < 1.5 * h;
+        pointer.onFigure = pointer.inZone && onShape(pointer.x, pointer.y);
+      }
+      if (pointer.inZone) {
+        if (mag.k < 0.01) {
+          mag.x = pointer.x;
+          mag.y = pointer.y;
+        } else {
+          mag.x = approach(mag.x, pointer.x, 7, dt);
+          mag.y = approach(mag.y, pointer.y, 7, dt);
+        }
+      }
+      mag.k = approach(
+        mag.k,
+        pointer.inZone ? 1 : 0,
+        pointer.inZone ? 3.5 : 2,
+        dt
+      );
+      hover = approach(
+        hover,
+        pointer.onFigure ? 1 : 0,
+        pointer.onFigure ? 4 : 1.6,
+        dt
+      );
+    };
+
+    // One step of the points' physics, and where each is drawn. Every point
+    // is a mass on a spring to its place (its resting spot, moved by the
+    // broad magnet). Near the pointer a softened inverse-square force pulls
+    // it in; when the pointer goes, the spring brings it home, overshooting
+    // once. Semi-implicit Euler at 120Hz or finer, so it cannot blow up.
+    const stepDots = (t: number, dt: number) => {
+      const on = pointer.inZone;
+      dotPull = approach(dotPull, on ? 1 : 0, on ? 5 : 3, dt);
+      const bent = mag.k > 0;
+      const steps = dt > 0 ? Math.min(6, Math.ceil(dt * 120)) : 0;
+      const hs = steps ? dt / steps : 0;
+      const px = pointer.x;
+      const py = pointer.y;
+      const R2 = DOT_REACH * DOT_REACH;
+      const E2 = DOT_SOFT * DOT_SOFT;
+      const test = (DOT_REACH + 40) * (DOT_REACH + 40);
+      let awake = false;
+
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        const e = ease((t - d.delay) / 1.7);
+        let bx = d.x + d.dx * (1 - e);
+        let by = d.y + d.dy * (1 - e);
+        if (bent) {
+          field(bx, by);
+          bx += fx;
+          by += fy;
+        }
+        let x = ox[i];
+        let y = oy[i];
+        let u = vx[i];
+        let v = vy[i];
+        const qx = px - bx;
+        const qy = py - by;
+        const near = dotPull > 0 && qx * qx + qy * qy < test;
+
+        if (near || x || y || u || v) {
+          const m = mass[i];
+          const k = DOT_SPRING * m;
+          const c = 2 * DOT_DAMPING * Math.sqrt(k * m);
+          // Pull grows with size, but slower than mass: the big points
+          // answer later and travel less.
+          const q = DOT_PULL * Math.pow(m, 0.7) * dotPull;
+          for (let s = 0; s < steps; s++) {
+            let ax = -k * x - c * u;
+            let ay = -k * y - c * v;
+            if (near) {
+              const rx = qx - x;
+              const ry = qy - y;
+              const r2 = rx * rx + ry * ry;
+              if (r2 < R2) {
+                const soft = r2 + E2;
+                const cut = 1 - r2 / R2;
+                const f = (q * cut * cut) / (soft * Math.sqrt(soft));
+                ax += f * rx;
+                ay += f * ry;
+              }
+            }
+            u += (ax / m) * hs;
+            v += (ay / m) * hs;
+            x += u * hs;
+            y += v * hs;
+          }
+          if (
+            !near &&
+            Math.abs(x) + Math.abs(y) < 0.02 &&
+            Math.abs(u) + Math.abs(v) < 0.05
+          ) {
+            x = y = u = v = 0;
+          } else {
+            awake = true;
+          }
+          ox[i] = x;
+          oy[i] = y;
+          vx[i] = u;
+          vy[i] = v;
+        }
+
+        dpx[i] = bx + x;
+        dpy[i] = by + y;
+        let g = 0;
+        if (dotPull > 0) {
+          const gx = px - dpx[i];
+          const gy = py - dpy[i];
+          const dd = Math.sqrt(gx * gx + gy * gy);
+          if (dd < DOT_GLOW) g = dotPull * (1 - dd / DOT_GLOW) ** 2;
+        }
+        glow[i] = g;
+      }
+      dotsAwake = awake;
+    };
+
     // --- Drawing -------------------------------------------------------------
 
     const drawHaze = (c: CanvasRenderingContext2D, k: number) => {
@@ -457,7 +778,12 @@ export default function LivingSignal({
       blot(0.8, FOCUS[1], 0.26, wash, 0.4);
     };
 
-    const drawLines = (c: CanvasRenderingContext2D, t: number) => {
+    const drawLines = (
+      c: CanvasRenderingContext2D,
+      t: number,
+      live = false,
+      thick = 1
+    ) => {
       if (!grads) return;
       for (const fam of FAMILIES) {
         const strong = new Path2D();
@@ -468,15 +794,15 @@ export default function LivingSignal({
           if (reveal <= 0.01) continue;
           const upto = Math.floor(reveal * (N - 1));
           const p = l.strong ? strong : faint;
-          p.moveTo(l.pts[0], l.pts[1]);
-          for (let i = 1; i <= upto; i++)
-            p.lineTo(l.pts[i * 2], l.pts[i * 2 + 1]);
+          const pts = live ? l.live : l.pts;
+          p.moveTo(pts[0], pts[1]);
+          for (let i = 1; i <= upto; i++) p.lineTo(pts[i * 2], pts[i * 2 + 1]);
         }
         c.strokeStyle = grads[fam];
-        c.lineWidth = fam === "frame" ? 0.7 : 0.65;
+        c.lineWidth = (fam === "frame" ? 0.7 : 0.65) * thick;
         c.globalAlpha = 1;
         c.stroke(strong);
-        c.lineWidth = 0.45;
+        c.lineWidth = 0.45 * thick;
         c.globalAlpha = 0.55;
         c.stroke(faint);
       }
@@ -486,17 +812,62 @@ export default function LivingSignal({
     const drawDots = (
       c: CanvasRenderingContext2D,
       t: number,
-      which: boolean
+      which: boolean,
+      live = false
     ) => {
       const paths = pal.map(() => ALPHAS.map(() => new Path2D()));
-      for (const d of dots) {
+      // Live, the points near the pointer glow: a halo in their own colour,
+      // three strengths, and a white-hot centre on the nearest.
+      const halos = pal.map(() => HALO_ALPHAS.map(() => new Path2D()));
+      const cores = new Path2D();
+      let lit = false;
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
         if (d.near !== which) continue;
-        const e = ease((t - d.delay) / 1.7);
-        const x = d.x + d.dx * (1 - e);
-        const y = d.y + d.dy * (1 - e);
-        const p = paths[d.c][d.a];
-        p.moveTo(x + d.r, y);
-        p.arc(x, y, d.r, 0, Math.PI * 2);
+        let x: number;
+        let y: number;
+        let r = d.r;
+        let a = d.a;
+        if (live) {
+          // stepDots has placed it this frame.
+          x = dpx[i];
+          y = dpy[i];
+          const g = glow[i];
+          if (g > 0.03) {
+            lit = true;
+            r *= 1 + 0.35 * g;
+            if (g > 0.25) a = 2;
+            const hr = d.r * (2.2 + 3 * g) + 1.2;
+            const hp = halos[d.c][g > 0.55 ? 2 : g > 0.25 ? 1 : 0];
+            hp.moveTo(x + hr, y);
+            hp.arc(x, y, hr, 0, Math.PI * 2);
+            if (g > 0.35) {
+              const cr = d.r * 0.55 + 0.3;
+              cores.moveTo(x + cr, y);
+              cores.arc(x, y, cr, 0, Math.PI * 2);
+            }
+          }
+        } else {
+          const e = ease((t - d.delay) / 1.7);
+          x = d.x + d.dx * (1 - e);
+          y = d.y + d.dy * (1 - e);
+        }
+        const p = paths[d.c][a];
+        p.moveTo(x + r, y);
+        p.arc(x, y, r, 0, Math.PI * 2);
+      }
+      // The halos go through a quarter-size layer and a blur, so they are a
+      // soft bloom behind the points, not rings round them.
+      const sc = sheenCtx;
+      if (lit && sheen && sc) {
+        wipe(sc);
+        halos.forEach((row, ci) =>
+          row.forEach((p, ai) => {
+            sc.fillStyle = rgba(pal[ci], HALO_ALPHAS[ai]);
+            sc.fill(p);
+          })
+        );
+        stamp(c, sheen, `blur(${3 * dpr}px)`);
       }
       paths.forEach((row, ci) =>
         row.forEach((p, ai) => {
@@ -504,42 +875,103 @@ export default function LivingSignal({
           c.fill(p);
         })
       );
+      if (lit) {
+        c.fillStyle = rgba(page, 0.9);
+        c.fill(cores);
+      }
     };
 
-    const drawGlow = (c: CanvasRenderingContext2D, k: number) => {
+    // `boost` is the hover: the point burns larger and brighter.
+    const drawGlow = (c: CanvasRenderingContext2D, k: number, boost = 0) => {
       if (k <= 0) return;
       const x = FOCUS[0] * w;
       const y = FOCUS[1] * h;
-      const r = 0.15 * Math.min(w, h * 1.1);
+      const r = 0.15 * Math.min(w, h * 1.1) * (1 + 0.45 * boost);
+      const a = (v: number) => Math.min(1, v * k * (1 + 0.5 * boost));
       const g = c.createRadialGradient(x, y, 0, x, y, r);
-      g.addColorStop(0, rgba(page, 0.95 * k));
-      g.addColorStop(0.05, rgba(page, 0.7 * k));
-      g.addColorStop(0.12, rgba(pal[SIGNAL], 0.42 * k));
-      g.addColorStop(0.4, rgba(pal[SIGNAL], 0.1 * k));
+      g.addColorStop(0, rgba(page, a(0.95)));
+      g.addColorStop(0.05, rgba(page, a(0.7)));
+      g.addColorStop(0.12, rgba(pal[SIGNAL], a(0.42)));
+      g.addColorStop(0.4, rgba(pal[SIGNAL], a(0.1)));
       g.addColorStop(1, rgba(pal[SIGNAL], 0));
       c.fillStyle = g;
       c.fillRect(x - r, y - r, r * 2, r * 2);
     };
 
+    // The glow on the lines while the pointer is on the figure.
+    const drawBloom = (c: CanvasRenderingContext2D, t: number) => {
+      if (hover <= 0 || !bloom || !bloomCtx) return;
+      wipe(bloomCtx);
+      drawLines(bloomCtx, t, true, 4);
+      c.save();
+      c.globalAlpha = 0.5 * hover;
+      stamp(c, bloom, `blur(${3 * dpr}px)`);
+      c.restore();
+    };
+
+    // A point `s` of the way along a line, interpolated between samples.
+    const at = (pts: Float32Array, s: number): Pt => {
+      const f = clamp01(s) * (N - 1);
+      const i = Math.min(N - 2, Math.floor(f));
+      const u = f - i;
+      return [
+        pts[i * 2] + (pts[i * 2 + 2] - pts[i * 2]) * u,
+        pts[i * 2 + 1] + (pts[i * 2 + 3] - pts[i * 2 + 1]) * u
+      ];
+    };
+
+    // The travellers. At rest, a few short orange dashes drifting inwards.
+    // On hover they, and a pool of others, run up to WARP times faster with
+    // a long tail fading to a white-hot head: light at speed.
     const drawSignals = (
       c: CanvasRenderingContext2D,
       dt: number,
       k: number
     ) => {
-      c.strokeStyle = rgba(pal[SIGNAL], 1);
-      c.lineWidth = 1.2;
+      const speedUp = 1 + WARP * hover * hover;
+      const tail = 0.045 + 0.2 * hover;
       c.lineCap = "round";
       for (const sg of signals) {
-        sg.s += sg.speed * dt;
-        if (sg.s > 1) sg.s = 0.25;
-        const pts = lines[sg.line].pts;
-        const i = Math.floor(sg.s * (N - 1));
-        const j = Math.max(0, i - 2);
-        const fade = Math.min(1, (sg.s - 0.25) / 0.15, (1 - sg.s) / 0.1);
-        c.globalAlpha = 0.75 * k * Math.max(0, fade);
+        const shown = sg.warp ? hover : k;
+        if (shown <= 0.01) continue;
+        sg.s += sg.speed * speedUp * dt;
+        if (sg.s > 1) {
+          // At speed, the light starts from the very start of the lines.
+          sg.s = hover > 0.3 ? Math.random() * 0.12 : 0.25;
+          if (sg.warp)
+            sg.line = wings[Math.floor(Math.random() * wings.length)];
+        }
+        const rest = Math.min(1, (sg.s - 0.25) / 0.15, (1 - sg.s) / 0.1);
+        const fast = Math.min(1, (1 - sg.s) / 0.05);
+        const fade = Math.max(0, rest + (fast - rest) * hover);
+        const alpha = (0.75 + 0.25 * hover) * shown * fade;
+        if (alpha <= 0.01) continue;
+
+        const pts = lines[sg.line].live;
+        const s0 = Math.max(0, sg.s - tail);
+        const [x0, y0] = at(pts, s0);
+        const [x1, y1] = at(pts, sg.s);
         c.beginPath();
-        c.moveTo(pts[j * 2], pts[j * 2 + 1]);
-        c.lineTo(pts[i * 2], pts[i * 2 + 1]);
+        c.moveTo(x0, y0);
+        const last = Math.floor(clamp01(sg.s) * (N - 1));
+        for (let i = Math.ceil(s0 * (N - 1)); i <= last; i++)
+          c.lineTo(pts[i * 2], pts[i * 2 + 1]);
+        c.lineTo(x1, y1);
+
+        const g = c.createLinearGradient(x0, y0, x1, y1);
+        // At rest this is the old solid dash; the fade and the hot head
+        // come in with the hover.
+        g.addColorStop(0, rgba(pal[SIGNAL], 0.6 * (1 - hover)));
+        g.addColorStop(0.75, rgba(pal[SIGNAL], 1));
+        g.addColorStop(1, rgba(hover > 0.15 ? page : pal[SIGNAL], 1));
+        c.strokeStyle = g;
+        if (hover > 0.05) {
+          c.lineWidth = 2.5 + 3 * hover;
+          c.globalAlpha = alpha * 0.22;
+          c.stroke();
+        }
+        c.lineWidth = 1.2 + 0.4 * hover;
+        c.globalAlpha = alpha;
         c.stroke();
       }
       c.globalAlpha = 1;
@@ -550,7 +982,7 @@ export default function LivingSignal({
       o.width = canvas.width;
       o.height = canvas.height;
       const c = o.getContext("2d");
-      if (c) c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (c) toScene(c, dpr);
       return [o, c] as const;
     };
 
@@ -571,35 +1003,51 @@ export default function LivingSignal({
       near = n;
     };
 
-    // Pointer depth: eased towards the pointer's position in the figure.
-    const pointer = { x: 0, y: 0, active: false };
-    const shift = { x: 0, y: 0 };
+    const engaged = () =>
+      pointer.inZone || mag.k > 0 || hover > 0 || dotPull > 0 || dotsAwake;
 
+    // Settled and left alone: the two cached layers.
     const drawSettled = (t: number, dt: number) => {
       if (!far || !near) cache();
       if (!far || !near) return;
-      const tx = pointer.active ? (pointer.x / w - 0.5) * 2 : 0;
-      const ty = pointer.active ? (pointer.y / h - 0.5) * 2 : 0;
-      const k = Math.min(1, dt * 1.6);
-      shift.x += (tx - shift.x) * k;
-      shift.y += (ty - shift.y) * k;
-
-      ctx.clearRect(0, 0, w, h);
-      ctx.drawImage(far, -shift.x * 2, -shift.y * 2, w, h);
-      ctx.drawImage(near, -shift.x * 6, -shift.y * 6, w, h);
+      wipe(ctx);
+      stamp(ctx, far);
+      stamp(ctx, near);
       // The point's light breathes by a few per cent — felt, not seen.
       drawGlow(ctx, 0.96 + 0.04 * Math.sin(t * 0.6));
       drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
     };
 
-    // During the resolve, the whole scene is drawn live.
-    const drawResolving = (t: number) => {
-      ctx.clearRect(0, 0, w, h);
+    // Settled, with the pointer in play: the scene drawn live, bent by the
+    // magnet, glowing as far as the hover goes.
+    const drawLive = (t: number, dt: number) => {
+      const done = SETTLED + 10;
+      deform();
+      stepDots(done, dt);
+      wipe(ctx);
+      drawHaze(ctx, 1);
+      drawLines(ctx, done, true, 1 + 0.4 * hover);
+      drawBloom(ctx, done);
+      drawDots(ctx, done, false, true);
+      drawDots(ctx, done, true, true);
+      drawGlow(ctx, 0.96 + 0.04 * Math.sin(t * 0.6), hover);
+      drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
+    };
+
+    // During the resolve, the whole scene is drawn live anyway, so the
+    // magnet and the points' physics already work on it.
+    const drawResolving = (t: number, dt = 0) => {
+      const live = mag.k > 0;
+      if (live) deform();
+      const moving = live || dotPull > 0 || dotsAwake || pointer.inZone;
+      if (moving) stepDots(t, dt);
+      wipe(ctx);
       drawHaze(ctx, ease((t - 0.2) / 2));
-      drawLines(ctx, t);
-      drawDots(ctx, t, false);
-      drawDots(ctx, t, true);
-      drawGlow(ctx, ease((t - GLOW_AT) / 1));
+      drawLines(ctx, t, live);
+      drawBloom(ctx, t);
+      drawDots(ctx, t, false, moving);
+      drawDots(ctx, t, true, moving);
+      drawGlow(ctx, ease((t - GLOW_AT) / 1), hover);
     };
 
     // Reduced motion: the resolved composition, drawn once and left.
@@ -607,10 +1055,10 @@ export default function LivingSignal({
       const still = () => {
         layout();
         cache();
-        ctx.clearRect(0, 0, w, h);
+        wipe(ctx);
         if (far && near) {
-          ctx.drawImage(far, 0, 0, w, h);
-          ctx.drawImage(near, 0, 0, w, h);
+          stamp(ctx, far);
+          stamp(ctx, near);
         }
         drawGlow(ctx, 1);
       };
@@ -632,14 +1080,17 @@ export default function LivingSignal({
       const dt = last ? Math.min(0.05, (now - last) / 1000) : 1 / 60;
       last = now;
       frame++;
+      updatePointer(dt);
       if (t < SETTLED) {
         t += dt;
-        drawResolving(t);
-      } else if (pointer.active || frame % 2 === 0) {
-        // Settled: every other frame unless the pointer is in play.
-        const step = pointer.active ? dt : dt * 2;
-        t += step;
-        drawSettled(t, step);
+        drawResolving(t, dt);
+      } else if (engaged()) {
+        t += dt;
+        drawLive(t, dt);
+      } else if (frame % 2 === 0) {
+        // Settled and left alone: every other frame.
+        t += dt * 2;
+        drawSettled(t, dt * 2);
       }
       raf = requestAnimationFrame(loop);
     };
@@ -667,23 +1118,31 @@ export default function LivingSignal({
     // A resize rebuilds the scene; once settled it stays settled.
     const ro = new ResizeObserver(() => {
       layout();
-      if (t >= SETTLED) drawSettled(t, 0);
-      else drawResolving(t);
+      if (t < SETTLED) drawResolving(t);
+      else if (engaged()) drawLive(t, 0);
+      else drawSettled(t, 0);
     });
     ro.observe(canvas);
 
+    // The magnet reaches beyond the figure's box, so the pointer is followed
+    // on the window; where it is, relative to the canvas, is worked out
+    // each frame (the page may have scrolled under a still pointer).
     const onMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = e.clientX - rect.left;
-      pointer.y = e.clientY - rect.top;
-      pointer.active = true;
+      if (e.pointerType === "touch") return;
+      pointer.cx = e.clientX;
+      pointer.cy = e.clientY;
+      pointer.has = true;
     };
-    const onLeave = () => {
-      pointer.active = false;
+    const onOut = (e: PointerEvent) => {
+      if (!e.relatedTarget) pointer.has = false;
+    };
+    const onBlur = () => {
+      pointer.has = false;
     };
     if (finePointer) {
-      figure.addEventListener("pointermove", onMove);
-      figure.addEventListener("pointerleave", onLeave);
+      window.addEventListener("pointermove", onMove, { passive: true });
+      window.addEventListener("pointerout", onOut);
+      window.addEventListener("blur", onBlur);
     }
 
     drawResolving(0);
@@ -693,8 +1152,9 @@ export default function LivingSignal({
       io.disconnect();
       ro.disconnect();
       document.removeEventListener("visibilitychange", onVisibility);
-      figure.removeEventListener("pointermove", onMove);
-      figure.removeEventListener("pointerleave", onLeave);
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerout", onOut);
+      window.removeEventListener("blur", onBlur);
     };
   }, []);
 

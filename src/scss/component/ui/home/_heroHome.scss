@@ -22,6 +22,16 @@
   padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem) clamp(3rem, 1.75rem + 3.5vw, 5.5rem);
 }
 
+// 29 Sep: container_main's `overflow: hidden` clipped the Living Signal's
+// canvas bleed to the figure's box, cutting the lines the pointer draws up
+// or down. As for the header (_navbar.scss), the clip is lifted HERE, not on
+// the container: sideways it still clips, so nothing can widen the page, and
+// only the vertical axis is let go. (`hidden` cannot do that: it turns the
+// other axis to `auto`; `clip` does not.)
+.homeHero > .container_main {
+  overflow: clip visible;
+}
+
 // Copy and visual. In the reference the picture is the larger half, so its
 // basis and growth are the larger. Wrapping flex rather than a breakpoint: the
 // visual drops beneath the copy when the two bases no longer fit, which is
@@ -92,10 +102,22 @@
   max-height: 36rem;
 }
 
+// 29 Sep: the canvas bleeds past the figure's box — a fifth of its height
+// above and below, a little either side — so lines and points the pointer
+// draws outward are not cut at the box's edge. The drawing is still laid out
+// in the box (LivingSignal.tsx offsets it), so at rest nothing moves. It
+// never takes the pointer: the copy beside it stays clickable, and the
+// figure follows the pointer on the window anyway.
 .livingSignal__canvas {
+  // A canvas is a replaced element: insets alone do not stretch it, so the
+  // size is explicit. 6% + 100% + 3% wide, 20% + 100% + 20% tall.
+  position: absolute;
+  top: -20%;
+  left: -6%;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 109%;
+  height: 140%;
+  pointer-events: none;
 }
 
 // The reference's two rail groups: small, widely tracked capitals, right-

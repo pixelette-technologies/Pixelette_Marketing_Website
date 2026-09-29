@@ -3,7 +3,8 @@
 //
 // Each is a full-bleed illustrated band, as in the approved reference: the
 // picture fills the band, the copy sits in a column on the left over the
-// picture's pale side, and a small rail label hangs on the right.
+// picture's pale side. (The small rail label that hung on the right was
+// removed on instruction, 29 Sep 2026.)
 //
 // ONE GRID CELL ON A WIDE SCREEN, TWO ROWS ON A PHONE. The picture and the
 // copy are siblings placed in the same cell, so the copy is in normal flow
@@ -74,13 +75,6 @@
   pointer-events: auto;
 }
 
-// The rail label on the band's right edge, top-aligned as in the reference.
-.homeScene__rail {
-  position: absolute;
-  top: clamp(1.75rem, 1rem + 2vw, 3rem);
-  right: 0;
-}
-
 @media (max-width: 767px) {
   // The copy row takes its content height; the picture row takes whatever
   // the full-height band has left, and never less than its own minimum.
@@ -95,13 +89,6 @@
   .homeScene__inner {
     min-height: 0;
     padding-bottom: 1.5rem;
-  }
-
-  // On a phone the rail would sit on the eyebrow, and there is no margin to
-  // hang it in, so it is not shown. (Doubled class: .railLabel below sets
-  // display and comes later in the file.)
-  .homeScene__rail.railLabel {
-    display: none;
   }
 }
 
@@ -198,23 +185,4 @@
   line-height: 1.55;
   color: var(--color-body);
   text-wrap: pretty;
-}
-
-// --- The rail label -------------------------------------------------------------
-
-.railLabel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.3em;
-  margin: 0;
-  padding: 0.25rem 0.875rem 1.25rem 0;
-  border-right: 1px solid var(--color-line-strong);
-  font-family: var(--font-mono);
-  font-size: clamp(0.5625rem, 0.5rem + 0.18vw, 0.6875rem);
-  line-height: 1.45;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-align: right;
-  color: var(--color-ink);
 }

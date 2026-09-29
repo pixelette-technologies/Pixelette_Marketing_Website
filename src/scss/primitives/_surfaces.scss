@@ -15,6 +15,11 @@
 //
 // 2. THE HERO PARALLAX. The five collage images track the pointer at five
 //    depths. Also the user's call, also 1 September 2026. See _heroHome.scss.
+//    SUPERSEDED 28 Sep 2026: the collage is gone. The hero is now the Living
+//    Signal, a canvas that resolves once (about 3.5s), then only breathes its
+//    lit point and sends a few small signals inwards, with a few pixels of
+//    two-layer depth under a fine pointer. It pauses off screen and is a
+//    still frame under reduced motion. See LivingSignal.tsx.
 //
 // 3. THE SCROLL REVEAL — added 1 September 2026, and the one that changes the
 //    rule rather than carving an exception out of it. Every block on every
@@ -43,6 +48,33 @@
 //    already set in text beside their circles, so touch, keyboard and screen
 //    readers lose nothing by never seeing it, and it stops under a reduce
 //    preference. See _dimensionWave.scss.
+//
+// 6-8. THE HOME PAGE'S ILLUSTRATED SECTIONS, 02-04 — added 28 Sep 2026 by a
+//    locked management specification that requires the motion in terms, and
+//    sets a deliberate rhythm: controlled (the hero), energetic (02), calm
+//    (03), playful (04).
+//
+//    6. THE FALLING POST-ITS (02). The notes fall into place once when the
+//       section arrives, then sway by a degree; a few small background notes
+//       keep drifting down while it is on screen; a fine pointer nudges a
+//       nearby note a few pixels and it springs back. _activitySection.scss.
+//    7. THE CAPABILITY LIFT (03). A capability brick rises 3px under the
+//       pointer. Nothing else in the section moves: it is the rest between
+//       the two kinetic sections. _capabilitiesSection.scss.
+//    8. THE DUCK POND (04). Once, when the section arrives, the water comes up
+//       and the ducks drop onto it one by one (gravity, then a damped
+//       buoyant bob, then a splash ring flattened by the water's perspective),
+//       the pink duck last; added 29 Sep on instruction. After that every
+//       duck bobs on its own period with a ripple, the water's glints drift,
+//       and the pink duck rises and tilts slightly on hover.
+//       DuckPond.tsx, _relevanceSection.scss.
+//
+//    All three are EXCEPTIONS TO THE HOVER RULE BELOW, by instruction, and are
+//    written down as such. What keeps them defensible is the same as the
+//    wave's: they are decorative (the pictures are aria-hidden and every word
+//    they carry is also in the copy or is picture), they animate transform
+//    and opacity only, they pause off screen, and under a reduce preference
+//    each section is a still composition.
 //
 // A correction to what this paragraph used to claim: "nothing else on the site
 // moves" was already untrue when it was written. framer-motion animates the

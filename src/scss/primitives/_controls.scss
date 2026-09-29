@@ -74,6 +74,46 @@
   color: var(--color-brand-hover);
 }
 
+// --- Text link with arrow, 28 Sep 2026 --------------------------------------
+// The approved home reference's secondary action: a word, a hairline under
+// it and an arrow after it. There was no primitive for it; five call sites
+// had each inlined an arrow span. The tap target is held at 44px like .flink.
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+}
+
+.textLink:hover {
+  color: var(--color-brand);
+}
+
+.textLink--brand {
+  color: var(--color-brand);
+}
+
+.textLink--brand:hover {
+  color: var(--color-brand-hover);
+}
+
+// The approved reference draws its filled CTAs as pills. The group control
+// radius is 4px and is NOT changed site-wide; this modifier is used by the
+// home page's sections 01-04 only, on instruction that the reference wins.
+// Doubled class: the legacy .btn_primary in component/feature/_button.scss
+// loads after the primitives and sets its own radius.
+.btn.btn--pill {
+  border-radius: 999px;
+  padding-inline: 1.625rem;
+}
+
 // --- Pills -----------------------------------------------------------------
 
 .pill,

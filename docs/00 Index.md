@@ -25,7 +25,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
-## Status as of 25 Sep 2026
+## Status as of 29 Sep 2026
 
 Merged to `main` and pushed on 9 Sep: 19 commits, `e68c016..c583c4e`.
 
@@ -404,6 +404,21 @@ pointer moves three depth layers and carries a soft crimson light across the
 threads. **This last round is uncommitted in the worktree and was stopped
 before its final checks** — see [[09 Outstanding]]. Still awaiting approval;
 not merged, not live. See [[02 Decisions]] and [[10 Verification]].
+
+**28–29 Sep — home sections 01–04, built to a locked specification.** A new
+local branch, `feat/home-sections-01-04`, cut from `main` and worked in this
+repo only. Against an approved reference image, the hero was rebuilt (the
+Living Signal in the image's own blue, violet, pink and orange, with "From
+insight to impact") and three sections were added beneath it: falling
+Post-its (02), a toy-brick scene with builders (03, the calm one) and a duck
+pond with one pink duck (04). All the illustration is SVG drawn to supplied
+reference photographs, on instruction, so it can be judged against real
+assets. Each band fills the screen below the sticky header. On arrival the
+notes fall and the ducks drop onto the water one by one, on real gravity and
+a damped buoyant bob, with perspective-flattened splash rings. Committed on
+the branch; **not pushed, not live.** The pink duck's colour and the
+vector-or-real-assets question wait on the user. See [[02 Decisions]],
+[[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

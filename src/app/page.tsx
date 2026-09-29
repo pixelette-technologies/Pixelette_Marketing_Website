@@ -1,5 +1,8 @@
 import {
   HomeHero,
+  ActivitySection,
+  CapabilitiesSection,
+  RelevanceSection,
   GrowthSection,
   ItemsSection,
   DynamicMarket,
@@ -39,6 +42,11 @@ export default function Home() {
   return (
     <>
       <HomeHero />
+      {/* 28 Sep 2026, locked spec: sections 02-04 sit directly under the
+          hero. Everything from TrustedBrands down is untouched. */}
+      <ActivitySection />
+      <CapabilitiesSection />
+      <RelevanceSection />
       <TrustedBrands
         layout='stacked'
         eyebrow={proofCopy.eyebrow}

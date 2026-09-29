@@ -1739,3 +1739,95 @@ band separate more quietly; the figure is a column, not a poster; and on a
 phone the labels are about 9px and cross some lines.
 
 **Status: awaiting visual approval. Not merged, not live.**
+
+## 28–29 Sep 2026 — home sections 01–04, built to the locked specification
+
+On the local branch `feat/home-sections-01-04`, cut from `main` (`5ce2322`),
+in this repo only — the `-hero` worktree was not used. Not pushed, not live.
+
+The brief is a locked management specification, "Sections 01–04", with an
+approved reference image: **the image is the visual truth, the spec the
+behavioural one**. 01 the hero (the Living Signal), 02 "More activity isn't
+the answer / Better decisions are" (falling Post-its), 03 "Five capabilities /
+One commercial objective" (toy bricks and builders), 04 "Attention is easy to
+buy / Relevance isn't" (yellow ducks, one pink). The pasted spec **stops mid
+sentence at §34** ("Do not decide … Do"); nothing past it was assumed.
+
+**Asked and answered before a line was written:**
+
+- **Placement.** 02–04 sit directly under the hero; everything from the logo
+  strip down is untouched, in its old order.
+- **A fourth type role: handwriting.** Caveat, self-hosted through next/font
+  like the other three, as `--font-hand`. For illustration lettering only —
+  the Post-its, the two annotations, the brick labels, "Real growth builds
+  here" — never a heading, body copy or UI.
+- **The rail labels are in.** The small stacked capitals on each section's
+  right edge are in the image and not in the spec's copy; included verbatim
+  from the image as approved copy.
+- **"Our approach →" goes to `/strategy-positioning`.** There is no approach
+  page; the diagnostic is the nearest thing. "Explore all services →" goes to
+  `/services`.
+- **Imagery: vector, on instruction, so it can be judged against real
+  assets.** No photographs existed. Stock was looked at — pngimg's cut-out
+  ducks are CC BY-NC and unusable on a commercial site, and no stock photo is
+  close to the composed brick scene — and the user chose SVG drawn as close to
+  the references as SVG allows. Every illustrated object is its own component,
+  so swapping in a real asset is a file change, not a rebuild. The user
+  supplied cleaner reference photographs for the bricks and ducks on 29 Sep
+  and both were redrawn to them, in the photographs' own pixel coordinates.
+
+**Decided in the build, by the spec over habit:**
+
+- **The site is not two-tone in these sections, by instruction.** The spec
+  pairs Pixelette UI colour with multicoloured visual metaphors. A new token
+  block, "Illustration palettes", holds the signal, Post-it, room, brick,
+  figure, duck, sky and water colours — for illustrations only, never text, a
+  control or a band — in `_tokens.scss`, where the token gate can see them.
+- **The Living Signal's colour reverses 28 Sep.** It was translated into the
+  brand's wine; the spec says the broader treatment was the approved one and
+  not to recolour it pink. Blue upper wing, violet into magenta below, an
+  orange band, a warm lit point, as the `--signal-*` tokens. Ported from
+  commit `3906c3a` through git; the worktree's uncommitted "larger, smoother,
+  pointer light" round is not part of this. Its labels are now the final
+  reference's: *Ideas / Intelligence / Action / Growth* and *A more
+  commercial tomorrow*, and it carries the approved "From insight to impact"
+  with an arrow to the point.
+- **The five-word capability line under the hero CTAs is gone**, by the spec:
+  Section 03 says it. The 8 Sep hero lines are kept unrendered under
+  `heroCopy.retired`.
+- **The hero headline is ink throughout and breaks on three lines**, as the
+  image draws it, where the spec writes it on two.
+- **Pill CTAs in these four sections only** (`.btn.btn--pill`). The group
+  control radius stays 4px everywhere else, including the nav button.
+- **Every moving picture has a stage that starts where the copy ends**
+  (`--scene-stage-left`: the container edge plus 31rem, which clears the
+  widest one-line headline). Notes and ducks are placed in percentages of it,
+  so neither can reach the words at any width — the spec's "never obscure
+  essential copy" by construction, not tuning.
+- **The motion rhythm is the spec's: controlled, energetic, calm, playful.**
+  02's notes fall once when the section is properly in view (not merely
+  near it), sway by a degree, a few background notes keep drifting, and a
+  fine pointer nudges a note a few pixels. 03 is still but for a 3px lift on
+  hover. 04's ducks bob on their own periods. All of it transform and
+  opacity, paused off screen, still under reduced motion; registered as
+  surfaces 6–8 in `_surfaces.scss`, as spec-mandated exceptions to "hover
+  changes border colour only".
+
+**Then, on instruction, 29 Sep:**
+
+- The leafy plants were removed from the 02 and 03 backdrops, and the rule
+  between the home sections with them.
+- **Each band fills the screen below the sticky header**:
+  `height: calc(100dvh - var(--header-h) - 1px)` (the bar and its 1px rule),
+  as `--home-band-h`, with `min-height: fit-content` so a band never gets
+  shorter than it was. On a phone the picture row takes the spare height.
+- **The ducks drop in.** Once, when 04 arrives: the water comes up, the ducks
+  fall onto it one by one, furthest first and the pink duck last, then the
+  note fades in. One gravity for all, so a duck released higher falls longer;
+  on impact a damped buoyant bob and a rock out of the tilt it fell with,
+  sampled from the physics into keyframes; a splash of two rings from each
+  landing, flatter on far water and rounder near, as perspective would show.
+
+**One call left open:** the pink duck follows the reference's magenta, which
+is not a brand token, where the spec also asks for "the actual Pixelette
+pink family". See [[09 Outstanding]].

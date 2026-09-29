@@ -861,3 +861,43 @@ taken for anything else.
   throttled-phone LCP/CLS. The figure is now denser and runs at full frame
   rate, so the 1.4–1.7s LCP and ~2% main-thread figures belong to a different
   drawing.
+
+## 29 Sep — home sections 01–04 (`feat/home-sections-01-04`)
+
+Committed on the local branch; **not pushed, not merged, not live.** See
+[[02 Decisions]] and [[10 Verification]].
+
+**Calls for the user or management:**
+
+- **Vector or real assets for the bricks and the ducks.** Both are SVG drawn
+  to the supplied reference photographs, as close as SVG allows; they read as
+  polished illustration, not photography. Each object is its own component,
+  so real assets drop in without touching layout, motion or copy.
+- **The pink duck's colour.** It is the reference's magenta
+  (`--duck-pink*`), not a brand token; the spec also says "the actual
+  Pixelette Marketing pink family", and the brand's own signal reads
+  coral-red on a duck. Pointing the three `--duck-pink*` tokens at the brand
+  family is the one-line switch.
+- **The rest of the spec.** The pasted instruction stops mid-sentence at
+  §34. If there is more, it has not been applied.
+- **Pill CTAs in 01–04 only.** The nav's "Build my growth plan" keeps the 4px
+  group radius, so the two sit side by side in different shapes.
+- **Which of the hero branches is the hero.** `feat/hero-intelligent-editorial`
+  (and its worktree, with an uncommitted round on top of `3906c3a`) is now
+  superseded by this branch's hero for the purpose of this page; the worktree
+  was deliberately not touched. Decide whether to delete it — remove the
+  `node_modules` junction first.
+
+**Not done yet:**
+
+- **axe and the throttled-phone LCP/CLS** on the new home page. The hero is a
+  canvas and 02–04 add three client components, one of them running a
+  one-off drop sequence; nothing has been measured for cost.
+- **Frame pacing on a real GPU** for the Post-it fall and the duck drop;
+  only headless Chrome has seen them.
+- **The 900px Post-it layout** uses the phone set (six notes) because the
+  stage there is under 30rem wide; it reads a little sparse.
+- `HeroCollage.tsx` and `/home/heroImageForMobile.png` are no longer used by
+  the home page and were left on disk, because deleting them was not asked.
+- The dev-only React "eval() is not supported" console error is the site's
+  CSP in development and predates this work.

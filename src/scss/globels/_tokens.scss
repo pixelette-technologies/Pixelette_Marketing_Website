@@ -148,6 +148,121 @@
   --tone-teal-tint: #e2f3f2;
   --tone-teal-mark: #15746f; // 4.88
 
+  // --- Illustration palettes, 28 Sep 2026 -------------------------------
+  // THE SECOND TIME THE SITE HAS STOPPED BEING TWO-TONE, and it was asked
+  // for in so many words. The approved home page reference (sections 01-04)
+  // deliberately pairs Pixelette UI colour with MULTICOLOURED VISUAL
+  // METAPHORS: a blue-violet-pink-orange signal, rainbow Post-its, five
+  // coloured bricks, yellow ducks on pale water. The brief is explicit that
+  // the UI stays pink and burgundy and the illustrated OBJECTS may not.
+  //
+  // So the same social rule as the sector tones above, stated more strongly:
+  // THESE ARE FOR ILLUSTRATIONS ONLY. No text, no control, no border, no
+  // band. Each group belongs to one section and is named for its object, so
+  // a stray use reads as wrong on sight (a button in --brick-green).
+  //
+  // They live here, not in the section partials, for the same reason the
+  // sector tones do: the token gate is right that one file answers "what
+  // colours does this site use".
+  //
+  // It also REVERSES one decision from earlier today. The Living Signal was
+  // translated into the brand's wine and crimson; the brief now says its
+  // broader colour treatment was the approved one, and not to recolour it.
+
+  // 01 Hero: the Living Signal. Upper wing blue to violet, lower wing violet
+  // to magenta, a warm band, and a lit point where everything arrives.
+  --signal-deep: #1f3fb4;
+  --signal-blue: #3a6ff0;
+  --signal-violet: #8a45ee;
+  --signal-magenta: #e7359d;
+  --signal-orange: #ff7a3c;
+  --signal-spark: #fff3e4;
+  --signal-haze: #eeebfb; // the pale lavender behind the wings
+  --signal-wash: #fde4ee; // the warm bloom around the lit point
+
+  // 02: the Post-its. A face and a shade each; the shade is the curl and
+  // the lower edge. Pink is present and does NOT dominate: this is noise.
+  --note-pink: #ff8cc2;
+  --note-pink-shade: #ef67a6;
+  --note-rose: #f9c6d8;
+  --note-rose-shade: #eea6c0;
+  --note-yellow: #fbe86c;
+  --note-yellow-shade: #efd343;
+  --note-orange: #ffa55e;
+  --note-orange-shade: #f2873a;
+  --note-blue: #86d3f3;
+  --note-blue-shade: #5ab8e2;
+  --note-green: #bde57e;
+  --note-green-shade: #98cf55;
+  --note-ink: #1d1a1b; // the marker. The only "text" colour here, and it
+  // is drawn lettering on an illustration, never UI copy.
+
+  // 02 and 03: the soft room behind the objects.
+  --room-warm: #f5ede7;
+  --room-light: #fffaf6;
+
+  // 03: the bricks. Top, face and side of each, plus the white plinth.
+  --brick-violet-top: #c07cff;
+  --brick-violet: #9b3fe8;
+  --brick-violet-side: #6c1fc0;
+  --brick-pink-top: #ff8fcf;
+  --brick-pink: #ff4db2;
+  --brick-pink-side: #d1238a;
+  --brick-blue-top: #78cdff;
+  --brick-blue: #25a6f2;
+  --brick-blue-side: #0f78c8;
+  --brick-green-top: #b2f27a;
+  --brick-green: #7ad63a;
+  --brick-green-side: #4ea81c;
+  --brick-yellow-top: #fff08a;
+  --brick-yellow: #ffdf2e;
+  --brick-yellow-side: #e0ad0a;
+  --brick-base-top: #ffffff;
+  --brick-base: #f3efec;
+  --brick-base-side: #d8d1cc;
+
+  // 03: the builders and their ladders. Generic figures, no maker's mark.
+  // 29 Sep: re-read off the supplied brick reference image.
+  --figure-skin: #f8c93f;
+  --figure-skin-shade: #d8a21f;
+  --figure-hair: #1f1b1d; // black hair, and the darkest trousers
+  --figure-auburn: #b04a24; // the builder with long hair
+  --figure-navy: #22304f;
+  --figure-denim: #2f6ed6;
+  --figure-leaf: #2f9a4a;
+  --figure-berry: #ea4f9c;
+  --figure-cream: #f3eee4;
+  --figure-slate: #3b4150; // trousers
+  --ladder-wood: #b86a3a;
+  --ladder-wood-shade: #8a4a24;
+
+  // 04: the ducks, the sky and the water, re-read on 29 Sep off the supplied
+  // duck reference image: a bright blue day, glossy yellow ducks and ONE hot
+  // pink duck.
+  //
+  // THE PINK DUCK'S COLOUR IS AN OPEN QUESTION, recorded rather than buried.
+  // The spec says the feature duck must use "the actual Pixelette Marketing
+  // pink family"; the approved reference, which the spec also calls the visual
+  // source of truth, shows this magenta, which is not a brand token (the
+  // brand's signal, #ff2f5b in the value above, reads coral-red on a duck).
+  // It follows the reference, on the instruction to be as identical to it as
+  // the vector approach allows. Pointing these three at --color-brand-signal
+  // and --color-brand is the one-line switch back.
+  --duck-pink-light: #ff9ad4;
+  --duck-pink: #ff3aae;
+  --duck-pink-shade: #cc1482;
+  --duck-yellow-light: #fff4a6;
+  --duck-yellow: #ffd735;
+  --duck-yellow-shade: #efa312;
+  --duck-beak: #ff7b18;
+  --duck-beak-shade: #de4f08;
+  --sky-top: #9fd2f3;
+  --sky-cloud: #ffffff;
+  --water-light: #eaf6fd;
+  --water-mid: #9fd1f1;
+  --water-deep: #3e9be3;
+  --water-glint: #ffffff;
+
   // --- Signature device -------------------------------------------------
   // Signal-capped section rules: a short segment of the marking tone on a
   // section's top hairline, and the same segment on the leading edge of
@@ -189,6 +304,10 @@
   --sec-y: clamp(3.5rem, 2.5714rem + 3.8095vw, 6rem); //  56 -> 96
   --sec-y-sm: clamp(2.5rem, 2.0357rem + 1.9048vw, 4rem); //  40 -> 64
   --header-h: clamp(4rem, 3.6288rem + 1.5238vw, 5rem); //  64 -> 80
+  // The home page's first four bands (hero, 02-04) each fill the screen
+  // BELOW the sticky header: the viewport less the header bar and its 1px
+  // bottom rule (.site-header in _navbar.scss). 29 Sep 2026, on instruction.
+  --home-band-h: calc(100dvh - var(--header-h) - 1px);
 
   // --- Geometry ---------------------------------------------------------
   // Cards are noticeably rounder than controls; that contrast is part of
@@ -215,4 +334,6 @@
   --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
   --font-body: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Consolas, monospace;
+  // Handwriting, 28 Sep 2026. Illustration lettering only; see layout.tsx.
+  --font-hand: var(--font-caveat), "Segoe Print", "Bradley Hand", cursive;
 }

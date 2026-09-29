@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
+import { Caveat, IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
 import {
   CookieConsent,
@@ -33,6 +33,17 @@ const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-plex-mono",
+  display: "swap"
+});
+
+// 28 Sep 2026: a fourth role, handwriting. The approved home page reference
+// writes its Post-its, its two annotations and "Real growth builds here" by
+// hand, and none of the three roles above can. Added on instruction as ONE
+// face for all of it, and for those illustrative moments only: never a
+// heading, body copy or UI. Variable, so no weight is declared.
+const caveat = Caveat({
+  subsets: ["latin"],
+  variable: "--font-caveat",
   display: "swap"
 });
 
@@ -122,7 +133,7 @@ export default function RootLayout({
     <html
       lang='en-GB'
       data-scroll-behavior='smooth'
-      className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable}`}
+      className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable} ${caveat.variable}`}
     >
       <head>
         <link rel='icon' href='/favicon.svg' />

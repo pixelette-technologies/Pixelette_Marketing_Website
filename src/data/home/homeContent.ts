@@ -25,14 +25,135 @@ export const RESULTS_HREF = "/results";
 
 // --- 01 Hero ----------------------------------------------------------------
 
+// --- 28 Sep 2026: the locked implementation specification, sections 01-04 --
+// The hero and the three sections under it are transcribed from a locked
+// management specification and its approved reference image. The spec is
+// the source for every sentence it writes out; the image is the source for
+// the small right-hand rail labels, which it shows and the spec does not
+// spell out (included on instruction, verbatim from the image).
+//
+// NO FULL STOPS ON ANY HEADLINE OR SHORT VISUAL STATEMENT here. The spec
+// says so section by section; do not "correct" them back.
+//
+// The five-word capability line that sat under the hero CTAs in an earlier
+// concept is DELIBERATELY ABSENT. The spec removes it because Section 03
+// already says it. Do not restore it.
+//
+// The 8 Sep lines the hero no longer renders are kept below, unrendered,
+// under `retired`, as approved copy for later reuse.
+
 export const heroCopy = {
-  eyebrow: "Growth marketing built around commercial outcomes",
-  lead: "Pixelette Marketing helps ambitious businesses turn attention into demand, qualified pipeline, customers and measurable growth. We combine positioning, demand generation, search, content, paid media, lifecycle marketing, conversion and growth intelligence into one accountable growth system.",
-  reach: "For ambitious businesses across sectors, from launch through scale.",
+  eyebrow: "Clarity. Momentum. Commercial impact.",
+  headline: { lead: "Marketing that matters", tail: "to your bottom line" },
+  support:
+    "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
   primaryCta: { label: "Build my growth plan", to: "/contactus" },
-  secondaryCta: { label: "See client results", to: RESULTS_HREF },
-  closing:
-    "Strategy first. Commercial outcomes. No vanity metrics without context."
+  secondaryCta: { label: "Explore what we do", to: "/services" },
+  // The Living Signal's two rail labels and its handwritten line. All three
+  // are part of the picture, so the figure that carries them is aria-hidden.
+  signalLabels: {
+    top: ["Ideas", "Intelligence", "Action", "Growth"],
+    bottom: ["A more", "commercial", "tomorrow"]
+  },
+  annotation: ["From", "insight", "to impact"],
+
+  retired: {
+    eyebrow: "Growth marketing built around commercial outcomes",
+    lead: "Pixelette Marketing helps ambitious businesses turn attention into demand, qualified pipeline, customers and measurable growth. We combine positioning, demand generation, search, content, paid media, lifecycle marketing, conversion and growth intelligence into one accountable growth system.",
+    reach:
+      "For ambitious businesses across sectors, from launch through scale.",
+    resultsCta: { label: "See client results", to: RESULTS_HREF },
+    closing:
+      "Strategy first. Commercial outcomes. No vanity metrics without context."
+  }
+};
+
+/** Where both "Our approach" links in sections 02 and 04 go. There is no
+ *  approach page; the diagnostic was chosen on 28 Sep as the nearest thing. */
+export const APPROACH_HREF = "/strategy-positioning";
+
+export interface EditorialSectionCopy {
+  number: string;
+  eyebrow: string;
+  /** Headline lines in ink, one per line. */
+  headline: readonly string[];
+  /** An optional last line in the brand tone. */
+  accent?: string;
+  lead: string;
+  cta: { label: string; to: string };
+  /** The small right-hand rail label, one entry per line. */
+  rail: readonly string[];
+}
+
+// --- 02 More activity isn't the answer ---------------------------------------
+
+export const activityCopy: EditorialSectionCopy & {
+  notes: readonly string[];
+  clearerPath: string;
+} = {
+  number: "02",
+  eyebrow: "A different perspective",
+  headline: ["More activity", "isn’t the answer"],
+  accent: "Better decisions are",
+  lead: "We help you focus on what will actually move the business — then build the marketing around it.",
+  cta: { label: "Our approach", to: APPROACH_HREF },
+  rail: ["Less", "noise", "Better", "decisions", "Real", "impact"],
+  // The spec's list, in its order, and no others. Stored in sentence case;
+  // the notes set them in capitals as the reference does.
+  notes: [
+    "More ads",
+    "More emails",
+    "More posts",
+    "More meetings",
+    "More content",
+    "More traffic",
+    "More channels",
+    "More leads",
+    "More spend",
+    "More tools",
+    "More reports"
+  ],
+  clearerPath: "A clearer path"
+};
+
+// --- 03 Five capabilities ----------------------------------------------------
+
+export type CapabilityIcon = "compass" | "bars" | "search" | "funnel" | "rise";
+
+export const capabilitiesCopy: EditorialSectionCopy & {
+  capabilities: readonly { name: string; icon: CapabilityIcon }[];
+  payoff: string;
+} = {
+  number: "03",
+  eyebrow: "What we do",
+  headline: ["Five capabilities", "One commercial objective"],
+  lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
+  cta: { label: "Explore all services", to: "/services" },
+  rail: ["People", "Ideas", "Capabilities", "Stronger", "outcomes"],
+  // The site's five capability names, in the hub's order.
+  capabilities: [
+    { name: "Strategy & Positioning", icon: "compass" },
+    { name: "Demand & Performance", icon: "bars" },
+    { name: "Search & Authority", icon: "search" },
+    { name: "Pipeline & Conversion", icon: "funnel" },
+    { name: "Growth Intelligence", icon: "rise" }
+  ],
+  payoff: "Real growth builds here"
+};
+
+// --- 04 Attention is easy to buy ---------------------------------------------
+
+export const relevanceCopy: EditorialSectionCopy & {
+  annotation: readonly string[];
+} = {
+  number: "04",
+  eyebrow: "A clearer way forward",
+  headline: ["Attention is easy to buy"],
+  accent: "Relevance isn’t",
+  lead: "We help you reach the right people, with the right message, at the right time — and turn that into real commercial impact.",
+  cta: { label: "Our approach", to: APPROACH_HREF },
+  rail: ["Relevance", "creates", "opportunity"],
+  annotation: ["Stand out", "for the right", "reasons"]
 };
 
 // --- 02 Proof ---------------------------------------------------------------
@@ -288,7 +409,8 @@ export const waysToWorkData: ItemsSectionContent = {
     {
       title: "Embedded Growth Team",
       body: "Add the marketing capability you need without building the whole team in-house. We provide dedicated specialists who work alongside your business, filling capability gaps and taking responsibility for agreed areas of marketing and growth.",
-      outcome: "You get the people, expertise and delivery capacity you need without the recruitment overhead."
+      outcome:
+        "You get the people, expertise and delivery capacity you need without the recruitment overhead."
     }
   ],
   closing:

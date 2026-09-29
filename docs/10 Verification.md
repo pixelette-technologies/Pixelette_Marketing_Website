@@ -1449,3 +1449,68 @@ re-measured** before work stopped. See [[09 Outstanding]].
 **A tooling note.** The auto-mode permission check returned no verdict on
 several Bash calls in a row; the same commands went through under
 PowerShell, or split into smaller calls. Nothing was wrong with the commands.
+
+## 28–29 Sep — home sections 01–04, and what looking found
+
+**How it was looked at.** `next dev` on port 3005 while building, headless
+Chrome driven over CDP from Node on 9333, at 1440×900, 900 and 390 (mobile
+emulation), with motion on and under `prefers-reduced-motion: reduce`, plus
+recorded frame sequences of the Post-it fall and the duck drop taken after
+scrolling the section in from the top of the page.
+
+**Gates before the commit:** `tsc`, `eslint` (clean, but the full-tree run
+took over ten minutes on this machine; one folder at a time is under a
+minute), the token gate (0 findings), `test:contact` (36/36), `next build`,
+and the route walk against the production build on port 3006 (28/28). The
+production home page's console is clean at 390. No horizontal overflow at
+any width looked at.
+
+**Faults found by looking, after the gates were green:**
+
+1. **The pill CTA was square.** `.btn--pill` lost to the legacy
+   `.btn_primary` radius in `component/feature/_button.scss`, which loads
+   after the primitives. Doubled the class.
+2. **MEETINGS and CHANNELS spilled off their notes.** Note lettering resized
+   to fit the longest word.
+3. **At 900px the notes buried each other.** The viewport reads as desktop
+   but the stage is under 400px wide. Notes are now sized, and thinned to the
+   phone set, by the stage's own width (a container query), not the
+   viewport's.
+4. **The rail labels sat on the eyebrows on a phone.** Their hide rule lost
+   to `.railLabel`'s later `display`. Doubled the class.
+5. **The notes had landed before anyone scrolled to them.** At 1440×900 the
+   band's top edge shows on load, inside the pausing margin. The fall now
+   waits for the section to be properly in view; so does the duck drop.
+6. **The duck arrow pointed at open water.** It is placed in stage
+   coordinates now, not under the text.
+7. **A hydration mismatch.** The timing scatter was fract(sin(x) · 43758):
+   Node and Chrome agree on `Math.sin` only to the last bits, and that factor
+   moved them into the printed digits of the inline styles. Replaced with an
+   exact integer hash (`src/lib/spread.ts`), rounded.
+8. **The Living Signal threw under reduced motion** — `drawImage` from a
+   zero-sized canvas before the first layout. The bug came across with the
+   ported code; guarded.
+9. **On a phone, full-height bands left a blank strip under each picture**:
+   the grid split the spare height between the copy and picture rows. The
+   picture row takes it now, and the brick scene stands on its floor — which
+   then shrank it, because a flex item shrinks; pinned.
+10. **The pink duck's splash ring showed before the duck landed**: its first
+    keyframe was being held through the delay. Not held now.
+
+**The dev server served stale CSS — again.** The vault records this from 23
+Sep: an in-place rewrite that unlinks and recreates a file (`sed -i`, like
+`perl -pi`) can be missed by Turbopack's watcher. Three declarations in
+`_capabilitiesSection.scss` were on disk and absent from the served CSS, and
+the screenshot looked wrong for a reason the code did not contain. Found by
+reading the served `cssRules`, fixed by rewriting every changed file in place
+(same inode). **Edit with the Edit tool or a same-inode write, not `sed -i`,
+while a dev server is watching.**
+
+**Measured:** every band is exactly the viewport less the header (819px at
+1440×900 with an 81px header; 835px at 390 with a 65px header), except where
+content is taller, which then sets the height. The ducks' bob transforms
+differ from each other and over time (not synchronised), and the pond reports
+`running=false` off screen.
+
+**Not measured:** axe, throttled-phone LCP/CLS, and frame pacing on a real
+GPU. See [[09 Outstanding]].

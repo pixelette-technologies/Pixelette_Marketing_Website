@@ -1,0 +1,269 @@
+// 02 — The falling Post-its. Locked implementation specification, 28 Sep 2026.
+// See PostitField.tsx for why the notes are built in layers and when each
+// one moves. Everything that moves is transform or opacity.
+
+.postitField {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+// The stage starts where the copy column ends (--scene-stage-left, set in
+// _homeScene.scss). Note positions are percentages of this box, so the notes
+// can never reach the words.
+.postitField__stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: var(--scene-stage-left);
+  // The notes are sized, and on a narrow stage thinned, by the STAGE width,
+  // not the viewport: at 900px the stage is under 400px wide while the
+  // viewport still reads as desktop, and eleven desktop-sized notes buried
+  // each other there.
+  container-type: inline-size;
+}
+
+// --- A note ---------------------------------------------------------------------
+
+.postit {
+  --size: clamp(4.5rem, 13.5cqi, 7.5rem);
+
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  margin: calc(var(--size) / -2) 0 0 calc(var(--size) / -2);
+  transform: rotate(var(--r)) scale(var(--s, 1));
+  pointer-events: none;
+}
+
+.postit__fall,
+.postit__sway,
+.postit__push {
+  width: 100%;
+  height: 100%;
+}
+
+// The pointer layer: a nudge that springs back with a little overshoot.
+.postit__push {
+  transform: translate(var(--px, 0px), var(--py, 0px)) rotate(var(--pr, 0deg));
+  transition: transform 520ms cubic-bezier(0.2, 0.9, 0.3, 1.25);
+}
+
+// The paper: lighter at the top where it catches the light, a slightly deeper
+// glue strip, the face, and the shade gathering at the lower edge.
+.postit__paper {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 10%;
+  background: linear-gradient(
+    174deg,
+    color-mix(in srgb, var(--face) 72%, var(--color-page)) 0%,
+    var(--face) 30%,
+    var(--face) 78%,
+    var(--shade) 100%
+  );
+  box-shadow:
+    0 1px 1px rgb(var(--shadow-tint) / 0.08),
+    0 calc(10px + var(--lift, 0) * 8px) calc(16px + var(--lift, 0) * 10px) -10px rgb(var(--shadow-tint) / 0.36);
+  transition: box-shadow 520ms ease;
+
+  // The glue strip.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 17%;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--shade) 35%, transparent), transparent);
+  }
+
+  // The lifted corner, lower right: the paper curling off the pad.
+  &::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 34%;
+    height: 34%;
+    background: linear-gradient(
+      315deg,
+      color-mix(in srgb, var(--shade) 90%, var(--note-ink)) 0%,
+      color-mix(in srgb, var(--shade) 60%, transparent) 22%,
+      transparent 55%
+    );
+    opacity: 0.55;
+  }
+}
+
+.postit__word {
+  position: relative;
+  z-index: 1;
+  width: min-content;
+  font-family: var(--font-hand);
+  // Sized so the longest word on any note, MEETINGS or CHANNELS, fits
+  // inside the paper with the note's padding.
+  font-size: calc(var(--size) * 0.185);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-transform: uppercase;
+  color: var(--note-ink);
+  transform: rotate(-4deg);
+}
+
+// --- Background notes: small, soft, further away ----------------------------------
+
+.postit--bg {
+  opacity: 0.72;
+  filter: blur(1.6px);
+}
+
+// --- A clearer path: larger, straighter, calm, and it never falls ------------------
+
+.postit--path {
+  --size: clamp(6.5rem, 20cqi, 11.25rem);
+
+  left: 74.9%;
+  top: 62%;
+  transform: rotate(-7deg);
+  pointer-events: auto;
+  transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  .postit__paper {
+    padding: 12%;
+  }
+
+  .postit__word {
+    font-size: calc(var(--size) * 0.2);
+    line-height: 0.95;
+    transform: rotate(-2deg);
+  }
+}
+
+.postit__underline {
+  position: absolute;
+  left: 22%;
+  bottom: 17%;
+  width: 56%;
+  height: auto;
+  overflow: visible;
+
+  path {
+    fill: none;
+    stroke: var(--note-ink);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+// --- Motion, only once PostitField has switched it on --------------------------------
+
+// Waiting for the section to arrive: the foreground is hidden so it never
+// shows the landed arrangement and then jumps to the top to fall.
+.postitField[data-postits="armed"] .postit--fg .postit__fall {
+  opacity: 0;
+}
+
+.postitField[data-postits="on"] .postit--fg .postit__sway {
+  animation: postitSway var(--sway) ease-in-out var(--sway-delay) infinite alternate;
+}
+
+// The background drift: from just above the band to just below it, turning
+// as it goes, fading in and out at the edges. Negative delays scatter the
+// notes along their paths from the first frame.
+.postitField[data-running] .postit--bg {
+  top: -8%;
+  animation: postitDrift var(--dur) linear var(--delay) infinite;
+}
+
+.postitField[data-running="false"] .postit--bg,
+.postitField[data-running="false"] .postit__sway {
+  animation-play-state: paused;
+}
+
+@keyframes postitSway {
+  from {
+    transform: rotate(-1deg);
+  }
+
+  to {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes postitDrift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(var(--r)) scale(var(--s));
+  }
+
+  10% {
+    opacity: 0.72;
+  }
+
+  88% {
+    opacity: 0.72;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--drift), var(--fall)) rotate(calc(var(--r) + var(--spin))) scale(var(--s));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .postit--path:hover {
+    transform: rotate(-5.5deg) translateY(-2px);
+  }
+}
+
+// --- Phone: the picture is its own row beneath the copy ------------------------------
+
+@media (max-width: 767px) {
+  .homeScene--activity .homeScene__art {
+    min-height: 21rem;
+  }
+
+  .postitField__stage {
+    left: 0;
+  }
+}
+
+// --- A narrow stage, phone or tablet: fewer notes, the spec's mobile set -------------
+// Six of the eleven, placed for a small stage, plus A clearer path. Keyed
+// to the stage, so a tablet whose stage is phone-narrow gets it too.
+
+@container (max-width: 30rem) {
+  .postit {
+    --size: 5.25rem;
+
+    left: var(--mx, var(--x));
+    top: var(--my, var(--y));
+  }
+
+  .postit--wide {
+    display: none;
+  }
+
+  .postit--path {
+    --size: 7.75rem;
+
+    left: 79%;
+    top: 48%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .postit__push,
+  .postit__paper,
+  .postit--path {
+    transition: none;
+  }
+}

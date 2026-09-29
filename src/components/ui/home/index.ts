@@ -1,4 +1,7 @@
 export { default as HomeHero } from "./HomeHero";
+export { default as ActivitySection } from "./ActivitySection";
+export { default as CapabilitiesSection } from "./CapabilitiesSection";
+export { default as RelevanceSection } from "./RelevanceSection";
 export { default as ItemsSection } from "./ItemsSection";
 export type {
   ItemsSectionContent,

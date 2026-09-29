@@ -1585,3 +1585,29 @@ staged blobs were built as HEAD plus this change only (`hash-object -w
 with `--only`, which takes the named paths from the working tree. Their
 changes are still in the working tree for them. A third session committed
 two commits on top within 30 seconds, without conflict.
+
+## 29 Sep — section 04 as video: looked at, then gated
+
+**Looked at** in headless Chrome at 1887, 1440, 1024, 768 (portrait) and 390,
+and again under reduced motion. Looking found two faults no gate could: at
+768 portrait the cover crop cut the pink duck off at the right edge, and on
+wide screens the note floated well clear of its arrow (the arrow has since
+been removed on instruction). Both fixed and looked at again.
+
+**Measured:** the right file per width (the 960 encode on the phone); the
+video playing on screen; under reduced motion paused at 0 with nothing
+fetched (`readyState` 0); the media served as `video/webm`, `video/mp4` and
+`image/webp`; the CSP's `default-src 'self'` covers `media-src`. The note's
+position did not move when its words changed.
+
+**Gates** on the working tree, which held both sessions' changes: lint, the
+token gate (0 findings), `tsc`, 36/36, the build, and the route walk 28/28
+against a `next start` begun after that build on a port confirmed free.
+
+**Committed round the other sessions.** `homeContent.ts` held another
+session's uncommitted rail-label removal next to this change's one line, and
+`02 Decisions` and `09 Outstanding` held their uncommitted notes. The commit
+was built in a temporary index (`GIT_INDEX_FILE`): HEAD, plus this change's
+blobs only, the notes appended to the HEAD text, then `update-ref` with the
+expected old value, and the shared index reset for these paths alone. Their
+work stays uncommitted in the working tree, for them.

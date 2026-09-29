@@ -416,8 +416,9 @@ reference photographs, on instruction, so it can be judged against real
 assets. Each band fills the screen below the sticky header. On arrival the
 notes fall and the ducks drop onto the water one by one, on real gravity and
 a damped buoyant bob, with perspective-flattened splash rings. Committed on
-the branch; **not pushed, not live.** The pink duck's colour and the
-vector-or-real-assets question wait on the user. See [[02 Decisions]],
+the branch; **not pushed, not live.** Later the same day the
+ducks became a looping photographic video, which settled the pink duck's
+colour and, for 04, the vector-or-real question; the bricks' is still open. See [[02 Decisions]],
 [[09 Outstanding]] and [[10 Verification]].
 
 **29 Sep, later — section 02's Post-its fall in a loop, and A clearer path is

@@ -942,3 +942,28 @@ Committed on the branch; **not pushed, not live.** See [[02 Decisions]].
 - **The two women's faces at phone size.** On a phone the scene scrolls
   sideways at 47.5rem, and the far-right builder is off screen until
   scrolled to; not looked at closely there.
+
+## 29 Sep — section 04 is a looping video
+
+**Settled:** vector or real for the ducks (real: a looping video), and the
+pink duck's colour (the footage's magenta). **Still open:** vector or real for
+the bricks in 03. See [[02 Decisions]].
+
+**Not done yet:**
+
+- **Tokens that may now paint nothing:** `--duck-*`, `--sky-*` and
+  `--water-*` in `_tokens.scss`. Another session was editing that file, so
+  they were left; check for users and remove.
+- **Real devices.** iOS Low Power Mode and data-saver modes refuse `play()`;
+  the poster stands in, which is designed for but has only been reasoned
+  about. Seen in headless Chrome only.
+- **Very wide screens.** The source is 1856 wide, a little soft above about
+  1900px. Kling 3.0's `4k` mode on the same still is the fix if it shows.
+- **The sources live on Higgsfield, not in the repo:** still `bf2513e9`,
+  16:10 plate `9222f0ea`, clip `a12df063`. The local working files were in a
+  scratch folder and will not survive.
+- **Rights.** The footage is generated from the supplied reference on the
+  account's paid Higgsfield plan; confirm the commercial-use terms if anyone
+  asks.
+- The "frame pacing on a real GPU" item above no longer covers the ducks;
+  there is no duck drop now.

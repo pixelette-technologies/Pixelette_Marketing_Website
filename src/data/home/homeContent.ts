@@ -155,7 +155,7 @@ export const relevanceCopy: EditorialSectionCopy & {
   lead: "We help you reach the right people, with the right message, at the right time — and turn that into real commercial impact.",
   cta: { label: "Our approach", to: APPROACH_HREF },
   rail: ["Relevance", "creates", "opportunity"],
-  annotation: ["Stand out", "for the right", "reasons"]
+  annotation: ["Quacking good", "at standing out"]
 };
 
 // --- 02 Proof ---------------------------------------------------------------

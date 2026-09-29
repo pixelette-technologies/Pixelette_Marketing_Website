@@ -1927,3 +1927,48 @@ On instruction, in section 03 only (`a872913`).
   above the bricks could be hovered at all.
 - **"One commercial objective" is the headline's accent line**, in
   `--color-brand`, the way 02 and 04 carry theirs.
+
+## 29 Sep 2026 — section 04: the duck pond becomes a looping video
+
+**On instruction, the drawn pond is replaced by footage.** Drawn to the
+reference photograph, the SVG pond still read as clip art: flat shading,
+cartoon eyes, a gradient sky, small ducks spread thin. The user judged the
+method, not the tuning, to be the limit and asked for a smooth, realistic loop
+instead. That settles the vector-or-real call **for 04** (the bricks in 03 are
+still drawn) and with it the pink duck's colour: it is the footage's magenta,
+and the `--duck-pink*` tokens no longer paint anything.
+
+- **Made with Higgsfield**, connected to Claude Code as an MCP server the same
+  day (`https://mcp.higgsfield.ai/mcp`, user scope). A still first: four
+  candidates from the reference, two each from GPT Image 2.5 (high, 2K, 21:9)
+  and Nano Banana 2; the user chose GPT's second (job `bf2513e9`). Kling 3.0
+  only renders 16:9, and cropping the 21:9 still would have eaten the calm
+  left side the copy sits on, so it was outpainted top and bottom with
+  FLUX.2 Pro Outpaint (job `9222f0ea`, 2048×1232). Then animated with Kling
+  3.0 Pro, 5s, **sound off**, that still as both first and last frame, camera
+  locked, the ducks told to bob in place (job `a12df063`). About 20 credits
+  in all. The earlier FLUX clip that cost 108 had audio on: preflight
+  `get_cost` before any generation.
+- **Not a GIF.** 256 colours would band the sky and water, and a GIF this size
+  runs to megabytes. A muted looping `<video>`: WebM (VP9) with an MP4 (H.264)
+  fallback, 650 KB on desktop at 1856×1116 and 290 KB on a phone at 960 wide,
+  chosen by `<source media>`; a 66 KB WebP poster that is the loop's first
+  frame. In `public/home/relevance/`.
+- **The seam.** The last half-second is crossfaded into the first (ffmpeg
+  `xfade`), so the loop is 4.6s and its hand-over differs about as much as any
+  two neighbouring frames do (SSIM 0.955 against 0.975).
+- **Every word is HTML over the video, the handwritten note included.**
+  Burning the note in was allowed and not taken: a cover crop moves anything
+  burned in differently at every width. Instead the video sits in a frame
+  that crops like `object-fit: cover` but is a real box
+  (`max(100cqw, 100cqh * ratio)` against a size container), so the note is
+  placed in the video's own percentages and stays by the pink duck at every
+  width. `--focus-x` aims the crop: 0.68 on portrait tablets, 0.72 on phones.
+- **The note's words, on instruction:** "Quacking good / at standing out", in
+  the same place, and **the arrow removed**.
+- **The motion rules are unchanged.** `preload="none"`; it plays only on
+  screen with the tab visible; under reduced motion, as on the server and
+  without JavaScript, it is the poster and nothing is fetched. The one-off
+  duck drop, the splash rings and the hover responses went with the drawing;
+  the note still fades in once on arrival. See [[09 Outstanding]] and
+  [[10 Verification]].

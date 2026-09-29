@@ -16,18 +16,21 @@ import RoomBackdrop from "./RoomBackdrop";
 // server renders, what a reduced-motion visitor sees and where every note
 // lands. Motion is layered on top and only after mount.
 //
-// MOTION, in three independent layers so no two fight over one transform:
-//   .postit__fall   the entry fall (Web Animations API), once per page view:
-//                   own delay, own duration, sideways drift, a turn that
-//                   settles, starting above the band.
-//   .postit__sway   a slow +-1 degree sway after landing, each note on its own
-//                   period, paused whenever the section is off screen.
+// MOTION, in independent layers so no two fight over one transform:
+//   .postit         the fall (CSS, 29 Sep, on instruction): every word note
+//                   drops from above the band to below it in a loop, down its
+//                   own lane (see LANES), slowly enough to read the word on the way —
+//                   16s a pass. Negative delays spread them down the band
+//                   from the first frame, so it never starts empty.
+//   .postit__sway   a slow +-1 degree sway, each note on its own period.
 //   .postit__push   the pointer response (fine pointer only): a few pixels
 //                   away and a few degrees of tilt, springing back by CSS
 //                   transition. It never flings, and notes never take clicks.
-// A few small background notes keep drifting down while the section is on
-// screen, which is the spec's "remains alive" (§12), and they sit behind the
-// foreground notes and never in the copy column.
+// All of it is paused whenever the section is off screen. Small blurred
+// background notes drift down behind the words the same way.
+//
+// "A clearer path" never moves. Its words cycle through the hero figure's
+// colours instead (see _activitySection.scss).
 //
 // The whole field is aria-hidden: the words on the notes are the picture, and
 // the section's meaning is carried by the headline beside it.
@@ -82,6 +85,53 @@ const BACKGROUND: { tone: Tone; x: number; y: number; r: number; s: number }[] =
     { tone: "yellow", x: 30, y: 97, r: -8, s: 0.36 }
   ];
 
+// One pass of a word note, top of the band to the bottom: about 65px a second
+// on a 900px screen, slow enough to read every word as it passes.
+const FALL_SECONDS = 16;
+
+// THE FALL RUNS IN LANES, so no note can cover another's word. A note is
+// 13.5% of the stage wide and up to ~17.5% once turned; lanes 22% apart
+// leave a clear gap at the widest turn, and the right-hand lane still ends
+// short of A clearer path (whose left edge sits at ~63% of the stage). A
+// narrow stage shows six notes, in two lanes that clear the same note.
+const LANES = [9, 31, 53];
+const PHONE_LANES = [16, 44];
+// Under 20rem (a portrait tablet, where the copy column keeps half the band)
+// A clearer path takes the stage's right half, so the six share one lane on
+// the left; the band is tall there, which keeps them well apart.
+const TINY_LANES = [24];
+
+interface Slot {
+  x: number;
+  delay: number;
+}
+
+// Splits the notes into lanes by their resting x (leftmost into the left
+// lane, and so on, as evenly as the count allows), then spaces each lane's
+// notes evenly through one pass in order of their resting height. Each lane
+// is offset from the one before by a fraction of a slot, so notes in
+// neighbouring lanes never travel side by side either.
+function schedule(
+  items: { key: string; x: number; y: number }[],
+  lanes: number[]
+): Map<string, Slot> {
+  const slots = new Map<string, Slot>();
+  const byX = [...items].sort((a, b) => a.x - b.x);
+  let start = 0;
+  lanes.forEach((laneX, k) => {
+    const count = Math.ceil((byX.length - start) / (lanes.length - k));
+    const lane = byX
+      .slice(start, start + count)
+      .sort((a, b) => a.y - b.y);
+    start += count;
+    lane.forEach((item, j) => {
+      const progress = (j + k / lanes.length) / lane.length;
+      slots.set(item.key, { x: laneX, delay: -progress * FALL_SECONDS });
+    });
+  });
+  return slots;
+}
+
 const toneVars = (tone: Tone) =>
   ({
     "--face": `var(--note-${tone})`,
@@ -97,73 +147,24 @@ export default function PostitField({
 }) {
   const rootRef = useRef<HTMLDivElement>(null);
   const visible = useInView(rootRef);
-  // The fall waits for the section to be properly in view (its top above the
-  // lowest 30% of the window), not merely near it: at 1440x900 the band's
-  // top edge already shows on load, and with the pausing margin the notes
-  // had landed before anyone scrolled to them.
-  const arrived = useInView(rootRef, "0px 0px -30% 0px");
   const motion = useMotionAllowed();
   const fine = useFinePointer();
-  const played = useRef(false);
 
   const notes: NoteSpec[] = words
     .filter(word => LAYOUT[word])
     .map(word => ({ word, ...LAYOUT[word] }));
 
-  // --- The entry fall, once, the first time the field is on screen ---------
-  useEffect(() => {
-    const root = rootRef.current;
-    if (!root || !motion || played.current) return;
-    if (!arrived) {
-      // Hide the foreground until the fall can start, so it never shows the
-      // landed arrangement and then jumps to the top.
-      root.dataset.postits = "armed";
-      return;
-    }
-    played.current = true;
-    root.dataset.postits = "on";
+  const wide = schedule(
+    notes.map(n => ({ key: n.word, x: n.x, y: n.y })),
+    LANES
+  );
+  const shownNarrow = notes.flatMap(n =>
+    n.m ? [{ key: n.word, x: n.m[0], y: n.m[1] }] : []
+  );
+  const narrow = schedule(shownNarrow, PHONE_LANES);
+  const tiny = schedule(shownNarrow, TINY_LANES);
 
-    const height = root.getBoundingClientRect().height;
-    const falls = Array.from(
-      root.querySelectorAll<HTMLElement>(".postit--fg .postit__fall")
-    );
-    const animations = falls.map((el, i) => {
-      const top = (el.closest<HTMLElement>(".postit")?.offsetTop ?? 0) + 140;
-      const from = -Math.min(top, height + 140);
-      const drift = (spread(i, 1) - 0.5) * 70;
-      const turn = (spread(i, 2) - 0.5) * 50;
-      const duration = 1500 + spread(i, 3) * 1000;
-      const delay = spread(i, 4) * 900;
-      return el.animate(
-        [
-          {
-            transform: `translate(${drift}px, ${from}px) rotate(${turn}deg)`,
-            opacity: 0
-          },
-          { opacity: 1, offset: 0.12 },
-          {
-            transform: `translate(${-drift * 0.45}px, ${from * 0.42}px) rotate(${-turn * 0.4}deg)`,
-            offset: 0.55
-          },
-          {
-            transform: `translate(${drift * 0.15}px, ${from * 0.08}px) rotate(${turn * 0.12}deg)`,
-            offset: 0.85
-          },
-          { transform: "translate(0, 0) rotate(0deg)", opacity: 1 }
-        ],
-        {
-          duration,
-          delay,
-          easing: "cubic-bezier(0.33, 0.6, 0.4, 1)",
-          fill: "backwards"
-        }
-      );
-    });
-
-    return () => animations.forEach(a => a.finish());
-  }, [motion, arrived]);
-
-  // --- Background drift and landed sway run only while on screen ------------
+  // --- The falls and the sway run only while on screen ------------------------
   useEffect(() => {
     const root = rootRef.current;
     if (!root || !motion) return;
@@ -185,10 +186,9 @@ export default function PostitField({
     const stage =
       root.querySelector<HTMLElement>(".postitField__stage") ?? root;
 
-    // Where each note actually sits, as fractions of the stage, measured
-    // when the pointer arrives rather than read from --x/--y: a narrow stage
-    // moves the notes to their phone positions. A hidden note measures as
-    // zero-sized and is parked far away so it never responds.
+    // Where each note actually sits, as fractions of the stage, measured on
+    // every frame the pointer moves, because the notes are falling. A hidden
+    // note measures as zero-sized and is parked far away so it never responds.
     let centres: [number, number][] = [];
     const measure = () => {
       const s = stage.getBoundingClientRect();
@@ -208,6 +208,7 @@ export default function PostitField({
 
     const apply = () => {
       raf = 0;
+      measure();
       const rect = stage.getBoundingClientRect();
       pushes.forEach((el, i) => {
         const dx = centres[i][0] * rect.width - (px - rect.left);
@@ -230,7 +231,6 @@ export default function PostitField({
     const onMove = (e: PointerEvent) => {
       px = e.clientX;
       py = e.clientY;
-      if (!centres.length) measure();
       if (!raf) raf = requestAnimationFrame(apply);
     };
     const onLeave = () => {
@@ -294,16 +294,26 @@ export default function PostitField({
                 "--mx": `${n.m?.[0] ?? 0}%`,
                 "--my": `${n.m?.[1] ?? 0}%`,
                 "--sway": `${4.2 + spread(i, 9) * 2.4}s`,
-                "--sway-delay": `${-spread(i, 10) * 4}s`
+                "--sway-delay": `${-spread(i, 10) * 4}s`,
+                // The loop: one pace for every note, so none catches another
+                // up, in the lane and slot schedule() gave it. Drift and
+                // spin are kept small enough not to leave the lane.
+                "--dur": `${FALL_SECONDS}s`,
+                "--lx": `${wide.get(n.word)?.x ?? n.x}%`,
+                "--delay": `${wide.get(n.word)?.delay ?? 0}s`,
+                "--mlx": `${narrow.get(n.word)?.x ?? 0}%`,
+                "--mdelay": `${narrow.get(n.word)?.delay ?? 0}s`,
+                "--tlx": `${tiny.get(n.word)?.x ?? 0}%`,
+                "--tdelay": `${tiny.get(n.word)?.delay ?? 0}s`,
+                "--drift": `${(spread(i, 2) - 0.5) * 20}px`,
+                "--spin": `${(spread(i, 3) - 0.5) * 14}deg`
               } as CSSProperties
             }
           >
-            <div className='postit__fall'>
-              <div className='postit__sway'>
-                <div className='postit__push'>
-                  <div className='postit__paper'>
-                    <span className='postit__word'>{n.word}</span>
-                  </div>
+            <div className='postit__sway'>
+              <div className='postit__push'>
+                <div className='postit__paper'>
+                  <span className='postit__word'>{n.word}</span>
                 </div>
               </div>
             </div>

@@ -1642,3 +1642,24 @@ refused (`is at d00815b but expected 82af4e5`) and nothing was overwritten.
 The commit was rebuilt on the new HEAD — which moved once more, to `354e5fc`,
 during the rebuild — and every gate was run again on that combination before
 the branch was moved to `9148b86`.
+
+## 29 Sep — the hero's strings: looked at, then gated on the committed tree
+
+**Looked at** in headless Chrome at 1440×900: the pointer below, above and on
+the figure; a quick vertical sweep through the upper wing, caught 60ms, 360ms
+and 1s after, and again 5s later. Strings answered one by one (the nearest
+wing bowed, the far one held), a plucked group rang and died away, and the
+settled frame matched the resting one. Headless frame rate unchanged from the
+previous round (24 at rest, 19 near, ~12 on the figure; relative only).
+
+**Gates on the exact commit**, built from a temporary index (HEAD plus
+`LivingSignal.tsx` only) and checked out as a fresh worktree, `D:/pxhero`,
+with its own `npm ci`: `tsc` exit 0, eslint on the home folder, the token
+gate (0 findings), `next build` exit 0, and the route walk 28/28 against
+`next start` on 3108. The branch moved with an expected-old-value
+`update-ref`; HEAD had advanced to another session's docs commit (`51f26d7`)
+just before the base was read, so the gated tree already included it.
+
+**`D:/pxwt` is another session's now.** The earlier worktree left for
+deletion had uncommitted changes matching the industries work in it; a
+checkout there refused, touching nothing, and it was left alone.

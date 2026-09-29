@@ -456,6 +456,15 @@ branch (`9148b86`); not pushed, not live. **Not yet seen on a real GPU.** See
 
 **29 Sep, later — the information architecture locked.** Built to a management "Master structure correction": the nav is What we do / Industries / About / Insights / Contact; Who we help became Industries; Results left the nav but `/results` stays live; the home page stops after a compact Industries teaser, a compact Proof before promises, AI-accelerated, Part of Pixelette and the close; `/industries` is four chapters (hero, an eight-industry selector with one stage, Work in practice, close); `/services` owns the service lists, with community management and growth restored. Committed on the branch (`4a6534f`); not pushed, not live. Gated before the commit in a separate worktree; **the committed state was not re-gated**, on instruction — that is for a separate session. See [[02 Decisions]] and [[09 Outstanding]].
 
+**29 Sep, later — the hero's lines become strings.** The pointer effect read
+as "an image stretching": one smooth field moved every point together. Now
+every line is its own physical string (16 masses pinned at the lit point,
+tethered, joined by tension) with its own mass, ring and damping, pulled by
+the pointer node by node, so near strings swing and far ones barely move, and
+a quick pass plucks them. The points ride their strings. At rest, unchanged
+to the pixel. Committed on the branch (`e5d7b93`); not pushed, not live.
+**Not yet seen on a real GPU.** See [[02 Decisions]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

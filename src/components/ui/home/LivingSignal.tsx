@@ -50,10 +50,14 @@ import { useEffect, useRef } from "react";
 //
 // THE POINTER — 29 Sep 2026, an enhancement on instruction (not a redesign).
 // Fine pointer only; it replaces the earlier few-pixel depth shift.
-//   - THE MAGNET. Anywhere near the figure — above it, below it or on it —
-//     the lines and points lean towards the pointer: below the figure the
-//     wings are drawn down, above it they are drawn up. The pull fades out
-//     towards the point, so every line still arrives at FOCUS.
+//   - THE STRINGS (29 Sep, second round: "not an image stretching"). Every
+//     line is its own physical string — a chain of masses pinned at FOCUS,
+//     tethered to its resting shape, joined by tension — with its own mass,
+//     stiffness and damping. The pointer pulls each node by its own distance,
+//     so near the figure — above it, below it or on it — the nearest strings
+//     swing towards it, the far ones barely, each lagging and ringing at its
+//     own rate; a quick pass plucks the strings it crosses. Nothing is a
+//     shared warp: strings part, cross and settle one by one.
 //   - ON THE FIGURE (inside the teardrop): the lines glow, and the orange
 //     signals multiply and run at many times their speed with long lit
 //     tails, start to end — light at speed, arriving at the point.
@@ -92,7 +96,7 @@ const HALO_ALPHAS = [0.22, 0.4, 0.62];
 interface Line {
   fam: Family;
   pts: Float32Array; // px, x/y interleaved
-  live: Float32Array; // pts, bent by the magnet
+  live: Float32Array; // pts, displaced by the string's own physics
   strong: boolean;
   delay: number;
 }
@@ -107,6 +111,8 @@ interface Dot {
   dx: number; // intro displacement, px
   dy: number;
   delay: number;
+  line: number; // the string it rides on, or -1 for the loose field
+  s: number; // and where along it, 0..1
 }
 
 interface Signal {
@@ -123,10 +129,18 @@ const GLOW_AT = 2.2;
 
 // --- The pointer ------------------------------------------------------------
 
-const MAGNET = 0.55; // share of the distance to the pointer a point moves
-const REACH_X = 0.36; // the field's spread, of width
-const REACH_Y = 0.55; // and of height, broad so a pointer outside still pulls
-const PULL_CAP = 0.17; // the most a point moves, of height
+// Every line is its own string: STRING_NODES masses in a chain, pinned at
+// FOCUS, each tied to its resting place by a spring that stiffens as it
+// stretches, and to its neighbours by the string's tension. The pointer
+// pulls each node by its own distance (softened inverse square), so near
+// strings swing far and far ones barely move, each at its own rate. Mass,
+// stiffness, tension and damping differ from string to string.
+const STRING_NODES = 16;
+const STRING_PULL = 0.3; // the pull's strength, × height³
+const STRING_SOFT = 0.2; // its softening length, of height: sets the reach
+const STRING_GIVE = 0.1; // of height: past this a string stiffens sharply
+const STRING_BRUSH = 0.06; // of height: how close the pointer plucks
+const STRING_DRAG = 9; // how hard a brushing pointer drags a string along
 const WARP = 18; // how many times faster the signals run at full hover
 
 // The points near the pointer, each a small mass on a spring to its place,
@@ -243,6 +257,20 @@ export default function LivingSignal({
     let glow = new Float32Array(0);
     let dotsAwake = false;
     let dotPull = 0;
+    // The strings: STRING_NODES nodes per line, flat. Rest place, offset from
+    // it and velocity per node; mass, tether stiffness, tension and damping
+    // per line.
+    let nrx = new Float32Array(0);
+    let nry = new Float32Array(0);
+    let nux = new Float32Array(0);
+    let nuy = new Float32Array(0);
+    let nvx = new Float32Array(0);
+    let nvy = new Float32Array(0);
+    let lm = new Float32Array(0);
+    let lk = new Float32Array(0);
+    let lks = new Float32Array(0);
+    let lc = new Float32Array(0);
+    let linesAwake = false;
 
     // The figure's box inside the (larger) canvas, in CSS px.
     let offX = 0;
@@ -409,7 +437,7 @@ export default function LivingSignal({
 
       // --- Points ----------------------------------------------------------
       dots = [];
-      const add = (x: number, y: number, c: number) => {
+      const add = (x: number, y: number, c: number, line = -1, s = 0) => {
         const big = rand() < 0.03;
         const r = big ? 1.4 + rand() ** 2 * 1.8 : 0.35 + rand() * 0.85;
         const a = big ? 2 : rand() < 0.45 ? 0 : rand() < 0.65 ? 1 : 2;
@@ -424,15 +452,21 @@ export default function LivingSignal({
           near: big,
           dx: Math.cos(angle) * drift,
           dy: Math.sin(angle) * drift,
-          delay: 0.05 + rand() * 0.8
+          delay: 0.05 + rand() * 0.8,
+          line,
+          s
         });
       };
 
       // Along the lines: clustered, tighter towards the point.
-      const drawable = lines.filter(l => l.fam !== "frame");
+      const drawable: number[] = [];
+      lines.forEach((l, i) => {
+        if (l.fam !== "frame") drawable.push(i);
+      });
       const along = Math.round(3200 * k);
       for (let n = 0; n < along; n++) {
-        const line = drawable[Math.floor(rand() * drawable.length)];
+        const li = drawable[Math.floor(rand() * drawable.length)];
+        const line = lines[li];
         const s = rand() * 0.93;
         const i = Math.floor(s * (N - 1));
         const spread = (0.004 + 0.045 * Math.pow(1 - s, 1.2)) * h;
@@ -451,7 +485,8 @@ export default function LivingSignal({
           // The lower wing runs violet into magenta.
           c = r < 0.45 ? DUSK : r < 0.72 ? BRAND : r < 0.9 ? BODY : SIGNAL;
         }
-        add(x, y, c);
+        // It rides on its string: where the string goes, it goes.
+        add(x, y, c, li, s);
       }
 
       // The loose field: a teardrop envelope, widest at the left, closing on
@@ -494,6 +529,57 @@ export default function LivingSignal({
       glow = new Float32Array(n);
       mass = Float32Array.from(dots, d => 0.5 + d.r * d.r);
       dotsAwake = false;
+
+      // The strings. Their character comes from a separate seed, so the
+      // drawing's own random sequence — and so the picture at rest — is
+      // exactly what it was.
+      const M = STRING_NODES;
+      const nodes = lines.length * M;
+      nrx = new Float32Array(nodes);
+      nry = new Float32Array(nodes);
+      nux = new Float32Array(nodes);
+      nuy = new Float32Array(nodes);
+      nvx = new Float32Array(nodes);
+      nvy = new Float32Array(nodes);
+      lm = new Float32Array(lines.length);
+      lk = new Float32Array(lines.length);
+      lks = new Float32Array(lines.length);
+      lc = new Float32Array(lines.length);
+      let ps = 977;
+      const prand = () => {
+        ps = (ps * 16807) % 2147483647;
+        return (ps - 1) / 2147483646;
+      };
+      lines.forEach((l, li) => {
+        for (let j = 0; j < M; j++) {
+          const f = (j / (M - 1)) * (N - 1);
+          const i = Math.min(N - 2, Math.floor(f));
+          const u = f - i;
+          nrx[li * M + j] =
+            l.pts[i * 2] + (l.pts[i * 2 + 2] - l.pts[i * 2]) * u;
+          nry[li * M + j] =
+            l.pts[i * 2 + 1] + (l.pts[i * 2 + 3] - l.pts[i * 2 + 1]) * u;
+        }
+        // The long framing arcs are heavy and slow; the crown and the strong
+        // lines middling; the fine hairlines light and quick.
+        const heavy =
+          l.fam === "frame"
+            ? 1.8
+            : l.fam === "crown"
+              ? 1.2
+              : l.strong
+                ? 1.25
+                : 0.85;
+        const m = heavy * (0.8 + 0.4 * prand());
+        const wT = 3.2 + prand() * 2.8; // its own ring, 3.2-6 rad/s
+        const k = m * wT * wT;
+        const zeta = 0.07 + prand() * 0.1; // lightly damped: strings ring
+        lm[li] = m;
+        lk[li] = k;
+        lks[li] = m * (60 + prand() * 90);
+        lc[li] = 2 * zeta * Math.sqrt(k * m) + 0.8 * m;
+      });
+      linesAwake = false;
 
       // --- Signals: a few small travellers, for the settled state ----------
       signals = [];
@@ -579,41 +665,123 @@ export default function LivingSignal({
       inZone: false,
       onFigure: false
     };
-    // The magnet follows the pointer with a little lag; k is its strength.
-    const mag = { x: 0, y: 0, k: 0 };
+    // The magnet's strength, eased in and out as the pointer arrives and goes.
+    const mag = { k: 0 };
+    // The pointer's own velocity, px/s, smoothed: a brushing pointer drags.
+    const pv = { x: 0, y: 0, lx: 0, ly: 0, fresh: true };
     let hover = 0;
 
-    // The field: every point leans towards the magnet, most strongly at a
-    // middle distance, and not at all at FOCUS. Written into fx/fy.
-    let fx = 0;
-    let fy = 0;
-    const field = (x: number, y: number) => {
-      fx = 0;
-      fy = 0;
-      if (mag.k <= 0) return;
-      const anchor = Math.pow(clamp01((FOCUS[0] * w - x) / (0.55 * w)), 0.7);
-      if (anchor <= 0) return;
-      const ddx = mag.x - x;
-      const ddy = mag.y - y;
-      const sx = REACH_X * w;
-      const sy = REACH_Y * h;
-      const g = Math.exp(
-        -(ddx * ddx) / (2 * sx * sx) - (ddy * ddy) / (2 * sy * sy)
-      );
-      const p = MAGNET * mag.k * g * anchor;
-      const cap = PULL_CAP * h;
-      fy = cap * Math.tanh((ddy * p) / cap);
-      fx = cap * 0.4 * Math.tanh((ddx * p * 0.3) / (cap * 0.4));
+    // A string's offset `s` of the way along it, interpolated between nodes.
+    let lox = 0;
+    let loy = 0;
+    const lineOffset = (li: number, s: number) => {
+      const M = STRING_NODES;
+      const f = clamp01(s) * (M - 1);
+      const j = Math.min(M - 2, Math.floor(f));
+      const u = f - j;
+      const a = li * M + j;
+      lox = nux[a] + (nux[a + 1] - nux[a]) * u;
+      loy = nuy[a] + (nuy[a + 1] - nuy[a]) * u;
     };
 
-    const deform = () => {
-      for (const l of lines) {
-        const p = l.pts;
-        const q = l.live;
-        for (let i = 0; i < p.length; i += 2) {
-          field(p[i], p[i + 1]);
-          q[i] = p[i] + fx;
-          q[i + 1] = p[i + 1] + fy;
+    // One step of every string. Per node: a tether to its rest place that
+    // stiffens as it stretches, the string's tension to its two neighbours
+    // (so a pull travels along it as a wave), damping, the pointer's softened
+    // inverse-square pull by that node's own distance, and, within a finger's
+    // width, a drag towards the pointer's velocity — so a quick pass plucks
+    // the strings it crosses. The node at FOCUS is pinned. Semi-implicit
+    // Euler at 120Hz or finer; the stiffest mode is far inside its limit.
+    const stepStrings = (dt: number) => {
+      const active = pointer.inZone && mag.k > 0;
+      if (!active && !linesAwake) return;
+      const M = STRING_NODES;
+      const steps = dt > 0 ? Math.min(6, Math.ceil(dt * 120)) : 0;
+      const hs = steps ? dt / steps : 0;
+      const S = STRING_PULL * h * h * h * mag.k;
+      const E2 = (STRING_SOFT * h) ** 2;
+      const G2 = (STRING_GIVE * h) ** 2;
+      const B = STRING_BRUSH * h;
+      const B2 = B * B;
+      const px = pointer.x;
+      const py = pointer.y;
+      let awake = false;
+
+      for (let li = 0; li < lines.length; li++) {
+        const m = lm[li];
+        const k = lk[li];
+        const ks = lks[li];
+        const c = lc[li];
+        const b = li * M;
+        for (let s = 0; s < steps; s++) {
+          for (let j = 0; j < M - 1; j++) {
+            const a = b + j;
+            const ux = nux[a];
+            const uy = nuy[a];
+            const vx0 = nvx[a];
+            const vy0 = nvy[a];
+            const ke = k * (1 + (ux * ux + uy * uy) / G2);
+            let fx = -ke * ux - c * vx0 + ks * (nux[a + 1] - ux);
+            let fy = -ke * uy - c * vy0 + ks * (nuy[a + 1] - uy);
+            if (j > 0) {
+              fx += ks * (nux[a - 1] - ux);
+              fy += ks * (nuy[a - 1] - uy);
+            }
+            if (active) {
+              const dx = px - (nrx[a] + ux);
+              const dy = py - (nry[a] + uy);
+              const r2 = dx * dx + dy * dy;
+              const soft = r2 + E2;
+              const f = S / (soft * Math.sqrt(soft));
+              fx += f * dx;
+              fy += f * dy;
+              if (r2 < B2) {
+                const q = 1 - Math.sqrt(r2) / B;
+                const drag = STRING_DRAG * m * q * q;
+                fx += drag * (pv.x - vx0);
+                fy += drag * (pv.y - vy0);
+              }
+            }
+            const vx1 = vx0 + (fx / m) * hs;
+            const vy1 = vy0 + (fy / m) * hs;
+            nvx[a] = vx1;
+            nvy[a] = vy1;
+            nux[a] = ux + vx1 * hs;
+            nuy[a] = uy + vy1 * hs;
+          }
+        }
+        if (!awake) {
+          for (let j = 0; j < M - 1; j++) {
+            const a = b + j;
+            if (
+              Math.abs(nux[a]) + Math.abs(nuy[a]) > 0.05 ||
+              Math.abs(nvx[a]) + Math.abs(nvy[a]) > 0.3
+            ) {
+              awake = true;
+              break;
+            }
+          }
+        }
+      }
+
+      if (!awake && !active) {
+        // At rest: exactly the drawing, to the pixel.
+        nux.fill(0);
+        nuy.fill(0);
+        nvx.fill(0);
+        nvy.fill(0);
+        for (const l of lines) l.live.set(l.pts);
+        linesAwake = false;
+        return;
+      }
+      linesAwake = true;
+
+      // Each drawn sample follows the nodes either side of it.
+      for (let li = 0; li < lines.length; li++) {
+        const l = lines[li];
+        for (let i = 0; i < N; i++) {
+          lineOffset(li, i / (N - 1));
+          l.live[i * 2] = l.pts[i * 2] + lox;
+          l.live[i * 2 + 1] = l.pts[i * 2 + 1] + loy;
         }
       }
     };
@@ -647,14 +815,23 @@ export default function LivingSignal({
           pointer.y < 1.5 * h;
         pointer.onFigure = pointer.inZone && onShape(pointer.x, pointer.y);
       }
-      if (pointer.inZone) {
-        if (mag.k < 0.01) {
-          mag.x = pointer.x;
-          mag.y = pointer.y;
+      // The pointer's velocity: from its motion across frames, smoothed a
+      // little, and capped so a flick across the screen stays a pluck.
+      if (pointer.inZone && dt > 0) {
+        if (pv.fresh) {
+          pv.x = pv.y = 0;
+          pv.fresh = false;
         } else {
-          mag.x = approach(mag.x, pointer.x, 7, dt);
-          mag.y = approach(mag.y, pointer.y, 7, dt);
+          const cap = 3 * h;
+          const tx = Math.max(-cap, Math.min(cap, (pointer.x - pv.lx) / dt));
+          const ty = Math.max(-cap, Math.min(cap, (pointer.y - pv.ly) / dt));
+          pv.x = approach(pv.x, tx, 18, dt);
+          pv.y = approach(pv.y, ty, 18, dt);
         }
+        pv.lx = pointer.x;
+        pv.ly = pointer.y;
+      } else {
+        pv.fresh = true;
       }
       mag.k = approach(
         mag.k,
@@ -671,14 +848,14 @@ export default function LivingSignal({
     };
 
     // One step of the points' physics, and where each is drawn. Every point
-    // is a mass on a spring to its place (its resting spot, moved by the
-    // broad magnet). Near the pointer a softened inverse-square force pulls
+    // is a mass on a spring to its place (its resting spot, carried by the
+    // string it rides on). Near the pointer a softened inverse-square force pulls
     // it in; when the pointer goes, the spring brings it home, overshooting
     // once. Semi-implicit Euler at 120Hz or finer, so it cannot blow up.
     const stepDots = (t: number, dt: number) => {
       const on = pointer.inZone;
       dotPull = approach(dotPull, on ? 1 : 0, on ? 5 : 3, dt);
-      const bent = mag.k > 0;
+      const riding = linesAwake;
       const steps = dt > 0 ? Math.min(6, Math.ceil(dt * 120)) : 0;
       const hs = steps ? dt / steps : 0;
       const px = pointer.x;
@@ -693,10 +870,10 @@ export default function LivingSignal({
         const e = ease((t - d.delay) / 1.7);
         let bx = d.x + d.dx * (1 - e);
         let by = d.y + d.dy * (1 - e);
-        if (bent) {
-          field(bx, by);
-          bx += fx;
-          by += fy;
+        if (riding && d.line >= 0) {
+          lineOffset(d.line, d.s);
+          bx += lox;
+          by += loy;
         }
         let x = ox[i];
         let y = oy[i];
@@ -1004,7 +1181,12 @@ export default function LivingSignal({
     };
 
     const engaged = () =>
-      pointer.inZone || mag.k > 0 || hover > 0 || dotPull > 0 || dotsAwake;
+      pointer.inZone ||
+      mag.k > 0 ||
+      hover > 0 ||
+      dotPull > 0 ||
+      dotsAwake ||
+      linesAwake;
 
     // Settled and left alone: the two cached layers.
     const drawSettled = (t: number, dt: number) => {
@@ -1018,11 +1200,12 @@ export default function LivingSignal({
       drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
     };
 
-    // Settled, with the pointer in play: the scene drawn live, bent by the
-    // magnet, glowing as far as the hover goes.
+    // Settled, with the pointer in play (or the strings still ringing): the
+    // scene drawn live, every string and point where its physics has it,
+    // glowing as far as the hover goes.
     const drawLive = (t: number, dt: number) => {
       const done = SETTLED + 10;
-      deform();
+      stepStrings(dt);
       stepDots(done, dt);
       wipe(ctx);
       drawHaze(ctx, 1);
@@ -1035,10 +1218,10 @@ export default function LivingSignal({
     };
 
     // During the resolve, the whole scene is drawn live anyway, so the
-    // magnet and the points' physics already work on it.
+    // strings' and the points' physics already work on it.
     const drawResolving = (t: number, dt = 0) => {
-      const live = mag.k > 0;
-      if (live) deform();
+      stepStrings(dt);
+      const live = linesAwake;
       const moving = live || dotPull > 0 || dotsAwake || pointer.inZone;
       if (moving) stepDots(t, dt);
       wipe(ctx);

@@ -430,6 +430,17 @@ still unreadable to the user, which is why the check now measures the words.
 Committed on the branch; not pushed, not live. See [[02 Decisions]],
 [[09 Outstanding]] and [[10 Verification]].
 
+**29 Sep, later — section 03's builders climb and jump, in the hero's
+palette.** On instruction: the bricks, the shirts and the floor bricks take
+the Living Signal's five colours in the signal's own order, so 01 and 03 read
+as one palette. The far-right builder is now a Black woman and the one second
+from right an Asian woman with brown skin. When the section arrives the two
+ladder builders climb in rung by rung; under the pointer a ladder builder
+climbs one rung and a builder on top jumps. "One commercial objective" is in
+the brand tone, like 02's and 04's last lines. Committed on the branch
+(`a872913`); not pushed, not live. See [[02 Decisions]], [[09 Outstanding]]
+and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

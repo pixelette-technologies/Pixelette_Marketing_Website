@@ -922,3 +922,23 @@ Committed on `feat/home-sections-01-04`; not pushed, not live. See
   every frame) have only been run in headless Chrome.
 - **At 768px portrait A clearer path is clipped at the band's right edge.**
   Its position predates this change.
+
+## 29 Sep — section 03's builders (`a872913`)
+
+Committed on the branch; **not pushed, not live.** See [[02 Decisions]].
+
+- **The second-from-right builder's shirt: violet or green?** The
+  instruction asked for both the same shirt colour and the hero's palette,
+  which has no green. Violet was chosen; setting her `shirt` back is one line
+  in `BrickScene.tsx`.
+- **Should a ladder builder stay a rung higher after hover?** At present it
+  climbs one rung and back down when the pointer leaves, so the scene always
+  returns to the reference. "Climb one step up" could also mean one step per
+  hover, kept.
+- **Frame pacing on a real GPU** for the climb; headless Chrome only. The
+  headless clock ran at about half speed while measuring, so the wall-clock
+  length of the climb (about 2.2s for the left ladder, 2.8s for the right)
+  has not been seen at true speed.
+- **The two women's faces at phone size.** On a phone the scene scrolls
+  sideways at 47.5rem, and the far-right builder is off screen until
+  scrolled to; not looked at closely there.

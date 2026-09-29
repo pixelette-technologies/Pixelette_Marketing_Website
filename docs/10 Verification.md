@@ -1552,3 +1552,36 @@ each note's blob is HEAD's text plus this session's section
 section was appended to the working tree after theirs. Their text stays
 uncommitted for them to commit, and a diff of their file against the new
 HEAD shows only their lines.
+
+## 29 Sep — section 03's builders, and committing round two other sessions
+
+**Looked at** in my own headless Chrome (port 9334, scratchpad profile, not
+the 9333 instance another session was using) against the shared dev server
+on 3005, at 1440×900 and 390. At rest, each hover state at 2× (the two
+ladder builders one rung up, a jumper mid-jump), and the climb sampled over
+time: `getAnimations()` on each climber showed it held at the foot while
+armed, then running, the transform walking from `(-35.78, 104)` towards zero.
+Every builder's hit test landed on the figure, not the label list. No
+console errors but the known dev-only `eval()` CSP one.
+
+**One screenshot lied.** A frame taken 900ms "after arrival" showed both
+builders already at rest. The page scrolls smoothly, so the section arrived
+later than the script assumed; sampling the animation state, not the
+picture, is what showed the climb was running.
+
+**Gates:** `tsc`, `eslint` on the home folders, the token gate (0 findings)
+and `sass` — run again on **the staged tree alone**, exported with
+`git checkout-index -a --prefix=` into the scratchpad with a `node_modules`
+junction (removed with `rmdir` before anything else, so the real
+`node_modules` was never at risk).
+
+**Committed round two sessions.** Another session had removed the rail
+labels in the same files: `rail` out of `homeContent.ts` and
+`CapabilitiesSection.tsx`, and `RailLabel.tsx` deleted, while
+`ActivitySection.tsx` in HEAD still read `rail`. Committing those two files
+whole would have put half their change in HEAD and broken the build. The
+staged blobs were built as HEAD plus this change only (`hash-object -w
+--path=`, `update-index --cacheinfo`) and committed from the index, **not**
+with `--only`, which takes the named paths from the working tree. Their
+changes are still in the working tree for them. A third session committed
+two commits on top within 30 seconds, without conflict.

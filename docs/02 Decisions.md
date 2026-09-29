@@ -1886,3 +1886,44 @@ was not asked for.
 The rail label the background notes used to drift across ("Less noise /
 Better decisions / Real impact") was removed the same day, separately, by
 the session working on the hero; that change is its own entry.
+
+## 29 Sep 2026 — section 03: the builders climb and jump, in the hero's palette
+
+On instruction, in section 03 only (`a872913`).
+
+- **One palette with the hero.** The five capability bricks, every shirt and
+  the loose floor bricks now use the Living Signal's colours, left to right
+  in the signal's own order: deep blue, blue, violet, magenta, orange. Each
+  brick's face *is* the `--signal-*` token (`--brick-deep: var(--signal-deep)`
+  and so on); only the lit top and shaded side are new values. Green and
+  yellow are gone from the scene. A shirt is always a different signal colour
+  from the brick its builder holds, so the two never merge.
+- **The labels change colour on the two dark bricks.** Handwritten ink on the
+  deep-blue face measured about 2:1, so the labels on deep blue and violet
+  are white (`BRICKS[].ink`) and the other three keep the ink.
+- **Two builders are women of colour.** The far right is a Black woman with
+  an afro (a new hair piece, with its volume drawn behind the head and behind
+  the brick she lifts); second from right is an Asian woman with brown skin
+  and long black hair. Both have lashes and coloured lips. New tokens:
+  `--figure-skin-brown`, `--figure-skin-deep`, `--figure-lips`. Both skin tones
+  are light enough that the ink features still read.
+- **The second-from-right builder's shirt is violet, not green.** The
+  instruction was both "the colour of the shirt will remain the same" and
+  "the same colours as the hero"; the hero has no green, so the palette won.
+  A one-line change back if wanted — see [[09 Outstanding]].
+- **Motion, and it reverses "nothing moves on its own" for 03.** Once, when
+  the section is properly in view (the duck drop's trigger), the two ladder
+  builders climb in from their ladders' feet, rung by rung with a small lift
+  on each, and stop where the reference stands them. Under a fine pointer a
+  ladder builder climbs one rung and **climbs back down when the pointer
+  leaves** (so the composition always returns to the reference), and a
+  builder standing on the bricks jumps once per hover. Hover waits for the
+  climb to finish. Nothing moves under reduced motion or on touch.
+  `BrickSceneMotion.tsx` is the only client code, a wrapper round
+  server-rendered children; `_surfaces.scss` entry 7 is rewritten to match.
+- **Each builder has a still hit area**, so one moving under the pointer
+  cannot un-hover itself and flicker. The label list covering the frame
+  stopped taking the pointer (only the labels themselves do) so the builders
+  above the bricks could be hovered at all.
+- **"One commercial objective" is the headline's accent line**, in
+  `--color-brand`, the way 02 and 04 carry theirs.

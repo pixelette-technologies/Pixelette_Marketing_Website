@@ -442,6 +442,18 @@ the brand tone, like 02's and 04's last lines. Committed on the branch
 (`a872913`); not pushed, not live. See [[02 Decisions]], [[09 Outstanding]]
 and [[10 Verification]].
 
+**29 Sep, later — the hero figure answers the pointer; the rail labels go.**
+On instruction, an enhancement and not a redesign: at rest the Living Signal
+is unchanged. Near it, a magnet bends the lines and points towards the
+pointer (below the figure the wings are drawn down, above it up); on it, the
+lines glow and the orange signals multiply and run at ~19× with lit tails,
+light at speed into the point; the points near the pointer glow and are
+pulled in with real physics (mass, spring, softened inverse-square pull, one
+overshoot home). The canvas now bleeds past the figure so bent lines are not
+cut. The small stacked rail labels on 02–04 were removed. Committed on the
+branch (`9148b86`); not pushed, not live. **Not yet seen on a real GPU.** See
+[[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

@@ -1832,6 +1832,58 @@ sentence at §34** ("Do not decide … Do"); nothing past it was assumed.
 is not a brand token, where the spec also asks for "the actual Pixelette
 pink family". See [[09 Outstanding]].
 
+## 29 Sep 2026 — the Living Signal answers the pointer (an enhancement)
+
+On instruction, and explicitly **not a redesign**: the figure's form, colour,
+labels and note are unchanged. Only its response to a fine pointer is new,
+and it replaces the old few-pixel depth shift of the two layers.
+
+- **The magnet.** Anywhere near the figure (its box, plus half its height
+  above and below), the lines and points lean towards the pointer: below the
+  figure the wings are drawn down, above it they are drawn up. The pull fades
+  to nothing at the point, so every line still arrives there.
+- **On the figure** (inside the teardrop), the lines glow — a quarter-size
+  redraw of them, softly blurred — and the orange signals change: a pool of
+  about 140 more fades in, all of them run up to ~19× faster, starting from
+  the very beginning of the lines, with long tails fading to a white-hot
+  head. The lit point grows and brightens. It reads as light at speed.
+- Everything eases in and out. While the pointer is engaged the scene is
+  drawn live at full frame rate; left alone it goes back to the cached
+  layers at half rate. Reduced motion and touch are unchanged.
+
+Tunables are the constants at the top of `LivingSignal.tsx` (`MAGNET`,
+`REACH_X`, `REACH_Y`, `PULL_CAP`, `WARP`).
+
+**Then, the same day: the points answer the pointer too.** Each point is a
+small mass on a spring to its place, pulled by a softened inverse-square
+force (Plummer softening, so they gather *round* the pointer, never onto
+it). Moved fast, they lag and swing; left, they spring home with one
+overshoot (30% of critical damping) and come to rest exactly where they
+were. Mass goes with area, so the few large points are slower and travel
+less. Points within ~110px glow: a soft bloom in their own colour, through
+a quarter-size blurred layer, and a white-hot centre on the nearest. Tunables
+are the `DOT_*` constants.
+
+**Then: the bent lines were being cut.** Two clips, both at the figure's
+box. The canvas *was* the box, and `container_main`'s global
+`overflow: hidden` clipped anything past it. Now the canvas bleeds a fifth of
+the figure's height above and below (6% left, 3% right) with
+`pointer-events: none`, the scene is still laid out in the box (so at rest
+nothing moved), and `.homeHero > .container_main` is `overflow: clip visible`
+— the header's precedent: the clip is lifted for this section only, and only
+vertically, so nothing can widen the page. Checked at 1440 and 390: no
+horizontal overflow, the primary CTA still takes the click.
+
+**29 Sep, on instruction: the rail labels on 02–04 are removed.** "Less
+noise / Better decisions / Real impact", "People / Ideas / Capabilities /
+Stronger outcomes" and "Relevance creates opportunity" — the small stacked
+capitals hung on each band's right edge, which came from the reference image,
+not the spec. The markup, the `rail` copy fields, the `.railLabel` and
+`.homeScene__rail` styles and `RailLabel.tsx` are all gone; they were
+absolutely positioned, so no layout moved. The hero's own two label groups
+("Ideas / Intelligence / Action / Growth", "A more commercial tomorrow") are
+a different element and stay.
+
 ## 29 Sep 2026 — the Post-its fall in a loop; A clearer path is lit
 
 On instruction, in three rounds the same day, all in section 02
@@ -1972,3 +2024,5 @@ and the `--duck-pink*` tokens no longer paint anything.
   duck drop, the splash rings and the hover responses went with the drawing;
   the note still fades in once on arrival. See [[09 Outstanding]] and
   [[10 Verification]].
+
+All of the above is commit `9148b86` on `feat/home-sections-01-04`. Not pushed, not live.

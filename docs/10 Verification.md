@@ -1611,3 +1611,34 @@ was built in a temporary index (`GIT_INDEX_FILE`): HEAD, plus this change's
 blobs only, the notes appended to the HEAD text, then `update-ref` with the
 expected old value, and the shared index reset for these paths alone. Their
 work stays uncommitted in the working tree, for them.
+
+## 29 Sep — the Living Signal's pointer response, and the rail labels removed
+
+**Looked at** in headless Chrome at 1440×900 (and 390 for the bleed): the
+pointer away, below, above and on the figure, and away again; the points held
+near the pointer and released, until they came to rest exactly where they
+started (screenshots before and after match). Looking found two faults: the
+dot glow first drew as hard rings (now a blurred quarter-size layer), and the
+bent lines were cut at the figure's box — twice over, by the canvas edge and
+then by `container_main`'s `overflow: hidden`, which the first fix alone did
+not reach. Measured after the fix: no horizontal overflow at 1440 or 390, and
+the primary CTA still takes the click through the bleeding canvas.
+
+**Not measured:** frame pacing on a real GPU. Headless software rendering in
+a dev build gave 33 frames a second at rest, 18 with the pointer near and
+11–12 on the figure — a relative cost only.
+
+**Gates on the committed tree, not the working tree.** The commit was built
+in a temporary index (HEAD plus this work's blobs; the two files that also
+held another session's uncommitted hunks were rebuilt from the HEAD text with
+only this work's edits), checked out as a detached worktree at `D:/pxwt` with
+its own `npm ci`, and gated there: `tsc`, eslint on the home folders, the
+token gate (0 findings), 36/36, `next build`, the new rules found in the
+compiled CSS, and the route walk 28/28 against `next start` on 3107.
+
+**The expected old value on `update-ref` earned its keep.** While the gates
+ran, the other session committed four commits on the branch; the ref update
+refused (`is at d00815b but expected 82af4e5`) and nothing was overwritten.
+The commit was rebuilt on the new HEAD — which moved once more, to `354e5fc`,
+during the rebuild — and every gate was run again on that combination before
+the branch was moved to `9148b86`.

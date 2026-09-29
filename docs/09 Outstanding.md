@@ -902,6 +902,22 @@ Committed on the local branch; **not pushed, not merged, not live.** See
 - The dev-only React "eval() is not supported" console error is the site's
   CSP in development and predates this work.
 
+## 29 Sep — the Living Signal's pointer response
+
+Committed on `feat/home-sections-01-04` (`9148b86`); not pushed, not live.
+Looked at in headless Chrome at
+1440×900: pointer below, above, on the figure, and away again. **Not yet
+seen on a real GPU.** Headless (software rendering, dev build) went from 24
+frames a second at rest to 19 with the magnet and 14 on the figure, which is
+the relative cost only; the live redraw of ~4,400 points, ~350 lines, the
+glow layer and ~170 streaks needs judging on a real machine, and on a
+mid-range laptop especially.
+
+Later the same day the points gained their own physics and glow (see
+[[02 Decisions]]). Headless, again only relative: 33 frames a second at
+rest, 18 with the pointer near, 11–12 on the figure. The frame-rate question
+above now covers this too.
+
 ## 29 Sep — the falling Post-its and A clearer path
 
 Committed on `feat/home-sections-01-04`; not pushed, not live. See

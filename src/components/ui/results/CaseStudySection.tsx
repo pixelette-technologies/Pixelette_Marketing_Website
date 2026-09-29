@@ -24,6 +24,13 @@ export interface CaseStudyContent {
   quote: ClientQuote;
 }
 
+/** The fragment a case study is reachable at on /results, e.g. "blockguard".
+ *  29 Sep 2026: Results left the navigation, and the teasers on the home page
+ *  and /industries now link to a story rather than to the page. Derived from
+ *  the client name so there is nothing to keep in step. */
+export const caseStudyAnchor = (client: string) =>
+  client.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
 export interface CaseStudySectionProps {
   content: CaseStudyContent;
   ground?: "page" | "alt";
@@ -69,7 +76,7 @@ const CaseStudySection: FC<CaseStudySectionProps> = ({
 
   const inner = (
     <Container className='main'>
-      <article className='caseStudy'>
+      <article className='caseStudy' id={caseStudyAnchor(client)}>
         <header>
           <Heading className='eyebrow' level={2}>
             {client}

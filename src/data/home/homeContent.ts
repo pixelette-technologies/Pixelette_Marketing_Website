@@ -215,6 +215,10 @@ export const proofCopy = {
 // is in git history (8 Sep brief, section 04) if it is ever wanted back.
 
 // --- 05 The Pixelette Growth System -----------------------------------------
+// 29 SEP 2026: OFF THE HOME PAGE, where it restated section 03. The data stays
+// the one source for /services, the What we do menu, About and the sector
+// pages.
+//
 // The nine service cards consolidated into five parent capabilities. The
 // individual service pages stay underneath them for search intent; only the
 // homepage stops selling the menu and starts selling the system.
@@ -228,13 +232,24 @@ export const growthSystemData: ItemsSectionContent = {
       index: "01",
       title: "Strategy & Positioning",
       body: "Clarify who you are for, why the market should care and how growth will be won.",
+      // 29 Sep 2026: every list below was revised to the locked information
+      // architecture's service families (its §14–18). Where the specification
+      // and the 8 Sep wording name the same thing, the two were merged; where
+      // they overlap between capabilities, the service sits in one place only
+      // (growth planning here, not also in 05; PR in 02, not also as "digital
+      // PR" in 03). Nothing was added that neither source names.
+      //
+      // Since the same day these lists render on /services, which owns the
+      // service-level detail. The home page no longer shows them.
       capabilities: [
+        "Brand strategy",
+        "value proposition",
+        "market positioning",
         "ICP and buyer insight",
         "market and competitor intelligence",
-        "proposition",
         "messaging",
-        "go-to-market",
-        "campaign strategy"
+        "growth planning",
+        "go-to-market strategy"
       ]
     },
     {
@@ -242,17 +257,16 @@ export const growthSystemData: ItemsSectionContent = {
       title: "Demand & Performance",
       body: "Create and capture demand across paid, owned, social and partner channels.",
       capabilities: [
-        "Paid search and social",
+        "Paid media and PPC",
         "social media",
-        // 25 Sep 2026. Back by name: the old site sold it as one of nine
-        // services, and BlockGuard — the lead case on /results — is mostly a
-        // community result (975 Telegram and Discord members). The proof was
-        // pointing at a service the offer no longer named.
-        "community management",
-        "campaign execution",
-        "demand generation",
-        "influencer and partner activity",
-        "PR"
+        "campaigns",
+        "influencer marketing",
+        "PR and earned visibility",
+        // 25 Sep 2026: back by name — BlockGuard, the lead case, is largely a
+        // community result. 29 Sep 2026: restored in full, on instruction, as
+        // community management AND growth. It is not social posting, and the
+        // line says so; it is not a sixth capability, and it stays here.
+        "community management and growth: strategy, engagement, moderation and activation"
       ]
     },
     {
@@ -260,12 +274,11 @@ export const growthSystemData: ItemsSectionContent = {
       title: "Search & Authority",
       body: "Make your expertise discoverable, credible and easier to choose.",
       capabilities: [
-        "SEO",
-        "content strategy",
+        "SEO and organic search",
+        "content marketing",
         "thought leadership",
-        "digital PR",
         "authority building",
-        "optimisation for traditional and AI-assisted discovery"
+        "AI search visibility"
       ]
     },
     {
@@ -274,10 +287,10 @@ export const growthSystemData: ItemsSectionContent = {
       body: "Turn attention into qualified opportunity and improve the path from first touch to sales conversation.",
       capabilities: [
         "Lead generation",
-        "lifecycle and email",
-        "landing pages",
-        "conversion optimisation",
+        "email and lifecycle marketing",
         "nurture",
+        "landing pages and CRO",
+        "conversion journeys",
         "sales handoff"
       ]
     },
@@ -286,12 +299,12 @@ export const growthSystemData: ItemsSectionContent = {
       title: "Growth Intelligence",
       body: "Connect channel performance to better commercial decisions.",
       capabilities: [
-        "Analytics",
+        "Analytics and performance tracking",
+        "insight and reporting",
         "attribution",
         "dashboards",
         "experimentation",
-        "reporting",
-        "optimisation",
+        "strategic optimisation",
         "workflow automation"
       ]
     }
@@ -336,15 +349,33 @@ export const aiTechnologyData: AiTechnologyContent = {
 };
 
 // --- 07 Who we help ---------------------------------------------------------
-// MOVED 23 SEP 2026 to data/industries/whoWeHelp.ts, which is now the site's
+// 29 SEP 2026: replaced on the home page by a compact Industries teaser; the
+// taxonomy is data/industries/industries.ts. Earlier history:
+// MOVED 23 SEP 2026 to data/industries/whoWeHelp.ts, which was then the site's
 // one sector taxonomy: the home page's preview, the /industries hub and the
 // Who We Help menu all read it. The history of this section's three rebuilds
 // (four technology cards, then an eleven-mark field, then nine cards) is in
 // that file's neighbours and in [[02 Decisions]].
 
+// --- 06 Proof before promises — 29 Sep 2026 ---------------------------------
+// The locked information architecture makes this a COMPACT teaser, and moves
+// the fuller evidence to Work in practice on /industries. The heading and
+// supporting line are the specification's; the CTA goes to Work in practice,
+// which is the architecture's next step (home → Industries → case study).
+// See ProofTeaser for why only two of BlockGuard's figures appear here.
+
+export const proofTeaserCopy = {
+  heading: "Proof before promises",
+  lead: "Good marketing should leave evidence behind",
+  cta: { label: "See the work", to: "/industries#work-in-practice" }
+};
+
 // --- 08 Results -------------------------------------------------------------
 // The frame only. The two testimonials stay in teamData.ts and stay VERBATIM;
 // the brief bars rewriting them for sales effect.
+//
+// 29 Sep 2026: NO LONGER ON THE HOME PAGE. It is the /results hero's copy now
+// and nothing else; the home page's evidence is proofTeaserCopy above.
 
 export const resultsCopy = {
   eyebrow: "Results that matter",
@@ -357,6 +388,10 @@ export const resultsCopy = {
 };
 
 // --- 09 Ways to work with us ------------------------------------------------
+// 29 SEP 2026: NOT RENDERED. The locked information architecture shortened the
+// home page after section 04 and removed this section as duplication. Kept,
+// unrendered, because the words are management's approved copy.
+//
 // ONE CONTROL, NOT THREE. Each card carried its own CTA into a seeded form —
 // /contactus?enquiry=diagnostic, =managed, =embedded — and the three were
 // replaced on 21 Sep by a single section CTA beneath the closing line.
@@ -416,6 +451,10 @@ export const waysToWorkData: ItemsSectionContent = {
 };
 
 // --- 10 How it works --------------------------------------------------------
+// 29 SEP 2026: NOT RENDERED. The locked information architecture shortened the
+// home page after section 04 and removed this section as duplication. Kept,
+// unrendered, because the words are management's approved copy.
+//
 // Replaces Book / Audit / Plan / Execute. "Free of charges" and "kick back and
 // relax while we handle all the heavy lifting" go with it: the stronger
 // proposition is collaborative, evidence-led and accountable, not effortless

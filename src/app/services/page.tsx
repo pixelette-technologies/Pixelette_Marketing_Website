@@ -121,6 +121,22 @@ export default function ServicesIndexPage() {
                   </Heading>
                   <Text className='body'>{group.body}</Text>
 
+                  {/* 29 Sep 2026. The services each capability covers. This
+                      page owns the service-level detail under the locked
+                      information architecture; the lists used to render only
+                      on the home page. Text, not links: most name work rather
+                      than a page, and the pages are the link row below. */}
+                  {group.scope.length > 0 && (
+                    <ul
+                      className='capabilityList__scope'
+                      aria-label={`${group.title} services`}
+                    >
+                      {group.scope.map(entry => (
+                        <li key={entry}>{entry}</li>
+                      ))}
+                    </ul>
+                  )}
+
                   {/* 22 Sep 2026. Strategy & Positioning is the one capability
                       with no service pages under it, and until now it was also
                       the one with no way out — five blocks, four of them

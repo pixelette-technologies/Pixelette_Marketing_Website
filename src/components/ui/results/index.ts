@@ -1,4 +1,7 @@
-export { default as CaseStudySection } from "./CaseStudySection";
+export {
+  default as CaseStudySection,
+  caseStudyAnchor
+} from "./CaseStudySection";
 export type {
   CaseStudyContent,
   CaseStudyImpact,

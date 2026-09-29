@@ -6,12 +6,7 @@ import Container from "./Container";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button, NavbarDropDown } from "../feature";
-import {
-  navCta,
-  whatWeDoGroups,
-  whoWeHelpGroups,
-  type NavGroup
-} from "@/data/navigation";
+import { navCta, whatWeDoGroups, type NavGroup } from "@/data/navigation";
 import { IoIosArrowDown } from "react-icons/io";
 
 // The outer wrapper used to be <div style={{ position: "sticky", zIndex: 9999 }}>.
@@ -37,6 +32,21 @@ import { IoIosArrowDown } from "react-icons/io";
 // Results is the new /results page. It replaces the Portfolio link that was
 // hidden on 2 Jun 2026 because /success_stories serves legacy Pixelette
 // Technologies content — that route was deleted outright on 25 Sep 2026.
+//
+// --- 29 Sep 2026: the locked information architecture --------------------------
+// SUPERSEDES THE ABOVE. The primary navigation is exactly:
+//
+//   What we do (menu) · Industries · About · Insights · Contact · Build my growth plan
+//
+// OUT: Home (the wordmark goes home, as the drawer already had it), Who We Help
+// (replaced by Industries, a plain link — its menu held only "Deeper
+// experience", which is barred), and Results. /results stays live for direct
+// links and search; evidence is reached from the home page's proof teaser and
+// Work in practice on /industries instead. Labels are sentence case.
+//
+// Do not add another top-level item without an explicit instruction. The 960px
+// drawer breakpoint was measured against a wider bar than this one, so it now
+// has more room than it needs, not less.
 
 // --- 23 Sep 2026: the drawer is native HTML -----------------------------------
 // Rebuilt to the Pixelette Technologies drawer, which is what it was asked to
@@ -73,11 +83,8 @@ function DrawerGroup({
   groups: NavGroup[];
   onNavigate: () => void;
 }) {
-  // Every group shows its label. Until 23 Sep a single group was left
-  // unlabelled, because Who We Help's one label only repeated the row above
-  // it. Its label is "Deeper experience" now, and it carries the distinction
-  // the whole section depends on: without it the five specialist links read
-  // as the complete list of sectors, directly under "Who we help overview".
+  // Every group shows its label. Since 29 Sep What we do is the only drawer
+  // group; Industries is a plain row.
 
   return (
     <details className='navDrawer__group' name='pm-nav-mobile'>
@@ -136,27 +143,19 @@ export default function Navbar() {
               <LogoBlack />
             </Link>
             <div>
-              <Link href={"/"} className='flink'>
-                Home
-              </Link>
               <NavbarDropDown
-                name='What We Do'
+                name='What we do'
                 mainRoute='services'
                 groups={whatWeDoGroups}
               />
-              <NavbarDropDown
-                name='Who We Help'
-                mainRoute='industries'
-                groups={whoWeHelpGroups}
-              />
-              <Link href={"/results"} className='flink'>
-                Results
-              </Link>
-              <Link href={"/blog-list"} className='flink'>
-                Insights
+              <Link href={"/industries"} className='flink'>
+                Industries
               </Link>
               <Link href={"/aboutus"} className='flink'>
                 About
+              </Link>
+              <Link href={"/blog-list"} className='flink'>
+                Insights
               </Link>
               <Link href={"/contactus"} className='flink'>
                 Contact
@@ -177,30 +176,23 @@ export default function Navbar() {
 
               <div className='navDrawer__panel'>
                 <DrawerGroup
-                  label='What We Do'
+                  label='What we do'
                   hub='/services'
                   hubLabel='What we do overview'
                   groups={whatWeDoGroups}
                   onNavigate={closeDrawer}
                 />
-                <DrawerGroup
-                  label='Who We Help'
-                  hub='/industries'
-                  hubLabel='Who we help overview'
-                  groups={whoWeHelpGroups}
-                  onNavigate={closeDrawer}
-                />
 
-                {/* Plain rows, at the same level as the groups and without a
+                {/* Plain rows, at the same level as the group and without a
                     chevron — theirs does exactly this with Work and About. */}
-                <Link href='/results' className='navDrawer__link' onClick={closeDrawer}>
-                  Results
-                </Link>
-                <Link href='/blog-list' className='navDrawer__link' onClick={closeDrawer}>
-                  Insights
+                <Link href='/industries' className='navDrawer__link' onClick={closeDrawer}>
+                  Industries
                 </Link>
                 <Link href='/aboutus' className='navDrawer__link' onClick={closeDrawer}>
                   About
+                </Link>
+                <Link href='/blog-list' className='navDrawer__link' onClick={closeDrawer}>
+                  Insights
                 </Link>
                 <Link href='/contactus' className='navDrawer__link' onClick={closeDrawer}>
                   Contact

@@ -2,13 +2,14 @@ import type { ItemsSectionContent } from "@/components/ui/home";
 import type { PointItemContent } from "@/components/feature";
 import { growthSystemData } from "@/data/home";
 
-// THESE FIVE ARE DEEPER EXPERIENCE, NOT THE SECTOR LIST. Since 23 Sep 2026 the
-// site's sectors are the eight in data/industries/whoWeHelp.ts, and these five
-// pages sit beneath them as the areas the wider Pixelette group knows best.
-// The pages and their URLs are kept for search; only their framing changed.
+// THESE FIVE ARE SPECIALIST PAGES, NOT THE INDUSTRY LIST. The site's markets
+// are the eight in data/industries/industries.ts. The pages and their URLs are
+// kept for search and direct links.
 //
-// `label` is the area's short name, used wherever the five are listed together
-// (the Who We Help menu and the /industries cards). `title` is the page's own
+// 29 Sep 2026: nothing lists the five together any more. The locked
+// information architecture removed "Deeper experience" from the navigation
+// and from /industries; how these pages are linked is to be reviewed
+// separately. `label` and `hubLine` are unused until then. `title` is the page's own
 // name and still feeds the structured data, so it keeps the "Marketing".
 //
 // --- 25 Sep 2026: rebuilt to the final correction pass ----------------------

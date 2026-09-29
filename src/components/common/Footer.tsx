@@ -179,9 +179,13 @@ export default function Footer() {
                   About
                 </Link>
               </li>
+              {/* 29 Sep 2026: Industries in, Results out, matching the locked
+                  primary navigation. /results stays live and is reached from
+                  the evidence itself — the home page's proof teaser and Work
+                  in practice on /industries. */}
               <li>
-                <Link href='/results' className='flink small'>
-                  Results
+                <Link href='/industries' className='flink small'>
+                  Industries
                 </Link>
               </li>
               <li>

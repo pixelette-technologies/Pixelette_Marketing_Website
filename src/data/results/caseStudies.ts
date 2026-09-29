@@ -67,4 +67,13 @@ export const caseStudies: CaseStudyContent[] = [
   }
 ];
 
+/** A story by client name. Throws on a miss: the home page's proof teaser and
+ *  Work in practice on /industries both name their client, and a typo there
+ *  should fail the build rather than quietly drop the evidence. */
+export const caseStudyFor = (client: string): CaseStudyContent => {
+  const study = caseStudies.find(item => item.client === client);
+  if (!study) throw new Error(`No case study for client "${client}".`);
+  return study;
+};
+
 export default caseStudies;

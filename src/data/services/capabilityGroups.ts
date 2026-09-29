@@ -55,6 +55,11 @@ export interface CapabilityGroup {
   index: string;
   title: string;
   body: string;
+  /** What the capability covers, as the services it names. 29 Sep 2026: What
+   *  we do owns the service-level detail, and these used to render only on
+   *  the home page, which no longer shows them. Includes "community
+   *  management and growth" under Demand & Performance. */
+  scope: string[];
   services: { title: string; route: string }[];
   /** Absent for four of the five. See FEATURED_LINK. */
   featured?: { label: string; route: string };
@@ -68,6 +73,11 @@ export const capabilityGroups: CapabilityGroup[] = growthSystemData.items.map(
     index: item.index ?? "",
     title: item.title,
     body: item.body,
+    // Stored as one running sentence for the old home card, so only the first
+    // item was capitalised; as list items, each is.
+    scope: (item.capabilities ?? []).map(
+      entry => entry.charAt(0).toUpperCase() + entry.slice(1)
+    ),
     featured: FEATURED_LINK[item.index ?? ""],
     services: (ROUTES_BY_CAPABILITY[item.index ?? ""] ?? [])
       .map(route => {

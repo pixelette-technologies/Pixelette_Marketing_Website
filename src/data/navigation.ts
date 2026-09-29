@@ -1,5 +1,4 @@
 import { capabilityGroups } from "@/data/services/capabilityGroups";
-import { deeperExperience } from "@/data/industries/whoWeHelp";
 import { servicesData } from "@/data/services/servicesData";
 
 export interface NavItem {
@@ -14,11 +13,14 @@ export interface NavGroup {
   items: NavItem[];
 }
 
-// The navigation the 8 September 2026 brief specifies.
+// The navigation. First specified by the 8 September 2026 brief; LOCKED on
+// 29 Sep 2026 as What we do / Industries / About / Insights / Contact plus
+// "Build my growth plan". Do not add a top-level item without an instruction.
 //
-// URLS DO NOT MOVE. The brief renames the top-level labels — Services becomes
-// "What We Do", Industries becomes "Who We Help", Blogs becomes "Insights" —
-// but it specifies labels, never paths. Renaming /services and /industries
+// URLS DO NOT MOVE. The labels have changed more than once — Services became
+// "What we do", Industries became "Who We Help" and on 29 Sep became
+// Industries again, Blogs became "Insights" — but no instruction has ever
+// specified a path. Renaming /services and /industries
 // would mean redirects, canonicals, sitemap and breadcrumb schema changes
 // across thirteen indexed pages to buy nothing a visitor can see. So the
 // labels change and the routes stay.
@@ -88,27 +90,12 @@ if (linkedServices !== servicesData.length) {
   );
 }
 
-// --- Who We Help: deeper experience, 23 Sep 2026 -----------------------------
-// The label was "Selected sector experience" over five technology pages,
-// which made the menu say the company's sectors were those five. They are not:
-// the eight sectors are on /industries (the trigger links there, and the
-// drawer's first row is its overview), and these five are the areas where the
-// wider group brings more depth. The label now says exactly that, matching
-// the band on the hub.
-//
-// DERIVED, NOT LISTED. deeperExperience is the list the hub renders, in the
-// same order with the same short labels, so the menu and the page cannot
-// drift the way What We Do and /services once did. It throws on an unknown
-// route, which is the guarantee the old pick() gave this menu.
-export const whoWeHelpGroups: NavGroup[] = [
-  {
-    label: "Deeper experience",
-    items: deeperExperience.map(area => ({
-      href: area.href,
-      title: area.label
-    }))
-  }
-];
+// --- 29 Sep 2026: Industries is a plain link ------------------------------------
+// The Who We Help menu is gone with the label. Its only group was "Deeper
+// experience", the five specialist pages, and the locked information
+// architecture removes Deeper experience from the navigation and from
+// /industries alike. Industries links to its page and opens no panel. The
+// five routes stay live; their linking is to be reviewed separately.
 
 /** The brief's primary navigation button. Same label as the hero, which the
  *  brief is explicit about: mixing CTA labels between positions is worse than

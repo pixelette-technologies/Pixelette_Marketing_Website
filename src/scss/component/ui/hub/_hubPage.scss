@@ -88,6 +88,31 @@
   margin-bottom: 0.5rem;
 }
 
+// The services a capability covers, 29 Sep 2026. Body-coloured text in a
+// wrapping row, separated by a middot, so it reads as the detail beneath the
+// capability and never competes with the brand-coloured page links under it.
+.capabilityList__scope {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  margin-top: 1rem;
+  padding: 0;
+  list-style: none;
+  max-width: 44rem;
+
+  & > li {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--color-body);
+
+    &:not(:last-child)::after {
+      content: "·";
+      margin-inline: 0.625rem;
+      color: var(--color-muted);
+    }
+  }
+}
+
 // The featured destination, 22 Sep 2026. One call site: Strategy & Positioning,
 // which is the only capability with no service pages beneath it and was the
 // only block on this page that ended without a way out.
@@ -146,41 +171,14 @@
 // list and the call to action, so the button lives in its own .sec-sm section
 // and takes its spacing from there.
 
-// --- /industries: Who we help, 23 Sep 2026 ----------------------------------
-// Rebuilt as the site's single source of truth for sector positioning. The
-// eight sector cards and the stages are the home page's components and take
-// their rules from _dynamicMarket.scss. What is here is only what the hub has
-// and the home page does not: the hero's padding, the two band heads, the
-// unlisted-sector aside, and the five deeper-experience cards.
-//
-// REMOVED WITH THE OLD PAGE: .hubPositioning, .hubLinks and .sectorList —
-// the positioning pair, and the "Sector specialisms" list that presented five
-// technology pages as the edge of the market.
+// --- The shared band head ------------------------------------------------------
+// 29 Sep 2026: /industries was rebuilt to the locked information architecture
+// and its rules moved to _industriesHub.scss. The Who we help hero, the sector
+// strip, the unlisted-sector aside and the deeper-experience cards went with
+// the page. This head survives because the sector pages, Web3Questions and
+// Faqs still use it.
 
-// The hero carries the home section's head (.dynamicMarket__head) so the claim
-// is set the same way on arrival; this adds only the interior hero's padding.
-.whoHero {
-  padding-block: var(--sec-y);
-
-  & .lead {
-    max-width: 40rem;
-  }
-}
-
-// The sectors sit directly under the hero, which already carries a full
-// section of bottom padding. A second full section of top padding plus the
-// grid's own margin left a band of empty ground between the claim and the
-// eight markets it is about, which read as two unrelated blocks. Seen at 1920.
-.whoSectors {
-  padding-top: var(--sec-y-sm);
-
-  & .sectorGrid {
-    margin-top: 0;
-  }
-}
-
-// The two band heads — deeper experience, then stage. Eyebrow, h2, standfirst,
-// on the guide's gaps, capped at a reading measure.
+// Eyebrow, h2, standfirst, on the guide's gaps, capped at a reading measure.
 .whoBand__head {
   max-width: 44rem;
 
@@ -190,118 +188,5 @@
 
   & > .lead {
     margin-top: 1.25rem;
-  }
-}
-
-.whoBand__cta {
-  display: inline-flex;
-  margin-top: var(--sec-y-sm);
-}
-
-// "Don't see your sector?" A transition, not a ninth card. It separates on
-// the site's ordinary hairline and stays small: one heading, one paragraph,
-// one way to start the conversation.
-.hubAside {
-  margin-top: var(--sec-y);
-  padding-top: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
-
-  // The measure is on the copy, not the block: capping the block cut the
-  // hairline off two thirds of the way across the page.
-  & > .body {
-    margin-top: 1rem;
-    max-width: 44rem;
-  }
-}
-
-.hubAside__cta {
-  display: inline-flex;
-  margin-top: 2rem;
-}
-
-// --- Deeper experience ------------------------------------------------------
-// Five linked cards on the .band-dark ground. The sector cards' box — border,
-// radius, shadow, border-only hover — so this is the same visual family, but
-// with no chip and no art: these are pages to read, not markets to scan, and
-// the arrow is what says so.
-//
-// A LIGHT SURFACE ON THE DARK BAND, and every colour inside it is the
-// light-ground token, stated rather than inherited — the rule _pointItem.scss
-// records learning the hard way. .band-dark sets a panel text colour on the
-// band; the card resets it so nothing inside can pick up a dark-ground tone.
-//
-// FLEX WITH A GROWING BASIS, NOT A GRID, because five does not divide. At the
-// 1160px wrap the basis seats three, and the two on the second row grow to
-// fill it rather than leaving a hole; on a phone they stack.
-.specialistGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: var(--sec-y-sm);
-  padding: 0;
-  list-style: none;
-
-  & > li {
-    display: flex;
-    flex: 1 1 20rem;
-    min-width: 0;
-  }
-}
-
-.specialistCard {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1.5rem;
-  background: var(--color-page);
-  border: 1px solid var(--color-line-card);
-  border-radius: var(--radius-card);
-  box-shadow: var(--shadow-card);
-  color: var(--color-body);
-  transition: border-color 0.2s ease;
-
-  &:hover,
-  &:focus-visible {
-    border-color: var(--color-line-strong);
-  }
-}
-
-.specialistCard__title {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.375rem;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  color: var(--color-brand);
-}
-
-.specialistCard__body {
-  margin-top: 0.625rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--color-body);
-}
-
-// margin-top: auto pins the arrow to the card's foot, so a row of cards with
-// lines of different length still ends on one line.
-.specialistCard__more {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  margin-top: auto;
-  padding-top: 1.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--color-brand);
-
-  & > svg {
-    width: 1rem;
-    height: 1rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .specialistCard {
-    transition: none;
   }
 }

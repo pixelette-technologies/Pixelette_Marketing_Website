@@ -1831,3 +1831,58 @@ sentence at §34** ("Do not decide … Do"); nothing past it was assumed.
 **One call left open:** the pink duck follows the reference's magenta, which
 is not a brand token, where the spec also asks for "the actual Pixelette
 pink family". See [[09 Outstanding]].
+
+## 29 Sep 2026 — the Post-its fall in a loop; A clearer path is lit
+
+On instruction, in three rounds the same day, all in section 02
+(`PostitField.tsx`, `_activitySection.scss`). The resting arrangement is
+unchanged and is still what the server renders and what a reduced-motion
+visitor sees; everything below applies only once motion is switched on.
+
+**The fall is a loop now, not an entrance.** The instruction was notes
+"dropping from upwards to lower in a loop, in a speed that text is readable".
+The one-off Web Animations entry fall is gone, and with it the `.postit__fall`
+layer and the arrival gate (`data-postits="armed"/"on"`). Each word note is a
+CSS animation on `.postit` itself, from wholly above the band to wholly below
+it, **16s a pass** (`FALL_SECONDS`, about 65px a second on a 900px screen).
+Negative delays put the notes mid-flight from the first frame, so the band is
+never empty and nothing waits for the visitor to scroll. The stage's top and
+bottom 3.5rem are masked so notes fade in and out instead of being sliced —
+on a phone the slice sat directly under "Our approach". The pointer nudge now
+re-measures on every frame, because its targets are moving.
+
+**Spacing took three attempts, and the first two passed a measurement.**
+Per-note durations (14–18s) let notes catch each other up; one shared pace
+with each note's phase taken from its resting height then collided at the
+wrap, the lowest note in a column followed straight in by the highest. Both
+passed an overlap check of the papers' boxes (worst 4%). **The user still
+found words covered**, and asked for enough space that every note stays
+readable. The answer was structural rather than tuned: **lanes.** A note is
+13.5% of the stage wide and ~17.5% at its widest turn, so three lanes at 9,
+31 and 53% leave a gap at every angle, and the right-hand lane ends short of
+A clearer path (its left edge at ~63%). `schedule()` fills the lanes by
+resting x, spaces each lane's notes evenly through one pass in order of
+resting height, and offsets neighbouring lanes by a third of a slot. A narrow
+stage (≤30rem, six notes) has two lanes at 16 and 44%; under 20rem — a
+portrait tablet, where the stage is 237px and A clearer path fills its right
+half — the six share one lane at 24%, which the band's height there affords.
+Sideways drift is ±10px and the turn ±7°, so no note leaves its lane.
+
+**A clearer path stays put; only its words change colour.** They cycle
+through the hero figure's five colours, the `--signal-*` tokens, in 15s —
+about 2s held on each, eased between. The first version deepened each colour
+with the marker ink just far enough to clear 3:1, because straight on
+`--note-pink` orange is 1.2:1 and magenta 1.8:1. **The user rejected it as
+dull and asked for "illuminative" colours**, so the tokens are used at full
+strength and lit: a 1px edge of the same hue deepened with ink, a pale halo of
+the figure's lit point (`--signal-spark`) that lifts the letters off the
+paper — the only thing separating magenta from pink — and a glow in the
+letter's own colour. Every shadow is built from `currentColor`, so the light
+follows the cycle. The contrast bar is traded for the look on instruction;
+the field is `aria-hidden` and the edge carries the read, which was judged
+by eye at 2× in all five colours. The hand-drawn underline stays in ink: it
+was not asked for.
+
+The rail label the background notes used to drift across ("Less noise /
+Better decisions / Real impact") was removed the same day, separately, by
+the session working on the hero; that change is its own entry.

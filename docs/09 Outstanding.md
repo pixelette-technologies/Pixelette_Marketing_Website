@@ -901,3 +901,24 @@ Committed on the local branch; **not pushed, not merged, not live.** See
   the home page and were left on disk, because deleting them was not asked.
 - The dev-only React "eval() is not supported" console error is the site's
   CSP in development and predates this work.
+
+## 29 Sep — the falling Post-its and A clearer path
+
+Committed on `feat/home-sections-01-04`; not pushed, not live. See
+[[02 Decisions]] and [[10 Verification]].
+
+- **The underline under A clearer path** stays in ink while the words glow
+  and change colour. Glow it and cycle it with them, or leave it? The user's
+  call.
+- **Magenta is the quietest of the five colours**: pink on pink, readable
+  only through the pale halo. If it reads too weak on a real screen, drop it
+  from the cycle or give it a stronger halo.
+- **The fall distance is measured when the section comes on screen, not on
+  resize.** Resize the window taller while the section is in view and the
+  notes vanish short of the bottom until it next leaves and returns. A
+  `ResizeObserver` fixes it if anyone notices.
+- **Frame cost on a real GPU.** Eleven looping notes, eight background notes
+  and a text colour cycle under four blurred shadows (which repaints the text
+  every frame) have only been run in headless Chrome.
+- **At 768px portrait A clearer path is clipped at the band's right edge.**
+  Its position predates this change.

@@ -420,6 +420,16 @@ the branch; **not pushed, not live.** The pink duck's colour and the
 vector-or-real-assets question wait on the user. See [[02 Decisions]],
 [[09 Outstanding]] and [[10 Verification]].
 
+**29 Sep, later — section 02's Post-its fall in a loop, and A clearer path is
+lit.** On instruction: every word note now falls from above the band to
+below it, 16s a pass, slow enough to read, in fixed lanes so no word is ever
+covered — measured across a full pass at seven widths. A clearer path stays
+still, and its words cycle through the hero figure's five colours, lit with a
+glow rather than inked. The first spacing passed a box-overlap check and was
+still unreadable to the user, which is why the check now measures the words.
+Committed on the branch; not pushed, not live. See [[02 Decisions]],
+[[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

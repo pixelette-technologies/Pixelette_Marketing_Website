@@ -1514,3 +1514,41 @@ differ from each other and over time (not synchronised), and the pond reports
 
 **Not measured:** axe, throttled-phone LCP/CLS, and frame pacing on a real
 GPU. See [[09 Outstanding]].
+
+## 29 Sep — the Post-it loop: measure what the reader needs
+
+**The overlap check passed a layout the user could not read.** It compared
+the notes' paper boxes and reported a worst case of 4% across a full pass at
+1440, 900 and 390 — and the user still found words covered. Paper touching
+paper is not the failure; a covered word is. The check was rewritten to ask
+that directly: across 32 samples over one 16s pass, how much of each note's
+*word* box lies under any other note's paper box (A clearer path included),
+with the papers taken as their axis-aligned bounds, so a turned note counts
+as larger than it is and the check can only over-report. After the lanes:
+**zero at 1920, 1440, 1280, 1024, 900, 768 and 390.** Before the single-lane
+case was added, 768 portrait showed 30–33% of three words under A clearer
+path — the only width that failed, and the only one where the stage is
+narrower than two lanes and the note together.
+
+**The colour cycle was checked by pausing it.** Each of the five holds was
+reached by setting the animation's `currentTime`, the computed colour read
+back (it matched the five `--signal-*` values), and the note captured at 2×.
+Headless screenshots at a timed moment would have caught it mid-ease.
+
+Gates: `tsc` (clean once the other session's in-progress `BrickScene.tsx`
+errors cleared), `eslint` on the changed file, `lint:legacy-tokens` and
+`sass`. **`next build`, axe and the throttled-phone LCP/CLS were not run.**
+
+**Two sessions, one dev server.** `next dev` on a second port exits and
+points at the one already running for this directory — here the other
+session's, on 3005. It serves the shared working tree, so it was used
+read-only to look at this change, and not restarted.
+
+**Committing beside a session with uncommitted vault edits.** `02` and `09`
+held the other session's uncommitted sections. `--only` would have committed
+them under this message, so the vault commit was built in the index instead:
+each note's blob is HEAD's text plus this session's section
+(`git hash-object -w` then `git update-index --cacheinfo`), and the same
+section was appended to the working tree after theirs. Their text stays
+uncommitted for them to commit, and a diff of their file against the new
+HEAD shows only their lines.

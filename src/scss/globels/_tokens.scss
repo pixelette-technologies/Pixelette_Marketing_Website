@@ -202,36 +202,40 @@
   --room-light: #fffaf6;
 
   // 03: the bricks. Top, face and side of each, plus the white plinth.
-  --brick-violet-top: #c07cff;
-  --brick-violet: #9b3fe8;
-  --brick-violet-side: #6c1fc0;
-  --brick-pink-top: #ff8fcf;
-  --brick-pink: #ff4db2;
-  --brick-pink-side: #d1238a;
-  --brick-blue-top: #78cdff;
-  --brick-blue: #25a6f2;
-  --brick-blue-side: #0f78c8;
-  --brick-green-top: #b2f27a;
-  --brick-green: #7ad63a;
-  --brick-green-side: #4ea81c;
-  --brick-yellow-top: #fff08a;
-  --brick-yellow: #ffdf2e;
-  --brick-yellow-side: #e0ad0a;
+  // 29 Sep, on instruction: the bricks and the builders' shirts take the
+  // Living Signal's five colours, so 01 and 03 read as one palette. Each
+  // face IS the signal token; only the lit top and shaded side are new.
+  --brick-deep-top: #5d7ee6;
+  --brick-deep: var(--signal-deep);
+  --brick-deep-side: #152b82;
+  --brick-blue-top: #85a6ff;
+  --brick-blue: var(--signal-blue);
+  --brick-blue-side: #2349b9;
+  --brick-violet-top: #b88aff;
+  --brick-violet: var(--signal-violet);
+  --brick-violet-side: #5f24b6;
+  --brick-magenta-top: #ff85c8;
+  --brick-magenta: var(--signal-magenta);
+  --brick-magenta-side: #ad1a70;
+  --brick-orange-top: #ffb088;
+  --brick-orange: var(--signal-orange);
+  --brick-orange-side: #d8541b;
   --brick-base-top: #ffffff;
   --brick-base: #f3efec;
   --brick-base-side: #d8d1cc;
 
   // 03: the builders and their ladders. Generic figures, no maker's mark.
   // 29 Sep: re-read off the supplied brick reference image.
+  // Shirts are the --signal-* tokens directly.
   --figure-skin: #f8c93f;
   --figure-skin-shade: #d8a21f;
+  // 29 Sep, on instruction: two of the builders are women of colour. Both
+  // tones are light enough that the ink features still read on them.
+  --figure-skin-brown: #b77a4e; // the Asian builder, second from right
+  --figure-skin-deep: #7b4a2d; // the Black builder, far right
+  --figure-lips: #a8324f;
   --figure-hair: #1f1b1d; // black hair, and the darkest trousers
   --figure-auburn: #b04a24; // the builder with long hair
-  --figure-navy: #22304f;
-  --figure-denim: #2f6ed6;
-  --figure-leaf: #2f9a4a;
-  --figure-berry: #ea4f9c;
-  --figure-cream: #f3eee4;
   --figure-slate: #3b4150; // trousers
   --ladder-wood: #b86a3a;
   --ladder-wood-shade: #8a4a24;

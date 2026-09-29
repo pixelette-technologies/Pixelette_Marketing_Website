@@ -10,17 +10,21 @@ import {
 import { Container } from "@/components/common";
 import { capabilitiesCopy, type CapabilityIcon } from "@/data/home";
 import BrickScene, { BASE, BRICK, BRICKS, SCENE } from "./BrickScene";
+import BrickSceneMotion from "./BrickSceneMotion";
 import EditorialCopy from "./EditorialCopy";
 import RailLabel from "./RailLabel";
 import RoomBackdrop from "./RoomBackdrop";
 
 // 03 — "Five capabilities / One commercial objective". Locked implementation
 // specification, 28 Sep 2026. THE CALM SECTION: deliberate visual rest
-// between the falling notes above and the ducks below. Nothing moves on its
-// own; a capability brick lifts a few pixels under the pointer, and that is
-// all (spec §21).
+// between the falling notes above and the ducks below. A capability brick
+// lifts a few pixels under the pointer (spec §21). 29 Sep, on instruction:
+// the two ladder builders climb in once on arrival and a rung higher under
+// the pointer, and the builders on top jump when hovered.
 //
-// The whole section is a server component. The five capabilities are a real
+// The section is a server component; only the frame's climb is a client
+// wrapper (BrickSceneMotion) around server-rendered children. The five
+// capabilities are a real
 // ordered list laid over the drawn bricks, so the section's meaning is text
 // and never depends on the picture.
 
@@ -45,7 +49,7 @@ export default function CapabilitiesSection() {
       <div className='homeScene__art'>
         <RoomBackdrop id='brickRoom' />
         <div className='brickScene'>
-          <div
+          <BrickSceneMotion
             className='brickScene__frame'
             style={{ aspectRatio: `${SCENE.w} / ${SCENE.h}` }}
           >
@@ -58,7 +62,7 @@ export default function CapabilitiesSection() {
                 return (
                   <li
                     key={cap.name}
-                    className={`brickScene__label brickScene__label--${i + 1}`}
+                    className={`brickScene__label brickScene__label--${i + 1} brickScene__label--${brick.ink}`}
                     style={
                       {
                         left: pct(brick.x, SCENE.w),
@@ -91,7 +95,7 @@ export default function CapabilitiesSection() {
               </span>
               <TbMoodSmile className='brickScene__smile' aria-hidden='true' />
             </p>
-          </div>
+          </BrickSceneMotion>
         </div>
       </div>
 

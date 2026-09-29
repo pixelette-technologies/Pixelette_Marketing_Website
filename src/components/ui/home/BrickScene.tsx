@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 
 // 03 — THE BRICK SCENE, drawn. Locked implementation specification, 28 Sep
 // 2026: "different capabilities being built together".
@@ -18,20 +18,27 @@ import type { CSSProperties } from "react";
 // BASE are also what the HTML labels are positioned from, so the two cannot
 // drift apart.
 //
-// A server component: nothing here runs in the browser. The one response it
-// has, a capability brick lifting a few pixels on hover, is CSS.
+// A server component: nothing here runs in the browser. The hover responses
+// (a brick lifting, a builder jumping or climbing a rung) are CSS; the one
+// scripted moment, the two ladder builders climbing in when the section
+// arrives, is BrickSceneMotion, which only reads the data this file writes.
+//
+// COLOUR, 29 Sep, on instruction: the bricks and the shirts are the Living
+// Signal's five colours, in the signal's own order left to right (deep blue,
+// blue, violet, magenta, orange), so 01 and 03 read as one palette.
 
 export const SCENE = { w: 1085, h: 362 };
 
-type Colour = "violet" | "pink" | "blue" | "green" | "yellow";
+type Colour = "deep" | "blue" | "violet" | "magenta" | "orange";
 
-/** The five capability bricks, left to right, in the section's order. */
-export const BRICKS: { x: number; colour: Colour }[] = [
-  { x: 180, colour: "violet" },
-  { x: 325, colour: "pink" },
-  { x: 470, colour: "blue" },
-  { x: 615, colour: "green" },
-  { x: 760, colour: "yellow" }
+/** The five capability bricks, left to right, in the section's order. `ink`
+ *  is the label colour that reads on the face: light on the two darkest. */
+export const BRICKS: { x: number; colour: Colour; ink: "dark" | "light" }[] = [
+  { x: 180, colour: "deep", ink: "light" },
+  { x: 325, colour: "blue", ink: "dark" },
+  { x: 470, colour: "violet", ink: "light" },
+  { x: 615, colour: "magenta", ink: "dark" },
+  { x: 760, colour: "orange", ink: "dark" }
 ];
 /** top: the top strip starts; face: the front face starts; bottom: its foot. */
 export const BRICK = { w: 145, top: 104, face: 114, bottom: 236 };
@@ -179,7 +186,7 @@ function Brick({
 
 // --- The builders ---------------------------------------------------------------------
 
-type Hair = "short" | "long" | "swept";
+type Hair = "short" | "long" | "swept" | "afro";
 type Arm = [number, number, number, number]; // elbow x, y, hand x, y
 
 interface Carry {
@@ -197,7 +204,14 @@ const HAIR: Record<Hair, string> = {
     "M-9.2 -49 C -10.6 -58.5 -5 -62.8 0.5 -62.8 C 6.6 -62.8 10.6 -58.6 9.4 -49 C 8.4 -52.6 6 -54.6 3 -55 C 0 -53.2 -4 -53.6 -7 -55.6 C -8.2 -53.6 -8.8 -51.6 -9.2 -49 Z",
   swept:
     "M-9.2 -49 C -10.8 -59 -6 -64.5 1 -64 C 5 -66 11.5 -62 9.4 -49 C 8.4 -52.6 6.4 -54.8 3.4 -55.4 C -1 -55.8 -5 -54.8 -7.4 -53.4 C -8.4 -52.2 -8.9 -50.8 -9.2 -49 Z",
-  long: "M-9.6 -48 C -11 -58.8 -5 -63.2 0.5 -63.2 C 7 -63.2 11 -58.8 9.8 -48 L 10.8 -37.6 C 9.2 -36.6 7.6 -37 6.6 -38.2 L 7.4 -50.4 C 5 -53.6 1 -55.2 -3 -54.2 C -5.6 -53.2 -7 -51.6 -7.4 -49.6 L -6.6 -38.2 C -7.6 -37 -9.2 -36.6 -10.8 -37.6 Z"
+  long: "M-9.6 -48 C -11 -58.8 -5 -63.2 0.5 -63.2 C 7 -63.2 11 -58.8 9.8 -48 L 10.8 -37.6 C 9.2 -36.6 7.6 -37 6.6 -38.2 L 7.4 -50.4 C 5 -53.6 1 -55.2 -3 -54.2 C -5.6 -53.2 -7 -51.6 -7.4 -49.6 L -6.6 -38.2 C -7.6 -37 -9.2 -36.6 -10.8 -37.6 Z",
+  // The hairline of a full afro; its volume is HAIR_BACK, behind the head.
+  afro: "M-8.8 -50.5 C -9.6 -58 -5.4 -61.5 0 -61.5 C 5.4 -61.5 9.6 -58 8.8 -50.5 C 6.6 -54.2 3.6 -55.6 0 -55.6 C -3.6 -55.6 -6.6 -54.2 -8.8 -50.5 Z"
+};
+
+/** Hair that sits behind the head, and behind anything carried overhead. */
+const HAIR_BACK: Partial<Record<Hair, string>> = {
+  afro: "M-14.2 -54.5 a14.2 11.6 0 1 1 28.4 0 a14.2 11.6 0 1 1 -28.4 0 Z"
 };
 
 /** A generic builder figure, feet at (x, y), drawn at a 58-unit height and
@@ -209,6 +223,8 @@ function Figure({
   legs,
   hair,
   hairTone,
+  skin = "var(--figure-skin)",
+  woman,
   left,
   right,
   carry,
@@ -221,6 +237,9 @@ function Figure({
   legs: string;
   hair: Hair;
   hairTone: string;
+  skin?: string;
+  /** Lashes and coloured lips. */
+  woman?: boolean;
   left: Arm;
   right: Arm;
   carry?: Carry;
@@ -237,7 +256,8 @@ function Figure({
         {
           "--shirt": shirt,
           "--legs": legs,
-          "--hair": hairTone
+          "--hair": hairTone,
+          "--skin": skin
         } as CSSProperties
       }
     >
@@ -292,6 +312,10 @@ function Figure({
       />
       <path className='figure__collar' d='M-3.6 -41.4 L0 -37.2 L3.6 -41.4' />
 
+      {HAIR_BACK[hair] && (
+        <path className='figure__hair' d={HAIR_BACK[hair]} />
+      )}
+
       {/* arms behind whatever they carry, hands in front of it */}
       <path className='figure__arm' d={arm(left, -1)} />
       <path className='figure__arm' d={arm(right, 1)} />
@@ -345,7 +369,20 @@ function Figure({
       <ellipse className='figure__eye' cx={3.1} cy={-51.2} rx={1} ry={1.35} />
       <circle className='figure__eyeGlint' cx={-2.8} cy={-51.7} r={0.35} />
       <circle className='figure__eyeGlint' cx={3.4} cy={-51.7} r={0.35} />
-      <path className='figure__smile' d='M-3.4 -47.8 Q0 -45.2 3.4 -47.8' />
+      {woman ? (
+        <>
+          <path
+            className='figure__brow'
+            d='M-4.1 -51.9 L-5 -53 M4.1 -51.9 L5 -53'
+          />
+          <path
+            className='figure__lips'
+            d='M-3 -47.8 Q0 -48.6 3 -47.8 Q0 -44.8 -3 -47.8 Z'
+          />
+        </>
+      ) : (
+        <path className='figure__smile' d='M-3.4 -47.8 Q0 -45.2 3.4 -47.8' />
+      )}
 
       {/* hair piece */}
       <path className='figure__hair' d={HAIR[hair]} />
@@ -420,6 +457,95 @@ function Ladder({
         x2={x2 + off - 1.5}
         y2={y2}
       />
+    </g>
+  );
+}
+
+// --- The crew's motion ----------------------------------------------------------------
+// Every builder sits in two groups: an outer one that never moves and carries a
+// still, invisible hit area (so a builder moving under the pointer cannot
+// un-hover itself), and an inner body that moves. Hover is CSS
+// (_capabilitiesSection.scss); the arrival climb is BrickSceneMotion.
+
+interface LadderSpec {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  rungs: number;
+}
+
+// Left against the deep-blue brick, right against the orange.
+const LADDERS: { left: LadderSpec; right: LadderSpec } = {
+  left: { x1: 112, y1: 296, x2: 176, y2: 110, rungs: 7 },
+  right: { x1: 1004, y1: 296, x2: 926, y2: 92, rungs: 8 }
+};
+
+/** A builder's hit area, feet at (x, y): the body and whatever it holds. */
+const HIT = { w: 44, h: 128 };
+
+/** A builder on a ladder. It climbs one rung under the pointer; on arrival it
+ *  climbs in from the ladder's foot to where it stands in the reference. */
+function Climber({
+  ladder,
+  x,
+  y,
+  children
+}: {
+  ladder: LadderSpec;
+  x: number;
+  y: number;
+  children: ReactNode;
+}) {
+  const stepX = (ladder.x2 - ladder.x1) / ladder.rungs;
+  const stepY = (ladder.y2 - ladder.y1) / ladder.rungs;
+  // How many rungs up the ladder this builder stands.
+  const steps = (ladder.y1 - y) / -stepY;
+  const px = (n: number) => `${n.toFixed(2)}px`;
+  return (
+    <g
+      className='crew crew--climb'
+      data-steps={steps.toFixed(3)}
+      data-foot={`${(-steps * stepX).toFixed(2)} ${(-steps * stepY).toFixed(2)}`}
+      style={
+        {
+          "--rung-x": px(stepX),
+          "--rung-y": px(stepY)
+        } as CSSProperties
+      }
+    >
+      <rect
+        className='crew__hit'
+        x={x - HIT.w / 2}
+        y={y - HIT.h + stepY}
+        width={HIT.w}
+        height={HIT.h - stepY}
+      />
+      <g className='crew__body'>{children}</g>
+    </g>
+  );
+}
+
+/** A builder standing on the top of the bricks. It jumps under the pointer. */
+function Jumper({
+  x,
+  y,
+  children
+}: {
+  x: number;
+  y: number;
+  children: ReactNode;
+}) {
+  return (
+    <g className='crew crew--jump'>
+      <rect
+        className='crew__hit'
+        x={x - HIT.w / 2}
+        y={y - HIT.h}
+        width={HIT.w}
+        height={HIT.h}
+      />
+      <g className='crew__body'>{children}</g>
     </g>
   );
 }
@@ -540,84 +666,102 @@ export default function BrickScene() {
         opacity={0.5}
       />
 
-      {/* Ladders: left against the violet brick, right against the yellow. */}
-      <Ladder x1={112} y1={296} x2={176} y2={110} rungs={7} />
-      <Ladder x1={1004} y1={296} x2={926} y2={92} rungs={8} />
+      <Ladder {...LADDERS.left} />
+      <Ladder {...LADDERS.right} />
 
-      {/* The builders, left to right, as the reference poses them. */}
-      <Figure
-        x={146}
-        y={192}
-        shirt='var(--figure-navy)'
-        legs='var(--figure-navy)'
-        hair='short'
-        hairTone='var(--figure-hair)'
-        left={[8, -46, 21, -55]}
-        right={[17, -40, 27, -50]}
-      />
-      <Figure
-        x={362}
-        y={102}
-        shirt='var(--figure-berry)'
-        legs='var(--figure-slate)'
-        hair='long'
-        hairTone='var(--figure-auburn)'
-        left={[-13, -28, -3, -28]}
-        right={[15, -27, 27, -28]}
-        carry={{ colour: "pink", x: -5, y: -35, w: 35, h: 15, studs: 4 }}
-      />
-      <Figure
-        x={552}
-        y={102}
-        shirt='var(--figure-denim)'
-        legs='var(--figure-slate)'
-        hair='swept'
-        hairTone='var(--figure-hair)'
-        left={[-14, -50, -4, -66]}
-        right={[17, -52, 18, -70]}
-        carry={{
-          colour: "blue",
-          x: -6,
-          y: -86,
-          w: 28,
-          h: 21,
-          studs: 2,
-          rot: -14
-        }}
-        flip
-      />
-      <Figure
-        x={708}
-        y={102}
-        shirt='var(--figure-leaf)'
-        legs='var(--figure-slate)'
-        hair='short'
-        hairTone='var(--figure-hair)'
-        left={[0, -30, 12, -27]}
-        right={[19, -33, 30, -29]}
-        carry={{ colour: "green", x: 9, y: -34, w: 38, h: 15, studs: 4 }}
-        flip
-      />
-      <Figure
-        x={956}
-        y={180}
-        shirt='var(--figure-cream)'
-        legs='var(--figure-slate)'
-        hair='short'
-        hairTone='var(--figure-hair)'
-        left={[0, -49, 6, -62]}
-        right={[18, -51, 26, -70]}
-        carry={{
-          colour: "yellow",
-          x: 2,
-          y: -84,
-          w: 48,
-          h: 21,
-          studs: 4,
-          rot: 14
-        }}
-        flip
-      />
+      {/* The builders, left to right, as the reference poses them. Each shirt
+          is a signal colour other than the brick it holds, so the two never
+          merge. */}
+      <Climber ladder={LADDERS.left} x={146} y={192}>
+        <Figure
+          x={146}
+          y={192}
+          shirt='var(--signal-deep)'
+          legs='var(--figure-slate)'
+          hair='short'
+          hairTone='var(--figure-hair)'
+          left={[8, -46, 21, -55]}
+          right={[17, -40, 27, -50]}
+        />
+      </Climber>
+      <Jumper x={362} y={102}>
+        <Figure
+          x={362}
+          y={102}
+          shirt='var(--signal-magenta)'
+          legs='var(--figure-slate)'
+          hair='long'
+          hairTone='var(--figure-auburn)'
+          woman
+          left={[-13, -28, -3, -28]}
+          right={[15, -27, 27, -28]}
+          carry={{ colour: "blue", x: -5, y: -35, w: 35, h: 15, studs: 4 }}
+        />
+      </Jumper>
+      <Jumper x={552} y={102}>
+        <Figure
+          x={552}
+          y={102}
+          shirt='var(--signal-orange)'
+          legs='var(--figure-slate)'
+          hair='swept'
+          hairTone='var(--figure-hair)'
+          left={[-14, -50, -4, -66]}
+          right={[17, -52, 18, -70]}
+          carry={{
+            colour: "violet",
+            x: -6,
+            y: -86,
+            w: 28,
+            h: 21,
+            studs: 2,
+            rot: -14
+          }}
+          flip
+        />
+      </Jumper>
+      {/* 29 Sep, on instruction: an Asian woman with brown skin. */}
+      <Jumper x={708} y={102}>
+        <Figure
+          x={708}
+          y={102}
+          shirt='var(--signal-violet)'
+          legs='var(--figure-slate)'
+          hair='long'
+          hairTone='var(--figure-hair)'
+          skin='var(--figure-skin-brown)'
+          woman
+          left={[0, -30, 12, -27]}
+          right={[19, -33, 30, -29]}
+          carry={{ colour: "magenta", x: 9, y: -34, w: 38, h: 15, studs: 4 }}
+          flip
+        />
+      </Jumper>
+      {/* 29 Sep, on instruction: a Black woman. */}
+      <Climber ladder={LADDERS.right} x={956} y={180}>
+        <Figure
+          x={956}
+          y={180}
+          shirt='var(--signal-blue)'
+          legs='var(--figure-slate)'
+          hair='afro'
+          hairTone='var(--figure-hair)'
+          skin='var(--figure-skin-deep)'
+          woman
+          left={[0, -49, 6, -62]}
+          right={[18, -51, 26, -70]}
+          carry={{
+            colour: "orange",
+            x: 2,
+            y: -84,
+            w: 48,
+            h: 21,
+            studs: 4,
+            rot: 14
+          }}
+          flip
+        />
+      </Climber>
 
       {/* Loose bricks on the floor, as the reference scatters them. */}
       <ellipse cx={90} cy={318} rx={120} ry={8} fill='url(#brickSceneShadow)' />
@@ -628,14 +772,14 @@ export default function BrickScene() {
         ry={8}
         fill='url(#brickSceneShadow)'
       />
-      <Brick x={-24} y={226} w={82} h={26} studs={4} colour='yellow' />
+      <Brick x={-24} y={226} w={82} h={26} studs={4} colour='orange' />
       <Brick x={28} y={234} w={64} h={32} studs={2} colour='blue' />
-      <Brick x={22} y={270} w={116} h={46} studs={4} colour='pink' />
-      <Brick x={136} y={292} w={108} h={44} studs={4} colour='green' />
-      <Brick x={985} y={222} w={100} h={30} studs={4} colour='blue' />
-      <Brick x={925} y={262} w={92} h={38} studs={3} colour='yellow' />
+      <Brick x={22} y={270} w={116} h={46} studs={4} colour='magenta' />
+      <Brick x={136} y={292} w={108} h={44} studs={4} colour='violet' />
+      <Brick x={985} y={222} w={100} h={30} studs={4} colour='deep' />
+      <Brick x={925} y={262} w={92} h={38} studs={3} colour='orange' />
       <Brick x={1008} y={270} w={80} h={46} studs={2} colour='blue' />
-      <Brick x={842} y={288} w={108} h={44} studs={4} colour='pink' />
+      <Brick x={842} y={288} w={108} h={44} studs={4} colour='magenta' />
     </svg>
   );
 }

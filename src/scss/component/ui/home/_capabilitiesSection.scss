@@ -1,6 +1,7 @@
 // 03 — The brick scene. Locked implementation specification, 28 Sep 2026.
-// The calm section: the only motion is a capability brick lifting 3px under
-// the pointer (spec §21). See BrickScene.tsx and CapabilitiesSection.tsx.
+// The calm section: a capability brick lifts 3px under the pointer (spec
+// §21); since 29 Sep, on instruction, the ladder builders climb in once and
+// the builders respond to hover. See BrickScene.tsx and CapabilitiesSection.tsx.
 
 // The scene sits bottom-right, keeping its proportion. Its width is capped so
 // its left edge stays clear of the copy column: the container's left edge
@@ -87,12 +88,16 @@
 }
 
 .figure__hand {
-  fill: var(--figure-skin);
+  fill: var(--skin);
   fill-rule: evenodd;
 }
 
 .figure__skin {
-  fill: var(--figure-skin);
+  fill: var(--skin);
+}
+
+.figure__lips {
+  fill: var(--figure-lips);
 }
 
 .figure__eye,
@@ -151,12 +156,24 @@
 
 // --- The HTML over the drawing ------------------------------------------------------
 
+// The list covers the whole frame; only the labels themselves take the
+// pointer, so the builders above the bricks can be hovered.
 .brickScene__labels {
   position: absolute;
   inset: 0;
   margin: 0;
   padding: 0;
   list-style: none;
+  pointer-events: none;
+}
+
+.brickScene__label {
+  pointer-events: auto;
+}
+
+// On the deep-blue and violet faces the ink would not read.
+.brickScene__label.brickScene__label--light {
+  color: var(--color-page);
 }
 
 .brickScene__label {
@@ -220,6 +237,64 @@
     .brickScene__frame:has(.brickScene__label--#{$i}:hover) .brickScene__cap--#{$i},
     .brickScene__label--#{$i}:hover {
       transform: translateY(-3px);
+    }
+  }
+}
+
+// --- The builders (29 Sep, on instruction) -------------------------------------------
+// Each builder is an outer group that never moves, holding a still hit area,
+// and an inner body that does, so a builder moving under the pointer cannot
+// un-hover itself. The ladder builders climb one rung and come back down when
+// the pointer leaves; the builders on top jump once per hover. The arrival
+// climb is BrickSceneMotion; hover waits until it is done (data-crew).
+
+.crew__hit {
+  fill: transparent;
+}
+
+.crew__body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+@keyframes figureJump {
+  0% {
+    transform: translateY(0) scale(1, 1);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+  }
+  14% {
+    transform: translateY(0) scale(1.06, 0.92);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
+  }
+  48% {
+    transform: translateY(-26px) scale(0.97, 1.04);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(1.05, 0.94);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .brickScene__frame:not([data-crew="armed"], [data-crew="climbing"]) {
+    .crew {
+      cursor: default;
+    }
+
+    .crew--climb .crew__body {
+      transition: transform 480ms cubic-bezier(0.45, 0, 0.3, 1);
+    }
+
+    .crew--climb:hover .crew__body {
+      transform: translate(var(--rung-x), var(--rung-y));
+    }
+
+    .crew--jump:hover .crew__body {
+      animation: figureJump 640ms both;
     }
   }
 }

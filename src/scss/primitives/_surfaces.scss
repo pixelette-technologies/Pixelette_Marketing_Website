@@ -59,8 +59,12 @@
 //       keep drifting down while it is on screen; a fine pointer nudges a
 //       nearby note a few pixels and it springs back. _activitySection.scss.
 //    7. THE CAPABILITY LIFT (03). A capability brick rises 3px under the
-//       pointer. Nothing else in the section moves: it is the rest between
-//       the two kinetic sections. _capabilitiesSection.scss.
+//       pointer. Added 29 Sep on instruction: once, when the section
+//       arrives, the two ladder builders climb in from the ladders' feet to
+//       where they stand; under the pointer a ladder builder climbs one rung
+//       (and back down on leave) and a builder on top of the bricks jumps.
+//       Still the calmest of the three: nothing loops. BrickSceneMotion.tsx,
+//       _capabilitiesSection.scss.
 //    8. THE DUCK POND (04). Once, when the section arrives, the water comes up
 //       and the ducks drop onto it one by one (gravity, then a damped
 //       buoyant bob, then a splash ring flattened by the water's perspective),

@@ -126,7 +126,9 @@ export const capabilitiesCopy: EditorialSectionCopy & {
 } = {
   number: "03",
   eyebrow: "What we do",
-  headline: ["Five capabilities", "One commercial objective"],
+  headline: ["Five capabilities"],
+  // In the brand tone, as 02 and 04 carry their last line (29 Sep).
+  accent: "One commercial objective",
   lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
   cta: { label: "Explore all services", to: "/services" },
   rail: ["People", "Ideas", "Capabilities", "Stronger", "outcomes"],

@@ -983,3 +983,45 @@ the bricks in 03. See [[02 Decisions]].
   asks.
 - The "frame pacing on a real GPU" item above no longer covers the ducks;
   there is no duck drop now.
+
+## 29 Sep — master structure correction (locked information architecture)
+
+Built to the "Master structure correction" instruction on `feat/home-sections-01-04`,
+committed as `4a6534f` (another session was live in the repo, editing
+`LivingSignal.tsx` and `02 Decisions.md`; their changes were kept out of it). pushed. Gated in
+the `D:/pxwt` worktree: tsc, eslint, token gate, `next build`, route walk 28/28,
+and looked at in headless Chrome at 1440 and 390 (no overflow; selector hover,
+tap and keyboard all proven).
+
+What changed: nav is What we do / Industries / About / Insights / Contact (Home,
+Who We Help, Results out; footer Results → Industries); home after 04 is
+Industries teaser, Proof before promises, AI-accelerated, Part of Pixelette,
+final CTA; `/industries` is hero, eight-industry selector with one stage, Work
+in practice (BlockGuard ~62% / WebBookingPro ~38%), close; `/services` now
+renders each capability's service list, with community management and growth
+under Demand & Performance; `/results` stories have anchors (`#blockguard`,
+`#webbookingpro`). `whoWeHelp.ts`, `DynamicMarket`, `WhoWeHelpParts` and
+`_dynamicMarket.scss` deleted; taxonomy is `src/data/industries/industries.ts`.
+
+**Calls for the user or management:**
+
+- **The 24 market / challenge / approach lines are mine**, written to the
+  instruction's rules; so are the selector heading ("Choose a market to see
+  how the thinking changes") and Work in practice's ("What changed after the
+  work started"). Nobody has approved them.
+- **BlockGuard on the home page.** Only the two before → after figures appear
+  there, because the measurement period is still unknown. The three raw counts
+  stay on `/industries` and `/results`.
+- **Capability names stay title case** (Strategy & Positioning…) though the
+  instruction writes them in sentence case — changing them ripples into home
+  03's approved art, About and the sector pages.
+- **The five specialist pages now have no nav or hub links** — sitemap, footer
+  (none) and direct links only. Their own heroes still carry the eyebrow
+  "Deeper experience". The instruction defers both to a later review.
+- **Removed from home and not re-homed:** the logo strip (still on About and
+  the service pages), the growth figure, the engagement-model grid, the
+  process. Their copy is kept in `homeContent.ts`; `GrowthSection` /
+  `GrowthSystem` are now unused.
+- "Talk to our team" was not added to the Industries close: it would go to the
+  same `/contactus` as the primary.
+- Minor: on `/services` the middot separator can end a wrapped line.

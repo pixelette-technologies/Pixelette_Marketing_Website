@@ -2026,3 +2026,19 @@ and the `--duck-pink*` tokens no longer paint anything.
   [[10 Verification]].
 
 All of the above is commit `9148b86` on `feat/home-sections-01-04`. Not pushed, not live.
+
+## 29 Sep 2026 — the information architecture locked
+
+Built to management's "Master structure correction" (`4a6534f`). The structure is now locked; any later brief that touches navigation or page scope works from this.
+
+- **Navigation: What we do / Industries / About / Insights / Contact**, plus "Build my growth plan". Home, Who We Help and Results came out; the footer's Results link became Industries. Industries is a plain link: its menu held only "Deeper experience", which is barred.
+- **Who we help is retired as terminology.** The taxonomy is `src/data/industries/industries.ts`: the eight broad industries, locked, never narrowed to SaaS, Fintech or Web3.
+- **Home stops early.** After the approved 01–04: Industries teaser (no cards), compact Proof before promises, AI-accelerated (kept: said nowhere else), Part of Pixelette (kept: the only description of the group), final CTA. Removed as duplication: the logo strip, the growth figure, the five capabilities a second time, the eight-card section, the full Results section, the engagement grid and the process. The approved copy stays in `homeContent.ts`.
+- **BlockGuard on Home: the two before → after figures only.** The measurement period is still unknown and the standing rule bars standalone proof numbers there; a before → after pair states its own baseline. All five figures appear on `/industries` and `/results`, read from `caseStudies.ts`, never retyped.
+- **`/industries` has four chapters and no others**: hero; eight names with one changing stage (a tablist — hover with a mouse, tap, keyboard; all eight panels are in the HTML); Work in practice, asymmetric by instruction (BlockGuard ~62%, WebBookingPro ~38%, qualitative); close. Deeper experience, "Don't see your sector?" and the stages are gone. The visuals are structural until the final art direction arrives.
+- **"See the work" goes to the story**: `/results#blockguard` and `#webbookingpro`, from anchors derived from the client name. Evidence now runs home teaser → Work in practice → case study, with `/results` out of the nav but live.
+- **What we do owns the service detail.** `/services` now renders each capability's services (they only ever rendered on the home page). The lists were revised to the instruction's families, with overlaps kept in one place only, and **community management and growth** is restored under Demand & Performance, with a line saying it is more than posting.
+- **Capability names stay title case**, against the instruction's sentence case, because the change would reach into home 03's approved art, About and the sector pages. One call for management.
+- **Not added:** "Talk to our team" on the Industries close would go to the same `/contactus` as the primary.
+
+Open items are in [[09 Outstanding]].

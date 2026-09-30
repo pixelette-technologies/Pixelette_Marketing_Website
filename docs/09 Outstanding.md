@@ -1180,3 +1180,26 @@ Committed `8fc53d7`.
   change footer"; one line if wanted.
 - Not seen on a real phone or GPU; headless Chrome only. `next build` not run
   (the shared dev server holds `.next`; not restarted, on instruction).
+
+## Contact — on the Pixelette Technologies page (30 Sep 2026)
+
+Committed `1daaef9`.
+
+- **The US office address is unconfirmed for this company.** 6305 Naples
+  Blvd, Naples, FL 34109 is the Tech page's; it had never been on this site.
+  **A call for the user.** If wrong, it is one entry in
+  `src/data/contactUs/contactPage.ts`.
+- **"One of us replies, not a sequence" is a handling promise.** Nothing in
+  the code sends a sequence, but whether a person always replies is not
+  something the code can know. Confirm or cut.
+- **Words written in this session need a read**: the hero lead, the three
+  route cards and the four FAQ answers.
+- **The page says company, website and focus can be left blank**, and they
+  can, but the form does not mark them optional. Doing so is a form change.
+- **The 25 Sep office-card item above is done**, and "no visible postal
+  address on any page" no longer holds. Both entries are left as written.
+- Locally the consent line reads "dasdo": the local
+  `NEXT_PUBLIC_CONTACT_CONSENT_TEXT` is a placeholder. Not a code fault.
+- Not seen on a real phone or GPU; headless Chrome only. `next build` not
+  run (the shared dev server holds `.next`; no server started, on
+  instruction). No real enquiry submitted.

@@ -520,6 +520,16 @@ drawer. **The page is 39% shorter at 1440, 29% at 768 and 26% at 390** against
 a 40–50% target — the rest is the brief's own copy. See [[02 Decisions]],
 [[09 Outstanding]] and [[10 Verification]].
 
+**30 Sep, later — Contact, on the Pixelette Technologies page (`1daaef9`).**
+`/contactus` keeps its route and takes the group contact page's structure:
+a text hero, offices beside the form, What happens next, three "Other routes
+in" cards and a four-question FAQ, with ContactPage, BreadcrumbList and
+FAQPage JSON-LD. **The enquiry form is unchanged** — their field set was not
+copied, because ours is a governed contract. **A postal address is visible on
+the site again** (London registered office, and the US Naples office taken
+from the Tech page). Seen in headless Chrome at 1440, 768 and 390; **not on a
+real phone.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

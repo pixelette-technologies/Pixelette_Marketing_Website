@@ -2547,3 +2547,56 @@ instruction, including the 21 Sep rebuild. Committed `8fc53d7`.
   to 39% shorter. The Why section is two grid columns from 60rem and stacked
   below — flex bases left a blank band at 768 once the pair wrapped.
 - **No hero entrance.** Allowed by the brief, not required.
+
+## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
+
+Built on instruction to mirror `pixelette-technologies-website.vercel.app/contact`
+"in the context and content of Pixelette Marketing". Code `1daaef9`.
+
+- **Their structure, in their order**: hero (eyebrow, h1, one paragraph), a
+  split with offices in a narrow column and the form in a card taking the
+  wider share, "Other routes in" as three cards, then "Questions worth
+  answering" as native `<details>`. Their visually hidden "Get in touch" h2
+  is kept. Same three JSON-LD blocks: ContactPage, BreadcrumbList, FAQPage.
+- **What happens next stays**, between the split and the routes. Theirs has
+  no process band; ours is the 25 Sep brief's verbatim four steps, and the
+  instruction was a similar page, not the removal of signed-off content. The
+  email and phones left its header: the offices column carries them a screen
+  above.
+- **The form was not changed.** Theirs asks what exists today, the deadline
+  and what success looks like. Ours is a closed-allowlist contract with
+  source-regex tests (see [[06 The enquiry form]]); new fields would be a
+  contract change across client, validation, API and tests. `ContactUsForm`
+  renders with its intro off inside a "Let's get started" card, and its own
+  card chrome is neutralised inside that one.
+- **The h1 is kept**: "Tell us what needs to grow.", signed off 25 Sep. The
+  lead takes their register — "Tell us what you know… One of us replies, not
+  a sequence" — in this company's terms, and the home page's "No generic
+  proposal…" line sits under it with "If we are not the right fit, we will
+  say so", which is their Value Discovery sentence without the product.
+- **Offices.** London is the registered office management supplied on
+  22 Sep, labelled "Registered office" rather than their "Headquarters". The
+  US office (6305 Naples Blvd, Naples, FL 34109) is the group's, **taken from
+  the Tech page**; the +1 number was already on this page. This is the
+  contact-page office card [[09 Outstanding]] recommended on 25 Sep, and it
+  ends "no visible postal address on any page". `locatedData.ts`, kept since
+  21 Sep for exactly this, is deleted: `src/data/contactUs/contactPage.ts`
+  holds the offices now.
+- **Other routes in**, each to something that exists: "Not sure where to
+  start?" → the Strategy & Positioning Diagnostic, its facts read from
+  `strategyHero.facts` so they cannot drift; "Procurement and supplier
+  checks" (their procurement card, without AI governance or certificates,
+  which this company does not hold) → `/privacy`; "Press and speaking" →
+  the sales inbox. Their public-sector card (AI DPS) has no equivalent here
+  and was not adapted.
+- **The FAQ is built from copy the site already carries**: no channel
+  recommendation before the problem is understood; the Embedded Growth
+  Team's own description for the in-house question; their questionnaire
+  answer for supplier questionnaires. No response time, free call or priced
+  plan — all three are still open.
+- **Colour** is the specialist hierarchy: pink-text eyebrows, plum-ink
+  headline and copy, burgundy card and FAQ headings, crimson for links. The
+  split sits on `--color-page`, not the band: `.wash-left` fades to white,
+  and on the band the section drew a hard edge under the hero.
+- **No media query.** The split is a wrapping flex pair (bases 15rem and
+  30rem, grow 1 and 2); the routes are the thirds grid.

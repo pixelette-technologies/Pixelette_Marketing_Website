@@ -1870,3 +1870,26 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   `./aboutBuilt` before the partial existed, Turbopack cached the failed
   lookup, and every route returned 500 until the forward was changed to a new
   name (`./builtFlow`). Touching the files did not clear it.
+
+## 30 Sep 2026 — Contact, on the Pixelette Technologies page
+
+- **Gates on the working tree before commit**: tsc clean, eslint clean on
+  the page's files, token gate 0 findings, `main.scss` compiles, contact
+  tests **36/36**, route walk **28/28** against the shared dev server on
+  :3000. The partial was written **before** the index forwarding it, per the
+  Insights entry.
+- **Rendered HTML checked**: one h1, the h2 order Get in touch (hidden),
+  What happens next, Other routes in, Questions worth answering; the form
+  renders (not the governance fallback); ContactPage, BreadcrumbList and
+  FAQPage each present once beside the layout's Organization graph.
+- **Measured in headless Chrome** at 1440, 768 and 390 (reduced motion): no
+  horizontal overflow. At 1440 the offices column is 368px and the card
+  736px; at 768 and below they stack.
+- **Looked at, and looking found one fault the gates passed**: the split
+  sat on the band ground under a hero that fades to white, a hard seam at
+  1440. Fixed (`--color-page`) and looked at again.
+- **Not exercised**: the FAQ opening, hover on the route cards, a form
+  submission. Not seen on a real phone.
+- **A shared-browser slip**: the first screenshots used a Chrome already on
+  :9333, probably another session's, and navigated its tab. The rest ran on
+  an instance of this session's own on :9444.

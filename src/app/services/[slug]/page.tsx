@@ -11,7 +11,9 @@ import {
   ServicesHero,
   ServicesSection
 } from "@/components/ui/services";
+import { SpecialistServicePage } from "@/components/ui/specialist";
 import { servicesData } from "@/data/services/servicesData";
+import { specialistPages } from "@/data/services/specialist";
 import { proofCopy } from "@/data/home";
 import { Metadata } from "next";
 
@@ -34,6 +36,39 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { slug } = await params;
   const pageData = servicesData.find(item => item.route === slug);
   const baseUrl = "https://www.pixelettemarketing.com";
+
+  // 30 Sep 2026: a specialist page takes its title and description from its
+  // own config, written to its display label and proposition. The share
+  // image stays the route's existing one: it is a link-preview card, not page
+  // imagery, and the site has no default to fall back to.
+  const specialist = specialistPages[slug];
+  if (specialist) {
+    const { title, description } = specialist.meta;
+    const url = `${baseUrl}/services/${slug}`;
+    const image = pageData?.image || "/services/heroImageServices.webp";
+    return {
+      title,
+      description,
+      alternates: { canonical: url },
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName: "Pixelette Marketing",
+        images: [{ url: image, width: 1200, height: 630, alt: title }],
+        locale: "en_GB",
+        type: "website"
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [image],
+        creator: "@pixelettemarketing"
+      },
+      robots: { index: true, follow: true }
+    };
+  }
 
   return {
     title: pageData?.metaTitle || "Services",
@@ -81,6 +116,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+
+  // 30 Sep 2026: the specialist service pages (the four Demand & Performance
+  // routes, and Search & Authority's) render one shared structure from their
+  // configs. The URL is unchanged; only the template beneath it is. The
+  // legacy template below still serves the routes not yet migrated.
+  const specialist = specialistPages[slug];
+  if (specialist) return <SpecialistServicePage page={specialist} />;
+
   const pageData = servicesData.find(item => item.route === slug);
   const baseUrl = "https://www.pixelettemarketing.com";
 

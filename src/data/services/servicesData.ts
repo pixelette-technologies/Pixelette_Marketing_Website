@@ -3,7 +3,10 @@ import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
 export const servicesData = [
   {
     id: 1,
-    title: "Social Media Marketing",
+    // 30 Sep 2026: display label only; the route is unchanged. The page renders
+    // from data/services/specialist/demandPerformance.ts, and the fields below
+    // no longer render there. Nav, /services and the footer read this title.
+    title: "Social & Community",
     metaTitle: "Social Media Marketing Agency | Pixelette Marketing",
     metaDescription: "Social media marketing planned around the audiences, platforms and outcomes that matter to your business, and measured on what it produces.",
     metaKeywords: "social media marketing agency, social media marketing services, social media solutions",
@@ -836,7 +839,10 @@ export const servicesData = [
   },
   {
     id: 4,
-    title: "PR",
+    // 30 Sep 2026: display label only; the route is unchanged. The page renders
+    // from data/services/specialist/demandPerformance.ts, and the fields below
+    // no longer render there. Nav, /services and the footer read this title.
+    title: "PR & Earned Media",
     metaTitle: "Public Relations Agency for Next-Gen Companies",
     metaDescription: "PR from Pixelette Marketing: strategic outreach, credible storytelling and coverage that builds lasting visibility.",
     metaKeywords: "public relations agency, public relations services, pr outreach service",
@@ -1119,7 +1125,10 @@ export const servicesData = [
 
   {
     id: 5,
-    title: "Influencer Marketing",
+    // 30 Sep 2026: display label only; the route is unchanged. The page renders
+    // from data/services/specialist/demandPerformance.ts, and the fields below
+    // no longer render there. Nav, /services and the footer read this title.
+    title: "Influencer & Partnerships",
     metaTitle: "Influencer Marketing Agency for B2C & B2B Brands",
     metaDescription: "Influencer marketing for brands that want more than likes: creators chosen for credibility with your audience, and campaigns measured on outcomes.",
     route: "influencer_marketing",
@@ -1325,7 +1334,10 @@ export const servicesData = [
 
   {
     id: 6,
-    title: "Ads & PPC",
+    // 30 Sep 2026: display label only; the route is unchanged. The page renders
+    // from data/services/specialist/demandPerformance.ts, and the fields below
+    // no longer render there. Nav, /services and the footer read this title.
+    title: "Paid Media & PPC",
     metaTitle: "Paid Social Advertising Agency | Pay Per Click (PPC) Agency",
     metaDescription: "Paid ads and PPC campaigns across Google, Meta, LinkedIn and X, planned and optimised to improve return on ad spend.",
     metaKeywords: "paid social advertising agency, paid ads agency, pay per click agency, ppc agency, paid ads services",

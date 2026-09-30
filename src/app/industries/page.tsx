@@ -8,12 +8,12 @@ import { industries, industriesPage } from "@/data/industries/industries";
 const baseUrl = "https://www.pixelettemarketing.com";
 
 // The keywords are unchanged: this is an indexed page and the search intent
-// behind "web3 marketing" and the rest still lands here. Title and description
-// follow the 29 Sep rename to Industries, and the description no longer names
-// the five specialist areas — that "deeper experience" framing is barred from
-// this page by the same instruction.
+// behind "web3 marketing" and the rest still lands here. The title follows the
+// 29 Sep rename to Industries. The description is the final brief's (30 Sep):
+// how the thinking adapts, with no market names stuffed in and no claim to be
+// a specialist in any of them.
 const description =
-  "Every market behaves differently. Pixelette Marketing adapts the approach to the market, audience, buying journey and commercial challenge, across eight broad industries.";
+  "See how Pixelette adapts marketing strategy around different markets, audiences, buying journeys and commercial challenges.";
 
 export const metadata: Metadata = {
   title: "Industries | Pixelette Marketing",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 // Rebuilt to the master structure correction. FOUR CHAPTERS AND ONLY FOUR:
 //
 //   01 Hero                  different markets, different dynamics
-//   02 Industry experience   eight names, one changing stage
+//   02 Market explorer       eight names, one panel, the Market journey
 //   03 Work in practice      BlockGuard leading, WebBookingPro supporting
 //   04 Final CTA
 //
@@ -67,9 +67,11 @@ export const metadata: Metadata = {
 // The page answers how the approach adapts to a market — not how many clients
 // Pixelette has in it. Nothing below claims a track record.
 //
-// VISUALS ARE STRUCTURAL. The hero's final art direction and the experience's
-// final treatment are to be supplied separately; this establishes the order,
-// the copy and the behaviour on the existing tokens.
+// 30 Sep 2026, THE FINAL BRIEF: the same four chapters, finished. No hero
+// image — the eight-market explorer and its Market journey are the page's
+// visual — and Work in practice redesigned so its hierarchy follows the
+// strength of the evidence. No stock or generated imagery anywhere, and no
+// sector routes: the five legacy /industries/[slug] pages are untouched.
 
 export default function IndustriesIndexPage() {
   const { hero, explorer, close } = industriesPage;
@@ -127,7 +129,7 @@ export default function IndustriesIndexPage() {
         </Container>
       </div>
 
-      {/* 02 The interactive industry experience. */}
+      {/* 02 The eight-market explorer. */}
       <div className='sec'>
         <Container className='main'>
           <section aria-labelledby='explorer-title'>

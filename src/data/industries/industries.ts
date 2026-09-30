@@ -1,15 +1,3 @@
-import type { ComponentType } from "react";
-import {
-  BagIcon,
-  ChipIcon,
-  CoinsIcon,
-  FactoryIcon,
-  GraduationIcon,
-  GroupIcon,
-  HeartIcon,
-  HouseIcon
-} from "@/assets/sectors";
-
 // INDUSTRIES — THE SITE'S ONE MARKET TAXONOMY. 29 Sep 2026.
 //
 // Replaces data/industries/whoWeHelp.ts. The locked information architecture
@@ -21,46 +9,43 @@ import {
 // "Manufacturing alone" — those sit inside the broad categories. Reading order
 // is the specification's and carries no ranking.
 //
-// WHAT THE PAGE ANSWERS: how does Pixelette's approach adapt to a market? NOT:
-// how many clients has Pixelette served in it? So every line below describes
-// the market and the approach, and none claims a client, a track record or a
-// figure. "Built to support", never "clients in".
+// WHAT THE PAGE ANSWERS: how does Pixelette's thinking change with a market?
+// NOT: how many clients has Pixelette served in it? So every line below
+// describes the market and the approach, and none claims a client, a track
+// record, a specialism or a figure. "Markets we can support", never
+// "industries we specialise in".
 //
-// THE market / challenge / approach LINES ARE AUTHORED HERE, not supplied.
-// The specification asks for all three per industry and writes none of them;
-// they are drafted to its rules (concise, no statistics, no implied
-// experience) and have not been seen by management.
+// 30 Sep 2026: EVERY LINE BELOW IS NOW SUPPLIED, by the final Industries
+// implementation brief — descriptor, the five journey stages, market,
+// challenge and approach, verbatim. The 29 Sep drafts they replace were
+// authored here and never seen by management. Change none of it without an
+// instruction.
+//
+// THE SECTOR ICONS AND TONES WENT THE SAME DAY. The brief makes the Market
+// journey the visual device and removes the small decorative icon; the eight
+// tone pairs only ever tinted that icon. The drawings stay in assets/sectors.
 //
 // WHAT WENT WITH whoWeHelp.ts: the "Deeper experience" list of five specialist
 // pages (barred from Industries by the same specification — the routes
 // themselves stay), the business stages, and "Don't see your sector?". The
 // Industries page has four chapters and none of those is one of them.
 
-/** The tint behind an industry's mark. The values are --tone-*-tint and
- *  --tone-*-mark in _tokens.scss; read the note there before adding a hue. */
-export type IndustryTone =
-  | "violet"
-  | "rose"
-  | "green"
-  | "pink"
-  | "amber"
-  | "blue"
-  | "indigo"
-  | "teal";
+/** Five stages, always five: the journey draws five nodes on one line. */
+export type MarketJourney = readonly [string, string, string, string, string];
 
 export interface Industry {
   /** Stable key for ids and anchors. */
   id: string;
   name: string;
-  /** One line of scope: what sits inside the category. */
-  scope: string;
-  icon: ComponentType;
-  tone: IndustryTone;
+  /** One line: what sits inside the category. */
+  descriptor: string;
+  /** How a buyer in this market moves towards a decision. Not a funnel. */
+  journey: MarketJourney;
   /** What is commercially distinctive about the market. */
   market: string;
   /** The marketing challenge that follows from it. */
   challenge: string;
-  /** How Pixelette would approach it, in the five capabilities' terms. */
+  /** How Pixelette would approach it. */
   approach: string;
 }
 
@@ -68,129 +53,140 @@ export const industries: Industry[] = [
   {
     id: "technology",
     name: "Technology & Innovation",
-    scope: "Software, SaaS, AI, Web3 and emerging technology",
-    icon: ChipIcon,
-    tone: "violet",
+    descriptor: "Software, SaaS, AI, Web3 and emerging technology",
+    journey: [
+      "Problem",
+      "Understand",
+      "Technical confidence",
+      "Commercial buy-in",
+      "Decision"
+    ],
     market:
-      "Products change quickly, categories are crowded and buyers often need a product explained before they can compare it.",
+      "Products and categories can change quickly, and buyers may need to understand something new before they can compare alternatives.",
     challenge:
-      "Making a complex or new product easy to understand, and credible to technical and commercial buyers alike.",
+      "Make complex or unfamiliar products easy to understand without removing the substance technical and commercial buyers need to trust them.",
     approach:
-      "Sharpen the positioning first, then build search authority, content and demand around the problem the product solves."
+      "Clarify positioning first, build authority around the problem the product solves, then connect search, content and demand around the buying journey."
   },
   {
     id: "financial",
     name: "Financial Services",
-    scope: "Fintech, payments, banking, insurance and investment services",
-    icon: CoinsIcon,
-    tone: "rose",
+    descriptor: "Financial products, platforms and regulated services",
+    journey: ["Need", "Trust", "Evidence", "Risk confidence", "Decision"],
     market:
-      "Trust is part of the product, regulation shapes what can be said and buyers take their time.",
+      "Buyers often weigh financial value alongside credibility, security, regulation and long-term confidence in the provider.",
     challenge:
-      "Standing out in a cautious, closely regulated market without overpromising.",
+      "Build confidence without becoming generic, and explain complex offers clearly enough for both commercial and compliance-sensitive audiences.",
     approach:
-      "Clear, careful messaging, authority content and nurture journeys that build confidence across a longer decision."
+      "Lead with credibility, evidence and clarity, then use authority, education and targeted demand to reduce perceived risk throughout the journey."
   },
   {
     id: "healthcare",
     name: "Healthcare & Wellness",
-    scope: "Health, care, wellness and health technology",
-    icon: HeartIcon,
-    tone: "green",
+    descriptor: "Health, wellness and care-related services",
+    journey: ["Need", "Reassurance", "Evidence", "Confidence", "Action"],
     market:
-      "Decisions are personal, evidence matters and more than one person often shapes the choice.",
+      "Decisions can be personal, high-stakes and influenced by evidence, reputation, accessibility and confidence in the provider.",
     challenge:
-      "Reaching the right audience with messaging that is sensitive, accurate and credible.",
+      "Communicate benefits clearly without overclaiming, while helping different audiences feel informed and reassured.",
     approach:
-      "Careful positioning, genuinely useful content and search visibility that earn trust before asking for action."
+      "Prioritise clarity, responsible evidence and strong confidence signals, then connect useful content and demand activity to the specific decision journey."
   },
   {
     id: "consumer",
     name: "Consumer & Retail",
-    scope: "Consumer brands, e-commerce, retail and lifestyle",
-    icon: BagIcon,
-    tone: "pink",
+    descriptor: "Consumer brands, ecommerce and retail",
+    journey: ["Attention", "Relevance", "Preference", "Purchase", "Repeat"],
     market:
-      "Attention moves quickly, choice is wide and the path from discovery to purchase can be short.",
+      "Choice is abundant, attention is limited and buying decisions can happen quickly across multiple touchpoints.",
     challenge:
-      "Being noticed and remembered when every brand is competing for the same moment.",
+      "Create enough relevance and distinctiveness to turn short attention into preference and action.",
     approach:
-      "Distinctive positioning, social and paid demand, and conversion journeys built to turn interest into sales."
+      "Sharpen the reason to choose, create demand around meaningful audience moments, and remove friction between discovery, purchase and repeat behaviour."
   },
   {
     id: "property",
     name: "Property & Real Estate",
-    scope: "Property, development, PropTech and related services",
-    icon: HouseIcon,
-    tone: "amber",
+    descriptor: "Property, development and related services",
+    journey: ["Need", "Explore", "Confidence", "Proof", "Decision"],
     market:
-      "High-value decisions, long consideration and markets that are often local.",
+      "Buying cycles can be long, high-value and shaped by location, confidence, timing and the quality of information available.",
     challenge:
-      "Staying visible and trusted for as long as a buyer takes to decide.",
+      "Maintain confidence and momentum across a journey that may involve multiple stakeholders and extended consideration.",
     approach:
-      "Local search, targeted campaigns and lead nurture that keep the right buyers engaged until they are ready."
+      "Build clear positioning and searchable authority, then support the decision journey with evidence, useful content and well-timed conversion points."
   },
   {
     id: "professional",
     name: "Professional & B2B Services",
-    scope: "Consultancies, legal, recruitment and business services",
-    icon: GroupIcon,
-    tone: "blue",
+    descriptor: "Consultancies, agencies and specialist B2B providers",
+    journey: [
+      "Problem",
+      "Expertise",
+      "Consensus",
+      "Commercial case",
+      "Decision"
+    ],
     market:
-      "Buyers are choosing expertise and a relationship, usually with several stakeholders involved.",
+      "Buyers are often purchasing expertise they cannot fully evaluate before engagement, with multiple stakeholders involved.",
     challenge:
-      "Showing expertise without sounding like every other firm, and turning reputation into qualified pipeline.",
+      "Turn invisible expertise into something buyers can understand, believe and justify internally.",
     approach:
-      "Thought leadership, search authority and pipeline programmes that connect credibility to sales conversations."
+      "Make the expertise and difference explicit, build authority around high-value problems, and create content and demand that support stakeholder consensus."
   },
   {
     id: "education",
     name: "Education & Learning",
-    scope: "Education, training and EdTech",
-    icon: GraduationIcon,
-    tone: "indigo",
+    descriptor: "Education, training and learning products",
+    journey: ["Need", "Fit", "Confidence", "Commitment", "Outcome"],
     market:
-      "Enrolment follows the calendar, and learners, parents and employers can all influence the decision.",
+      "Decisions may involve learners, parents, employers or institutions, each with different definitions of value and success.",
     challenge:
-      "Reaching learners at the right moment and helping them choose with confidence.",
+      "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance.",
     approach:
-      "Search and content built around the questions learners ask, with campaigns and nurture timed to intake."
+      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards confident enrolment."
   },
   {
     id: "industrial",
     name: "Industrial & Commercial",
-    scope: "Manufacturing, engineering, logistics and commercial operations",
-    icon: FactoryIcon,
-    tone: "teal",
+    descriptor: "Industrial, manufacturing and commercial markets",
+    journey: [
+      "Requirement",
+      "Capability",
+      "Technical proof",
+      "Commercial confidence",
+      "Decision"
+    ],
     market:
-      "Technical products, specialist buyers and sales built on specification and trust.",
+      "Purchases can be technical, high-value and relationship-driven, with long sales cycles and formal procurement requirements.",
     challenge:
-      "Translating technical capability into commercial value for engineers, procurement and decision-makers.",
+      "Make capability easy to verify while supporting both technical evaluation and the commercial case for change.",
     approach:
-      "Clear value propositions, specialist content and lead generation that support a considered, multi-stage sale."
+      "Lead with proof, technical authority and clear commercial value, then support complex buying groups with targeted content, search and demand activity."
   }
 ];
 
-/** The three labels each industry's stage uses, in reading order. */
+/** The labels each market's panel uses, in reading order. */
 export const industryLabels = {
+  journey: "Market journey",
   market: "The market",
   challenge: "The challenge",
   approach: "Our approach"
 } as const;
 
 // --- /industries ------------------------------------------------------------
-// Four chapters and no others: hero, the interactive experience, Work in
+// Four chapters and no others: hero, the interactive explorer, Work in
 // practice, the final call to action. The URL stays /industries.
 //
-// The hero's final art direction is to follow separately; this is the
-// structure and the specification's words. No full stops on the headings.
+// 30 Sep 2026: the final brief's words. No hero image, on instruction — the
+// explorer directly beneath is the page's visual. No full stops on headings.
 
 export const industriesPage = {
   hero: {
     eyebrow: "Industries",
     headline: { lead: "Different markets", accent: "Different dynamics" },
-    principle: "One principle: understand before we act",
-    lead: "Every market behaves differently. Pixelette adapts the marketing approach around the market, audience, buying journey and commercial challenge."
+    principle: "Understand before we act",
+    lead: "Every market behaves differently. Pixelette adapts the marketing approach around the audience, buying journey, competitive environment and commercial challenge."
   },
   explorer: {
     eyebrow: "Eight markets",

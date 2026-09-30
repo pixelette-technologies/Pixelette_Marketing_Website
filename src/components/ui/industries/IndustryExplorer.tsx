@@ -1,34 +1,83 @@
 "use client";
 
-import { useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { industries, industryLabels } from "@/data/industries/industries";
+import MarketJourney from "./MarketJourney";
 
-// /industries, chapter 02: the interactive industry experience. 29 Sep 2026.
+// /industries, chapter 02: the eight-market explorer. 30 Sep 2026, to the final
+// Industries brief.
 //
-// THE SPECIFICATION'S SHAPE: industry names as a selector, and ONE changing
-// stage. Only one industry is dominant at a time. Not eight cards, and no
-// stock photography — the stage carries the market's mark and its words.
+// DIFFERENT MARKET → DIFFERENT BUYING JOURNEY → DIFFERENT MARKETING THINKING.
+// One selector, one panel, and the Market journey as the panel's visual. No
+// icons, no imagery and no card grid: the interaction is the picture.
 //
-// STRUCTURE ONLY. The final visual treatment of this chapter is to be supplied
-// separately; what is here is the interaction and the content model, on the
-// site's existing tokens, so the art can change without the behaviour or the
-// copy moving.
+// A WAI-ARIA TABLIST with automatic activation. Click, tap and keyboard select
+// (arrows, Home, End). NOTHING SELECTS ON HOVER any more — the brief bars
+// depending on hover, and a hover select replayed the journey every time a
+// mouse crossed the list. Hover is a colour change and nothing else.
 //
-// A WAI-ARIA TABLIST. Click, tap and keyboard select (arrows, Home, End); a
-// mouse selects on hover as well, which is what "hover" in the specification
-// asks for. Hover is mouse-only — on touch, pointerenter fires with the tap
-// and would select twice.
+// ALL EIGHT PANELS ARE IN THE HTML, stacked in one grid cell. The inactive
+// seven are visibility: hidden, which takes them out of the accessibility tree
+// and the tab order as `hidden` did, but lets two panels overlap for the
+// crossfade and holds the frame at the tallest panel's height, so the section
+// below never jumps between markets. A crawler and a reader without
+// JavaScript still get the whole page; Technology & Innovation shows first.
 //
-// ALL EIGHT PANELS ARE IN THE HTML. The inactive seven are `hidden`, so a
-// crawler, a reader without JavaScript and a find-in-page all get the whole
-// of the page's content, and the first industry is showing before hydration.
+// THE MOTION IS ONE SEQUENCE, about 600ms, run once per selection:
+//   1. the left highlight slides to the new market (desktop)
+//   2–3. the name, descriptor and three points crossfade
+//   4–5. the new journey's labels arrive and the signal travels its five stages
+// then it stops. data-journey is "armed" until the explorer is first on screen,
+// so the first journey plays where it can be seen rather than off-screen at
+// load. Every motion rule sits under prefers-reduced-motion: no-preference, so
+// with reduced motion the states change and nothing travels.
+
+type JourneyState = "armed" | "play";
 
 export default function IndustryExplorer() {
   const [active, setActive] = useState(0);
+  const [journey, setJourney] = useState<JourneyState | undefined>();
+  const [bar, setBar] = useState<{ top: number; height: number } | null>(null);
+  const root = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLDivElement>(null);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Arm the first journey, and play it when the explorer is first in view.
+  useEffect(() => {
+    const node = root.current;
+    if (!node || !("IntersectionObserver" in window)) return;
+    setJourney(state => state ?? "armed");
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          setJourney("play");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  // The sliding highlight. Measured, not computed, because a long name can
+  // wrap and make its row taller than the rest.
+  useEffect(() => {
+    const container = list.current;
+    if (!container) return;
+    const measure = () => {
+      const tab = tabs.current[active];
+      if (tab) setBar({ top: tab.offsetTop, height: tab.offsetHeight });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [active]);
 
   const select = (index: number, focus = false) => {
     const next = (index + industries.length) % industries.length;
+    setJourney("play");
     setActive(next);
     if (focus) tabs.current[next]?.focus();
   };
@@ -49,13 +98,25 @@ export default function IndustryExplorer() {
   };
 
   return (
-    <div className='industryExplorer'>
+    <div className='marketExplorer' ref={root} data-journey={journey}>
       <div
-        className='industryExplorer__list'
+        className='marketExplorer__list'
+        ref={list}
         role='tablist'
-        aria-label='Industries'
+        aria-label='Eight markets'
         aria-orientation='vertical'
+        data-indicator={bar ? "" : undefined}
       >
+        {bar && (
+          <span
+            className='marketExplorer__bar'
+            aria-hidden='true'
+            style={{
+              transform: `translateY(${bar.top}px)`,
+              height: bar.height
+            }}
+          />
+        )}
         {industries.map((industry, index) => {
           const selected = index === active;
           return (
@@ -66,55 +127,49 @@ export default function IndustryExplorer() {
               }}
               type='button'
               role='tab'
-              id={`industry-tab-${industry.id}`}
+              id={`market-tab-${industry.id}`}
               aria-selected={selected}
-              aria-controls={`industry-panel-${industry.id}`}
+              aria-controls={`market-panel-${industry.id}`}
               tabIndex={selected ? 0 : -1}
-              className='industryExplorer__tab'
+              className='marketExplorer__tab'
               onClick={() => select(index)}
-              onPointerEnter={event => {
-                if (event.pointerType === "mouse") select(index);
-              }}
               onKeyDown={onKeyDown}
             >
-              <span className='industryExplorer__index' aria-hidden='true'>
+              <span className='marketExplorer__index' aria-hidden='true'>
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className='industryExplorer__name'>{industry.name}</span>
+              <span className='marketExplorer__name'>{industry.name}</span>
             </button>
           );
         })}
       </div>
 
-      <div className='industryExplorer__stage'>
+      <div className='marketExplorer__stage'>
         {industries.map((industry, index) => {
-          const Icon = industry.icon;
+          const selected = index === active;
           return (
             <section
               key={industry.id}
               role='tabpanel'
-              id={`industry-panel-${industry.id}`}
-              aria-labelledby={`industry-tab-${industry.id}`}
-              hidden={index !== active}
-              className={`industryStage industryStage--${industry.tone}`}
+              id={`market-panel-${industry.id}`}
+              aria-labelledby={`market-tab-${industry.id}`}
+              tabIndex={selected ? 0 : -1}
+              className={`marketPanel${selected ? " is-active" : ""}`}
             >
-              <div className='industryStage__head'>
-                <span className='industryStage__mark' aria-hidden='true'>
-                  <Icon />
-                </span>
-                <div>
-                  <h3 className='industryStage__name'>{industry.name}</h3>
-                  <p className='industryStage__scope'>{industry.scope}</p>
-                </div>
-              </div>
+              <header className='marketPanel__head'>
+                <h3 className='marketPanel__name'>{industry.name}</h3>
+                <p className='marketPanel__descriptor'>{industry.descriptor}</p>
+              </header>
 
-              <dl className='industryStage__points'>
+              <MarketJourney id={industry.id} stages={industry.journey} />
+
+              <dl className='marketPanel__points'>
                 {(["market", "challenge", "approach"] as const).map(key => (
-                  <div className='industryStage__point' key={key}>
-                    <dt className='industryStage__label'>
+                  <div className='marketPanel__point' key={key}>
+                    <dt className='marketPanel__label'>
                       {industryLabels[key]}
                     </dt>
-                    <dd className='industryStage__text'>{industry[key]}</dd>
+                    <dd className='marketPanel__text'>{industry[key]}</dd>
                   </div>
                 ))}
               </dl>

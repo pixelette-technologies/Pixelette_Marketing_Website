@@ -1635,10 +1635,15 @@ export const servicesData = [
 
   {
     id: 7,
-    title: "Marketing Analytics & Reporting",
-    metaTitle: "Marketing Analytics Agency | Pixelette Marketing",
-    metaDescription: "Make every business decision count with our Marketing Analytics Services to drive clarity, performance and growth.",
-    metaKeywords: "marketing analytics agency, marketing analytics services, analytics agency",
+    // 30 Sep 2026: the Growth Intelligence specialist page. The display name
+    // changed from "Marketing Analytics & Reporting"; the route did not. The
+    // page renders from data/services/specialist/growthIntelligence.ts — the
+    // legacy fields below no longer render and stay only until the route is
+    // fully migrated. Nav, /services and the footer read this title.
+    title: "Marketing Analytics & Measurement",
+    metaTitle: "Marketing Analytics & Measurement | Pixelette Marketing",
+    metaDescription: "Marketing analytics and measurement designed to connect performance, customer and pipeline data and turn evidence into clearer commercial decisions.",
+    metaKeywords: "marketing analytics, marketing measurement, attribution, marketing reporting",
     route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
     subHeading:

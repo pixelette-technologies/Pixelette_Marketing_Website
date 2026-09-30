@@ -60,6 +60,16 @@
 //    metric chip's edge and fill brighten on hover. None loops; all of it
 //    goes under a reduce preference. _specialist.scss.
 //
+// 11. THE GROWTH INTELLIGENCE VIEW (/services/marketing_analytics_and_reporting),
+//    30 Sep 2026, required in terms by its brief. Once, on first view, the
+//    figures count up, the chart lines draw (about 850ms), the bars grow and
+//    the contribution ring fills; the hero's compact preview does the same.
+//    On a mode change (Growth / Efficiency / Pipeline) the lines move to
+//    their new points, bars and ring transition (600-700ms) and the figures
+//    and insight copy fade and rise in (about 250ms). Then it is still:
+//    nothing loops, pulses or simulates live data. Under a reduce preference
+//    every state arrives at once. _growthIntelligence.scss.
+//
 // 6-8. THE HOME PAGE'S ILLUSTRATED SECTIONS, 02-04 — added 28 Sep 2026 by a
 //    locked management specification that requires the motion in terms, and
 //    sets a deliberate rhythm: controlled (the hero), energetic (02), calm

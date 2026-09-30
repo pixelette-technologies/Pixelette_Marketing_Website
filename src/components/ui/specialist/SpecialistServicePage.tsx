@@ -4,6 +4,7 @@ import type { SpecialistItem, SpecialistPageConfig } from "@/data/services/speci
 import Link from "next/link";
 import CapabilityConnections from "./CapabilityConnections";
 import EarnsItsPlace from "./EarnsItsPlace";
+import { GrowthIntelligenceDemo, GrowthPreview } from "./growth";
 import MeasureBand from "./MeasureBand";
 import SectionHead from "./SectionHead";
 import ServiceGroupRows from "./ServiceGroupRows";
@@ -114,6 +115,7 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
         heading={page.hero.heading}
         lead={page.hero.lead}
         cta={{ label: cta.label, href: cta.href }}
+        aside={page.demo ? <GrowthPreview demo={page.demo} /> : undefined}
       />
 
       {/* 02 */}
@@ -124,6 +126,9 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
         items={page.earnsItsPlace.items}
         market={page.earnsItsPlace.market}
       />
+
+      {/* Growth Intelligence only: its illustrative view, labelled so. */}
+      {page.demo && <GrowthIntelligenceDemo demo={page.demo} />}
 
       {/* 03 */}
       <Container className='main'>

@@ -1,6 +1,7 @@
 import { servicesData } from "@/data/services/servicesData";
 import { demandPerformancePages } from "./demandPerformance";
 import { searchAuthorityPages } from "./searchAuthority";
+import { growthIntelligencePages } from "./growthIntelligence";
 import type { SpecialistPageConfig } from "./types";
 
 export type {
@@ -16,7 +17,8 @@ export type {
 // listed here; the page file needs no edit.
 const pages: SpecialistPageConfig[] = [
   ...demandPerformancePages,
-  ...searchAuthorityPages
+  ...searchAuthorityPages,
+  ...growthIntelligencePages
 ];
 
 export const specialistPages: Record<string, SpecialistPageConfig> =

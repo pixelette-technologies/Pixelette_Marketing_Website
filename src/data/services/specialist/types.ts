@@ -21,6 +21,8 @@
 // wording (see SPECIALIST_DEFAULTS in SpecialistServicePage). A page overrides
 // one only when its own brief says something different.
 
+import type { GrowthDemoConfig } from "./growthIntelligenceDemo";
+
 export interface SpecialistItem {
   title: string;
   body: string;
@@ -77,6 +79,11 @@ export interface SpecialistPageConfig {
     market?: string;
   };
 
+  /** Growth Intelligence only (30 Sep 2026): the interactive Growth
+   *  Intelligence view, rendered after "When this earns its place", and its
+   *  compact preview in the hero. ILLUSTRATIVE DATA, labelled so on the page.
+   *  Every other specialist page leaves it out and stays typography-only. */
+  demo?: GrowthDemoConfig;
 
   services: SpecialistSectionHead & {
     items: [SpecialistItem, SpecialistItem, SpecialistItem, SpecialistItem];

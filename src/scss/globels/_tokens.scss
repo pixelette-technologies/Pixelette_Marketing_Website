@@ -285,6 +285,17 @@
   --color-pink: #d63d7c; //      4.36 — markers, selected, large result headings
   --color-pink-text: #c8306e; // 5.12 — small pink labels and eyebrows
 
+  // --- Growth Intelligence view, 30 Sep 2026 ----------------------------
+  // The Marketing Analytics & Measurement brief uses the same four values
+  // above as its hierarchy (so the widening above extends to that page too),
+  // plus "restrained neutral tones" for its illustrative charts. These two
+  // are the ring's third and fourth steps after burgundy and pink, FOR THE
+  // GROWTH INTELLIGENCE VIEW ONLY. Neither carries text and both fall under
+  // 3:1 on white, so every mark drawn in them has its label and value printed
+  // beside it (see _growthIntelligence.scss).
+  --color-chart-neutral: #a8949b; // 2.77 — warm grey, the ring's third step
+  --color-chart-blush: #f0b8cf; //  1.64 — blush, the ring's fourth step
+
   // --- Signature device -------------------------------------------------
   // Signal-capped section rules: a short segment of the marking tone on a
   // section's top hairline, and the same segment on the leading edge of

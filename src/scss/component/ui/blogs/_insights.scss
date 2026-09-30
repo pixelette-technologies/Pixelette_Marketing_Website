@@ -1,0 +1,1269 @@
+// /blog-list, the Insights page. 30 Sep 2026, to the final Insights brief.
+//
+// COLOUR. The brief's four values are the ones _tokens.scss already holds for
+// the Strategy diagnostic, the specialist pages and /industries: plum ink,
+// burgundy, pink and pink-text. --color-pink is 4.36 on white, so it marks,
+// fills and underlines; small pink words are --color-pink-text.
+//
+// MOTION. Every transition and animation below sits under
+// prefers-reduced-motion: no-preference. With reduced motion the states still
+// change (a pressed filter, a lit sample answer) and nothing travels.
+//
+// LAYOUT. Flex bases and the thirds grid fold on their own. The one media
+// query is the site's one breakpoint, and it only turns the filter row into a
+// sideways-scrolling strip.
+
+.ix-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// One link per card, stretched over it. The ring moves onto the stretched
+// area so keyboard focus outlines the whole card, not one word.
+.ixStretch {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+// --- Shared labels ------------------------------------------------------------
+
+// The section label: the real <h2>, set as an editorial running head on a
+// hairline rather than as a headline. --large for the two sections that open
+// a band of their own.
+.ixLabel {
+  margin: 0 0 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-line);
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-plum-ink);
+}
+
+.ixLabel--large {
+  font-size: var(--fs-h2);
+  letter-spacing: -0.014em;
+  margin-bottom: 2rem;
+}
+
+.ixTag {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.ixTag--format {
+  color: var(--color-pink-text);
+}
+
+.ixTag--cap {
+  display: inline-flex;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  color: var(--color-burgundy);
+  letter-spacing: 0.08em;
+}
+
+.ixMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.875rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+// --- 01 Hero ------------------------------------------------------------------
+
+.ixHero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem 3rem;
+  padding-block: var(--sec-y) var(--sec-y-sm);
+}
+
+.ixHero__copy {
+  flex: 1 1 28rem;
+
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--color-pink-text);
+  }
+
+  & > .h1p {
+    color: var(--color-burgundy);
+    max-width: 14ch;
+  }
+
+  & > .lead {
+    margin-top: 1.5rem;
+    max-width: 34rem;
+    color: var(--color-plum-ink);
+  }
+}
+
+.ixHero__secondary {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-body);
+}
+
+// The collage. A square-ish stage; every layer is placed in percentages so the
+// composition scales as one piece from 320px to 1440px.
+.ixHero__stage {
+  --ix-px: 0;
+  --ix-py: 0;
+  position: relative;
+  flex: 1 1 24rem;
+  max-width: 33rem;
+  aspect-ratio: 1.1;
+  isolation: isolate;
+}
+
+.ixHero__disc {
+  position: absolute;
+  left: 16%;
+  top: 4%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-pink);
+  z-index: -1;
+}
+
+// The cut-out: greyscale, torn along two edges, the same treatment the old
+// collage gave its photograph.
+.ixHero__photo {
+  position: absolute;
+  left: 4%;
+  top: 22%;
+  width: 84%;
+  aspect-ratio: 1.42;
+  clip-path: polygon(
+    0% 6%, 7% 2%, 15% 5%, 26% 0%, 38% 4%, 51% 1%, 63% 5%, 76% 1%, 88% 4%, 100% 0%,
+    98% 100%, 86% 97%, 72% 100%, 60% 96%, 47% 100%, 33% 97%, 20% 100%, 9% 96%, 2% 100%
+  );
+
+  img {
+    object-fit: cover;
+    object-position: 50% 62%;
+    filter: grayscale(1) contrast(1.08) brightness(1.04);
+  }
+}
+
+.ixHero__note {
+  position: absolute;
+  right: 0;
+  top: 2%;
+  width: 36%;
+  padding: 0.875rem 0.875rem 1.125rem;
+  background: var(--room-light);
+  box-shadow: var(--shadow-card);
+  font-family: var(--font-hand);
+  font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem);
+  line-height: 1.1;
+  color: var(--color-plum-ink);
+  rotate: 4deg;
+}
+
+.ixHero__slip {
+  position: absolute;
+  left: 0;
+  bottom: 9%;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-strong);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
+  color: var(--color-plum-ink);
+  rotate: -2deg;
+
+  span {
+    margin-right: 0.375rem;
+    color: var(--color-pink-text);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+}
+
+.ixHero__mark {
+  position: absolute;
+  right: 7%;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: clamp(3.5rem, 2.8rem + 2.4vw, 4.75rem);
+  aspect-ratio: 1;
+  background: var(--color-burgundy);
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2.8rem + 2.4vw, 4.75rem);
+  line-height: 1;
+  color: var(--color-page);
+  padding-top: 0.35em;
+  box-sizing: border-box;
+}
+
+@keyframes ixRise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixHero__copy > * {
+    animation: ixRise 640ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  .ixHero__copy > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .ixHero__copy > :nth-child(3) {
+    animation-delay: 160ms;
+  }
+
+  .ixHero__copy > :nth-child(4) {
+    animation-delay: 240ms;
+  }
+
+  // Depth: each layer answers the pointer by its own distance, eased so it
+  // settles rather than tracks. Nothing moves until the pointer does.
+  .ixHero__disc,
+  .ixHero__photo,
+  .ixHero__note,
+  .ixHero__slip,
+  .ixHero__mark {
+    transition: translate 700ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+
+  .ixHero__disc {
+    translate: calc(var(--ix-px) * -6px) calc(var(--ix-py) * -6px);
+  }
+
+  .ixHero__photo {
+    translate: calc(var(--ix-px) * 6px) calc(var(--ix-py) * 5px);
+  }
+
+  .ixHero__note {
+    translate: calc(var(--ix-px) * 14px) calc(var(--ix-py) * 12px);
+  }
+
+  .ixHero__slip {
+    translate: calc(var(--ix-px) * 12px) calc(var(--ix-py) * 10px);
+  }
+
+  .ixHero__mark {
+    translate: calc(var(--ix-px) * 10px) calc(var(--ix-py) * 14px);
+  }
+}
+
+// --- 02 Featured thinking and 03 On our radar ---------------------------------
+
+.ixLead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.ixFeature {
+  flex: 999 1 34rem;
+  min-width: min(100%, 34rem);
+}
+
+.ixFeature__card {
+  position: relative;
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.ixFeature__visual {
+  padding: clamp(1.25rem, 0.8rem + 1.8vw, 2.25rem);
+  background:
+    radial-gradient(60% 80% at 80% 10%, var(--signal-wash) 0%, transparent 70%),
+    var(--color-band);
+  border-bottom: 1px solid var(--color-line-card);
+}
+
+.ixFeature__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+}
+
+.ixFeature__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.014em;
+  color: var(--color-plum-ink);
+  text-wrap: balance;
+}
+
+.ixFeature__deck {
+  margin: 0;
+  max-width: 40rem;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.ixFeature__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 0.25rem;
+  font-weight: 600;
+  color: var(--color-burgundy);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+  text-decoration-color: var(--color-pink);
+}
+
+// The answer engine.
+.ixAnswer {
+  display: grid;
+  gap: 0.875rem;
+  max-width: 34rem;
+  margin-inline: auto;
+}
+
+.ixAnswer__buyer {
+  justify-self: start;
+  max-width: 82%;
+}
+
+.ixAnswer__who,
+.ixAnswer__sourcesLabel {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.ixAnswer__question {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  border-radius: 14px 14px 14px 4px;
+  background: var(--color-burgundy);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--color-page);
+}
+
+.ixAnswer__engine {
+  position: relative;
+  padding: 0.875rem 1rem 1rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 10px;
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+
+  // The answer zone's one highlight.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-pink) 28%, transparent);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.ixAnswer__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-plum-ink);
+}
+
+.ixAnswer__ring {
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid var(--color-pink);
+  border-radius: 50%;
+}
+
+.ixAnswer__note {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+}
+
+.ixAnswer__lines {
+  display: grid;
+  gap: 0.375rem;
+  margin: 0.75rem 0;
+
+  span {
+    height: 0.4375rem;
+    border-radius: 4px;
+    background: var(--color-line);
+  }
+
+  span:nth-child(1) {
+    width: 94%;
+  }
+
+  span:nth-child(2) {
+    width: 80%;
+  }
+
+  span:nth-child(3) {
+    width: 58%;
+  }
+}
+
+.ixAnswer__shortlist {
+  display: grid;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.375rem 0.5rem;
+    border-radius: 6px;
+    background: var(--color-brand-tint);
+  }
+
+  li[data-named="false"] {
+    background: transparent;
+    border: 1px dashed var(--color-line-strong);
+  }
+}
+
+.ixAnswer__bar {
+  flex: 1;
+  height: 0.5rem;
+  border-radius: 4px;
+  background: var(--color-chart-blush);
+
+  [data-named="false"] & {
+    background: var(--color-line);
+  }
+}
+
+.ixAnswer__state {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-burgundy);
+
+  [data-named="false"] & {
+    color: var(--color-pink-text);
+  }
+}
+
+.ixAnswer__sites {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+
+  span {
+    height: 2.75rem;
+    border: 1px solid var(--color-line-card);
+    border-radius: 6px;
+    background:
+      linear-gradient(var(--color-line), var(--color-line)) 0.5rem 0.625rem / 45% 0.3125rem no-repeat,
+      linear-gradient(var(--color-line), var(--color-line)) 0.5rem 1.25rem / 70% 0.25rem no-repeat,
+      linear-gradient(var(--color-line), var(--color-line)) 0.5rem 1.75rem / 55% 0.25rem no-repeat,
+      var(--color-page);
+  }
+}
+
+@keyframes ixIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes ixPulse {
+  0% {
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixAnswer[data-seq="armed"] {
+    .ixAnswer__buyer,
+    .ixAnswer__engine,
+    .ixAnswer__sources {
+      opacity: 0;
+    }
+  }
+
+  .ixAnswer[data-seq="play"] {
+    .ixAnswer__buyer {
+      animation: ixIn 420ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+    }
+
+    // The answer follows the question by 320ms, inside the brief's 250-400.
+    .ixAnswer__engine {
+      animation: ixIn 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 320ms both;
+    }
+
+    .ixAnswer__engine::after {
+      animation: ixPulse 1100ms ease-out 820ms 1 both;
+    }
+
+    .ixAnswer__sources {
+      animation: ixIn 420ms cubic-bezier(0.22, 0.61, 0.36, 1) 520ms both;
+    }
+  }
+
+  .ixFeature__card {
+    transition:
+      transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      box-shadow 320ms ease;
+  }
+
+  .ixFeature__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-raised);
+  }
+
+  .ixAnswer__engine {
+    transition: border-color 320ms ease;
+  }
+}
+
+.ixFeature__card:hover .ixAnswer__engine {
+  border-color: var(--color-pink);
+}
+
+// On our radar.
+.ixRadar {
+  flex: 1 1 18rem;
+}
+
+.ixRadar__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ixRadar__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.25rem 0 1.25rem 1.125rem;
+  border-bottom: 1px solid var(--color-line);
+
+  &:first-child {
+    padding-top: 0.25rem;
+  }
+
+  // The accent line: drawn down the left edge on hover or focus.
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 1.25rem;
+    bottom: 1.25rem;
+    width: 2px;
+    background: var(--color-pink);
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+
+  &:first-child::before {
+    top: 0.25rem;
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    transform: scaleY(1);
+  }
+}
+
+.ixRadar__top {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ixRadar__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: 400;
+  line-height: 1.22;
+  color: var(--color-plum-ink);
+  text-wrap: balance;
+}
+
+.ixRadar__summary {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.ixRadar__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  align-self: flex-start;
+  min-height: 44px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-pink-text);
+  background: linear-gradient(currentColor, currentColor) 0 calc(50% + 0.75em) / 0 1px no-repeat;
+}
+
+.ixRadar__item:hover .ixRadar__cta,
+.ixRadar__item:focus-within .ixRadar__cta {
+  background-size: calc(100% - 1.25em) 1px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixRadar__item {
+    transition: transform 280ms cubic-bezier(0.22, 0.61, 0.36, 1);
+
+    &::before {
+      transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .ixRadar__cta {
+    transition: background-size 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+}
+
+// --- 04 Try the thinking ------------------------------------------------------
+
+.ixTools__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ixTool {
+  flex: 1 1 26rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: clamp(1.25rem, 0.9rem + 1.4vw, 2rem);
+  border: 1px solid var(--color-line-card);
+  border-top: 3px solid var(--color-burgundy);
+  border-radius: var(--radius-card);
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+
+  &[data-status="next"] {
+    border-top-style: dashed;
+    border-top-color: var(--color-line-strong);
+    background: var(--color-band);
+    box-shadow: none;
+  }
+}
+
+.ixTool__text {
+  flex: 1 1 15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ixTool__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-burgundy);
+
+  // A filled dot for live, a hollow one for coming next. The word says it
+  // too, so the state never rests on colour or shape alone.
+  &::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--color-pink);
+  }
+
+  [data-status="next"] & {
+    color: var(--color-muted);
+
+    &::before {
+      background: transparent;
+      border: 1.5px solid var(--color-muted);
+    }
+  }
+}
+
+.ixTool__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-plum-ink);
+}
+
+.ixTool__explain {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-plum-ink);
+}
+
+.ixTool__get {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-body);
+
+  span {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+}
+
+.ixTool__cta {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+.btn.ixTool__cta {
+  background: var(--color-burgundy);
+  border-color: var(--color-burgundy);
+
+  &:hover {
+    background: var(--color-plum-ink);
+    border-color: var(--color-plum-ink);
+  }
+}
+
+.ixTool__preview {
+  flex: 1 1 15rem;
+  align-self: stretch;
+  padding: 1rem;
+  border: 1px solid var(--color-line-card);
+  border-radius: 10px;
+  background: var(--color-band);
+
+  [data-status="next"] & {
+    background: var(--color-page);
+  }
+}
+
+.ixTool__kicker {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.ixTool__question {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: var(--color-plum-ink);
+}
+
+.ixTool__options {
+  display: grid;
+  gap: 0.3125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.5rem;
+    border: 1px solid var(--color-line-card);
+    border-radius: 6px;
+    background: var(--color-page);
+    font-size: 0.8125rem;
+    line-height: 1.35;
+    color: var(--color-body);
+  }
+}
+
+.ixTool__radio {
+  flex: 0 0 auto;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 1.5px solid var(--color-line-strong);
+  border-radius: 50%;
+  background: var(--color-page);
+}
+
+// The two captions share one cell, so swapping them never moves the card.
+.ixTool__after {
+  display: grid;
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--color-muted);
+
+  span {
+    grid-area: 1 / 1;
+  }
+}
+
+.ixTool__lit {
+  opacity: 0;
+  color: var(--color-burgundy);
+}
+
+.ixTool:hover,
+.ixTool:focus-within {
+  .ixTool__options li[data-sample] {
+    border-color: var(--color-pink);
+    color: var(--color-burgundy);
+    font-weight: 600;
+  }
+
+  .ixTool__options li[data-sample] .ixTool__radio {
+    border-color: var(--color-pink);
+    background: var(--color-pink);
+    box-shadow: inset 0 0 0 2px var(--color-page);
+  }
+
+  .ixTool__rest {
+    opacity: 0;
+  }
+
+  .ixTool__lit {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixTool {
+    transition:
+      transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      box-shadow 320ms ease;
+
+    &:hover {
+      transform: translateY(-3px);
+    }
+
+    &[data-status="live"]:hover {
+      box-shadow: var(--shadow-raised);
+    }
+  }
+
+  .ixTool__options li,
+  .ixTool__radio,
+  .ixTool__rest,
+  .ixTool__lit {
+    transition:
+      opacity 280ms ease,
+      border-color 280ms ease,
+      background-color 280ms ease,
+      color 280ms ease;
+  }
+}
+
+// --- 05 Latest thinking -------------------------------------------------------
+
+.ixFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.ixFilter {
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: 999px;
+  background: var(--color-page);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: var(--color-plum-ink);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-pink);
+  }
+
+  &[aria-pressed="true"] {
+    background: var(--color-burgundy);
+    border-color: var(--color-burgundy);
+    color: var(--color-page);
+    font-weight: 600;
+  }
+}
+
+// The thirds idiom: five pieces seat as three and two, never four and an orphan.
+.ixGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ixCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  background: var(--color-page);
+  overflow: hidden;
+
+  // The capability accent: drawn across the top on hover or focus.
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    background: var(--color-pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 2;
+  }
+
+  &:hover::before,
+  &:focus-within::before {
+    transform: scaleX(1);
+  }
+}
+
+.ixCard__visual {
+  aspect-ratio: 240 / 132;
+  border-bottom: 1px solid var(--color-line-card);
+
+  .ixMark {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.ixCard__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem 1.25rem 1.375rem;
+
+  .ixMeta {
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+}
+
+.ixCard__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.22;
+  text-wrap: balance;
+
+  a {
+    color: var(--color-plum-ink);
+    text-decoration: none;
+  }
+}
+
+.ixCard:hover .ixCard__title a {
+  color: var(--color-burgundy);
+}
+
+.ixCard__summary {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.ixEmpty {
+  padding: 2rem;
+  border: 1px dashed var(--color-line-strong);
+  border-radius: var(--radius-card);
+
+  p {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: var(--color-plum-ink);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixCard {
+    transition:
+      transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1),
+      box-shadow 320ms ease;
+
+    &::before {
+      transition: transform 360ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+  }
+}
+
+// The editorial marks.
+.ixMark__ground {
+  fill: var(--color-brand-tint);
+}
+
+.ixMark__glyph {
+  font-family: var(--font-display);
+  font-size: 190px;
+  fill: var(--color-burgundy);
+}
+
+.ixMark__rule {
+  stroke: var(--color-pink);
+  stroke-width: 3;
+}
+
+.ixMark__hair {
+  stroke: var(--color-line-strong);
+  stroke-width: 2;
+}
+
+.ixMark__block {
+  fill: var(--color-chart-blush);
+}
+
+.ixMark__accentFill {
+  fill: var(--color-burgundy);
+}
+
+.ixMark__num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  fill: var(--color-muted);
+}
+
+.ixMark__dot {
+  fill: var(--color-chart-blush);
+}
+
+.ixMark__stroke {
+  fill: none;
+  stroke: var(--color-burgundy);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.4;
+}
+
+.ixMark__accent {
+  fill: var(--color-pink);
+}
+
+.ixMark--signal {
+  width: 2.5rem;
+  height: 1rem;
+  overflow: visible;
+
+  .ixMark__stroke {
+    stroke-width: 1.6;
+    opacity: 1;
+  }
+}
+
+// --- 06 The weekly briefing ---------------------------------------------------
+// A full-bleed blush band, not a dark one: the footer that follows it is
+// already dark, and two dark bands back to back would read as one.
+
+.ixBriefBand {
+  background: var(--color-brand-tint);
+  border-top: 1px solid var(--color-line);
+}
+
+.ixBrief {
+  max-width: 44rem;
+}
+
+.ixBrief__label {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-pink-text);
+}
+
+.ixBrief__headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--fs-h1p);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.ixBrief__copy {
+  margin: 1.5rem 0 2rem;
+  max-width: 36rem;
+  font-size: var(--fs-lead);
+  line-height: 1.55;
+  color: var(--color-plum-ink);
+}
+
+.ixBrief__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  min-height: 52px;
+  padding: 0.8125rem 1.375rem;
+  border-radius: var(--radius-btn);
+  background: var(--color-burgundy);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-page);
+
+  &:hover {
+    background: var(--color-plum-ink);
+  }
+}
+
+.ixBrief__note {
+  margin: 1rem 0 0;
+  max-width: 36rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ixBrief__cta {
+    transition: background-color 240ms ease;
+
+    span {
+      transition: transform 240ms cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    &:hover span {
+      transform: translateX(3px);
+    }
+  }
+}
+
+// --- The one breakpoint -------------------------------------------------------
+
+@media only screen and (max-width: 767px) {
+  // The filters become one row that scrolls sideways inside itself.
+  .ixFilters {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+
+    .ixFilter {
+      scroll-snap-align: start;
+    }
+  }
+
+  .ixHero__stage {
+    flex-basis: 100%;
+    margin-inline: auto;
+  }
+}

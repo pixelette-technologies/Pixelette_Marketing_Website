@@ -465,6 +465,19 @@ a quick pass plucks them. The points ride their strings. At rest, unchanged
 to the pixel. Committed on the branch (`e5d7b93`); not pushed, not live.
 **Not yet seen on a real GPU.** See [[02 Decisions]] and [[10 Verification]].
 
+**30 Sep — the four Demand & Performance specialist pages.**
+`/services/social_media_marketing`, `ads_ppc`, `influencer_marketing` and
+`pr` are rebuilt to their final brief as Social & Community, Paid Media & PPC,
+Influencer & Partnerships and PR & Earned Media.
+- The URLs are unchanged.
+- One shared `SpecialistServicePage` renders them, and the Search & Authority
+  and Growth Intelligence pages are built on the same system.
+- There is no imagery and no proof section; "What good looks like" stands in
+  until real evidence exists.
+- The footer labels changed with the nav, which needs sign-off.
+
+See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

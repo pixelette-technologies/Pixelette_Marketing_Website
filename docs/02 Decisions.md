@@ -2232,3 +2232,65 @@ unchanged; the only lib changes are `BAND_FLOORS` exported and a new
   labels, **a deviation from the brief's single pink** for contrast.
 - Registered in `_surfaces.scss` as motion surface 9 (the rail's scale on
   hover is an exception to the hover rule, by instruction).
+
+## 30 Sep 2026 — Demand & Performance: the four specialist pages
+
+Built to the "Demand & Performance specialist pages" final implementation
+brief, on `main`. It supersedes the legacy eight-section template for
+`/services/social_media_marketing`, `/services/ads_ppc`,
+`/services/influencer_marketing` and `/services/pr`. **The URLs did not
+move.**
+
+- **Labels:** Social & Community, Paid Media & PPC, Influencer &
+  Partnerships, PR & Earned Media.
+  - They are changed in `servicesData[].title`, which is the one field the nav
+    dropdown, the `/services` explorer and the footer all read.
+  - **The footer therefore changed too**, although the brief says "do not
+    change footer". `Footer.tsx` itself is untouched; the alternative was two
+    names for one page.
+  - `data/services/specialist/index.ts` stops the build if a page's label
+    ever differs from that title.
+- **One component, not four pages.** `SpecialistServicePage` renders every
+  route registered in `data/services/specialist/`, and `[slug]/page.tsx`
+  branches to it before the legacy template.
+  - The section order is the brief's and is not a prop: hero, when this earns
+    its place, what we actually do, what we measure, how this connects, how we
+    work, what good looks like, close, useful questions.
+  - The brief's counts are tuples in `types.ts`: 3 situations, 4 service
+    groups, 3 connections, 4 stages.
+  - The same system now also carries the Search & Authority and Growth
+    Intelligence pages, built alongside by other sessions. The optional
+    `market`, `note` and `aside` hooks are theirs.
+- **Copy:** every visible word is the brief's, verbatim. Only the meta titles
+  and descriptions were written here.
+- **No imagery:**
+  - no hero art, no photograph, no What-we-do visual;
+  - the share image stays each route's existing one, because it is a
+    link-preview card and the site has no default.
+- **Removed** from all four: the ecosystem logo strip, the 15–25-card service
+  catalogues and the content sections under them, the testimonial block, the
+  "we manage, you grow" contact band and the generic FAQ set. The legacy
+  fields are still in `servicesData.ts`, unused and marked.
+- **Market context is one line:** "Different markets behave differently. See
+  how we approach your industry →", linking to `/industries`.
+- **What we measure** is a full-bleed burgundy band under its own class,
+  **not `.band-dark`**, so route-walk's cap is untouched. It shows metric
+  labels only: no figures, no charts.
+- **How this connects:**
+  - the centre is this page, with three adjacent capabilities around it as
+    native buttons carrying `aria-pressed`;
+  - selection follows click, tap and focus, and the explanation is a polite
+    live region;
+  - the selected node is FILLED and its spoke solid, so the state is not
+    colour alone;
+  - below 768px it becomes a stacked list;
+  - the selected fill is `--color-pink-text`, because white on `--color-pink`
+    is 4.36.
+- **What good looks like** stands in for proof. The page carries no Results,
+  Case studies or Proof label. A `practice` slot (Work in practice) renders
+  between measure and connections **only when a config carries verified
+  evidence**. None does.
+- **Colour:** the diagnostic's four tokens are widened, by instruction, to the
+  specialist pages (see the note in `_tokens.scss`).
+- **Motion:** registered as surface 10 in `_surfaces.scss`. The 2px lift on a
+  situation column is an exception to the hover rule, by instruction.

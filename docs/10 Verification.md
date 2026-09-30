@@ -1748,3 +1748,35 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   full result. Looking produced two faults the measurements had passed: the
   stage ran into the bridge on the warm ground (now a page-colour ground), and
   the ○/● progress glyphs rendered tiny (now drawn in CSS).
+
+## 30 Sep 2026 — the Demand & Performance specialist pages
+
+- **Gates on the committed tree, checked out alone** (without the other
+  sessions' uncommitted work): tsc clean, eslint clean on the new paths, token
+  gate 0 findings.
+- **Gates on the shared working tree:** tsc and eslint clean, route walk 28/28
+  on :3000.
+- **Rendered HTML, all four routes:** one `h1`; 3 situations, 4 service rows,
+  3 connection buttons, 4 stages, 4 statements, 3 FAQs; no `<form>`, no
+  `<img>` in the page, no percentage, no logo strip.
+  - The nav, `/services` and the home page carry the four new labels and none
+    of the old ones.
+- **Headless Chrome over CDP, `Input.*` events:**
+  - rows all start closed and their panels `inert`; Enter and Space toggle
+    `aria-expanded`, the + turns to 45deg over 0.3s, and the panel opens;
+  - a click on a node selects it (once the smooth scroll had settled), and
+    focus alone selects too;
+  - the FAQ opens on Enter;
+  - hover lifts a situation 2px and turns its divider pink;
+  - reduced motion leaves every transition at 0s;
+  - no horizontal overflow at 1440, 768 or 390 on any route; every tap target
+    at 390 is 48px or more;
+  - h1 and h2 are burgundy, body copy and lead are plum ink (rgb 36,24,31),
+    the eyebrows are pink-text.
+- **Looked at:** Paid Media at 1440 and 390, Social at 1440, and PR's
+  connection figure at 1440 and 390. Looking produced three faults the
+  measurements had passed:
+  - the selected node was white on 4.36 pink (found by the SEO session); now
+    pink-text;
+  - the idle dashed spokes were nearly invisible; now `--color-soft`;
+  - "How this connects" was set twice, as eyebrow and heading; now once.

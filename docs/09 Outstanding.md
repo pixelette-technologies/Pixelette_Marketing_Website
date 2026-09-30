@@ -1075,3 +1075,16 @@ On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
 - Still open from 22 Sep: a visitor who never starts the diagnostic has no
   call to action at the foot of the page.
 - Not seen on a real GPU or a real phone; headless Chrome only.
+
+## Demand & Performance specialist pages (30 Sep 2026)
+
+- **The footer's four service labels changed with the nav**, against the
+  brief's "do not change footer". Confirm, or ask for footer-only old labels.
+- **The meta titles and descriptions for the four routes were written here**,
+  because the brief supplied none. Worth a read.
+- **The legacy `servicesData` fields for the four routes are dead data**: the
+  catalogues, the "we manage" band and the old FAQs. Delete them once the
+  other service routes have moved to the specialist system.
+- "How this connects" has no links onward to the adjacent capabilities; the
+  brief did not ask for any.
+- Not seen on a real phone; headless Chrome only. `next build` not run.

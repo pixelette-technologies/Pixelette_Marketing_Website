@@ -1,175 +1,212 @@
 "use client";
 
-import { Heading, Text } from "@/components/feature";
+import {
+  bands,
+  dimensionReadings,
+  dimensionsById,
+  recommendations,
+  resultsCopy
+} from "@/data/strategy";
 import {
   QUESTIONS_PER_DIMENSION,
   type DiagnosticScore,
-  track
+  type DimensionId,
+  tierFor
 } from "@/lib/strategyDiagnostic";
-import {
-  bands,
-  dimensionsById,
-  recommendations,
-  resultsCopy,
-  resultsCta
-} from "@/data/strategy";
-import Link from "next/link";
-import { Dispatch, FC, RefObject, SetStateAction } from "react";
+import { type CSSProperties, type RefObject, useEffect, useState } from "react";
 
-export interface DiagnosticResultsProps {
-  score: DiagnosticScore;
-  headingRef: RefObject<HTMLHeadingElement | null>;
-  /** Back into a question, answers intact. */
-  onReopen: (index: number) => void;
-  onRestart: () => void;
-  confirming: boolean;
-  setConfirming: Dispatch<SetStateAction<boolean>>;
-}
-
-// The results. Everything here is derived from `score`, which is computed in
+// The result. Everything here is derived from `score`, which is computed in
 // `src/lib/strategyDiagnostic.ts` — this component decides nothing.
 //
-// SIX SCALES, NOT A DASHBOARD. Each dimension is a row with a name, a hairline
-// track, a filled bar and the percentage as text. The number is rendered
-// rather than left to the bar, because a figure whose value cannot be read is
-// a figure people assume things about, and the caption underneath says in
-// words what this one is. That is the same discipline the home page's growth
-// figure holds to by carrying no axis, tick or value at all.
+// WHAT CHANGES WITH THE ANSWERS, per the final brief (30 Sep 2026):
+//   - the band, its headline and its narrative follow the overall score
+//     (BAND_FLOORS: 0 / 40 / 60 / 80);
+//   - each dimension's reading follows ITS OWN score (TIER_FLOORS: low below
+//     45, medium 45-74, high 75+);
+//   - the three dimensions in "What this could mean commercially" and "Your
+//     three highest-leverage moves" are `score.focus`, the three lowest, the
+//     same selection "Where to focus next" always used.
 //
-// THE BAR WIDTH IS THE ONLY INLINE STYLE, and it is a length. It cannot be
-// expressed in a stylesheet because it is a per-visitor value, and the token
-// gate's rule is about colour, which this is not.
-//
-// THE CTA COMES LAST, after the score, the breakdown and the recommendations.
-// That ordering is the brief's and it is the only honest one: the page
-// promises value before it asks for anything.
+// THE REVEAL is a sequence, not a dump: the score counts up (800ms), then the
+// band, the headline, the profile (each marker travels from "Unclear" to its
+// place) and the reading, on staggered CSS delays. It runs only for a result
+// the visitor has just reached, never for one restored from storage, and not
+// at all under reduced motion. The final values are in the markup from the
+// first frame; the animation only withholds them visually, and the score's
+// real value is always in the accessible text.
 
-/** The dimension name for a row, from the id the score carries. */
-const nameOf = (id: DiagnosticScore["strongest"]) => dimensionsById[id].name;
+interface DiagnosticResultsProps {
+  score: DiagnosticScore;
+  headingRef: RefObject<HTMLHeadingElement | null>;
+  reveal: boolean;
+  onReopen: (index: number) => void;
+}
 
-const DiagnosticResults: FC<DiagnosticResultsProps> = ({
+const COUNT_DELAY = 250;
+const COUNT_MS = 800;
+
+/** 0 up to `value`, easing out. Renders the final value when not animating. */
+const useCountUp = (value: number, animate: boolean) => {
+  const [shown, setShown] = useState(0);
+
+  useEffect(() => {
+    if (!animate) return;
+    let frame = 0;
+    let begin = 0;
+    const tick = (now: number) => {
+      if (!begin) begin = now;
+      const t = Math.min((now - begin - COUNT_DELAY) / COUNT_MS, 1);
+      setShown(t <= 0 ? 0 : Math.round(value * (1 - Math.pow(1 - t, 3))));
+      if (t < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [value, animate]);
+
+  return animate ? shown : value;
+};
+
+/** A staggered reveal delay, as a custom property the stylesheet reads. */
+const at = (ms: number, extra?: CSSProperties) =>
+  ({ "--d": `${ms}ms`, ...extra }) as CSSProperties;
+
+const pad = (n: number) => String(n).padStart(2, "0");
+
+const DiagnosticResults = ({
   score,
   headingRef,
-  onReopen,
-  onRestart,
-  confirming,
-  setConfirming
-}) => {
+  reveal,
+  onReopen
+}: DiagnosticResultsProps) => {
   const band = bands[score.band];
+  const shown = useCountUp(score.overall, reveal);
+  const percentOf = (id: DimensionId) =>
+    score.dimensions.find(d => d.id === id)?.percentage ?? 0;
 
   return (
-    <div className='diagnosticResults'>
-      <div className='diagnostic__panel card-feature'>
-        <Text className='eyebrow'>{resultsCopy.eyebrow}</Text>
+    <div className={reveal ? "dxResults is-revealing" : "dxResults"}>
+      {/* --- The diagnosis ------------------------------------------------ */}
+      <div className='dxVerdict'>
+        <p className='dxVerdict__eyebrow dxR' style={at(0)}>
+          {resultsCopy.eyebrow}
+        </p>
 
-        {/* A raw h4 rather than <Heading>: it takes a ref, which the shared
-            component does not forward. The .h3 SCALE on an h4 ELEMENT is the
-            house split — the section eyebrow is the h2 and the visual .h2 in
-            DiagnosticSection is the h3. */}
-        <h4
-          className='h3 diagnosticResults__heading'
+        <p className='dxVerdict__score'>
+          <span className='dxVerdict__number' aria-hidden='true'>
+            {shown}
+          </span>
+          <span className='dx-sr'>
+            {score.overall} out of {resultsCopy.outOf}
+          </span>
+          <span className='dxVerdict__outOf' aria-hidden='true'>
+            / {resultsCopy.outOf}
+          </span>
+        </p>
+
+        <p className='dxVerdict__band dxR' style={at(1000)}>
+          {band.label}
+        </p>
+
+        <h3
+          className='dxVerdict__headline dxR'
+          style={at(1150)}
           ref={headingRef}
           tabIndex={-1}
         >
-          {resultsCopy.heading}
-        </h4>
+          {band.headline}
+        </h3>
 
-        <div className='diagnosticScore'>
-          <p className='diagnosticScore__value'>
-            <span className='diagnosticScore__number'>{score.overall}</span>
-            <span className='diagnosticScore__outOf'>
-              {" / "}
-              {resultsCopy.outOf}
-            </span>
-          </p>
-          <div className='diagnosticScore__band'>
-            <p className='diagnosticScore__label'>{band.label}</p>
-            <Text className='body'>{band.body}</Text>
-          </div>
-        </div>
-
-        <div className='diagnosticScales'>
-          <Text className='label'>{resultsCopy.breakdownLabel}</Text>
-
-          <ul className='diagnosticScales__list'>
-            {score.dimensions.map(dimension => (
-              <li key={dimension.id} className='diagnosticScales__row'>
-                <span className='diagnosticScales__name'>
-                  {dimensionsById[dimension.id].name}
-                </span>{" "}
-                <span className='diagnosticScales__track' aria-hidden='true'>
-                  <span
-                    className='diagnosticScales__fill'
-                    style={{ width: `${dimension.percentage}%` }}
-                  />
-                </span>
-                <span className='diagnosticScales__value'>
-                  {dimension.percentage}%
-                </span>
-              </li>
-            ))}
-          </ul>
-
-          <Text className='small diagnosticScales__note'>
-            {resultsCopy.scaleNote}
-          </Text>
-        </div>
-
-        {/* When every dimension scored the same, a strongest and a priority
-            area would be the same one named twice. The lib flags it rather
-            than leaving each consumer to work it out. */}
-        {score.uniform ? (
-          <Text className='body diagnosticResults__uniform'>
-            {resultsCopy.uniformNote}
-          </Text>
-        ) : (
-          <div className='diagnosticPeaks'>
-            <div className='diagnosticPeaks__item'>
-              <Text className='label'>{resultsCopy.strongestLabel}</Text>
-              <Heading className='h4' level={5}>
-                {nameOf(score.strongest)}
-              </Heading>
-            </div>
-            <div className='diagnosticPeaks__item'>
-              <Text className='label'>{resultsCopy.priorityLabel}</Text>
-              <Heading className='h4 diagnosticPeaks__priority' level={5}>
-                {nameOf(score.priority)}
-              </Heading>
-            </div>
-          </div>
-        )}
+        <p className='dxVerdict__narrative dxR' style={at(1300)}>
+          {band.narrative}
+        </p>
       </div>
 
-      {/* --- Where to focus next ------------------------------------------ */}
-      <div className='diagnosticFocus'>
-        <Heading className='h3' level={4}>
-          {resultsCopy.focusHeading}
-        </Heading>
-        <Text className='body'>{resultsCopy.focusLead}</Text>
+      {/* --- Your clarity profile ----------------------------------------- */}
+      <div className='dxProfile dxR' style={at(1500)}>
+        <h3 className='dxSection__heading'>{resultsCopy.profileHeading}</h3>
 
-        <ol className='diagnosticFocus__list'>
+        <ul className='dxProfile__list'>
+          {score.dimensions.map((dimension, i) => (
+            <li
+              key={dimension.id}
+              className='dxSpectrum'
+              style={at(1600 + i * 90, {
+                "--pos": `${dimension.percentage}%`
+              } as CSSProperties)}
+            >
+              <span className='dxSpectrum__name'>
+                {dimensionsById[dimension.id].name}
+              </span>
+              <span className='dxSpectrum__end dxSpectrum__end--lo' aria-hidden='true'>
+                {resultsCopy.profileLow}
+              </span>
+              <span className='dxSpectrum__track' aria-hidden='true'>
+                <span className='dxSpectrum__marker' />
+              </span>
+              <span className='dxSpectrum__end dxSpectrum__end--hi' aria-hidden='true'>
+                {resultsCopy.profileHigh}
+              </span>
+              <span className='dxSpectrum__value'>
+                {dimension.percentage}
+                <span className='dx-sr'> out of 100</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <p className='dxProfile__note'>
+          {score.uniform ? `${resultsCopy.uniformNote} ` : ""}
+          {resultsCopy.scaleNote}
+        </p>
+      </div>
+
+      {/* --- What this could mean commercially ---------------------------- */}
+      <div className='dxCommercial dxR' style={at(2500)}>
+        <h3 className='dxSection__heading'>{resultsCopy.commercialHeading}</h3>
+        <p className='dxSection__lead'>{resultsCopy.commercialLead}</p>
+
+        <ul className='dxCommercial__list'>
+          {score.focus.map(id => {
+            const percent = percentOf(id);
+            const reading = dimensionReadings[id][tierFor(percent)];
+            return (
+              <li key={id} className='dxReading'>
+                <p className='dxReading__eyebrow'>
+                  {dimensionsById[id].name} — {percent}
+                </p>
+                <h4 className='dxReading__headline'>{reading.headline}</h4>
+                <p className='dxReading__body'>{reading.body}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {/* --- Your three highest-leverage moves ---------------------------- */}
+      <div className='dxMoves dxR' style={at(2700)}>
+        <h3 className='dxSection__heading'>{resultsCopy.movesHeading}</h3>
+        <p className='dxSection__lead'>{resultsCopy.movesLead}</p>
+
+        <ol className='dxMoves__list'>
           {score.focus.map((id, position) => {
-            const recommendation = recommendations[id];
             const dimension = dimensionsById[id];
-            // Which of the twelve questions opened this dimension, so a
-            // visitor can go straight back to the pair that produced it.
+            const move = recommendations[id];
+            // The first of this dimension's two questions, so a visitor can
+            // go straight back to the pair that produced it.
             const firstQuestion =
               (Number(dimension.index) - 1) * QUESTIONS_PER_DIMENSION;
-
             return (
-              <li key={id} className='diagnosticFocus__item'>
-                <Text className='diagnosticFocus__index'>
-                  {String(position + 1).padStart(2, "0")}
-                </Text>
-                <div className='diagnosticFocus__main'>
-                  <Text className='label'>{dimension.name}</Text>
-                  <Heading className='h4' level={5}>
-                    {recommendation.title}
-                  </Heading>
-                  <Text className='body'>{recommendation.body}</Text>
+              <li key={id} className='dxMove'>
+                <p className='dxMove__index'>
+                  {pad(position + 1)}
+                  <span className='dxMove__dimension'> — {dimension.name}</span>
+                </p>
+                <div className='dxMove__main'>
+                  <h4 className='dxMove__title'>{move.title}</h4>
+                  <p className='dxMove__body'>{move.body}</p>
                   <button
                     type='button'
-                    className='diagnosticFocus__revisit'
+                    className='dxMove__revisit'
                     onClick={() => onReopen(firstQuestion)}
                   >
                     Revisit the {dimension.name.toLowerCase()} questions
@@ -179,64 +216,16 @@ const DiagnosticResults: FC<DiagnosticResultsProps> = ({
             );
           })}
         </ol>
-      </div>
 
-      {/* --- The ask, only now -------------------------------------------- */}
-      <div className='diagnosticCta'>
-        <Heading className='h3' level={4}>
-          {resultsCta.heading}
-        </Heading>
-        <Text className='body'>{resultsCta.body}</Text>
-        <Link
-          href={resultsCta.cta.to}
-          className='btn'
-          onClick={() => track("strategy_diagnostic_cta_clicked")}
+        {/* The browser's own print dialogue; the print stylesheet makes the
+            result worth printing. */}
+        <button
+          type='button'
+          className='dxMove__revisit dxResults__print'
+          onClick={() => window.print()}
         >
-          {resultsCta.cta.label}
-        </Link>
-      </div>
-
-      {/* --- Utilities ----------------------------------------------------- */}
-      <div className='diagnosticUtility'>
-        {confirming ? (
-          <div className='diagnosticUtility__confirm' role='alertdialog'>
-            <Text className='body diagnosticUtility__question'>
-              {resultsCopy.restartConfirmQuestion}
-            </Text>
-            <Text className='small'>{resultsCopy.restartConfirmBody}</Text>
-            <div className='diagnosticUtility__confirmActions'>
-              <button type='button' className='btn2' onClick={onRestart}>
-                {resultsCopy.restartConfirm}
-              </button>
-              <button
-                type='button'
-                className='btn-ghost'
-                onClick={() => setConfirming(false)}
-              >
-                {resultsCopy.restartCancel}
-              </button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <button
-              type='button'
-              className='diagnosticUtility__action'
-              onClick={() => setConfirming(true)}
-            >
-              {resultsCopy.restart}
-            </button>
-            {/* The browser's own print dialogue, with a print stylesheet to
-                make the page worth printing. No library, no PDF service. */}
-            <button
-              type='button'
-              className='diagnosticUtility__action'
-              onClick={() => window.print()}
-            >
-              {resultsCopy.print}
-            </button>
-          </>
-        )}
+          {resultsCopy.print}
+        </button>
       </div>
     </div>
   );

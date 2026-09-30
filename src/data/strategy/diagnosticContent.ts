@@ -1,4 +1,4 @@
-import type { BandId, DimensionId } from "@/lib/strategyDiagnostic";
+import type { BandId, DimensionId, TierId } from "@/lib/strategyDiagnostic";
 
 // The Strategy & Positioning page copy, 22 September 2026.
 //
@@ -51,15 +51,14 @@ export const DIAGNOSTIC_HREF = "/strategy-positioning";
 export const DIAGNOSTIC_LINK_LABEL =
   "Explore our Strategy & Positioning Diagnostic →";
 
-/** The two in-page anchors. Both are used by the hero's buttons and one by the
- *  closing section, so they are constants rather than three typed strings. */
+/** The two in-page anchors, used by the hero's two controls. */
 export const DIAGNOSTIC_ANCHOR = "diagnostic";
-export const METHODOLOGY_ANCHOR = "methodology";
+export const ASSESS_ANCHOR = "what-we-assess";
 
 // --- 01 Hero ----------------------------------------------------------------
-// The headline is two lines and the second takes the brand tone — the guide's
-// hero device, and what HomeHero and AboutUsHero both do. Here the split is
-// the argument rather than decoration: where to compete, then why you win.
+// Two lines of EQUAL AUTHORITY, 30 Sep 2026: the same size and weight, told
+// apart by colour alone — plum ink, then burgundy. Neither is the brand
+// crimson any more and neither is ever greyed; see _strategyHero.scss.
 
 export const strategyHero = {
   eyebrow: "Strategy & Positioning",
@@ -70,32 +69,25 @@ export const strategyHero = {
   headingLead: "Know where to compete",
   headingAccent: "Know why you win",
   lead: "A structured diagnostic to clarify your market, audience, differentiation, message and growth priorities — then turn that clarity into practical marketing direction.",
+  /** The four facts under the lead, set with middots. The time is a range
+   *  now, per the brief; it was "Around 5 minutes". */
+  facts: ["12 questions", "6 dimensions", "Around 3–5 minutes", "Instant result"],
   primaryCta: { label: "Start the diagnostic", to: `#${DIAGNOSTIC_ANCHOR}` },
-  /** Sits under the primary control. An estimate of the visitor's time, which
-   *  is a claim about this page and is the one number in the hero. Twelve
-   *  questions at a considered pace is the basis for it. */
-  microcopy: "Around 5 minutes",
-  secondaryCta: {
-    label: "See how the process works",
-    to: `#${METHODOLOGY_ANCHOR}`
-  },
-  /** Labels the six-node figure in the methodology band. */
-  pathLabel: "The six dimensions"
+  secondaryCta: { label: "See what we assess", to: `#${ASSESS_ANCHOR}` }
 };
 
 // --- The six dimensions -----------------------------------------------------
-// ONE SOURCE FOR BOTH PLACES THEY APPEAR: the wave in the methodology band
-// and the six scales in the results. It was three lists in the first draft of
-// this page, and that is precisely how a set of six becomes a set of
-// six-and-a-half.
+// ONE SOURCE FOR EVERY PLACE THEY APPEAR: the bridge's list, the progress
+// row, the clarity profile and the commercial reading. It was three lists in
+// the first draft of this page, and that is precisely how a set of six
+// becomes a set of six-and-a-half.
 //
-// `name` is the dimension, and it is the ONLY field rendered anywhere today:
-// the wave labels its six points with it and the results scale their six rows
-// by it.
+// `name` is the dimension, and it is the ONLY field rendered anywhere today.
 //
 // `imperative` AND `description` ARE NOT RENDERED. They were the body of the
 // methodology's six stages, which came off on instruction on 22 Sep 2026 when
-// the wave took that section's place. They are kept rather than deleted
+// the wave took that section's place (and the wave itself came off on
+// 30 Sep). They are kept rather than deleted
 // because they are the brief's own copy and the stages may come back — but a
 // reviewer reading this file should know that these twelve sentences are not
 // on the page. If the stages are not restored, delete them; unread copy in a
@@ -167,21 +159,31 @@ export const dimensionsById: Record<DimensionId, Dimension> =
     {} as Record<DimensionId, Dimension>
   );
 
-// --- 02 Methodology ---------------------------------------------------------
+// --- 02 The bridge ----------------------------------------------------------
+// "Clarity before activity" kept, the dark band it sat on gone (30 Sep 2026).
+// A third of a screen: the phrase, one line, the six names. An explanation,
+// not a second hero.
 
-export const methodology = {
-  eyebrow: "The process",
+export const clarityBridge = {
   heading: "Clarity before activity",
-  lead: "Marketing becomes expensive when the fundamentals are unclear. Our diagnostic examines the decisions beneath campaigns, content and channels — establishing who you need to reach, what you should stand for and where growth is most likely to come from."
+  line: "Before deciding what to do, understand what is genuinely clear — and what isn’t."
 };
 
 // --- 03 The diagnostic ------------------------------------------------------
 
 export const diagnosticIntro = {
-  eyebrow: "The diagnostic",
-  heading: "How clear is your current positioning?",
-  lead: "Answer twelve questions across six areas. You will receive an immediate positioning score, a breakdown of where you are strongest and the areas that deserve attention.",
-  start: "Start diagnostic",
+  /** The stage's heading. Visually hidden: the progress row and the question
+   *  are what a sighted visitor reads, but the outline needs a heading here. */
+  heading: "The Strategy & Positioning diagnostic",
+  /** The two ends of the Clarity Rail. */
+  railLess: "Less clear",
+  railMore: "More clear",
+  /** For assistive technology only: how the rail is operated by keyboard. */
+  railHelp:
+    "Use the arrow keys to choose an answer, then press Enter to continue.",
+  next: "Next",
+  back: "Back",
+  backToResults: "Back to my results",
   /** Shown beside the start control. Both halves are literally true of the
    *  implementation and both are worth stating before somebody begins: no
    *  form, and the answers stay on their machine. If either ever stops being
@@ -193,6 +195,14 @@ export const diagnosticIntro = {
   resume: "We found answers you had already started. Pick up where you left off, or start again.",
   resumeAction: "Continue",
   restartAction: "Start again"
+};
+
+/** The pacing moment after question six. Shown for about 1.3 seconds and
+ *  then the diagnostic carries on by itself: no button. */
+export const halfway = {
+  eyebrow: "Halfway there",
+  heading: "Your positioning picture is beginning to take shape",
+  body: "We have enough information to see the beginnings of a pattern. Complete the remaining dimensions to see where the greatest opportunities may sit."
 };
 
 export interface DiagnosticQuestion {
@@ -364,50 +374,162 @@ export const diagnosticQuestions: DiagnosticQuestion[] = [
 // failing, and the lowest band is the one most likely to be read by somebody
 // who has just been honest about their own company.
 
-export const bands: Record<BandId, { label: string; body: string }> = {
+//
+// 30 Sep 2026: each band gained a headline and a narrative, verbatim from the
+// final brief, so the overall reading changes with the score. The floors
+// (0 / 40 / 60 / 80) are BAND_FLOORS in the lib and did not move.
+
+export const bands: Record<
+  BandId,
+  { label: string; headline: string; narrative: string }
+> = {
   foundation: {
-    label: "Foundation",
-    body: "There are significant opportunities to create greater strategic clarity before increasing marketing activity."
+    label: "Significant clarity gaps",
+    headline: "Your positioning needs greater clarity before more activity",
+    narrative:
+      "Your positioning currently contains several unresolved decisions. That can make marketing activity work harder than it should because execution may be being optimised before the underlying choices are sufficiently clear."
   },
   developing: {
-    label: "Developing",
-    body: "Several fundamentals are in place, but inconsistency may be limiting how effectively the market understands your value."
+    label: "Developing clarity",
+    headline:
+      "You have a foundation — now sharpen the decisions that matter most",
+    narrative:
+      "You have useful foundations, but several areas still need sharpening. The opportunity is to identify which unresolved decisions have the greatest commercial effect before increasing activity."
   },
   established: {
-    label: "Established",
-    body: "Your strategic foundations are relatively clear. The opportunity is to strengthen weaker areas and make the position more consistent."
+    label: "Comparatively clear",
+    headline:
+      "Your positioning is comparatively clear — now protect and compound it",
+    narrative:
+      "Your positioning is comparatively clear. The opportunity now is to strengthen the weaker dimensions, protect what is working and compound that clarity through execution."
   },
   strong: {
-    label: "Strong",
-    body: "You have a strong level of strategic clarity. The priority is maintaining differentiation and translating that clarity consistently into growth."
+    label: "Strong clarity",
+    headline:
+      "Your positioning is strong — now turn that clarity into sustained advantage",
+    narrative:
+      "Your positioning picture is strong across most dimensions. The emphasis shifts from fundamental clarification towards consistency, evidence and compounding the advantages already present."
+  }
+};
+
+// --- 04b What each dimension's score could mean ------------------------------
+// Three tiers per dimension, chosen by that dimension's own score (TIER_FLOORS
+// in the lib: low below 45, medium 45-74, high 75+). Competition is the
+// brief's verbatim; the other five follow its pattern and its rules — "may",
+// never a verdict, and no figure that was not computed from the answers.
+
+export const dimensionReadings: Record<
+  DimensionId,
+  Record<TierId, { headline: string; body: string }>
+> = {
+  market: {
+    low: {
+      headline: "Where you compete may not be defined sharply enough",
+      body: "When the category and the opportunity are loosely defined, effort tends to spread across too many directions and it becomes harder to tell which activity is actually moving the business."
+    },
+    medium: {
+      headline: "Your market is understood, but the opportunity may not be prioritised",
+      body: "You have a working view of where you compete. The gap is likely to be evidence: knowing which part of the market holds the strongest commercial opportunity, so effort follows it rather than habit."
+    },
+    high: {
+      headline: "Your market focus appears comparatively clear",
+      body: "You appear to know where you compete and why. The priority becomes keeping that view current as the market moves, so the focus does not quietly go out of date."
+    }
+  },
+  audience: {
+    low: {
+      headline: "Your priority customer may not be defined clearly enough",
+      body: "If the highest-value customers are not clearly defined, messaging tends to be written for everyone, and spend reaches people who were never likely to buy."
+    },
+    medium: {
+      headline: "You know your customers, but perhaps not yet what moves them",
+      body: "Your segments are partly defined. The opportunity is a sharper understanding of what triggers, delays and blocks a purchase — which is what makes messaging and offers convert."
+    },
+    high: {
+      headline: "Your customer definition appears clearer",
+      body: "Your priority customers look comparatively well defined. The priority becomes testing that understanding against real sales and customer evidence as buying behaviour changes."
+    }
+  },
+  competition: {
+    low: {
+      headline: "Differentiation may not be obvious enough",
+      body: "If customers cannot quickly see why you are different, visibility alone may not create preference and price can become more influential."
+    },
+    medium: {
+      headline: "Your difference may need stronger articulation",
+      body: "Some differentiation is present, but it may not yet be distinctive or defensible enough throughout the buying journey."
+    },
+    high: {
+      headline: "Competitive differentiation appears clearer",
+      body: "Your competitive position looks comparatively defined. The priority becomes protecting it and testing whether customers recognise the same difference."
+    }
+  },
+  positioning: {
+    low: {
+      headline: "The reason to choose you may not be clear enough",
+      body: "If your own team cannot give one consistent answer to why the right customer should choose you, the market is unlikely to arrive at one either, and marketing has to work harder to persuade."
+    },
+    medium: {
+      headline: "Your position exists, but may not be held consistently",
+      body: "There is a general answer to why customers should choose you. The risk is that leadership, sales and marketing each tell it differently, which dilutes it at the moments that matter."
+    },
+    high: {
+      headline: "Your positioning appears comparatively defined",
+      body: "Your reason to be chosen looks clear and broadly shared. The priority becomes supporting it with proof and keeping it consistent as the business and the market change."
+    }
+  },
+  messaging: {
+    low: {
+      headline: "Your message may change from one channel to the next",
+      body: "When the website, sales materials and campaigns each say something different, every touchpoint starts from zero and the value you offer is harder to remember."
+    },
+    medium: {
+      headline: "Your messaging is consistent in places, but not yet structured",
+      body: "There is some consistency, but the message may not yet adapt to each audience, problem and buying stage — which is often where interest fails to become an enquiry."
+    },
+    high: {
+      headline: "Your messaging appears comparatively consistent",
+      body: "Your communication looks broadly consistent and adapted. The priority becomes keeping every new channel and campaign on the same architecture as activity grows."
+    }
+  },
+  growth: {
+    low: {
+      headline: "Marketing activity may not be connected to clear priorities",
+      body: "When channels are chosen by habit and priorities are not set, budget is spread thinly and it becomes difficult to see which activity is contributing to growth."
+    },
+    medium: {
+      headline: "Your priorities exist, but the link to revenue may be loose",
+      body: "Some priorities are defined. The opportunity is to connect channels and measures more directly to where customers buy and to the commercial objectives the business is working to."
+    },
+    high: {
+      headline: "Your growth priorities appear comparatively clear",
+      body: "Your priorities, channels and objectives look well connected. The priority becomes measuring and refining them so the plan keeps pace with what the results show."
+    }
   }
 };
 
 // --- 05 Results -------------------------------------------------------------
 
 export const resultsCopy = {
-  eyebrow: "Your result",
-  heading: "Your Strategy & Positioning Score",
+  eyebrow: "Your Strategy & Positioning score",
   /** Rendered as "68 / 100"; the denominator is here so it is not a literal
    *  buried in the component. */
   outOf: "100",
-  breakdownLabel: "By dimension",
-  strongestLabel: "Strongest area",
-  priorityLabel: "Priority area",
-  /** Used when all six dimensions scored the same and naming a strongest and a
-   *  priority would name the same one twice. */
-  uniformNote:
-    "All six areas scored the same, so there is no single strongest or priority area — the opportunity is to raise the whole picture together.",
-  focusHeading: "Where to focus next",
-  focusLead:
-    "The three areas with the most room to move, taken from your own answers.",
+  profileHeading: "Your clarity profile",
+  profileLow: "Unclear",
+  profileHigh: "Clear",
   scaleNote:
     "An indicative assessment, calculated from the twelve answers you gave. It is not a benchmark against other companies.",
-  restart: "Restart diagnostic",
-  restartConfirmQuestion: "Restart the diagnostic?",
-  restartConfirmBody: "This clears the twelve answers you have given.",
-  restartConfirm: "Yes, clear my answers",
-  restartCancel: "Keep my results",
+  /** Used when all six dimensions scored the same: the three "lowest" are
+   *  then simply the first three, and the page says so. */
+  uniformNote:
+    "All six dimensions scored the same, so the three below are taken in order — the opportunity is to raise the whole picture together.",
+  commercialHeading: "What this could mean commercially",
+  commercialLead:
+    "Your three lowest-scoring dimensions, and what each could mean for how hard your marketing has to work.",
+  movesHeading: "Your three highest-leverage moves",
+  movesLead:
+    "The same three dimensions, turned into the work most likely to move them — taken from your own answers.",
   print: "Print or save results"
 };
 
@@ -453,8 +575,9 @@ export const recommendations: Record<
 
 export const resultsCta = {
   heading: "A score is only the starting point",
-  body: "The full Pixelette Strategy & Positioning process goes beyond the diagnostic. We combine market evidence, customer understanding, competitive analysis and commercial priorities to establish a position that can guide marketing, sales and growth.",
-  cta: { label: "Talk through my results →", to: CONTACT_HREF }
+  body: "Your diagnostic tells us where to look. The next conversation helps determine why those issues exist, how much they matter commercially and what is genuinely worth fixing first.",
+  cta: { label: "Talk through my results", to: CONTACT_HREF },
+  retake: "Retake diagnostic"
 };
 
 // --- Sections 08 to 11 were here, and came off on instruction, 22 Sep 2026 --

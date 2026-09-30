@@ -1,58 +1,188 @@
-// The interior hero.
+// The interior hero, and the bridge beneath it (30 Sep 2026, the final
+// diagnostic brief).
 //
-// The headline is capped at the house 34rem measure against the 1160px wrap,
-// which is the composition AboutUsHero settled on: the right half of the band
-// is deliberately empty and the wash is the only other thing in it. .lead keeps
-// its own 62ch cap from the primitives, which lands just inside the heading's.
+// TWO LINES OF EQUAL AUTHORITY. Same size, same weight, both at full opacity:
+// "Know where to compete" in plum ink, "Know why you win" in burgundy. The
+// first line was never to look greyed out, and the rule the brief makes
+// mandatory is that COMPACT NEVER TAKES EITHER LINE BELOW 70% OPACITY. This
+// stylesheet does not touch opacity on the heading at all: compact reduces
+// the size, which is what the brief prefers.
 //
-// It carried the six-dimension wave beneath the copy until 22 Sep 2026, when
-// that moved down to the methodology band on instruction. Nothing here was
-// sized to it, so nothing had to change: the section is the type column and
-// the section rhythm, and it now closes on the microcopy under the buttons.
-//
-// No media query here. The type interpolates through clamp(), the caps are in
-// rem against a container that is already fluid, and .wash-left is redrawn for
-// narrow screens in _responsive — the single breakpoint the primitives have.
+// COMPACT is the state once the diagnostic has started: the heading steps
+// down from --fs-h1p to about 22-30px, the padding tightens, and the lead,
+// facts and controls fold with a 0fr grid row (a height transition that
+// needs no measured height). The bridge folds the same way.
 
 .strategyHero {
+  --sh-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --sh-fold: 480ms;
+
   padding-block: var(--sec-y);
+  transition: padding var(--sh-fold) var(--sh-ease);
 
   & > .eyebrow {
     margin-bottom: 1.25rem;
-  }
-
-  & > .lead {
-    margin-top: 1.5rem;
+    transition: margin var(--sh-fold) var(--sh-ease);
   }
 }
 
 .strategyHero__heading {
-  max-width: 34rem;
+  max-width: 40rem;
+  color: var(--color-plum-ink);
+  transition: font-size var(--sh-fold) var(--sh-ease);
+}
 
-  // "Know why you win." in the brand tone. The guide's hero device, and what
-  // HomeHero and AboutUsHero both do with the second half of a headline. Here
-  // the split is the argument rather than decoration — where to compete, then
-  // why you win — so it hangs off the element's own class and not off a
-  // position in the tree, which is how the home page's accent has gone dead
-  // twice under structural edits.
-  & > span {
-    color: var(--color-brand);
+// Each line is a block, so the pair always breaks between the two and never
+// inside one. Colour only; nothing here lowers opacity.
+.strategyHero__line {
+  display: block;
+
+  &--lead {
+    color: var(--color-plum-ink);
+  }
+
+  &--accent {
+    color: var(--color-burgundy);
   }
 }
 
-// The two controls and the time estimate on one wrapping row. The estimate
-// takes the full basis so it always sits BENEATH the buttons rather than
-// beside them: at 1440px it would otherwise trail off the end of the secondary
-// control and read as its caption.
+.strategyHero__more {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition:
+    grid-template-rows var(--sh-fold) var(--sh-ease),
+    opacity 280ms var(--sh-ease);
+}
+
+.strategyHero__moreInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.strategyHero__lead {
+  margin-top: 1.5rem;
+  color: var(--color-plum-ink);
+}
+
+// "12 questions · 6 dimensions · Around 3–5 minutes · Instant result". The
+// middots are drawn, not typed, so a wrap never strands one at a line end.
+.strategyHero__facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+
+  & > li:not(:last-child)::after {
+    content: "·";
+    margin-inline: 0.625rem;
+    color: var(--color-pink);
+  }
+}
+
 .strategyHero__actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem 1rem;
   margin-top: 2rem;
+  // Room under the controls inside the folding row, so their focus rings are
+  // not clipped by its overflow.
+  padding-bottom: 0.25rem;
 }
 
-.strategyHero__microcopy {
-  flex-basis: 100%;
-  margin: 0;
+// --- Compact ----------------------------------------------------------------
+
+.is-compact {
+  .strategyHero {
+    padding-block: 1.5rem 0.75rem;
+
+    & > .eyebrow {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .strategyHero__heading {
+    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  }
+
+  .strategyHero__more {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+}
+
+// --- Clarity before activity ------------------------------------------------
+// About a third of a screen on the warm ground. Folds away once started.
+
+.clarityBridge {
+  display: grid;
+  grid-template-rows: 1fr;
+  background: var(--color-band);
+  transition:
+    grid-template-rows 480ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 280ms ease;
+
+  &__inner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__body {
+    padding-block: var(--sec-y-sm);
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.1;
+    color: var(--color-burgundy);
+  }
+
+  &__line {
+    margin-top: 0.875rem;
+    max-width: 40rem;
+    font-size: var(--fs-lead);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--color-plum-ink);
+  }
+
+  &__dimensions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.0625rem;
+    color: var(--color-plum-ink);
+
+    & > li:not(:last-child)::after {
+      content: "·";
+      margin-inline: 0.75rem;
+      color: var(--color-pink);
+    }
+  }
+}
+
+.is-compact .clarityBridge {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strategyHero,
+  .strategyHero > .eyebrow,
+  .strategyHero__heading,
+  .strategyHero__more,
+  .clarityBridge {
+    transition: none;
+  }
 }

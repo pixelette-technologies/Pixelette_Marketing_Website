@@ -1,49 +1,42 @@
 import { Container } from "@/components/common";
-import { Heading, Text } from "@/components/feature";
+import { Text } from "@/components/feature";
 import { strategyHero } from "@/data/strategy";
+import type { MouseEvent } from "react";
 
-// The interior hero. `.wash-left` is the guide's offset interior ground, and
-// the wrapper is what lets the gradient run full-bleed behind the container
-// rather than being clipped to it — container_main carries overflow: hidden.
+// The interior hero, and the first state of the diagnostic.
 //
-// .h1p, NOT .h1. The interior-page variant is 31 -> 52px against .h1's
-// 36 -> 64, and _tokens.scss describes it as the one that drives every service,
-// category and article route. AboutUsHero takes .h1 because that page is the
-// second front door; this one sits under a capability.
+// NO FIGURE, NO ART, deliberately. The final brief (30 Sep 2026) bars hero
+// artwork of any kind: the typography and the interaction carry the page.
 //
-// THE EYEBROW IS A <Text>, NOT A <Heading>. A heading above the h1 inverts the
-// document outline — the call HomeHero made and AboutUsHero repeats. There is
-// one h1 on this route and it is here.
+// TWO LINES OF EQUAL AUTHORITY: the same size and weight, told apart by
+// colour only — plum ink, then burgundy, both at full opacity. When the
+// diagnostic starts the hero goes COMPACT: the heading gets smaller and the
+// lead, facts and controls fold away. It never fades; see _strategyHero.scss.
 //
-// BOTH CONTROLS ARE FRAGMENT LINKS, not <Link>. They target anchors on this
-// same page; _base.scss already sets scroll-behavior: smooth and a
-// scroll-padding-top that tracks --header-h, so each jump glides and lands
-// clear of the sticky bar without this component knowing the header exists.
-// That is also why neither needs a click handler: no JavaScript is involved in
-// either scroll, so both work before hydration and with JS off entirely.
-//
-// NO IMAGE AND NO FIGURE. Every hero image in public/ is bought stock and the
-// brief bars stock photography outright. The six-dimension wave lived here
-// until 22 Sep 2026, when it MOVED DOWN to the methodology band on
-// instruction — so the six names are stated once on this page rather than
-// twice, which is what they were doing while the figure sat above a section
-// that also listed them.
-//
-// The composition is the measure: 34rem against the 1160px wrap leaves the
-// right side of the band deliberately empty, and the wash is the only other
-// thing in it. That is the same composition AboutUsHero settled on after its
-// own collage came off, and it needs nothing to replace the figure.
+// "Start the diagnostic" is a real link to #diagnostic, so it works before
+// hydration and with JavaScript off; with JavaScript it starts the diagnostic
+// in place instead of jumping.
 
-const StrategyHero = () => {
+interface StrategyHeroProps {
+  compact: boolean;
+  onStart: () => void;
+}
+
+const StrategyHero = ({ compact, onStart }: StrategyHeroProps) => {
   const {
     eyebrow,
     headingLead,
     headingAccent,
     lead,
+    facts,
     primaryCta,
-    microcopy,
     secondaryCta
   } = strategyHero;
+
+  const start = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    onStart();
+  };
 
   return (
     <div className='wash-left'>
@@ -51,27 +44,36 @@ const StrategyHero = () => {
         <section className='strategyHero'>
           <Text className='eyebrow'>{eyebrow}</Text>
 
-          {/* Two lines, and the break is authored rather than left to the
-              measure: "Know where to compete. / Know why you win." is a pair,
-              and a heading that wrapped between "where" and "to" would break
-              the parallel that makes it work. */}
-          <Heading className='h1p strategyHero__heading' level={1}>
-            {headingLead} <span>{headingAccent}</span>
-          </Heading>
+          <h1 className='h1p strategyHero__heading'>
+            <span className='strategyHero__line strategyHero__line--lead'>
+              {headingLead}
+            </span>{" "}
+            <span className='strategyHero__line strategyHero__line--accent'>
+              {headingAccent}
+            </span>
+          </h1>
 
-          <Text className='lead'>{lead}</Text>
+          {/* Folds away when compact. `inert` takes the two controls out of
+              the tab order while they are folded. */}
+          <div className='strategyHero__more' inert={compact}>
+            <div className='strategyHero__moreInner'>
+              <Text className='lead strategyHero__lead'>{lead}</Text>
 
-          <div className='strategyHero__actions'>
-            <a href={primaryCta.to} className='btn'>
-              {primaryCta.label}
-            </a>
-            <a href={secondaryCta.to} className='btn2'>
-              {secondaryCta.label}
-            </a>
-            {/* The time estimate sits with the primary control rather than
-                under the lead: it is a condition of taking the action, so it
-                belongs where the action is. */}
-            <Text className='small strategyHero__microcopy'>{microcopy}</Text>
+              <ul className='strategyHero__facts'>
+                {facts.map(fact => (
+                  <li key={fact}>{fact}</li>
+                ))}
+              </ul>
+
+              <div className='strategyHero__actions'>
+                <a href={primaryCta.to} className='btn' onClick={start}>
+                  {primaryCta.label}
+                </a>
+                <a href={secondaryCta.to} className='btn2'>
+                  {secondaryCta.label}
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </Container>

@@ -62,7 +62,7 @@ export type BandId = "foundation" | "developing" | "established" | "strong";
 /** The four bands, as boundaries on the 0-100 percentage. Inclusive lower
  *  bound, so 39 is foundation and 40 is developing — the boundary cases the
  *  quality checklist calls out by name. */
-const BAND_FLOORS: { id: BandId; from: number }[] = [
+export const BAND_FLOORS: { id: BandId; from: number }[] = [
   { id: "strong", from: 80 },
   { id: "established", from: 60 },
   { id: "developing", from: 40 },
@@ -72,6 +72,24 @@ const BAND_FLOORS: { id: BandId; from: number }[] = [
 export function bandFor(percentage: number): BandId {
   // Ordered high to low, so the first floor the score clears is its band.
   return (BAND_FLOORS.find(band => percentage >= band.from) ?? BAND_FLOORS[3])
+    .id;
+}
+
+export type TierId = "low" | "medium" | "high";
+
+/** The three narrative tiers for ONE dimension's 0-100 score, 30 Sep 2026.
+ *  Low below 45, medium 45-74, high 75 and over. This chooses which words a
+ *  dimension gets; it changes no number. With two questions per dimension
+ *  the reachable scores are 0, 13, 25, 38 (low), 50, 63 (medium) and 75, 88,
+ *  100 (high). */
+export const TIER_FLOORS: { id: TierId; from: number }[] = [
+  { id: "high", from: 75 },
+  { id: "medium", from: 45 },
+  { id: "low", from: 0 }
+];
+
+export function tierFor(percentage: number): TierId {
+  return (TIER_FLOORS.find(tier => percentage >= tier.from) ?? TIER_FLOORS[2])
     .id;
 }
 

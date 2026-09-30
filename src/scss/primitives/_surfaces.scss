@@ -37,17 +37,19 @@
 //    the site but it is NOT the first one's mechanism: no keyframes, no timer,
 //    it moves only while the reader is moving. See _scrollMarquee.scss.
 //
-// 5. THE WAVE'S RIPPLE — added 22 Sep 2026, and the one that contradicts the
-//    paragraph below rather than extending it. Hovering a circle on the
-//    six-dimension figure on /strategy-positioning sends a ring out of it on a
-//    loop. Asked for directly. It is a SCALE ON HOVER, which the rule at the
-//    foot of this block forbids in terms, so it is an exception and is written
-//    down as one rather than being left to look like a mistake.
+// 5. THE WAVE'S RIPPLE — added 22 Sep 2026, REMOVED 30 Sep 2026 with the
+//    six-dimension wave itself: the final diagnostic brief took every
+//    abstract signal line off /strategy-positioning.
 //
-//    What keeps it defensible: it is purely decorative. All six names are
-//    already set in text beside their circles, so touch, keyboard and screen
-//    readers lose nothing by never seeing it, and it stops under a reduce
-//    preference. See _dimensionWave.scss.
+// 9. THE DIAGNOSTIC (/strategy-positioning), 30 Sep 2026, required in terms
+//    by the final diagnostic brief. A Clarity Rail point grows slightly
+//    (scale 1.15) on hover and focus and the chosen one to 1.2 — AN EXCEPTION
+//    TO THE HOVER RULE BELOW, by instruction. Also: the hero compacts and the
+//    bridge folds when the diagnostic starts, a chosen answer locks and the
+//    question leaves (up 20px) and the next arrives, the score counts up, and
+//    the profile markers travel to their places. All UI state, all short,
+//    none looping, and all gone under a reduce preference, where every state
+//    is still reached. _strategyDiagnostic.scss, _strategyHero.scss.
 //
 // 6-8. THE HOME PAGE'S ILLUSTRATED SECTIONS, 02-04 — added 28 Sep 2026 by a
 //    locked management specification that requires the motion in terms, and

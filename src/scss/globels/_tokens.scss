@@ -267,6 +267,19 @@
   --water-deep: #3e9be3;
   --water-glint: #ffffff;
 
+  // --- Strategy & Positioning diagnostic, 30 Sep 2026 -------------------
+  // Specified by hex in the final diagnostic brief, and FOR /strategy-positioning
+  // ONLY — the same social rule as the sector tones. The rest of the site
+  // stays on --color-brand and --color-ink.
+  //
+  // --color-pink measures 4.36 on white: large text (24px+), markers and
+  // selected states only. Small pink text takes --color-pink-text, the same
+  // hue held 4 points darker so it clears 4.5.
+  --color-plum-ink: #24181f; // 17.14 — "Know where to compete", explanatory copy
+  --color-burgundy: #4b1635; // 14.33 — "Know why you win", score, diagnosis
+  --color-pink: #d63d7c; //      4.36 — markers, selected, large result headings
+  --color-pink-text: #c8306e; // 5.12 — small pink labels and eyebrows
+
   // --- Signature device -------------------------------------------------
   // Signal-capped section rules: a short segment of the marking tone on a
   // section's top hairline, and the same segment on the leading edge of

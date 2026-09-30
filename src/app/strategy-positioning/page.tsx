@@ -1,57 +1,32 @@
-import {
-  DiagnosticSection,
-  Methodology,
-  StrategyHero
-} from "@/components/ui/strategy";
+import { StrategyExperience } from "@/components/ui/strategy";
 import type { Metadata } from "next";
 
 // /strategy-positioning — the Strategy & Positioning Diagnostic.
 //
 // WHY THIS ROUTE EXISTS. Strategy & Positioning is the first of the five
 // approved capabilities and was the only one with nowhere to send anyone.
-// navigation.ts and capabilityGroups.ts both carried the same note: a dropdown
-// group or a link row with no destination is a dead label, so the pattern
-// shipped without it, and it joins "when there is somewhere for it to point".
-// This is that destination. It is linked from /services and from the home
-// page's Growth System card; THE NAVIGATION IS STILL NOT TOUCHED, because the
-// 11 Sep instruction that Strategy & Positioning takes no nav entry was
-// management's and the brief that produced this page did not reverse it.
+// It is linked from /services, the What we do menu and the footer.
 //
-// THREE SECTIONS:
+// BUILT TO THE FINAL DIAGNOSTIC BRIEF, 30 Sep 2026, which supersedes every
+// earlier redesign of this page. The diagnostic IS the visual centrepiece:
+// no hero art, no Clarity Stack, no signal lines, no generated imagery.
 //
-//   1. Hero — headline, two controls, no figure
-//   2. Methodology — the six dimensions as a wave                  DARK
-//   3. The diagnostic — twelve questions, a score and a reading
+//   1. Hero — two lines of equal authority, facts, two controls
+//   2. Clarity before activity — a third-of-a-screen bridge, six names
+//   3. The diagnostic — one question at a time on the Clarity Rail, a
+//      halfway moment, then the result revealed in sequence
+//   4. A score is only the starting point — burgundy, after the result only
 //
-// IT WAS SEVEN. The definitive brief specified four more — what the engagement
-// produces, an illustrative sample framework, a closing call to action and a
-// four-question FAQ — and all four came off in one instruction on 22 Sep 2026.
-// They are recoverable from 291592f.
+// All four are ONE client component, StrategyExperience, because "Start the
+// diagnostic" transforms the page in place: the hero compacts, the bridge
+// folds and Question 1 takes the primary position, with no reload. It still
+// server-renders; see the header of StrategyExperience.tsx.
 //
-// WHAT THAT LEAVES OPEN, and it is not cosmetic: the closing section was the
-// page's only call to action for somebody who does NOT take the diagnostic,
-// and its only link back to /services. The diagnostic's own "Talk through my
-// results" survives but appears only after twelve answers, so a visitor who
-// reads the page without starting the instrument now reaches the end of it
-// with nowhere to go. Raised, not fixed — see [[09 Outstanding]].
+// The dark methodology band, the six-dimension wave and its hover ripple
+// came off on 30 Sep. This route now spends NO .band-dark.
 //
-// THE DARK BUDGET. _surfaces.scss allows three .band-dark per route and
-// route-walk fails the build on a fourth. This page now spends ONE, on the
-// methodology, and THE CENTREPIECE GETS NONE. The reasoning is in
-// Methodology.tsx and is the same reasoning that had to be applied in reverse
-// to the Growth System's cards on 11 Sep: a dark ground recolours prose and
-// nothing else, and the diagnostic is a dozen containers, edges and controls
-// that would each need their own answer.
-//
-// THE ONE SIGNATURE MARK is .card-feature on the diagnostic panel — the
-// device's card form. There is no .rule-cap on this route; an earlier version
-// put one on a rule that opened directly beneath the dark band, where it
-// rendered as a loose crimson dash under black.
-//
-// WHAT IS CLIENT-SIDE, AND WHAT DELIBERATELY IS NOT. Only the diagnostic panel
-// hydrates. The hero, the methodology band, the figure and the diagnostic's own
-// heading and standfirst are server-rendered, so a crawler and a reader with
-// JavaScript off both get the page's argument rather than an empty box.
+// STILL OPEN from 22 Sep: a visitor who never starts the diagnostic has no
+// call to action at the foot of the page. See [[09 Outstanding]].
 //
 // NOTHING ON THIS PAGE CLAIMS A RESULT. No clients, logos, testimonials,
 // customer counts, percentages, research or awards, and the diagnostic is
@@ -120,9 +95,7 @@ export default function StrategyPositioningPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <StrategyHero />
-      <Methodology />
-      <DiagnosticSection />
+      <StrategyExperience />
     </>
   );
 }

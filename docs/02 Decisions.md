@@ -2294,3 +2294,47 @@ move.**
   specialist pages (see the note in `_tokens.scss`).
 - **Motion:** registered as surface 10 in `_surfaces.scss`. The 2px lift on a
   situation column is an exception to the hover rule, by instruction.
+
+
+## 30 Sep 2026 — Search & Authority: SEO, Content & AI Visibility
+
+Built on `main` to a final brief for the Search & Authority specialist page and
+the What we do menu, alongside the session building the Demand & Performance
+specialist pages. It renders through that session's shared specialist system
+(`SpecialistServicePage` and its sections); this page adds a config and no
+components.
+
+- **Same URL, new name.** `/services/seo_and_content_marketing` is unchanged;
+  the display name went from "SEO & Content Marketing" to **SEO, Content & AI
+  Visibility**, under Search & Authority. No separate SEO, Content, AI
+  Visibility, Digital PR or Technical SEO pages or menu items: one connected
+  system, one link. That asymmetry against Demand's four is intended.
+- **The copy is the brief's, verbatim**, in
+  `src/data/services/specialist/searchAuthority.ts`: hero ("Build visibility
+  that" near-black / "becomes authority" burgundy), three situations, four
+  closed rows, six metric labels, three connections (Strategy & Positioning
+  selected on load, then Pipeline & Conversion, Growth Intelligence), Diagnose
+  → Prioritise → Activate → Improve with Search-specific bodies, five
+  what-good-looks-like statements, the close ("Have a visibility problem worth
+  solving?") and four FAQs.
+- **The FAQ config has no `heading`.** The shared default eyebrow "Useful
+  questions" is set as the h2 when there is no heading; giving both printed it
+  twice.
+- **Removed, not hidden:** the "upticks in traffic / dominating search
+  rankings / SEO agency for GROWTH" hero, the ecosystem logo strip, "We manage.
+  You grow.", the SEO service-card catalogue and tool lists, the
+  technology-led markets section and its SaaS / AI / Fintech / Web3
+  mini-sections, the testimonial, the embedded form and the generic FAQ set.
+  Nothing from the old page was kept. The legacy fields still sit in the
+  route's `servicesData` entry, unrendered.
+- **Metadata:** "SEO, Content & AI Visibility | Pixelette Marketing" and the
+  brief's description; keywords trimmed to four.
+- **The menu follows `servicesData[].title`**, so renaming the entry renamed
+  the dropdown, the drawer, the `/services` explorer and the footer at once;
+  `navigation.ts` was not touched. `specialist/index.ts` fails the build if a
+  config's `label` and the title disagree.
+- **The PR boundary:** search-led digital PR sits here (organic authority);
+  coverage, reputation and launches stay with PR & Earned Media.
+- **No "Work in practice".** There is not enough service-specific search
+  evidence. The config's optional `practice` slot renders between measure and
+  connections once there is, and renders nothing until then.

@@ -1088,3 +1088,18 @@ On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
 - "How this connects" has no links onward to the adjacent capabilities; the
   brief did not ask for any.
 - Not seen on a real phone; headless Chrome only. `next build` not run.
+
+
+## 30 Sep 2026 — Search & Authority: SEO, Content & AI Visibility
+
+- **The hero button is the site's crimson `.btn`, not burgundy.** The brief
+  prefers existing tokens; a call for the user if burgundy matters more.
+- **Section 02 carries the shared Industries bridge** ("Different markets
+  behave differently. See how we approach your industry →"). The brief allows
+  it as optional.
+- **The legacy fields of the route's `servicesData` entry** (services,
+  marketingServices, review, howWeWork, faqs…) no longer render and can be
+  deleted once every specialist route has moved.
+- **Blog prose still says "SEO and content"** in two posts (`blogsData.ts`).
+  Running text on unrelated pages, left alone by instruction.
+- Not seen on a real GPU or a real phone; headless Chrome only.

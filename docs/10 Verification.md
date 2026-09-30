@@ -1780,3 +1780,29 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
     pink-text;
   - the idle dashed spokes were nearly invisible; now `--color-soft`;
   - "How this connects" was set twice, as eyebrow and heading; now once.
+
+
+## 30 Sep 2026 — Search & Authority: SEO, Content & AI Visibility
+
+- **Rendered HTML:** 200; title and description are the new ones; one h1;
+  exactly three situations, four rows, six metric labels, three connections,
+  four stages, five statements, four FAQs; no `<img>`, video, form or visible
+  percentage; none of the legacy strings. ("technology-led" appears only in the
+  site-wide Organization JSON-LD from the layout.)
+- **Headless Chrome, CDP `Input.*` events, 1440 (motion) and 390 (reduced
+  motion):** hero lines rgb(36,24,31) and rgb(75,22,53) at 52px each; eyebrows
+  #C8306E; headings burgundy; body plum ink; measure band burgundy. Rows open by
+  Enter, Space and click with `aria-expanded`, the + turns in 0.3s (0s under
+  reduce), closed panels are `inert`. Connections switch on click, tap, Tab and
+  Shift+Tab with `aria-pressed`. FAQ opens by Enter and click. 390: no
+  overflow, everything stacked, 48px connection targets.
+- **Menu:** desktop dropdown and mobile drawer each show exactly the five
+  capabilities and nine links in the agreed labels; keyboard focus opens the
+  dropdown with 2px rings; every link 200. `/services` shows the new label and
+  no old one.
+- **Looked at:** 1440 and 390 full page, the open rows, the connection states,
+  the FAQ. Looking found one fault the measurements passed: the selected
+  capability node was page-colour text on `--color-pink` (4.36:1). The shared
+  component now fills it with `--color-pink-text` (5.12).
+- **Gates:** eslint clean on this page's files; route walk 28/28 on :3000.
+  The "1 Issue" dev overlay is React's dev-only CSP eval warning, site-wide.

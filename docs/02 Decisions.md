@@ -2061,3 +2061,124 @@ Built to management's "Master structure correction" (`4a6534f`). The structure i
 - **Not added:** "Talk to our team" on the Industries close would go to the same `/contactus` as the primary.
 
 Open items are in [[09 Outstanding]].
+
+## 29 Sep 2026 — What we do: the five capabilities as one explorer
+
+Built to management's "What We Do" implementation instruction, on the branch
+`feat/what-we-do-capability-explorer` (cut from `main` at `557604d`).
+Uncommitted, not pushed. An implementation, not a redesign: the taxonomy, the
+copy and the links are unchanged, and the site's type, palette, nav and footer
+are untouched.
+
+- **One explorer replaces the stacked list of five** on `/services`, straight
+  after the intro. Left, ~38%: the five names as an accordion, 01 open on
+  load, the open one showing its lead statement, the existing body, its
+  services and its links. Right, ~62%: ONE stage, bleeding to the viewport's
+  right edge, whose artwork changes with the selection. Not five cards, no
+  frame, no panel behind the art. `CapabilityExplorer.tsx`,
+  `_capabilityExplorer.scss`; the statements, art, alt text and focal points
+  in `capabilityStage.ts`. The copy still comes from `capabilityGroups`.
+- **The interaction.** Click, tap, Enter or Space opens a capability, and it
+  stays open. A mouse resting on another row for 160ms previews its art on the
+  stage, and the stage returns when the pointer leaves the list, so sweeping
+  the names never strobes. Arrow keys, Home and End move focus. There is always
+  exactly one open. Each name is an `<h2>` with a button (`aria-expanded`,
+  `aria-controls`), and each panel is a region; closed panels are `inert`, so
+  Tab skips them. State is carried by a leading rule and a plus/minus mark as
+  well as colour.
+- **On a phone the stage sits under the open capability's copy.** It is the
+  same element placed by grid row, not a second copy, so there is still one
+  set of media.
+- **The art is the approved set** from the 29 Sep Higgsfield history: the
+  mirrored cylinder (`91ea1332`), the paper-fin field (`ec3e35fa`), the column
+  field with the lighthouse inside it (`13e004a4`), the desk track (`87fb06c8`)
+  and the flip-tile wall (`5f06e700`). **One deliberate change:** the approved
+  Search image had plaster wall round its column field, and the instruction
+  requires it full-bleed, with the column field as the environment. It was
+  re-rendered once from itself with the columns carried to every edge
+  (`b33ab097`, GPT Image 2.5, 0.25 credits). The lighthouse, palette and light
+  are unchanged. The second candidate (`295226ca`) was stronger pink and less
+  like the approved image, so it was not taken.
+- **Every capability has a loop**, each its still animated with Kling 3.0 Pro,
+  6s, sound off, 9 credits each. 01–03 and 05 use the still as both first and
+  last frame, so they loop by construction. 04 has no end frame; its last
+  half-second is crossfaded into its first, as the duck pond was. **One clip
+  was rejected** (`1187f0f6`, Growth): by its end the pink row past the wall
+  had gone and the ordered middle had smeared, which changes the approved
+  design. It was re-rendered with a fixed end frame and the ordered area held
+  (`57b133d5`), and that clip keeps the design. The others: `3b8f9965`,
+  `7ec3544b`, `f79a5581`, `5d6e5aaa`. About 55 credits in all.
+- **Files use the instruction's names** in `public/services/capabilities/`:
+  `NN-slug.webp` (the still, 1344 wide, the loop's first frame),
+  `-800.webp` for phones, `.webm`/`.mp4` at 1600 wide, and `-960` versions for
+  phones chosen by `<source media>`. The desktop loops are 0.28–0.84 MB.
+- **Only the shown capability moves.** Its loop plays from its start when it
+  arrives and the previous one pauses. `preload="none"`, so a loop is fetched
+  only when its capability is shown. The first still is fetched at high
+  priority; the other four are light and load as the stage nears. Nothing
+  plays off screen, in a hidden tab or under reduced motion, where the stage
+  is the still (as on the server and without JavaScript). The loop fades in
+  over its own still only once it is actually playing.
+- **Page-level motion is small:** a 450ms crossfade with a 2.5% settle, a
+  slow pointer parallax (fine pointers only), and on Search a soft-light wash
+  from the lamp that leans a few degrees with the pointer. It is light, not an
+  object; the lighthouse and columns are the footage's own. A still-only drift
+  exists for any capability whose loop is later withdrawn (`video: false`).
+- **The crop protects each subject.** The stage is 3:2, capped at the viewport
+  height, and each piece has its own focal point in the duck pond's real-box
+  frame, so the cylinder, the lifted cluster, the lighthouse, the whole track
+  and the pink row all survive.
+- **Kept from the list it replaced:** the diagnostic is still set apart from
+  the service links as the one link with an arrow, and service links still
+  carry no arrow. The retired `.capabilityList` rules are gone from
+  `_hubPage.scss`, with a note of where their reasoning went.
+- **Copy.** Only the five lead statements are new, verbatim from the
+  instruction, with the house's typographic apostrophe ("what’s"). Nothing
+  else was written.
+
+Open items are in [[09 Outstanding]]; checks in [[10 Verification]].
+
+## 30 Sep 2026 — What we do: the final media, integrated as supplied
+
+"Final media integration instructions". The user supplied five posters and
+loops in `public/services/new-capabilities/`. They are used exactly as
+delivered: not regenerated, not recompressed, not substituted. The 29 Sep set
+in `public/services/capabilities/` is no longer referenced and **stays on disk
+until the user says it can go**. Same branch, still uncommitted.
+
+- **The files:** `NN-slug.png` posters (1344×752) and `.webm` (VP9) plus
+  `.mp4` (H.264) loops at 1280×720, 6s. **Demand is now the magnetic
+  selection field** (a brass magnet lifting a selected stream from a scattered
+  field of discs), and it replaces the paper fins completely.
+- **Three of the posters are the 29 Sep approved stills byte for byte** (03,
+  04, 05). 03 is therefore the Search image *with* plaster wall round the
+  column field, not the full-bleed re-render made on 29 Sep. The loop matches
+  it. It was used as supplied; the crop keeps the columns and the lighthouse.
+- **Playback, per the instruction:** on a change, the previous video is paused
+  and reset to 0, the stage crossfades (450ms), and the next video is set to 0
+  and played. Each `<video>` is muted, looped and `playsInline`, with the PNG
+  as its `poster` and WebM before MP4. The PNG also sits under each video as
+  an `<img>`, which is what shows before the video is ready.
+- **Loading:** all five posters are fetched up front, Strategy's at high
+  priority. The shown loop is `preload="auto"`. The others are `none` until the
+  visitor comes near them (mouse entering the row, keyboard focus, touch
+  start), then `metadata`. Under reduced motion every video is `none`.
+- **Plain `<img>`, not `next/image`**, because `next/image` would re-encode
+  the supplied PNGs.
+- **The phone variants went**, because none were supplied: no `-800`/`-960`
+  sources. The frame ratio is now the loops' 16:9.
+- **Focal points** (the instruction's object-position per capability): the
+  Strategy cylinder at 0.49, the Demand magnet and stream at 0.70/0.30, the
+  Search lighthouse and columns at 0.46/0.35, the whole Pipeline route at
+  0.52, and the resolving Growth field at 0.55.
+- **The Search beam wash is removed.** The supplied loop sweeps its own beam
+  both ways, so a fixed page-level wash would contradict the footage. The
+  pointer parallax stays.
+
+**Later on 30 Sep — one folder.** On the user's instruction, the 29 Sep
+media (30 files: the generated stills and loops) was deleted, and
+`public/services/new-capabilities/` was renamed to
+`public/services/capabilities/`, the folder name the first instruction set.
+`CAPABILITY_MEDIA` follows. The 15 supplied files are byte-identical after the
+move (sha256 checked) and all serve 200 from the new path; the old path now
+404s. The folder holds the supplied final set and nothing else.

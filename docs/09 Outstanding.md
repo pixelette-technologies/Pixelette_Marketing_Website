@@ -1025,3 +1025,39 @@ under Demand & Performance; `/results` stories have anchors (`#blockguard`,
 - "Talk to our team" was not added to the Industries close: it would go to the
   same `/contactus` as the primary.
 - Minor: on `/services` the middot separator can end a wrapped line.
+
+## What we do explorer (29 Sep 2026)
+
+Built on `feat/what-we-do-capability-explorer`, **uncommitted, not pushed**.
+
+- **Nobody has seen the loops play in a real browser on a real GPU.** Headless
+  Chrome confirmed which one plays; the motion itself was judged from frame
+  sheets. Worth a look at 1440 and on a phone before approval, especially
+  01's reflection (its band briefly floods yellow mid-loop) and 04's seam (the
+  pink sphere fades from the bowl back onto the rail).
+- **The Search art is a re-render**, made to meet the full-bleed requirement;
+  it has not been approved as an image in its own right. Its predecessor
+  (`13e004a4`) had wall round the field.
+- **The stills are 1344 wide** (the approved images' own size), which is soft
+  on a 2× screen at the stage's full width. The loops are 1600. Upscaling the
+  five stills is the fix if it shows.
+- **The Search beam wash** on fine pointers is a page-level light. It is
+  restrained, but it has only been judged in screenshots.
+- **`D:/pxwwd`** is a build copy of this working tree with its own
+  `node_modules`, used for `next build`. Safe to delete.
+- Closed: the "middot separator can end a wrapped line" item above — the
+  services are now a plain list with no separators.
+
+## What we do — final media (30 Sep 2026)
+
+- **The posters are heavy:** 1.2–2.6 MB each, 8.6 MB for all five, and the
+  instruction preloads all five. Converting them to WebP would cut that by
+  roughly 90%, but the instruction says not to recompress unless technically
+  necessary. **A call for the user.**
+- **The loops are 1280×720**, so they are soft on a 2× screen at the stage's
+  full width (808 CSS px at 1440).
+- **The Search poster and loop have wall round the column field.** They are
+  the supplied final, used as is. The 29 Sep full-bleed re-render is not used.
+- ~~**`public/services/capabilities/`** (the 29 Sep set) awaiting deletion.~~
+  **Closed 30 Sep:** deleted on the user's instruction, and the supplied set
+  was moved into `public/services/capabilities/` from `new-capabilities/`.

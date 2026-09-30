@@ -1663,3 +1663,62 @@ just before the base was read, so the gated tree already included it.
 **`D:/pxwt` is another session's now.** The earlier worktree left for
 deletion had uncommitted changes matching the industries work in it; a
 checkout there refused, touching nothing, and it was left alone.
+
+## 29 Sep 2026 — the What we do explorer
+
+Uncommitted working tree on `feat/what-we-do-capability-explorer`.
+
+- **Gates:** tsc clean, eslint clean, token gate 0 findings, route walk 28/28
+  against the running dev server on :3000, and `next build` green in a
+  separate copy (`D:/pxwwd`; a `node_modules` junction across drives is
+  refused by Turbopack as "points out of the filesystem root", so the copy has
+  its own `npm ci`).
+- **Measured in headless Chrome** (CDP, `Input.*` events, not synthetic
+  dispatch):
+  - At 1440 the stage runs from x=632 to the viewport edge (808×539), the rail
+    starts at x=140, the same as the hero copy, and scrollWidth equals the
+    viewport. It holds at 768 and 390 too.
+  - Exactly one capability is open and exactly one loop plays, after clicks on
+    all five. The network log shows a loop fetched only when its capability is
+    shown.
+  - Hover: after 90ms nothing has changed; by 800ms the stage shows 05 while 03
+    stays open; with the pointer off the list the stage is back on 03.
+  - Keyboard: ArrowDown, End and Home move focus, and Enter and Space open. Tab
+    from the open row lands on its first link, and closed panels are `inert`.
+    The focus ring is 2px brand.
+  - Reduced motion: no loop is fetched or played, and switching it on live
+    pauses playback.
+  - Phone: a tap opens a row, and the stage sits 4px under the open row's copy,
+    above the next row.
+- **Looked at:** all five capabilities at 1440, 01 at 768, 04 at 390, and the
+  full page. It is 2153px at 1440 against the live page's 2913px.
+- **The one console error** is the dev-only React eval/CSP notice ("1 Issue"),
+  identical on `/industries`, and not from this change.
+
+## 30 Sep 2026 — the final media on /services
+
+- **Gates:** tsc clean, eslint clean, token gate 0 findings, route walk 28/28
+  on :3000, and `next build` green in `D:/pxwwd` after syncing the changed
+  files into it.
+- **Headless Chrome, measured:**
+  - First render requests only the five PNGs. Exactly one video plays after
+    each switch; `currentTime` for all the others is 0; going back to 02
+    restarts it from about 0.4s.
+  - `currentSrc` is `.webm`. With `*.webm` blocked, 01 plays
+    `01-strategy-positioning.mp4`.
+  - At 60 KB/s, 350ms after choosing 04, the video's opacity is 0 and its PNG
+    is complete: the poster shows first.
+  - Reduced motion: no video requested or played, the posters show, and
+    switching works.
+  - Phone (390): a tap opens a row, only its loop plays, and the stage sits
+    4px under the open copy. No horizontal overflow anywhere.
+- **Content, from frame sheets of each supplied loop:** 01 cylinder, 02
+  magnet and stream, 03 columns and lighthouse with a sweeping beam, 04 pink
+  sphere to the bowl, 05 tiles resolving to pattern. Seen in the page at 1440
+  (01, 02, 03) and 390 (02).
+- **After the rename to `capabilities/` (30 Sep):** sha256 of all 15 files
+  matched before and after. Each serves 200 with its original byte size, and
+  the rendered page references only `/services/capabilities/`. tsc, eslint and
+  the token gate are clean, and the route walk is 28/28. The headless walk
+  repeated green: one video at a time, the MP4 fallback, the slow-network
+  poster, reduced motion and phone.

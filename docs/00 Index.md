@@ -496,6 +496,17 @@ an open column beside it. No new routes, no imagery. Seen in headless Chrome at
 1440 and 390, with and without reduced motion; **not at 768, not on a real
 phone**. See [[02 Decisions]] and [[09 Outstanding]].
 
+**30 Sep, later — Insights, the final brief (`370bdda`).** `/blog-list` keeps
+its route and stops being an archive: hero ("Thinking you can use"), Featured
+thinking (Your buyers are asking an AI), On our radar, Try the thinking, Latest
+thinking with capability filters, and a weekly briefing CTA. The sidebar, the
+dropdown and the old grid are gone. **The hero collage is built in code** from
+the repo's one discussion photograph, because no revised collage was
+supplied; the briefing is a placeholder to `/contactus`, because no
+newsletter exists. Seen in headless Chrome at 1440, 768 and 390; **not on a
+real phone or GPU.** See [[02 Decisions]], [[09 Outstanding]] and
+[[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

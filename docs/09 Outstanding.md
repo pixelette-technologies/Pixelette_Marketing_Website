@@ -1138,3 +1138,25 @@ On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
 - Seen in headless Chrome at 1440 and 390, with and without reduced motion:
   **not at 768, not on a real phone.** Hover and the focus ring were not
   looked at. No production build was run (the dev server holds `.next`).
+
+## Insights — final brief (30 Sep 2026)
+
+Committed `370bdda`, not pushed.
+
+- **The hero collage is a stand-in.** Built in code from the marketing-spend
+  article's stock photograph because no revised collage was supplied. If one
+  exists, it replaces one `<Image>` and four layers in `InsightsHero.tsx`.
+  The same photograph is still that article's banner.
+- **The briefing note promises a manual step**: "mention the briefing and we
+  will add you". Someone has to keep that list by hand until a real sign-up
+  exists, or the note should be softened. **A call for the user.**
+- **Words written in this session need a read**: the five card summaries,
+  the three radar summaries, the buyer's question in the featured visual,
+  "What would change the decision?" on the collage, and the empty-filter
+  line.
+- **Pipeline & conversion has no article**, so one of the seven filters
+  always shows the empty state until a piece is filed there.
+- **Read times are short** (2–3 min), because they are computed honestly
+  from the articles as written.
+- Not seen on a real phone or GPU; headless Chrome only. `next build` not run
+  (a shared dev server was on :3000; not restarted, on instruction).

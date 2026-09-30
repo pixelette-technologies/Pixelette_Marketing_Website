@@ -1806,3 +1806,34 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   component now fills it with `--color-pink-text` (5.12).
 - **Gates:** eslint clean on this page's files; route walk 28/28 on :3000.
   The "1 Issue" dev overlay is React's dev-only CSP eval warning, site-wide.
+
+## 30 Sep 2026 — Insights, the final brief
+
+- **The commit alone** (`370bdda`, `git archive` into the scratchpad with a
+  `node_modules` junction): tsc clean, `main.scss` compiles, eslint clean on
+  the page's files, token gate 0 findings. Every token the new partial reads
+  was checked against HEAD's `_tokens.scss`, which another session had
+  uncommitted edits in.
+- **Route walk 28/28** against the shared dev server on :3000.
+- **Measured in headless Chrome** at 1440, 768 and 390 (reduced motion) and
+  1440 (motion): no horizontal overflow, one h1 ("Thinking you can use"), the
+  h2 order Featured thinking, On our radar, Try the thinking, Latest
+  thinking, the briefing; no image without alt; the answer sequence reaches
+  `play` with motion and stays `rest` without.
+- **Exercised**: the Pipeline & conversion filter shows the empty state and
+  announces "0 pieces"; Search & authority shows one card; eight Tabs from
+  the first filter reach the briefing CTA through the filters and card link;
+  hovering a tool card lights the sample answer (checked with
+  `Input.dispatchMouseEvent` and `:hover`).
+- **Looked at, and looking found two faults the measurements passed**: both
+  Playbook cards drew the same mark (both articles have five sections; the
+  article id now varies it), and the Point of view quote glyph was clipped
+  at the top of its frame (moved down).
+- **A site-wide outage caused in this session, about four minutes.** Writing
+  `blogs/_index.scss` before `_insights.scss` existed left Turbopack with a
+  cached failed import; `main.scss` failed and every route returned 500 on
+  the shared server, until the forward path was changed to force a fresh
+  lookup. `sass` itself compiled throughout. Write a new partial **before**
+  the index that forwards it.
+- The dev overlay's "1 Issue" is React's dev-only eval/CSP warning; it shows
+  on `/industries` too.

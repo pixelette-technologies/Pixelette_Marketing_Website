@@ -2443,3 +2443,64 @@ alongside the session building the specialist service pages; no shared file.
 - **Metadata:** the description is the brief's; the title and keywords are
   unchanged. No new routes; the five legacy `/industries/[slug]` pages are
   untouched.
+
+## 30 Sep 2026 — Insights: the final brief
+
+Built to "Insights page — final implementation brief", which supersedes every
+earlier Insights instruction. Code `370bdda`.
+
+- **The route stays `/blog-list`**, as the brief requires. Six sections in the
+  brief's order, then the footer; nothing else on the page.
+- **The articles stay in `blogsData.ts`.** `src/data/insights/insights.ts` is
+  an editorial layer over them: capability, format (Point of view, Playbook,
+  Guide, Signal), a one-line summary, a read time computed from the words at
+  220 a minute, and a section count the card marks are drawn from. A post
+  without an entry fails the build, the same guarantee `blogsData` gives its
+  categories. The old seven `INSIGHT_CATEGORIES` still drive the article
+  pages' related cards and are not shown on this page.
+- **Filing.** Fintech/FCA → Market signals, Guide. Web3 → Demand &
+  performance, Playbook. SaaS metrics → Growth intelligence, Guide. AI search
+  → Search & authority, Point of view (featured). Spend checks → Strategy &
+  positioning, Playbook. **Pipeline & conversion has no article**; its filter
+  stays selectable and says so, with a link to `/services`, rather than being
+  hidden, because the brief fixes the filter list.
+- **The hero collage is composed in code, not supplied.** The brief says "use
+  the revised collage-style hero"; no such asset exists in the repo or in
+  Downloads. It uses `blog-marketing-spend-banner.webp` (two colleagues of
+  different ethnicities working over charts), greyscale and torn-edged on the
+  pink disc, with a paper note, a signal slip and a burgundy quote block. The
+  About team portraits were rejected: posed headshots of real staff, which is
+  the "posed agency photo" the brief bars and close to implying authors.
+- **The featured visual is vendor-neutral by construction**: a buyer's
+  question, an answer panel with a plain ring for a glyph, a shortlist
+  (named, named, not named) and three website outlines beneath. No logo, name
+  or product interface. The question is the article's own example.
+- **The radar signals are not new content.** Each is a point an existing
+  article already makes, and "Read the signal" goes to that article: search
+  → `/blog/4`, attribution and activity → `/blog/5`.
+- **Try the thinking.** The positioning diagnostic is live and its preview
+  reads the diagnostic's own first question and facts from
+  `src/data/strategy`. **The spend readiness check does not exist**: marked
+  Coming next, its preview labelled "Preview · not live yet", and its button
+  goes to the five-checks article rather than to anything that pretends to
+  run.
+- **The briefing is a placeholder CTA**, not a form: no list, provider or
+  endpoint exists and the brief bars building one. The button goes to
+  `/contactus` and the note under it says sign-up is not open.
+- **One image language on the cards**: a drawn mark per format on one blush
+  ground (quote glyph, rising steps, outline rows, a pulse), shaped by the
+  article's section count and id so no two cards repeat. No thumbnails.
+- **Colour** reads the four tokens the diagnostic, specialist pages and
+  Industries already share (plum ink, burgundy, pink, pink-text). The
+  briefing band is blush, not dark: the footer after it is already dark.
+- **Motion**, all under `prefers-reduced-motion: no-preference`: hero copy
+  rises once; the collage layers drift with a fine pointer; the answer
+  sequence plays once in view (question, answer +320ms, one highlight);
+  radar, cards and tools lift and draw an accent on hover; a tool's sample
+  answer lights on hover or focus. Nothing loops.
+- **Filters are toggle buttons** (`aria-pressed`) with a polite live count;
+  on the one breakpoint the row scrolls sideways inside itself.
+- **`blogs/_index.scss` forwards `"./_insights.scss"`** with the explicit file
+  name. The bare `"./insights"` form is valid, but Turbopack cached a failed
+  lookup from the moment the index was written before the partial, and the
+  explicit path was what cleared it.

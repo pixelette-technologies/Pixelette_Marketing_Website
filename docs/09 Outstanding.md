@@ -1103,3 +1103,18 @@ On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
 - **Blog prose still says "SEO and content"** in two posts (`blogsData.ts`).
   Running text on unrelated pages, left alone by instruction.
 - Not seen on a real GPU or a real phone; headless Chrome only.
+
+## Marketing Analytics & Measurement (30 Sep 2026)
+
+- **The Pipeline & Conversion menu labels.** The brief's locked menu reads
+  "Lead Capture & Conversion" and "Email, CRM & Automation"; the menu still
+  shows "Lead Generation" and "Email Marketing". Neither page was in this
+  brief. **A call for the user.**
+- **The hero's full stop.** "Know what’s working." keeps the brief's full
+  stop while the capability statements lost theirs (`0a2138f`). **A call for
+  the user.**
+- **Words and figures written here** (see [[02 Decisions]]) need the user's
+  or management's eye before this ships.
+- Seen in headless Chrome at 1440 and 390 only: **not at 768, not on a real
+  phone or GPU.** No production build was run in this session (a shared
+  `next start` was using `.next`).

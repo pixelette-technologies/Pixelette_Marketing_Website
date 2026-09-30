@@ -2338,3 +2338,53 @@ components.
 - **No "Work in practice".** There is not enough service-specific search
   evidence. The config's optional `practice` slot renders between measure and
   connections once there is, and renders nothing until then.
+
+## 30 Sep 2026 — Growth Intelligence: Marketing Analytics & Measurement
+
+Built to the "Growth Intelligence — Marketing Analytics & Measurement, final
+implementation brief", on `main`, alongside the session building the shared
+specialist system (Demand & Performance, Search & Authority).
+
+- **Route kept, name changed.** `marketing_analytics_and_reporting` is
+  unchanged; `servicesData` id 7's title is now "Marketing Analytics &
+  Measurement", which the nav, the mobile drawer, `/services` and the footer
+  all read. No other Growth Intelligence route or menu item.
+- **One page on the shared system.** Content is
+  `data/services/specialist/growthIntelligence.ts`, every visible word the
+  brief's; it renders through `SpecialistServicePage`. Three optional config
+  fields were added for it: `earnsItsPlace.market` (the Industries line reads
+  "Different markets require different measurement questions."),
+  `measure.note` ("The right metric depends on the decision being made.") and
+  `demo`. The process is the brief's approved variation, Diagnose → Connect →
+  Interpret → Improve, under "From data to action".
+- **The one visual exception.** `demo` renders the Growth Intelligence view
+  after "When this earns its place" and a compact preview beside the hero
+  copy. Both read `growthIntelligenceDemo.ts` and share the same chart
+  components (`components/ui/specialist/growth/`), so there is one analytics
+  system, not two. The view is labelled 01 Data / 02 Interpretation /
+  03 Decision, to show the brief's DATA → INTERPRETATION → DECISION.
+- **Illustrative, visibly.** "Illustrative data — demonstration only" is
+  printed under the heading, on the view's bar and on the hero preview. No
+  tooltip-only qualification, no client names, nothing framed as a result.
+  The KPIs and all insight copy are the brief's; **the weekly series, the
+  source splits and the ring shares were written here** to agree with them
+  (Pipeline's weeks sum to 312 leads and 96 opportunities).
+- **Charts.** Plain SVG/HTML/CSS, no dependency. One axis only: Growth's two
+  measures are indexed to week 1 rather than given two y-scales. Identity is
+  never colour alone: burgundy line ends in a circle, pink in a square, both
+  labelled at their ends; bars print their values and tag the focus bars "In
+  focus"; the ring's legend prints every share. A screen-reader table carries
+  the line data, and each mode change announces its decision.
+- **Palette.** Burgundy, pink, and two new tokens for the ring's third and
+  fourth steps, `--color-chart-neutral` (#A8949B) and `--color-chart-blush`
+  (#F0B8CF). Run through the dataviz validator: adjacent pairs sit in the
+  colour-blind floor band, legal only with the text legend, which is
+  therefore required, not decoration.
+- **Motion** (surface 11 in `_surfaces.scss`): once on first view, figures
+  count up, lines draw, bars grow, the ring fills; on a mode change the lines
+  move to their new points, bars and ring transition, the figures and insight
+  fade in. Then still. Reduced motion: every state at once.
+- **Efficiency's contribution view** is not specified in the brief; it is an
+  "Illustrative spend mix".
+- **Written here, not in the brief:** "In focus", "Explore the full view ↓",
+  and the caveat under each ring.

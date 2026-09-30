@@ -478,6 +478,15 @@ Influencer & Partnerships and PR & Earned Media.
 
 See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
+**30 Sep, later — Marketing Analytics & Measurement (Growth Intelligence).**
+The analytics route keeps its slug (`/services/marketing_analytics_and_reporting`)
+and takes the name "Marketing Analytics & Measurement" everywhere it is shown.
+It renders through the shared specialist system and carries the family's one
+deliberate visual exception: an interactive, **illustrative** Growth
+Intelligence view (Growth / Efficiency / Pipeline) plus a compact preview in the
+hero, both from one data file. Seen in headless Chrome at 1440 and 390; **not
+at 768, not on a real phone**. See [[02 Decisions]] and [[09 Outstanding]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

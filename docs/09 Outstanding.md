@@ -1005,10 +1005,12 @@ under Demand & Performance; `/results` stories have anchors (`#blockguard`,
 
 **Calls for the user or management:**
 
-- **The 24 market / challenge / approach lines are mine**, written to the
+- ~~**The 24 market / challenge / approach lines are mine**, written to the
   instruction's rules; so are the selector heading ("Choose a market to see
   how the thinking changes") and Work in practice's ("What changed after the
-  work started"). Nobody has approved them.
+  work started"). Nobody has approved them.~~ **Closed 30 Sep (`ae4c38f`):**
+  the final Industries brief supplies all 24 lines and both headings; they
+  are now its words, verbatim.
 - **BlockGuard on the home page.** Only the two before → after figures appear
   there, because the measurement period is still unknown. The three raw counts
   stay on `/industries` and `/results`.
@@ -1118,3 +1120,21 @@ On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
 - Seen in headless Chrome at 1440 and 390 only: **not at 768, not on a real
   phone or GPU.** No production build was run in this session (a shared
   `next start` was using `.next`).
+
+## Industries final brief (30 Sep 2026)
+
+- **"Fusio" or "Fusion".** The brief writes "Fusion ecosystem"; the case study
+  and the brand asset say Fusio. Kept as Fusio. **A call for the user.**
+- **WebBookingPro's market label** (Technology & Innovation). Supported by
+  its case study, but the brief lets it go unlabelled. **A call for the
+  user.**
+- **The palette scope comment in `_tokens.scss`** says plum ink / burgundy /
+  pink are for Strategy and the specialist pages; `/industries` now uses them
+  too, by its brief. The comment was left alone because another session was
+  editing those lines; add `/industries` to it.
+- On a phone the panel frame holds the tallest market's height, so shorter
+  markets leave a gap at the foot. Deliberate (no jump below), but worth an
+  eye.
+- Seen in headless Chrome at 1440 and 390, with and without reduced motion:
+  **not at 768, not on a real phone.** Hover and the focus ring were not
+  looked at. No production build was run (the dev server holds `.next`).

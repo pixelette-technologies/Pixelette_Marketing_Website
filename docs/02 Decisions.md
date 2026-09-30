@@ -2388,3 +2388,58 @@ specialist system (Demand & Performance, Search & Authority).
   "Illustrative spend mix".
 - **Written here, not in the brief:** "In focus", "Explore the full view ↓",
   and the caveat under each ring.
+
+## 30 Sep 2026 — Industries: the final brief
+
+Built to "Industries page — final implementation brief" on `main` (`ae4c38f`),
+alongside the session building the specialist service pages; no shared file.
+
+- **Four chapters, unchanged, now finished.** Hero, the eight-market explorer,
+  Work in practice, close. Every market's descriptor, five journey stages,
+  market, challenge and approach is the brief's, verbatim, in
+  `data/industries/industries.ts`; the 29 Sep drafts are gone. The hero lead
+  and "Understand before we act" are the brief's.
+- **The sector icons and eight tones are removed** from this page's data. The
+  brief makes the Market journey the visual device. The drawings stay in
+  `assets/sectors`.
+- **Market journey** (`MarketJourney.tsx`): five stages on one thin line,
+  horizontal from 40rem and vertical below it so no label is cramped. Not a
+  funnel. The stages are an ordered list; the track, fill and signal are
+  decoration. A pink signal travels once per selection, 560ms linear with a
+  node turning every 140ms (about 660ms in all), then stops. CSS only, keyed
+  off `data-journey` ("armed" until the explorer is first on screen, then
+  "play") and the panel's `is-active`. The resting state is the finished
+  line, which is also the no-JS and reduced-motion state.
+- **Explorer** (`IndustryExplorer.tsx`): a WAI-ARIA tablist with automatic
+  activation — click, tap, arrows, Home, End. **Hover no longer selects**: the
+  brief bars depending on hover, and hover-select replayed the journey
+  whenever a mouse crossed the list. On desktop one measured pink bar slides to
+  the selected row; on a phone each boxed control carries its own rule. The
+  selected state is never colour alone: rule, heavier plum-ink name, pink
+  number. All eight panels stay in the HTML, stacked in one grid cell with
+  `visibility: hidden`, so the copy genuinely crossfades and the frame holds
+  the tallest panel's height instead of jumping.
+- **Work in practice**, redesigned because the brief rejected equal white
+  cards. BlockGuard is a blush panel across ~68%; WebBookingPro an open column
+  with a hairline, ~32%. The brief's two headlines replace the case studies'.
+  BlockGuard's five figures are shown in the brief's form (5 → 160,
+  200 → 16.9k, 2,435, 29,974, 975) and **each is checked against
+  `caseStudies.ts` at build**: a mismatch throws. They matched on 30 Sep.
+  `FigureReveal.tsx` counts them once on first view (900ms each, 60ms apart,
+  under 1.2s), ends on the case study's exact string, and never zeroes a
+  figure already on screen; a hidden copy gives screen readers the final
+  value.
+- **Kept to the source over the brief, and flagged:** "Fusio ecosystem" (the
+  brief says "Fusion"; Fusio is the brand, see `fantacyFusio.svg`); "16.9k" in
+  lower case; WebBookingPro's two outcomes verbatim from its case study (the
+  brief's suggestion adds "relevant").
+- **WebBookingPro is labelled Technology & Innovation**, as the brief allows
+  when the evidence supports it: its case study calls it "an accommodation
+  technology solution". No ninth market. One constant to change.
+- **Palette.** The brief names plum ink, burgundy, pink and pink-text — the
+  four values held for the Strategy diagnostic and the specialist pages — so
+  this page reads those tokens and adds none. The hero and close pair plum ink
+  with burgundy, as the specialist heroes do.
+- **Metadata:** the description is the brief's; the title and keywords are
+  unchanged. No new routes; the five legacy `/industries/[slug]` pages are
+  untouched.

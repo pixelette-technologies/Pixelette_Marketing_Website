@@ -487,6 +487,15 @@ Intelligence view (Growth / Efficiency / Pipeline) plus a compact preview in the
 hero, both from one data file. Seen in headless Chrome at 1440 and 390; **not
 at 768, not on a real phone**. See [[02 Decisions]] and [[09 Outstanding]].
 
+**30 Sep, later — Industries, the final brief (`ae4c38f`).** `/industries`
+keeps its four chapters and takes the final brief's words and behaviour: all
+eight markets' copy is now supplied, not drafted here; the sector icons are
+gone and a five-stage **Market journey** is the page's visual; Work in
+practice is BlockGuard as a featured panel with its five figures, WebBookingPro
+an open column beside it. No new routes, no imagery. Seen in headless Chrome at
+1440 and 390, with and without reduced motion; **not at 768, not on a real
+phone**. See [[02 Decisions]] and [[09 Outstanding]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

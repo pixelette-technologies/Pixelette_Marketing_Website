@@ -507,6 +507,19 @@ newsletter exists. Seen in headless Chrome at 1440, 768 and 390; **not on a
 real phone or GPU.** See [[02 Decisions]], [[09 Outstanding]] and
 [[10 Verification]].
 
+**30 Sep, later — About, the final brief (`8fc53d7`).** `/aboutus` keeps its
+route and now answers three questions only: why Pixelette Marketing exists,
+how it differs from a channel-led agency, what working with it is like. Six
+sections: hero ("Built around the challenge, not the channel"), Why we exist,
+How we're built (a four-stage flow whose pink signal runs once, 700ms), What
+guides the work, Part of the wider Pixelette Group (text only) and one
+"Build my growth plan" close. The capability band, the who-we-are / how-we-work
+pair and the ecosystem logo strip are gone. **The primary navigation is now
+What we do / Industries / Insights / About / Contact**, in the bar and the
+drawer. **The page is 39% shorter at 1440, 29% at 768 and 26% at 390** against
+a 40–50% target — the rest is the brief's own copy. See [[02 Decisions]],
+[[09 Outstanding]] and [[10 Verification]].
+
 Two things are still true and worth repeating anywhere this is read:
 
 1. **Almost nothing has been viewed in a browser.** The Growth System band —

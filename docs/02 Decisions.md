@@ -2504,3 +2504,46 @@ earlier Insights instruction. Code `370bdda`.
   name. The bare `"./insights"` form is valid, but Turbopack cached a failed
   lookup from the moment the index was written before the partial, and the
   explicit path was what cleared it.
+
+## 30 Sep 2026 — About: the final brief
+
+Built to the final About page brief, which supersedes every earlier About
+instruction, including the 21 Sep rebuild. Committed `8fc53d7`.
+
+- **Six sections, locked**: hero, Why we exist, How we're built, What guides
+  the work, Part of the wider Pixelette Group, close. Every string is the
+  brief's verbatim except one (below).
+- **Off the page**: `AboutIdentity` (who we are / how we work),
+  `CapabilityModel` (the five capabilities on a dark band) and the
+  `TrustedBrands` ecosystem strip. The first two are deleted with their
+  partials. `aboutExperience` stays in `aboutContent.ts` because
+  `homeContent.ts` still imports it; nothing on `/aboutus` reads it.
+- **Navigation reordered**: What we do / Industries / Insights / About /
+  Contact, bar and drawer (`Navbar.tsx`). No URL moved. The footer's Company
+  column is untouched — the brief allows a footer change only where the
+  navigation needs it for consistency, and a footer list is not the
+  navigation.
+- **Colour**: the four specialist tokens (plum ink, burgundy, pink,
+  pink-text) are widened to `/aboutus`, recorded in `_tokens.scss`. Headline
+  lead in plum ink, the turn in burgundy; eyebrows and numerals pink-text;
+  every read sentence plum ink. No dark band on the page.
+- **How we're built is the one interaction** (`BuiltFlow.tsx`,
+  `_builtFlow.scss`, motion surface 12). The server HTML is the finished
+  flow; it rewinds only if the section starts below the fold and an observer
+  is live, then runs once (700ms, linear) and never replays. The track length
+  is arithmetic — four equal tracks, so first node to last is 75% plus three
+  quarters of a gap — which holds across and down alike. **Linear, not eased**:
+  sampling the run showed the eased signal past stage 03 before its node lit.
+- **One line written here**: "We assemble the team around the brief, not
+  around a fixed org chart." The brief says the section must communicate
+  exactly this and supplies no sentence. One line to delete.
+- **No "Explore the wider Pixelette Group →" link.** The brief makes it
+  conditional on a valid destination; there is no group page, and the
+  footer's group band is hidden (22 Sep).
+- **The length came out of the layout, not the copy.** Built as specified,
+  the page first measured **5% longer** than the page it replaced at 1440.
+  One gap between sections instead of two, and the headers of principles, How
+  we're built and the close beside their content on wide screens, brought it
+  to 39% shorter. The Why section is two grid columns from 60rem and stacked
+  below — flex bases left a blank band at 768 once the pair wrapped.
+- **No hero entrance.** Allowed by the brief, not required.

@@ -1837,3 +1837,36 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   the index that forwards it.
 - The dev overlay's "1 Issue" is React's dev-only eval/CSP warning; it shows
   on `/industries` too.
+
+## 30 Sep 2026 — About, the final brief
+
+- **Gates on the committed state**: tsc clean, eslint clean on the page's
+  files, token gate 0 findings, `main.scss` compiles. Every main route
+  checked returned 200 on the shared server afterwards (home, About,
+  services, industries, Insights, contact, strategy, one specialist page,
+  results).
+- **Measured in headless Chrome** at 1440, 768 and 390: one h1 ("Built around
+  the challenge, not the channel"); nav order What we do, Industries,
+  Insights, About, Contact in the bar and the drawer; no image, video or form
+  in the page; no "Pixelette ecosystem" text; zero dark bands, one rule-cap;
+  exactly four stages; three links (Start a conversation and Build my growth
+  plan to `/contactus`, See how our capabilities connect to `/services`); no
+  horizontal overflow; body copy computed at #24181F.
+- **The flow, sampled every 40ms**: armed below the fold, one run of ~700ms,
+  done; scrolling away and back leaves it done; under reduced motion it never
+  leaves idle. Keyboard: Tab from the hero reaches all three links, each with
+  a 2px focus ring.
+- **Length, before and after**: the old page was rebuilt in the browser from
+  HEAD's compiled stylesheet and markup, with the real logo marquee taken
+  from `/services/lead_generation`, and measured against the new page at the
+  same widths: 3,334 → 2,022px at 1440, 3,213 → 2,285 at 768, 3,665 → 2,720
+  at 390. Production could not be the baseline — it serves an older About.
+- **Looking found three faults the measurements passed**: the stage nodes lit
+  after the signal had passed them (eased timing; now linear), the page was
+  longer than before, and at 768 the stacked Why section had a blank band
+  between heading and copy.
+- **A site-wide outage caused in this session, a few minutes.** The same trap
+  the Insights entry records: `aboutus/_index.scss` was written forwarding
+  `./aboutBuilt` before the partial existed, Turbopack cached the failed
+  lookup, and every route returned 500 until the forward was changed to a new
+  name (`./builtFlow`). Touching the files did not clear it.

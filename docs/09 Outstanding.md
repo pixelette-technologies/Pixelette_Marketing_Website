@@ -1160,3 +1160,23 @@ Committed `370bdda`, not pushed.
   from the articles as written.
 - Not seen on a real phone or GPU; headless Chrome only. `next build` not run
   (a shared dev server was on :3000; not restarted, on instruction).
+
+## About — final brief (30 Sep 2026)
+
+Committed `8fc53d7`.
+
+- **The page is not 40–50% shorter everywhere.** 39% at 1440, 29% at 768,
+  26% at 390, measured against the old page with its logo strip. On narrow
+  screens what remains is the brief's own copy. **A call for the user**:
+  accept, or name copy to cut.
+- **One sentence is ours, not the brief's**: "We assemble the team around the
+  brief, not around a fixed org chart." Keep or delete.
+- **"Experience across the Pixelette ecosystem" is still live elsewhere** — the
+  home page and the service pages' strip read `aboutExperience`. The brief
+  says it may stay in a proof context only if genuinely supportable; that is
+  the same question as the 23 Sep logo-claim item above.
+- **The footer's Company column** lists About before Industries and Insights,
+  a different order from the new navigation. Left, by the brief's "do not
+  change footer"; one line if wanted.
+- Not seen on a real phone or GPU; headless Chrome only. `next build` not run
+  (the shared dev server holds `.next`; not restarted, on instruction).

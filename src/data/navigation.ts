@@ -15,7 +15,10 @@ export interface NavGroup {
 
 // The navigation. First specified by the 8 September 2026 brief; LOCKED on
 // 29 Sep 2026 as What we do / Industries / About / Insights / Contact plus
-// "Build my growth plan". Do not add a top-level item without an instruction.
+// "Build my growth plan", and reordered on 30 Sep 2026 by the About page brief
+// to What we do / Industries / Insights / About / Contact. The links
+// themselves are in Navbar.tsx. Do not add a top-level item without an
+// instruction.
 //
 // URLS DO NOT MOVE. The labels have changed more than once — Services became
 // "What we do", Industries became "Who We Help" and on 29 Sep became

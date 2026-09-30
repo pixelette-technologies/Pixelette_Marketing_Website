@@ -1,0 +1,37 @@
+// Part of the wider Pixelette Group. 30 Sep 2026.
+//
+// Text only, and deliberately quiet: it replaced a logo strip on a dark band,
+// and the brief asks for it to be concise. An eyebrow over a two-column pair —
+// the heading in burgundy, the one paragraph beside it — on a single hairline.
+
+.aboutGroup {
+  padding-block: var(--sec-y-sm);
+
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--color-pink-text);
+  }
+
+  &__grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1rem clamp(1.5rem, 1rem + 2.6vw, 4rem);
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.5rem;
+
+    & > .h2 {
+      flex: 1 1 22rem;
+      min-width: 0;
+      max-width: 30rem;
+      color: var(--color-burgundy);
+    }
+
+    & > .body {
+      flex: 1 1 24rem;
+      min-width: 0;
+      max-width: 38rem;
+      color: var(--color-plum-ink);
+    }
+  }
+}

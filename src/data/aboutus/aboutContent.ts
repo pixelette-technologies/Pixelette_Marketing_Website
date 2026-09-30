@@ -1,125 +1,132 @@
-// The About page copy, 21 September 2026.
+// The About page copy. Rewritten 30 September 2026 to the final About page
+// brief, which supersedes every earlier About instruction.
 //
 // ONE FILE, for the same reason homeContent.ts is one file: it is one copy
 // document, so a reviewer checking the wording opens one file rather than six
 // and no TSX stands between them and the words.
 //
+// THE PAGE ANSWERS THREE QUESTIONS AND NO MORE: why Pixelette Marketing
+// exists, how it differs from a channel-led agency, and what working with it
+// feels like. Six sections, locked: hero, why we exist, how we're built, what
+// guides the work, part of the wider group, close. The capability model, the
+// who-we-are / how-we-work pair and the ecosystem logo strip came off.
+//
+// Every string below is the brief's verbatim, except the one line marked
+// under "How we're built".
+//
 // Eyebrows are stored in sentence case. .eyebrow carries text-transform:
 // uppercase, so they render as specified without this file having to shout at
-// whoever is proofreading it. The .h2 headings take their capital from the
-// ::first-letter rule in _type.
+// whoever is proofreading it.
 //
-// WHAT THIS PAGE MAY NOT SAY. The instruction that produced it bars any claim
-// about headcount, offices, staff or client relationships that the existing
-// material does not already establish, and bars the agency clichés with it.
-// So there are no people here, no numbers, and the logo strip keeps the
-// ecosystem wording rather than claiming delivery. The operating model is
-// stated positively — lean, specialist, capability-led — because that is what
-// is true, not because the stronger claim was unavailable.
-//
-// The four capability areas carry NO descriptions. None were supplied, and the
-// house content rule is to ship the pattern without the missing element rather
-// than invent one — the same call GrowthSection made when it had no eyebrow.
+// WHAT THIS PAGE MAY NOT SAY: no headcount, no team, no offices, no client
+// claims, no agency clichés. The operating model is the story.
 
 /** Every call to action on this page lands on the enquiry form. One constant,
  *  so they move together if that route ever moves. */
 export const CONTACT_HREF = "/contactus";
 
 // --- 01 Hero ----------------------------------------------------------------
-// The headline is split so the payoff takes the brand tone, which is the
-// guide's own hero device and what HomeHero already does.
+// Two lines: the statement in near-black, the turn in burgundy.
 
 export const aboutHero = {
   eyebrow: "About Pixelette Marketing",
-  headingLead: "Marketing built around",
-  headingAccent: "measurable growth.",
-  lead: "Pixelette Marketing brings strategy, creative thinking, technology and performance together to help ambitious businesses turn attention into commercial outcomes.",
+  headingLead: "Built around the challenge,",
+  headingAccent: "not the channel",
+  lead: "Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us. We shape the team and the approach around what the work actually needs.",
   cta: { label: "Start a conversation", to: CONTACT_HREF }
 };
 
-// --- 02 Who we are / How we work --------------------------------------------
-// Two statements of equal weight, so neither is the section heading and both
-// are. The section therefore has no header of its own.
+// --- 02 Why we exist --------------------------------------------------------
+// The five capabilities are NOT listed here. /services owns them; this
+// section points at it.
 
-export const aboutIdentity = [
-  {
-    eyebrow: "Who we are",
-    heading: "Built to make marketing work as one.",
-    body: "We believe effective marketing should connect strategy, execution and commercial results. Pixelette Marketing was created to remove the fragmentation between different marketing disciplines and give businesses a clearer route from idea to outcome."
-  },
-  {
-    eyebrow: "How we work",
-    heading: "The right capabilities around the right challenge.",
-    body: "Our model is deliberately lean. We structure each engagement around the capabilities the brief requires, with clear ownership, measurable objectives and one joined-up direction."
-  }
-];
-
-// --- 03 Capability model ----------------------------------------------------
-
-export const aboutCapabilities = {
-  eyebrow: "How we build",
-  heading: "Built around the brief, not the org chart.",
-  lead: "Different challenges need different expertise. Our delivery model brings the right capabilities around each engagement rather than forcing every client through a fixed agency structure."
-  // NO `items` SINCE 23 SEP 2026. There were four here — Strategy &
-  // positioning, Creative & content, Demand & acquisition, Technology & AI —
-  // numbered 01–04 in the same device the home page uses for its five
-  // capabilities, so the site described its offer two different ways. The
-  // component now renders the five from growthSystemData, the one service
-  // architecture. They are read there rather than imported here because
-  // homeContent already imports this file, and a module cycle between the two
-  // would evaluate one of them half-built.
+export const aboutWhy = {
+  eyebrow: "Why we exist",
+  heading: "Marketing works better when the pieces work together",
+  body: [
+    "Channels rarely fail in isolation. A demand problem may begin with positioning. A traffic problem may actually be conversion. Reporting may reveal that the real constraint sits somewhere else entirely.",
+    "Pixelette Marketing is organised around connected capabilities so we can start with the problem rather than force every brief through a predefined service."
+  ],
+  link: { label: "See how our capabilities connect →", to: "/services" }
 };
 
-// --- 04 Principles ----------------------------------------------------------
+// --- 03 How we're built -----------------------------------------------------
+// The page's one interaction: four stages on a line, with a signal that runs
+// through once. See BuiltFlow.tsx.
+
+export const aboutBuilt = {
+  eyebrow: "How we’re built",
+  heading: "Built around the brief",
+  // WRITTEN HERE, not supplied. The brief gives this section a heading and four
+  // stage names, and says the section must communicate that the team is
+  // assembled around the brief rather than a fixed org chart. This is that
+  // sentence, in the brief's own words as far as they go. Delete it and the
+  // section still stands.
+  lead: "We assemble the team around the brief, not around a fixed org chart.",
+  stages: [
+    "Understand the challenge",
+    "Bring in the right specialists",
+    "Work as one team",
+    "Measure and improve"
+  ]
+};
+
+// --- 04 What guides the work ------------------------------------------------
 
 export const aboutPrinciples = {
   eyebrow: "Our principles",
-  heading: "What guides the work.",
+  heading: "What guides the work",
   items: [
     {
       title: "Commercially focused",
-      body: "Marketing should contribute to a business outcome."
+      body: "Marketing should connect to a business objective."
     },
     {
       title: "Clear by design",
-      body: "Strategy should make decisions simpler, not more complicated."
+      body: "Good strategy should make decisions easier."
     },
     {
       title: "Specialist by nature",
-      body: "The right expertise matters more than unnecessary headcount."
+      body: "Each brief gets the expertise it actually needs."
     },
     {
       title: "Built to evolve",
-      body: "We combine established marketing principles with new technology and AI."
+      body: "We combine established marketing principles with new technology and AI where they improve the work."
     }
   ]
 };
 
-// --- 05 Selected experience -------------------------------------------------
-// The logo strip's own claim, and it is deliberately weaker than the home
-// page's. The set includes portfolio ventures and group work, so the sentence
-// says ecosystem rather than client list. Nothing here asserts that Pixelette
-// Marketing delivered to every brand shown.
+// --- 05 Part of the wider Pixelette Group ------------------------------------
+// Text only. No logos: group companies are not client proof.
+//
+// NO "Explore the wider Pixelette Group →" LINK. The brief makes it
+// conditional on a valid destination, and there is none: there is no group
+// site, only the three sister companies' own, and the footer's group band that
+// would have been the on-site answer is hidden (22 Sep 2026).
+
+export const aboutGroup = {
+  eyebrow: "Part of the wider Pixelette Group",
+  heading: "Marketing that can connect with more than marketing",
+  body: "Pixelette Marketing sits within the wider Pixelette Group. Where the brief genuinely requires it, marketing work can connect with broader product, software, AI and automation or assurance capability across the group."
+};
+
+// --- 06 Close ---------------------------------------------------------------
+// One call to action, and the site's primary label for it.
+
+export const aboutClose = {
+  heading: "Have a challenge worth working through?",
+  lead: "Start with the problem. We’ll help work out what needs to move.",
+  cta: { label: "Build my growth plan", to: CONTACT_HREF }
+};
+
+// --- Not rendered on /aboutus -------------------------------------------------
+// The ecosystem logo strip's claim. It came off this page on 30 Sep 2026, but
+// homeContent.ts (and through it the service pages' strip) still reads it, so
+// it stays here until those call sites are moved. Nothing on /aboutus uses it.
 
 export const aboutExperience = {
   eyebrow: "Selected experience",
   heading: "Experience across the Pixelette ecosystem.",
   standfirst:
     "Selected brands and ventures connected with work across our wider group and network."
-};
-
-// --- 06 Close ---------------------------------------------------------------
-// The network line is the page's quietest element on purpose. It is .small,
-// it sits in the narrow column, and it reads as selective rather than as
-// recruitment.
-
-export const aboutClose = {
-  eyebrow: "Work with us",
-  heading: "Have an ambitious growth challenge?",
-  lead: "Tell us where you want to go. We’ll help define the smartest route to get there.",
-  cta: { label: "Start a conversation", to: CONTACT_HREF },
-  network: {
-    body: "Building something exceptional? We are also developing our specialist network across strategy, creative, performance, technology and AI.",
-    link: { label: "Introduce yourself →", to: CONTACT_HREF }
-  }
 };

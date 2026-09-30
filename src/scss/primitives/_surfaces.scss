@@ -70,6 +70,14 @@
 //    nothing loops, pulses or simulates live data. Under a reduce preference
 //    every state arrives at once. _growthIntelligence.scss.
 //
+// 12. THE ABOUT PAGE'S HOW WE'RE BUILT FLOW (/aboutus), 30 Sep 2026, required
+//    in terms by the final About page brief. Once, when the section comes
+//    into view, a small pink signal runs the four-stage line (700ms), the
+//    line fills and each node lights as it is reached. No loop, no replay;
+//    under a reduce preference the finished flow shows at once. The page's
+//    principle rows turn their lower hairline pink on hover, within the
+//    border-colour rule. BuiltFlow.tsx, _builtFlow.scss.
+//
 // 6-8. THE HOME PAGE'S ILLUSTRATED SECTIONS, 02-04 — added 28 Sep 2026 by a
 //    locked management specification that requires the motion in terms, and
 //    sets a deliberate rhythm: controlled (the hero), energetic (02), calm

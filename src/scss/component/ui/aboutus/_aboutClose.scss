@@ -1,66 +1,39 @@
-// The close.
+// The close. 30 Sep 2026.
 //
-// This file used to hold the order shuffle that stopped three dark bands
-// stacking at the foot of this page — team, logos, close. Two of those three
-// sections no longer exist and the close is its own component now, so there is
-// nothing left to reorder: the page ends dark band, light close, in DOM order,
-// and the tab sequence and the reading order have never diverged.
-//
-// THE ASYMMETRY IS THE MESSAGE. The call to action takes a 30rem basis and the
-// network note a 20rem one, and the note is pinned to the bottom of the row so
-// it finishes level with the button rather than floating beside the heading.
-// Equal columns would make the two read as a pair of offers, which is exactly
-// what the note must not be.
-//
-// Below roughly 52rem of container the note drops beneath the button, keeping
-// its hairline, and stays the quietest thing on the page.
+// One heading, one line, one button, on .band-closing. Stacked on a phone;
+// from 60rem the heading takes the left and the line and button the right, so
+// the one ask is a single band (from 48rem) rather than a second full section.
 
 .aboutClose {
-  padding-block: var(--sec-y);
-
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: clamp(2rem, 1.25rem + 2.6vw, 3.5rem);
-}
-
-.aboutClose__primary {
-  flex: 1 1 30rem;
-  min-width: 0;
-
-  & > .eyebrow {
-    margin-bottom: 1.25rem;
-  }
+  padding-block: var(--sec-y-sm);
 
   & > .h2 {
     max-width: 34rem;
+    color: var(--color-burgundy);
   }
 
-  & > .lead {
-    margin-top: 1.5rem;
-  }
+  &__action {
+    margin-top: 1.25rem;
 
-  & > .btn {
-    margin-top: 2rem;
+    & > .lead {
+      color: var(--color-plum-ink);
+    }
+
+    & > .btn {
+      margin-top: 1.5rem;
+    }
   }
 }
 
-.aboutClose__network {
-  flex: 0 1 20rem;
-  min-width: 0;
-  border-top: 1px solid var(--color-line);
-  padding-top: 1rem;
-}
+@media (min-width: 48rem) {
+  .aboutClose {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+    align-items: end;
 
-// .link supplies the brand tone and the underline. This is the size and the
-// tap target: the note above it is .small, so a body-sized link under it would
-// outweigh the thing it qualifies, and 44px is the floor .flink meets for the
-// navigation and this link has to meet for itself.
-.aboutClose__link {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-top: 0.25rem;
-  font-size: 0.8125rem;
+    &__action {
+      margin-top: 0;
+    }
+  }
 }

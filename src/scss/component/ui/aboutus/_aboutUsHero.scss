@@ -1,37 +1,46 @@
-// The interior hero.
+// The interior hero. 30 Sep 2026.
 //
-// It was a wrapping flex pair — collage left, copy right. The collage is gone
-// (see the note in AboutUsHero.tsx), so this is a single column capped at the
-// house measure and the flex row goes with the second item it held.
+// A single column, no image. The headline is two authored lines — the
+// statement in near-black, the turn in burgundy — so each line is a block span
+// and the break falls where the brief puts it at every width wide enough to
+// hold it. Below that each line wraps on its own.
 //
-// THE MEASURE IS THE COMPOSITION. 34rem against the 1160px wrap leaves the
-// right half of the hero empty on purpose: the headline is meant to dominate
-// and the wash is the only other thing in the band. The .lead keeps its own
-// 62ch cap from the primitives, which lands just inside the heading's.
+// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
+// near-black and burgundy headline, near-black lead.
 //
 // No media query. The type interpolates, the caps are in rem against a
 // container that is already fluid, and .wash-left is redrawn for narrow
-// screens in _responsive — the single breakpoint the whole stylesheet has.
+// screens in _responsive.
 
 .heroSectionAbout {
-  padding-block: var(--sec-y);
+  padding-block: var(--sec-y-sm);
 
   & > .eyebrow {
     margin-bottom: 1.25rem;
+    color: var(--color-pink-text);
   }
 
   & > .h1 {
-    max-width: 34rem;
+    max-width: 48rem;
+  }
 
-    // The payoff in the brand tone, the statement in ink. The guide's own hero
-    // device, and what HomeHero does with its second line.
-    & > span {
-      color: var(--color-brand);
-    }
+  &__lead,
+  &__accent {
+    display: block;
+  }
+
+  &__lead {
+    color: var(--color-plum-ink);
+  }
+
+  &__accent {
+    color: var(--color-burgundy);
   }
 
   & > .lead {
     margin-top: 1.5rem;
+    max-width: 46rem;
+    color: var(--color-plum-ink);
   }
 
   & > .btn {

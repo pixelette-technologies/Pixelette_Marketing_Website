@@ -47,6 +47,10 @@ import { IoIosArrowDown } from "react-icons/io";
 // Do not add another top-level item without an explicit instruction. The 960px
 // drawer breakpoint was measured against a wider bar than this one, so it now
 // has more room than it needs, not less.
+//
+// 30 Sep 2026: About moved after Insights, on the About page brief. The order
+// is now What we do · Industries · Insights · About · Contact, in the bar and
+// the drawer alike. Nothing else moved and no URL changed.
 
 // --- 23 Sep 2026: the drawer is native HTML -----------------------------------
 // Rebuilt to the Pixelette Technologies drawer, which is what it was asked to
@@ -151,11 +155,11 @@ export default function Navbar() {
               <Link href={"/industries"} className='flink'>
                 Industries
               </Link>
-              <Link href={"/aboutus"} className='flink'>
-                About
-              </Link>
               <Link href={"/blog-list"} className='flink'>
                 Insights
+              </Link>
+              <Link href={"/aboutus"} className='flink'>
+                About
               </Link>
               <Link href={"/contactus"} className='flink'>
                 Contact
@@ -188,11 +192,11 @@ export default function Navbar() {
                 <Link href='/industries' className='navDrawer__link' onClick={closeDrawer}>
                   Industries
                 </Link>
-                <Link href='/aboutus' className='navDrawer__link' onClick={closeDrawer}>
-                  About
-                </Link>
                 <Link href='/blog-list' className='navDrawer__link' onClick={closeDrawer}>
                   Insights
+                </Link>
+                <Link href='/aboutus' className='navDrawer__link' onClick={closeDrawer}>
+                  About
                 </Link>
                 <Link href='/contactus' className='navDrawer__link' onClick={closeDrawer}>
                   Contact

@@ -1,31 +1,32 @@
-import { ContactSection } from "@/components/common";
-import { finalConversionCopy } from "@/data/home";
+import { Container } from "@/components/common";
+import { Heading, Text } from "@/components/feature";
+import { contactHero } from "@/data/contactUs";
 
-// The /contactus opening. Rewritten 25 Sep 2026 to the final correction pass.
+// The /contactus opening. 30 Sep 2026: a text hero on the interior wash, as
+// the Pixelette Technologies contact page opens, with the form moved down
+// into the offices section beside the addresses.
 //
-// IT WAS "Stop watching others win and start your success story now", over
-// "Book an intro call with us, free of charge" and four promises, one of them
-// "a first-hand look at how we deliver scalable, impactful strategies". The
-// free call is not confirmed by anyone and the rest was the legacy agency
-// register the site has otherwise left.
+// It was ContactSection with headingLevel 1, the h1 and the form side by
+// side. The h1 is the one the 25 Sep correction pass signed off, kept; the
+// lead takes the group page's register ("tell us what you know… one of us
+// replies, not a sequence") in this company's terms.
 //
-// The heading is the form's own heading, so the form's intro is switched off
-// here; otherwise the page would print "Tell us what needs to grow." twice,
-// side by side. The closing line is the home page's, which is the same promise.
-//
-// ONLY /contactus RENDERS THIS NOW. Blog posts used it as their closing
-// section too; they take the /results close instead, since an h2 reading
-// "Start here" at the foot of an article is the wrong claim.
+// The eyebrow is a <p>, not a heading: a heading above the h1 would invert
+// the outline, the call HomeHero and AboutUsHero already made.
 const ContactUsHero = () => {
   return (
-    <ContactSection
-      eyebrow='Start here'
-      heading='Tell us what needs to grow.'
-      text='Give us enough context to make the first conversation useful. We will review the enquiry, understand what is limiting growth and come back with the most relevant next step.'
-      closing={finalConversionCopy.closing}
-      headingLevel={1}
-      formIntro={false}
-    />
+    <div className='wash-left'>
+      <Container className='main'>
+        <section className='contactHero'>
+          <Text className='eyebrow'>{contactHero.eyebrow}</Text>
+          <Heading className='h1' level={1}>
+            {contactHero.heading}
+          </Heading>
+          <Text className='lead'>{contactHero.lead}</Text>
+          <Text className='small'>{contactHero.closing}</Text>
+        </section>
+      </Container>
+    </div>
   );
 };
 

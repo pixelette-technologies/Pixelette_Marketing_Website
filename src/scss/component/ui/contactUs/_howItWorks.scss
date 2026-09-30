@@ -33,39 +33,6 @@
     & > :is(h1, h2) {
       color: var(--color-page);
     }
-
-    & > section {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-
-      & > div {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-        color: var(--color-page);
-
-        & > svg {
-          flex: 0 0 auto;
-          width: 1.5rem;
-          height: 1.5rem;
-        }
-
-        // Links since 25 Sep 2026. Same tone as the text they replaced; the
-        // underline on hover is the affordance.
-        & > a {
-          color: inherit;
-          min-height: 44px;
-          display: inline-flex;
-          align-items: center;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
   }
 
   // 25 Sep 2026: four numbered steps in an <ol>, where three icon cards sat in

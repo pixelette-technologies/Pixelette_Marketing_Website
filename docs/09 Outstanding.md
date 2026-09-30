@@ -1061,3 +1061,17 @@ Built on `feat/what-we-do-capability-explorer`, **uncommitted, not pushed**.
 - ~~**`public/services/capabilities/`** (the 29 Sep set) awaiting deletion.~~
   **Closed 30 Sep:** deleted on the user's instruction, and the supplied set
   was moved into `public/services/capabilities/` from `new-capabilities/`.
+
+
+## Strategy & Positioning — final diagnostic (30 Sep 2026)
+
+On `feat/strategy-diagnostic-final`, **uncommitted, not pushed**.
+
+- **Fifteen dimension readings were written in this session** (all but
+  Competition's three). Management should read them before this ships.
+- **Small pink text uses #C8306E, not #D63D7C**, because #D63D7C is 4.36:1 on
+  white. A call for the user if the exact hex matters more than AA.
+- **Retake no longer confirms** before clearing the answers.
+- Still open from 22 Sep: a visitor who never starts the diagnostic has no
+  call to action at the foot of the page.
+- Not seen on a real GPU or a real phone; headless Chrome only.

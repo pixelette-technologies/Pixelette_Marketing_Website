@@ -2182,3 +2182,53 @@ media (30 files: the generated stills and loops) was deleted, and
 `CAPABILITY_MEDIA` follows. The 15 supplied files are byte-identical after the
 move (sha256 checked) and all serve 200 from the new path; the old path now
 404s. The folder holds the supplied final set and nothing else.
+
+
+## 30 Sep 2026 — Strategy & Positioning: the final diagnostic brief
+
+Built on `feat/strategy-diagnostic-final` (cut from `main` at `5a8de6f`).
+Uncommitted, not pushed. Supersedes every earlier redesign of the page. The
+twelve questions, their wording, the six dimensions and `scoreDiagnostic` are
+unchanged; the only lib changes are `BAND_FLOORS` exported and a new
+`TIER_FLOORS`/`tierFor` that picks words, not numbers.
+
+- **One experience.** `StrategyExperience.tsx` renders the hero, the bridge,
+  the stage and the close, because "Start the diagnostic" transforms the page
+  in place: the hero compacts (52px to ~30px, **opacity never touched**), the
+  bridge folds, Question 1 takes the primary position, focus goes to it, no
+  reload. It still server-renders.
+- **Hero:** two lines of equal size and weight, `#24181F` then `#4B1635`; the
+  facts line "12 questions · 6 dimensions · Around 3–5 minutes · Instant
+  result"; "See what we assess" replaced "See how the process works". No art.
+- **Removed:** the dark methodology band, the six-dimension wave and its hover
+  ripple (`DimensionWave`, `Methodology`, their SCSS), `DiagnosticSection`
+  and `StrategyDiagnostic`. The route now spends no `.band-dark`.
+- **Clarity before activity** is a ~285px bridge on the warm ground: the phrase,
+  the brief's line, the six names.
+- **The Clarity Rail:** five real radios, "Less clear" to "More clear", the
+  live option wording under each point. A click or tap locks (320ms), the
+  question leaves up 20px (180ms), the next enters (220ms). **Arrow keys only
+  select; Enter or Next advances** — native radios check on arrow, so
+  auto-advancing would skip a question per keypress. Below 768px the same
+  inputs stack as five rows. The stage sits on a full-bleed page-colour ground
+  so it does not run into the bridge.
+- **Halfway** after question six, ~1.3s, no button.
+- **Result reveal:** count-up (800ms), band, headline, six spectra whose
+  markers travel from "Unclear", then the reading. Only for a result just
+  reached; not for one restored from storage; none under reduced motion.
+- **Dynamic copy:** band headline and narrative verbatim from the brief (floors
+  0/40/60/80, unchanged). Per-dimension readings in three tiers (low <45,
+  medium 45–74, high 75+); Competition is the brief's, **the other fifteen
+  readings were written here** to its pattern and need management's eye. The
+  three lowest (`score.focus`, unchanged) drive both "What this could mean
+  commercially" and "Your three highest-leverage moves"; the moves keep the
+  existing `recommendations` copy.
+- **Close:** full-bleed burgundy, the brief's copy, "Talk through my results"
+  to `/contactus`, "Retake diagnostic" (straight to Q1, no confirm step — the
+  old inline confirm is gone).
+- **Colour:** four tokens, for this route only: `--color-plum-ink`,
+  `--color-burgundy`, `--color-pink` (#D63D7C, 4.36 on white: large text,
+  markers, selected) and `--color-pink-text` (#C8306E, 5.12) for small pink
+  labels, **a deviation from the brief's single pink** for contrast.
+- Registered in `_surfaces.scss` as motion surface 9 (the rail's scale on
+  hover is an exception to the hover rule, by instruction).

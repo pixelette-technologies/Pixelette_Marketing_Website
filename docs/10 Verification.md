@@ -1722,3 +1722,29 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   the token gate are clean, and the route walk is 28/28. The headless walk
   repeated green: one video at a time, the MP4 fallback, the slow-network
   poster, reduced motion and phone.
+
+
+## 30 Sep 2026 — the final Strategy & Positioning diagnostic
+
+- **Gates:** tsc clean, eslint clean, token gate 0 findings, route walk 28/28
+  on :3000. `next build` not run.
+- **Scoring:** the `strategyDiagnostic.ts` diff is an `export` and the new
+  tier function; no question or option line changed. Run 1 answers
+  [0,1,3,4,0,0,2,3,1,2,4,4] gave 13/88/0/63/38/100 and 50 overall (24/48),
+  Developing, focus Competition/Market/Messaging — all matching hand
+  calculation. A 390px run gave 48 (23/48). All-3s gave 75, uniform note, all
+  high tiers.
+- **Headless Chrome, CDP `Input.*` events:** hero lines rgb(36,24,31) and
+  rgb(75,22,53) at opacity 1, equal 52px/400; compact 30px, opacity 1 during
+  and after; no reload; focus on Q1; Q1 and rail inside the first 900px; the
+  progress row correct at every one of the twelve steps; halfway shows and
+  continues to Q7; count-up 0 → 7 → 38 → 49 → 50; spectra markers at their
+  scores; pink section heads rgb(214,61,124), burgundy score and headline,
+  plum body copy; close links `/contactus`; reload restores results
+  unanimated with the full hero; Retake and Back work. The whole run by
+  keyboard only; reduced motion (no animations at all, final score at once);
+  390 (stacked rows, 52px targets, single column, no overflow) and 768.
+- **Looked at:** 1440 hero, Q1, lock, Q5, halfway, full result; 390 Q1 and
+  full result. Looking produced two faults the measurements had passed: the
+  stage ran into the bridge on the warm ground (now a page-colour ground), and
+  the ○/● progress glyphs rendered tiny (now drawn in CSS).

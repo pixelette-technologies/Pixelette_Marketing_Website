@@ -24,152 +24,16 @@
   }
 }
 
-// --- 22 Sep 2026: /services stops being a grid of eight boxes ---------------
+// --- /services' capability list, 22–29 Sep 2026 -------------------------------
 // (.hubList__grid, the shared eight-card grid both hubs once used, was removed
 // on 23 Sep 2026 when /industries stopped rendering it too.)
 //
-// WHY A LIST AND NOT A BETTER GRID. Eight equal boxes of near-identical prose
-// made eight services look like one undifferentiated menu, and the feedback
-// was that the page was boring — which is a layout symptom of a content
-// problem. Widening the cards or restyling them would have kept the claim the
-// shape was making. Five capabilities, read top to bottom, with their service
-// pages listed underneath, say something the grid could not: that the work is
-// connected and ordered, and that strategy comes first.
-//
-// The rows separate on a hairline, which is this site's rule for ordinary
-// sections. No box, no fill, no shadow: the page already spends its dark band
-// nowhere and its one mannerism is held by the home page.
-.capabilityList {
-  display: flex;
-  flex-direction: column;
-}
-
-// Zero breakpoints. The numeral is a fixed column and the body takes a 28rem
-// basis, so the two sit side by side on a desktop and the body drops beneath
-// the numeral once there is no longer room — no media query, same mechanism as
-// the rest of the site.
-.capabilityList__group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem 2.5rem;
-  padding-block: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
-
-  // The first rule would sit directly under the hero's own edge and read as a
-  // double line.
-  &:first-child {
-    border-top: 0;
-    padding-top: 0;
-  }
-}
-
-// The same mono numeral the home page's Growth System cards carry, so a
-// visitor arriving from there meets a device they have already seen. Not the
-// tinted chip treatment: that belongs to a card, and there is no card here.
-.capabilityList__index {
-  flex: 0 0 auto;
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.08em;
-  color: var(--color-brand);
-  // Sits the numeral on the title's first line rather than on the top of its
-  // box, which is a few pixels higher.
-  padding-top: 0.35rem;
-}
-
-.capabilityList__main {
-  flex: 1 1 28rem;
-  min-width: 0;
-}
-
-.capabilityList__title {
-  color: var(--color-brand);
-  margin-bottom: 0.5rem;
-}
-
-// The services a capability covers, 29 Sep 2026. Body-coloured text in a
-// wrapping row, separated by a middot, so it reads as the detail beneath the
-// capability and never competes with the brand-coloured page links under it.
-.capabilityList__scope {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0;
-  margin-top: 1rem;
-  padding: 0;
-  list-style: none;
-  max-width: 44rem;
-
-  & > li {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--color-body);
-
-    &:not(:last-child)::after {
-      content: "·";
-      margin-inline: 0.625rem;
-      color: var(--color-muted);
-    }
-  }
-}
-
-// The featured destination, 22 Sep 2026. One call site: Strategy & Positioning,
-// which is the only capability with no service pages beneath it and was the
-// only block on this page that ended without a way out.
-//
-// IT TAKES THE SAME WEIGHT AS .capabilityList__services DELIBERATELY, and the
-// arrow is what separates them. Checked by eye at 1440px and at 390px against
-// the four capabilities that do carry service links: a heavier treatment made
-// row 01 look like the important one, and a button there would outweigh the
-// single .btn at the foot of the page, which is the one ask this page makes.
-// What distinguishes it is that it is one line rather than a wrapped row of
-// peers, and that no service link on this page carries an arrow.
-//
-// The arrow is part of the label string, not a pseudo-element — the convention
-// aboutContent.ts set with "Introduce yourself →". A copy reviewer opening the
-// data file sees the whole link.
-.capabilityList__featured {
-  display: inline-flex;
-  align-items: center;
-  // The 44px floor .flink meets for the navigation, met here rather than left
-  // to the line height of a 15px link.
-  min-height: 44px;
-  margin-top: 0.75rem;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--color-brand);
-
-  &:hover {
-    color: var(--color-brand-hover);
-    text-decoration: underline;
-  }
-}
-
-// The service pages, as a row of quiet links rather than eight cards. They are
-// the detail under a capability now, not the page's primary structure, so they
-// take link weight and not card weight.
-.capabilityList__services {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
-  list-style: none;
-  margin-top: 1.25rem;
-
-  & a {
-    font-size: 0.9375rem;
-    font-weight: 500;
-    color: var(--color-brand);
-
-    &:hover {
-      color: var(--color-brand-hover);
-      text-decoration: underline;
-    }
-  }
-}
-
-// .capabilityList__cta went on 25 Sep 2026: the tool band now sits between the
-// list and the call to action, so the button lives in its own .sec-sm section
-// and takes its spacing from there.
+// .capabilityList — the five capabilities as rows on hairlines, which replaced
+// that grid on 22 Sep — was removed on 29 Sep 2026, when /services took the
+// capability explorer on the "What We Do" implementation instruction. The rows'
+// reasoning (ordered, not parallel; a numeral; link weight, not card weight;
+// the diagnostic set apart from the service links) carries over into
+// _capabilityExplorer.scss.
 
 // --- The shared band head ------------------------------------------------------
 // 29 Sep 2026: /industries was rebuilt to the locked information architecture

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
 import { capabilityGroups } from "@/data/services/capabilityGroups";
+import { CapabilityExplorer } from "@/components/ui/services";
 
 const baseUrl = "https://www.pixelettemarketing.com";
 
@@ -109,75 +110,19 @@ export default function ServicesIndexPage() {
         </Container>
       </div>
 
-      <div className='hubList sec'>
-        <Container className='main'>
-          <div className='capabilityList' data-reveal='stagger'>
-            {capabilityGroups.map(group => (
-              <section className='capabilityList__group' key={group.index}>
-                <Text className='capabilityList__index'>{group.index}</Text>
-                <div className='capabilityList__main'>
-                  <Heading className='h3 capabilityList__title' level={2}>
-                    {group.title}
-                  </Heading>
-                  <Text className='body'>{group.body}</Text>
+      {/* 29 Sep 2026: THE FIVE CAPABILITIES AS ONE EXPLORER, replacing the
+          stacked list of five (22 Sep) on the "What We Do" implementation
+          instruction. Same taxonomy, same copy, same links — capabilityGroups
+          is passed straight through — plus a lead statement and one stage of
+          approved artwork per capability. See CapabilityExplorer.tsx.
 
-                  {/* 29 Sep 2026. The services each capability covers. This
-                      page owns the service-level detail under the locked
-                      information architecture; the lists used to render only
-                      on the home page. Text, not links: most name work rather
-                      than a page, and the pages are the link row below. */}
-                  {group.scope.length > 0 && (
-                    <ul
-                      className='capabilityList__scope'
-                      aria-label={`${group.title} services`}
-                    >
-                      {group.scope.map(entry => (
-                        <li key={entry}>{entry}</li>
-                      ))}
-                    </ul>
-                  )}
-
-                  {/* 22 Sep 2026. Strategy & Positioning is the one capability
-                      with no service pages under it, and until now it was also
-                      the one with no way out — five blocks, four of them
-                      ending in links and the first ending in nothing. It ends
-                      on the diagnostic now.
-
-                      IT IS NOT IN THE LINK ROW BENEATH. That row is a list of
-                      peer service pages set at link weight, and this is the
-                      capability itself rather than a service filed under it.
-                      Giving it its own line keeps both claims honest and keeps
-                      capability 01 from looking like it finally acquired a
-                      product. */}
-                  {group.featured && (
-                    <Link
-                      href={group.featured.route}
-                      className='capabilityList__featured'
-                    >
-                      {group.featured.label}
-                    </Link>
-                  )}
-
-                  {/* Absent, not empty, when a capability has no service page
-                      beneath it — see capabilityGroups.ts. */}
-                  {group.services.length > 0 && (
-                    <ul className='capabilityList__services'>
-                      {group.services.map(service => (
-                        <li key={service.route}>
-                          <Link href={`/services/${service.route}`}>
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-
-                </div>
-              </section>
-            ))}
-          </div>
-        </Container>
-      </div>
+          Outside the Container deliberately: the stage bleeds to the right
+          edge of the viewport, and the Container clips. The explorer restates
+          the wrap as its own grid tracks, so the rail still lines up with the
+          hero above it. */}
+      <section className='sec' aria-label='Five capabilities'>
+        <CapabilityExplorer groups={capabilityGroups} />
+      </section>
 
       {/* 25 Sep 2026, later: THE TOOL BAND IS OFF THIS PAGE. It was "Tools we
           work in / The platforms behind the work", fourteen vendors on the

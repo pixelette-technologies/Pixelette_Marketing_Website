@@ -1,5 +1,6 @@
 import { servicesData } from "@/data/services/servicesData";
 import { demandPerformancePages } from "./demandPerformance";
+import { searchAuthorityPages } from "./searchAuthority";
 import type { SpecialistPageConfig } from "./types";
 
 export type {
@@ -13,7 +14,10 @@ export type {
 // Every service route rendered by SpecialistServicePage rather than by the
 // legacy template in app/services/[slug]/page.tsx. A route joins by being
 // listed here; the page file needs no edit.
-const pages: SpecialistPageConfig[] = [...demandPerformancePages];
+const pages: SpecialistPageConfig[] = [
+  ...demandPerformancePages,
+  ...searchAuthorityPages
+];
 
 export const specialistPages: Record<string, SpecialistPageConfig> =
   Object.fromEntries(pages.map(page => [page.route, page]));

@@ -585,10 +585,14 @@ export const servicesData = [
 
   {
     id: 3,
-    title: "SEO & Content Marketing",
-    metaTitle: "Technical + Content SEO Agency | Pixelette Marketing",
-    metaDescription: "Our SEO Services cover on-page, off-page, technical strategy. Built to make your business easier to find, in traditional search and AI-assisted discovery.",
-    metaKeywords: "seo agency, seo services, seo management services",
+    // 30 Sep 2026: the Search & Authority specialist page. The display name
+    // changed; the route did not. The page itself renders from
+    // data/services/specialist/searchAuthority.ts — the legacy fields below
+    // no longer render and stay only until the route is fully migrated.
+    title: "SEO, Content & AI Visibility",
+    metaTitle: "SEO, Content & AI Visibility | Pixelette Marketing",
+    metaDescription: "SEO, content and AI-search visibility designed to strengthen organic discovery, topic authority and meaningful search performance.",
+    metaKeywords: "seo agency, content strategy, technical seo, ai search visibility",
     
     route: "seo_and_content_marketing",
     mainHeading: "From upticks in traffic to dominating search rankings, ",

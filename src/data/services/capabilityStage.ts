@@ -52,7 +52,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "01",
     slug: "01-strategy-positioning",
-    statement: ["Clarity creates direction."],
+    statement: ["Clarity creates direction"],
     alt: "A mirrored steel cylinder stands in a gallery strung with dense tangles of red, orange, pink and blue thread. In its reflection the chaos resolves into one clean, flowing band of colour.",
     // Protect: the cylinder, just left of centre.
     focus: { x: 0.49, y: 0.45 },
@@ -61,7 +61,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "02",
     slug: "02-demand-performance",
-    statement: ["Turn attention into demand."],
+    statement: ["Turn attention into demand"],
     alt: "Coloured discs lie scattered across a pale stone surface beneath a brass magnet fixture. A selected stream of discs rises from the field to the magnet while the rest stay where they are.",
     // Protect: the magnet fixture and the rising stream, right of centre.
     focus: { x: 0.7, y: 0.3 },
@@ -70,7 +70,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "03",
     slug: "03-search-authority",
-    statement: ["Be found.", "Build trust.", "Become easier to choose."],
+    statement: ["Be found", "Build trust", "Become easier to choose"],
     alt: "A red and white lighthouse stands within a field of tall translucent pink and cream slats. A warm beam from its lamp crosses the slats and the tower shows through between them.",
     // Protect: the lighthouse and the column field around it.
     focus: { x: 0.46, y: 0.35 },
@@ -79,7 +79,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "04",
     slug: "04-pipeline-conversion",
-    statement: ["Turn interest into opportunity."],
+    statement: ["Turn interest into opportunity"],
     alt: "A hand-built desk sculpture of brass tubes, clear acrylic rails and painted wooden posts. Metal spheres wait or rest along the lower routes while a pink sphere travels the upper rail towards a brass bowl.",
     // Protect: the successful route, from the top cup to the brass bowl.
     focus: { x: 0.52, y: 0.5 },
@@ -88,7 +88,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "05",
     slug: "05-growth-intelligence",
-    statement: ["Know what’s working.", "Know what to do next."],
+    statement: ["Know what’s working", "Know what to do next"],
     alt: "A wall of hinged mechanical flip tiles in a warm loft. On the left the tiles tilt at random angles; towards the right they lie flat in a coherent coloured pattern, and one pink row runs on past the edge of the wall.",
     // Protect: the resolving field — noise on the left, the pattern and the
     // pink row on the right.

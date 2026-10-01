@@ -14,7 +14,7 @@ export const CONTACT_EMAIL = "sales@pixelettemarketing.com";
 export const contactHero = {
   eyebrow: "Contact",
   // The signed-off h1 from the 25 Sep correction pass, kept.
-  heading: "Tell us what needs to grow.",
+  heading: "Tell us what needs to grow",
   lead: "Some teams arrive knowing exactly where growth is stuck. Others only know that the numbers are not moving. Both are worth the same conversation: what is really limiting growth, where the strongest opportunity sits and what has to happen first. Tell us what you know and skip what you do not. One of us replies, not a sequence.",
   // The home page's closing line, which is the same promise.
   closing:

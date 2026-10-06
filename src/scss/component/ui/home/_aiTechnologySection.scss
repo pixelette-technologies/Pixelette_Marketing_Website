@@ -1,0 +1,102 @@
+// Section 06, "AI-accelerated. Human-led." — its own component since 21 Sep
+// 2026. See AiTechnologySection.tsx for why it left the ItemsSection shell.
+//
+// THE HEADER STARTED AS THE SHELL'S HEADER, COPIED. It keeps the 20px
+// eyebrow-to-heading and 24px heading-to-standfirst gaps, and it has now
+// DIVERGED on the one thing that was the point of copying it: the measure.
+// See the block on .container_main > header below.
+//
+// That divergence is the justification for this being its own component
+// rather than a fifth layout prop on ItemsSection, arrived at from the
+// opposite direction to the one the component's own header predicted. The
+// shell's header is one shape used six times; this is now a seventh.
+
+.aiTechnologySection {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--sec-y);
+
+  // 70% OF THE WRAP, NOT THE SHELL'S 34rem. Asked for on 21 Sep from a
+  // rendered page: at 34rem the heading broke over three lines and the top
+  // half of the section read as a narrow column with the full-bleed strip
+  // underneath it, which is two different page widths in one section.
+  //
+  // Written off --container-wrap rather than as a hand-measured 50.75rem, so
+  // it is literally "70% of the wrap" and follows if the wrap ever moves.
+  // 812px against today's 1160px.
+  //
+  // min(100%, ...) IS THE RESPONSIVE HALF, and it needs no breakpoint. The
+  // container is already min(1160px, 100% - 40px), so once it is narrower
+  // than 812px the 100% branch wins on its own and the header is full width:
+  // that happens at a viewport of about 852px and holds for every portrait
+  // tablet and phone below it. Between 852px and 1200px it slides rather than
+  // snapping. A landscape tablet at 1024px sits partway, around 82%.
+  & > .container_main > header {
+    max-width: min(100%, calc(var(--container-wrap) * 0.7));
+
+    & > *:first-child {
+      margin-bottom: 1.25rem;
+    }
+
+    // THE 62ch COMES OFF, and this is the cost of the line above. .lead
+    // carries the guide's reading measure, so widening the header alone would
+    // have widened the heading and left the standfirst at roughly 558px —
+    // which reads as a mistake rather than as a measure. Released so the two
+    // share an edge.
+    //
+    // It is a real departure from the guide: at 812px this line runs to about
+    // 90 characters against the 62 the primitives set everywhere else. Taken
+    // deliberately and on instruction, and worth a second look by eye — a
+    // long line is a slow line.
+    & > p {
+      margin-top: 1.5rem;
+      max-width: none;
+    }
+  }
+}
+
+// The strip's type. Display face at the h2 size, so the four names carry the
+// same weight as the heading above them — they are the section's body now, and
+// at .lead size they would read as a caption running away sideways.
+//
+// The colour is --color-ink, not brand: four brand-red phrases at 42px across
+// the full width of the page is a banner, and the section is an argument. The
+// red is spent on the separator dots instead, where it punctuates without
+// shouting. This is the same call the eyebrow makes at the top of every
+// section on the site.
+.aiTechnologySection .scrollMarquee {
+  // The band of space between the standfirst and the strip. Uses the section
+  // rhythm rather than a new number.
+  //
+  // DOUBLE --sec-y, AND THE DOUBLING IS THE POINT. Reported by eye as uneven
+  // top to bottom, and it was — by exactly a factor of two, because the strip
+  // is the LAST thing in its section:
+  //
+  //   above   this margin                                    1 x --sec-y
+  //   below   .aiTechnologySection's own padding-block    //           + .dynamicMarket.sec's padding-block      /    2 x --sec-y
+  //
+  // So a single --sec-y here reads as half the gap below it, even though both
+  // are "one section step". Two section paddings always stack between two
+  // sections; only one sits between a section's own last element and the
+  // element above it. The fix is to match what is actually rendered, which is
+  // 112px rising to 192px on both sides.
+  //
+  // It is still the rhythm token, multiplied — not a measured number. If
+  // --sec-y moves, both sides move together and this stays even.
+  margin-top: calc(var(--sec-y) * 2);
+
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.14;
+  letter-spacing: -0.014em;
+  color: var(--color-ink);
+}
+
+// The static row keeps the page gutter; the strip does not, because running
+// off both edges is the entire effect. Written as the gutter being REMOVED in
+// the strip state rather than added in the static one, so the safe state is
+// the one that needs no rule.
+.aiTechnologySection .scrollMarquee:not([data-marquee="on"]) {
+  padding-inline: 20px;
+}

@@ -1,0 +1,350 @@
+// 03 — The brick scene. Locked implementation specification, 28 Sep 2026.
+// The calm section: a capability brick lifts 3px under the pointer (spec
+// §21); since 29 Sep, on instruction, the ladder builders climb in once and
+// the builders respond to hover. See BrickScene.tsx and CapabilitiesSection.tsx.
+
+// The scene sits bottom-right, keeping its proportion. Its width is capped so
+// its left edge stays clear of the copy column: the container's left edge
+// plus 16rem, which is under the lead and CTA, where the scene only has
+// floor bricks at its very foot.
+.brickScene {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(calc(100% - max(0px, (100% - 1160px) / 2) - 20px - 16rem), 82%);
+}
+
+// The frame's proportion is the drawing's (SCENE in BrickScene.tsx), set
+// inline so the two cannot disagree.
+.brickScene__frame {
+  position: relative;
+}
+
+.brickScene__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+// --- Drawing ------------------------------------------------------------------
+
+.brick__face {
+  fill: var(--b);
+}
+
+.brick__top {
+  fill: var(--b-top);
+}
+
+.brick__side {
+  fill: var(--b-side);
+}
+
+.brick__glint {
+  fill: var(--color-page);
+  opacity: 0.7;
+}
+
+.brick__edgeLight {
+  fill: var(--b-top);
+  opacity: 0.9;
+}
+
+.sheen__stop--light {
+  stop-color: var(--color-page);
+}
+
+.sheen__stop--dark {
+  stop-color: var(--note-ink);
+}
+
+.figure__legs {
+  fill: var(--legs);
+}
+
+.figure__seam {
+  fill: var(--note-ink);
+  opacity: 0.35;
+}
+
+.figure__shirt {
+  fill: var(--shirt);
+}
+
+.figure__collar {
+  fill: none;
+  stroke: var(--note-ink);
+  stroke-width: 0.7;
+  stroke-linejoin: round;
+  opacity: 0.35;
+}
+
+.figure__arm {
+  fill: none;
+  stroke: var(--shirt);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+
+.figure__hand {
+  fill: var(--skin);
+  fill-rule: evenodd;
+}
+
+.figure__skin {
+  fill: var(--skin);
+}
+
+.figure__lips {
+  fill: var(--figure-lips);
+}
+
+.figure__eye,
+.figure__brow {
+  fill: var(--note-ink);
+}
+
+.figure__brow {
+  fill: none;
+  stroke: var(--note-ink);
+  stroke-width: 0.8;
+  stroke-linecap: round;
+}
+
+.figure__eyeGlint {
+  fill: var(--color-page);
+}
+
+.figure__smile {
+  fill: none;
+  stroke: var(--note-ink);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+}
+
+.figure__hair {
+  fill: var(--hair);
+}
+
+.figure__hairGlint {
+  fill: none;
+  stroke: var(--color-page);
+  stroke-width: 1;
+  stroke-linecap: round;
+  opacity: 0.35;
+}
+
+.ladder__rail {
+  stroke: var(--ladder-wood);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.ladder__rung {
+  stroke: var(--ladder-wood-shade);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+.ladder__glint {
+  stroke: var(--color-page);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  opacity: 0.3;
+}
+
+// --- The HTML over the drawing ------------------------------------------------------
+
+// The list covers the whole frame; only the labels themselves take the
+// pointer, so the builders above the bricks can be hovered.
+.brickScene__labels {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.brickScene__label {
+  pointer-events: auto;
+}
+
+// On the deep-blue and violet faces the ink would not read.
+.brickScene__label.brickScene__label--light {
+  color: var(--color-page);
+}
+
+.brickScene__label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 0.35em 0.7em;
+  font-family: var(--font-hand);
+  font-size: clamp(0.875rem, 0.3rem + 1.1vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.02;
+  text-align: center;
+  color: var(--note-ink);
+  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.brickScene__icon {
+  width: 2.1em;
+  height: 2.1em;
+  stroke-width: 1.6;
+}
+
+.brickScene__payoff {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: clamp(1.125rem, 0.3rem + 1.9vw, 2.5rem);
+  font-weight: 700;
+  color: var(--note-ink);
+
+  u {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.25em;
+  }
+}
+
+.brickScene__smile {
+  width: 1.25em;
+  height: 1.25em;
+  stroke-width: 1.5;
+}
+
+// --- The one response: a capability lifts 3px, its drawn brick with it --------------
+// Hover is on the HTML label (it is what sits under the pointer); :has() maps
+// it onto the matching drawn brick. A spec-mandated exception to "hover
+// changes border colour only", registered in _surfaces.scss.
+
+.brickScene__cap {
+  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  @for $i from 1 through 5 {
+    .brickScene__frame:has(.brickScene__label--#{$i}:hover) .brickScene__cap--#{$i},
+    .brickScene__label--#{$i}:hover {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// --- The builders (29 Sep, on instruction) -------------------------------------------
+// Each builder is an outer group that never moves, holding a still hit area,
+// and an inner body that does, so a builder moving under the pointer cannot
+// un-hover itself. The ladder builders climb one rung and come back down when
+// the pointer leaves; the builders on top jump once per hover. The arrival
+// climb is BrickSceneMotion; hover waits until it is done (data-crew).
+
+.crew__hit {
+  fill: transparent;
+}
+
+.crew__body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+@keyframes figureJump {
+  0% {
+    transform: translateY(0) scale(1, 1);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+  }
+  14% {
+    transform: translateY(0) scale(1.06, 0.92);
+    animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
+  }
+  48% {
+    transform: translateY(-26px) scale(0.97, 1.04);
+    animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(1.05, 0.94);
+    animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .brickScene__frame:not([data-crew="armed"], [data-crew="climbing"]) {
+    .crew {
+      cursor: default;
+    }
+
+    .crew--climb .crew__body {
+      transition: transform 480ms cubic-bezier(0.45, 0, 0.3, 1);
+    }
+
+    .crew--climb:hover .crew__body {
+      transform: translate(var(--rung-x), var(--rung-y));
+    }
+
+    .crew--jump:hover .crew__body {
+      animation: figureJump 640ms both;
+    }
+  }
+}
+
+// --- Phone: the scene scrolls sideways under the copy --------------------------------
+
+@media (max-width: 767px) {
+  // The scene stands on the floor of its row, at its bottom edge.
+  .homeScene--capabilities .homeScene__art {
+    display: flex;
+    align-items: flex-end;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    // The fade on the right says "there is more". A mask reads alpha only,
+    // so any opaque token will do; the gate bars a colour literal.
+    mask-image: linear-gradient(90deg, var(--note-ink) 85%, transparent);
+  }
+
+  .homeScene--capabilities .homeScene__art::-webkit-scrollbar {
+    display: none;
+  }
+
+  .homeScene--capabilities .roomBackdrop {
+    width: 47.5rem;
+  }
+
+  // flex: none, because the row is a flex container now (to stand the scene
+  // on the floor) and a flex item would shrink to the phone's width.
+  .brickScene {
+    position: relative;
+    flex: none;
+    width: 47.5rem;
+    padding: 1rem 1.25rem 1.5rem;
+    scroll-snap-align: start;
+  }
+
+  // The drawing's top fifth is headroom for the lifted bricks; on a phone,
+  // where the scene sits under the copy rather than beside it, most of that
+  // headroom is taken back.
+  .brickScene__frame {
+    margin-top: -2.5rem;
+  }
+
+  .brickScene__label {
+    font-size: 0.8125rem;
+  }
+
+  .brickScene__payoff {
+    font-size: 1.0625rem;
+  }
+}

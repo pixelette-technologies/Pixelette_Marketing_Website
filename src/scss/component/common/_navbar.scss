@@ -1,69 +1,325 @@
-@use "../../globels" as color;
+// The header on the guide's pattern: a light ground, a hairline at the bottom
+// and nothing else. It was a dark bar (bg_secondry) with white links; the guide
+// puts the header on the page ground and separates it with a single rule.
+//
+// It WAS not sticky, and this paragraph used to explain why there was no
+// scroll-padding-top anywhere in the stylesheet. Phase F made it sticky, which
+// makes that reasoning obsolete and the scroll padding necessary — see the
+// rule on :root in _base.scss. Kept as a record of why the old decision was
+// right at the time: the Phase C wrapper declared position: sticky with no
+// `top`, so it never stuck, and the guide's header does not stick either.
 
-nav {
-  padding: 1rem 0rem;
+// Phase F. The header is STICKY, at the user's request. This reverses the
+// Phase C decision to remove the sticky wrapper rather than make it work.
+//
+// Worth recording why that decision went the other way: the wrapper was
+// `position: sticky` with NO `top` value, which does nothing at all — the bar
+// scrolled away like any other element. So the site has never actually had a
+// sticky header, and removing the dead wrapper matched both the guide and the
+// behaviour visitors were already getting. This is new behaviour, not restored
+// behaviour.
+//
+// `sticky` rather than `fixed` on purpose: sticky keeps the header in flow, so
+// it still occupies its own height and the page below does not jump up under
+// it. A fixed header would need a matching spacer or a body padding equal to
+// --header-h, and that is a second number to keep in sync for no gain.
+//
+// Two things sticky needs that are easy to break later:
+//
+//   1. NO ANCESTOR MAY HAVE `overflow` ANYTHING BUT VISIBLE. `html` and `body`
+//      are clean today. `container_main` carries `overflow: hidden` but sits
+//      INSIDE the header, so it is not an ancestor — and it is already
+//      `overflow: visible` here anyway, so the dropdowns can escape.
+//   2. An opaque background, which it has, so content does not read through it.
+//
+// z-index 60 clears the page. The drawer (50) and the dropdown panel (40) are
+// inside the header, so they are in ITS stacking context and are lifted with
+// it rather than competing against it. It stays below .skip-to-content at 100,
+// which must always win.
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: var(--color-page);
+  border-bottom: 1px solid var(--color-line);
+}
+
+// Phase F. The services and industries dropdowns were being cut off on hover.
+//
+// container_main carries `overflow: hidden`, kept deliberately because several
+// sections position decorative elements outside their own box and rely on it to
+// clip them. The header is not one of those sections — it has nothing to clip
+// and one thing that must escape, so the clip is switched off HERE rather than
+// on the container itself. Removing it globally would un-clip the hero collage,
+// DynamicMarket, the industry hero and FinalResult all at once.
+//
+// Scoped to the header's own container, so nothing else changes.
+.site-header > .container_main {
+  overflow: visible;
+}
+
+// 23 Sep 2026: `position: relative` REMOVED, and that is what makes the drawer
+// full-bleed.
+//
+// It was added so the old drawer would anchor to this box after the dead sticky
+// wrapper was deleted. This box sits inside `container_main`, so anything
+// absolute against it is trapped inside the page gutter — which is why the new
+// panel was inset from both edges instead of spanning the screen.
+//
+// With this gone the nearest positioned ancestor is `.site-header`, which is
+// `position: sticky` and therefore a containing block, and which spans the
+// viewport. The panel's `left: 0; right: 0` now means the actual edges.
+//
+// NOTHING ELSE WANTED IT. The desktop dropdown panels position against
+// `.navdropDown`, which carries its own `position: relative` — checked before
+// removing this rather than after.
+.main_nav {
+  position: static;
+}
+
+.site-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @media only screen and (max-width: 750px) {
-    padding: 2rem 0rem;
+  gap: 1.5rem;
+  min-height: var(--header-h);
+
+  & > a {
+    display: inline-flex;
+    align-items: center;
   }
 
-  & > svg {
-    width: 12.9rem;
-    height: 3.2rem;
+  & > svg,
+  & > a > svg {
+    width: 8.0625rem;
+    height: 3rem;
     cursor: pointer;
   }
+
   & > div {
     display: flex;
     align-items: center;
-    gap: 2rem;
-    @media only screen and (max-width: 750px) {
+    gap: 1.5rem;
+
+    @media only screen and (max-width: 960px) {
       display: none;
     }
-    & > a {
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: white;
-    }
-  }
 
-  & > figure {
-    display: none;
-    & > * {
-      font-size: 3.5rem;
-      color: white;
+    & > a {
+      // .flink carries the 44px tap target; this is the type role.
+      //
+      // Phase F. Up 2px, from 14 to 16. This also brings the desktop bar onto
+      // the same size as the mobile drawer, which was already 1rem.
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--color-ink);
     }
-    @media only screen and (max-width: 750px) {
-      display: block;
+
+    & > a:hover {
+      color: var(--color-brand);
     }
   }
 }
 
-.navbarMobileMenu {
+// --- The mobile drawer ------------------------------------------------------
+// Rebuilt 23 Sep 2026 to the Pixelette Technologies drawer, on instruction.
+//
+// THE BREAKPOINT MOVED FROM 767px TO 960px, and that is the substantive change
+// in this file rather than a detail of it. At 767 the desktop bar was still on
+// AT 768 — seven links and a button in 768px — which is the "navigation breaks
+// at 768px on all 36 routes" fault recorded in 09 Outstanding and 10
+// Verification.
+//
+// 960 IS MEASURED, NOT COPIED, and the difference matters. The reference
+// switches at 860, and taking that number would have moved the fault rather
+// than fixed it: this bar has an intrinsic minimum of 898px — logo 129, links
+// 838, the gap between them, and a CTA that is `white-space: nowrap` and so
+// cannot shrink — and it overflowed by 37px at 861. Theirs fits at 860 because
+// their bar is 677px where ours is 838. It was walked at 870, 880, 890, 897,
+// 905 and 961: the last width that overflows is 897 and the first clean one is
+// 898. 960 takes that with about 60px of headroom rather than the 2px that
+// 900 would have left.
+//
+// So the rule is: this number belongs to THIS bar. Add a link and it has to be
+// measured again, because nothing here fails loudly when it stops being true.
+//
+// It is `<details>`, so there is no `display: none` toggle here and no state:
+// the panel is a child of a closed disclosure and the browser does the rest.
+.navDrawer {
   display: none;
-  position: absolute;
-  z-index: 1000000;
-  width: 70%;
-  right: 0rem;
-  padding: 5rem 3rem;
-  min-height: calc(100vh - 8.1rem);
-  @media only screen and (max-width: 750px) {
+
+  @media only screen and (max-width: 960px) {
     display: block;
   }
+}
 
-  & > div {
+// The trigger. A bordered pill reading "Menu", not a hamburger — the reference's
+// choice, and the more legible one.
+//
+// `list-style: none` plus the -webkit- pseudo-element is not belt and braces:
+// Safari still draws the disclosure triangle through the marker pseudo-element
+// and ignores the list-style on its own.
+.navDrawer__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-btn);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+// One chevron rule for the trigger and every group row. `details[open] >` is
+// what turns it, so the mark always agrees with the element's real state —
+// nothing has to remember to flip a class.
+.navDrawer__chev {
+  flex: none;
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+details[open] > .navDrawer__toggle > .navDrawer__chev,
+details[open] > .navDrawer__groupSummary > .navDrawer__chev {
+  transform: rotate(180deg);
+}
+
+// EDGE TO EDGE. It anchors to `.site-header` — see the note on `.main_nav` for
+// why that is now the containing block — so `left: 0; right: 0` spans the
+// viewport rather than the page gutter, and the row rules run the full width of
+// the screen as they do on the reference.
+//
+// `top: calc(100% + 1px)` clears the header's own border-bottom: a percentage
+// top resolves against the containing block's PADDING box, which stops short of
+// the border, so without the 1px the panel would sit on top of the hairline.
+//
+// It then re-applies the page gutter as its own padding, using the same clamp
+// `container_main` uses, so the rows stay in line with the page content at
+// every width instead of sliding to the screen edge.
+//
+// It scrolls INSIDE itself rather than growing the page: the What We Do panel
+// holds nine links and would otherwise run past the fold with no way back to
+// the trigger.
+.navDrawer__panel {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 0;
+  right: 0;
+  z-index: 50;
+  max-height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+  padding-block: 0.5rem 1.25rem;
+  padding-inline: clamp(1.25rem, -0.4rem + 5.3vw, 6.8125rem);
+  background: var(--color-page);
+  border-bottom: 1px solid var(--color-line);
+}
+
+// Rows. The group summaries and the plain links are peers and must measure the
+// same, so the shared properties are declared once against both.
+.navDrawer__groupSummary,
+.navDrawer__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 3.25rem;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.navDrawer__link:hover,
+.navDrawer__groupSummary:hover {
+  color: var(--color-brand);
+}
+
+// The expanded body. The left rule is the reference's device and it earns its
+// place: it is the only thing that says where a group's links stop, now that
+// the rows beneath it are the same size and weight.
+.navDrawer__groupBody {
+  padding: 0.25rem 0 0.75rem 1rem;
+  border-left: 1px solid var(--color-line);
+  margin-left: 0.125rem;
+}
+
+.navDrawer__hub {
+  display: flex;
+  align-items: center;
+  min-height: 3rem;
+  font-size: 0.9375rem;
+  color: var(--color-ink);
+}
+
+.navDrawer__hub:hover {
+  color: var(--color-brand);
+}
+
+// The capability labels. `.eyebrow` is the site's existing small-caps role and
+// is reused rather than restated; only the spacing it needs here is set.
+.navDrawer__sub > .eyebrow {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.navDrawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & a {
+    display: flex;
+    align-items: center;
+    min-height: 3rem;
+    font-size: 0.9375rem;
+    color: var(--color-body);
+  }
+
+  & a:hover {
+    color: var(--color-brand);
+  }
+}
+
+// The CTA closes the drawer's list, full width, as it does on the reference.
+// It takes the row's top margin rather than a border, because it is the one
+// item here that is not a row in the list.
+.navDrawer__cta {
+  display: block;
+  margin-top: 1.25rem;
+
+  & > .btn {
     width: 100%;
-    & > a {
-      display: block;
-      font-size: 1.6rem;
-      font-weight: 400;
-      color: white;
-    }
-    & > * {
-      &:not(:last-child) {
-        margin-bottom: 2.5rem;
-      }
-    }
+    white-space: nowrap;
+  }
+}
+
+
+// The brief's primary navigation button. It is the last item in the row on
+// desktop and the last in the drawer on mobile, and it keeps the hero's label
+// so the page never offers two names for the same action.
+//
+// The link wraps the Button rather than the Button taking an href, which is
+// the pattern the heroes already use.
+.site-nav__cta {
+  display: inline-flex;
+
+  // The bar carries seven links and a button now. The button is the one item
+  // that must not shrink into the row.
+  & > .btn {
+    white-space: nowrap;
   }
 }

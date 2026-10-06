@@ -1,6 +1,7 @@
 const Ahrefs = () => {
   return (
     <svg
+      aria-hidden='true'
       width='83'
       height='22'
       viewBox='0 0 83 22'

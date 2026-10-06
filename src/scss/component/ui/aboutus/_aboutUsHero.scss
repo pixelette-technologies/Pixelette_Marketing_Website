@@ -1,40 +1,49 @@
+// The interior hero. 30 Sep 2026.
+//
+// A single column, no image. The headline is two authored lines — the
+// statement in near-black, the turn in burgundy — so each line is a block span
+// and the break falls where the brief puts it at every width wide enough to
+// hold it. Below that each line wraps on its own.
+//
+// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
+// near-black and burgundy headline, near-black lead.
+//
+// No media query. The type interpolates, the caps are in rem against a
+// container that is already fluid, and .wash-left is redrawn for narrow
+// screens in _responsive.
+
 .heroSectionAbout {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  padding: 4rem 0rem;
+  padding-block: var(--sec-y-sm);
 
-  @media only screen and (max-width: 1000px) {
-    gap: 1rem;
-    & > img {
-      max-width: 60%;
-      height: auto;
-    }
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-    gap: 4rem;
-    & > img {
-      max-width: 80%;
-    }
-  }
-  @media only screen and (max-width: 550px) {
-    & > img {
-      max-width: 90%;
-    }
-  }
-  @media only screen and (max-width: 430px) {
-    & > img {
-      width: 100%;
-    }
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+    color: var(--color-pink-text);
   }
 
-  & > div {
-    & > p {
-      margin: 2.4rem 0rem;
-      @media only screen and (max-width: 750px) {
-        margin: 1.4rem 0rem;
-      }
-    }
+  & > .h1 {
+    max-width: 48rem;
+  }
+
+  &__lead,
+  &__accent {
+    display: block;
+  }
+
+  &__lead {
+    color: var(--color-plum-ink);
+  }
+
+  &__accent {
+    color: var(--color-burgundy);
+  }
+
+  & > .lead {
+    margin-top: 1.5rem;
+    max-width: 46rem;
+    color: var(--color-plum-ink);
+  }
+
+  & > .btn {
+    margin-top: 2rem;
   }
 }

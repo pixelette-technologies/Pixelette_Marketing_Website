@@ -1,6 +1,7 @@
 const MailChimp = () => {
   return (
     <svg
+      aria-hidden='true'
       width='106'
       height='29'
       viewBox='0 0 106 29'

@@ -1,0 +1,325 @@
+// Surface primitives. Appendix E, group property.
+//
+// The register is FLAT AND STATIC, so a shadow is an exception rather than a
+// default, and there are only three of them. HOVER CHANGES BORDER COLOUR
+// ONLY — no lift, no shadow change, no scale. That is the rule most often
+// broken by reflex, so it is stated here at the point it applies.
+//
+// THE REGISTER IS NO LONGER STATIC, and this paragraph is where that is
+// recorded — Trap 10 in the vault says a motion surface documented anywhere
+// else gets read as leftover decoration and deleted by the next pass.
+//
+// 1. THE LOGO MARQUEE. The client logos in TrustedBrands and the platform rows
+//    in RangeOfMarket. Asked for by the user on 1 September 2026 after D2 had
+//    removed it. See _marquee.scss.
+//
+// 2. THE HERO PARALLAX. The five collage images track the pointer at five
+//    depths. Also the user's call, also 1 September 2026. See _heroHome.scss.
+//    SUPERSEDED 28 Sep 2026: the collage is gone. The hero is now the Living
+//    Signal, a canvas that resolves once (about 3.5s), then only breathes its
+//    lit point and sends a few small signals inwards, with a few pixels of
+//    two-layer depth under a fine pointer. It pauses off screen and is a
+//    still frame under reduced motion. See LivingSignal.tsx.
+//
+// 3. THE SCROLL REVEAL — added 1 September 2026, and the one that changes the
+//    rule rather than carving an exception out of it. Every block on every
+//    page fades and rises as it is scrolled to, and card grids cascade. It is
+//    site-wide, so "flat and static" no longer describes this site. That is a
+//    GROUP-LEVEL change and the question is open with Mr Rana; if it comes
+//    back no, _reveal.scss and ScrollReveal.tsx revert together in one commit.
+//    See the header of _reveal.scss.
+//
+// 4. THE SCROLL-DRIVEN STRIP. The four names in the "AI-accelerated.
+//    Human-led." section run the full width of the page and their horizontal
+//    offset is a function of the page's scroll position. The user's call, 21
+//    September 2026, and it replaced the four descriptions and the closing
+//    line rather than being added on top of them. It is the second marquee on
+//    the site but it is NOT the first one's mechanism: no keyframes, no timer,
+//    it moves only while the reader is moving. See _scrollMarquee.scss.
+//
+// 5. THE WAVE'S RIPPLE — added 22 Sep 2026, REMOVED 30 Sep 2026 with the
+//    six-dimension wave itself: the final diagnostic brief took every
+//    abstract signal line off /strategy-positioning.
+//
+// 9. THE DIAGNOSTIC (/strategy-positioning), 30 Sep 2026, required in terms
+//    by the final diagnostic brief. A Clarity Rail point grows slightly
+//    (scale 1.15) on hover and focus and the chosen one to 1.2 — AN EXCEPTION
+//    TO THE HOVER RULE BELOW, by instruction. Also: the hero compacts and the
+//    bridge folds when the diagnostic starts, a chosen answer locks and the
+//    question leaves (up 20px) and the next arrives, the score counts up, and
+//    the profile markers travel to their places. All UI state, all short,
+//    none looping, and all gone under a reduce preference, where every state
+//    is still reached. _strategyDiagnostic.scss, _strategyHero.scss.
+//
+// 10. THE SPECIALIST SERVICE PAGES (Demand & Performance and Search &
+//    Authority), 30 Sep 2026, required in terms by the specialist pages
+//    brief. Under a fine pointer a "When this earns its place" column RISES
+//    2PX and its divider turns pink — AN EXCEPTION TO THE HOVER RULE BELOW, by
+//    instruction, and it carries nothing: every word is already on the page.
+//    Also: the service rows fold open (300ms) with the + turning to x, and a
+//    metric chip's edge and fill brighten on hover. None loops; all of it
+//    goes under a reduce preference. _specialist.scss.
+//
+// 11. THE GROWTH INTELLIGENCE VIEW (/services/marketing_analytics_and_reporting),
+//    30 Sep 2026, required in terms by its brief. Once, on first view, the
+//    figures count up, the chart lines draw (about 850ms), the bars grow and
+//    the contribution ring fills; the hero's compact preview does the same.
+//    On a mode change (Growth / Efficiency / Pipeline) the lines move to
+//    their new points, bars and ring transition (600-700ms) and the figures
+//    and insight copy fade and rise in (about 250ms). Then it is still:
+//    nothing loops, pulses or simulates live data. Under a reduce preference
+//    every state arrives at once. _growthIntelligence.scss.
+//
+// 12. THE ABOUT PAGE'S HOW WE'RE BUILT FLOW (/aboutus), 30 Sep 2026, required
+//    in terms by the final About page brief. Once, when the section comes
+//    into view, a small pink signal runs the four-stage line (700ms), the
+//    line fills and each node lights as it is reached. No loop, no replay;
+//    under a reduce preference the finished flow shows at once. The page's
+//    principle rows turn their lower hairline pink on hover, within the
+//    border-colour rule. BuiltFlow.tsx, _builtFlow.scss.
+//
+// 6-8. THE HOME PAGE'S ILLUSTRATED SECTIONS, 02-04 — added 28 Sep 2026 by a
+//    locked management specification that requires the motion in terms, and
+//    sets a deliberate rhythm: controlled (the hero), energetic (02), calm
+//    (03), playful (04).
+//
+//    6. THE FALLING POST-ITS (02). The notes fall into place once when the
+//       section arrives, then sway by a degree; a few small background notes
+//       keep drifting down while it is on screen; a fine pointer nudges a
+//       nearby note a few pixels and it springs back. _activitySection.scss.
+//    7. THE CAPABILITY LIFT (03). A capability brick rises 3px under the
+//       pointer. Added 29 Sep on instruction: once, when the section
+//       arrives, the two ladder builders climb in from the ladders' feet to
+//       where they stand; under the pointer a ladder builder climbs one rung
+//       (and back down on leave) and a builder on top of the bricks jumps.
+//       Still the calmest of the three: nothing loops. BrickSceneMotion.tsx,
+//       _capabilitiesSection.scss.
+//    8. THE DUCK POND (04). Once, when the section arrives, the water comes up
+//       and the ducks drop onto it one by one (gravity, then a damped
+//       buoyant bob, then a splash ring flattened by the water's perspective),
+//       the pink duck last; added 29 Sep on instruction. After that every
+//       duck bobs on its own period with a ripple, the water's glints drift,
+//       and the pink duck rises and tilts slightly on hover.
+//       DuckPond.tsx, _relevanceSection.scss.
+//
+//    All three are EXCEPTIONS TO THE HOVER RULE BELOW, by instruction, and are
+//    written down as such. What keeps them defensible is the same as the
+//    wave's: they are decorative (the pictures are aria-hidden and every word
+//    they carry is also in the copy or is picture), they animate transform
+//    and opacity only, they pause off screen, and under a reduce preference
+//    each section is a still composition.
+//
+// A correction to what this paragraph used to claim: "nothing else on the site
+// moves" was already untrue when it was written. framer-motion animates the
+// navbar dropdown, the mobile drawer, the blog category dropdown and the
+// article table of contents. Those are UI-state transitions on controls rather
+// than decorative motion, which is arguably a different category — but the
+// flat sentence was wrong and reasoning built on it was reasoning from a false
+// premise.
+//
+// NONE OF THIS LICENSES MOTION ON HOVER. Hover still changes border colour
+// only — no lift, no shadow change, no scale — and the reveal does not extend
+// to cards responding to the cursor or to anything else in this file.
+//
+// Cards are noticeably rounder than controls (12px against 4px). That
+// contrast is part of the look and is not ours to retune.
+
+.card {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  border-color: var(--color-line-strong);
+}
+
+// The signature device's second and last appearance: the same segment on the
+// leading edge of a feature card. See .rule-cap in _layout.
+.card-feature {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-feature::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--sig-cap-width);
+  height: var(--sig-cap-height);
+  background: var(--color-brand-signal);
+}
+
+.tile {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-tile);
+  padding: 1rem 1.125rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.tile b {
+  display: block;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.4375rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+}
+
+.tile span {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+}
+
+// --- Dark grounds ----------------------------------------------------------
+// The saturated bg_primary bands become this family, not flat crimson.
+
+.panel {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  border: 1px solid var(--color-panel-border);
+  border-radius: var(--radius-card);
+  padding: 1.375rem 1.5rem;
+  color: var(--color-panel-text);
+}
+
+.panel .plabel {
+  font-family: var(--font-mono);
+  font-size: 0.65625rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-panel-muted);
+}
+
+.footer {
+  background: var(--color-footer-bg);
+  color: var(--color-footer-body);
+}
+
+// On the dark ground the marking tone finally gets a voice — 5.11 here,
+// exactly as the guide's own bright tone does on its own dark ground.
+.footer .eyebrow {
+  color: var(--color-footer-eyebrow);
+}
+
+.footer .rule {
+  background: var(--color-footer-line);
+}
+
+.footer .pill {
+  border-color: var(--color-footer-pill);
+  color: var(--color-footer-body);
+}
+
+.footer .legal {
+  font-family: var(--font-mono);
+  font-size: 0.71875rem;
+  color: var(--color-footer-muted);
+}
+
+// --- Bands -----------------------------------------------------------------
+
+.band-alt {
+  background: var(--color-band);
+}
+
+// --- The dark band ---------------------------------------------------------
+// Marketing KEEPS the dark family as a deliberate device rather than reducing
+// to the guide's light-throughout rhythm. Settled 1 Sep 2026; see [[Rules]].
+// Two of the three dark bands are not even a choice — every client logo and
+// every platform mark in this repo is knockout white, either a white fill
+// attribute or a baked raster pattern, so those rows CANNOT sit on a light
+// ground without new assets.
+//
+// The discipline that makes it a device instead of an accident:
+//
+//   1. THREE PER PAGE MAXIMUM.
+//   2. Always a full-bleed section band, never a rounded box floating inside a
+//      light section. A card grid nested in a bordered panel reads as a widget
+//      and was most of why the old treatment looked like a brick.
+//   3. Never the separator between two ordinary sections. Ordinary sections
+//      separate on the hairline. Dark is punctuation.
+//
+// One class, so the logo bands and the capability matrix read as the same
+// recurring device rather than three unrelated black rectangles.
+//
+// Contrast measured against the WORST case, the gradient start — panel-a,
+// was 21040d. The panel-b end is one to two tenths better on every row:
+//   .eyebrow  signal       5.34
+//   headings  page white  19.30
+//   .lead     panel text   7.36
+//   .small    panel muted  5.39
+// The brand anchor is 2.77 here and is barred, as everywhere on dark.
+.band-dark {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
+}
+
+.band-dark .eyebrow {
+  color: var(--color-footer-eyebrow);
+}
+
+.band-dark .h1,
+.band-dark .h1p,
+.band-dark .h2,
+.band-dark .h3,
+.band-dark .h4 {
+  color: var(--color-page);
+}
+
+.band-dark .lead,
+.band-dark .body {
+  color: var(--color-panel-text);
+}
+
+.band-dark .small {
+  color: var(--color-panel-muted);
+}
+
+.band-dark .rule {
+  background: var(--color-panel-border);
+}
+
+// The secondary control on dark. .btn2 is ink on a line-strong edge, which is
+// 1.3 against the panel — invisible. --color-panel-btn-text (12.07) and
+// --color-panel-btn-border have been sitting in _tokens.scss since the
+// lightening pass with NO CALL SITE; they were cut for exactly this and never
+// wired up. The section CTAs on the two dark bands are the first consumers.
+//
+// .btn-ghost is deliberately not given a dark variant: it resolves to the
+// brand anchor, which measures 2.77 here and is barred on this ground like
+// everywhere else on dark. Use .btn2 for a secondary action on a dark band.
+.band-dark .btn2 {
+  color: var(--color-panel-btn-text);
+  border-color: var(--color-panel-btn-border);
+}
+
+.band-dark .btn2:hover {
+  border-color: var(--color-panel-btn-text);
+}
+
+.band-closing {
+  background: var(--color-band);
+  border-top: 1px solid var(--color-line);
+}
+
+// --- Hero grounds ----------------------------------------------------------
+// .wash is the guide's front-page treatment, centred. .wash-left is its
+// interior variant, offset. Geometry is the second and last thing that cannot
+// interpolate, so it reappears in the single media query in _responsive.
+
+.wash {
+  background: radial-gradient(1200px 560px at 50% -20%, var(--color-brand-wash) 0%, var(--color-page) 65%);
+}
+
+.wash-left {
+  background: radial-gradient(1000px 470px at 16% -10%, var(--color-brand-wash) 0%, var(--color-page) 60%);
+}

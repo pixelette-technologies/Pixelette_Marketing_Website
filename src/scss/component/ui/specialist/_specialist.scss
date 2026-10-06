@@ -1,0 +1,843 @@
+// The specialist service pages (30 Sep 2026, the Demand & Performance
+// specialist pages brief; also the Search & Authority specialist page).
+// SpecialistServicePage and its sections.
+//
+// COMMERCIAL CLARITY, NOT SPECTACLE. The brief is explicit that these pages
+// get no hero art, no imagery and no borrowed What-we-do motion. What carries
+// them is type, whitespace, the brief's colour hierarchy and small, state-only
+// interaction:
+//   --color-burgundy   section headings, the measure band, the close
+//   --color-pink       numerals, markers, active and selected states
+//   --color-pink-text  small pink labels (eyebrows) on light grounds
+//   --color-plum-ink   every sentence that is read
+//
+// MOTION: the service rows fold (300ms), the + turns to x, an earns-its-place
+// column rises 2px with its divider turning pink under a fine pointer, and a
+// metric chip's edge brightens. Registered as motion surface 10 in
+// _surfaces.scss. All of it goes under a reduce preference.
+//
+// ONE media query, the site's max-width: 767px, for the connection figure's
+// list form and the stacked process. Everything else folds on its own.
+
+.spPage {
+  --sp-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+// --- Shared ----------------------------------------------------------------
+
+.spSection {
+  padding-block: var(--sec-y);
+
+  // A hairline between two light sections, which is how ordinary sections
+  // separate on this site.
+  &--rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  &--tight {
+    padding-block: var(--sec-y-sm);
+  }
+}
+
+.spHead {
+  max-width: 44rem;
+
+  &__eyebrow {
+    margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+    text-wrap: balance;
+    color: var(--color-burgundy);
+  }
+
+  &__intro {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--color-plum-ink);
+  }
+}
+
+.spLink {
+  color: var(--color-burgundy);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-pink);
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 1px;
+
+  &:hover {
+    color: var(--color-pink-text);
+  }
+}
+
+// --- 01 Hero ---------------------------------------------------------------
+
+.spHero {
+  padding-block: var(--sec-y);
+
+  &__eyebrow {
+    margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__heading {
+    max-width: 22ch;
+    color: var(--color-burgundy);
+  }
+
+  // The two-line form: lead in plum ink, accent in burgundy, equal size.
+  &__line {
+    display: block;
+    color: var(--color-plum-ink);
+
+    &--accent {
+      color: var(--color-burgundy);
+    }
+  }
+
+  &__lead {
+    margin-top: 1.5rem;
+    max-width: 44rem;
+    color: var(--color-plum-ink);
+  }
+
+  &__actions {
+    margin-top: 2rem;
+  }
+}
+
+// --- 02 When this earns its place -------------------------------------------
+// Three columns on a top divider, no fill. The grid is the site's thirds
+// track, which seats exactly three and falls to one.
+
+.spEarns {
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: 2.5rem 2.5rem;
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__item {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line-strong);
+    transition:
+      border-color 220ms var(--sp-ease),
+      transform 220ms var(--sp-ease);
+  }
+
+  &__index {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    margin-top: 0.875rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h3);
+    line-height: 1.26;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+
+  &__market {
+    margin-top: 3rem;
+    color: var(--color-plum-ink);
+  }
+}
+
+// Pointer devices only: nothing here is information.
+@media (hover: hover) and (pointer: fine) {
+  .spEarns__item:hover {
+    border-top-color: var(--color-pink);
+    transform: translateY(-2px);
+  }
+}
+
+// --- 03 What we actually do --------------------------------------------------
+
+.spRows {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-line-strong);
+
+  &__row {
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  &__heading {
+    margin: 0;
+    font: inherit;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    width: 100%;
+    min-height: 48px;
+    padding: 1.5rem 0;
+    border: 0;
+    background: none;
+    text-align: left;
+    color: var(--color-burgundy);
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 4px;
+    }
+
+    &:hover .spRows__title {
+      color: var(--color-plum-ink);
+    }
+  }
+
+  &__index {
+    flex: none;
+    width: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    flex: 1 1 auto;
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    line-height: 1.26;
+    transition: color 160ms ease;
+  }
+
+  // A drawn + : two bars. Open, it turns 45deg and reads as x.
+  &__mark {
+    position: relative;
+    flex: none;
+    align-self: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--color-pink);
+    transition: transform 300ms var(--sp-ease);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 50% 0 auto;
+      height: 2px;
+      margin-top: -1px;
+      background: currentColor;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__row.is-open &__mark {
+    transform: rotate(45deg);
+  }
+
+  &__panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 300ms var(--sp-ease);
+  }
+
+  &__row.is-open &__panel {
+    grid-template-rows: 1fr;
+  }
+
+  &__panelInner {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  &__body {
+    max-width: 60ch;
+    padding: 0 0 1.75rem 3.25rem;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--color-plum-ink);
+    opacity: 0;
+    transition: opacity 240ms var(--sp-ease);
+  }
+
+  &__row.is-open &__body {
+    opacity: 1;
+  }
+}
+
+// --- 04 What we measure -------------------------------------------------------
+
+.spMeasure {
+  background: var(--color-burgundy);
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2.5rem 4rem;
+    padding-block: var(--sec-y);
+  }
+
+  &__copy {
+    flex: 1 1 22rem;
+    max-width: 34rem;
+  }
+
+  &__eyebrow {
+    margin-bottom: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-brand-wash);
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+    text-wrap: balance;
+    color: var(--color-page);
+  }
+
+  &__body {
+    margin-top: 1.25rem;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--color-brand-wash);
+  }
+
+  &__metrics {
+    display: flex;
+    flex: 1 1 22rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__metric {
+    padding: 0.625rem 1.125rem;
+    border: 1px solid color-mix(in srgb, var(--color-brand-wash) 45%, transparent);
+    border-radius: 999px;
+    font-size: 0.9375rem;
+    line-height: 1.3;
+    color: var(--color-page);
+    transition:
+      border-color 200ms var(--sp-ease),
+      background-color 200ms var(--sp-ease);
+
+    &:hover {
+      border-color: var(--color-pink);
+      background: color-mix(in srgb, var(--color-pink) 14%, transparent);
+    }
+  }
+}
+
+// A statement under the metrics, across the band (Growth Intelligence sets
+// one; the Demand & Performance pages do not).
+.spMeasure__note {
+  flex: 1 1 100%;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.3;
+  color: var(--color-page);
+}
+
+// --- Work in practice (reserved; renders only with evidence) ------------------
+
+.spPractice {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 2.5rem;
+  margin: 3rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  &__item {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h3);
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- 05 How this connects ------------------------------------------------------
+// The figure and the explanation share a wrapping row: side by side on a wide
+// screen, the explanation beneath the figure once the figure needs the width.
+
+.spConnect {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2.5rem 4rem;
+  margin-top: 3rem;
+
+  &__figure {
+    position: relative;
+    flex: 1 1 30rem;
+    max-width: 38rem;
+    aspect-ratio: 16 / 11;
+  }
+
+  &__spokes {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  &__spoke {
+    stroke: var(--color-soft);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 5;
+    transition: stroke 240ms var(--sp-ease);
+
+    &.is-active {
+      stroke: var(--color-pink);
+      stroke-width: 2;
+      stroke-dasharray: none;
+    }
+  }
+
+  // The centre: this page, in burgundy, the fixed point of the figure.
+  &__centre {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    max-width: 12rem;
+    margin: 0;
+    padding: 1rem 1.375rem;
+    transform: translate(-50%, -50%);
+    border-radius: var(--radius-card);
+    background: var(--color-burgundy);
+    font-family: var(--font-display);
+    font-size: 1.1875rem;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--color-page);
+  }
+
+  &__nodes {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__node {
+    position: absolute;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+
+    &--0 {
+      top: 13%;
+      left: 50%;
+    }
+
+    &--1 {
+      top: 84%;
+      left: 21%;
+    }
+
+    &--2 {
+      top: 84%;
+      left: 79%;
+    }
+  }
+
+  // Outlined when idle, FILLED when selected: the state is shape as well as
+  // colour, and aria-pressed carries it to assistive tech.
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    max-width: 11.5rem;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--color-burgundy);
+    border-radius: 999px;
+    background: var(--color-page);
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+    color: var(--color-burgundy);
+    cursor: pointer;
+    transition:
+      background-color 200ms var(--sp-ease),
+      border-color 200ms var(--sp-ease),
+      color 200ms var(--sp-ease);
+
+    &:hover {
+      border-color: var(--color-pink);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 3px;
+    }
+
+    // Filled with --color-pink-text, not --color-pink: page-colour text on the brighter
+    // pink is 4.36, under 4.5 for text this size; on this one it is 5.12.
+    &[aria-pressed="true"] {
+      border-color: var(--color-pink-text);
+      background: var(--color-pink-text);
+      color: var(--color-page);
+    }
+  }
+
+  &__panel {
+    flex: 1 1 20rem;
+    max-width: 32rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--color-pink);
+  }
+
+  &__capability {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+    line-height: 1.15;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.875rem;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- 06 How we work -------------------------------------------------------------
+
+.spSteps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  &__step {
+    padding-top: 1rem;
+    border-top: 2px solid var(--color-burgundy);
+  }
+
+  &__index {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h3);
+    line-height: 1.26;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.5rem;
+    line-height: 1.55;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- 07 What good looks like -----------------------------------------------------
+
+.spGood {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+  gap: 1.5rem 3rem;
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+
+  &__point {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-line-strong);
+    font-size: var(--fs-lead);
+    line-height: 1.5;
+    color: var(--color-plum-ink);
+  }
+
+  // A drawn tick: two borders of a rotated box.
+  &__check {
+    flex: none;
+    width: 0.5rem;
+    height: 0.9375rem;
+    margin: 0.25rem 0.375rem 0 0.25rem;
+    border-right: 2px solid var(--color-pink);
+    border-bottom: 2px solid var(--color-pink);
+    transform: rotate(45deg);
+  }
+}
+
+// --- 08 The close ------------------------------------------------------------------
+// Full-bleed burgundy, like the diagnostic's close and for the same reason:
+// not .band-dark, which route-walk counts.
+
+.spClose {
+  background: var(--color-burgundy);
+
+  &__body {
+    max-width: 44rem;
+    padding-block: var(--sec-y);
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.12;
+    text-wrap: balance;
+    color: var(--color-page);
+  }
+
+  &__text {
+    margin-top: 1.25rem;
+    font-size: var(--fs-lead);
+    line-height: 1.6;
+    color: var(--color-brand-wash);
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    margin-top: 2.25rem;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--color-page);
+    border-radius: var(--radius-btn);
+    background: var(--color-page);
+    font-family: var(--font-body);
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-burgundy);
+    transition: background-color 160ms ease;
+
+    &:hover {
+      background: var(--color-brand-tint);
+      color: var(--color-burgundy);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-page);
+      outline-offset: 3px;
+    }
+  }
+}
+
+// --- 09 Useful questions ------------------------------------------------------------
+
+.spFaq {
+  max-width: 52rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--color-line-strong);
+
+  &__item {
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  &__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 48px;
+    padding: 1.25rem 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-burgundy);
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 4px;
+    }
+  }
+
+  &__mark {
+    position: relative;
+    flex: none;
+    width: 1rem;
+    height: 1rem;
+    color: var(--color-pink);
+    transition: transform 300ms var(--sp-ease);
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 50% 0 auto;
+      height: 2px;
+      margin-top: -1px;
+      background: currentColor;
+    }
+
+    &::after {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__item[open] &__mark {
+    transform: rotate(45deg);
+  }
+
+  &__answer {
+    max-width: 62ch;
+    padding-bottom: 1.5rem;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- Narrow screens ------------------------------------------------------------------
+
+@media (max-width: 767px) {
+  .spRows__body {
+    padding-left: 0;
+  }
+
+  .spSteps {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  // The figure becomes a list: the centre, then the three nodes, each a full
+  // width tap target. The spokes go; the filled node still marks selection.
+  .spConnect__figure {
+    aspect-ratio: auto;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .spConnect__spokes {
+    display: none;
+  }
+
+  .spConnect__centre {
+    position: static;
+    max-width: none;
+    transform: none;
+  }
+
+  .spConnect__nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+    padding-left: 1.25rem;
+    border-left: 1px dashed var(--color-line-strong);
+  }
+
+  .spConnect__node,
+  .spConnect__node--0,
+  .spConnect__node--1,
+  .spConnect__node--2 {
+    position: static;
+    transform: none;
+  }
+
+  .spConnect__button {
+    width: 100%;
+    max-width: none;
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .spConnect__panel {
+    padding-left: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spEarns__item,
+  .spRows__mark,
+  .spRows__panel,
+  .spRows__body,
+  .spRows__title,
+  .spMeasure__metric,
+  .spConnect__spoke,
+  .spConnect__button,
+  .spFaq__mark {
+    transition: none;
+  }
+
+  .spEarns__item:hover {
+    transform: none;
+  }
+}

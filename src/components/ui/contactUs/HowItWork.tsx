@@ -1,61 +1,38 @@
-import { MailIcon, PhoneIcon } from "@/assets/contactUs";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { howItWorkData } from "@/data/contactUs";
 
+// 25 Sep 2026: four numbered steps (see howItWorkData), and the headings on
+// the current type roles rather than heading_secondry--light and
+// heading_secondry--boldLight.
+//
+// 30 Sep 2026: the email and the two phone numbers came out of this header.
+// They sit beside the form now, with the office addresses, in
+// ContactGetInTouch; printing them twice within a screen of each other said
+// nothing new the second time.
 const HowItWork = () => {
   return (
-    <div
-      className='bg_secondry--light'
-      data-aos='fade-up'
-      data-aos-duration='1000'
-    >
+    <div className='howItworksBand'>
       <Container className='main'>
         <div className='howItworks'>
           <header>
-            <Heading
-              className='secondry--light color_white'
-              animation='fade-up'
-              duration='1200'
-            >
-              Here’s how it works
-            </Heading>
-            <section>
-              <div data-aos='fade-up' data-aos-duration='1200'>
-                <MailIcon />
-                <Text className='primary color_white'>
-                  sales@pixelettemarketing.com
-                </Text>
-              </div>
-              <div data-aos='fade-up' data-aos-duration='1300'>
-                <PhoneIcon />
-                <Text className='primary color_white'>+44 2045188226</Text>
-              </div>
-              <div data-aos='fade-up' data-aos-duration='1400'>
-                <PhoneIcon />
-                <Text className='primary color_white'>+1 7732709034</Text>
-              </div>
-            </section>
+            <Heading className='h2'>What happens next</Heading>
           </header>
-          <section>
-            {howItWorkData.map((el, index) => (
-              <blockquote
-                key={index}
-                data-aos='fade-up'
-                data-aos-duration={`${1000 + index * 300}`}
-              >
-                <section>
-                  <el.icon />
-                </section>
+          <ol data-reveal='stagger'>
+            {howItWorkData.map(el => (
+              <li key={el.index}>
+                <span className='howItworks__index' aria-hidden='true'>
+                  {el.index}
+                </span>
                 <div>
-                  <Heading className='secondry--boldLight color_white'>
+                  <Heading className='h4' level={3}>
                     {el.heading}
                   </Heading>
-                  <Text className='tertiary--light color_white'>{el.text}</Text>
+                  <Text className='body'>{el.text}</Text>
                 </div>
-              </blockquote>
+              </li>
             ))}
-          </section>
+          </ol>
         </div>
       </Container>
     </div>

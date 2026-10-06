@@ -7,15 +7,11 @@ type FormTextAreaProps = FieldHookConfig<string> & {
   label: string;
   place?: string;
   name: string;
-  animation?: string;
-  duration?: string;
 };
 
 const FormTextArea: React.FC<FormTextAreaProps> = ({
   label,
   place,
-  animation,
-  duration,
   ...props
 }) => {
   const [field, meta] = useField(props);
@@ -23,8 +19,6 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   return (
     <div
       className='formtextArea'
-      data-aos={animation}
-      data-aos-duration={duration}
     >
       <label htmlFor={field.name} className='form-label'>
         {label}
@@ -38,7 +32,7 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
         rows={4}
         style={{
           border:
-            meta.touched && meta.error ? "1px solid red" : "1px solid #ccc"
+            meta.touched && meta.error ? "1px solid var(--color-danger)" : "1px solid var(--color-line-strong)"
         }}
       />
       <ErrorMessage component='div' name={field.name} className='form-error' />

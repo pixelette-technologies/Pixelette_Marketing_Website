@@ -1,0 +1,93 @@
+// Home 05 and 06, 29 Sep 2026: the Industries teaser and Proof before
+// promises. Compact by instruction — each is a head, a few lines and one way
+// on, so the home page can stop soon after its opening four.
+//
+// One shape for both: the head on the left, the body on the right from 60rem,
+// stacked below it. No cards, no fill beyond the band the section sits on.
+
+.homeTeaser__grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 60rem) {
+  .homeTeaser__grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 4rem;
+    align-items: start;
+  }
+}
+
+.homeTeaser__head {
+  & > .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  & > .h2 {
+    max-width: 30rem;
+  }
+}
+
+.homeTeaser__lead {
+  margin-top: 1.25rem;
+}
+
+.homeTeaser__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.homeTeaser__client {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+// BlockGuard's two before-and-after figures, the case study's statistic
+// treatment: mono, tabular numerals, on a hairline.
+.proofTeaser__figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem 2rem;
+  width: 100%;
+  margin-top: -0.75rem;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--color-line);
+  list-style: none;
+
+  & > li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
+
+.proofTeaser__figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+}
+
+.proofTeaser__label {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+// WebBookingPro, quieter: one line, its client name and its story headline.
+.proofTeaser__also {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--color-body);
+
+  & > .homeTeaser__client {
+    margin-inline-end: 0.5rem;
+  }
+}

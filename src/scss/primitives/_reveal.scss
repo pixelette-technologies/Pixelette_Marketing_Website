@@ -1,0 +1,85 @@
+// Scroll reveal — THE THIRD MOTION SURFACE, and the one that changes the rule.
+//
+// Asked for by the user on 1 September 2026: "a minimal animation on all
+// pages, where as we scroll the components appear in a small fade, maybe add
+// a delay, and add stacking if there is a grid".
+//
+// READ THIS BEFORE TOUCHING IT. The flat-and-static register in _surfaces.scss
+// permitted exactly TWO exceptions — the logo marquee and the hero parallax —
+// and said in terms that a third is the point at which flat-and-static has
+// stopped being true and the group should be asked rather than assumed. This
+// IS that third. It is site-wide rather than one widget, so unlike the other
+// two it is not a local exception at all: it retires the register as written.
+// The group-level question is open with Mr Rana. If the answer comes back no,
+// this partial, ScrollReveal.tsx and its four call-site attributes revert
+// together in one commit and nothing else on the site moves.
+//
+// D2 already removed a scroll reveal from this codebase once, and left 750px
+// of empty panel behind it (see 3a6cfa2). That is why this one carries NO
+// GEOMETRY: opacity and transform only, both off the layout, and the shown
+// state lands on `transform: none` so nothing is left holding a stacking
+// context afterwards. There is no height, no padding and no margin here to be
+// stranded if it is ever deleted again.
+//
+// The states are driven by `data-revealing`, which is written ONLY by
+// ScrollReveal.tsx at runtime. Nothing is hidden by this stylesheet on its
+// own, which is deliberate: with no JS, a thrown exception, or an unsupported
+// IntersectionObserver, the page renders exactly as it does today. Given how
+// many invisible-content faults this conversion has already found, content
+// stays visible by default and the animation is what has to opt in.
+//
+// Authoring attributes live on the markup and are greppable:
+//   data-reveal='group'   — a wrapper that groups sections; reveal its
+//                           children individually rather than the wrapper.
+//   data-reveal='stagger' — reveal this element's children in sequence.
+//   data-reveal='off'     — never animate this block.
+
+// The tokens are scoped to the mechanism rather than declared on :root, the
+// same way _marquee.scss scopes --marquee-gap. Deleting this partial takes the
+// custom properties with it and leaves nothing dangling in the token file.
+//
+// The delay is derived, not authored: ScrollReveal writes --reveal-i on each
+// staggered child and the arithmetic stays here, so retiming the cascade is a
+// one-line change in this file rather than a change in the component.
+[data-revealing] {
+  // Small on purpose. The brief is minimal and elegant; a large rise reads as
+  // a slide, and a slide is a different design decision from a fade.
+  --reveal-rise: 0.75rem;
+  --reveal-dur: 640ms;
+  // Decelerating, so the movement arrives rather than stops.
+  --reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  // One step of the grid cascade. Six items is 420ms end to end, which is
+  // still inside the section's own fade.
+  --reveal-step: 70ms;
+  --reveal-delay: calc(var(--reveal-i, 0) * var(--reveal-step));
+
+  transition:
+    opacity var(--reveal-dur) var(--reveal-ease) var(--reveal-delay),
+    transform var(--reveal-dur) var(--reveal-ease) var(--reveal-delay);
+}
+
+[data-revealing="hidden"] {
+  opacity: 0;
+  transform: translateY(var(--reveal-rise));
+}
+
+// `none`, not `translateY(0)`. Both interpolate identically, but `none` leaves
+// no stacking context and no containing block behind once the transition ends.
+// F10 spent a commit on exactly that class of fault — see the isolation note
+// on the hero collage — and a transform on every section of every page is a
+// much wider net than one collage.
+[data-revealing="shown"] {
+  opacity: 1;
+  transform: none;
+}
+
+// The accessibility floor is NOT part of the exception. ScrollReveal already
+// returns without touching the DOM under a reduce preference, so this block is
+// the second of two independent guarantees rather than the only one.
+@media (prefers-reduced-motion: reduce) {
+  [data-revealing] {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

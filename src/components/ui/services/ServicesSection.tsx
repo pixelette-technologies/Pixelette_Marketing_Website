@@ -19,35 +19,30 @@ const ServicesSection: FC<ServicesSectionProps> = ({
   data = []
 }) => {
   return (
-    <div
-      className='bg_gray--lighter'
-      data-aos='fade-up'
-      data-aos-duration='1000'
-    >
+    <div className='band-alt'>
       <Container className='main'>
         <div className='servicesSection'>
-          <header className='bg_gray--lighter'>
+          {/* No longer sticky, so it no longer needs a ground of its own to
+              stop the cards scrolling through it — it sits on the section's
+              own .band-alt. See the partial for why sticky had to go. */}
+          <header>
             <Heading
-              className='large font_family_glory color_tertiary uppercase'
-              animation='fade-right'
-              duration='1200'
+              className='heading_large font_family_glory'
             >
-              We manage You grow
+              We manage. You grow.
             </Heading>
             <div>
               <Heading
-                className='secondry font_family_glory color_secondry uppercase'
-                animation='fade-left'
-                duration='1600'
+                className='heading_secondry font_family_glory'
               >
                 {heading || "No Heading Provided"}
               </Heading>
-              <Text className='secondry' animation='fade-left' duration='1600'>
+              <Text className='text_secondry'>
                 {text || "No description available."}
               </Text>
             </div>
           </header>
-          <section>
+          <section data-reveal='stagger'>
             {data.length > 0 ? (
               data.map((el, index) => (
                 <ServicesCards
@@ -57,7 +52,7 @@ const ServicesSection: FC<ServicesSectionProps> = ({
                 />
               ))
             ) : (
-              <Text className='tertiary color_gray-dark'>
+              <Text className='text_tertiary'>
                 No services available.
               </Text>
             )}

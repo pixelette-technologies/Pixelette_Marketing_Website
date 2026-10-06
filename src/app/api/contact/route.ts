@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { validateContactPayload, type GovernedContactSubmission } from "@/lib/contactContract";
 import { DurableContactDeliveryControl, sendWithBoundedRetry } from "@/lib/contactDeliveryControl";
+import { emailPalette } from "@/lib/emailPalette";
 
 export const runtime = "nodejs";
 
@@ -42,6 +43,9 @@ function buildTextMessage(
     `Submission: ${submissionId}`,
     `Name: ${name}`,
     `Email: ${submission.email}`,
+    `Company: ${submission.company || "not supplied"}`,
+    `Website: ${submission.companyWebsite || "not supplied"}`,
+    `Trying to improve: ${submission.improve || "not stated"}`,
     `Source: ${submission.sourcePage}`,
     `Campaign: ${campaign}`,
     `Privacy notice version: ${submission.noticeVersion}`,
@@ -56,6 +60,9 @@ function buildTextMessage(
 function buildEmailHtml(opts: {
   name: string;
   email: string;
+  company: string;
+  companyWebsite: string;
+  improve: string;
   message: string;
   date: string;
   submissionId: string;
@@ -64,6 +71,9 @@ function buildEmailHtml(opts: {
 }): string {
   const name = escapeHtml(opts.name);
   const email = escapeHtml(opts.email);
+  const company = escapeHtml(opts.company || "not supplied");
+  const companyWebsite = escapeHtml(opts.companyWebsite || "not supplied");
+  const improve = escapeHtml(opts.improve || "not stated");
   const message = escapeHtml(opts.message).replace(/\n/g, "<br/>");
   const date = escapeHtml(opts.date);
   const submissionId = escapeHtml(opts.submissionId);
@@ -73,22 +83,25 @@ function buildEmailHtml(opts: {
   return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/></head>
-<body style="margin:0; padding:0; background-color:#0b0b0f;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0b0b0f; padding:28px 12px;">
+<body style="margin:0; padding:0; background-color:${emailPalette.pageBg};">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${emailPalette.pageBg}; padding:28px 12px;">
     <tr><td align="center">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%; font-family:Helvetica,Arial,sans-serif;">
-        <tr><td style="background-color:#6d1239; border-radius:16px 16px 0 0; padding:34px 32px; text-align:center;">
+        <tr><td style="background-color:${emailPalette.headerBg}; border-radius:16px 16px 0 0; padding:34px 32px; text-align:center;">
           <img src="https://www.pixelettemarketing.com/email-logo.png" alt="Pixelette Marketing" width="210" style="display:inline-block; width:210px; max-width:62%; height:auto; border:0;"/>
         </td></tr>
-        <tr><td style="background-color:#15151b; padding:34px 32px;">
-          <span style="display:inline-block; background-color:#2a2a33; color:#f3b6c8; font-size:11px; font-weight:700; letter-spacing:1.5px; padding:7px 14px; border-radius:999px; text-transform:uppercase;">New Enquiry</span>
-          <h1 style="color:#ffffff; font-size:26px; font-weight:700; margin:18px 0 6px;">New Project Enquiry</h1>
-          <p style="color:#9296a1; font-size:13px; margin:0 0 26px;">Submitted via the contact page &middot; ${date}</p>
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#101015; border:1px solid #25252e; border-radius:12px;">
-            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Name:</strong> <span style="color:#d7d9df;">${name}</span></td></tr>
-            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Email:</strong> <a href="mailto:${email}" style="color:#f06292;">${email}</a></td></tr>
-            <tr><td style="padding:16px 18px; border-bottom:1px solid #25252e;"><strong style="color:#ffffff;">Message:</strong><div style="color:#d7d9df; margin-top:6px;">${message}</div></td></tr>
-            <tr><td style="padding:16px 18px; color:#d7d9df; font-size:13px;">Submission ${submissionId}<br/>Source ${sourcePage}<br/>Campaign ${campaign}</td></tr>
+        <tr><td style="background-color:${emailPalette.cardBg}; padding:34px 32px;">
+          <span style="display:inline-block; background-color:${emailPalette.pillBg}; color:${emailPalette.pillText}; font-size:11px; font-weight:700; letter-spacing:1.5px; padding:7px 14px; border-radius:999px; text-transform:uppercase;">New Enquiry</span>
+          <h1 style="color:${emailPalette.heading}; font-size:26px; font-weight:700; margin:18px 0 6px;">New Project Enquiry</h1>
+          <p style="color:${emailPalette.muted}; font-size:13px; margin:0 0 26px;">Submitted via the contact page &middot; ${date}</p>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:${emailPalette.panelBg}; border:1px solid ${emailPalette.border}; border-radius:12px;">
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Name:</strong> <span style="color:${emailPalette.body};">${name}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Email:</strong> <a href="mailto:${email}" style="color:${emailPalette.link};">${email}</a></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Company:</strong> <span style="color:${emailPalette.body};">${company}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Website:</strong> <span style="color:${emailPalette.body};">${companyWebsite}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Trying to improve:</strong> <span style="color:${emailPalette.body};">${improve}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Message:</strong><div style="color:${emailPalette.body}; margin-top:6px;">${message}</div></td></tr>
+            <tr><td style="padding:16px 18px; color:${emailPalette.body}; font-size:13px;">Submission ${submissionId}<br/>Source ${sourcePage}<br/>Campaign ${campaign}</td></tr>
           </table>
         </td></tr>
       </table>
@@ -188,6 +201,9 @@ export async function POST(req: Request) {
       html: buildEmailHtml({
         name,
         email: submission.email,
+        company: submission.company ?? "",
+        companyWebsite: submission.companyWebsite ?? "",
+        improve: submission.improve ?? "",
         message: submission.description,
         date,
         submissionId,

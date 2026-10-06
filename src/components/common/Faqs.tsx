@@ -1,6 +1,6 @@
 "use client";
 import { useState, FC } from "react";
-import { Accordion } from "../feature";
+import { Accordion, Heading, Text } from "../feature";
 import Container from "./Container";
 
 type FaqItem = {
@@ -11,9 +11,14 @@ type FaqItem = {
 
 type FaqsProps = {
   data?: FaqItem[];
+  /** Optional section header. The service pages have none and keep none;
+   *  the deeper-experience pages open theirs on an eyebrow and an h2 so the
+   *  questions are not an unlabelled list at the foot of the page. */
+  eyebrow?: string;
+  heading?: string;
 };
 
-const Faqs: FC<FaqsProps> = ({ data }) => {
+const Faqs: FC<FaqsProps> = ({ data, eyebrow, heading }) => {
   const [openAccordionIndex, setOpenAccordionIndex] = useState<number | null>(
     null
   );
@@ -24,7 +29,15 @@ const Faqs: FC<FaqsProps> = ({ data }) => {
 
   return (
     <Container className='main'>
-      <section className='faqs'>
+      {heading && (
+        <header className='faqs__head whoBand__head'>
+          {eyebrow && <Text className='eyebrow'>{eyebrow}</Text>}
+          <Heading className='h2' level={2}>
+            {heading}
+          </Heading>
+        </header>
+      )}
+      <section className='faqs' data-reveal='stagger'>
         {data?.map((el, index) => (
           <Accordion
             key={index}
@@ -33,8 +46,6 @@ const Faqs: FC<FaqsProps> = ({ data }) => {
             answer={el.answer}
             isOpen={openAccordionIndex === index}
             onToggle={() => handleAccordionToggle(index)}
-            animation='fade-up'
-            duration={`1${index}00`}
           />
         ))}
       </section>

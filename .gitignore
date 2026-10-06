@@ -31,6 +31,9 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
+.env.*
+.env
+
 
 # vercel
 .vercel
@@ -46,3 +49,8 @@ temp_interactive_push.bat
 /u.txt
 /pmw_*
 config.bat
+
+# obsidian vault. The notes in docs/ are committed -- they are the decision
+# record. The editor's own per-user layout state is not. /vault was the vault's
+# path before 9 Sep 2026 and that directory no longer exists.
+docs/.obsidian/

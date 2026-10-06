@@ -2,8 +2,12 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const STORAGE_KEY = "pmw-consent";
+import {
+  applyConsent,
+  CONSENT_EVENT,
+  readConsent,
+  type ConsentChoice
+} from "@/lib/consent";
 
 const wrap: React.CSSProperties = {
   position: "fixed",
@@ -11,10 +15,10 @@ const wrap: React.CSSProperties = {
   right: 0,
   bottom: 0,
   zIndex: 9999,
-  background: "#4d031a",
-  color: "#f8f5f3",
+  background: "var(--color-panel-a)",
+  color: "var(--color-band)",
   padding: "16px 20px",
-  boxShadow: "0 -2px 16px rgba(0,0,0,0.25)"
+  boxShadow: "0 -2px 16px rgb(var(--shadow-tint) / 0.25)"
 };
 const inner: React.CSSProperties = {
   maxWidth: 1200,
@@ -28,7 +32,7 @@ const inner: React.CSSProperties = {
 const textStyle: React.CSSProperties = {
   margin: 0,
   flex: "1 1 280px",
-  fontSize: "0.9rem",
+  fontSize: "0.5625rem",
   lineHeight: 1.5
 };
 const actions: React.CSSProperties = {
@@ -40,23 +44,23 @@ const btnBase: React.CSSProperties = {
   padding: "10px 22px",
   borderRadius: 4,
   cursor: "pointer",
-  fontSize: "0.9rem",
+  fontSize: "0.5625rem",
   fontWeight: 600
 };
 const rejectStyle: React.CSSProperties = {
   ...btnBase,
   background: "transparent",
-  border: "1px solid #f8f5f3",
-  color: "#f8f5f3"
+  border: "1px solid var(--color-band)",
+  color: "var(--color-band)"
 };
 const acceptStyle: React.CSSProperties = {
   ...btnBase,
-  background: "#b3063c",
-  border: "1px solid #b3063c",
-  color: "#ffffff"
+  background: "var(--color-brand)",
+  border: "1px solid var(--color-brand)",
+  color: "var(--color-page)"
 };
 const linkStyle: React.CSSProperties = {
-  color: "#ffffff",
+  color: "var(--color-page)",
   textDecoration: "underline"
 };
 
@@ -65,34 +69,41 @@ const CookieConsent = () => {
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored !== "granted" && stored !== "denied") {
-          setVisible(true);
-        }
-      } catch {
-        setVisible(true);
-      }
+      if (readConsent() === null) setVisible(true);
     }, 0);
 
-    return () => window.clearTimeout(timer);
+    // A choice made in the Privacy choices panel answers this banner's
+    // question too. Without this the banner would stay up asking something
+    // the visitor has already answered a few centimetres above it.
+    const onChange = () => setVisible(false);
+    window.addEventListener(CONSENT_EVENT, onChange);
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener(CONSENT_EVENT, onChange);
+    };
   }, []);
 
-  const decide = (choice: "granted" | "denied") => {
-    try {
-      localStorage.setItem(STORAGE_KEY, choice);
-    } catch {}
-    const w = window as unknown as {
-      gtag?: (...args: unknown[]) => void;
-    };
-    w.gtag?.("consent", "update", { analytics_storage: choice });
-    setVisible(false);
-  };
+  // src/lib/consent.ts is the one definition of what a choice does. It fires
+  // CONSENT_EVENT, which the listener above uses to close the banner.
+  const decide = (choice: ConsentChoice) => applyConsent(choice);
 
   if (!visible) return null;
 
   return (
-    <div style={wrap} role="dialog" aria-label="Cookie consent" aria-live="polite">
+    // The class carries NO styling and changes nothing on screen — this
+    // component is still entirely inline-styled, which is recorded as an
+    // outstanding item. It exists so that a stylesheet can address the banner
+    // at all, and the first thing that needed to was print: a fixed overlay
+    // printed a black bar across the middle of the diagnostic results, and
+    // there was no selector in the whole codebase that could reach it.
+    <div
+      className='cookie-banner'
+      style={wrap}
+      role="dialog"
+      aria-label="Cookie consent"
+      aria-live="polite"
+    >
       <div style={inner}>
         <p style={textStyle}>
           We use analytics cookies to understand how visitors use our site so we

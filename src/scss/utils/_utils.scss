@@ -1,41 +1,6 @@
-@use "../globels" as color;
-
-.bg_primary {
-  background-color: color.$primary;
-}
-
-.bg_secondry {
-  background-color: color.$secondry;
-}
-
-.bg_secondry--light {
-  background-color: color.$secondry--light;
-}
-
-.bg_tertiary {
-  background-color: color.$tertiary;
-}
-
-.bg_tertiary--dark {
-  background-color: color.$tertiary--dark;
-}
-
-.bg_white {
-  background-color: white;
-}
-
-.bg_gray--light {
-  background-color: color.$gray--light;
-}
-
-.bg_gray--lighter {
-  background-color: color.$gray--lighter;
-}
-
-.bg_gray--lightness {
-  background-color: color.$gray--lightness;
-}
-
-.bg_dropdown {
-  background-color: rgb(15, 15, 15);
-}
+// D8. The legacy bg_* utilities are gone — all nine of them, at zero call
+// sites. Section grounds come from the primitives (.band-alt, .band-closing,
+// .wash, .wash-left) or from the component's own partial.
+//
+// This file is kept as a placeholder rather than deleted so the @forward chain
+// in _index.scss stays stable; it takes the next genuinely global utility.

@@ -1,46 +1,44 @@
 import { Container } from "@/components/common";
-import { Text, Heading, Button } from "@/components/feature";
-import Image from "next/image";
+import { Heading, Text } from "@/components/feature";
+import { aboutHero } from "@/data/aboutus";
 import Link from "next/link";
+
+// The interior hero. Keeps .wash-left — the guide's offset interior ground —
+// and keeps the wrapper so the gradient runs full-bleed behind the container
+// rather than being clipped to it.
+//
+// NO IMAGE, by instruction (30 Sep 2026 brief). The headline is the hero: two
+// lines, the statement in near-black and the turn in burgundy. Each line is a
+// block span, so the break is authored rather than left to the measure, and a
+// screen reader still hears one sentence.
+//
+// The eyebrow is a <p>, NOT a <Heading>. A heading above the h1 inverts the
+// document outline, which is the call HomeHero already made and recorded.
 
 const AboutUsHero = () => {
   return (
-    <Container className='main'>
-      <section className='heroSectionAbout'>
-        <Image
-          src='/aboutUs/heroImageAbout.webp'
-          alt='Hero About Us Page'
-          width={626}
-          height={288}
-          data-aos='fade-up'
-        />
-        <div>
-          <Heading
-            className='tertiary color_primary uppercase font_family_glory'
-            animation='fade-up'
-            duration='1200'
-            level={1}
-          >
-            Redefining growth
-            <span className='color_secondry'> with purpose</span>
+    <div className='wash-left'>
+      <Container className='main'>
+        <section className='heroSectionAbout'>
+          <Text className='eyebrow'>{aboutHero.eyebrow}</Text>
+
+          <Heading className='h1' level={1}>
+            <span className='heroSectionAbout__lead'>
+              {aboutHero.headingLead}
+            </span>{" "}
+            <span className='heroSectionAbout__accent'>
+              {aboutHero.headingAccent}
+            </span>
           </Heading>
-          <Text
-            className='secondry color_secondry'
-            animation='fade-up'
-            duration='1400'
-          >
-            At Pixelette Marketing, we bring a thoughtful, collaborative
-            approach to help brands achieve their goals. Our marketing services
-            are built on trust, creativity and delivering results that matter.
-          </Text>
-          <Link href='contactus'>
-            <Button className='primary' animation='fade-up' duration='1600'>
-              Get in touch
-            </Button>
+
+          <Text className='lead'>{aboutHero.lead}</Text>
+
+          <Link href={aboutHero.cta.to} className='btn'>
+            {aboutHero.cta.label}
           </Link>
-        </div>
-      </section>
-    </Container>
+        </section>
+      </Container>
+    </div>
   );
 };
 

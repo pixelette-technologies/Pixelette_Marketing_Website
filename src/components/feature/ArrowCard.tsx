@@ -11,9 +11,20 @@ interface ArrowCardProps {
   textfloat: boolean;
   className?: string;
   to?: string;
-  animation?: string;
-  duration?: string;
 }
+
+// D4. Three things were wrong here and all three were live on the home page.
+//
+// The two inline style objects that carried textAlign and justifyContent are
+// now the .arrowCard--float modifier, and the colour utilities the theme flag
+// used to switch — color_white, color_secondry, color_gray, color_primary —
+// are gone. Colour is contextual and comes from the partial, because the two
+// grounds this card sits on need different tones rather than the same tone
+// switched by a boolean. See _arrowCard.scss for the contrast figures.
+//
+// The "View More" link was display: none until hover, which meant it could not
+// be reached by keyboard and did not exist at all on touch. It is always
+// rendered now. No new copy: the label was already in the markup.
 
 const ArrowCard: FC<ArrowCardProps> = ({
   mainHeading,
@@ -22,20 +33,20 @@ const ArrowCard: FC<ArrowCardProps> = ({
   theme,
   textfloat,
   className,
-  to,
-  animation,
-  duration
+  to
 }) => {
+  const classes = [
+    "arrowCard",
+    theme ? "arrowCard--dark" : "",
+    textfloat ? "arrowCard--float" : "",
+    className ?? ""
+  ]
+    .filter(Boolean)
+    .join(" ");
+
   return (
-    <div
-      className={`arrowCard ${className}  `}
-      style={{ textAlign: textfloat ? "right" : "left" }}
-      data-aos={animation}
-      data-aos-duration={duration}
-    >
-      <section
-        style={{ justifyContent: textfloat ? "flex-end" : "flex-start" }}
-      >
+    <div className={classes}>
+      <section>
         {textfloat ? (
           ""
         ) : (
@@ -49,15 +60,11 @@ const ArrowCard: FC<ArrowCardProps> = ({
               <>{textfloat ? <Link href={to || "/"}> View More</Link> : ""}</>
             )}
 
-            <header
-              style={{ alignItems: textfloat ? "flex-end" : "flex-start" }}
-            >
-              <Text className='primary--semiBold color_primary'>
+            <header>
+              <Text className='text_primary--semiBold arrowCard__main'>
                 {mainHeading}
               </Text>
-              <Text
-                className={`primary--semiBold  ${theme ? "color_white" : "color_secondry"} `}
-              >
+              <Text className='text_primary--semiBold arrowCard__sub'>
                 {subHeading}
               </Text>
             </header>
@@ -66,11 +73,7 @@ const ArrowCard: FC<ArrowCardProps> = ({
             )}
           </section>
 
-          <Text
-            className={`tertiary ${theme ? "color_gray" : "color_secondry"} `}
-          >
-            {summary}
-          </Text>
+          <Text className='text_tertiary arrowCard__summary'>{summary}</Text>
         </header>
 
         {textfloat ? (

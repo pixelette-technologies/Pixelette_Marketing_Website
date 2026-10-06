@@ -1,5 +1,6 @@
 export { default as AboutUsHero } from "./AboutUsHero";
-export { default as WhoWeAre } from "./WhoWeAre";
-export { default as OurValues } from "./OurValues";
-export { default as OurServices } from "./OurServices";
-export { default as OurTeam } from "./OurTeam";
+export { default as AboutWhy } from "./AboutWhy";
+export { default as AboutBuilt } from "./AboutBuilt";
+export { default as Principles } from "./Principles";
+export { default as AboutGroup } from "./AboutGroup";
+export { default as AboutClose } from "./AboutClose";

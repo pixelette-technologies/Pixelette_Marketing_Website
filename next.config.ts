@@ -38,6 +38,20 @@ const nextConfig: NextConfig = {
         source: "/services/lead_genration",
         destination: "/services/lead_generation",
         permanent: true
+      },
+      // 25 Sep 2026. The indexed deeper-experience URLs are /industries/web_3
+      // and /industries/tech and they stay. These are the names people (and
+      // the 25 Sep correction brief) reach for, so they resolve rather than
+      // 404. Temporary, so no search engine is told the real URL moved.
+      {
+        source: "/industries/web3",
+        destination: "/industries/web_3",
+        permanent: false
+      },
+      {
+        source: "/industries/technology",
+        destination: "/industries/tech",
+        permanent: false
       }
     ];
   }

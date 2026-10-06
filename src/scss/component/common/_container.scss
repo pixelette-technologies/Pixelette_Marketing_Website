@@ -1,36 +1,26 @@
 .container_ {
   &main {
-    max-width: 1366px;
-    margin: auto;
-    padding: 0rem 10.9rem;
+    // The guide's container: 1160px maximum with 20px gutters, replacing a
+    // hard-coded 1366px max-width and six px breakpoints of padding. One
+    // class, 38 call sites, one edit.
+    //
+    // overflow: hidden is kept for now because several sections position
+    // decorative elements outside their own box and rely on it to clip them.
+    // It comes out section by section through D4-D5. Worth a look during the
+    // browser walk: the narrower container clips 206px earlier than it did.
+    width: min(var(--container-wrap), 100% - 40px);
+    margin-inline: auto;
     overflow: hidden;
-
-    @media only screen and (max-width: 1286px) {
-      padding: 0rem 6rem;
-    }
-    @media only screen and (max-width: 1156px) {
-      padding: 0rem 5rem;
-    }
-    @media only screen and (max-width: 1100px) {
-      padding: 0rem 4rem;
-    }
-    @media only screen and (max-width: 800px) {
-      padding: 0rem 2rem;
-    }
-    @media only screen and (max-width: 620px) {
-      padding: 0rem 1rem;
-    }
   }
   &mainLeft {
+    // Deliberately asymmetric — content is meant to bleed off the right edge,
+    // so this is NOT the symmetric wrap and is left on its own geometry until
+    // the sections that use it are converted.
+    // D8: the two breakpoints that stepped this padding down interpolate
+    // instead. Same endpoints, 109px at the top and 20px at the bottom.
     max-width: 1366px;
     margin: auto;
-    padding-left: 10.9rem;
+    padding-left: clamp(1.25rem, -0.4rem + 5.3vw, 6.8125rem);
     overflow: hidden;
-    @media only screen and (max-width: 1250px) {
-      padding-left: 5rem;
-    }
-    @media only screen and (max-width: 800px) {
-      padding-left: 2rem;
-    }
   }
 }

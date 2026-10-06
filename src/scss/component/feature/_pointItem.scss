@@ -1,0 +1,223 @@
+// PointItem — the shared item block behind six of the twelve homepage
+// sections.
+//
+// COLOUR IS CONTEXTUAL, NOT A PROP. Only the four hooks the primitives cannot
+// already colour correctly appear here. The title, the numeral, the mark and
+// the link want the brand tone, which .h3 and the band do not supply; the body
+// and the capability line want exactly what .body and .small already give them
+// on both grounds, so they are NOT restated. Restating band colours locally is
+// the fault _engagementStalls.scss and _contentDisplaySection.scss both had
+// their colour blocks deleted for.
+
+.pointItem {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+// The .card geometry from the primitives, not a second set of numbers.
+.pointItem--card {
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+}
+
+.pointItem--card:hover {
+  border-color: var(--color-line-strong);
+}
+
+.pointItem__index {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+}
+
+.pointItem__icon {
+  color: var(--color-brand);
+  margin-bottom: 0.75rem;
+
+  // The step marks are 24px artwork carrying fill="currentColor", so height is
+  // the only dimension worth stating. Matches _contactSection.scss.
+  & > svg {
+    height: 1.5rem;
+    width: auto;
+  }
+}
+
+// Beats .h3's ink at equal specificity on source order: the component layer
+// loads after the primitives. Same mechanism as .arrowCard__main.
+.pointItem__title {
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+}
+
+.pointItem__caps {
+  margin-top: 0.75rem;
+}
+
+// --- Card anatomy -----------------------------------------------------------
+// 11 Sep 2026, second pass. Making the dark-band cards a light surface fixed
+// the visibility fault but left them reading as five plain boxes, and the
+// feedback was that they now looked too plain.
+//
+// NOTHING BELOW IS AN EFFECT. The register is flat and the tokens file is
+// explicit that a shadow is an exception and that hover changes border colour
+// only — no lift, no scale, no transition. A shadow would also be wasted here:
+// --shadow-raised is a warm near-black at 0.28 alpha, which is invisible cast
+// onto the panel gradient. So the card earns its look from internal structure
+// instead: a mark, a defined base, and room to breathe.
+
+// The numeral was 13px of mono floating loose above the title, which is the
+// treatment for the PLAIN variant where it sits on open ground. In a card it
+// has an edge to sit against, so it becomes a mark: brand tone in the tint
+// that the tokens file nominates for exactly this ("diagram and highlight
+// fill"). align-self keeps the chip the width of its own two digits rather
+// than stretching across the card, which the flex column would otherwise do.
+.pointItem--card .pointItem__index {
+  align-self: flex-start;
+  background: var(--color-brand-tint);
+  border-radius: var(--radius-tile);
+  padding: 0.3125rem 0.5rem;
+  margin-bottom: 0.875rem;
+}
+
+.pointItem--card .pointItem__title {
+  margin-bottom: 0.625rem;
+}
+
+// The capability line was TRIED as a tinted, full-bleed base to the card,
+// pinned with margin-top: auto so the bases lined up across the row. Reviewed
+// 11 Sep and rejected: it read as a second box stuck to the bottom of the
+// card rather than as part of it. It stays the plain trailing paragraph the
+// base rule above gives it.
+
+// The closing "you get" line on the three engagement cards. It is body copy,
+// not a second heading and not a caption, so it takes .body from the
+// primitives and only the two things .body cannot supply are stated here: the
+// rule that separates it from the paragraph above, and the weight that marks
+// it as the payoff rather than more description.
+//
+// NO COLOUR. .body is already correct on both grounds, and restating a band
+// colour locally is the fault _engagementStalls.scss had its colour block
+// deleted for. The hairline is --color-line-card, which is the same line the
+// card border already draws, so the two cannot drift apart.
+.pointItem__outcome {
+  margin-top: 0.875rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--color-line-card);
+  font-weight: 500;
+}
+
+// Pinned to the foot so the links share a baseline across a row of cards of
+// unequal length, exactly as ArrowCard's does.
+.pointItem__cta {
+  align-self: start;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-brand);
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--color-brand-hover);
+    text-decoration: underline;
+  }
+}
+
+// --- Dark ground ------------------------------------------------------------
+// The two variants take DIFFERENT treatments here, because they have different
+// problems.
+//
+// PLAIN is bare copy sitting directly on the gradient, so it takes the panel
+// palette: the brand anchor measures 2.77 on the panel and is barred here as
+// everywhere on dark, and --color-brand-signal is the tone that is free on this
+// ground at 5.34. Measured against the gradient start, the worst case.
+
+.band-dark .pointItem__index,
+.band-dark .pointItem__icon,
+.band-dark .pointItem__title,
+.band-dark .pointItem__cta {
+  color: var(--color-brand-signal);
+}
+
+.band-dark .pointItem__cta:hover {
+  color: var(--color-page);
+}
+
+.band-dark .pointItem__outcome {
+  border-top-color: var(--color-panel-border);
+}
+
+// --- The card on dark is a LIGHT SURFACE ------------------------------------
+// 11 Sep 2026, on review feedback that the cards "are not visible properly".
+//
+// They were `background: transparent` with a --color-panel-border edge, which
+// is a 1px hairline at roughly 1.8:1 against the gradient behind it. The copy
+// inside met its contrast floor, so no automated check had anything to say —
+// but the CARD never read as an object at all. Five items that are meant to
+// look like five things looked like one column of loose text with faint lines
+// near it. A contrast gate measures glyph against background; it cannot see
+// that the container has gone missing.
+//
+// So the card takes a light fill on the dark band and the whole light ramp
+// comes back with it. This is the design system's own logic followed properly:
+// colour is read from the surface the text actually sits on, and that surface
+// is now white, not the panel.
+//
+// EVERY VALUE BELOW IS THE LIGHT-GROUND TOKEN, and that is the point of the
+// block. --color-brand-signal in particular must NOT survive in here: it is
+// 3.61 on white and the tokens file bars it from text on light grounds in the
+// same breath that it grants it a voice on dark. Inheriting the dark rules
+// into a light box is exactly the inversion _aboutClose.scss records getting
+// wrong in the other direction.
+//
+// Ratios on white: brand 6.98, body 9.10, muted 5.78.
+//
+// The selectors are one class deeper than the plain rules above, so they win on
+// specificity rather than on source order — a reorder of this file cannot
+// silently put the panel palette back inside a white card.
+
+.band-dark .pointItem--card {
+  background: var(--color-page);
+  border-color: var(--color-line-card);
+}
+
+// Needed explicitly. `.pointItem--card:hover` and `.band-dark .pointItem--card`
+// are both (0,2,0), so the unqualified hover above loses to the band rule on
+// source order and the card would have no hover state at all on dark.
+.band-dark .pointItem--card:hover {
+  border-color: var(--color-line-strong);
+}
+
+.band-dark .pointItem--card .pointItem__index,
+.band-dark .pointItem--card .pointItem__icon,
+.band-dark .pointItem--card .pointItem__title,
+.band-dark .pointItem--card .pointItem__cta {
+  color: var(--color-brand);
+}
+
+.band-dark .pointItem--card .pointItem__cta:hover {
+  color: var(--color-brand-hover);
+}
+
+// .body and .small are coloured by _surfaces.scss at (0,2,0) for the panel —
+// --color-panel-text and --color-panel-muted, both of which are pale greys
+// chosen to sit on near-black. On white they are unreadable. .pointItem__outcome
+// carries .body, so it is covered by the same rule.
+.band-dark .pointItem--card .lead,
+.band-dark .pointItem--card .body {
+  color: var(--color-body);
+}
+
+.band-dark .pointItem--card .small {
+  color: var(--color-muted);
+}
+
+.band-dark .pointItem--card .pointItem__outcome {
+  border-top-color: var(--color-line-card);
+}

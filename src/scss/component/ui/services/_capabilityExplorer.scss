@@ -1,0 +1,425 @@
+// /services — the capability explorer. 29 Sep 2026. See CapabilityExplorer.tsx.
+//
+// Names on the left as an accordion, one stage on the right. The stage is
+// the page's picture and the accordion is its caption, so the rail is quiet:
+// hairlines, the display face, one brand-tone rule on the open row. No boxes,
+// no fills, no card anywhere — the instruction bars heavy card UI on the rail
+// and any frame round the artwork.
+//
+// TWO LAYOUTS, one breakpoint: 60rem, the one /industries' selector already
+// uses. Above it, two columns with the stage bleeding right. Below it, one
+// column and the stage moved (by grid row) to sit under the open capability.
+
+.capExplorer {
+  // The site's wrap, restated as grid tracks so the stage can leave it on the
+  // right while the rail stays aligned with every other page's content.
+  --wrap: min(var(--container-wrap), 100% - 40px);
+  --side: calc((100% - var(--wrap)) / 2);
+  --ease-stage: cubic-bezier(0.22, 0.7, 0.2, 1);
+
+  display: grid;
+  grid-template-columns: var(--side) minmax(0, 1fr) var(--side);
+}
+
+// --- The rail ---------------------------------------------------------------------
+// On a phone the rail dissolves (display: contents) so its five rows and the
+// stage are all rows of one grid, and the stage can take the row after the
+// open capability.
+
+.capExplorer__rail {
+  display: contents;
+}
+
+.capItem {
+  grid-column: 2;
+  grid-row: var(--row);
+  border-bottom: 1px solid var(--color-line);
+
+  &:first-child {
+    border-top: 1px solid var(--color-line);
+  }
+}
+
+.capItem__heading {
+  margin: 0;
+}
+
+.capItem__trigger {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  width: 100%;
+  min-height: 44px;
+  padding: 1.125rem 0 1.125rem 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  // The open row's leading rule: the state's shape, beside its colour.
+  &::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.75rem;
+    inset-inline-start: 0;
+    width: 2px;
+    background: var(--color-brand);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.45s var(--ease-stage);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+  }
+}
+
+.capItem__index {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  transition: color 0.3s ease;
+}
+
+.capItem__name {
+  flex: 1 1 auto;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+// Plus when closed, minus when open: two hairlines, the vertical one folds.
+.capItem__mark {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: center;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-inline-end: 0.25rem;
+  color: var(--color-muted);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    background: currentColor;
+  }
+
+  &::before {
+    inset-inline: 0;
+    top: calc(50% - 0.5px);
+    height: 1px;
+  }
+
+  &::after {
+    inset-block: 0;
+    left: calc(50% - 0.5px);
+    width: 1px;
+    transition: transform 0.45s var(--ease-stage);
+  }
+}
+
+.capItem__trigger:hover .capItem__name,
+.capItem[data-preview="true"] .capItem__name {
+  color: var(--color-brand);
+}
+
+.capItem[data-open="true"] {
+  .capItem__trigger::before {
+    transform: scaleY(1);
+  }
+
+  .capItem__index,
+  .capItem__name,
+  .capItem__mark {
+    color: var(--color-brand);
+  }
+
+  .capItem__mark::after {
+    transform: scaleY(0);
+  }
+}
+
+// --- The panel: height from 0fr to 1fr, so it opens to its own content ------------
+
+.capItem__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--ease-stage);
+}
+
+.capItem[data-open="true"] .capItem__panel {
+  grid-template-rows: 1fr;
+}
+
+.capItem__panelInner {
+  min-height: 0;
+  overflow: hidden;
+  padding-inline-start: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.capItem[data-open="true"] .capItem__panelInner {
+  opacity: 1;
+  transition: opacity 0.4s ease 0.12s;
+}
+
+// The lead statement, in the home page's editorial headline voice.
+.capItem__statement {
+  margin: 0.25rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 1.4rem + 1.5vw, 2.625rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.capItem__statementLine {
+  display: block;
+}
+
+.capItem__body {
+  max-width: 30rem;
+  margin: 1rem 0 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-body);
+  text-wrap: pretty;
+}
+
+// The services, as the reference sets them: a short brand rule, then a plain
+// list. Two columns when the rail is wide enough, so the longest list (eight,
+// under Strategy) does not push the stage's companion copy far down.
+.capItem__scope {
+  position: relative;
+  margin: 1.25rem 0 0;
+  padding: 1.25rem 0 0;
+  list-style: none;
+  columns: 2 12rem;
+  column-gap: 1.5rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--color-brand);
+  }
+
+  & > li {
+    break-inside: avoid;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    padding-block: 0.1875rem;
+    color: var(--color-body);
+  }
+}
+
+.capItem__featured {
+  margin-top: 0.75rem;
+}
+
+.capItem__services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.capItem__panelInner > :last-child {
+  margin-bottom: 1.5rem;
+}
+
+// --- The stage ----------------------------------------------------------------------
+// One box; five layers in it, one shown. No background of its own shows: each
+// layer covers it completely, which is what keeps Search & Authority (and the
+// other four) full-bleed rather than a picture on a panel.
+
+.capStage {
+  grid-column: 1 / -1;
+  grid-row: var(--row);
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  margin-block: 0.25rem 1.5rem;
+  // Each layer's frame sizes itself against this box.
+  container-type: size;
+}
+
+.capStage__layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.45s var(--ease-stage),
+    visibility 0s linear 0.45s;
+
+  &[data-shown="true"] {
+    z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transition:
+      opacity 0.45s var(--ease-stage),
+      visibility 0s;
+  }
+}
+
+// object-fit: cover as a real box, as the duck pond: a percentage inside the
+// frame is a point in the artwork. --focus-x/y come from capabilityStage.ts
+// and act as each capability's object-position, protecting its subject.
+.capStage__frame {
+  --ratio: 1.7778; // the supplied loops, 1280 x 720 (posters 1344 x 752)
+  --frame-w: max(100cqw, 100cqh * var(--ratio));
+  --frame-h: max(100cqh, 100cqw / var(--ratio));
+
+  position: absolute;
+  left: calc((100cqw - var(--frame-w)) * var(--focus-x, 0.5));
+  top: calc((100cqh - var(--frame-h)) * var(--focus-y, 0.5));
+  width: var(--frame-w);
+  height: var(--frame-h);
+}
+
+.capStage__still,
+.capStage__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// The loop lies over its own still and appears only once it is actually
+// playing, so a slow network shows the still, never a blank box. Its first
+// frame is the still, so the hand-over is invisible.
+.capStage__video {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.capStage__layer[data-playing="true"] .capStage__video {
+  opacity: 1;
+}
+
+// --- Motion, only when allowed ------------------------------------------------------
+
+.capExplorer[data-motion="on"] {
+  // Arrival: the artwork settles by a few per cent as it fades in.
+  .capStage__layer[data-shown="true"] .capStage__still,
+  .capStage__layer[data-shown="true"] .capStage__video {
+    animation: capStageArrive 0.9s var(--ease-stage) both;
+  }
+
+  // The pointer's parallax: the frame leans a little against the pointer.
+  // Slightly enlarged so a lean never shows an edge.
+  .capStage__frame {
+    transform: translate3d(
+        calc(var(--pointer-x, 0) * -0.9%),
+        calc(var(--pointer-y, 0) * -0.9%),
+        0
+      )
+      scale(1.035);
+  }
+
+  // A capability without an accepted loop: its still drifts, slowly, and
+  // nothing in the artwork itself moves.
+  .capStage__layer[data-still="true"][data-shown="true"] .capStage__still {
+    animation:
+      capStageArrive 0.9s var(--ease-stage) both,
+      capStageDrift 16s ease-in-out 0.9s infinite alternate;
+  }
+}
+
+@keyframes capStageArrive {
+  from {
+    transform: scale(1.025);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes capStageDrift {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: scale(1.03) translate3d(-0.6%, -0.4%, 0);
+  }
+}
+
+// (The Search beam wash that leaned with the pointer was removed on 30 Sep
+// 2026: the supplied loop sweeps its own beam both ways.)
+
+// --- Wide screens: two columns, the stage bleeding right ----------------------------
+
+@media (min-width: 60rem) {
+  .capExplorer {
+    --gap: clamp(2rem, 0.5rem + 3vw, 4rem);
+
+    grid-template-columns:
+      var(--side)
+      calc(var(--wrap) * 0.38)
+      var(--gap)
+      minmax(0, 1fr)
+      var(--side);
+    align-items: start;
+  }
+
+  .capExplorer__rail {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .capItem {
+    grid-row: auto;
+  }
+
+  // Beside the rail, held in view while the rail is read. Bleeds from its
+  // column to the viewport's right edge.
+  .capStage {
+    grid-column: 4 / 6;
+    grid-row: 1;
+    position: sticky;
+    top: 6.5rem;
+    width: 100%;
+    max-height: min(46rem, calc(100svh - 8rem));
+    margin: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .capItem__trigger::before,
+  .capItem__mark::after,
+  .capItem__panel,
+  .capItem__panelInner,
+  .capItem[data-open="true"] .capItem__panelInner,
+  .capStage__layer,
+  .capStage__layer[data-shown="true"],
+  .capStage__video {
+    transition: none;
+  }
+}

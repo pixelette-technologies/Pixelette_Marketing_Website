@@ -1,0 +1,592 @@
+// The loop drawn in GrowthSystem.tsx, and the numbered outcomes beside it.
+// The component carries geometry and class names only; every fill, stroke and
+// type decision resolves from here, so the token gate has one place to check,
+// a brand change stays a token edit, and colour is read from the ground rather
+// than set at the call site.
+//
+// --- 23 Sep 2026 ------------------------------------------------------------
+// Rebuilt to a supplied reference. What changed, and what it costs:
+//
+// THE REFERENCE IS DRAWN ON A CANVAS WE DO NOT HAVE — roughly 1760px, a
+// 1070px figure beside a 690px text column, against a `--container-wrap` of
+// 1160px site-wide. The composition was kept and the size given up, on
+// instruction, so the figure gets about 680px and everything in it scales with
+// the box.
+//
+// At first that cost a great deal, because the reference also hangs a tethered
+// question off each card and the two side notes had to fit between their card
+// and the edge of the box. The whole drawing came out at 62% of the reference
+// with type at 10px. **The notes were then removed, also on instruction**, and
+// the ring took the space straight back: 48cqi to 76cqi, and nothing in the
+// figure below 11px, which is `.eyebrow`'s size and a floor this site already
+// sets.
+//
+// EVERY DIMENSION IN THE FIGURE IS IN `cqi` OR IN PERCENTAGES OF A `cqi` BOX.
+// Not one is in `rem`. That is the rule the 22 Sep container query was added
+// for — HTML layered over an svg is only aligned at the widths somebody
+// happened to measure unless both scale off the same number. It is also what
+// made removing the notes a four-number edit rather than a redraw: the ring,
+// the cards and the medallion all re-proportioned off the same unit.
+
+// --- the row ----------------------------------------------------------------
+//
+// The figure is the wider column — grow 1.4 against the header's 1 — because
+// it has a ring of four cards and a medallion to fit across it where the text
+// column has only to hold a measure. The reasoning about where it wraps is at
+// `.growthSystem__figure` below, with the basis that sets it.
+
+.growthSystem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem 2.5rem;
+
+  & > header {
+    flex: 1 1 32rem;
+    min-width: 0;
+
+    // The guide's eyebrow-to-content gap, exactly: 20px. BY CLASS: the brief
+    // swapped the heading levels here, so a `> h3` selector would now be
+    // pointing at the title rather than the eyebrow.
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+    }
+
+    & > .sectionTitle {
+      margin-bottom: 1.5rem;
+    }
+
+    & > .lead {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+// --- the four outcomes ------------------------------------------------------
+//
+// Rows on a hairline, which is the third layout idiom and the one the
+// constraints doc says should be the last. It applies here for the reason that
+// doc gives: these four are ORDERED, not parallel, and a grid of equal boxes
+// claims the opposite. The 2x2 grid this replaces claimed it loudly enough
+// that the section needed a sentence underneath to restate the sequence.
+//
+// The numeral is what makes the order structural rather than editorial, so the
+// hairline row can carry a chain without a single arrow.
+
+.growthSystem__stages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.growthSystem__stage {
+  display: flex;
+  gap: 1rem;
+  padding-block: 1.125rem;
+  border-top: 1px solid var(--color-line);
+
+  // The hairline is a separator, not a border: the first row sits directly
+  // under the standfirst's own space and wants no line above it.
+  &:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  & > div {
+    min-width: 0;
+  }
+
+  & h4 {
+    color: var(--color-brand);
+    margin-bottom: 0.375rem;
+  }
+}
+
+// The numeral. Mono and muted, so it reads as an index and never competes with
+// the outcome's own name beside it. Fixed width so the four names align
+// whatever the numeral does.
+.growthSystem__stageIndex {
+  flex: 0 0 auto;
+  width: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  line-height: 1.9;
+  color: var(--color-muted);
+  transition: color 0.15s ease;
+}
+
+.growthSystem__closing {
+  margin-top: 2rem;
+}
+
+// --- the figure -------------------------------------------------------------
+
+.growthSystem__figure {
+  // The basis is what decides where the row wraps, and the wrap is what keeps
+  // the ring from ever being rendered too small. 36rem puts it at about 976px
+  // of viewport: above that the figure runs 599 to 683px, and below it the row
+  // folds and the figure takes the full width, which is wider again. So the
+  // collapse at the foot of this file only fires on a genuinely small screen
+  // and never in the middle of the range.
+  flex: 1.4 1 36rem;
+  min-width: 0;
+  // THE CONTAINER. It is on the figure rather than on the ring, because the
+  // narrow collapse below restyles the plot itself — which a container query
+  // can only do from an ancestor.
+  //
+  // It is not a second breakpoint. A container query asks about an element,
+  // not the viewport, so the one media query this design system allows
+  // (`max-width: 767px`) is untouched by it.
+  container-type: inline-size;
+}
+
+// The box the whole drawing is laid out in. Every child is positioned in `cqi`
+// from this box's top-left, so the ring, the cards and the annotation are one
+// drawing at every width rather than three things that happen to line up at
+// the width they were measured at.
+//
+//   loop        inset 12cqi each side, so 76cqi across, top at 14cqi
+//   loop centre (50cqi, 52cqi), radius 38cqi
+//   station     22cqi wide, centred on its point on the ring
+//
+// 12 = half a station (11) plus a pixel of air, and that is the whole
+// constraint now. IT USED TO BE 26, because each card also had a question
+// tethered outside it — half a station (8.5) + a tether (2.5) + a note (15) —
+// and the two side notes had to fit between their card and the edge of the
+// box. That one requirement held the ring to 48cqi and dragged the cards, the
+// labels and the medallion down with it: the figure rendered at 62% of the
+// reference and the type bottomed out at 10px.
+//
+// The notes came off on instruction and the ring took the space back. Nothing
+// in this figure is below 11px now, which is `.eyebrow`'s size and the floor
+// this site already sets.
+.growthSystem__plot {
+  position: relative;
+  aspect-ratio: 100 / 101;
+}
+
+// --- the feedback annotation ------------------------------------------------
+//
+// Sits over the dashed arc it describes, which is the only reason it is at the
+// top left. It is the argument the loop exists to make and the one thing the
+// ring can draw but cannot state: why the system does not simply end at
+// revenue.
+
+.growthSystem__feedback {
+  position: absolute;
+  top: 0;
+  left: 2cqi;
+  width: 34cqi;
+  margin: 0;
+  // Wide enough to hold "Learn. Optimise. Repeat." on one line, which is
+  // what it is for; balance keeps the sentence under it off a widow.
+  text-wrap: balance;
+  font-size: clamp(0.6875rem, 1.9cqi, 0.9375rem);
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.growthSystem__feedbackLead {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.5625rem, 1.6cqi, 0.75rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+  margin-bottom: 0.4em;
+}
+
+// --- the loop ---------------------------------------------------------------
+
+.growthSystem__loop {
+  position: absolute;
+  top: 14cqi;
+  left: 12cqi;
+  width: 76cqi;
+  height: 76cqi;
+}
+
+.growthSystem__circuit {
+  display: block;
+  width: 100%;
+  height: 100%;
+  // The arrowheads ride the ring itself and a stroke has width; there is
+  // nothing to gain from clipping half of one at the box edge.
+  overflow: visible;
+}
+
+// The ring under everything, closed, so the loop reads as continuous even
+// where an arc has been cut by the card sitting on it.
+.growthSystem__ringLine {
+  fill: none;
+  stroke: var(--color-line);
+  stroke-width: 1;
+}
+
+// --- arcs -------------------------------------------------------------------
+//
+// Each arc runs pale to saturated along its own direction of travel, so the
+// ring reads as building rather than as four identical links. The gradient
+// vectors are computed per arc in the component from the same `at()` the
+// arrowheads use; these two stops are the only colour in it.
+
+.growthSystem__stop--from {
+  stop-color: var(--color-brand-wash);
+}
+
+.growthSystem__stop--to {
+  stop-color: var(--color-brand);
+}
+
+.growthSystem__path {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+// The return. Dashed, so the forward reading stays a progression that feeds
+// back rather than a wheel spinning in place — three solid arcs and one that
+// is visibly a correction.
+.growthSystem__path--return {
+  stroke-dasharray: 5 6;
+}
+
+.growthSystem__head {
+  fill: var(--color-brand);
+}
+
+// --- the centre -------------------------------------------------------------
+//
+// What the whole loop is for. Fixed copy rather than a panel that swaps: the
+// thing it names is the same whichever stage you are looking at, which is the
+// point the ring exists to make.
+//
+// 26cqi across against the loop's 48, and the ceiling is a hard one: the cards
+// north and south are 20cqi tall and centred on a ring of radius 24, so their
+// inner edges sit exactly 14cqi from the centre. A medallion wider than 28cqi
+// touches them. This one clears by 1cqi, which is about 7px at the width this
+// figure actually gets.
+//
+// It was 24cqi and had to grow, because the flow line under the title measured
+// 183px inside a 171px disc and ran out of it at both ends.
+
+.growthSystem__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 36cqi;
+  height: 36cqi;
+  border-radius: 50%;
+  // The faintest ground the palette has, so the medallion reads as a disc
+  // behind the type rather than as a fifth card.
+  background: var(--color-brand-tint);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-inline: 0.5cqi;
+}
+
+.growthSystem__coreIcon {
+  display: block;
+  font-size: clamp(0.875rem, 4.1cqi, 1.75rem);
+  line-height: 1;
+  color: var(--color-brand);
+  margin-bottom: 1.2cqi;
+}
+
+.growthSystem__coreTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 3.8cqi, 1.875rem);
+  line-height: 1.15;
+  // Two lines, as the reference sets it. Widening the disc to fit the flow
+  // line underneath gave the title just enough room to straighten onto one,
+  // where it ran to within four pixels of the disc edge at both ends.
+  max-width: 70%;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+// The one line on this figure below the 11px floor, at about 9px. It is 26
+// tracked characters that have to cross a medallion which cannot grow without
+// crowding the cards, and it is a restatement of the annotation at the top
+// left — so it is the right place to spend the legibility rather than
+// anywhere else here.
+.growthSystem__coreFlow {
+  margin: 1cqi 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 1.7cqi, 0.8125rem);
+  // 0.06em, not the 0.1em this file uses everywhere else for tracked mono.
+  // Twenty-six characters have to cross the disc and the tracking was
+  // costing about ten pixels of the width they had to do it in.
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+
+.growthSystem__coreRule {
+  display: block;
+  width: 8cqi;
+  border-top: 1px solid var(--color-brand-wash);
+  margin-top: 1.5cqi;
+}
+
+// --- the stations -----------------------------------------------------------
+//
+// A card on the ring, an icon badge overlapping its top edge, and the question
+// that stage answers tethered outside it. The three are one element so the
+// pair moves together and so the narrow collapse gets the right reading order
+// for free.
+
+.growthSystem__station {
+  position: absolute;
+  width: 22cqi;
+  // MINUS 1.5cqi, AND THAT CORRECTION IS THE POINT. A station is a badge
+  // stacked on a card, and the badge stands 3cqi proud of it, so centring
+  // the station on the ring point centres the BADGE AND CARD TOGETHER — which
+  // leaves the card itself 1.5cqi low. Measured, that put the north card 3.6px
+  // over the medallion where the arithmetic had promised 7px of clearance.
+  // The ring has to pass through the middle of the card, not the middle of the
+  // card plus its hat.
+  transform: translate(-50%, calc(-50% - 1.9cqi));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  // The four points on the ring, which match `angleOf()` in the component
+  // exactly: Demand at the top, then clockwise. Change one and change the
+  // other. Loop centre is (50cqi, 52cqi) and its radius is 38cqi.
+  &--0 {
+    top: 14cqi;
+    left: 50cqi;
+  }
+
+  &--1 {
+    top: 52cqi;
+    left: 88cqi;
+  }
+
+  &--2 {
+    top: 90cqi;
+    left: 50cqi;
+  }
+
+  &--3 {
+    top: 52cqi;
+    left: 12cqi;
+  }
+}
+
+.growthSystem__badge {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 7.6cqi;
+  height: 7.6cqi;
+  border-radius: 50%;
+  // White on the page's warm ground, lifted by the card shadow. The shadow is
+  // what makes it a badge rather than a hole — the same distinction that sank
+  // the first build of the old station pills, which took --color-page flat and
+  // put four white capsules into a cream field.
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+  font-size: clamp(0.625rem, 3.5cqi, 1.5rem);
+  line-height: 1;
+  color: var(--color-brand);
+  // Half out of the card below it.
+  margin-bottom: -3.8cqi;
+}
+
+.growthSystem__card {
+  width: 100%;
+  // ALL FOUR THE SAME HEIGHT, set by the tallest. Measured, the four came out
+  // at 106, 124, 124 and 141px — the summaries wrap to two lines, two lines,
+  // two lines and three — and four cards of four heights centred on a circle
+  // do not read as a ring at all. The floor is the tallest of them, and the
+  // shorter three centre their content inside it.
+  min-height: 20.5cqi;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  // Clears the half of the badge that hangs into it.
+  padding: 5.6cqi 1.8cqi 2.8cqi;
+  border: 1px solid transparent;
+  border-radius: var(--radius-card);
+  background: var(--color-page);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  // Border colour only. The rule in _surfaces.scss is unqualified: hover
+  // changes the border and nothing else — no lift, no shadow change, no scale.
+  transition: border-color 0.18s ease;
+}
+
+.growthSystem__cardName {
+  margin: 0 0 0.6cqi;
+  font-family: var(--font-mono);
+  font-size: clamp(0.625rem, 1.9cqi, 0.875rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.growthSystem__cardLine {
+  margin: 0;
+  font-size: clamp(0.6875rem, 2.05cqi, 1rem);
+  line-height: 1.4;
+  color: var(--color-muted);
+  text-wrap: balance;
+}
+
+// --- the pairing ------------------------------------------------------------
+//
+// Hovering an outcome lights its station, and hovering a station lights its
+// outcome. That link is the reason the list and the figure were made one
+// component on 22 Sep, when it cost a `useState` and a client bundle. It costs
+// neither now: `:has()` reads the hover across the two columns, so the whole
+// section renders on the server.
+//
+// Written out rather than looped. Eight rules is not many, the file's house
+// style is explicit, and a loop would hide exactly the kind of index drift
+// that has already broken this figure once.
+
+.growthSystem__stage:hover .growthSystem__stageIndex,
+.growthSystem:has(.growthSystem__station--0:hover) .growthSystem__stage--0 .growthSystem__stageIndex,
+.growthSystem:has(.growthSystem__station--1:hover) .growthSystem__stage--1 .growthSystem__stageIndex,
+.growthSystem:has(.growthSystem__station--2:hover) .growthSystem__stage--2 .growthSystem__stageIndex,
+.growthSystem:has(.growthSystem__station--3:hover) .growthSystem__stage--3 .growthSystem__stageIndex {
+  color: var(--color-brand);
+}
+
+.growthSystem__station:hover .growthSystem__card,
+.growthSystem:has(.growthSystem__stage--0:hover) .growthSystem__station--0 .growthSystem__card,
+.growthSystem:has(.growthSystem__stage--1:hover) .growthSystem__station--1 .growthSystem__card,
+.growthSystem:has(.growthSystem__stage--2:hover) .growthSystem__station--2 .growthSystem__card,
+.growthSystem:has(.growthSystem__stage--3:hover) .growthSystem__station--3 .growthSystem__card {
+  border-color: var(--color-brand);
+}
+
+// --- the narrow collapse ----------------------------------------------------
+//
+// The reference is a picture and says nothing about a narrow viewport. Below
+// 520px of container there is no arrangement of four cards, four tethered
+// notes and a medallion on a ring that is legible at any type size, so the
+// drawing is stood up as a column.
+//
+// WHAT IS LOST IS THE DRAWING AND NOTHING ELSE. The circuit is aria-hidden
+// decoration and every relationship it draws is stated in the cards and the
+// annotation; the cards, the notes and the centre are text, and all of it
+// survives in the order a reader wants it: what the loop is for, then each
+// stage with the question it answers.
+//
+// A CONTAINER QUERY, NOT A BREAKPOINT. It asks how wide this figure is, which
+// is the thing that decides whether the ring fits — and the figure is narrow
+// at 900px of viewport, where the row has not yet wrapped, as well as on a
+// phone. A media query would get the phone right and that case wrong.
+
+@container (max-width: 590px) {
+  .growthSystem__plot {
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .growthSystem__loop {
+    position: static;
+    width: 100%;
+    height: auto;
+    order: 1;
+  }
+
+  .growthSystem__circuit {
+    display: none;
+  }
+
+  .growthSystem__core {
+    position: static;
+    transform: none;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    padding: 1.5rem 1.25rem;
+  }
+
+  .growthSystem__coreIcon {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .growthSystem__coreTitle {
+    font-size: 1.375rem;
+  }
+
+  .growthSystem__coreFlow {
+    font-size: 0.6875rem;
+    margin-top: 0.5rem;
+  }
+
+  .growthSystem__coreRule {
+    width: 2.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .growthSystem__station {
+    position: static;
+    transform: none;
+    width: 100%;
+    align-items: stretch;
+    order: 2;
+  }
+
+  .growthSystem__badge {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 1.125rem;
+    margin-bottom: -1.375rem;
+    margin-inline: auto;
+  }
+
+  .growthSystem__card {
+    padding: 2rem 1.25rem 1.25rem;
+  }
+
+  .growthSystem__cardName {
+    font-size: 0.75rem;
+  }
+
+  .growthSystem__cardLine {
+    font-size: 0.875rem;
+  }
+
+  .growthSystem__feedback {
+    position: static;
+    width: auto;
+    order: 3;
+    font-size: 0.8125rem;
+  }
+
+  .growthSystem__feedbackLead {
+    font-size: 0.6875rem;
+  }
+}
+
+// The two transitions here are both a colour settling into a state the markup
+// already describes. Nothing is lost by cutting them, so cut them.
+@media (prefers-reduced-motion: reduce) {
+  .growthSystem__stageIndex,
+  .growthSystem__card {
+    transition: none;
+  }
+}

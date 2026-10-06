@@ -1,32 +1,55 @@
+// D5. Five media queries gone. The image was pinned to a 250px height at 900px
+// and released again at 750px; it is fluid now, and the pair wraps.
+//
+// Takes .wash-left, the guide's interior hero ground — the third of the four
+// interior heroes to get the ground the hero strategy chose for it.
+//
+// 25 Sep 2026: the text column takes the primitives' type roles (.eyebrow,
+// .h1p, .lead, .btn) instead of colouring two legacy headings by hand. The
+// positioning line is __sub: display face at the h3 size, but a <p>, because
+// it is the h1's subtitle rather than a heading of anything beneath it.
+
 .industriesHero {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 5.6rem;
-  padding: 4.4rem 0rem;
-  @media only screen and (max-width: 900px) {
-    gap: 2rem;
-  }
-  @media only screen and (max-width: 750px) {
-    flex-direction: column;
-  }
+  gap: 3.5rem;
+  padding-block: var(--sec-y);
+
   & > img {
-    border-radius: 1.5rem;
-    @media only screen and (max-width: 900px) {
-      max-width: 55%;
-      height: 250px;
-    }
-    @media only screen and (max-width: 750px) {
-      max-width: 100%;
-      height: auto;
-    }
+    flex: 1 1 18rem;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
   }
 
   & > div {
-    & > p {
-      margin: 2.4rem 0rem;
-      @media only screen and (max-width: 900px) {
-        margin: 1.2rem 0rem;
-      }
+    flex: 1 1 20rem;
+    min-width: 0;
+
+    & > .eyebrow {
+      display: block;
+      margin-bottom: 1.25rem;
+    }
+
+    & > .lead {
+      margin-top: 1.25rem;
+    }
+
+    & > .btn {
+      display: inline-flex;
+      margin-top: 2rem;
     }
   }
+}
+
+.industriesHero__sub {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  line-height: 1.26;
+  letter-spacing: -0.008em;
+  color: var(--color-brand);
+  text-wrap: balance;
 }

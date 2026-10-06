@@ -1,6 +1,7 @@
 const Sprout = () => {
   return (
     <svg
+      aria-hidden='true'
       width='117'
       height='24'
       viewBox='0 0 117 24'

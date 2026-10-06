@@ -15,14 +15,12 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
 }) => {
   return (
     <section
-      className='bg_secondry--light'
-      data-aos='fade-up'
-      data-aos-duration='1000'
+      className='questionAndAnswerBand'
     >
       <div className='questionAndAnswer  text_align_center'>
         {subheading ? (
           <header>
-            <Text className='primary color_primary'>Become a partner</Text>
+            <Text className='text_primary'>Become a partner</Text>
           </header>
         ) : (
           ""
@@ -30,21 +28,20 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
 
         <h2
           dangerouslySetInnerHTML={{ __html: heading || "" }}
-          className='heading_secondry--light color_white'
-          data-aos='fade-up'
-          data-aos-duration='1200'
+          className='heading_secondry--light'
         ></h2>
         <Text
-          className='secondry color_white'
-          animation='fade-up'
-          duration='1400'
+          className='text_secondry'
         >
           {text}
         </Text>
+        {/* 25 Sep 2026: was "Book a consultation – it's on us!", on all eight
+            service pages. It promised a free consultation nobody has confirmed
+            and it was the legacy agency CTA the rest of the site has dropped.
+            The label is the form's own heading, so the button and the page it
+            opens say the same thing. */}
         <Link href='/contactus'>
-          <Button className='primary' animation='fade-up' duration='1600'>
-            {"Book a consultant - it's on us!"}
-          </Button>
+          <Button className='primary'>Tell us what needs to grow</Button>
         </Link>
       </div>
     </section>

@@ -1,113 +1,141 @@
-@use "../../globels/" as breakPoint;
-
-h1 {
-  z-index: -10;
-}
+// The legacy heading variants, redefined on the guide's type scale.
+//
+// Every heading on the site goes through the Heading component, which emits
+// `heading_${className}`. Converting these twelve variants converts every
+// heading at once, without touching 33 call sites — and they are deleted in D8
+// as sections move onto the .h1/.h2/.h3/.h4 primitives directly.
+//
+// THREE THINGS CHANGE, and they change everywhere:
+//
+//   1. The face. Display headings were Poppins and Glory; they are Newsreader.
+//   2. The weight. Everything display-role is WEIGHT 400. The old scale ran
+//      800/700/600/500/400 as separate variants, which is why several of them
+//      differ by nothing else. Appendix E is explicit that display is 400 at
+//      every width, so the --light / --semibold / --boldLight distinctions
+//      collapse. If that ever changes, change it everywhere at once.
+//   3. The size. Fixed rem sizes with per-variant breakpoints become the fluid
+//      clamps, so eighteen media queries in this file alone go to zero.
+//
+// The invented scale had more levels than the guide has. hero and large both
+// map to h1; primary, primary--light and the three tertiary variants all map to
+// h2. Collapsing them is the point, not a loss.
+//
+// NO COLOUR IS SET HERE. This partial loads after the legacy color_* utilities,
+// so a colour declaration would silently beat every color_primary and
+// color_white on the site. Colour stays with those utilities until D8.
 
 .heading_ {
-  &hero {
-    font-weight: 800;
-    font-size: 5.6rem;
-    line-height: 4.8rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 4rem;
-      line-height: 3.8rem;
-    }
-    @media only screen and (max-width: 700px) {
-      font-size: 3.7rem;
-      line-height: 3.3rem;
-    }
-    @include breakPoint.respond(mobile) {
-      line-height: 3.6rem;
-    }
-  }
-  &primary {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 4.2rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 3.4rem;
-      line-height: 3.5rem;
-    }
-    @media only screen and (max-width: 700px) {
-      font-size: 3.2rem;
-      line-height: 3.2rem;
-    }
-    &--light {
-      font-size: 4rem;
-      font-weight: 600;
-    }
-  }
-  &secondry {
-    font-size: 2.4rem;
-    font-weight: 800;
-    line-height: 2.6rem;
-  }
-  &secondry--boldLight {
-    font-size: 2.4rem;
-    font-weight: 700;
-    line-height: 2.6rem;
-  }
-  &secondry--semibold {
-    font-size: 2.4rem;
-    font-weight: 500;
-    line-height: 2.6em;
-  }
-  &secondry--light {
-    font-size: 2.4rem;
-    font-weight: 400;
-    line-height: 2.6rem;
-  }
-
-  &tertiary {
-    font-size: 3.2rem;
-    font-weight: 800;
-    line-height: 3.5rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 2.8rem;
-      line-height: 3rem;
-    }
-  }
-  &tertiary--medium {
-    font-size: 3.2rem;
-    font-weight: 600;
-    line-height: 3.5rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 2.8rem;
-      line-height: 3rem;
-    }
-  }
-  &tertiary--light {
-    font-size: 3.2rem;
-    font-weight: 400;
-    line-height: 3.5rem;
-    @media only screen and (max-width: 850px) {
-      font-size: 2.8rem;
-      line-height: 3rem;
-    }
-  }
-
+  &hero,
+  &large,
+  &primary,
+  &primary--light,
+  &secondry,
+  &secondry--boldLight,
+  &secondry--semibold,
+  &secondry--light,
+  &tertiary,
+  &tertiary--medium,
+  &tertiary--light,
   &ImportanceCardheading {
-    font-size: 4.8rem;
-    font-weight: 600;
-    line-height: 4.808rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
   }
-  &small {
-    font-size: 1.8rem;
-    font-weight: 600;
-    line-height: 2rem;
-  }
+
+  // --- h1: the page hero title ---------------------------------------------
+  &hero,
   &large {
-    font-size: 9.17rem;
-    font-weight: 800;
-    line-height: 7.514rem;
-    @media only screen and (max-width: 960px) {
-      font-size: 7.17rem;
-      line-height: 6rem;
-    }
-    @media only screen and (max-width: 750px) {
-      font-size: 5.2rem;
-      line-height: 4.8rem;
-    }
+    font-size: var(--fs-h1);
+    line-height: 1.05;
+    letter-spacing: -0.016em;
+  }
+
+  // --- h2: section headings -------------------------------------------------
+  &primary,
+  &primary--light,
+  &tertiary,
+  &tertiary--medium,
+  &tertiary--light,
+  &ImportanceCardheading {
+    font-size: var(--fs-h2);
+    line-height: 1.14;
+    letter-spacing: -0.014em;
+  }
+
+  // --- h3: sub-headings -----------------------------------------------------
+  &secondry,
+  &secondry--boldLight,
+  &secondry--semibold,
+  &secondry--light {
+    font-size: var(--fs-h3);
+    line-height: 1.26;
+    letter-spacing: -0.008em;
+  }
+
+  // --- h4: the one sans heading --------------------------------------------
+  // Already the guide's value before the conversion: 18px at 600.
+  &small {
+    font-family: var(--font-body);
+    font-size: var(--fs-h4);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  // Sentence case, without touching a single byte of copy.
+  //
+  // The same rule the Appendix E primitives got in F1, extended to the legacy
+  // variants because the call sites still carry those. It has to land BEFORE
+  // the uppercase utility comes off, not after: several headings are stored
+  // LOWERCASE in the source and only ever looked capitalised because the
+  // utility shouted them — "contact form temporarily unavailable", "book a
+  // call with us", and every subHeading in the industries data. Drop the
+  // utility on its own and those render lowercase.
+  //
+  // Capitalising an already-capital letter is a no-op, so this is safe on
+  // every variant and needs no per-call-site knowledge of how the copy
+  // happens to be cased. It is also why the pass does not have to know which
+  // strings are which.
+  &hero::first-letter,
+  &large::first-letter,
+  &primary::first-letter,
+  &primary--light::first-letter,
+  &secondry::first-letter,
+  &secondry--boldLight::first-letter,
+  &secondry--semibold::first-letter,
+  &secondry--light::first-letter,
+  &tertiary::first-letter,
+  &tertiary--medium::first-letter,
+  &tertiary--light::first-letter,
+  &ImportanceCardheading::first-letter,
+  &small::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+// Display tracking and leading are the two type values that cannot interpolate.
+// This is the SAME 767px breakpoint the primitives use, not a second one.
+@media (max-width: 767px) {
+  .heading_hero,
+  .heading_large {
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .heading_primary,
+  .heading_primary--light,
+  .heading_tertiary,
+  .heading_tertiary--medium,
+  .heading_tertiary--light,
+  .heading_ImportanceCardheading {
+    line-height: 1.18;
+    letter-spacing: -0.008em;
+  }
+
+  .heading_secondry,
+  .heading_secondry--boldLight,
+  .heading_secondry--semibold,
+  .heading_secondry--light {
+    line-height: 1.28;
+    letter-spacing: -0.004em;
   }
 }

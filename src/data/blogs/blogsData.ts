@@ -1,16 +1,32 @@
-const blogsData = [
-  {
-    title: "Marketing insights",
-    data: [
+// 25 Sep 2026: Insights is organised by the categories below, in this order,
+// set by the final correction pass. A post names its category; the groups the
+// landing page filters by are built from the posts, and a category with no
+// post in it is left out rather than shown empty. Until today every post sat
+// in one group, "Marketing insights", so the filter had one option.
+//
+// A post naming a category that is not in this list fails the build.
+export const INSIGHT_CATEGORIES = [
+  "Growth",
+  "Search",
+  "Demand",
+  "Conversion",
+  "Measurement",
+  "AI & technology",
+  "Market & regulatory developments"
+] as const;
+
+const posts = [
       {
         id: 1,
+        category: "Market & regulatory developments",
         image: "/blogs/blog-fintech-banner.webp",
+        imageAlt: "A banner for the fintech financial promotions article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading: "Marketing a UK fintech without breaching FCA rules",
         description:
-          "In 2024 the FCA had 19,766 financial promotions amended or withdrawn, almost double the year before. If you market a fintech to UK consumers, the financial-promotion regime is not a footnote, it is the line between compounding trust and a takedown. Here is how to market boldly and stay inside it.",
+          "In 2024 the FCA had 19,766 financial promotions amended or withdrawn, almost double the year before. If you market a fintech to UK consumers, the financial-promotion regime is not a footnote; it is the line between compounding trust and a takedown. Here is how to market boldly and stay inside it.",
         dataContent: [
           {
             id: 1,
@@ -50,9 +66,9 @@ const blogsData = [
           {
             id: 6,
             titleOne: "Work with Pixelette Marketing",
-            titleTwo: "compliant, conversion-led content for fintech",
+            titleTwo: "conversion-led content, planned around sign-off",
             description:
-              "Pixelette Marketing builds compliant, conversion-led content for fintech and Web3 brands, with sign-off baked into the workflow. Explore our fintech marketing and our SEO and content services, or book an intro call to talk strategy."
+              "Pixelette Marketing builds conversion-led content for fintech and Web3 brands, working alongside your legal and compliance teams so every asset moves through your approval process. Explore our fintech marketing and our SEO and content services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -70,15 +86,32 @@ const blogsData = [
             title:
               "The marketing metrics an early-stage SaaS founder should track",
             link: "/blog/3"
+          },
+          {
+            id: 4,
+            subheading: "Search",
+            image: "/blogs/blog-ai-search-laptop.webp",
+            title: "Your buyers are asking an AI, not a search engine",
+            link: "/blog/4"
+          },
+          {
+            id: 5,
+            subheading: "Growth",
+            image: "/blogs/blog-marketing-spend-banner.webp",
+            title:
+              "Five things to check before you increase your marketing spend",
+            link: "/blog/5"
           }
         ]
       },
       {
         id: 2,
+        category: "Demand",
         image: "/blogs/blog-web3-banner.webp",
+        imageAlt: "A banner for the Web3 advertising article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Temur Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading: "How to market a Web3 product when the ad platforms say no",
         description:
           "More than half of all crypto tokens launched since 2021 are no longer actively traded, and the survivors rarely make it on technology alone. With Google and Meta gating crypto ads to a thin certified lane, the brands that win build where the platforms cannot switch them off.",
@@ -123,7 +156,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "Web3 growth through community and earned reach",
             description:
-              "Pixelette Marketing grows Web3 brands through community, content and earned reach rather than ad spend that gets rejected. Explore our Web3 marketing and social media services, or book an intro call to talk strategy."
+              "Pixelette Marketing grows Web3 brands through community, content and earned reach rather than ad spend that gets rejected. Explore our Web3 marketing and social media services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -141,15 +174,32 @@ const blogsData = [
             title:
               "The marketing metrics an early-stage SaaS founder should track",
             link: "/blog/3"
+          },
+          {
+            id: 4,
+            subheading: "Search",
+            image: "/blogs/blog-ai-search-laptop.webp",
+            title: "Your buyers are asking an AI, not a search engine",
+            link: "/blog/4"
+          },
+          {
+            id: 5,
+            subheading: "Growth",
+            image: "/blogs/blog-marketing-spend-banner.webp",
+            title:
+              "Five things to check before you increase your marketing spend",
+            link: "/blog/5"
           }
         ]
       },
       {
         id: 3,
+        category: "Measurement",
         image: "/blogs/blog-saas-banner.webp",
+        imageAlt: "A banner for the SaaS metrics article.",
         authorProfile: "/blogs/authorImage.png",
         authorName: "Rana Khan",
-        updateDate: "Jun 2, 2026",
+        updateDate: "2 June 2026",
         heading:
           "The marketing metrics an early-stage SaaS founder should track",
         description:
@@ -195,7 +245,7 @@ const blogsData = [
             titleOne: "Work with Pixelette Marketing",
             titleTwo: "measurement that ties spend to revenue",
             description:
-              "Pixelette Marketing builds measurement that connects spend to revenue, not vanity dashboards. Explore our analytics and reporting and our SaaS marketing services, or book an intro call to talk strategy."
+              "Pixelette Marketing builds measurement that connects spend to revenue, not vanity dashboards. Explore our analytics and reporting and our SaaS marketing services, or tell us what needs to grow."
           }
         ],
         relatedBlogs: [
@@ -212,11 +262,230 @@ const blogsData = [
             image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
             link: "/blog/2"
+          },
+          {
+            id: 4,
+            subheading: "Search",
+            image: "/blogs/blog-ai-search-laptop.webp",
+            title: "Your buyers are asking an AI, not a search engine",
+            link: "/blog/4"
+          },
+          {
+            id: 5,
+            subheading: "Growth",
+            image: "/blogs/blog-marketing-spend-banner.webp",
+            title:
+              "Five things to check before you increase your marketing spend",
+            link: "/blog/5"
+          }
+        ]
+      },
+      {
+        id: 4,
+        category: "Search",
+        image: "/blogs/blog-ai-search-laptop.webp",
+        imageAlt:
+          "A laptop showing an AI search assistant asking what do you want to know.",
+        authorProfile: "/blogs/authorImage.png",
+        authorName: "Rana Khan",
+        updateDate: "22 September 2026",
+        heading: "Your buyers are asking an AI, not a search engine",
+        description:
+          "Search still happens, but a growing share of it ends without a click. Your buyer asks an assistant, reads a summary and forms a shortlist before any website loads. If your page cannot be quoted accurately, it is not in that summary, and the shortlist is made without you.",
+        dataContent: [
+          {
+            id: 1,
+            titleOne: "Ranking and being quoted are different jobs",
+            titleTwo: "why the old checklist stops working",
+            description:
+              "A ranked result rewards relevance and authority, and the reader does the rest. An assistant has to lift a claim out of your page and restate it without losing the meaning. Pages built to rank often resist that, because the useful part is spread across three paragraphs of positioning. Pages that get quoted state the claim, name the source and give the number in one place."
+          },
+          {
+            id: 2,
+            titleOne: "What an assistant can actually use",
+            titleTwo: "structure, sources and plain claims",
+            description:
+              "Give each page one job and say what it is in the first paragraph. Put the definition, the comparison or the process where it can be found without scrolling past a case for hiring you. Mark up what the page is with structured data, keep the author and date accurate, and attribute every figure in the sentence that uses it. It matters more now that a machine reads first."
+          },
+          {
+            id: 3,
+            titleOne: "Technical categories are where this bites first",
+            titleTwo: "your buyer is checking, not browsing",
+            description:
+              "Someone evaluating a fintech compliance tool or a Web3 infrastructure provider is not browsing. They are checking a specific constraint and they want it confirmed by something that looks independent. If your page asserts capability without evidence, it gives the summary nothing to carry, and a competitor with a plainer page gets named instead."
+          },
+          {
+            id: 4,
+            titleOne: "Measure it separately or you will miss it",
+            titleTwo: "referrals from assistants look like direct traffic",
+            description:
+              "Traffic arriving from an assistant often lands without a referrer, so it files itself under direct. Separate it in your analytics, watch the questions your brand gets named in, and treat the mentions themselves as the metric rather than the clicks. Some of this work earns a place on a shortlist and never a session."
+          },
+          {
+            id: 5,
+            titleOne: "Where to start this quarter",
+            titleTwo: "three pages, not a rewrite",
+            description:
+              "Pick the three pages that answer a real buying question, rewrite the opening so the answer comes first, attribute every claim on them and check the structured data. Leave the rest alone until those three move."
+          },
+          {
+            id: 6,
+            titleOne: "Work with Pixelette Marketing",
+            titleTwo: "content built to be found and quoted",
+            description:
+              "Pixelette Marketing builds search and authority work for technology brands, from page structure to the evidence behind each claim. Explore our SEO and content marketing and our analytics and reporting services, or tell us what needs to grow."
+          }
+        ],
+        relatedBlogs: [
+          {
+            id: 1,
+            subheading: "Fintech",
+            image: "/blogs/blog-fintech-banner.webp",
+            title: "Marketing a UK fintech without breaching FCA rules",
+            link: "/blog/1"
+          },
+          {
+            id: 2,
+            subheading: "Web3",
+            image: "/blogs/blog-web3-banner.webp",
+            title: "How to market a Web3 product when the ad platforms say no",
+            link: "/blog/2"
+          },
+          {
+            id: 3,
+            subheading: "SaaS",
+            image: "/blogs/blog-saas-banner.webp",
+            title:
+              "The marketing metrics an early-stage SaaS founder should track",
+            link: "/blog/3"
+          },
+          {
+            id: 5,
+            subheading: "Growth",
+            image: "/blogs/blog-marketing-spend-banner.webp",
+            title:
+              "Five things to check before you increase your marketing spend",
+            link: "/blog/5"
+          }
+        ]
+      },
+      {
+        id: 5,
+        category: "Growth",
+        image: "/blogs/blog-marketing-spend-banner.webp",
+        imageAlt:
+          "Two colleagues reviewing printed charts and a laptop graph together.",
+        authorProfile: "/blogs/authorImage.png",
+        authorName: "Temur Khan",
+        updateDate: "22 September 2026",
+        heading:
+          "Five things to check before you increase your marketing spend",
+        description:
+          "More budget makes a working system bigger and a broken one more expensive. Before the next increase there are five checks worth running, one for each part of the work, and each can be done in an afternoon without buying anything. None of them is about the budget itself.",
+        dataContent: [
+          {
+            id: 1,
+            titleOne: "Check the offer before the channel",
+            titleTwo: "paid spend amplifies whatever it is given",
+            description:
+              "If the message is not settled, more spend finds the limit faster. The usual sign is a campaign that performs for one narrow segment and nowhere else, which gets read as a channel problem. Write down who the offer is for, what it replaces and why someone would move. If that takes more than a page, the positioning is the constraint, not the media plan."
+          },
+          {
+            id: 2,
+            titleOne: "Check audience overlap, not follower count",
+            titleTwo: "reach is the cheapest number to look at",
+            description:
+              "Follower count is easy to check and tells you little about whether an audience is yours. Ask for the breakdown by country, seniority and platform, and look at who replies rather than who follows. In fintech and Web3 this is a compliance question too, because the FCA now acts against creators directly."
+          },
+          {
+            id: 3,
+            titleOne: "Check depth against cadence",
+            titleTwo: "publishing volume stopped being a signal",
+            description:
+              "When writing cost something, a steady schedule showed commitment. Now that generating text is close to free, volume proves nothing and thin pages compete with your good ones. Count how many of last quarter's posts answer a question a buyer actually asked. If the honest answer is two, the fix is fewer and deeper."
+          },
+          {
+            id: 4,
+            titleOne: "Check the handoff and your sending setup",
+            titleTwo: "a careless list now damages the whole domain",
+            description:
+              "Two things go wrong after a lead arrives. Nobody owns the next step, so enquiries sit while the campaign that produced them keeps running. And the list gets treated as a broadcast channel, which used to mean poor results and now means something worse. Google and Yahoo have required authentication, one-click unsubscribe and a spam complaint rate below 0.3% since February 2024, and Microsoft has since done the same. Fail those and your sales email suffers alongside the newsletter."
+          },
+          {
+            id: 5,
+            titleOne: "Check whether reporting can name the source of revenue",
+            titleTwo: "last click is a guess with a decimal point",
+            description:
+              "Open the report you use to move budget and find the closed-won deals. If the channel data and the CRM have never been joined, the number you are acting on credits whatever the buyer touched most recently rather than what persuaded them."
+          },
+          {
+            id: 6,
+            titleOne: "Work with Pixelette Marketing",
+            titleTwo: "five connected capabilities, not a channel menu",
+            description:
+              "Pixelette Marketing organises the work as strategy, demand, search, pipeline and growth intelligence, starting from whatever is actually limiting growth. Explore what we do, or tell us what needs to grow and we will run these checks with you."
+          }
+        ],
+        relatedBlogs: [
+          {
+            id: 1,
+            subheading: "Fintech",
+            image: "/blogs/blog-fintech-banner.webp",
+            title: "Marketing a UK fintech without breaching FCA rules",
+            link: "/blog/1"
+          },
+          {
+            id: 2,
+            subheading: "Web3",
+            image: "/blogs/blog-web3-banner.webp",
+            title: "How to market a Web3 product when the ad platforms say no",
+            link: "/blog/2"
+          },
+          {
+            id: 3,
+            subheading: "SaaS",
+            image: "/blogs/blog-saas-banner.webp",
+            title:
+              "The marketing metrics an early-stage SaaS founder should track",
+            link: "/blog/3"
+          },
+          {
+            id: 4,
+            subheading: "Search",
+            image: "/blogs/blog-ai-search-laptop.webp",
+            title: "Your buyers are asking an AI, not a search engine",
+            link: "/blog/4"
           }
         ]
       }
-    ]
-  }
 ];
+
+export type InsightCategory = (typeof INSIGHT_CATEGORIES)[number];
+
+for (const post of posts) {
+  if (!(INSIGHT_CATEGORIES as readonly string[]).includes(post.category)) {
+    throw new Error(
+      `Insight ${post.id} names an unknown category: "${post.category}".`
+    );
+  }
+}
+
+// A related-article card shows the category of the post it links to, taken
+// from that post rather than typed beside the link. The hand-typed labels
+// ("Fintech", "SaaS") predate the categories and no longer matched the filter.
+for (const post of posts) {
+  for (const related of post.relatedBlogs) {
+    const target = posts.find(p => `/blog/${p.id}` === related.link);
+    if (!target) {
+      throw new Error(`Insight ${post.id} links to a missing post: ${related.link}`);
+    }
+    related.subheading = target.category;
+  }
+}
+
+const blogsData = INSIGHT_CATEGORIES.map(title => ({
+  title,
+  data: posts.filter(post => post.category === title)
+})).filter(group => group.data.length > 0);
 
 export default blogsData;

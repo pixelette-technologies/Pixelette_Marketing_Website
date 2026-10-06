@@ -1,0 +1,39 @@
+// The close. 30 Sep 2026.
+//
+// One heading, one line, one button, on .band-closing. Stacked on a phone;
+// from 60rem the heading takes the left and the line and button the right, so
+// the one ask is a single band (from 48rem) rather than a second full section.
+
+.aboutClose {
+  padding-block: var(--sec-y-sm);
+
+  & > .h2 {
+    max-width: 34rem;
+    color: var(--color-burgundy);
+  }
+
+  &__action {
+    margin-top: 1.25rem;
+
+    & > .lead {
+      color: var(--color-plum-ink);
+    }
+
+    & > .btn {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+@media (min-width: 48rem) {
+  .aboutClose {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+    align-items: end;
+
+    &__action {
+      margin-top: 0;
+    }
+  }
+}

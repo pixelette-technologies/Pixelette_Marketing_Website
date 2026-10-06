@@ -1,0 +1,123 @@
+// ItemsSection — the shell for the six same-shaped homepage sections.
+//
+// Inherits the anatomy EngagementStalls established and this file replaces:
+// the heading block held to roughly half the wrap so the copy does not run the
+// width of the page, the guide's 20px eyebrow-to-heading gap, and the 24px
+// heading-to-standfirst gap. 34rem is 544px against the 1160px wrap — just
+// under half — and because it is a max rather than a percentage it stops
+// applying on narrow screens instead of crushing the column to half a phone.
+
+.itemsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: var(--sec-y);
+
+  & > header {
+    max-width: 34rem;
+
+    // Header to grid is the section rhythm; everything after the grid is the
+    // 2rem column gap. Stated as the difference so the two cannot drift.
+    margin-bottom: calc(var(--sec-y-sm) - 2rem);
+
+    & > *:first-child {
+      margin-bottom: 1.25rem;
+    }
+
+    & > p {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+// --- The aside header -------------------------------------------------------
+// 21 Sep 2026. Six of the twelve homepage sections share this shell, so by the
+// fourth the reader has met the same stacked eyebrow → h2 → lead → grid four
+// times, and "Why Pixelette" — which is the ARGUMENT for the offer — reads as
+// a peer of the Growth System, which is the offer itself.
+//
+// Turning its header ninety degrees subordinates it without touching colour.
+// That constraint is real: _surfaces.scss caps a page at three dark bands,
+// route:walk enforces the cap, and the home page has spent all three. Weight
+// had to come from layout.
+//
+// ZERO BREAKPOINTS, on the house rule. The bases are 22rem + 30rem + the 4rem
+// column gap = 896px, so the pair sits on one line inside the 1160px wrap and
+// folds to stacked on its own below a viewport of roughly 936px. Against the
+// full wrap the two tracks resolve to about 440px and 656px — and 656px seats
+// exactly two of the --auto grid's 17rem tracks, which is what turns this
+// section's four items into 2x2 without the call site having to ask.
+.itemsSection--aside {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  column-gap: 4rem;
+
+  & > header {
+    flex: 1 1 22rem;
+    // The track is the cap here, not the 34rem the stacked shell uses.
+    max-width: 30rem;
+    // The column gap does this job now.
+    margin-bottom: 0;
+  }
+
+  & > .itemsSection__grid {
+    flex: 2 1 30rem;
+    // Without this the inner grid's own tracks set the flex item's floor and
+    // the pair will not fold.
+    min-width: 0;
+  }
+
+  // Defensive: this call site has neither, but a closing line or a section CTA
+  // belongs under the items, not beside the header.
+  & > .small,
+  & > .itemsSection__cta {
+    flex-basis: 100%;
+  }
+}
+
+// Container-width, matching .growthSection's. Deliberately NOT .rule-cap: the
+// signature mark appears once per page and GrowthSection holds it.
+.itemsSection--ruled {
+  border-top: 1px solid var(--color-line);
+}
+
+// --- Three across -----------------------------------------------------------
+// WAS flex, `flex: 1 1 calc((100% - 2rem) / 3)`. That basis sets the width of a
+// FULL row correctly and says nothing about a short one: flex-grow let the
+// Growth System's trailing pair stretch to half the wrap each, so cards 04 and
+// 05 rendered at 572px against 376px for the three above them — a 52%
+// difference inside one section, with no card edge landing on a third.
+//
+// `flex-grow: 0` fixes the desktop row and breaks the middle: between roughly
+// 500 and 750px of container the items floor on their min-width, and two of
+// them then leave a 200px hole at the end of the row.
+//
+// So the column count is derived from the width instead of from the basis.
+// auto-fit never stretches a short row — cards 04 and 05 take tracks 1 and 2
+// at the same 376px as the row above, and track 3 is simply empty — while the
+// track count still falls to two and then to one on its own.
+//
+// 18rem, not the --auto grid's 17rem: 4 x 288 + 3 x 16 is 1200 against an
+// 1160px wrap, so the track count caps at three. That is the entire difference
+// between the two idioms, and it is why both still exist.
+//
+// auto-fit does NOT collapse track 3 here: collapsing requires a track to be
+// empty in every row, and card 03 occupies it.
+.itemsSection__grid--thirds {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+  gap: 1rem;
+}
+
+// The auto-fit track seats four against the wrap, which is what the four-item
+// sections want and why five items must ask for --thirds instead.
+.itemsSection__grid--auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+  gap: 1.25rem;
+}
+
+.itemsSection__cta {
+  align-self: start;
+}

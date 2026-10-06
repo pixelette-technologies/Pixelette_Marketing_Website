@@ -1,5 +1,4 @@
-@forward "./blogCardGrid";
-@forward "./blogCategories";
-@forward "./blogHeroSection";
-@forward "./blogDataDisplay";
-@forward "./blogCategoryDropdown";
+// /blog-list, the Insights page. 30 Sep 2026: the category sidebar, the
+// dropdown, the card grid and the old hero were replaced as one page to the
+// final Insights brief, and their five partials went with them.
+@forward "./_insights.scss";

@@ -1,44 +1,149 @@
-.trustedBrands {
-  & > div {
-    margin-bottom: 1.2rem;
-    & > h1 {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 5.9rem;
-    }
-  }
-  & > section {
-    padding: 1.2rem 0rem;
-    & > div {
-      display: flex;
-      align-items: center;
-      gap: 15rem;
-      @media only screen and (max-width: 850px) {
-        gap: 10rem;
-      }
-      @media only screen and (max-width: 650px) {
-        gap: 6rem;
-      }
-      @media only screen and (max-width: 500px) {
-        gap: 3rem;
-      }
-      & > h1 {
-        width: 19.9rem;
-        z-index: 1000;
-      }
+// The logo strip. The scrolling marquee is gone — the keyframes went with the
+// decorative layer in D2 and the four duplicate render passes went with them —
+// so this is now a static row that wraps.
+//
+// The band was bg_primary, a flat saturated crimson. Settled decision from
+// Phase A: saturated bg_primary bands become the dark panel family, not flat
+// crimson.
+//
+// D4. Both heading rules in this file were DEAD. They selected `h1` and
+// Heading defaults to level 2, so neither the "Trusted by" row nor the
+// "Leading Brands" label had ever received its layout on any build: the arrow
+// mark was not aligned to its heading, and the label had neither its width nor
+// its white on the dark ground — it was inheriting --color-panel-text instead.
+// They are written against :is(h1, h2) so a later level change cannot silently
+// kill them again. This is the trap the vault records against GrowthSection,
+// and the sweep found it in 24 partials.
 
-      & > section {
-        max-width: 1000px;
-        overflow: hidden;
-        & > div {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 5rem;
-          animation: scrollX 40s linear infinite;
-        }
-      }
+// Phase F. The component is a single dark band now, so the padding belongs to
+// the wrapper rather than to the inner strip, and the 3.6875rem top margin
+// that used to push the heading down the light page goes with it.
+//
+// The gradient and the panel text colour are no longer restated here — both
+// come from .band-dark, which the three dark bands share so they read as one
+// recurring device. The eyebrow takes the signal tone from there too.
+.trustedBrands {
+  padding-block: var(--sec-y-sm);
+
+  // The header container. :first-child rather than a bare `> div`, because
+  // the stacked layout adds a second container below the strip for the call
+  // to action and it must not inherit the header's gap.
+  & > div:first-child {
+    margin-bottom: 1.25rem;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+}
+
+// --- The stacked layout -----------------------------------------------------
+// The 8 Sep brief replaces the two-word label with a sentence, which cannot
+// live in the bleed container under `white-space: nowrap`. Heading and
+// standfirst move onto the symmetric measure; only the strip still bleeds.
+//
+// Nothing is needed to disable the nowrap rule: in this mode there is no
+// heading inside .trustedBrandsBand for it to select.
+.trustedBrands--stacked {
+  & > div:first-child {
+    & > .h2 {
+      max-width: 34rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
     }
   }
+}
+
+.trustedBrands__actions {
+  margin-top: 2rem;
+}
+
+.trustedBrandsBand {
+  & > div {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 0.9rem + 3.4vw, 3.75rem);
+    flex-wrap: wrap;
+
+    // The label column. .band-dark already sets it white.
+    //
+    // Phase F. This was a hard `width: 12.4375rem` — 199px, measured against
+    // the old sans heading. On the display face at .h2 size the label no longer
+    // fits it and "Leading Brands" was breaking mid-phrase and clipping. It
+    // sizes to its own content now and is barred from wrapping, so the label
+    // stays on one line and the logo row takes whatever is left.
+    & > :is(h1, h2) {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    // The logo strip. min-width: 0 matters more than usual here — without it a
+    // flex item refuses to shrink below its content, and the marquee track is
+    // deliberately `width: max-content`, so the strip would push the band wider
+    // than the page instead of scrolling inside it.
+    //
+    // The flex/wrap/gap rule that used to sit on the inner div is GONE. That
+    // div is .marquee__track now, and because component partials load after the
+    // primitives it would have beaten .marquee__track on source order — putting
+    // flex-wrap: wrap back on a track that must never wrap, which breaks the
+    // loop outright. Layout for the strip belongs to _marquee.scss alone.
+    & > section {
+      flex: 1 1 auto;
+      min-width: 0;
+
+      // Slower than the platform rows: six logos over a shorter track, and the
+      // point is that it reads as barely moving.
+      --marquee-duration: 40s;
+    }
+  }
+}
+
+// --- The tool band, 25 Sep 2026 ---------------------------------------------
+// /services' "Tools we work in" on this same device, asked for to look exactly
+// like the client strip. Only three things differ, and all three are here.
+//
+// SIZE. The client logos are rasters in a 200 x 50 box; the tool marks are the
+// old platform band's inline svgs, drawn at 17-31px tall. Left alone they read
+// as a strip of footnotes beside a strip of logos. Every svg is set to one
+// height instead, width following its own viewBox and capped, so the thirteen
+// marks sit on a common line whatever their artwork's native size.
+//
+// THE WORDMARK. Google Analytics 4 has no mark in the repo and none was drawn
+// or downloaded, so it is set as text. It takes the page white the logos are
+// drawn in, and body weight 600, so it sits with them rather than reading as a
+// caption.
+//
+// SPEED. Fourteen marks is a longer track than six, and at the client strip's
+// 40s it would move more than twice as fast. 90s keeps it about as slow.
+.trustedBrands--tools {
+  .trustedBrandsBand > div > section {
+    --marquee-duration: 90s;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    align-items: center;
+    height: 2.5rem;
+
+    // The max-width is Semrush's, found by looking: its artwork is seven times
+    // wider than tall, so at a shared height it came out at 185px and read as
+    // the headline vendor. Capped, the svg keeps its box and its viewBox
+    // letterboxes the drawing inside it, so nothing distorts.
+    svg {
+      height: 1.625rem;
+      width: auto;
+      max-width: 8rem;
+    }
+  }
+}
+
+.trustedBrands__wordmark {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--color-page);
 }

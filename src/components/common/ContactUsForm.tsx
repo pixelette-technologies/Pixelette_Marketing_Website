@@ -188,11 +188,11 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
       {showIntro && (
         <>
           {/* The brief's form eyebrow and heading. */}
-          <Text className='eyebrow'>Start here</Text>
+          {/* <Text className='eyebrow'>Start here</Text> */}
           {/* The brief's form heading. It was `heading_secondry font_family_glory`,
               one of the twelve legacy variants, on a form that renders on six
               routes; .h3 is the same size on the guide's scale. */}
-          <Heading className='h3'>Tell us what needs to grow.</Heading>
+          {/* <Heading className='h3'>Tell us what needs to grow.</Heading> */}
           <p className='body'>
             Give us enough context to make the first conversation useful. We
             will review the enquiry and come back with the most relevant next
@@ -231,9 +231,9 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               />
             </div>
             <FormInput
-              label='Work email'
+              label='Email'
               name='email'
-              place='Enter your work email'
+              place='Enter your email'
               type='email'
             />
             <div className='contactUsFormFlex'>

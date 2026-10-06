@@ -12,12 +12,11 @@ export interface ContactAttribution {
 /** What the enquirer is trying to move, from the 8 Sep 2026 brief. The order
  *  is the brief's: the four commercial outcomes, then Launch, then Other. */
 export const IMPROVE_OPTIONS = [
-  "Demand",
-  "Pipeline",
-  "Conversion",
-  "Revenue",
-  "Launch",
-  "Other"
+  "Strategy & Positioning",
+  "Demand & Performance",
+  "Search & Authority",
+  "Pipeline & Conversion",
+  "Growth Intelligence"
 ] as const;
 
 export type ImproveOption = (typeof IMPROVE_OPTIONS)[number];

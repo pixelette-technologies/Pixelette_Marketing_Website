@@ -529,7 +529,7 @@ export const finalConversionCopy = {
    *  The primary is the form itself, which sits beside this copy, so only the
    *  secondary needs a link of its own. */
   secondaryCta: { label: "Talk to Pixelette Marketing", to: "/contactus" },
-  heading: "Let's build the growth plan behind your next stage",
+  heading: "Let's build your growth plan",
   lead: "Tell us where growth is stuck or where you want to get to. We will use the first conversation to understand the commercial objective, what you have already tried, what the numbers say and whether Pixelette is the right fit.",
   closing:
     "No generic proposal. No channel recommendation before we understand the problem."

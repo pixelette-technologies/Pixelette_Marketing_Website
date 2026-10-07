@@ -39,9 +39,10 @@ export const metadata: Metadata = {
 //   server keeps a delivery receipt and a rate-limit record, neither of which
 //   holds the enquiry text or the raw IP address (contactDeliveryControl.ts).
 //   Google is added as the analytics provider.
-// - REMOVED OUTRIGHT: the website assistant and AI section (this site has no
-//   assistant), and the ISO/IEC 27001 sentence (this company holds no
-//   certificate — see the note in Footer.tsx about the empty ISO slot).
+// - ASSISTANT. This site now mounts a published-page assistant (see
+//   src/agent/). The paragraph under "What you give us" describes what it
+//   collects. There is still no lead scoring on this site, and no ISO/IEC
+//   27001 sentence (this company holds no certificate — see Footer.tsx).
 // - THE FORM'S FIELDS are this form's, from contactUsValidation.ts.
 // - CLIENT WORK is described as marketing work — audiences, email lists,
 //   CRM and campaign data — rather than software.
@@ -127,6 +128,14 @@ export default function PrivacyPage() {
             page you sent it from, the page that referred you to the site and,
             if you arrived through one of our campaign links, the campaign tags
             in that link.
+          </p>
+          <p>
+            This site also has an assistant that answers questions from the
+            pages we publish. When you send an enquiry through the assistant,
+            we collect your name, your work email address and the discovery
+            answers you give (what you are trying to grow or improve, what is
+            happening today, any deadline, and what success would look like),
+            together with an optional company name, so the team can reply.
           </p>
           <p>
             If you email or call us instead, we have whatever you put in that

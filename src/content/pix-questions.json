@@ -1,0 +1,130 @@
+{
+  "_about": "Marketing ask-phrasings. Each entry's answer.path/answer.title must match an existing page or faq doc's path+title in pix-kb.json exactly (pix-agent's build.mjs fails the build otherwise). No answer text lives here — see build.mjs: text is always copied from the matched doc, never retyped.",
+  "entries": [
+    {
+      "ask": [
+        "What does Pixelette Marketing do?",
+        "What services do you offer?",
+        "What can you help with?"
+      ],
+      "answer": {
+        "path": "/services",
+        "title": "Digital Marketing Services | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "About Pixelette Marketing",
+        "Who are you",
+        "Tell me about your company"
+      ],
+      "answer": {
+        "path": "/aboutus",
+        "title": "About | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "How do I get in touch?",
+        "How can I contact you?",
+        "How do I reach the team?"
+      ],
+      "answer": {
+        "path": "/contactus",
+        "title": "Contact | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "What industries do you work with?",
+        "Which markets do you support?",
+        "Do you work with my sector?"
+      ],
+      "answer": {
+        "path": "/industries",
+        "title": "Industries | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "Can you show me client results?",
+        "Do you have case studies?",
+        "What results have you delivered?"
+      ],
+      "answer": {
+        "path": "/results",
+        "title": "Client Results | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "What happens to my data?",
+        "Do you use automated decision making?",
+        "Is my information used to profile me?"
+      ],
+      "answer": {
+        "path": "/privacy",
+        "title": "Privacy Statement | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "Is there a diagnostic or self-assessment tool?",
+        "Can I check my positioning without talking to someone first?"
+      ],
+      "answer": {
+        "path": "/strategy-positioning",
+        "title": "Strategy & Positioning Diagnostic | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "Do you have any articles or guides?",
+        "Where can I read your thinking?"
+      ],
+      "answer": {
+        "path": "/blog-list",
+        "title": "Insights | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "What metrics should a SaaS founder track?"
+      ],
+      "answer": {
+        "path": "/blog/3",
+        "title": "The marketing metrics an early-stage SaaS founder should track | Pixelette Marketing"
+      }
+    },
+    {
+      "ask": [
+        "Do I need to know which service I need before I contact you?",
+        "I'm not sure what I need, can I still get in touch?"
+      ],
+      "answer": {
+        "path": "/contactus",
+        "title": "Do I need to know which service I need?"
+      }
+    },
+    {
+      "ask": [
+        "Can you work with our existing marketing team?",
+        "Do you work alongside an in-house team?"
+      ],
+      "answer": {
+        "path": "/contactus",
+        "title": "Can you work alongside our in-house team?"
+      }
+    },
+    {
+      "ask": [
+        "We have a supplier questionnaire, where does it go?",
+        "How do I submit a supplier security questionnaire?"
+      ],
+      "answer": {
+        "path": "/contactus",
+        "title": "We have a supplier questionnaire. Where does it go?"
+      }
+    }
+  ]
+}

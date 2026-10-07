@@ -7,6 +7,8 @@ import {
   Navbar,
   ScrollReveal
 } from "@/components/common";
+import AgentMount from "@/agent/mount";
+import { pixContext } from "@/agent/context";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -169,6 +171,10 @@ gtag('config', 'G-1HGJEBFGRW');`}
         <Footer />
         <ScrollReveal />
         <CookieConsent />
+        {/* Mounted last and once, on every route, so the launcher sits above
+            the cookie banner (see marketingThemeOptions in src/agent/config.ts)
+            without depending on render order elsewhere on the page. */}
+        <AgentMount context={pixContext()} />
       </body>
     </html>
   );

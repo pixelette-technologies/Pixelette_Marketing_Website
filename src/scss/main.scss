@@ -1,4 +1,20 @@
 @forward "./globels";
+
+// The reset and the root element rules have to come first.
+@forward "./utils/base";
+
+// The shared primitives. Legacy component rules are anchored to DOM structure
+// with descendant chains up to 11 levels deep, so they outrank these
+// single-class selectors on specificity and win wherever they collide — which
+// is what makes the conversion section-by-section rather than all at once.
+@forward "./primitives";
+
+// The legacy bg_* and color_* utilities load AFTER the primitives on purpose.
+// They are single-class selectors too, so source order decides, and existing
+// markup that pairs one with a primitive name — `className='small
+// color_primary'` — must keep its colour until its call site is converted.
+// The whole legacy utility layer is deleted in D8 and this ordering goes with
+// it. _base is already loaded above, so it does not re-emit here.
 @forward "./utils";
 
 @forward "./component/common";

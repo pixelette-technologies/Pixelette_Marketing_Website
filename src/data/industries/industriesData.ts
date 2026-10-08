@@ -1,893 +1,676 @@
-import { BookIcon, AuditIcon, PlainIcon, ExecuteIcon } from "@/assets/common";
+import type { ItemsSectionContent } from "@/components/ui/home";
+import type { PointItemContent } from "@/components/feature";
+import { growthSystemData } from "@/data/home";
 
-export const industriesData = [
+// THESE FIVE ARE SPECIALIST PAGES, NOT THE INDUSTRY LIST. The site's markets
+// are the eight in data/industries/industries.ts. The pages and their URLs are
+// kept for search and direct links.
+//
+// 29 Sep 2026: nothing lists the five together any more. The locked
+// information architecture removed "Deeper experience" from the navigation
+// and from /industries; how these pages are linked is to be reviewed
+// separately. `label` and `hubLine` are unused until then. `title` is the page's own
+// name and still feeds the structured data, so it keeps the "Marketing".
+//
+// --- 25 Sep 2026: rebuilt to the final correction pass ----------------------
+// Every page now follows one architecture, in this order:
+//
+//   hero        the positioning line, kept where it was already strong
+//   challenges  what marketing has to solve in THIS market
+//   help        where Pixelette fits, and what the work is not
+//   capabilities the five, each applied to the market
+//   approach    Diagnose, Audit, Growth Plan, Execute & Optimise
+//   evidence    only where a real, management-supplied case study applies
+//   faqs        questions a buyer in this market would actually ask
+//   close       "Tell us what needs to grow."
+//
+// WHAT WENT, on every page: the nine-card lists of "Crypto SEO Services",
+// "Fintech PR Marketing" and the rest, which sold the same eight channels five
+// times under five prefixes; the Book / Audit / Plan / Execute process, which
+// promised a free consultation and transparent pricing nobody has confirmed;
+// the "X is moving fast. Are you?" closing bands and their "Book a
+// consultation – it's on us!" button; and FAQs that restated the service list
+// as questions. The unused `review` blocks went too — nothing rendered them.
+//
+// THE CAPABILITY NAMES ARE IMPORTED, NOT RETYPED. Each page supplies what a
+// capability means in its market; the title comes from growthSystemData by
+// index, so a renamed capability renames itself here as well.
+//
+// NO FIGURES ON THESE PAGES except BlockGuard's, and those are not in this
+// file: the Web3 page renders the /results case study itself, from the same
+// object, so the numbers cannot drift between the two pages.
+
+export interface SectorPage {
+  id: number;
+  title: string;
+  label: string;
+  metaTitle: string;
+  metaDescription: string;
+  metaKeywords: string;
+  route: string;
+  hubLine: string;
+  image: string;
+  mainHeading: string;
+  subHeading: string;
+  summary: string;
+  challenges: { eyebrow: string; heading: string; lead: string; items: { heading: string; text: string }[] };
+  help: { eyebrow: string; heading: string; body: string[] };
+  capabilities: ItemsSectionContent;
+  approach: ItemsSectionContent;
+  /** The /results case study to render, by client name. Absent where there
+   *  is no real evidence to show, which is four of the five. */
+  evidence?: { client: string; eyebrow: string; heading: string };
+  faqHeading: string;
+  faqs: { question: string; answer: string }[];
+  close: { lead: string };
+}
+
+/** One of the five capabilities, titled from the approved list. */
+function capability(
+  index: string,
+  body: string,
+  channels: string[]
+): PointItemContent {
+  const source = growthSystemData.items.find(item => item.index === index);
+  if (!source) {
+    throw new Error(`Unknown capability index "${index}".`);
+  }
+  return { index, title: source.title, body, capabilities: channels };
+}
+
+/** The home page's four process stages, with a market-specific sentence each. */
+function approach(
+  heading: string,
+  bodies: [string, string, string, string]
+): ItemsSectionContent {
+  const titles = ["Diagnose", "Audit", "Growth Plan", "Execute & Optimise"];
+  return {
+    eyebrow: "How we approach the work",
+    heading,
+    items: titles.map((title, i) => ({
+      index: `0${i + 1}`,
+      title,
+      body: bodies[i]
+    }))
+  };
+}
+
+const CAPABILITIES_EYEBROW = "Relevant capabilities";
+const CHALLENGES_EYEBROW = "What marketing has to solve";
+const HELP_EYEBROW = "Where Pixelette can help";
+
+export const industriesData: SectorPage[] = [
   {
     id: 1,
-    title: "Web 3 Marketing",
-    metaTitle: "Leading Web3 Marketing Agency | Pixelette Marketing",
-    metaDescription: "Build community. Drive demand. Go global. Our Web3 Digital Marketing Services are custom-made for projects shaping the next internet. Book a call ☎️",
-    metaKeywords: "web3 marketing, web3 digital marketing services, web3 marketing agency",
+    title: "Web3 Marketing",
+    label: "Web3 & Digital Assets",
+    metaTitle: "Web3 & Digital Asset Marketing | Pixelette Marketing",
+    metaDescription:
+      "Web3 and digital-asset marketing built on credibility, community and search, within advertising and regulatory limits. No promises about token performance.",
+    metaKeywords:
+      "web3 marketing, digital asset marketing, crypto marketing, web3 marketing agency",
     route: "web_3",
-    mainHeading: "We’re a web3 marketing agency",
-    subHeading: "turning blocks into breakthroughs",
-    summary:
-      "Partner with Pixelette Marketing to align your goals with meaningful marketing efforts to build trust, drive adoption and make a lasting impact in the Web3 ecosystem.",
+    hubLine:
+      "Community, credibility and discoverability, in a market where trust is the hardest thing to earn and the easiest to lose.",
     image: "/industries/industriesHero.webp",
-    ourSolutions: {
-      heading: `We solve  <span> web3 marketing’s toughest questions</span>`,
-      text: "Crypto brands often face hurdles like low visibility, user adoption gaps, and community engagement. Here’s how companies availing our web3 marketing services have transformed their pain points into measurable growth.",
-      data: [
+    mainHeading: "Web3 and digital asset marketing",
+    subHeading: "For products where trust is harder to earn than attention",
+    summary:
+      "Web3 audiences arrive sceptical and leave quickly. Advertising is restricted, markets move fast, and credibility is lost faster than it is earned. Most of the work is reputational before it is promotional: community, credibility and clear explanations of something many people have never used.",
+    challenges: {
+      eyebrow: CHALLENGES_EYEBROW,
+      heading: "What Web3 marketing has to solve",
+      lead: "The market has moved on from launch hype. Users, partners and investors now look for evidence that a project is credible, operates within the rules and will still be here next year.",
+      items: [
         {
-          image: "/industries/mq_1.webp",
-          heading:
-            "Are your token launches falling short of reaching the right audience?",
-          text: "Boosted whitelist sign-ups by 250% for a token presale campaign."
+          heading: "Credibility with a cautious audience",
+          text: "Scams and failed projects have made every audience wary. Credibility comes from a clear account of what the product does, who is behind it and how it is governed, told the same way everywhere people look."
         },
         {
-          image: "/industries/mq_2.webp",
-          heading:
-            "Facing challenges in building credibility and attracting non-crypto-native users?",
-          text: "2X community growth through targeted influencer partnerships for blockchain startups."
+          heading: "Advertising and regulatory limits",
+          text: "The major ad platforms restrict crypto advertising, and in the UK cryptoasset promotions to consumers carry mandatory risk warnings and a ban on incentives to invest. Growth has to come from channels that work within those limits."
         },
         {
-          image: "/industries/mq_3.webp",
-          heading:
-            "Is your brand getting lost in the noise of a rapidly expanding blockchain landscape?",
-          text: "Increased organic website traffic by 300% through strategic content marketing for a new DeFi platform."
+          heading: "Growth that does not depend on the market",
+          text: "Sentiment can turn in a week. Marketing that relies on a rising market stops working when it falls, so the plan is built around what the product is used for rather than what its token is worth."
+        },
+        {
+          heading: "Community that leads somewhere",
+          text: "A large Telegram or Discord group is not the same as an active user base. Community work has to lead to usage, partnerships or a qualified conversation, and be measured on that."
+        },
+        {
+          heading: "Findable between announcements",
+          text: "Announcements fade in days. Search and content built on what people ask before they commit keep a project visible between launches."
         }
       ]
     },
-    howWeWork: {
-      heading: `our  <span> process </span>`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Choose a convenient time for a free consultation and share key details about your web3 project. Include any existing platforms, crypto tokens or blockchain initiatives to help us understand your current position."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "We’ll hop on a call to talk about your web3 project’s vision, target community and unique challenges. We’ll review your digital presence, analyse competitor strategies and also assess current and predicted market conditions to identify growth opportunities."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "You’ll receive a detailed web3 marketing strategy built specifically to your goals. Our plan includes platform recommendations, audience growth tactics, content ideas for your blockchain community, insights into emerging trends in the web3 space and a clear execution timeline with transparent pricing."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "With your approval, we’ll get to work. We’ll manage every aspect of your web3 marketing, including launching influencer partnerships to optimising campaigns for token adoption and community growth so that your project truly shines in the blockchain ecosystem."
-        }
+    help: {
+      eyebrow: HELP_EYEBROW,
+      heading: "Growth that lasts beyond a single launch",
+      body: [
+        "We work with Web3 and digital-asset businesses on the parts of growth that outlast a news cycle: positioning, community, search visibility and the path from interest to active use.",
+        "We do not promise token performance, investment returns or market outcomes, and we do not write marketing that implies them. Where a promotion falls under financial-promotion rules, it goes through your compliance adviser before it is published."
       ]
     },
-    review: {
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
+    capabilities: {
+      eyebrow: CAPABILITIES_EYEBROW,
+      heading: "Five capabilities, applied to Web3",
+      lead: "The same five connected capabilities we use in every market, pointed at the problems specific to Web3 and digital assets.",
+      items: [
+        capability(
+          "01",
+          "Explain what the product does and who it is for in plain language, and position it on utility and credibility rather than price.",
+          ["Audience insight", "competitor positioning", "proposition", "messaging"]
+        ),
+        capability(
+          "02",
+          "Build reach through community, PR, partners and creators chosen for their standing rather than follower count, within each platform's crypto advertising policies.",
+          ["Community management", "social media", "PR", "influencer and partner activity", "campaigns"]
+        ),
+        capability(
+          "03",
+          "Make the project findable and credible in search and AI assistants, with content that answers what people ask before they commit.",
+          ["SEO", "content strategy", "thought leadership", "digital PR"]
+        ),
+        capability(
+          "04",
+          "Turn community interest into active users, partners or qualified conversations, with clear onboarding and follow-up.",
+          ["Landing pages", "onboarding journeys", "email", "community-to-pipeline"]
+        ),
+        capability(
+          "05",
+          "Measure what community and campaigns actually produce: active users, partner conversations and search visibility, not only member counts.",
+          ["Analytics", "campaign reporting", "attribution"]
+        )
       ]
     },
-    questionAndAnswer: {
-      question: `Web3 is moving fast.  <span>Are you? </span>`,
-      answer:
-        "Stop waiting for success to find you. With the right marketing, your new crypto, web3 project can dominate the conversation.",
-      btnText: "Book a consultation – it’s on us!"
+    approach: approach("How a Web3 engagement runs", [
+      "We start with the commercial objective, the product's stage and the rules that apply to how it can be promoted.",
+      "We review your positioning, community, search visibility and channels against the projects your audience compares you with.",
+      "You receive a prioritised plan covering what should change, which channels to use within the relevant restrictions and how progress will be measured.",
+      "Our specialists run the agreed programme, report against the agreed KPIs and adjust the work as the evidence comes in."
+    ]),
+    evidence: {
+      client: "BlockGuard",
+      eyebrow: "Evidence",
+      heading: "Web3 work we can show"
     },
+    faqHeading: "Common questions about Web3 marketing",
     faqs: [
       {
-        question: "What makes Pixelette Marketing different from other crypto marketing agencies?",
+        question: "Do you promise token performance or returns?",
         answer:
-          "Pixelette Marketing offers specialised, data-driven strategies for web3/blockchain/crypto projects, combining years of industry expertise with marketing solutions to unlock growth for new and existing web3 businesses."
+          "No. No marketing agency can responsibly promise token performance, investment returns or market outcomes, and we do not. We can make a project clearer, more credible and easier to find, and measure the effect of that work."
       },
       {
-        question: "How much does crypto marketing cost?",
-        answer: "The cost varies based on the scope of services and project needs. The best thing about working with Pixelette Marketing for your crypto project is that we provide customised packages and engagement models to fit your budget and marketing goals."
+        question: "How do you market a crypto product when ad platforms restrict it?",
+        answer:
+          "Through the channels that work within the rules: community, PR, partnerships, search and content, with paid media only where the platform's policy and the relevant regulations allow it. In the UK, cryptoasset promotions to consumers carry their own requirements, which your compliance adviser should review."
       },
       {
-        question: "Can you help with tokenomics consulting?",
-        answer: "Absolutely, we offer tokenomics consulting to help structure your token model for sustainable growth and investor engagement."
+        question: "Is Web3 marketing mostly community management?",
+        answer:
+          "Community matters, but on its own it rarely produces growth. It works when it is connected to clear positioning, search visibility and a path from interest to use."
       },
       {
-        question: "How is crypto marketing different from traditional marketing?",
-        answer: "Crypto marketing requires targeting a niche, tech-savvy audience by using community-driven platforms like Telegram, Discord and blockchain-specific tools. It’s not everyone’s cup of tea, with our exception, of course."
-      },
-      {
-        question: "What Web3 industries do you cover in your crypto marketing services?",
-        answer: "We cover DeFi, NFTs, DAOs, metaverse projects, crypto exchanges and several other web3 industries."
-      },
-      {
-        question: "What kind of crypto marketing services does Pixelette Marketing provide?",
-        answer: "Our services include crypto community management, crypto influencer outreach and marketing, crypto PR, web3 content marketing, web3 paid ads, token sale strategies and a lot more."
-      },
-      {
-        question: "Do your services cover Discord and Telegram management and crypto community building?",
-        answer: "Yes, we specialise in managing and growing communities on platforms like Discord and Telegram for a web3 brand’s engagement and loyalty."
-      },
-      {
-        question: "How do you approach Token Sale Marketing?",
-        answer: "We create token sale marketing campaigns suited only to your brand, targeting investors through community engagement, influencer partnerships and data-driven advertising."
+        question: "Do you only work with Web3 businesses?",
+        answer:
+          "No. Pixelette Marketing works with businesses across established and emerging sectors. Web3 and digital assets is one of five markets where our wider experience gives us additional depth."
       }
     ],
-    marketingServices: {
-      title: "",
-      heading: `Our web3 <span>marketing services  </span> `,
-      detail:
-        "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
-      data: [
-        {
-          heading: "Crypto Content Marketing",
-          detail:
-            "Boost your brand’s visibility and create connections with new audiences and potential investors through our affordable crypto social media marketing services. Creating the right type of content on channels frequented by crypto and web3 users will allow your brand to build credibility and foster trust with your target audience."
-        },
-        {
-          heading: "Crypto Community Management",
-          detail:
-            "Communities are the backbone of any successful web3 project. Our crypto community management services focus on building and managing engaged web3 communities on platforms like Discord and Telegram to amplify your message, attract users and boost engagement."
-        },
-        {
-          heading: "Crypto PR Marketing",
-          detail:
-            "Our crypto PR services tap into media relationships to craft a positive image, enhancing your project’s reputation within the crypto community through thoughtfully crafted news and media coverage."
-        },
-        {
-          heading: "Crypto SEO Services",
-          detail:
-            "Search engine optimisation can propel your website to the top of organic search results, if done correctly. Our crypto SEO services will help in driving significant traffic and bringing in a steady flow of potential users eager to engage with your offerings."
-        },
-        {
-          heading: "Crypto Influencer Marketing",
-          detail:
-            "Reach your target audience quickly and effectively with the help of crypto influencer marketing. Our extensive network of over 300 popular influencers in crypto, web3 and blockchain can magnify your brand, build credibility and create you a solid community."
-        },
-        {
-          heading: "Crypto Paid Ads & PPC",
-          detail:
-            "Tech products and platforms deserve the spotlight for being innovative, and our social media marketing services for tech and IT companies do just that. Our strategies for tech social media pages make sure the audience knows you’re bringing real change in the tech space and that they should be a part of it."
-        },
-        {
-          heading: "Web3 Email Marketing",
-          detail:
-            "Drive engagement and build loyalty with our web3 email marketing services. From token announcements to project updates, our web3 email campaigns have the power to reach the right audience and increase conversions across the marketing lifecycle without demanding too much out of your pocket."
-        },
-        {
-          heading: "Crypto Brand Building",
-          detail:
-            "Crafting a unique and memorable brand story that resonates with the crypto community is our goal. Our time-tested tactics will not only convey the key benefits and features of your project, but also evoke trust and inspire confidence, setting your brand apart in the web3 space."
-        }
-      ]
+    close: {
+      lead: "Tell us what you are building, who it is for and where growth has stalled. We will review the enquiry and come back with the most relevant next step."
     }
   },
   {
     id: 2,
     title: "Fintech Marketing",
+    label: "Fintech",
     metaTitle: "Fintech Digital Marketing Agency | Pixelette Marketing",
-    metaDescription: "Launching in fintech means pressure from day 1. Our Fintech Marketing Services help prove value & earn users in the toughest financial markets.",
-    metaKeywords: "fintech marketing, fintech digital marketing agency, fintech marketing services",
+    metaDescription:
+      "Marketing for regulated financial products: trust, acquisition and differentiation you can substantiate, delivered alongside your legal and compliance teams.",
+    metaKeywords:
+      "fintech marketing, fintech digital marketing agency, fintech marketing services",
     route: "fintech",
-    mainHeading: "We’re a fintech marketing agency",
-    subHeading: "converting prospects into assets",
-    summary:
-      "Partner with Pixelette Marketing to position your goals with marketing strategies designed to drive growth, build trust and create a lasting footprint in the fintech industry.",
+    hubLine:
+      "Growth inside a regulated market, where compliance shapes what you are allowed to say and trust decides who listens.",
     image: "/industries/fintech.png",
-    ourSolutions: {
-      heading: `We solve <span> fintech marketing’s toughest questions</span>`,
-      text: "Fintech companies often face challenges like limited user trust, difficulty scaling and standing out in a crowded market. Here’s how our fintech marketing solutions have turned these challenges into measurable success stories.",
-      data: [
+    mainHeading: "Fintech marketing",
+    subHeading: "For regulated products, where what you may say shapes what you can sell",
+    summary:
+      "In financial services, compliance shapes the message before marketing ever sees it. Claims need substantiating, promotions need sign-off, and trust decides who gets a hearing at all. The work is building demand inside those limits rather than around them.",
+    challenges: {
+      eyebrow: CHALLENGES_EYEBROW,
+      heading: "What fintech marketing has to solve",
+      lead: "Most fintechs describe themselves as secure, simple and good value. The ones that grow can show it, within the rules on what they may say.",
+      items: [
         {
-          image: "/industries/mq_1.webp",
-          heading:
-            "Struggling to earn user trust in a competitive fintech landscape?",
-          text: "Increased app sign-ups by 200% through strategic influencer partnerships and educational content."
+          heading: "Trust before anything else",
+          text: "People are being asked to hand over money or financial data. Before they compare features, they want to know who you are, who regulates you and what happens if something goes wrong."
         },
         {
-          image: "/industries/mq_2.webp",
-          heading:
-            "Is your fintech platform facing challenges in scaling user acquisition?",
-          text: "Boosted conversions by 300% for a neobank launch using targeted paid ad campaigns and optimised funnels."
+          heading: "Rules that shape the message",
+          text: "In the UK, financial promotions must be fair, clear and not misleading, and some need approval by an authorised firm before they can be published. Campaigns that ignore this stall in approval, or are withdrawn after launch."
         },
         {
-          image: "/industries/mq_3.webp",
-          heading:
-            "Finding it hard to stand out in a crowded digital ecosystem?",
-          text: "Achieved 150% growth in organic traffic for a payments platform through focused SEO and content strategies."
+          heading: "Acquisition that survives sign-off",
+          text: "Acquisition costs are high and approval cycles are slow. Campaigns need to be designed with sign-off in mind from the first draft, so they launch on time instead of being rewritten."
+        },
+        {
+          heading: "Differentiation you can substantiate",
+          text: "Standing apart in fintech has to be specific and provable: a fee, a feature, a service standard. Vague claims of superiority are weak marketing and a compliance risk at the same time."
         }
       ]
     },
-    howWeWork: {
-      heading: `our  <span> process </span>`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Schedule a free consultation and share details about your fintech project. Whether you’re launching a new app or scaling operations, we’ll work to understand your unique needs."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "Our team will review your digital presence, assess competitor strategies and analyse market trends to write down any growth opportunities suited to your fintech solution."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "We’ll deliver a detailed fintech marketing strategy customised to your goals. This includes platform recommendations, content ideas, audience targeting tactics and a clear execution roadmap with transparent pricing."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "With your approval, we’ll get to work. From influencer partnerships to SEO strategies, we manage every aspect to ensure your fintech project stands out in the market."
-        }
+    help: {
+      eyebrow: HELP_EYEBROW,
+      heading: "Demand built inside the limits",
+      body: [
+        "We help fintech companies turn a regulated proposition into demand they can measure: a sharper message, the right channels and a better path from first visit to account opening or sales conversation.",
+        "We are not a law firm or a regulatory adviser, and we do not decide whether a promotion complies. We work alongside the client's legal and compliance teams so marketing can move through the appropriate approval process, and we plan the work around that process from the start."
       ]
     },
-    review: {
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
+    capabilities: {
+      eyebrow: CAPABILITIES_EYEBROW,
+      heading: "Five capabilities, applied to fintech",
+      lead: "The same five connected capabilities we use in every market, pointed at the problems specific to regulated financial products.",
+      items: [
+        capability(
+          "01",
+          "Find the differentiation you can substantiate and turn it into a proposition that keeps its edge through compliance review.",
+          ["ICP and buyer insight", "competitor positioning", "proposition", "messaging"]
+        ),
+        capability(
+          "02",
+          "Acquire customers through paid, social, PR and partner channels, planned within each platform's financial-services advertising policies.",
+          ["Paid search and social", "LinkedIn", "PR", "partner activity", "community management"]
+        ),
+        capability(
+          "03",
+          "Answer the questions people ask about safety, fees, regulation and switching, which is where much of the high-intent search in financial services sits.",
+          ["SEO", "content strategy", "educational content", "digital PR"]
+        ),
+        capability(
+          "04",
+          "Improve the path from first visit to application, sign-up or sales conversation, including the onboarding steps where trust is most often lost.",
+          ["Landing pages", "conversion optimisation", "lifecycle and email", "lead generation"]
+        ),
+        capability(
+          "05",
+          "Measure acquisition cost and conversion by channel and segment, so spend moves towards the customers who activate and stay.",
+          ["Analytics", "attribution", "reporting", "experimentation"]
+        )
       ]
     },
-    questionAndAnswer: {
-      question: ` Fintech’s fast track is open. <span>  Are you? </span>`,
-      answer:
-        "Don’t let your fintech innovation go unnoticed. With the right marketing strategies, your fintech project can lead the conversation and drive change.",
-      btnText: "Book a consultation – it’s on us!"
-    },
+    approach: approach("How a fintech engagement runs", [
+      "We start with the commercial objective, the product's regulatory position and how your approval process works today.",
+      "We review your positioning, channels, funnel and competitors, and identify the claims doing the most work and the evidence behind each one.",
+      "You receive a prioritised plan showing what should change, how each piece of work will move through your approval process and how performance will be measured.",
+      "We run the agreed programme with sign-off built into the schedule, report against the agreed KPIs and improve the work as the evidence comes in."
+    ]),
+    faqHeading: "Common questions about fintech marketing",
     faqs: [
       {
-        question: "What Fintech marketing services do you offer?",
-        answer: "We specialise in marketing for Fintech companies, including digital banking, lending platforms, payment gateways, and cryptocurrency exchanges. Our services include brand building, customer acquisition, financial education campaigns, and regulatory compliance marketing."
+        question: "Will you make sure our marketing complies with FCA rules?",
+        answer:
+          "No agency should promise that, and we do not. Responsibility for approving financial promotions sits with your firm and, where required, an authorised person. We work alongside your legal and compliance teams, build their review into the schedule and keep the evidence for each claim so that approval is quicker."
       },
       {
-        question: "How do you approach marketing for the Fintech industry?",
-        answer: "We understand the unique challenges and opportunities within the Fintech sector. Our approach emphasises data-driven strategies, innovative marketing tactics, and a deep understanding of financial regulations."
+        question: "Can you run paid advertising for financial products?",
+        answer:
+          "Yes, within each platform's rules. The major ad platforms restrict financial-services advertising, and some require advertisers to be verified before campaigns can run. We plan for that from the start rather than discovering it at launch."
       },
       {
-        question: "How do you ensure compliance with financial regulations?",
-        answer: "We work closely with legal and compliance teams to ensure all marketing activities adhere to relevant regulations and industry best practices."
-      }
-      ,
+        question: "Do you work with cryptoasset firms?",
+        answer:
+          "Yes. Cryptoasset promotions to UK consumers have their own, stricter rules. Our Web3 and digital asset page covers how we approach that market."
+      },
       {
-        question: "How do you build trust and credibility in the Fintech space?",
-        answer: "We focus on building trust and credibility through transparent communication, clear and concise messaging, and showcasing strong security measures."
-      }
-      ,
-      {
-        question: "How do I get started with Fintech marketing services from Pixelette Marketing?",
-        answer: "Schedule a free consultation with our Fintech marketing experts to discuss your business goals and explore our tailored solutions."
+        question: "Do you only work with fintech companies?",
+        answer:
+          "No. Pixelette Marketing works with businesses across established and emerging sectors. Fintech is one of five markets where our wider experience gives us additional depth."
       }
     ],
-    marketingServices: {
-      title: "",
-      heading: `<span> Our fintech </span> marketing services   `,
-      detail:
-        "We collaborate with you to create fintech marketing campaigns that unlock your business’s potential and position you for sustained success.",
-      data: [
-        {
-          heading: "Fintech Social Media Marketing",
-          detail:
-            "Enhance your brand’s presence and reach potential customers through our fintech social media marketing services. With data-driven content and campaigns, we help you promote trust, increase visibility and drive engagement on platforms where your audience is most active."
-        },
-        {
-          heading: "Fintech Community Management",
-          detail:
-            "Strong communities drive trust and advocacy in fintech. Our community management services for fintech focus on promoting vibrant and engaged communities on platforms like LinkedIn and Twitter to spread out your message and deepen user connections."
-        },
-        {
-          heading: "Fintech PR Marketing",
-          detail:
-            "Shape public perception and elevate your brand’s credibility with our fintech PR services. We craft compelling narratives and secure media coverage to position your company as a trusted leader in the industry."
-        },
-        {
-          heading: "Fintech SEO Services",
-          detail:
-            "Stay ahead of the competition with our fintech-focused SEO strategies. From keyword optimisation to technical audits, we help your platform climb search rankings and attract high-quality, organic traffic."
-        },
-        {
-          heading: "Fintech Influencer Marketing",
-          detail:
-            "Reach your target audience with our fintech influencer marketing services. By collaborating with influencers in finance, tech and lifestyle niches, we help you build credibility and expand your reach."
-        },
-        {
-          heading: "Fintech Paid Ads & PPC",
-          detail:
-            "Drive targeted traffic and scale user acquisition with our fintech advertising solutions. Whether through Google Ads, LinkedIn Ads or Meta Ads, we create high-performance campaigns that deliver measurable results."
-        },
-        {
-          heading: "Fintech Email Marketing",
-          detail:
-            "Use our email marketing expertise to engage users and build loyalty. From onboarding sequences to product updates, our fintech email campaigns drive higher engagement rates and boost conversions while staying cost-efficient."
-        },
-        {
-          heading: "Fintech Marketing Analytics",
-          detail:
-            "Stay informed and optimise your strategies with our fintech marketing analytics and reporting services. Gain insights into campaign performance and user behaviour to make data-driven decisions that enhance return on your investment."
-        }
-        ,
-        {
-          heading: "Fintech Lead Generation",
-          detail:
-            "Generate high-quality leads with our tailored lead generation campaigns. Using data-driven insights, we help you identify, engage, and convert potential customers across the fintech ecosystem."
-        }
-      ]
+    close: {
+      lead: "Tell us about the product, the customers you want to reach and how approval works today. We will review the enquiry and come back with the most relevant next step."
     }
   },
   {
     id: 3,
     title: "Tech Marketing",
+    label: "Technology",
     metaTitle: "B2B & B2C Tech Marketing Agency | Pixelette Marketing",
-    metaDescription: "Tech Marketing Services built for complexity. We help tech companies of all sizes turn technical products into market-ready brands. Let's connect!",
+    metaDescription:
+      "Marketing for technically complex products with long buying journeys: turning technical capability into value a whole buying committee can agree on.",
     metaKeywords: "tech marketing agency, b2b tech marketing agency, tech marketing services",
     route: "tech",
-    mainHeading: "We’re a tech marketing agency ",
-    subHeading: "connecting innovation to the world",
-    summary:
-      "Partner with Pixelette Marketing to connect your technology product and platform solutions with the right audience, as well as drive growth, build trust, and position your company as an industry leader.",
+    hubLine:
+      "Long buying cycles and technical buyers, where the decision is made by a committee you rarely get in the room.",
     image: "/industries/tech.png",
-    ourSolutions: {
-      heading: `We solve tech <span> marketing’s toughest questions</span>`,
-      text: "The tech industry faces unique hurdles like high competition, complex messaging, and staying ahead in an evolving technological landscape. Here’s how our tech marketing strategies have helped companies overcome these challenges.",
-      data: [
+    mainHeading: "Technology marketing",
+    subHeading: "For long sales cycles and buying committees you rarely get in the room",
+    summary:
+      "Technology purchases are rarely decided by the person you are talking to. The cycle is long, the evaluation is technical, and the decision is made by a committee with competing priorities. Much of the job is equipping your champion for meetings you will never attend.",
+    challenges: {
+      eyebrow: CHALLENGES_EYEBROW,
+      heading: "What technology marketing has to solve",
+      lead: "Technical products are often sold by people who understand them to buyers who judge them on something else: cost, risk, effort and whether it will work in their organisation.",
+      items: [
         {
-          image: "/industries/mq_1.webp",
-          heading: "Struggling to break through in a crowded tech landscape?",
-          text: "Increased visibility by 250% for a client through targeted social media and content marketing campaigns."
+          heading: "Capability translated into buyer value",
+          text: "Architecture, integrations and performance matter to the evaluator. The budget holder wants to know what changes for the business, what it costs and what it replaces. The message has to work for both."
         },
         {
-          image: "/industries/mq_2.webp",
-          heading:
-            "Finding it hard to communicate complex tech solutions effectively?",
-          text: "Simplified messaging company, boosting lead generation by 300% through strategic PR and educational content."
+          heading: "A long journey with many decision-makers",
+          text: "Technical, financial, operational and security stakeholders all have a say, often over months. Each needs different material, and most of it will be read when you are not in the room."
         },
         {
-          image: "/industries/mq_3.webp",
-          heading:
-            "Facing challenges in scaling adoption for emerging technologies?",
-          text: "Achieved 2x user growth by combining influencer marketing with targeted PPC campaigns, for visibility and qualified traffic on platform."
+          heading: "Evidence that reduces the risk",
+          text: "Buying the wrong system is expensive and visible. Buyers look for references, case studies, security and compliance information and clear answers on implementation before they commit."
+        },
+        {
+          heading: "Technical difference made commercial",
+          text: "A better product does not win on its own. Its technical advantage has to be expressed as an outcome a buyer can defend to the rest of the business."
         }
       ]
     },
-    howWeWork: {
-      heading: `our  <span> process </span>`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Schedule a free consultation and share details about your tech company. Whether you’re launching a product, scaling operations or exploring new markets, we’ll work to understand your unique challenges and goals."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "Our team will analyse your digital presence, assess competitors and explore market trends for growth opportunities suited to your tech business."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "We’ll create a detailed tech marketing strategy that includes platform recommendations, audience targeting tactics and a clear roadmap for execution with transparent pricing."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we manage every detail to make sure your tech company stands out in the market."
-        }
+    help: {
+      eyebrow: HELP_EYEBROW,
+      heading: "Explaining complex products to the people who approve them",
+      body: [
+        "We help technology companies say what they do in terms a buying committee can agree on, and build the demand, content and conversion path around a long sales cycle. The language stays commercial: we write for the people who approve the budget as well as the people who test the product.",
+        "Pixelette Marketing is part of the wider Pixelette Group. Where a message depends on technical accuracy, we can draw on engineers at Pixelette Technologies rather than guess at the detail."
       ]
     },
-    review: {
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
+    capabilities: {
+      eyebrow: CAPABILITIES_EYEBROW,
+      heading: "Five capabilities, applied to technology",
+      lead: "The same five connected capabilities we use in every market, pointed at long cycles, technical evaluation and buying committees.",
+      items: [
+        capability(
+          "01",
+          "Translate technical capability into a proposition a budget holder can repeat, and decide which buyers and use cases to lead with.",
+          ["ICP and buying-committee mapping", "competitor positioning", "proposition", "messaging"]
+        ),
+        capability(
+          "02",
+          "Reach each member of the buying committee in the channels they use, from search and LinkedIn to industry media and partners.",
+          ["Paid search and social", "LinkedIn", "account-based campaigns", "PR", "partner activity"]
+        ),
+        capability(
+          "03",
+          "Build the content a champion can forward: explanations, comparisons and evidence that answer the committee's questions before they are asked.",
+          ["SEO", "content strategy", "thought leadership", "digital PR", "AI-assisted discovery"]
+        ),
+        capability(
+          "04",
+          "Keep opportunities moving through a long cycle with nurture, sales material and a clear handoff, so interest does not go cold between meetings.",
+          ["Lead generation", "account nurture", "email", "sales enablement content", "sales handoff"]
+        ),
+        capability(
+          "05",
+          "Connect marketing activity to pipeline and closed revenue over the length of the cycle, not only the month a campaign ran.",
+          ["Analytics", "attribution", "pipeline reporting", "experimentation"]
+        )
       ]
     },
-    questionAndAnswer: {
-      question: `  Tech is advancing fast. <span>Are you? </span>`,
-      answer:
-        "Don’t let your tech breakthroughs go unnoticed. With the right marketing strategies, your tech company can lead the market and redefine the future.",
-      btnText: "Book a consultation – it’s on us!"
+    approach: approach("How a technology engagement runs", [
+      "We start with the commercial objective, the buying committee and where deals currently slow down or stop.",
+      "We review your positioning, content, channels and sales material against the alternatives buyers evaluate you against, including doing nothing.",
+      "You receive a prioritised plan covering what should change for each role in the buying committee and how pipeline progress will be measured.",
+      "Our specialists run the agreed programme, report against the agreed KPIs and improve the work as the evidence comes in."
+    ]),
+    evidence: {
+      client: "WebBookingPro",
+      eyebrow: "Evidence",
+      heading: "Technology work we can show"
     },
+    faqHeading: "Common questions about technology marketing",
     faqs: [
       {
-        question: "What is Tech Customer Education & Onboarding?",
-        answer: "We help you guide your customers through their journey with your tech products or services."
+        question: "Do you write for technical or business audiences?",
+        answer:
+          "Both, and usually in separate pieces. Evaluators need detail and accuracy; budget holders need outcomes, cost and risk. We plan content for each role in the buying committee rather than one message for everyone."
       },
       {
-        question: "How do you help with Tech Customer Education & Onboarding?",
-        answer: "We create engaging resources like tutorials, guides, and webinars. We also provide personalised support and onboarding resources to ensure a smooth customer experience."
+        question: "How do you measure marketing when the sales cycle is long?",
+        answer:
+          "We track leading indicators such as engaged accounts, qualified opportunities and movement between pipeline stages alongside closed revenue, and we agree in advance which of them the work will be judged on."
       },
       {
-        question: "What are Tech Webinars & Virtual Events?",
-        answer: "We plan and execute webinars and virtual events such as product demos, industry insights, and Q&A sessions with experts."
-      }
-      ,
+        question: "Do you work with our sales team?",
+        answer:
+          "Yes. In long buying journeys marketing and sales depend on each other. We agree what counts as a qualified lead, build the material sales needs and set up the handoff between the two."
+      },
       {
-        question: "What are the benefits of Tech Webinars & Virtual Events?",
-        answer: "These events educate your audience, build brand awareness, and generate leads."
-      }
-      ,
-      {
-        question: "What platforms do you focus on for Tech Advertising & PPC?",
-        answer: "We manage campaigns across search engines, social media, and display networks."
-      }
-      ,
-      {
-        question: "How do you ensure success in PPC?",
-        answer: "We optimise bids, track performance, and use data-driven strategies to maximise your return on investment."
+        question: "Do you only work with technology companies?",
+        answer:
+          "No. Pixelette Marketing works with businesses across established and emerging sectors. Technology is one of five markets where our wider experience gives us additional depth."
       }
     ],
-    marketingServices: {
-      title: "",
-      heading: ` <span> Our tech </span>  marketing services `,
-      detail:
-        "We collaborate with you to design impactful tech marketing campaigns that bring your  new solutions to the forefront and set the stage for long-term success.",
-      data: [
-        {
-          heading: "Tech Social Media Marketing",
-          detail:
-            "Strengthen your brand’s recognition and connect with decision-makers and users through our tech social media marketing services. We create platform-specific content that builds authority and increases your influence."
-        },
-        {
-          heading: "Tech Community Management",
-          detail:
-            "Build meaningful connections and nurture engaged communities on platforms like LinkedIn and Twitter. Our tech community management services strengthen your message and drive impactful user interactions."
-        },
-        {
-          heading: "Tech PR Marketing",
-          detail:
-            "Build credibility and generate buzz with our tech PR services. We create compelling narratives and secure media coverage to establish your company as a trusted voice in the tech industry."
-        },
-        {
-          heading: "Tech SEO Services",
-          detail:
-            "Carve out a place for your brand at the top of search results with targeted SEO strategies. From keyword research to content optimisation, our tech SEO services help your company attract high-quality traffic and increase visibility."
-        },
-        {
-          heading: "Tech Influencer Marketing",
-          detail:
-            "Collaborate with industry influencers to showcase your solutions. Our influencer marketing services for tech companies connect your brand with the right voices to build trust and drive awareness."
-        },
-        {
-          heading: "Tech Paid Ads & PPC",
-          detail:
-            "Drive targeted traffic and generate measurable results with paid advertising. From Google Ads to LinkedIn campaigns, we design cost-effective ads that scale your tech company’s growth."
-        },
-        {
-          heading: "Tech Email Marketing",
-          detail:
-            "Use email marketing to nurture leads, announce new products, and build loyalty. Our email marketing services for tech companies deliver personalised campaigns that drive conversions and retention."
-        },
-        {
-          heading: "Tech Marketing Analytics",
-          detail:
-            "Gain valuable perspectives on your campaigns with our analytics and reporting services. Track key performance metrics, fine-tune strategies and drive growth that is measurable."
-        }
-        ,
-        {
-          heading: "Tech Lead Generation",
-          detail:
-            "Identify, engage, and convert high-quality leads with our data-driven lead generation services. We help you build a solid sales pipeline suited to your tech solutions."
-        }
-      ]
+    close: {
+      lead: "Tell us what you sell, who has to agree to buy it and where deals slow down. We will review the enquiry and come back with the most relevant next step."
     }
   },
   {
     id: 4,
-    title: "Saas Marketing",
+    title: "SaaS Marketing",
+    label: "SaaS",
     metaTitle: "SaaS Marketing Agency | Pixelette Marketing",
-    metaDescription: "Convert users, reduce churn and increase MRR with our SaaS Marketing Services built for every stage of the funnel. Book a discovery call (it's on us).",
-    metaKeywords: "saas marketing agency, saas marketing services, digital marketing for saas companies",
+    metaDescription:
+      "SaaS marketing connected from positioning to payback: standing out in a crowded category, turning interest into trials and demos, and measuring what drives revenue.",
+    metaKeywords:
+      "saas marketing agency, saas marketing services, digital marketing for saas companies",
     route: "saas",
-    mainHeading: "We’re a SaaS marketing agency ",
-    subHeading: "transforming software into market success",
-    summary:
-      "Partner with Pixelette Marketing to connect your SaaS solutions with the right audience, driving growth, building trust and establishing your company as a market leader.",
+    hubLine:
+      "Demand that converts to trial, trials that convert to revenue, and retention that makes both worth paying for.",
     image: "/industries/saas.png",
-    ourSolutions: {
-      heading: `We solve SaaS <span> marketing’s toughest questions </span>`,
-      text: "SaaS companies face unique challenges like high churn rates, scaling user acquisition and standing out in a competitive market. Here’s how our SaaS marketing strategies have delivered results.",
-      data: [
+    mainHeading: "SaaS marketing",
+    subHeading: "For products where the sale is only the start of the revenue",
+    summary:
+      "SaaS growth is a chain rather than an event: demand that converts to trial, trials that convert to paid, and retention that makes the acquisition cost worth paying. A break anywhere in that chain shows up as a marketing problem long after it stopped being one.",
+    challenges: {
+      eyebrow: CHALLENGES_EYEBROW,
+      heading: "What SaaS marketing has to solve",
+      lead: "Most SaaS categories are crowded, and most SaaS websites describe features in language a buyer could find on ten competitors' sites.",
+      items: [
         {
-          image: "/industries/mq_1.webp",
-          heading:
-            "Struggling to communicate the full value of your software to potential users?",
-          text: "Created an onboarding process for a workflow management SaaS, increasing active user engagement by 50% within the first month."
+          heading: "Standing out in a crowded category",
+          text: "When a buyer's shortlist already holds ten tools, feature lists stop helping. The job is a clear answer to why this product, for this kind of customer, over the obvious alternatives."
         },
         {
-          image: "/industries/mq_2.webp",
-          heading:
-            "Finding it hard to generate consistent, high-quality leads?",
-          text: "Delivered a 200% boost in qualified leads through integrated content marketing and targeted ad campaigns."
+          heading: "Acquisition that pays back",
+          text: "Paid channels get more expensive as categories fill up. Growth depends on knowing what a customer costs to acquire, how long it takes to earn that back, and which channels bring customers who stay."
         },
         {
-          image: "/industries/mq_3.webp",
-          heading:
-            "Finding it hard to generate consistent, high-quality leads?",
-          text: "Helped a SaaS tool secure its place as an industry leader by driving 3x growth in organic search traffic through thought leadership content and strategic partnerships."
+          heading: "From interest to trial, demo and use",
+          text: "A sign-up is not a customer. Trials and demos have to lead to activation, which means onboarding, nurture and sales follow-up are part of marketing's job rather than someone else's."
+        },
+        {
+          heading: "Pipeline that fits, not pipeline that fills",
+          text: "Volume sales cannot close costs more than it looks. Demand aimed at fit means fewer wasted demos and more accounts that renew and expand."
         }
       ]
     },
-    howWeWork: {
-      heading: `our  <span> process </span>`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Schedule a free consultation and share details about your SaaS product. Whether you’re launching a new feature, scaling operations, or exploring new markets, we’ll work to understand your unique challenges and goals."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "Our team will analyse your digital presence, assess competitors, and explore market trends to uncover growth opportunities tailored to your SaaS business."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "We’ll craft a detailed SaaS marketing strategy that includes platform recommendations, audience targeting tactics, and a clear roadmap for execution with transparent pricing."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From email strategies to SEO, we manage every detail to ensure your SaaS product stands out in the market."
-        }
+    help: {
+      eyebrow: HELP_EYEBROW,
+      heading: "Connecting the chain from demand to revenue",
+      body: [
+        "We help SaaS companies connect the parts of growth that usually sit in different teams: positioning, acquisition, conversion, activation and the measurement that ties them together.",
+        "Where marketing can influence retention and expansion, through onboarding, lifecycle email and customer communication, we include it in the plan. Where the real issue is product, pricing or support, we will say so."
       ]
     },
-    review: {
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
+    capabilities: {
+      eyebrow: CAPABILITIES_EYEBROW,
+      heading: "Five capabilities, applied to SaaS",
+      lead: "The same five connected capabilities we use in every market, in the order a SaaS funnel runs: positioning, demand, search, conversion and measurement.",
+      items: [
+        capability(
+          "01",
+          "Define the customer you win best and why, and make that the centre of the website, the sales deck and every campaign.",
+          ["ICP and buyer insight", "competitor positioning", "proposition", "messaging"]
+        ),
+        capability(
+          "02",
+          "Create and capture demand in the channels your best customers use, with budgets set against payback rather than volume.",
+          ["Paid search and social", "LinkedIn", "demand generation", "community", "partner activity"]
+        ),
+        capability(
+          "03",
+          "Be found by the problem, not only the category, through search and content built on what buyers ask before they know which tool they need.",
+          ["SEO", "content strategy", "comparison pages", "thought leadership", "AI-assisted discovery"]
+        ),
+        capability(
+          "04",
+          "Improve the path from visit to trial or demo, and from trial to activation, with landing pages, nurture and a clean handoff to sales.",
+          ["Landing pages", "trial and demo conversion", "onboarding and lifecycle email", "nurture", "sales handoff"]
+        ),
+        capability(
+          "05",
+          "Track acquisition cost, conversion and payback by channel, so budget follows the customers who activate and stay.",
+          ["Analytics", "attribution", "funnel reporting", "experimentation"]
+        )
       ]
     },
-    questionAndAnswer: {
-      question: `SaaS solutions are scaling fast.  <span>Are you? </span>`,
-      answer:
-        "Set your SaaS product apart. Our marketing strategies connect your software with the right audience, fueling adoption and driving success in the market.",
-      btnText: "Book a consultation – it’s on us!"
-    },
+    approach: approach("How a SaaS engagement runs", [
+      "We start with the commercial objective and the numbers behind it: acquisition cost, trial or demo conversion, activation and churn, as far as they are tracked today.",
+      "We review positioning, channels, website and funnel against the competitors your buyers compare you with, and find where the chain from demand to revenue breaks.",
+      "You receive a prioritised plan covering what should change, what should be tested and how each change will be measured.",
+      "Our specialists run the agreed programme, report against the agreed KPIs and improve the work as the evidence comes in."
+    ]),
+    faqHeading: "Common questions about SaaS marketing",
     faqs: [
       {
-        question: "What is SaaS Marketing?",
-        answer: "SaaS Marketing focuses on promoting Software as a Service (SaaS) solutions to businesses and individuals. It involves strategies to acquire new customers, increase revenue, and build brand loyalty."
+        question: "Which metrics should SaaS marketing be judged on?",
+        answer:
+          "The ones connected to revenue: customer acquisition cost, payback period, trial or demo conversion, activation, and retention by acquisition channel. Traffic and follower counts are useful signals but poor targets."
       },
       {
-        question: "What SaaS Marketing services do you offer?",
-        answer: "We offer a range of services, including demand generation, content marketing, account-based marketing (ABM), paid advertising, and sales enablement."
+        question: "Does a product-led or sales-led model change the marketing?",
+        answer:
+          "Yes. A product-led model puts more weight on sign-up, onboarding and in-product activation; a sales-led model puts more weight on qualified demos, sales material and handoff. Many companies run both, and the plan should reflect which one actually produces revenue."
       },
       {
-        question: "How do you help SaaS companies grow?",
-        answer: "We develop and execute targeted campaigns that attract qualified leads, nurture them through the sales funnel, and drive customer acquisition."
-      }
-      ,
+        question: "Can marketing reduce churn?",
+        answer:
+          "It can influence it. Clear positioning attracts customers who fit, and onboarding and lifecycle communication help them reach value sooner. Product, pricing and support usually matter more, and we will say so where they are the real issue."
+      },
       {
-        question: "How do you measure the success of SaaS marketing campaigns?",
-        answer: "We track key metrics such as customer acquisition cost (CAC), customer lifetime value (CLTV), website traffic, and conversion rates to assess campaign performance."
-      }
-      ,
-      {
-        question: "How do I get started with SaaS Marketing services from Pixelette Marketing?",
-        answer: "Schedule a free consultation with our SaaS marketing experts to discuss your business goals and explore our tailored solutions."
+        question: "Do you only work with SaaS companies?",
+        answer:
+          "No. Pixelette Marketing works with businesses across established and emerging sectors. SaaS is one of five markets where our wider experience gives us additional depth."
       }
     ],
-    marketingServices: {
-      title: "",
-      heading: ` <span> Our SaaS </span>   marketing services`,
-      detail:
-        "We collaborate with you to design SaaS marketing campaigns that drive adoption, improve retention and position your product for long-term success.",
-      data: [
-        {
-          heading: "SaaS Social Media Marketing",
-          detail:
-            "Engage with your ideal audience through our bespoke SaaS social media services that build trust and showcase your product’s strengths. From thought leadership posts to interactive campaigns, we create content suited to your SaaS solution."
-        },
-        {
-          heading: "SaaS Community Management",
-          detail:
-            "Strengthen your connection with users by cultivating vibrant communities. Whether on LinkedIn, Twitter, or niche platforms, our SaaS community management services make sure your brand promotes meaningful interactions and user advocacy."
-        },
-        {
-          heading: "SaaS PR Marketing",
-          detail:
-            "Shape the narrative around your SaaS brand with strategic PR efforts. Our SaaS PR Services help you secure impactful media placements and craft compelling stories that highlight your unique value proposition."
-        },
-        {
-          heading: "SaaS SEO Services",
-          detail:
-            "Secure your spot at the top of search results with precision-driven SEO campaigns. We optimise your digital presence with deep keyword research, authoritative content and technical expertise to attract and convert your target users."
-        },
-        {
-          heading: "SaaS Influencer Marketing",
-          detail:
-            "Make use of trusted voices in the tech space to amplify your SaaS product’s reach. Our SaaS influencer marketing services connect you with influencers who resonate with your target audience and align with your brand values."
-        },
-        {
-          heading: "SaaS Paid Ads & PPC",
-          detail:
-            "Increase trial sign-ups and lead generation with targeted paid campaigns. Whether on Google, LinkedIn or social platforms, we design cost-efficient ads that deliver measurable outcomes."
-        },
-        {
-          heading: "SaaS Email Marketing",
-          detail:
-            "Drive meaningful engagement and nurture user loyalty with expertly designed email campaigns. From onboarding sequences to personalised upsell offers, our SaaS email marketing services help you connect with users at every stage of their journey."
-        },
-        {
-          heading: "SaaS Marketing Analytics",
-          detail:
-            "Transform data into actionable strategies with our SaaS marketing analytics services. Track campaign performance, gain clear insights and refine your approach to achieve continuous growth."
-        }
-        ,
-        {
-          heading: "SaaS Lead Generation",
-          detail:
-            "Fuel your sales pipeline with personalised SaaS lead generation campaigns. We help you attract, engage and convert high-value prospects, ensuring sustainable business growth."
-        }
-      ]
+    close: {
+      lead: "Tell us where the chain from demand to revenue is breaking, or where you want growth to come from next. We will review the enquiry and come back with the most relevant next step."
     }
   },
   {
     id: 5,
     title: "AI Marketing",
+    label: "AI",
     metaTitle: "AI Digital Marketing Agency | Pixelette Marketing",
-    metaDescription: "Got the tech but struggling to sell? Our AI Marketing Solutions help cut through the noise, earn trust & convert visitors into committed users. Let’s connect.",
+    metaDescription:
+      "Marketing for AI companies in a market where claims move faster than proof: positioning against real problems, one industry at a time, with evidence buyers accept.",
     metaKeywords: "ai digital marketing agency, ai marketing solutions",
     route: "ai",
-    mainHeading: "We’re an AI marketing agency",
-    subHeading: "transforming intelligence into influence",
-    summary:
-      "Partner with Pixelette Marketing to bridge the gap between your AI innovations and their transformative impact, reaching the right audience to drive adoption, establish trust and solidify your leadership in the AI industry.",
+    hubLine:
+      "A market where claims move faster than proof, and buyers want evidence before they want vision.",
     image: "/industries/ai.png",
-    ourSolutions: {
-      heading: `We solve <span> AI marketing’s toughest questions </span>`,
-      text: "AI companies often struggle to communicate the real-world value of their solutions, resonate with diverse audiences and deal with the complexity of a rapidly changing market. Here’s how our strategic marketing turns these challenges into measurable success.",
-      data: [
+    mainHeading: "AI marketing",
+    subHeading: "For a market where claims move faster than proof",
+    summary:
+      "AI buyers have heard everything already. The market is loud, the claims outrun the evidence, and scepticism is the default setting. Showing what a product does on a real use case now travels further than describing what the technology could do.",
+    challenges: {
+      eyebrow: CHALLENGES_EYEBROW,
+      heading: "What AI marketing has to solve",
+      lead: "Most AI companies do not have a visibility problem. They have a credibility problem, and more reach on its own makes it worse.",
+      items: [
         {
-          image: "/industries/mq_1.webp",
-          heading:
-            "Unsure how to position your AI solution to solve real-world problems?",
-          text: "Developed use-case-focused campaigns driving a 200% increase in enterprise client interest."
+          heading: "Positioning against a real problem, not a capability",
+          text: "Buyers do not buy a model, an agent or an accuracy score. They buy a problem solved. Leading with the capability puts you in a comparison with every company built on the same foundation models."
         },
         {
-          image: "/industries/mq_2.webp",
-          heading:
-            "Struggling to align your AI solutions with industry-specific needs?",
-          text: "Created industry-specific messaging for an AI logistics platform, doubling conversion rates from targeted outreach."
+          heading: "Speaking to one industry at a time",
+          text: "AI for everything persuades no one in particular. A claims handler, a compliance officer and a head of operations need different proof, different language and different reasons to act."
         },
         {
-          image: "/industries/mq_3.webp",
-          heading:
-            "Need to demonstrate the measurable ROI of your AI offerings?",
-          text: "Generated data-driven case studies and testimonials  leading to a 50% boost in qualified lead generation."
+          heading: "Proof a sceptical buyer will actually accept",
+          text: "In this market the buyer wants to see it working before they want to hear where it is going. Use cases, pilots, before-and-after comparisons and named customers carry more weight than any statement about the future of the category."
         }
       ]
     },
-    howWeWork: {
-      heading: `our  <span> process </span>`,
-      data: [
-        {
-          icon: BookIcon,
-          heading: "Book",
-          text: "Schedule a free consultation and share details about your AI solutions. Whether you’re launching a product, scaling operations or exploring new markets, we’ll work to understand your challenges and goals."
-        },
-        {
-          icon: AuditIcon,
-          heading: "Audit",
-          text: "Our team will analyse your digital presence, assess competitors and explore industry trends to find opportunities suited to your AI company."
-        },
-        {
-          icon: PlainIcon,
-          heading: "Plan",
-          text: "We’ll craft a comprehensive AI marketing strategy, including platform recommendations, audience targeting tactics and a detailed roadmap for execution with transparent pricing."
-        },
-        {
-          icon: ExecuteIcon,
-          heading: "Execute",
-          text: "Once approved, we’ll implement your marketing campaigns. From influencer partnerships to SEO strategies, we make sure your AI brand achieves standout success."
-        }
+    help: {
+      eyebrow: HELP_EYEBROW,
+      heading: "Narrowing the story before widening the reach",
+      body: [
+        "We work with AI companies that have a product that works and need the market to understand why it matters. That usually means choosing the problem, the buyer and the evidence first, then building demand around them.",
+        "Pixelette Marketing is part of the wider Pixelette Group, which includes AI and software engineering at Pixelette Technologies. Where a claim depends on technical detail, we can check it with people who build the technology."
       ]
     },
-    review: {
-      data: [
-        {
-          name: "Anthony Bevan",
-          role: "CEO BlockGuard",
-          detail:
-            "BlockGuard's launch was a success thanks to their expertise in branding and driving DeFi community engagement.",
-          image: "/common/t_1.webp"
-        },
-        {
-          name: "Kim Serafini",
-          role: "CEO Positive Prime",
-          detail:
-            "Pixelette Marketing really helped Positive Prime shine digitally and connect meaningfully with our audience.",
-          image: "/common/t_2.webp"
-        },
-        {
-          name: "Ivan Petrovic",
-          role: "CEO,WebBookingPro",
-          detail:
-            "The team's expertise positioned WebBookingPro as a trusted solution for accommodation providers worldwide.",
-          image: "/common/t_3.webp"
-        }
+    capabilities: {
+      eyebrow: CAPABILITIES_EYEBROW,
+      heading: "Five capabilities, applied to AI",
+      lead: "Not nine separate services. The same five connected capabilities we use in every market, with the channels underneath each one, pointed at the problems specific to selling AI.",
+      items: [
+        capability(
+          "01",
+          "Choose the problem, the buyer and the industry to lead with, and build a proposition that holds up when a technical evaluator reads it.",
+          ["Use-case selection", "ICP and buyer insight", "competitor positioning", "messaging by industry"]
+        ),
+        capability(
+          "02",
+          "Put use-case evidence in front of the right buyers through paid, social, PR and partner channels, rather than broadcasting a general AI message.",
+          ["Paid search and social", "LinkedIn", "PR", "community", "partner and influencer activity"]
+        ),
+        capability(
+          "03",
+          "Become a source that search engines and AI assistants cite when buyers research the problem you solve, not only when they search your category.",
+          ["SEO", "content strategy", "thought leadership", "digital PR", "AI-assisted discovery"]
+        ),
+        capability(
+          "04",
+          "Turn interest into demos and pilots with landing pages, nurture and sales handoff built around the questions an AI buyer asks before committing.",
+          ["Landing pages", "demo and pilot conversion", "email and nurture", "lead generation", "sales handoff"]
+        ),
+        capability(
+          "05",
+          "Measure which use cases, industries and channels produce qualified pipeline, so the next round of spend goes where the evidence points.",
+          ["Analytics", "attribution", "reporting", "experimentation"]
+        )
       ]
     },
-    questionAndAnswer: {
-      question: `AI is shaping the future. <span> Will your brand lead the way? </span>`,
-      answer:
-        "Let your AI solutions drive change. With the right marketing strategies, we connect your technology to the people who need it most, creating a meaningful impact in the industry.",
-      btnText: "Book a consultation – it’s on us!"
-    },
+    approach: approach("How an AI engagement runs", [
+      "We start with the commercial objective and the evidence you already hold: customers, pilots, usage data and the objections that come up in sales conversations.",
+      "We review how the product is described across your website, sales material, search results and AI assistants, against the competitors a buyer is likely to compare you with.",
+      "You receive a prioritised plan: which problem and industry to lead with, what proof is needed, which channels to use and how performance will be measured.",
+      "Our specialists run the agreed programme, report against the agreed KPIs and adjust the work as the evidence comes in."
+    ]),
+    faqHeading: "Common questions about AI marketing",
     faqs: [
       {
-        question: "What is AI Startup Social Media Marketing?",
-        answer: "We specialise in developing and executing targeted social media campaigns to help AI startups reach their target audience and build brand awareness."
+        question: "How do you market an AI product without overstating what it does?",
+        answer:
+          "We build the claims from what the product demonstrably does on a real use case. Where a claim cannot be supported yet, we recommend the proof that would support it rather than publishing it anyway."
       },
       {
-        question: "What is Email Marketing for AI Products?",
-        answer: "We craft compelling email campaigns to nurture leads, drive conversions, and build customer relationships for AI product companies."
+        question: "Can you help us appear in AI assistants such as ChatGPT or Perplexity?",
+        answer:
+          "We work on what makes a source more likely to be found and cited: clear, specific pages that answer the questions buyers ask, consistent facts about the company across the web, and third-party coverage. No one can guarantee a citation, and we will not promise one."
       },
       {
-        question: "What is AI Company Search Engine Optimisation (SEO)?",
-        answer: "We optimise your AI company's website and content to improve search engine rankings and drive organic traffic."
-      }
-      ,
+        question: "Should an AI company target several industries at once?",
+        answer:
+          "Usually not at first. Proof, language and buying process differ by industry, and a message built for all of them tends to persuade none. Most companies do better leading with one industry and one use case, then extending from the evidence."
+      },
       {
-        question: "What are Outreach and PR Services for AI Companies?",
-        answer: "We help AI companies secure media coverage, build relationships with influencers, and manage their public relations efforts."
-      }
-      ,
-      {
-        question: "What are Community Management Services for AI Companies?",
-        answer: "We manage your online communities, engage with your audience, and build a strong online presence for your AI company."
-      }
-      ,
-      {
-        question: "What is AI Startup Content Writing?",
-        answer: "We create high-quality, informative content like blog posts, articles, and white papers to educate your target audience about your AI solutions."
-      }
-      ,
-      {
-        question: "What are Ads and PPC for AI Products?",
-        answer: "We manage paid advertising campaigns on platforms like Google Ads, Facebook Ads, and LinkedIn Ads to drive traffic, generate leads, and increase conversions for your AI products."
-      }
-      ,
-      {
-        question: "What are AI Webinars & Virtual Event Services?",
-        answer: "We plan and execute engaging webinars and virtual events to showcase your AI solutions, educate your audience, and generate leads."
-      }
-      ,
-      {
-        question: "What are AI Company Case Studies & Applications Services?",
-        answer: "We develop compelling case studies and application examples to showcase the value and impact of your AI solutions."
-      }
-      ,
-      {
-        question: "What are AI Company Branding Services?",
-        answer: "We help AI companies develop and refine their brand identity, messaging, and visual presence to differentiate themselves in the market."
+        question: "Do you only work with AI companies?",
+        answer:
+          "No. Pixelette Marketing works with businesses across established and emerging sectors. AI is one of five markets where our wider experience gives us additional depth."
       }
     ],
-    marketingServices: {
-      title: "",
-      heading: ` <span> Our marketing services </span>  for AI companies `,
-      detail:
-        "We design and execute AI marketing campaigns that bridge the gap between innovation and adoption, ensuring your solutions reach their full market potential.",
-      data: [
-        {
-          heading: "AI Social Media Marketing",
-          detail:
-            "Expand your AI brand’s presence and connect with decision-makers and users through our social media services for AI platforms and products. We create content that simplifies complex AI concepts and builds engagement."
-        },
-        {
-          heading: "AI Community Management",
-          detail:
-            "Build and nurture thriving communities around your AI brand. From encouraging meaningful discussions to managing platforms like LinkedIn and Discord, we ensure your users feel engaged and valued, turning audiences into advocates."
-        },
-        {
-          heading: "AI PR Marketing",
-          detail:
-            "Build trust and credibility with our PR services for AI companies. We come up with compelling stories about your AI/ML solutions and secure media coverage to position your company as a leading innovator and thought leader."
-        },
-        {
-          heading: "AI SEO Services",
-          detail:
-            "Make sure your AI solutions are discoverable with precision-driven SEO campaigns. We optimise your digital presence to attract organic traffic and generate high-quality leads that keep coming in the long-term."
-        },
-        {
-          heading: "AI Influencer Marketing",
-          detail:
-            "Collaborate with top influencer voices in the AI industry to expand your reach. As part of our AI influencer marketing services, we connect you with credible voices to build trust and drive awareness for your solutions."
-        },
-        {
-          heading: "AI Paid Ads & PPC",
-          detail:
-            "Drive measurable results with targeted paid advertising. From Google Ads to social media campaigns, we help AI companies scale adoption and increase visibility."
-        },
-        {
-          heading: "AI Email Marketing",
-          detail:
-            "Opt for our AI email marketing services to nurture leads, provide updates and drive engagement to subscribers. From launch announcements to product tutorials, our campaigns turn email lists into loyal customers."
-        },
-        {
-          heading: "AI Marketing Analytics",
-          detail:
-            "Gain meaningful perspectives into your AI marketing campaigns with our analytics and reporting service. Understand your audience, refine strategies and maximise ROI to stay ahead in the AI market."
-        }
-        ,
-        {
-          heading: "AI Lead Generation",
-          detail:
-            "Identify and convert high-value leads with our data-driven lead generation campaigns for AI platforms. We help build a pipeline of engaged prospects ready to adopt various AI/ML solutions."
-        }
-      ]
+    close: {
+      lead: "Tell us what the product does, who it is for and where adoption is stalling. We will review the enquiry and come back with the most relevant next step."
     }
   }
 ];

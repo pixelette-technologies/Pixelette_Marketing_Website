@@ -1,6 +1,7 @@
 const Loom = () => {
   return (
     <svg
+      aria-hidden='true'
       width='76'
       height='21'
       viewBox='0 0 76 21'

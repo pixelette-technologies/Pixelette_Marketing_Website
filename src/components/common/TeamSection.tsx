@@ -1,58 +1,47 @@
 import { FC } from "react";
-import { Heading, TeamCard } from "../feature";
+import { Heading, TeamCard, Text } from "../feature";
 import Container from "./Container";
+import Link from "next/link";
 import { teamData } from "@/data";
 
 interface TeamSectionProps {
   mainHeading?: string;
   subHeading?: string;
   details?: string[];
+  /** Standfirst under the heading pair. */
+  lead?: string;
+  cta?: { label: string; to: string };
 }
 
 const TeamSection: FC<TeamSectionProps> = ({
   mainHeading,
   subHeading,
-  details
+  details,
+  lead,
+  cta
 }) => {
   return (
-    <div
-      className='bg_tertiary--dark '
-      data-aos='fade-up'
-      data-aos-duration='1000'
-    >
+    <div className='band-alt'>
       <Container className='main'>
         <section className='teamSection'>
-          <header>
-            <Heading
-              className='secondry--boldLight color_primary font_family_glory uppercase'
-              animation='fade-right'
-              duration='1400'
-            >
-              {mainHeading}
-            </Heading>
-            <Heading
-              className='secondry--boldLight font_family_glory uppercase'
-              animation='fade-right'
-              duration='1400'
-            >
-              {subHeading}
-            </Heading>
-          </header>
+          {(mainHeading || subHeading || lead) && (
+            <header>
+              {mainHeading && (
+                <Heading className='eyebrow'>{mainHeading}</Heading>
+              )}
+              {subHeading && <Heading className='h2'>{subHeading}</Heading>}
+              {lead && <Text className='lead'>{lead}</Text>}
+            </header>
+          )}
           {details && (
             <ul>
               {details.map((el, index) => (
-                <li
-                  key={index}
-                  data-aos='fade-up'
-                  data-aos-duration={`${1000 + index * 200}`}
-                >
-                  {el}
-                </li>
+                <li key={index}>{el}</li>
               ))}
             </ul>
           )}
 
-          <section>
+          <section data-reveal='stagger'>
             {teamData.map((el, index) => (
               <TeamCard
                 key={index}
@@ -60,11 +49,15 @@ const TeamSection: FC<TeamSectionProps> = ({
                 name={el.name}
                 role={el.role}
                 detail={el.detail}
-                animation='fade-up'
-                duration={`${1000 + index * 200}`}
               />
             ))}
           </section>
+
+          {cta && (
+            <Link href={cta.to} className='btn2 teamSection__cta'>
+              {cta.label}
+            </Link>
+          )}
         </section>
       </Container>
     </div>

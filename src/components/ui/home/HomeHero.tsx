@@ -1,134 +1,63 @@
-"use client";
-
-import { useState } from "react";
-import { Container } from "@/components/common";
-import { Button, Heading, Text } from "@/components/feature";
-import Image from "next/image";
 import Link from "next/link";
+import { Container } from "@/components/common";
+import { Button } from "@/components/feature";
+import { heroCopy } from "@/data/home";
+import LivingSignal from "./LivingSignal";
+
+// 01 — THE HERO. Locked implementation specification, 28 Sep 2026.
+//
+// The copy is the spec's, word for word: the eyebrow, the headline with NO
+// full stop after "bottom line", one supporting line, the primary CTA and a
+// secondary text link. The five-word capability line that sat under the
+// CTAs in the earlier concept is deliberately gone (Section 03 says it), and
+// the space it left is meant to stay empty.
+//
+// It replaces the baseline's collage hero. HeroCollage.tsx is left on disk,
+// unused, rather than deleted, because deleting it was not asked for.
+//
+// THIS FILE STAYS A SERVER COMPONENT. The Living Signal owns its own client
+// boundary, so the headline, the line under it and the actions are rendered
+// on the server whatever the picture beside them does.
+//
+// The primary CTA is a Button with `to`, which renders a single link. The
+// baseline wrapped a <button> in a <Link>, an interactive element inside
+// another, and that is fixed here in passing.
 
 export default function HomeHero() {
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const { clientX, clientY, currentTarget } = e;
-    const rect = currentTarget.getBoundingClientRect();
-    const offsetX = ((clientX - rect.left) / rect.width - 0.5) * 20;
-    const offsetY = ((clientY - rect.top) / rect.height - 0.5) * 20;
-    setOffset({ x: offsetX, y: offsetY });
-  };
+  const { eyebrow, headline, support, primaryCta, secondaryCta } = heroCopy;
 
   return (
-    <Container className='main'>
-      <div className='heroHome' onMouseMove={handleMouseMove}>
-        <div>
-          <section data-aos='fade-up'>
-            {/* Men Picture */}
-            <Image
-              src='/home/hh_image_1.webp'
-              alt=''
-              width={402}
-              priority
-              height={408}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.1s ease-out"
-              }}
-            />
-            {/* Building Image */}
-            <Image
-              src='/home/hh_image_2.webp'
-              alt=''
-              width={342}
-              priority
-              height={362}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
-            />
-            {/* Back ground round */}
-            <Image
-              src='/home/hh_image_3.webp'
-              alt=''
-              width={353}
-              priority
-              height={354}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.4s ease-out"
-              }}
-            />
-            {/* Laptop */}
-            <Image
-              src='/home/hh_image_4.webp'
-              alt=''
-              width={199}
-              priority
-              height={218}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
-            />
-            {/* Clock tower */}
-            <Image
-              src='/home/hh_image_6.webp'
-              alt=''
-              width={162}
-              priority
-              height={628}
-              style={{
-                transform: `translate(${offset.x}px, ${offset.y}px)`,
-                transition: "transform 0.5s ease-out"
-              }}
-            />
-          </section>
-        </div>
+    <div className='homeHero wash'>
+      <Container className='main'>
+        <div className='homeHero__grid'>
+          <div className='homeHero__copy'>
+            <p className='homeHero__eyebrow'>{eyebrow}</p>
 
-        <Image
-          src='/home/heroImageForMobile.png'
-          alt=''
-          height={480}
-          width={520}
-          priority
-        />
+            <h1 className='h1 homeHero__title'>
+              {headline.lead} {headline.tail}
+            </h1>
 
-        <section className='bg_tertiary' data-aos='fade-up'>
-          <div>
-            <Heading
-              className='hero color_primary font_family_glory uppercase'
-              animation='fade-up'
-              duration='1200'
-              level={1}
-            >
-              Marketing That Matters
-            </Heading>
-            <Heading
-              className='hero color_secondry font_family_glory uppercase'
-              animation='fade-up'
-              duration='1400'
-              level={2}
-            >
-              to Your Bottom Line
-            </Heading>
-            <Text className='primary' animation='fade-up' duration='1600'>
-              Pixelette Marketing delivers precision driven marketing for
-              Fintech, SaaS, Web3, tech products and platforms, and more. We
-              believe your industry deserves strategies as innovative as your
-              solutions. Take the guesswork out of growth by requesting your
-              strategy proposal today and{" "}
-              <span className=' text_primary--bold color_primary'>
-                start achieving ROI you can see!
-              </span>
-            </Text>
-            <Link href='/contactus'>
-              <Button className='primary' animation='fade-up' duration='1800'>
-                Book A Call
+            <p className='lead homeHero__support'>{support}</p>
+
+            <div className='homeHero__actions'>
+              <Button to={primaryCta.to} className='primary btn--pill'>
+                {primaryCta.label}
+                <span aria-hidden='true'>→</span>
               </Button>
-            </Link>
+              <Link href={secondaryCta.to} className='textLink textLink--brand'>
+                {secondaryCta.label}
+              </Link>
+            </div>
           </div>
-        </section>
-      </div>
-    </Container>
+
+          <div className='homeHero__visual'>
+            <LivingSignal
+              labels={heroCopy.signalLabels}
+              annotation={heroCopy.annotation}
+            />
+          </div>
+        </div>
+      </Container>
+    </div>
   );
 }

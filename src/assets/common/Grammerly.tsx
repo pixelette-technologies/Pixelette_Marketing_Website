@@ -1,6 +1,7 @@
 const Grammerly = () => {
   return (
     <svg
+      aria-hidden='true'
       width='95'
       height='21'
       viewBox='0 0 95 21'

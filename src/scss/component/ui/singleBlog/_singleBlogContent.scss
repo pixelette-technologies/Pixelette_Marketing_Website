@@ -1,78 +1,99 @@
+// D5. Seven media queries gone. Five of them were one max-width on the article
+// column restated at 1300, 1060, 960 and 850px — 750px, then 650, 580, 57% and
+// 100% — which is what a sidebar pair does on its own once the article column
+// is allowed to be the one that keeps its width.
+//
+// The article's per-section heading rule selected h1 where Heading renders h2,
+// so the space under every section heading in every article had never applied.
+// The page title above it IS an h1 (level={1} at the call site), so that one
+// was live; both are on :is() now.
+//
+// The table-of-contents card was bg_primary — the flat crimson the vault
+// flagged as the most likely thing to go unreadable in the token swap. Its
+// text survived because the descendants set --color-page explicitly, so this
+// is not a contrast fix; it joins the dark panel family for the same Phase A
+// reason as the other four bands.
+//
+// One deliberate simplification worth flagging: the sidebar used
+// column-reverse below 850px, which put the table of contents ABOVE the
+// article on narrow screens. It now wraps below instead. That is a real change
+// in usefulness on a phone and is recorded in the vault for a decision rather
+// than being reinstated as a sixth breakpoint.
+
 .singleBlogContent {
   display: flex;
-  gap: 3.6rem;
-  padding-bottom: 6rem;
-  @media only screen and (max-width: 960px) {
-    gap: 2rem;
-  }
-
-  @media only screen and (max-width: 850px) {
-    flex-direction: column-reverse;
-  }
+  flex-wrap: wrap;
+  gap: 2.25rem;
+  padding-bottom: var(--sec-y);
 
   & > div {
+    flex: 999 1 30rem;
+    min-width: 0;
     max-width: 750px;
-    flex-shrink: 0;
-    @media only screen and (max-width: 1300px) {
-      max-width: 650px;
-    }
-    @media only screen and (max-width: 1060px) {
-      max-width: 580px;
-    }
-    @media only screen and (max-width: 960px) {
-      max-width: 57%;
-    }
-    @media only screen and (max-width: 850px) {
-      max-width: 100%;
-    }
+
     & > header {
-      margin-bottom: 2.4rem;
-      & > h1 {
-        margin-bottom: 2.4rem;
+      margin-bottom: 1.5rem;
+
+      & > :is(h1, h2) {
+        margin-bottom: 1.5rem;
+        color: var(--color-brand);
       }
     }
+
     & > section {
       & > div {
-        & > h1 {
-          margin-bottom: 1.6rem;
+        & > :is(h1, h2) {
+          margin-bottom: 1rem;
         }
       }
+
       & > * {
         &:not(:first-child) {
-          padding-top: 2.4rem;
+          padding-top: 1.5rem;
         }
       }
     }
   }
 
   & > section {
-    width: 100%;
+    flex: 1 1 16rem;
+    min-width: 0;
 
     & > div {
       & > div {
-        padding: 2.5rem 2.5rem;
-        border-radius: 0.8rem;
-        @media only screen and (max-width: 800px) {
-          padding: 2rem;
-        }
+        padding: 1.5625rem;
+        border-radius: var(--radius-card);
+        background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+        border: 1px solid var(--color-panel-border);
 
         & > header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          cursor: pointer;
-          & > h2 {
-            font-size: 1.8rem;
-            color: white;
-          }
-
-          & > div {
+          & > button {
+            width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
-            & > * {
-              font-size: 1.6rem;
-              color: white;
+            justify-content: space-between;
+            gap: 0.75rem;
+            background: none;
+            border: 0;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            color: var(--color-page);
+
+            & > h2 {
+              font-size: 1.125rem;
+              color: var(--color-page);
+            }
+
+            & > div {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              & > * {
+                font-size: 1rem;
+                color: var(--color-page);
+              }
             }
           }
         }
@@ -80,31 +101,40 @@
         & > div {
           & > ul {
             list-style: none;
-            padding-top: 2rem;
+            padding-top: 1.25rem;
+
             & > li {
-              font-size: 1.6rem;
+              font-size: var(--fs-body);
               font-weight: 400;
-              color: white;
+              color: var(--color-page);
+
               & > a {
-                color: white;
+                color: var(--color-page);
+
+                &:hover {
+                  text-decoration: underline;
+                }
               }
             }
+
             & > * {
               &:not(:last-child) {
-                margin-bottom: 1.2rem;
+                margin-bottom: 0.75rem;
               }
             }
           }
         }
       }
-      & > section {
-        margin-top: 2.6rem;
-        display: flex;
-        align-items: center;
 
-        gap: 1rem;
+      & > section {
+        margin-top: 1.625rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.625rem;
+
         & > h3 {
-          font-size: 2rem;
+          font-size: 1.25rem;
           font-weight: 500;
         }
       }

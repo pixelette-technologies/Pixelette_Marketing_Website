@@ -1,59 +1,125 @@
+// Converted in D3 with the header. The label, the chevron and the panel were
+// all white-on-dark; the header now sits on the page ground, so every one of
+// them would have been invisible.
+
 .navdropDown {
   position: relative;
   & > section {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.25rem;
     cursor: pointer;
-    padding: 3rem 0rem;
-    @media only screen and (max-width: 750px) {
+    // Matches the 44px tap-target floor without needing .flink on a div.
+    min-height: 44px;
+    padding: 0.5rem 0rem;
+    color: var(--color-ink);
+    @media only screen and (max-width: 767px) {
       justify-content: space-between;
       padding: 0rem;
     }
+
+    &:hover {
+      color: var(--color-brand);
+    }
+
+    // Phase F. "Services" and "Industries" were rendering a step SMALLER than
+    // the plain links beside them, and the cause was that the two kinds of nav
+    // item never shared a type rule at all. The plain links take 14px from
+    // .site-nav; these come through Text as `text_secondry`, which is the
+    // legacy 13px small variant. One pixel, but enough to see in a row of six.
+    //
+    // Both are 16px now — the size the mobile drawer was already using — so
+    // the whole bar matches at every width.
+    //
+    // The rule moved to .navdropDown__label when the 8 Sep brief made the
+    // trigger a Link: it used to select `& > p`, and the label is no longer a
+    // paragraph. Exactly the silent-death-by-element-selector this codebase
+    // has recorded in twenty-four partials, caught this time by changing both
+    // halves together.
+
     & > div {
       display: flex;
       align-items: center;
       justify-content: center;
 
       & > * {
-        font-size: 1.4rem;
-        color: white;
-        @media only screen and (max-width: 750px) {
-          font-size: 1.6rem;
+        font-size: 0.875rem;
+        color: currentColor;
+        @media only screen and (max-width: 767px) {
+          font-size: 1rem;
         }
       }
     }
   }
+
   & > div {
-    z-index: 999999 !important;
-    background-color: rgb(15, 15, 15);
-    border: 1px solid rgba(255, 255, 255, 0.336);
-    position: fixed;
+    // was 999999 !important, and the panel was position: fixed with a hard-coded
+    // top offset — a workaround for the sticky wrapper that no longer exists.
+    // Absolute against .navdropDown is what it always wanted to be.
+    z-index: 40;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-page);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    top: 6.7rem;
-    width: 29rem;
-    padding: 2rem 1.5rem;
-    border-radius: 0.6rem;
-    @media only screen and (max-width: 750px) {
+    gap: 0.125rem;
+    width: 18.125rem;
+    padding: 0.75rem;
+    border-radius: var(--radius-card);
+
+    @media only screen and (max-width: 767px) {
+      position: static;
       width: 100%;
-      top: 3rem;
+      box-shadow: none;
+      border: 0;
+      padding: 0.25rem 0 0;
     }
 
-    & > a {
+    // The brief groups the pages under capability headings. The group is a
+    // block so its heading and its links move together; the gap between
+    // groups is what makes the grouping legible at a glance.
+    & > .navdropDown__group + .navdropDown__group {
+      margin-top: 0.75rem;
+    }
+
+    & .eyebrow {
+      display: block;
+      padding: 0.25rem 0.625rem 0.375rem;
+    }
+
+    & a {
+      display: block;
       text-decoration: none;
-      font-size: 1.4rem;
+      font-size: 0.875rem;
       font-weight: 400;
-      color: white;
-      padding: 1.2rem 1rem;
-      border-radius: 0.3rem;
+      color: var(--color-body);
+      // 44px tap target, met by padding plus line-height rather than a
+      // min-height that would fight the flex column.
+      padding: 0.6875rem 0.625rem;
+      border-radius: var(--radius-btn);
+
       &:hover {
-        background-color: #282828;
+        background-color: var(--color-band);
+        color: var(--color-brand);
       }
-      @media only screen and (max-width: 750px) {
-        padding: 0.7rem 0.4rem;
+
+      @media only screen and (max-width: 767px) {
+        padding: 0.4375rem 0.25rem;
       }
     }
   }
+}
+
+// The trigger is a Link now rather than plain text, so /services and
+// /industries are reachable from the navigation. It inherits the row's colour
+// and hover from .navdropDown > section rather than restating either.
+.navdropDown__label {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: inherit;
+  text-decoration: none;
 }

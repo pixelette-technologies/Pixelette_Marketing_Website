@@ -1,0 +1,48 @@
+// Layout primitives. Appendix E, group property.
+//
+// These are plain classes, not React wrappers. Container (38 importers),
+// Heading (33), Text (40) and Button (6) already exist in this codebase and
+// the classes go through them. The first conversion built five wrappers and
+// deleted them all unused, because the CSS classes turned out to be the
+// natural way to write the markup.
+
+.wrap {
+  width: min(var(--container-wrap), 100% - 40px);
+  margin-inline: auto;
+}
+
+// Section rhythm. Everything interpolates between 390px and 1440px, the two
+// widths the pattern guide is drawn at, so both endpoints land on spec.
+.sec {
+  padding-block: var(--sec-y);
+}
+
+.sec-sm {
+  padding-block: var(--sec-y-sm);
+}
+
+// The hairline between sections. .rule is the plain one; the signature device
+// lives on .rule-cap and marks a section OPENING, not every band.
+.rule {
+  height: 1px;
+  background: var(--color-line);
+  border: 0;
+}
+
+// --- The signature device --------------------------------------------------
+// A short segment of the marking tone capping a section's top hairline. Two
+// rules, this one and .card-feature, revertable together in one commit.
+// EXACTLY ONE MANNERISM. Do not add a second.
+.rule-cap {
+  position: relative;
+}
+
+.rule-cap::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--sig-cap-width);
+  height: var(--sig-cap-height);
+  background: var(--color-brand-signal);
+}

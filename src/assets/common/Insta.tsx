@@ -1,6 +1,7 @@
 const Insta = () => {
   return (
     <svg
+      aria-hidden='true'
       width='22'
       height='21'
       viewBox='0 0 22 21'

@@ -1,0 +1,375 @@
+// =====================================================================
+// Design tokens.
+//
+// Two layers, and the boundary between them matters more than any single
+// value in the file.
+//
+//   BRAND LAYER   The colour block and the signature device. The only
+//                 part that differs per company. Signed off by eye on
+//                 vault/palette-compare.html, 1 September 2026: the
+//                 faithful rotation, not the softened alternative.
+//
+//   COMMON LAYER  Everything else — container, type scale, geometry,
+//                 section rhythm, type roles. Group property, taken
+//                 verbatim from the playbook's Appendix E. Do NOT
+//                 re-derive these from the pattern guide: two independent
+//                 derivations will not agree, and the divergence only
+//                 becomes visible when two sibling sites are open side by
+//                 side, long after both have shipped.
+//
+// Every token is named for the job it does, never for how light it is.
+// A brand-signal that is barred from text survives a redesign; a
+// brand-light gets misused within a week.
+// =====================================================================
+
+:root {
+  // ===================================================================
+  // BRAND LAYER — Pixelette Marketing
+  // ===================================================================
+
+  // --- Value structure: two-tone -------------------------------------
+  // A dark anchor carries everything that is read; a bright signal marks
+  // and never speaks on light grounds. Both tones already existed in the
+  // repository rather than having to be chosen.
+  //
+  // The wordmark, the favicon and the old $primary all agreed on the
+  // anchor, so unlike the Certified conversion there was no colour drift
+  // to resolve and no favicon to re-cut.
+  --color-brand: #b3063c; // 6.98 on white, 6.43 on band. Text, links,
+  // eyebrows, icon strokes, tile figures, filled buttons.
+  --color-brand-hover: #8c0430; // 9.65 on white. Interaction state.
+
+  // Marking tone. Clears the 3:1 non-text threshold on light grounds and
+  // NOTHING else: never text there, never a thin stroke. On the dark
+  // footer it measures 5.11 and gets a voice, exactly as the guide's own
+  // bright tone does on its own dark ground.
+  --color-brand-signal: #ff2f5b; // 3.61 on white, 5.11 on footer
+
+  --color-brand-wash: #ebc7d2; // hero wash inner stop; brand text on it 4.53
+  --color-brand-tint: #f9ebf0; // diagram and highlight fill
+
+  // --- Neutral ramp ---------------------------------------------------
+  // The guide's own ramp with hue rotated to the brand at 341.3deg,
+  // holding HSL lightness exactly. Every text ratio holds or improves by
+  // +0.32 to +0.50 against the guide's blue-biased original. It costs
+  // nothing measurable and changes the feel of every page.
+  --color-ink: #0a0a0a; //  20.0 on white — headings (achromatic, as the guide)
+  --color-body: #5c4149; //   9.10 — body and lead copy
+  --color-muted: #7d5d67; //  5.78 — small print, secondary nav
+  --color-soft: #7f626b; //   5.44 — source lines, logo-row marks
+
+  // --- Grounds ---------------------------------------------------------
+  --color-page: #ffffff;
+  --color-band: #f8f5f3; // the site's own warm ground, kept deliberately.
+  // A real differentiator against the guide's cool
+  // near-white, and it costs nothing.
+
+  // --- Hairline ramp ----------------------------------------------------
+  --color-line: #efe2e6; // section rules
+  --color-line-card: #eedfe4; // card edges
+  --color-line-pill: #ecdde2; // pill edges
+  --color-line-strong: #dec3cb; // strong borders, outline controls
+  // NOTE: --color-line-strong at 1.56:1 on white is below the 3:1 non-text
+  // threshold in WCAG 1.4.11. That fault is INHERITED — the guide identifies
+  // its outline button by this border alone and the value is identical
+  // across every group site. Do not fix it here: fixing it on one site forks
+  // the group design system. It is raised with the guide's author as a
+  // shared-layer change and badged as inherited on the comparison page.
+
+  // --- Dark families ----------------------------------------------------
+  // Footer and panel shift together. Both were lightened where the rotation
+  // demanded it: holding HSL lightness does NOT hold relative luminance, and
+  // green carries 0.7152 of the WCAG luminance formula against red's 0.2126,
+  // so a cool guide palette rotated to a warm brand improves every
+  // light-ground ratio and degrades every dark-ground one. Only
+  // --color-panel-muted actually fell below threshold, at 3.84; it was
+  // lightened from L47 to L57 to restore the guide's relationship.
+  // Any site rotating a cool palette to a warm brand should expect the same
+  // class of failure, and expect it only on the dark family.
+  --color-footer-bg: #2b0612;
+  --color-footer-line: #401220;
+  --color-footer-body: #bc9da7; // 7.49
+  --color-footer-muted: #a07c87; // 5.04
+  --color-footer-pill: #4a1b2a;
+  --color-footer-eyebrow: #ff2f5b; // 5.11 — the one place the signal tone speaks
+
+  --color-panel-a: #21040d; // gradient start
+  --color-panel-b: #0f080a; // gradient end
+  --color-panel-border: #471c29;
+  --color-panel-text: #ae9ba1; // 7.55
+  --color-panel-muted: #a87b89; // 5.53 (was 3.84 before the lightening pass)
+  --color-panel-btn-text: #e9bfcc; // 12.07
+  --color-panel-btn-border: #642a3c;
+
+  // --- Semantic ---------------------------------------------------------
+  // Both values were already in the repository.
+  --color-ok: #1e7e34; // 4.83 on white
+  --color-danger: #c0392b; // 5.06 on white
+
+  // --- Sector tones, 23 Sep 2026 ----------------------------------------
+  // EIGHT HUES THAT ARE NOT THE BRAND, AND THE ONLY ONES ON THE SITE. They
+  // exist for the Who we help grid on the home page, where each sector's
+  // icon sits on a differently tinted chip so eight cards can be scanned by
+  // colour as well as by word. From a supplied design; not our invention.
+  //
+  // THEY LIVE HERE RATHER THAN SCOPED TO _dynamicMarket.scss, and that is a
+  // reversal worth stating. Scoping them the way _reveal.scss scopes its
+  // timing would have kept the palette from growing — but the token gate
+  // (scripts/lint-legacy-tokens.mjs) fails the build on a hex literal
+  // anywhere in src/, and it is right to: the whole point is that one file
+  // answers "what colours does this site use". A scoped palette that the
+  // gate cannot see is exactly the thing the gate was written to prevent.
+  //
+  // THE RULE THAT KEEPS THEM FROM SPREADING is therefore social and is
+  // written here instead: these eight pairs are for the sector grid. A
+  // component that wants "a bit of colour" takes the brand or it takes
+  // nothing. If a second section ever needs them, that is the moment to ask
+  // whether the site is still two-tone, not the moment to reuse --tone-teal.
+  //
+  // Every -mark is a mid-dark saturated hue and every -tint a near-white of
+  // the same hue, so each mark clears 3:1 on its own chip with room over.
+  // The marks are non-text but they are the only thing in the chip and are
+  // read as information, so they are held to the non-text threshold rather
+  // than waved through as decoration. No -mark is ever set on type.
+  --tone-violet-tint: #eeebfb;
+  --tone-violet-mark: #5b46b8; // 5.94 on its tint
+  --tone-rose-tint: #fbe9f0;
+  --tone-rose-mark: #b02a5e; // 5.40
+  --tone-green-tint: #e6f4ea;
+  --tone-green-mark: #24774a; // 4.85
+  --tone-pink-tint: #fdeaf3;
+  --tone-pink-mark: #bd2f78; // 4.75
+  --tone-amber-tint: #fbf0e0;
+  --tone-amber-mark: #8f6316; // 4.70
+  --tone-blue-tint: #e7f0fb;
+  --tone-blue-mark: #1f5fa8; // 5.60
+  --tone-indigo-tint: #eaeafa;
+  --tone-indigo-mark: #4a45ab; // 6.46
+  --tone-teal-tint: #e2f3f2;
+  --tone-teal-mark: #15746f; // 4.88
+
+  // --- Illustration palettes, 28 Sep 2026 -------------------------------
+  // THE SECOND TIME THE SITE HAS STOPPED BEING TWO-TONE, and it was asked
+  // for in so many words. The approved home page reference (sections 01-04)
+  // deliberately pairs Pixelette UI colour with MULTICOLOURED VISUAL
+  // METAPHORS: a blue-violet-pink-orange signal, rainbow Post-its, five
+  // coloured bricks, yellow ducks on pale water. The brief is explicit that
+  // the UI stays pink and burgundy and the illustrated OBJECTS may not.
+  //
+  // So the same social rule as the sector tones above, stated more strongly:
+  // THESE ARE FOR ILLUSTRATIONS ONLY. No text, no control, no border, no
+  // band. Each group belongs to one section and is named for its object, so
+  // a stray use reads as wrong on sight (a button in --brick-green).
+  //
+  // They live here, not in the section partials, for the same reason the
+  // sector tones do: the token gate is right that one file answers "what
+  // colours does this site use".
+  //
+  // It also REVERSES one decision from earlier today. The Living Signal was
+  // translated into the brand's wine and crimson; the brief now says its
+  // broader colour treatment was the approved one, and not to recolour it.
+
+  // 01 Hero: the Living Signal. Upper wing blue to violet, lower wing violet
+  // to magenta, a warm band, and a lit point where everything arrives.
+  --signal-deep: #1f3fb4;
+  --signal-blue: #3a6ff0;
+  --signal-violet: #8a45ee;
+  --signal-magenta: #e7359d;
+  --signal-orange: #ff7a3c;
+  --signal-spark: #fff3e4;
+  --signal-haze: #eeebfb; // the pale lavender behind the wings
+  --signal-wash: #fde4ee; // the warm bloom around the lit point
+
+  // 02: the Post-its. A face and a shade each; the shade is the curl and
+  // the lower edge. Pink is present and does NOT dominate: this is noise.
+  --note-pink: #ff8cc2;
+  --note-pink-shade: #ef67a6;
+  --note-rose: #f9c6d8;
+  --note-rose-shade: #eea6c0;
+  --note-yellow: #fbe86c;
+  --note-yellow-shade: #efd343;
+  --note-orange: #ffa55e;
+  --note-orange-shade: #f2873a;
+  --note-blue: #86d3f3;
+  --note-blue-shade: #5ab8e2;
+  --note-green: #bde57e;
+  --note-green-shade: #98cf55;
+  --note-ink: #1d1a1b; // the marker. The only "text" colour here, and it
+  // is drawn lettering on an illustration, never UI copy.
+
+  // 02 and 03: the soft room behind the objects.
+  --room-warm: #f5ede7;
+  --room-light: #fffaf6;
+
+  // 03: the bricks. Top, face and side of each, plus the white plinth.
+  // 29 Sep, on instruction: the bricks and the builders' shirts take the
+  // Living Signal's five colours, so 01 and 03 read as one palette. Each
+  // face IS the signal token; only the lit top and shaded side are new.
+  --brick-deep-top: #5d7ee6;
+  --brick-deep: var(--signal-deep);
+  --brick-deep-side: #152b82;
+  --brick-blue-top: #85a6ff;
+  --brick-blue: var(--signal-blue);
+  --brick-blue-side: #2349b9;
+  --brick-violet-top: #b88aff;
+  --brick-violet: var(--signal-violet);
+  --brick-violet-side: #5f24b6;
+  --brick-magenta-top: #ff85c8;
+  --brick-magenta: var(--signal-magenta);
+  --brick-magenta-side: #ad1a70;
+  --brick-orange-top: #ffb088;
+  --brick-orange: var(--signal-orange);
+  --brick-orange-side: #d8541b;
+  --brick-base-top: #ffffff;
+  --brick-base: #f3efec;
+  --brick-base-side: #d8d1cc;
+
+  // 03: the builders and their ladders. Generic figures, no maker's mark.
+  // 29 Sep: re-read off the supplied brick reference image.
+  // Shirts are the --signal-* tokens directly.
+  --figure-skin: #f8c93f;
+  --figure-skin-shade: #d8a21f;
+  // 29 Sep, on instruction: two of the builders are women of colour. Both
+  // tones are light enough that the ink features still read on them.
+  --figure-skin-brown: #b77a4e; // the Asian builder, second from right
+  --figure-skin-deep: #7b4a2d; // the Black builder, far right
+  --figure-lips: #a8324f;
+  --figure-hair: #1f1b1d; // black hair, and the darkest trousers
+  --figure-auburn: #b04a24; // the builder with long hair
+  --figure-slate: #3b4150; // trousers
+  --ladder-wood: #b86a3a;
+  --ladder-wood-shade: #8a4a24;
+
+  // 04: the ducks, the sky and the water, re-read on 29 Sep off the supplied
+  // duck reference image: a bright blue day, glossy yellow ducks and ONE hot
+  // pink duck.
+  //
+  // THE PINK DUCK'S COLOUR IS AN OPEN QUESTION, recorded rather than buried.
+  // The spec says the feature duck must use "the actual Pixelette Marketing
+  // pink family"; the approved reference, which the spec also calls the visual
+  // source of truth, shows this magenta, which is not a brand token (the
+  // brand's signal, #ff2f5b in the value above, reads coral-red on a duck).
+  // It follows the reference, on the instruction to be as identical to it as
+  // the vector approach allows. Pointing these three at --color-brand-signal
+  // and --color-brand is the one-line switch back.
+  --duck-pink-light: #ff9ad4;
+  --duck-pink: #ff3aae;
+  --duck-pink-shade: #cc1482;
+  --duck-yellow-light: #fff4a6;
+  --duck-yellow: #ffd735;
+  --duck-yellow-shade: #efa312;
+  --duck-beak: #ff7b18;
+  --duck-beak-shade: #de4f08;
+  --sky-top: #9fd2f3;
+  --sky-cloud: #ffffff;
+  --water-light: #eaf6fd;
+  --water-mid: #9fd1f1;
+  --water-deep: #3e9be3;
+  --water-glint: #ffffff;
+
+  // --- Strategy & Positioning diagnostic, 30 Sep 2026 -------------------
+  // Specified by hex in the final diagnostic brief, and FOR /strategy-positioning
+  // ONLY — the same social rule as the sector tones. The rest of the site
+  // stays on --color-brand and --color-ink.
+  //
+  // 30 Sep 2026, later: WIDENED, by instruction, to the specialist service
+  // pages (Demand & Performance and Search & Authority), whose brief names
+  // the same four values as their colour hierarchy. Still not site-wide: a
+  // page outside those two sets takes the brand or nothing.
+  //
+  // 30 Sep 2026: also /aboutus, whose final brief names burgundy, pink and
+  // near-black by the same hex values.
+  //
+  // --color-pink measures 4.36 on white: large text (24px+), markers and
+  // selected states only. Small pink text takes --color-pink-text, the same
+  // hue held 4 points darker so it clears 4.5.
+  --color-plum-ink: #24181f; // 17.14 — "Know where to compete", explanatory copy
+  --color-burgundy: #4b1635; // 14.33 — "Know why you win", score, diagnosis
+  --color-pink: #d63d7c; //      4.36 — markers, selected, large result headings
+  --color-pink-text: #c8306e; // 5.12 — small pink labels and eyebrows
+
+  // --- Growth Intelligence view, 30 Sep 2026 ----------------------------
+  // The Marketing Analytics & Measurement brief uses the same four values
+  // above as its hierarchy (so the widening above extends to that page too),
+  // plus "restrained neutral tones" for its illustrative charts. These two
+  // are the ring's third and fourth steps after burgundy and pink, FOR THE
+  // GROWTH INTELLIGENCE VIEW ONLY. Neither carries text and both fall under
+  // 3:1 on white, so every mark drawn in them has its label and value printed
+  // beside it (see _growthIntelligence.scss).
+  --color-chart-neutral: #a8949b; // 2.77 — warm grey, the ring's third step
+  --color-chart-blush: #f0b8cf; //  1.64 — blush, the ring's fourth step
+
+  // --- Signature device -------------------------------------------------
+  // Signal-capped section rules: a short segment of the marking tone on a
+  // section's top hairline, and the same segment on the leading edge of
+  // feature cards. It marks a section OPENING, not every band.
+  // Exactly one mannerism. Do not add a second.
+  --sig-cap-width: 40px;
+  --sig-cap-height: 3px;
+
+  // Shadow tint. Warm, to sit with the dark family rather than the guide's
+  // cool original. The three shadows themselves are common-layer.
+  --shadow-tint: 43 6 18;
+
+  // ===================================================================
+  // COMMON LAYER — group property, Appendix E verbatim
+  // ===================================================================
+
+  // --- Container --------------------------------------------------------
+  // 1160px maximum, 20px gutters. Nothing on the site is wider.
+  --container-wrap: 1160px;
+
+  // --- Fluid type scale -------------------------------------------------
+  // Interpolated between 390px and 1440px, the two widths the pattern guide
+  // is drawn at, so both endpoints land exactly on spec.
+  --fs-h1: clamp(2.25rem, 1.6rem + 2.6667vw, 4rem); //  36 -> 64
+  --fs-h1p: clamp(1.9375rem, 1.45rem + 2vw, 3.25rem); //  31 -> 52
+  --fs-h2: clamp(1.75rem, 1.425rem + 1.3333vw, 2.625rem); //  28 -> 42
+  --fs-h3: clamp(1.375rem, 1.3054rem + 0.2857vw, 1.5625rem); //  22 -> 25
+  --fs-h4: 1.125rem; //  18, flat
+  --fs-lead: clamp(1.0625rem, 0.9929rem + 0.2857vw, 1.25rem); //  17 -> 20
+  --fs-body: 1rem; //  16, flat
+
+  // --fs-h1p is the interior-page hero variant and drives every service,
+  // category and article route, so it has more call sites than anything else.
+  //
+  // --fs-body is flat at 16px DELIBERATELY. Below 16px, iOS zooms the
+  // viewport on input focus. Do not make it fluid.
+
+  // --- Section rhythm ---------------------------------------------------
+  --sec-y: clamp(3.5rem, 2.5714rem + 3.8095vw, 6rem); //  56 -> 96
+  --sec-y-sm: clamp(2.5rem, 2.0357rem + 1.9048vw, 4rem); //  40 -> 64
+  --header-h: clamp(4rem, 3.6288rem + 1.5238vw, 5rem); //  64 -> 80
+  // The home page's first four bands (hero, 02-04) each fill the screen
+  // BELOW the sticky header: the viewport less the header bar and its 1px
+  // bottom rule (.site-header in _navbar.scss). 29 Sep 2026, on instruction.
+  --home-band-h: calc(100dvh - var(--header-h) - 1px);
+
+  // --- Geometry ---------------------------------------------------------
+  // Cards are noticeably rounder than controls; that contrast is part of
+  // the look and is not ours to retune.
+  --radius-btn: 4px;
+  --radius-tile: 4px;
+  --radius-card: 12px;
+
+  // Three shadows only, used sparingly. The register is flat, so a shadow
+  // is an exception. Hover changes BORDER COLOUR ONLY — no lift, no shadow
+  // change, no scale. That is the rule most often broken by reflex.
+  --shadow-sm: 0 1px 2px rgb(var(--shadow-tint) / 0.05);
+  --shadow-card: 0 1px 2px rgb(var(--shadow-tint) / 0.05), 0 10px 28px -16px rgb(var(--shadow-tint) / 0.18);
+  --shadow-raised: 0 24px 64px -24px rgb(var(--shadow-tint) / 0.28);
+
+  // --- Type roles -------------------------------------------------------
+  // Display is Newsreader at WEIGHT 400 at every width, not the guide's
+  // drawn 300: the light cut read as too fragile at desktop sizes, and that
+  // by-eye call was made and signed off during the Certified conversion.
+  // If the weight ever changes again, change it everywhere at once.
+  //
+  // The families arrive from next/font/google in app/layout.tsx, which
+  // self-hosts them; the --font-*-src variables are what it defines.
+  --font-display: var(--font-newsreader), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-outfit), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Consolas, monospace;
+  // Handwriting, 28 Sep 2026. Illustration lettering only; see layout.tsx.
+  --font-hand: var(--font-caveat), "Segoe Print", "Bradley Hand", cursive;
+}

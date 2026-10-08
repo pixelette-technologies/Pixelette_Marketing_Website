@@ -1,87 +1,88 @@
+// D5. This answers the question D1 left open when it put the icon set on
+// currentColor and deliberately did not decide the colour inside an icon
+// commit.
+//
+// The step icons were --color-brand on --color-panel-b. That measures about
+// 2.7:1, which fails even the 3:1 non-text threshold, so the marks were the
+// least visible thing on the card. The reading tone has nowhere to go on a
+// ground this dark. They take the marking tone, which the brand layer frees on
+// dark grounds and which measures about 5.3:1 here — the same call already
+// made for the footer eyebrow, ArrowCard's dark variant and the eyebrows on
+// About. The rule barring the marking tone from thin strokes is written about
+// LIGHT grounds, where it reads washed out at 3.61:1; here it is the stronger
+// of the two by a wide margin.
+//
+// The two inline contact icons in the header are a different job — they label
+// the line of text beside them — so they take the colour of that text.
+//
+// Eight media queries gone. The header is a wrapping flex row and the cards
+// are auto-fit, so neither needs the four widths that used to re-derive them,
+// and the icon box no longer needs three sizes at three breakpoints.
+
 .howItworks {
-  padding: 2.4rem 0rem;
+  padding-block: var(--sec-y);
+
   & > header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 3.2rem;
-    @media only screen and (max-width: 950px) {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    & > section {
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-      @media only screen and (max-width: 650px) {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      & > div {
-        display: flex;
-        align-items: center;
-        gap: 1.6rem;
-        & > svg {
-          width: 2.4rem;
-          height: 2.4rem;
-        }
-      }
+    gap: 1rem 2rem;
+    margin-bottom: 2rem;
+
+    & > :is(h1, h2) {
+      color: var(--color-page);
     }
   }
 
-  & > section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2.4rem;
-    @media only screen and (max-width: 990px) {
-      gap: 1rem;
-    }
-    & > blockquote {
-      flex: 1 1 calc(33.3% - 2.4rem);
+  // 25 Sep 2026: four numbered steps in an <ol>, where three icon cards sat in
+  // a <section>. The card geometry is unchanged; the icon box holds the step
+  // number instead, in the marking tone the icons used (see the note above).
+  & > ol {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+    gap: 1.5rem;
+    list-style: none;
+
+    & > li {
       display: flex;
-      align-items: center;
-      gap: 2.4rem;
-      padding: 2.2rem 0.8rem;
-      background-color: rgba(42, 44, 46, 1);
-      border-radius: 1rem;
-      @media only screen and (max-width: 950px) {
-        flex-direction: column;
-        padding: 2.2rem 2rem;
-      }
-      @media only screen and (max-width: 650px) {
-        flex: 1 1 calc(50% - 2.4rem);
-        max-width: calc(50% - 2.4rem);
-      }
-      @media only screen and (max-width: 550px) {
-        flex: 1 1 calc(100% - 2.4rem);
-        max-width: calc(100% - 2.4rem);
-      }
-      & > section {
-        height: 5.6rem;
-        width: 5.6rem;
-        @media only screen and (max-width: 990px) {
-          height: 4rem;
-          width: 4rem;
-          & > svg {
-            height: 4rem;
-            width: 4rem;
-          }
-        }
-        @media only screen and (max-width: 950px) {
-          height: 6rem;
-          width: 6rem;
-          & > svg {
-            height: 6rem;
-            width: 6rem;
-          }
-        }
-      }
+      align-items: flex-start;
+      gap: 1.25rem;
+      padding: 1.375rem 1.25rem;
+      background-color: var(--color-panel-b);
+      border: 1px solid var(--color-panel-border);
+      border-radius: var(--radius-card);
+
       & > div {
-        & > h1 {
-          margin-bottom: 1rem;
+        min-width: 0;
+
+        & > :is(h2, h3) {
+          margin-bottom: 0.625rem;
+          color: var(--color-page);
+        }
+
+        & > p {
+          color: var(--color-panel-text);
         }
       }
     }
   }
+}
+
+.howItworks__index {
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 0.9375rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+  color: var(--color-brand-signal);
+}
+
+// The dark ground. Was bg_secondry--light, which resolves to --color-ink
+// through the legacy alias; it joins the dark panel family with the other
+// bands. See the note in _questionAndAnswer.scss.
+.howItworksBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
 }

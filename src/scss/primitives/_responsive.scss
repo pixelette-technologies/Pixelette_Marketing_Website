@@ -1,0 +1,45 @@
+// THE media query. Singular, deliberately.
+//
+// Everything else in the primitives interpolates between 390px and 1440px
+// through clamp(), so it needs no breakpoint at all. Two things cannot
+// interpolate, and the guide's two mobile pages confirm they are the only two:
+//
+//   1. Display heading tracking and leading. Negative letter-spacing tuned for
+//      64px reads as cramped at 36px, and 1.05 leading that is right on a
+//      two-line desktop headline is too tight on a four-line mobile one.
+//   2. The hero wash geometry. A radial gradient sized for a 1440px viewport
+//      does not scale down into a 390px one; it has to be redrawn.
+//
+// RESIST ADDING A SECOND. Anything that seems to need one almost certainly
+// wants a clamp instead. The 282 hand-written media queries this conversion is
+// retiring are what happens when that rule is not held.
+
+@media (max-width: 767px) {
+  .h1 {
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  .h1p {
+    line-height: 1.12;
+    letter-spacing: -0.009em;
+  }
+
+  .h2 {
+    line-height: 1.18;
+    letter-spacing: -0.008em;
+  }
+
+  .h3 {
+    line-height: 1.28;
+    letter-spacing: -0.004em;
+  }
+
+  .wash {
+    background: radial-gradient(600px 340px at 50% -10%, var(--color-brand-wash) 0%, var(--color-page) 65%);
+  }
+
+  .wash-left {
+    background: radial-gradient(600px 340px at 50% -10%, var(--color-brand-wash) 0%, var(--color-page) 65%);
+  }
+}

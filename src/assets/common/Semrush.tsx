@@ -1,6 +1,7 @@
 const Semrush = () => {
   return (
     <svg
+      aria-hidden='true'
       width='121'
       height='17'
       viewBox='0 0 121 17'

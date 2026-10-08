@@ -1,0 +1,273 @@
+// Control primitives. Appendix E, group property.
+//
+// The accessibility floor is met here rather than at every call site: .btn
+// carries a 52px minimum height and .flink a 44px tap target, so no component
+// has to remember. Focus is defined at the bottom of this file — the guide is
+// a static mockup and defines no focus, transition, disabled or keyframe
+// styling at all, so that part is designed once, for the group.
+
+.btn,
+.btn2,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  min-height: 52px;
+  padding: 0.8125rem 1.375rem;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.btn {
+  background: var(--color-brand);
+  color: var(--color-page);
+  border: 1px solid var(--color-brand);
+  font-weight: 600;
+}
+
+.btn:hover {
+  background: var(--color-brand-hover);
+  border-color: var(--color-brand-hover);
+}
+
+// The guide has no disabled state. Reduced opacity alone is near-invisible on
+// a light button, so the fill is explicit.
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  background: var(--color-line-strong);
+  border-color: var(--color-line-strong);
+  color: var(--color-page);
+  cursor: not-allowed;
+}
+
+// INHERITED FAULT, deliberately not fixed here. The guide identifies its
+// outline button purely by this border, which measures 1.56:1 on white — far
+// below the 3:1 non-text threshold in WCAG 1.4.11 — and the value is identical
+// across every group site. Fixing it here would fork the group design system.
+// It is badged as inherited on the comparison page and raised with the guide's
+// author as a shared-layer change needing a dedicated border token.
+.btn2 {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-line-strong);
+  font-weight: 500;
+}
+
+.btn2:hover {
+  border-color: var(--color-ink);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--color-brand);
+  font-weight: 500;
+}
+
+.btn-ghost:hover {
+  color: var(--color-brand-hover);
+}
+
+// --- Text link with arrow, 28 Sep 2026 --------------------------------------
+// The approved home reference's secondary action: a word, a hairline under
+// it and an arrow after it. There was no primitive for it; five call sites
+// had each inlined an arrow span. The tap target is held at 44px like .flink.
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+}
+
+.textLink:hover {
+  color: var(--color-brand);
+}
+
+.textLink--brand {
+  color: var(--color-brand);
+}
+
+.textLink--brand:hover {
+  color: var(--color-brand-hover);
+}
+
+// The approved reference draws its filled CTAs as pills. The group control
+// radius is 4px and is NOT changed site-wide; this modifier is used by the
+// home page's sections 01-04 only, on instruction that the reference wins.
+// Doubled class: the legacy .btn_primary in component/feature/_button.scss
+// loads after the primitives and sets its own radius.
+.btn.btn--pill {
+  border-radius: 999px;
+  padding-inline: 1.625rem;
+}
+
+// --- Pills -----------------------------------------------------------------
+
+.pill,
+.pill-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pill {
+  border: 1px solid var(--color-line-pill);
+  color: var(--color-muted);
+}
+
+.pill-brand {
+  border: 1px solid var(--color-line-strong);
+  color: var(--color-brand);
+}
+
+// Navigation and footer links. The 44px floor lives here so no call site has
+// to think about it.
+.flink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.flink:hover {
+  color: var(--color-brand);
+}
+
+.footer .flink:hover {
+  color: var(--color-page);
+}
+
+// --- Form controls ---------------------------------------------------------
+
+.label {
+  display: block;
+  margin-bottom: 0.375rem;
+  font-family: var(--font-mono);
+  font-size: 0.65625rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.input,
+.textarea,
+.select {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.75rem 0.875rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-pill);
+  border-radius: var(--radius-btn);
+  font-family: var(--font-body);
+  // Flat at 16px deliberately: below this, iOS zooms the viewport on focus.
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--color-ink);
+  box-sizing: border-box;
+}
+
+.input:hover,
+.textarea:hover,
+.select:hover {
+  border-color: var(--color-line-strong);
+}
+
+.textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.field-error {
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--color-danger);
+}
+
+// --- Table -----------------------------------------------------------------
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-body);
+  color: var(--color-body);
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 0.875rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.table th {
+  font-family: var(--font-mono);
+  font-size: 0.65625rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  border-bottom-color: var(--color-line-strong);
+}
+
+.table tr:last-child td {
+  border-bottom: 0;
+}
+
+// --- Skip link -------------------------------------------------------------
+// Defined because the inventory is group property and the class must mean the
+// same thing on every site. NOT yet placed in the DOM: it needs a visible
+// label, and no such copy exists in this codebase. Adding one is a content
+// change and needs sign-off first.
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  background: var(--color-brand);
+  color: var(--color-page);
+  border-radius: var(--radius-btn);
+}
+
+.skip-to-content:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+// --- Focus -----------------------------------------------------------------
+// The guide draws one hover rule and nothing else — no focus state anywhere —
+// so this is designed once for the group. The ring recolours over the two dark
+// grounds so it stays visible on every surface: the brand tone would sit at
+// roughly 1.3:1 on the footer ground and effectively disappear.
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+.panel :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--color-brand-signal);
+}

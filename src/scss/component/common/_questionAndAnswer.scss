@@ -1,17 +1,55 @@
-@use "../../globels" as color;
+// D5. Same fault as ContentDisplaySection, on the same kind of ground. The
+// accent <span> in the heading took $primary — the brand anchor at 2.84:1 on
+// the ink ground this section sits on — so the emphasised words were the
+// hardest to read in the block. It takes the marking tone, which is what the
+// brand layer frees on dark and which measures 5.48:1 here.
+//
+// The eyebrow above it had the same problem through color_primary at the call
+// site, and moves with it.
+//
+// Off the legacy Sass alias, so the @use goes and two more color.$* references
+// with it.
 
 .questionAndAnswer {
-  max-width: 65rem;
+  max-width: 40.625rem;
   margin: auto;
-  padding: 4.2rem 2rem;
+  padding: 2.625rem 1.25rem;
+
+  & > header > p {
+    color: var(--color-brand-signal);
+  }
 
   & > h2 {
     & > span {
-      color: color.$primary;
+      color: var(--color-brand-signal);
     }
   }
+
   & > p {
-    margin-top: 1.2rem;
-    margin-bottom: 2.4rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// The dark ground. Follows the two precedents already in the codebase —
+// .trustedBrandsBand and .rangeOfMarketBand — rather than adding a class to
+// Appendix E's inventory, which is group property and not ours to extend.
+// There are four copies of this gradient now; folding them into one shared
+// surface is a change to the shared layer and needs the guide's author.
+.questionAndAnswerBand {
+  background: linear-gradient(135deg, var(--color-panel-a) 0%, var(--color-panel-b) 64%);
+  color: var(--color-panel-text);
+}
+
+// Moved off color_white at the call site.
+.questionAndAnswerBand {
+  & .questionAndAnswer {
+    & > h2 {
+      color: var(--color-page);
+    }
+
+    & > p {
+      color: var(--color-page);
+    }
   }
 }

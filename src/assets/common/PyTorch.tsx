@@ -1,6 +1,7 @@
 const PyTorch = () => {
   return (
     <svg
+      aria-hidden='true'
       width='117'
       height='29'
       viewBox='0 0 117 29'

@@ -6,3 +6,4 @@ export { default as PhoneIcon } from "./PhoneIcon";
 export { default as ProposalIcon } from "./ProposalIcon";
 export { default as RankIcon } from "./RankIcon";
 export { default as RocketIcon } from "./RocketIcon";
+export { default as PinIcon } from "./PinIcon";

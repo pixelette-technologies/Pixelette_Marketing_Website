@@ -2,6 +2,7 @@
 const Canva = () => {
   return (
     <svg
+      aria-hidden='true'
       width='64'
       height='21'
       viewBox='0 0 64 21'

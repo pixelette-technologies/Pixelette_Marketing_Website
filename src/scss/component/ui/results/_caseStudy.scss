@@ -1,0 +1,172 @@
+// One client story on /results.
+//
+// The anatomy is ItemsSection's, restated only where the shape differs: the
+// 34rem heading measure, the 20px eyebrow-to-heading gap and the 24px
+// heading-to-standfirst gap are the section rhythm this whole site keeps, and
+// a case study that used its own numbers would read as a different site.
+//
+// .lead and .body already carry their own 62ch and 66ch measure caps from the
+// primitives, so the header needs no width of its own below the heading — the
+// cap on the h2 is the only one stated.
+
+.caseStudy {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-block: var(--sec-y);
+
+  & > header {
+    & > .h2 {
+      max-width: 34rem;
+      margin-top: 1.25rem;
+    }
+
+    & > .lead {
+      margin-top: 1.5rem;
+    }
+
+    & > .body {
+      margin-top: 1rem;
+    }
+  }
+}
+
+.caseStudy__impactHeading {
+  margin-bottom: 1.25rem;
+}
+
+// --- The figures ------------------------------------------------------------
+// Flex thirds, which is one of the two sanctioned grid idioms and the only one
+// that handles five items without an orphan: against the 1160px wrap it lands
+// 3 + 2, where the auto-fit track would seat four and leave a full-width fifth.
+// The basis is a third of the row minus its share of the two gaps.
+//
+// The figure takes the house statistic treatment — mono, tabular numerals, on
+// a clamp rather than a fixed size. Same as _finalResult.scss, which is the
+// only other genuine statistic on the site, so the two read as one device.
+// Tabular numerals matter here specifically: "160", "16.9k", "2,435", "29,974"
+// and "975" sit in a row, and proportional digits would give five figures five
+// different optical weights.
+.caseStudy__impactList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  list-style: none;
+
+  & > li {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+}
+
+.caseStudy__impactList--figures {
+  & > li {
+    flex: 1 1 calc((100% - 2rem) / 3);
+    min-width: min(15rem, 100%);
+    padding: 1.25rem;
+    background: var(--color-page);
+    border: 1px solid var(--color-line-card);
+    border-radius: var(--radius-card);
+  }
+}
+
+.caseStudy__figure {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+  margin-bottom: 0.375rem;
+}
+
+.caseStudy__impactList--figures .caseStudy__label {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+// --- The qualitative outcomes -----------------------------------------------
+// WebBookingPro's impact is four sentences, not four numbers, because that is
+// what management supplied. They are NOT dressed as figures: an outcome tile
+// with no number in it reads as a statistic whose value failed to load.
+//
+// They take a marked list instead, on the body measure. The mark is the brand
+// tone; ::marker is the right hook because the text still wraps to the list
+// indent rather than under its own bullet.
+// display: BLOCK, overriding the flex on the base list. A list-item inside a
+// flex container is the one place ::marker is unreliable — the marker box is
+// specified against a block flow and browsers disagree about what to do with
+// it when the parent blows the item into a flex item. The figures need flex;
+// prose bullets do not, so this mode simply opts out of it.
+.caseStudy__impactList--statements {
+  display: block;
+  list-style: disc;
+  padding-left: 1.25rem;
+  max-width: 66ch;
+
+  & > li {
+    display: list-item;
+
+    & + li {
+      margin-top: 0.625rem;
+    }
+
+    &::marker {
+      color: var(--color-brand);
+    }
+  }
+
+  .caseStudy__label {
+    font-size: var(--fs-body);
+    line-height: 1.65;
+    color: var(--color-body);
+  }
+}
+
+.caseStudy__closing {
+  margin: 0;
+}
+
+// --- The quotation ----------------------------------------------------------
+// Marked by a rule on the leading edge rather than a quote glyph. TeamCard's
+// BrownCollan mark belongs to the card treatment on the home page; repeating it
+// here would be a second mannerism on a page that does not need one, and the
+// design system allows exactly one per page.
+.caseStudy__quote {
+  margin: 0;
+  border-left: 2px solid var(--color-brand);
+  padding-left: 1.5rem;
+
+  & > blockquote {
+    margin: 0;
+  }
+
+  & > figcaption {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+  }
+}
+
+.caseStudy__quoteName {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.caseStudy__quoteRole {
+  font-size: 0.8125rem;
+  color: var(--color-muted);
+}
+
+// --- On the alternate ground ------------------------------------------------
+// .band-alt is the warm ground, so a figure tile filled --color-page would sit
+// as a white box on cream. It takes the ground's own surface instead, and the
+// border does the separating.
+.band-alt .caseStudy__impactList--figures > li {
+  background: transparent;
+}

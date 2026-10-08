@@ -1,28 +1,65 @@
+// The toggle is a real button now, so it needs the resets a button carries and
+// the 44px tap target the guide's accessibility floor requires. The panel is
+// always in the DOM and hidden with the `hidden` attribute rather than being
+// unmounted.
+
 .accordion {
-  padding: 2.4rem;
-  border-radius: 1.2rem;
-  background-color: white;
-  & > header {
-    display: flex;
-    align-items: center;
-    gap: 2.4rem;
-    justify-content: space-between;
-    & > div {
-      display: flex;
-      align-items: center;
-      gap: 2.4rem;
-    }
-    & > blockquote {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 2rem;
-      width: 2rem;
-      border-radius: 50%;
-    }
-  }
-  & > section {
-    margin-top: 1rem;
-    padding: 0rem 4.4rem;
-  }
+  padding: 1.5rem;
+  border-radius: var(--radius-card);
+  background-color: var(--color-page);
+  border: 1px solid var(--color-line-card);
+}
+
+.accordion:hover {
+  border-color: var(--color-line-strong);
+}
+
+.accordion__toggle {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.accordion__label {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-width: 0;
+}
+
+.accordion__marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.25rem;
+  width: 1.25rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.accordion > section {
+  margin-top: 0.625rem;
+  padding: 0rem 2.75rem;
+}
+
+// D8. The index number carried color_primary when open and color_primary--light
+// when closed. Both are gone from the call site; the closed tone is
+// --color-soft, which is the reading ramp's quiet end at 5.44:1 rather than the
+// old alias's 3.4:1 on white.
+.accordion__index {
+  color: var(--color-soft);
+}
+
+.accordion__index--open {
+  color: var(--color-brand);
 }

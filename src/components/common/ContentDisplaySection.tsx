@@ -1,6 +1,4 @@
-"use client";
-
-import { FC, useState, useEffect, useRef } from "react";
+import { FC } from "react";
 import { Text } from "../feature";
 import Container from "./Container";
 
@@ -16,110 +14,72 @@ interface ContentDisplaySectionProps {
   data: CardProps[];
 }
 
+// The vertical marquee is gone: a 60fps requestAnimationFrame loop driving a
+// setPosition on every tick, a hover-pause state, and four render passes of the
+// same card list — three stacked for the "seamless loop" plus a fourth copy for
+// mobile. The cards now render ONCE, on a grid, at every width.
+//
+// Phase F. Brought onto the same anatomy as EngagementStalls on the home
+// page — the section this one was asked to match.
+//
+// Three things changed and the third was a live defect:
+//
+//   1. Anatomy. The heading column was a STICKY half-width column beside a
+//      capped card grid, so the cards were squeezed into 34rem while the left
+//      half of a full-bleed dark band sat empty for the length of the list.
+//      It stacks now, exactly as EngagementStalls does: heading block on top
+//      held to 34rem, cards below across the full width, three across.
+//   2. Type roles. title/heading/detail were text_primary, a display heading
+//      variant and text_secondry; they are .eyebrow, .h2 and .lead, which is
+//      the eyebrow -> serif h2 -> standfirst opening the guide repeats. The
+//      D8 colour block that used to tint them by hand is deleted with them:
+//      .band-dark already colours all three, for every dark band at once.
+//   3. THE CARD TEXT WAS DEAD. The partial styled .primary--bold and
+//      .tertiary; since F2 stopped Text renaming its className, the DOM
+//      carries text_primary--bold and text_tertiary, so NEITHER rule had
+//      applied. Both fell through to --color-panel-text inherited from the
+//      band — a DARK-ground tone, on cards that were white and --color-band.
+//      That measures about 2:1 and is why the cards read as washed out. The
+//      hooks below are named for the elements they style, the way arrowCard__
+//      already is, so a later class change cannot silently kill them again.
+//
+// No content is lost. The extra passes were the same data.map output repeated
+// so the loop had something to scroll into.
+
 const ContentDisplaySection: FC<ContentDisplaySectionProps> = ({
   title,
   heading,
   detail,
   data
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [position, setPosition] = useState(0);
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number | undefined>(undefined);
-  const lastTimeRef = useRef<number>(0);
-  const speed = 0.1; // Reduced speed for smoother movement
-
-  useEffect(() => {
-    lastTimeRef.current = 0;
-
-    const animate = (timestamp: number) => {
-      if (!lastTimeRef.current) lastTimeRef.current = timestamp;
-      const deltaTime = timestamp - lastTimeRef.current;
-      lastTimeRef.current = timestamp;
-
-      if (!isHovered) {
-        setPosition(prev => {
-          const newPosition = prev + (speed * (deltaTime / 16)); // Normalize by 60fps
-          // Reset position when it reaches 50% (half of the content)
-          return newPosition >= 50 ? 0 : newPosition;
-        });
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isHovered]);
-
-  const renderCard = (el: CardProps, index: number, key: string) => (
-    <div 
-      key={key}
-      className="marquee-card"
-    >
-      <div className="card-content">
-        <Text className='primary--bold'>{el.heading}</Text>
-        <Text className='tertiary'>{el.detail}</Text>
-      </div>
-    </div>
-  );
-
   return (
-    <div className='bg_secondry' data-aos='fade-up' data-aos-duration='1000'>
+    <div className='band-dark'>
       <Container className='main'>
-        <div className='contentDisplaySection'>
+        <div className='contentDisplaySection sec'>
           <header>
             <div>
-              <Text
-                className='primary color_white'
-                animation='fade-up'
-                duration='1400'
-              >
-                {title}
-              </Text>
+              <Text className='eyebrow'>{title}</Text>
               <h2
                 dangerouslySetInnerHTML={{ __html: heading || "" }}
-                className='heading_secondry--light color_white'
-                data-aos='fade-up'
-                data-aos-duration='1200'
+                className='h2'
               ></h2>
-              <Text
-                className='secondry color_gray'
-                animation='fade-up'
-                duration='1600'
-              >
-                {detail}
-              </Text>
+              <Text className='lead'>{detail}</Text>
             </div>
           </header>
-          <section 
-            className="marquee-section"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <div
-              ref={marqueeRef}
-              className="marquee-content"
-              style={{
-                transform: `translateY(-${position}%)`,
-                transition: isHovered ? 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-              }}
-            >
-              {/* First set of items */}
-              {data.map((el, index) => renderCard(el, index, `first-${index}`))}
-              {/* Duplicate set for seamless loop */}
-              {data.map((el, index) => renderCard(el, index, `second-${index}`))}
-              {/* Third set to ensure seamless loop */}
-              {data.map((el, index) => renderCard(el, index, `third-${index}`))}
-            </div>
+          <section className='contentDisplayCards' data-reveal='stagger'>
+            {data.map((el, index) => (
+              <div key={index} className='contentCard'>
+                <div className='card-content'>
+                  <Text className='text_primary--bold contentCard__title'>
+                    {el.heading}
+                  </Text>
+                  <Text className='text_tertiary contentCard__summary'>
+                    {el.detail}
+                  </Text>
+                </div>
+              </div>
+            ))}
           </section>
-          {/* Mobile view */}
-          <div className="mobile-view">
-            {data.map((el, index) => renderCard(el, index, `mobile-${index}`))}
-          </div>
         </div>
       </Container>
     </div>

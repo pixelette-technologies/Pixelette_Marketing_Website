@@ -2,6 +2,7 @@
 const Calendly = () => {
   return (
     <svg
+      aria-hidden='true'
       width='103'
       height='25'
       viewBox='0 0 103 25'

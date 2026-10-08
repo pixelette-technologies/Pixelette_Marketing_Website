@@ -1,6 +1,7 @@
 const Buffer = () => {
   return (
     <svg
+      aria-hidden='true'
       width='84'
       height='21'
       viewBox='0 0 84 21'

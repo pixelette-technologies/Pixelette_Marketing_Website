@@ -1,51 +1,87 @@
-@use "../../../globels" as color;
+// D5. Off the legacy Sass alias. Five media queries gone: the header is a
+// wrapping flex pair and the rows are a wrapping flex list, which replaces a
+// flex basis re-derived at 900px and a 600px rule that set
+// `flex: 1 1 calc(400px - 1rem)` — a fixed basis dressed as a fluid one, and
+// the reason the cards stopped filling the row on a phone.
 
 .web3Question {
-  padding: 2.4rem 0rem;
+  padding-block: var(--sec-y);
 
+  // 25 Sep 2026: the header is .whoBand__head now (eyebrow, h2, standfirst,
+  // stacked). The wrapping pair with a right-aligned paragraph went with the
+  // legacy heading it was built around.
   & > header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    margin-bottom: 3.2rem;
-    @media only screen and (max-width: 750px) {
-      flex-direction: column;
-    }
+    margin-bottom: 2.5rem;
+  }
+}
 
-    & > h2 {
-      max-width: 38rem;
-      line-height: 2.8rem;
-      @media only screen and (max-width: 750px) {
-        text-align: center;
-      }
-      & > span {
-        color: color.$primary;
-      }
-    }
-    & > p {
-      max-width: 55.6rem;
-      text-align: right;
-      @media only screen and (max-width: 750px) {
-        text-align: center;
-      }
-    }
+// "Where Pixelette can help": a heading and two paragraphs, no ground of its
+// own. The second paragraph is where each page states what the work is NOT,
+// which is the line a regulated or sceptical buyer is reading for.
+.sectorHelp {
+  padding-block: var(--sec-y);
+
+  & > .body {
+    margin-top: 1rem;
+    max-width: 44rem;
   }
-  & > section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.6rem;
-    justify-content: center;
-    & > div {
-      flex: 1 1 calc(33.3% - 1.6rem);
-      @media only screen and (max-width: 900px) {
-        flex: 1 1 calc(47% - 1.6rem);
-        max-width: calc(47% - 1.6rem);
-      }
-      @media only screen and (max-width: 600px) {
-        flex: 1 1 calc(400px - 1.6rem);
-        max-width: calc(400px - 1.6rem);
-      }
-    }
-  }
+}
+
+.sectorEvidence__more {
+  display: inline-flex;
+  margin-top: 2rem;
+}
+
+// --- 22 Sep 2026: the three image cards became three constraints ------------
+// WAS `repeat(auto-fit, minmax(min(17rem, 100%), 1fr))` holding three cards,
+// each with a stock photo above a question. The photos were the same three
+// files on all five sector pages, so they carried no sector meaning; the grid
+// made three short statements look like a menu of three products; and the
+// question form collided with the eight-item FAQ further down the same page.
+// See Web3Questions.tsx for the full reasoning.
+//
+// Rows on a hairline, which is the shape /services and /industries now use, so
+// a visitor moving between them meets one language rather than three. No fill,
+// no border box, no shadow: this is already .band-alt, and a card inside a
+// tinted band is the nested-box pattern _surfaces.scss rules out.
+.constraintList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  list-style: none;
+}
+
+// Three across against the wrap, two in the middle, one on a phone — all from
+// the basis, no breakpoint. 18rem rather than the old 17rem because these are
+// sentences now rather than captions under an image.
+.constraintList__item {
+  flex: 1 1 18rem;
+  min-width: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+// The constraint is the thing being named, so it takes the brand tone and the
+// body sits under it in ordinary ink. Not .h3: these sit below the section h2
+// and above body copy, and .h4 is the step that leaves that gap intact.
+.constraintList__title {
+  color: var(--color-brand);
+  margin-bottom: 0.5rem;
+}
+
+.sectorEvidence__head {
+  padding-top: var(--sec-y);
+}
+
+.sectorEvidence__more {
+  margin-bottom: var(--sec-y);
+}
+
+// The case study is the /results component, which carries a full section's
+// padding of its own. Inside this block the header above already opens the
+// section, so its top padding would read as a hole, and its bottom one would
+// push "See client results" a section away from the story it belongs to.
+// No ground: .band-alt was tried and is the page ground to the digit.
+.sectorEvidence .caseStudy {
+  padding-block: 2.5rem 0;
 }

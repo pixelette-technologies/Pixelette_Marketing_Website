@@ -1,0 +1,77 @@
+// Why we exist. 30 Sep 2026.
+//
+// Two columns: the heading on the left on its capped hairline — the page's one
+// .rule-cap — and the argument on the right, ending on the link to /services.
+// Stacked below 60rem, where the hairline is the rule over both; two grid
+// columns from 60rem. (It was flex with bases first, and at 768px the copy
+// kept the top padding it needs beside the heading, leaving a blank band
+// between heading and copy once the pair had stacked.)
+//
+// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
+// burgundy heading, near-black copy. Nothing important is in pale grey.
+
+.aboutWhy {
+  // ONE --sec-y-sm GAP BETWEEN SECTIONS, not two: each section pads its top only and the
+  // last before the close pads both. The brief asks for a page 40-50% shorter
+  // with its copy fixed, so the length comes out of the rhythm.
+  padding-block: var(--sec-y-sm) 0;
+
+  display: grid;
+  gap: 1.5rem;
+
+  &__head {
+    min-width: 0;
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.5rem;
+
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+      color: var(--color-pink-text);
+    }
+
+    & > .h2 {
+      max-width: 34rem;
+      color: var(--color-burgundy);
+    }
+  }
+
+  &__body {
+    min-width: 0;
+
+    & > .body {
+      max-width: 38rem;
+      color: var(--color-plum-ink);
+    }
+
+    & > .body + .body {
+      margin-top: 1rem;
+    }
+  }
+
+  // .link supplies the underline. The colour is the page's burgundy, and the
+  // 44px floor is the site's tap target.
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 1.25rem;
+    color: var(--color-burgundy);
+
+    &:hover {
+      color: var(--color-pink-text);
+    }
+  }
+}
+
+// Side by side. The copy starts level with the heading's hairline, so the two
+// columns read as one statement and its reasons.
+@media (min-width: 60rem) {
+  .aboutWhy {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+
+    &__body {
+      padding-top: 1.5rem;
+    }
+  }
+}

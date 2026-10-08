@@ -1,0 +1,109 @@
+// The logo marquee — A SANCTIONED EXCEPTION to the flat-and-static register.
+//
+// Read this before deleting anything in it.
+//
+// The group rule is that the register is FLAT AND STATIC, and it is a FIXED
+// property rather than one of the five free levers. D2 removed the whole
+// decorative layer on exactly that basis, including the `scrollX` keyframes
+// these two strips used to run on.
+//
+// The user asked for the marquee back on 1 September 2026, deliberately and
+// specifically, for the client-logo strip and the platform strip only. That is
+// recorded in [[Rules]] under settled decisions. This note exists because the
+// vault's Trap 10 says a reinstated motion surface has to be documented AT THE
+// POINT WHERE THE RULE IS STATED, or a later pass reads it as leftover
+// decoration and removes it again. The same note is on the flat-and-static
+// paragraph in _surfaces.scss.
+//
+// The exception is narrow. Two logo strips. It does not license motion
+// anywhere else, and nothing here should be reused as a general animation
+// utility.
+//
+// HOW THE SEAM WORKS. A marquee needs its content twice: the track holds two
+// identical groups and slides left by exactly one group, at which point the
+// second group is sitting where the first began and the loop restarts
+// invisibly. The duplicate is aria-hidden, so assistive technology and the
+// accessibility tree still see one set of logos, not two.
+//
+// The translate is NOT -50%. The track is `2 * group + gap` wide, so -50% lands
+// half a gap short and the strip visibly jumps once per cycle. Subtracting half
+// a gap puts it exactly on the repeat.
+//
+// This is also why D2's removal left the pages broken: it deleted the motion
+// and left the duplication behind, so TrustedBrands rendered 6 logos as 24 and
+// RangeOfMarket rendered 8 as 32. Motion and duplication are one thing. If the
+// animation is ever removed again, REMOVE THE SECOND GROUP AT THE SAME TIME.
+
+.marquee {
+  --marquee-gap: clamp(1.875rem, 0.8rem + 3.4vw, 3.125rem);
+
+  overflow: hidden;
+  // The strip is decorative movement, not a scroll region, and it must not
+  // become a tab stop or a horizontal scrollbar.
+  overscroll-behavior-x: contain;
+}
+
+.marquee__track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--marquee-gap);
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left var(--marquee-duration, 40s) linear infinite;
+}
+
+.marquee__group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--marquee-gap);
+  flex: 0 0 auto;
+}
+
+// The reverse strip. RangeOfMarket runs its two rows against each other, which
+// is what the pre-revamp version did and what the user asked for.
+.marquee--reverse .marquee__track {
+  animation-name: marquee-right;
+}
+
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - var(--marquee-gap) / 2));
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(calc(-50% - var(--marquee-gap) / 2));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// An accessibility floor, and those are fixed group property — the motion
+// exception does not reach them. Anyone who has asked their system for less
+// motion gets the static strip the site shipped before this commit.
+//
+// The track also stops wrapping to `max-content` here, so the logos lay out and
+// wrap the way they did without the marquee rather than running off the edge
+// of a strip that is no longer moving.
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation: none;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  // With the animation off there is nothing for the duplicate to feed, and a
+  // second copy of every logo would simply be wrong. It is hidden rather than
+  // unrendered because the decision is a media query, not a render-time one.
+  .marquee__group[aria-hidden="true"] {
+    display: none;
+  }
+}

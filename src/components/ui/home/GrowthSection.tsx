@@ -1,78 +1,41 @@
-import ArrowRed from "@/assets/common/ArrowLeft";
 import { Container } from "@/components/common";
-import { Heading, Text } from "@/components/feature";
-import Image from "next/image";
+import GrowthSystem from "./GrowthSystem";
+
+// The section's frame, and nothing else. The hairline it opens on, its rhythm
+// and the `.rule-cap` signature live on the wrapper in _growthSection.scss;
+// everything inside is GrowthSystem's.
+//
+// --- 8 Sep 2026 brief -------------------------------------------------------
+// The four cells are the brief's commercial framework: Demand, Pipeline,
+// Conversion, Revenue. It replaced Growth / Paid ROI / Conversion / Pipeline,
+// where "Paid ROI" was a channel outcome sitting in a row of funnel outcomes,
+// and it is the framework the rest of the site, the reporting and the sales
+// material are meant to repeat.
+//
+// The brief also supplied a real eyebrow and a standfirst, so the anatomy is
+// the house one: eyebrow, h2, standfirst. That settles the levels too — the
+// eyebrow is the h2 and the visual .h2 is the h3, as every other section on
+// this page has it. Before the brief, the title was the h2 and the eyebrow
+// beneath it was an h3, which read backwards in the outline and was the last
+// section still doing it.
+//
+// --- 23 Sep 2026 ------------------------------------------------------------
+// THE HEADING BLOCK MOVED INTO GrowthSystem. It was rendered here and passed
+// down as children for one reason: GrowthSystem was a client component for its
+// tablist, and the eyebrow, title and standfirst had no business shipping as
+// client JavaScript. The figure was rebuilt to a supplied reference that puts
+// every word on screen at once, so there is no state, no tablist and no client
+// boundary — and therefore nothing left for the children contrivance to buy.
+//
+// What stays here is what belongs to the SECTION rather than to the figure
+// inside it, which is the split that has now survived five different figures.
 
 export default function GrowthSection() {
   return (
     <Container className='main'>
-      <div className='growthSection'>
-        <Heading
-          className='primary color_secondry font_family_glory uppercase'
-          animation='fade-right'
-          duration='1400'
-          level={2}
-        >
-          Growth <span className='color_primary'>starts</span> here
-          <ArrowRed />
-        </Heading>
-
+      <div className='growthSection rule-cap'>
         <section>
-          <div>
-            <header>
-              <Heading animation='fade-right' duration={"1300"} level={3}>
-                Success Follows Next
-              </Heading>
-              <section data-aos='fade-right' data-aos-duration={1300}>
-                <div>
-                  <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
-                      Growth
-                    </Heading>
-                    <Text className='secondry font_family_glory'>
-                      Audience and community growth for Web3 and technology
-                      brands
-                    </Text>
-                  </div>
-                  <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
-                      Conversion
-                    </Heading>
-                    <Text className='secondry font_family_glory'>
-                      Funnel and lead-conversion optimisation for fintech brands
-                    </Text>
-                  </div>
-                </div>
-                <div>
-                  <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
-                      Paid ROI
-                    </Heading>
-                    <Text className='secondry font_family_glory'>
-                      Paid media managed for measurable return for SaaS brands
-                    </Text>
-                  </div>
-                  <div>
-                    <Heading className='primary font_family_glory color_primary' level={4}>
-                      Pipeline
-                    </Heading>
-                    <Text className='secondry font_family_glory'>
-                      Qualified lead generation for high-growth startups
-                    </Text>
-                  </div>
-                </div>
-              </section>
-            </header>
-
-            <div data-aos='fade-left' data-aos-duration='2000'>
-              <Image
-                src='/home/growthBanner.webp'
-                alt='Growth Banner'
-                width={663}
-                height={649}
-              />
-            </div>
-          </div>
+          <GrowthSystem />
         </section>
       </div>
     </Container>

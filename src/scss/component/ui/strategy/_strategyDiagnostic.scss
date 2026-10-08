@@ -1,0 +1,1008 @@
+// The diagnostic, from the first question to the burgundy close (30 Sep 2026,
+// the final diagnostic brief).
+//
+// COLOUR ROLES, which the brief makes a checklist item:
+//   --color-pink       selected states, markers, large result headings
+//   --color-pink-text  small pink labels (the same hue, deep enough for 4.5)
+//   --color-burgundy   the score, the diagnosis, priority headings, numbers
+//   --color-plum-ink   every explanatory paragraph that carries meaning
+//   --color-muted      genuinely secondary UI only: counts, rail ends, notes
+//
+// ON THE LIGHT GROUND, with no card behind the question: the stage is the
+// page, the way the brief asks ("no dashboard card clutter").
+//
+// MOTION is short and deliberate: a 320ms lock on the chosen answer, the
+// question leaving up 20px in 180ms, the next entering in 220ms; a count-up
+// and staggered arrivals for the result. No bounce, no spring. Under reduced
+// motion all of it goes and every state is still reached.
+
+.dx-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// White and full-bleed on the warm page ground, with a hairline where it
+// meets the compact hero (also white) once the bridge has folded.
+.dxGround {
+  background: var(--color-page);
+  border-top: 1px solid var(--color-line);
+}
+
+.dxStage {
+  --dx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+  position: relative;
+  padding-block: var(--sec-y-sm) var(--sec-y);
+}
+
+// --- Progress ---------------------------------------------------------------
+
+.dxProgress {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+
+  &__dimensions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__dimension {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.375rem;
+    font-size: 0.9375rem;
+    transition: color 240ms var(--dx-ease);
+
+    &.is-done {
+      color: var(--color-burgundy);
+    }
+
+    &.is-current {
+      color: var(--color-pink-text);
+      font-weight: 600;
+    }
+
+    &.is-todo {
+      color: var(--color-muted);
+    }
+  }
+
+  &__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    width: 0.625rem;
+    height: 0.625rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  // Current: a filled pink dot. Not started: a neutral ring.
+  &__dimension.is-current &__mark {
+    border-radius: 50%;
+    background: var(--color-pink);
+  }
+
+  &__dimension.is-todo &__mark {
+    border: 1.5px solid var(--color-muted);
+    border-radius: 50%;
+  }
+
+  &__count {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    color: var(--color-muted);
+  }
+
+  // A hairline under the row: how much of the twelve is answered.
+  &__track {
+    flex: 1 1 100%;
+    height: 2px;
+    margin-top: 0.25rem;
+    background: var(--color-line);
+    overflow: hidden;
+  }
+
+  &__fill {
+    display: block;
+    height: 100%;
+    background: var(--color-burgundy);
+    transition: width 420ms var(--dx-ease);
+  }
+}
+
+// --- The question body and its transitions -----------------------------------
+
+.dxBody {
+  // Holds the stage's height steady from question to question, so the rail
+  // does not jump when a prompt runs to one line or three.
+  min-height: 26rem;
+  padding-top: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+
+  &.is-entering {
+    animation: dxEnter 220ms var(--dx-ease) both;
+  }
+
+  &.is-leaving {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition:
+      opacity 180ms var(--dx-ease),
+      transform 180ms var(--dx-ease);
+  }
+
+  &__assurance {
+    margin-top: 2rem;
+    max-width: 46ch;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+}
+
+@keyframes dxEnter {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+.dxQuestion {
+  min-width: 0; // a fieldset otherwise refuses to narrow
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  &__meta {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__prompt {
+    display: block;
+    padding: 0;
+    margin-top: 1rem;
+    max-width: 36ch;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.5rem);
+    line-height: 1.15;
+    color: var(--color-plum-ink);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 6px;
+    }
+  }
+}
+
+// --- The Clarity Rail -------------------------------------------------------
+// Desktop: "Less clear" ● — ● — ● — ● — ● "More clear", each statement under
+// its point. The line runs through the five points' centres (10% to 90% of
+// the stops), and a pink run fills it up to the chosen point.
+
+.dxRail {
+  --dx-dot: 1.5rem;
+
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0 1.25rem;
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+
+  &__end {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    line-height: var(--dx-dot);
+    white-space: nowrap;
+    color: var(--color-muted);
+  }
+
+  &__stops {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(var(--dx-dot) / 2 - 1px);
+      left: 10%;
+      height: 2px;
+      pointer-events: none;
+    }
+
+    &::before {
+      right: 10%;
+      background: var(--color-line-strong);
+    }
+
+    // The run up to the chosen point, 0-80% of the width in fifths.
+    &::after {
+      width: calc(80% * var(--dx-sel) / 4);
+      background: var(--color-pink);
+      opacity: 0;
+      transition:
+        width 240ms var(--dx-ease),
+        opacity 160ms var(--dx-ease);
+    }
+  }
+
+  &__stop {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0 0.5rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  // The point IS the input: appearance: none, so the browser's focus, arrow
+  // keys and checked state are untouched.
+  &__input {
+    appearance: none;
+    flex: 0 0 auto;
+    width: var(--dx-dot);
+    height: var(--dx-dot);
+    margin: 0;
+    border: 2px solid var(--color-muted);
+    border-radius: 50%;
+    background: var(--color-page);
+    cursor: pointer;
+    transition:
+      transform 160ms var(--dx-ease),
+      border-color 160ms var(--dx-ease),
+      background-color 160ms var(--dx-ease),
+      box-shadow 160ms var(--dx-ease);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 3px;
+    }
+
+    // Selected: filled pink with a soft halo — and larger, so the state is
+    // shape as well as colour.
+    &:checked {
+      border-color: var(--color-pink);
+      background: var(--color-pink);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-pink) 16%, transparent);
+      transform: scale(1.2);
+    }
+  }
+
+  // Hover and focus grow the point slightly and turn it toward pink: the
+  // brief's rail, and a registered exception to the hover rule — see
+  // _surfaces.scss.
+  &__stop:hover &__input:not(:checked),
+  &__input:focus-visible:not(:checked) {
+    border-color: var(--color-pink);
+    transform: scale(1.15);
+  }
+
+  &__text {
+    max-width: 14rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
+    color: var(--color-body);
+    transition: color 160ms var(--dx-ease);
+  }
+
+  &__stop:hover &__text {
+    color: var(--color-plum-ink);
+  }
+
+  &__stop.is-on &__text {
+    font-weight: 500;
+    color: var(--color-plum-ink);
+  }
+}
+
+.has-answer .dxRail__stops::after {
+  opacity: 1;
+}
+
+// The lock: the chosen point holds, the others step back.
+.is-locking .dxRail__stop:not(.is-on) {
+  opacity: 0.55;
+  transition: opacity 200ms var(--dx-ease);
+}
+
+// Phone: five stacked rows, each a full-width target. No line, no run.
+@media (max-width: 767px) {
+  .dxRail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.625rem;
+
+    &__stops {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.5rem;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    &__stop {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 0.875rem;
+      padding: 0.875rem 1rem;
+      text-align: left;
+      border: 1px solid var(--color-line-pill);
+      border-radius: var(--radius-btn);
+      background: var(--color-page);
+      transition: border-color 160ms var(--dx-ease);
+
+      &.is-on {
+        border-color: var(--color-pink);
+      }
+    }
+
+    &__input {
+      --dx-dot: 1.25rem;
+      margin-top: 0.0625rem;
+    }
+
+    &__text {
+      max-width: none;
+    }
+  }
+}
+
+// --- Back / Next ------------------------------------------------------------
+
+.dxNav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 1.75rem;
+  margin-top: 2rem;
+
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: var(--color-plum-ink);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 3px;
+    }
+
+    &--next {
+      margin-left: auto;
+      font-weight: 500;
+      color: var(--color-burgundy);
+
+      &:disabled {
+        color: var(--color-muted);
+        cursor: default;
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+// --- Resume -----------------------------------------------------------------
+
+.dxResume {
+  min-height: 0;
+
+  &__text {
+    max-width: 46ch;
+    font-size: var(--fs-lead);
+    color: var(--color-plum-ink);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+  }
+}
+
+// --- Halfway ----------------------------------------------------------------
+
+.dxHalfway {
+  &:focus {
+    outline: none;
+  }
+
+  &__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__heading {
+    margin-top: 1rem;
+    max-width: 24ch;
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    line-height: 1.12;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 1.25rem;
+    max-width: 52ch;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- The result reveal --------------------------------------------------------
+// .dxR elements arrive on their own --d delay. Without .is-revealing (a
+// restored result, or reduced motion) nothing animates at all.
+
+.is-revealing .dxR {
+  animation: dxRise 520ms var(--dx-ease, ease-out) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes dxRise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.dxResults {
+  padding-top: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+}
+
+.dxVerdict {
+  max-width: 48rem;
+
+  &__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__score {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    line-height: 1;
+  }
+
+  &__number {
+    font-size: clamp(4.5rem, 3.4rem + 4.6vw, 7.5rem);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-burgundy);
+  }
+
+  &__outOf {
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
+    color: var(--color-muted);
+  }
+
+  &__band {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid var(--color-pink);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__headline {
+    margin-top: 1.25rem;
+    max-width: 26ch;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
+    line-height: 1.12;
+    color: var(--color-burgundy);
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 6px;
+    }
+  }
+
+  &__narrative {
+    margin-top: 1.25rem;
+    max-width: 60ch;
+    font-size: var(--fs-lead);
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+}
+
+// Shared by the three result sections. Pink at 24px and over, where 4.36
+// clears the large-text threshold.
+.dxSection {
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
+    line-height: 1.15;
+    color: var(--color-pink);
+  }
+
+  &__lead {
+    margin-top: 0.75rem;
+    max-width: 60ch;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+}
+
+// --- Your clarity profile ---------------------------------------------------
+
+.dxProfile {
+  margin-top: var(--sec-y-sm);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  &__list {
+    margin: 1.75rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__note {
+    margin-top: 1.25rem;
+    max-width: 62ch;
+    font-size: 0.875rem;
+    color: var(--color-muted);
+  }
+}
+
+// One row: name, "Unclear", the line with its marker, "Clear", the score.
+.dxSpectrum {
+  display: grid;
+  grid-template-columns: 8.5rem auto minmax(0, 1fr) auto 3rem;
+  align-items: center;
+  gap: 0 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--color-line);
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  &__name {
+    font-weight: 500;
+    color: var(--color-burgundy);
+  }
+
+  &__end {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  &__track {
+    position: relative;
+    height: 2px;
+    background: var(--color-line-strong);
+  }
+
+  &__marker {
+    position: absolute;
+    top: 50%;
+    left: var(--pos);
+    width: 0.875rem;
+    height: 0.875rem;
+    border: 2px solid var(--color-page);
+    border-radius: 50%;
+    background: var(--color-pink);
+    box-shadow: 0 0 0 1px var(--color-pink);
+    transform: translate(-50%, -50%);
+  }
+
+  &__value {
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 1.375rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-burgundy);
+  }
+}
+
+// Markers travel from "Unclear" to their place, staggered by row.
+.is-revealing .dxSpectrum__marker {
+  animation: dxMark 800ms var(--dx-ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes dxMark {
+  from {
+    left: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .dxSpectrum {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "name name value"
+      "lo track hi";
+    gap: 0.625rem 0.75rem;
+
+    &__name {
+      grid-area: name;
+    }
+
+    &__value {
+      grid-area: value;
+    }
+
+    &__end--lo {
+      grid-area: lo;
+    }
+
+    &__track {
+      grid-area: track;
+    }
+
+    &__end--hi {
+      grid-area: hi;
+    }
+  }
+}
+
+// --- What this could mean commercially ----------------------------------------
+
+.dxCommercial {
+  margin-top: var(--sec-y-sm);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// White, a thin edge, no shadow, one narrow pink accent on the top.
+.dxReading {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.75rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 1.5rem;
+    width: 2.5rem;
+    height: 3px;
+    background: var(--color-pink);
+  }
+
+  &__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__headline {
+    margin-top: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 1.375rem;
+    line-height: 1.2;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.75rem;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+}
+
+@media (max-width: 767px) {
+  .dxCommercial__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// --- Your three highest-leverage moves ----------------------------------------
+// Editorial rows, not cards: a pink numeral, the dimension, a burgundy title.
+
+.dxMoves {
+  margin-top: var(--sec-y-sm);
+  padding-top: var(--sec-y-sm);
+  border-top: 1px solid var(--color-line);
+
+  &__list {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+.dxMove {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 0.5rem 2rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--color-line);
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  &__index {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-pink);
+  }
+
+  &__dimension {
+    display: block;
+    margin-top: 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
+    line-height: 1.15;
+    color: var(--color-burgundy);
+  }
+
+  &__body {
+    margin-top: 0.75rem;
+    max-width: 60ch;
+    line-height: 1.6;
+    color: var(--color-plum-ink);
+  }
+
+  &__revisit {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    margin-top: 0.25rem;
+    padding: 0;
+    background: none;
+    border: 0;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    cursor: pointer;
+
+    &:hover {
+      color: var(--color-plum-ink);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-pink);
+      outline-offset: 3px;
+    }
+  }
+}
+
+.dxResults__print {
+  margin-top: 1rem;
+}
+
+@media (max-width: 767px) {
+  .dxMove {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// --- A score is only the starting point ---------------------------------------
+// Full-bleed burgundy. Its own class, not .band-dark (see ResultsClose.tsx).
+// Text on it: --color-page 14.33, --color-brand-wash 9.30.
+
+.dxClose {
+  background: var(--color-burgundy);
+
+  &__body {
+    padding-block: var(--sec-y);
+    max-width: 44rem;
+  }
+
+  &__heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: var(--fs-h2);
+    line-height: 1.1;
+    color: var(--color-page);
+  }
+
+  &__text {
+    margin-top: 1.25rem;
+    font-size: var(--fs-lead);
+    line-height: 1.6;
+    color: var(--color-brand-wash);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 2.25rem;
+  }
+
+  &__primary,
+  &__secondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-btn);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      color 160ms ease;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-page);
+      outline-offset: 3px;
+    }
+  }
+
+  &__primary {
+    border: 1px solid var(--color-page);
+    background: var(--color-page);
+    color: var(--color-burgundy);
+
+    &:hover {
+      background: var(--color-brand-tint);
+      color: var(--color-burgundy);
+    }
+  }
+
+  &__secondary {
+    border: 1px solid var(--color-brand-wash);
+    background: transparent;
+    color: var(--color-page);
+
+    &:hover {
+      border-color: var(--color-page);
+    }
+  }
+}
+
+// --- Reduced motion -----------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+  .dxBody.is-entering,
+  .is-revealing .dxR,
+  .is-revealing .dxSpectrum__marker {
+    animation: none;
+  }
+
+  .dxBody.is-leaving,
+  .dxRail__input,
+  .dxRail__stops::after,
+  .dxRail__text,
+  .dxProgress__dimension,
+  .dxProgress__fill,
+  .is-locking .dxRail__stop:not(.is-on) {
+    transition: none;
+  }
+
+  .dxRail__stop:hover .dxRail__input:not(:checked),
+  .dxRail__input:focus-visible:not(:checked),
+  .dxRail__input:checked {
+    transform: none;
+  }
+}
+
+// --- Print --------------------------------------------------------------------
+// The result is worth keeping: the score, the diagnosis, the profile, the
+// reading and the moves, without the navigation or the controls.
+//
+// .cookie-banner is the one rule not scoped to this page, and deliberately:
+// it is position: fixed and printed as a bar across the result. This is the
+// only print stylesheet the site has.
+@media print {
+  .cookie-banner,
+  .site-header,
+  .footer,
+  .strategyHero,
+  .clarityBridge,
+  .dxProgress,
+  .dxClose,
+  .dxMove__revisit {
+    display: none !important;
+  }
+
+  .dxStage,
+  .dxResults {
+    padding-block: 0;
+  }
+
+  .dxR,
+  .dxSpectrum__marker {
+    animation: none !important;
+  }
+
+  .dxSpectrum__track,
+  .dxSpectrum__marker {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}

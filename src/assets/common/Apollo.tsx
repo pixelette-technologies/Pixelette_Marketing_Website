@@ -1,6 +1,7 @@
 const Apollo = () => {
   return (
     <svg
+      aria-hidden='true'
       width='127'
       height='31'
       viewBox='0 0 127 31'

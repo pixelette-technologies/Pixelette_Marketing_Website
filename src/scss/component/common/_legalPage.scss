@@ -1,0 +1,31 @@
+// Legal pages — /cookie-policy today, and the Privacy, Terms, Modern slavery
+// and Accessibility pages the group footer will link when they exist.
+//
+// The hero is the interior anatomy (.wash-left, h1p, one supporting line) and
+// the body is .prose. This partial states only what those two do not: the
+// hero's padding and the reading column. Type, colour and link treatment all
+// come from the primitives, so a legal page cannot drift from the rest of the
+// site.
+
+.legalHero {
+  padding-block: var(--sec-y-sm);
+  max-width: 34rem;
+
+  & > .small {
+    margin-top: 1rem;
+  }
+}
+
+// One reading column, narrower than the wrap: a legal page is read top to
+// bottom, and a 1160px line is where people lose their place. 46rem holds the
+// .prose body near its comfortable measure.
+.legalBody {
+  max-width: 46rem;
+  padding-block: var(--sec-y-sm) var(--sec-y);
+
+  // .prose opens every heading with a 2rem top margin, which is right between
+  // sections and wrong at the very top of the column.
+  & > :first-child {
+    margin-top: 0;
+  }
+}

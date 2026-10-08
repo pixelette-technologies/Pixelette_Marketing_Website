@@ -1,169 +1,209 @@
+// ArrowCard — the home page twice, About's service list, the industry hero.
+//
+// D4. Three faults, all of them live, all of them on the home page.
+//
+// 1. BOTH hover states made their own copy invisible. Each one lightened the
+//    card ground and set the summary paragraph to var(--color-page) at the
+//    same moment: hover_black_arrowCard filled with --color-brand-tint
+//    (F9EBF0) and hover_white_arrowCard with --color-line-strong (DEC3CB), so
+//    white text on them measured 1.06:1 and 1.55:1. The two headings went the
+//    same way through color_white. Every card on the page lost its text under
+//    the cursor, and the dark column lost it against a near-white fill.
+//
+// 2. Two more failures were there without hovering anything. On the dark
+//    column the main heading took color_primary — the brand anchor B3063C on
+//    the ink ground, 2.84:1 — and the summary took color_gray, 3.43:1. Both
+//    are below the 4.5:1 floor for copy at these sizes. The anchor tone is for
+//    light grounds; the marking tone is the one that is free on dark, and at
+//    5.48:1 it is also the one that passes. That is exactly the job
+//    --color-brand-signal is named for.
+//
+// 3. The register. A 0.9s transition, transform: scale(1.05) on hover and a
+//    0.6s rotate on the arrow, which is the decorative layer D2 removed
+//    everywhere else. HOVER CHANGES BORDER COLOUR ONLY — no lift, no shadow
+//    change, no scale.
+//
+// The card takes the .card geometry from the primitives rather than restating
+// it: 12px radius, hairline edge, the flat register. Six media queries went
+// with the rewrite; the arrow column is a fixed rem and the rest is flex.
+
 .arrowCard {
-  padding: 1rem;
-  transition: 0.9s ease-in-out;
-  border-radius: 1rem;
-  border: 1px solid transparent;
-  @media only screen and (max-width: 900px) {
-    padding: 0.5rem;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  padding: 1.25rem;
+
+  &:hover {
+    border-color: var(--color-line-strong);
   }
+
   & > section {
-    gap: 1.2rem;
     display: flex;
+    gap: 0.75rem;
 
+    // Phase F. "View More" moved to the foot of the card so the title gets a
+    // full line to itself. It used to sit in a flex row beside the heading
+    // block, which cost the title roughly 90px and broke "Fintech Marketing"
+    // and "Generation Management" across two cramped lines.
+    //
+    // The link could not simply be moved: the content rule allows layout and
+    // alignment to change freely but not DOM order, and the link and the
+    // summary are not even siblings — the link is inside the inner <section>,
+    // the summary is outside it. `order` only sorts within one flex container.
+    //
+    // `display: contents` on that wrapper dissolves the box without removing
+    // the element, so the title block, the summary and the link all become flex
+    // items of this column and `order` can sequence them. Source order is
+    // untouched, and it works for both ArrowCard variants — textfloat renders
+    // the link BEFORE the heading, and it still lands at the foot.
     & > header {
-      & > section {
-        margin-bottom: 1.6rem;
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
 
+      & > section {
+        display: contents;
+      }
+
+      // The title is TWO paragraphs — mainHeading and subHeading, "Fintech"
+      // and "Marketing" — and they were stacked in a flex column, which is why
+      // the title read as two lines however much room the card had. They sit
+      // on one line now, sharing a baseline, with the brand tone on the first
+      // half and ink on the second.
+      //
+      // Row direction rather than editing the markup, because merging the two
+      // paragraphs into one would be a DOM change to content.
+      //
+      // flex-wrap keeps the old behaviour as the fallback: where a long pair
+      // like "Lead Generation Management" genuinely cannot fit the card, it
+      // breaks back onto two lines instead of overflowing.
+      & > section > header {
+        order: 1;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        @media only screen and (max-width: 700px) {
-          margin-bottom: 0.6rem;
-        }
-
-        & > header {
-          display: flex;
-          justify-content: center;
-          flex-direction: column;
-          width: 100%;
-          & > p {
-            width: 70%;
-          }
-        }
-
-        & > a {
-          display: none;
-          border-radius: 1rem;
-          color: white;
-          font-size: 1.2rem;
-          font-weight: 400;
-          padding: 0.7rem 0rem;
-          width: 13rem;
-          transition: 0.4s ease-in-out;
-        }
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        column-gap: 0.3125rem;
+        min-width: 0;
+        margin-bottom: 0.75rem;
       }
 
       & > p {
-        transition: 0.6s ease-in-out;
+        order: 2;
       }
-    }
 
-    @media only screen and (max-width: 900px) {
-      gap: 1rem;
-    }
+      // Was display: none until hover, so it was unreachable by keyboard and
+      // absent on touch. Always rendered now, as a text link rather than the
+      // filled block that only ever appeared under a cursor.
+      //
+      // margin-top: auto pins it to the foot. The cards stretch to a common
+      // height in their row, so the link sits on the same baseline across the
+      // row however long each summary runs.
+      & > section > a {
+        order: 3;
+        align-self: start;
+        margin-top: auto;
+        padding-top: 1rem;
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--color-brand);
+        white-space: nowrap;
 
-    & > div {
-      width: 2.5rem;
-
-      @media only screen and (max-width: 900px) {
-        width: 2.5rem;
-
-        & > svg {
-          width: 2.5rem;
-
-          @media only screen and (max-width: 700px) {
-            width: 2.5rem;
-          }
+        &:hover {
+          color: var(--color-brand-hover);
+          text-decoration: underline;
         }
       }
-      @media only screen and (max-width: 700px) {
-        width: 2.5rem;
-      }
+    }
 
-      & > * {
-        width: 2.5rem;
-        margin-top: 1rem;
-        height: 2rem;
-        transition:
-          width 0.6s,
-          transform 0.6s;
+    // The arrow column.
+    & > div {
+      flex: 0 0 1.5625rem;
+
+      & > svg {
+        width: 1.5625rem;
+        height: 1.25rem;
+        margin-top: 0.5rem;
+        color: var(--color-brand);
       }
     }
   }
 }
 
-.hover_black_arrowCard:hover {
-  transition: 0.9s ease-in-out;
-  background-color: rgba(255, 47, 91, 0.05);
-  border: 1px solid rgba(255, 47, 92, 0.61);
-  -ms-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  & > section {
-    & > header {
-      & > section {
-        & > a {
-          display: block;
-          background-color: rgba(255, 47, 91, 0.2);
+.arrowCard__main {
+  color: var(--color-brand);
+}
 
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          &:hover {
-            border: 1px solid rgba(255, 47, 92, 0.61);
-          }
-        }
-      }
-      & > p {
-        color: white;
+.arrowCard__sub {
+  color: var(--color-ink);
+}
+
+.arrowCard__summary {
+  color: var(--color-body);
+}
+
+// --- Right-aligned variant --------------------------------------------------
+// Replaces the two inline style objects. The arrow moves to the trailing edge
+// at the call site; this is only the alignment.
+
+.arrowCard--float {
+  text-align: right;
+
+  & > section {
+    justify-content: flex-end;
+
+    // The title pair is a ROW now, so pushing it to the trailing edge is
+    // justify-content. align-items still controls the cross axis, which is
+    // vertical here, and must stay on the shared baseline.
+    & > header > section {
+      & > header {
+        justify-content: flex-end;
       }
     }
-    & > div {
-      & > svg {
-        transform: rotateZ(-360deg);
-        width: 2.5rem;
-        height: 2rem;
-        & > path {
-          fill: white;
-        }
-      }
+
+    // The link is a flex item of the header column now, so it needs the
+    // matching alignment or it would sit left on a right-aligned card.
+    & > header > section > a {
+      align-self: end;
     }
   }
 }
 
-.hover_white_arrowCard:hover {
-  background-color: rgba(165, 121, 106, 1);
-  border: 1px solid rgb(155, 126, 117);
-  -ms-transform: scale(1.05);
-  -webkit-transform: scale(1.05);
-  transform: scale(1.05);
-  transition: 0.9s ease-in-out;
-  & > section {
-    & > header {
-      & > section {
-        & > header {
-          & > * {
-            &:last-child {
-              color: white;
-            }
-          }
-        }
-        & > a {
-          display: block;
-          background-color: rgba(104, 71, 68, 0.2);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          &:hover {
-            border: 1px solid rgb(155, 126, 117);
-          }
-        }
-      }
-      & > p {
-        color: white;
-      }
-    }
-    & > div {
-      & > svg {
-        transform: rotateZ(-360deg);
-        width: 2.5rem;
-        height: 2rem;
-        & > path {
-          fill: white;
-        }
-      }
+// --- Dark ground ------------------------------------------------------------
+// The cards inside the closing panel on the home page and the industry hero.
+// Measured against --color-ink, which is the ground bg_secondry now resolves
+// to: signal 5.48:1, panel text 7.55:1, white 19.8:1.
+
+.arrowCard--dark {
+  background: transparent;
+  border-color: var(--color-panel-border);
+
+  &:hover {
+    border-color: var(--color-brand-signal);
+  }
+
+  & .arrowCard__main {
+    color: var(--color-brand-signal);
+  }
+
+  & .arrowCard__sub {
+    color: var(--color-page);
+  }
+
+  & .arrowCard__summary {
+    color: var(--color-panel-text);
+  }
+
+  & > section > div > svg {
+    color: var(--color-brand-signal);
+  }
+
+  & > section > header > section > a {
+    color: var(--color-brand-signal);
+
+    &:hover {
+      color: var(--color-page);
     }
   }
 }

@@ -1,34 +1,72 @@
+// D5. The heading rule selected h1 and Heading renders h2 here, so the max
+// width and the spacing under the heading had never applied on any build. On
+// :is() now, with the colour that used to arrive through color_primary at the
+// call site.
+//
+// Three media queries gone: the cards are an auto-fit grid rather than three
+// flex-basis calculations stepped down at 960px and 660px.
+
+// Phase F. The group was a PANEL — 1.5rem/1rem of padding on a 4px radius,
+// coloured by :nth-child from the section — holding a grid of tiles that were
+// themselves coloured --color-band. Both halves of that arrangement are gone,
+// and the reason is in _servicesSection.scss: the alternation resolved to the
+// section's own ground on every odd group, so two groups in three rendered as
+// bare text and the third as a white slab of tiles.
+//
+// What replaces it is not a better panel, it is no panel. The section keeps ONE
+// ground, the groups are separated by the hairline the guide separates on, and
+// the rhythm between them is --sec-y-sm. Structure comes from spacing and a
+// 1px line rather than from stacked boxes, which is the whole argument against
+// the box-inside-a-box that got EngagementStalls rebuilt in F3.
 .servicesCard {
-  padding: 2.4rem 1.6rem;
-  border-radius: 0.2rem;
+  padding-block: var(--sec-y-sm);
 
-  & > h1 {
-    max-width: 26.2rem;
-    margin-bottom: 1.8rem;
+  // The separator. Between groups only — the first group is already separated
+  // from the header above it by that header's own padding, and a rule there
+  // would read as underlining the section heading.
+  & + .servicesCard {
+    border-top: 1px solid var(--color-line);
   }
-  & > section {
-    display: flex;
-    gap: 1.6rem;
-    flex-wrap: wrap;
 
+  // The group label. It is .eyebrow now, which carries the brand tone, the mono
+  // face and the tracking itself, so the colour this rule used to set is gone
+  // with the 16.375rem cap — an eyebrow at 11px broke onto two lines inside
+  // 262px, and a wrapping eyebrow reads as a mistake.
+  //
+  // The guide's eyebrow-to-content gap, the same 20px used in EngagementStalls
+  // and ContentDisplaySection.
+  & > :is(h1, h2) {
+    margin-bottom: 1.25rem;
+  }
+
+  & > section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+    gap: 1rem;
+
+    // The card. ArrowCard's treatment, which is the site's card at this size:
+    // the page ground, a hairline edge, the 12px card radius and 1.25rem of
+    // padding. NO SHADOW — the register keeps shadows to three exceptions and
+    // this is not one of them — and NO HOVER, because unlike ArrowCard these
+    // cards are never links and a border that answers the cursor on something
+    // unclickable is a lie about what it does.
+    //
+    // The --color-band fill these carried was invisible on two groups in three.
+    // The page ground reads as a card against .band-alt everywhere, which is
+    // what removes the need for the alternation rather than repairing it.
     & > div {
-      padding: 1.6rem;
-      border-radius: 1rem;
-      flex: 1 1 calc(33.3% - 1.6rem);
-      background-color: rgba(250, 246, 243, 1);
-      @media only screen and (max-width: 960px) {
-        flex: 1 1 calc(50% - 1.6rem);
-      }
-      @media only screen and (max-width: 660px) {
-        flex: 1 1 calc(100% - 1.6rem);
-      }
+      background: var(--color-page);
+      border: 1px solid var(--color-line-card);
+      border-radius: var(--radius-card);
+      padding: 1.25rem;
+
       & > * {
         &:first-child {
-          max-width: 20.7rem;
-          margin-bottom: 1.6rem;
-          @media only screen and (max-width: 960px) {
-            margin-bottom: 0.6rem;
-          }
+          margin-bottom: 0.5rem;
+        }
+
+        &:last-child {
+          color: var(--color-body);
         }
       }
     }

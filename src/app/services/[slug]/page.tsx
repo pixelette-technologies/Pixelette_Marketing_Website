@@ -8,13 +8,13 @@ import {
 } from "@/components/common";
 
 import {
-  Importance,
-  ResearchSection,
   ServicesHero,
-  ServicesSection,
-  Status
+  ServicesSection
 } from "@/components/ui/services";
+import { SpecialistServicePage } from "@/components/ui/specialist";
 import { servicesData } from "@/data/services/servicesData";
+import { specialistPages } from "@/data/services/specialist";
+import { proofCopy } from "@/data/home";
 import { Metadata } from "next";
 
 type PageProps = {
@@ -23,10 +23,52 @@ type PageProps = {
   }>;
 };
 
+// 25 Sep 2026: an unknown slug rendered this template empty with a 200 (a
+// soft 404). Only the eight service pages exist; anything else is a 404.
+// /services/lead_genration is a redirect in next.config.ts and is unaffected.
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return servicesData.map(service => ({ slug: service.route }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const pageData = servicesData.find(item => item.route === slug);
   const baseUrl = "https://www.pixelettemarketing.com";
+
+  // 30 Sep 2026: a specialist page takes its title and description from its
+  // own config, written to its display label and proposition. The share
+  // image stays the route's existing one: it is a link-preview card, not page
+  // imagery, and the site has no default to fall back to.
+  const specialist = specialistPages[slug];
+  if (specialist) {
+    const { title, description } = specialist.meta;
+    const url = `${baseUrl}/services/${slug}`;
+    const image = pageData?.image || "/services/heroImageServices.webp";
+    return {
+      title,
+      description,
+      alternates: { canonical: url },
+      openGraph: {
+        title,
+        description,
+        url,
+        siteName: "Pixelette Marketing",
+        images: [{ url: image, width: 1200, height: 630, alt: title }],
+        locale: "en_GB",
+        type: "website"
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [image],
+        creator: "@pixelettemarketing"
+      },
+      robots: { index: true, follow: true }
+    };
+  }
 
   return {
     title: pageData?.metaTitle || "Services",
@@ -48,7 +90,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           alt: pageData?.metaTitle || "Services",
         },
       ],
-      locale: "en_US",
+      locale: "en_GB",
       type: "website",
     },
     twitter: {
@@ -74,12 +116,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+
+  // 30 Sep 2026: the specialist service pages (the four Demand & Performance
+  // routes, and Search & Authority's) render one shared structure from their
+  // configs. The URL is unchanged; only the template beneath it is. The
+  // legacy template below still serves the routes not yet migrated.
+  const specialist = specialistPages[slug];
+  if (specialist) return <SpecialistServicePage page={specialist} />;
+
   const pageData = servicesData.find(item => item.route === slug);
   const baseUrl = "https://www.pixelettemarketing.com";
 
-  const researchData = pageData?.research;
-  const importanceData = pageData?.importance;
-  const statusData = pageData?.status;
   const serviceData = pageData?.services;
   const contactData = pageData?.howWeWork;
   const questionAndAnswer = pageData?.questionAndAnswer;
@@ -153,26 +200,33 @@ export default async function Page({ params }: PageProps) {
         text={pageData?.summary}
         image={pageData?.image || "/services/heroImageServices.webp"}
       />
-      <TrustedBrands />
-
-      <ResearchSection
-        mainHeading={researchData?.mainHeading}
-        subHeading={researchData?.subHeading}
-        detail={researchData?.detail}
-        data={researchData?.data || []}
+      {/* 23 Sep 2026: "Trusted by / Leading Brands" came off. The row includes
+          portfolio ventures and group work, so it takes the one claim the
+          home page and /aboutus make about the same six logos. The inline
+          layout cannot hold a sentence (its heading is nowrap), hence stacked. */}
+      <TrustedBrands
+        layout='stacked'
+        eyebrow={proofCopy.eyebrow}
+        heading={proofCopy.heading}
+        standfirst={proofCopy.standfirst}
+        cta={proofCopy.cta}
       />
 
-      <Importance
-        mainheading={importanceData?.mainHeading}
-        subHeading={importanceData?.subHeading}
-        data={importanceData?.data || []}
-      />
-
-      <Status
-        heading={statusData?.heading}
-        text={statusData?.text}
-        data={statusData?.data || []}
-      />
+      {/* 25 Sep 2026: THREE BLOCKS AND THEIR DATA ARE GONE, not hidden.
+          The final correction pass requires a figure whose source cannot be
+          verified in the project to be removed, not parked.
+            ResearchSection: three percentages per page credited only to a
+              publisher and a year. Three of the publishers do not appear to
+              exist, two citations were truncated to "202", one statistic
+              appeared twice under two sources, and the email page carried
+              the recycled "760%" figure.
+            Status: four percentages per page presented as Pixelette results
+              ("60% increase in social shares in the first four months"), with
+              no client, baseline or period. Unrendered since 23 Sep.
+            Importance: always empty, so it never rendered, but its data still
+              read "according to leaders of billion dollar brands".
+          A figure can come back only with a real, linked source, written
+          fresh rather than restored from history. */}
 
       <ServicesSection
         heading={serviceData?.heading}

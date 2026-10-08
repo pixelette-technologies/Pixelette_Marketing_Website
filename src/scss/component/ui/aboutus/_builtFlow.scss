@@ -1,0 +1,288 @@
+// How we're built. 30 Sep 2026. The page's one interaction.
+//
+// FOUR STAGES ON ONE THIN LINE: horizontal from 768px, vertical below it (the
+// site's one breakpoint, max-width 767px). A node marks each stage, and once,
+// when the section comes into view, a small pink signal runs the line from the
+// first node to the last while the line fills and each node lights as the
+// signal reaches it. 700ms, no loop. BuiltFlow.tsx owns the state:
+//
+//   idle / done   the finished flow — the server's HTML and the end state
+//   armed         set back to the start, only while an observer is waiting
+//   run           the one pass
+//
+// THE TRACK'S LENGTH IS ARITHMETIC, NOT MEASUREMENT. The stages are four equal
+// grid tracks (columns across, 1fr rows down), so the first node to the last
+// is three tracks and three gaps: 3/4 of the list plus 3/4 of one gap. The
+// same calc serves both orientations, and no script measures anything.
+//
+// Motion surface 12 in _surfaces.scss. Under a reduce preference the script
+// never arms and the rules at the foot stop any animation regardless.
+
+$built-run: 700ms; // keep in step with RUN_MS in BuiltFlow.tsx
+// LINEAR, and that was found by sampling the run rather than chosen: on an
+// eased curve the signal is past stage 03 by 60% of the time, so nodes lit at
+// i/3 of the run came on after it had already gone by. At constant speed the
+// signal is at stage i at exactly i/3.
+$built-ease: linear;
+
+.aboutBuilt {
+  padding-block: var(--sec-y-sm) 0;
+
+  & > header {
+    & > .eyebrow {
+      margin-bottom: 1.25rem;
+      color: var(--color-pink-text);
+    }
+
+    & > .h2 {
+      max-width: 34rem;
+      color: var(--color-burgundy);
+    }
+
+    & > .lead {
+      margin-top: 1.25rem;
+      color: var(--color-plum-ink);
+    }
+  }
+}
+
+.builtFlow {
+  --built-gap: clamp(1.25rem, 0.75rem + 1.6vw, 2rem);
+  --built-node: 14px;
+
+  position: relative;
+  margin-top: var(--sec-y-sm);
+
+  &__stages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--built-gap);
+  }
+
+  &__stage {
+    position: relative;
+    min-width: 0;
+  }
+
+  // The line, through the node centres.
+  &__track {
+    position: absolute;
+    top: calc(var(--built-node) / 2);
+    left: calc(var(--built-node) / 2);
+    width: calc(75% + 0.75 * var(--built-gap));
+    height: 1px;
+    background: var(--color-line-strong);
+  }
+
+  &__fill {
+    position: absolute;
+    inset: 0;
+    background: var(--color-pink);
+    transform-origin: left center;
+  }
+
+  // At rest (finished) the signal has arrived and gone.
+  &__signal {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-pink);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--color-pink) 22%, transparent);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+
+  &__node {
+    position: relative; // above the track
+    display: block;
+    width: var(--built-node);
+    height: var(--built-node);
+    border-radius: 50%;
+    background: var(--color-pink);
+  }
+
+  &__index {
+    display: block;
+    margin-top: 1.25rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-pink-text);
+  }
+
+  &__title {
+    display: block;
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.5rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--color-burgundy);
+    text-wrap: balance;
+  }
+
+  // --- The one pass ---------------------------------------------------------
+
+  &[data-state="armed"] {
+    .builtFlow__fill {
+      transform: scaleX(0);
+    }
+
+    .builtFlow__node {
+      background: var(--color-page);
+      box-shadow: inset 0 0 0 1.5px var(--color-line-strong);
+    }
+  }
+
+  &[data-state="run"] {
+    .builtFlow__fill {
+      animation: built-fill-x $built-run $built-ease both;
+    }
+
+    .builtFlow__signal {
+      animation: built-travel-x $built-run $built-ease both;
+    }
+
+    // Each node lights as the signal reaches it: stage i is i/3 of the way.
+    .builtFlow__node {
+      animation: built-node 260ms ease-out both;
+      animation-delay: calc(var(--i) * #{$built-run} / 3);
+    }
+  }
+}
+
+@keyframes built-fill-x {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes built-fill-y {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes built-travel-x {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+@keyframes built-travel-y {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+@keyframes built-node {
+  0% {
+    background: var(--color-page);
+    box-shadow: inset 0 0 0 1.5px var(--color-line-strong);
+    transform: scale(1);
+  }
+  // Lit almost at once, then it settles: the node must be pink when the
+  // signal arrives, not a beat after.
+  15% {
+    background: var(--color-pink);
+    box-shadow: inset 0 0 0 1.5px var(--color-pink);
+    transform: scale(1.3);
+  }
+  100% {
+    background: var(--color-pink);
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
+// --- Vertical, below 768px -----------------------------------------------------
+// The node moves into a left gutter beside its text, the rows are equal so the
+// track calc still holds, and the line runs down instead of across.
+
+@media (max-width: 767px) {
+  .builtFlow {
+    &__stages {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 1fr;
+    }
+
+    &__stage {
+      padding-left: calc(var(--built-node) + 1.25rem);
+    }
+
+    &__node {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &__index {
+      margin-top: 0;
+    }
+
+    &__track {
+      width: 1px;
+      height: calc(75% + 0.75 * var(--built-gap));
+    }
+
+    &__fill {
+      transform-origin: center top;
+    }
+
+    &__signal {
+      top: 100%;
+      left: 50%;
+    }
+
+    &[data-state="armed"] .builtFlow__fill {
+      transform: scaleY(0);
+    }
+
+    &[data-state="run"] {
+      .builtFlow__fill {
+        animation-name: built-fill-y;
+      }
+
+      .builtFlow__signal {
+        animation-name: built-travel-y;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .builtFlow__fill,
+  .builtFlow__signal,
+  .builtFlow__node {
+    animation: none !important;
+  }
+}
+
+// From 48rem the lead sits beside the heading, level with its last line.
+@media (min-width: 48rem) {
+  .aboutBuilt > header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+    align-items: end;
+
+    & > .eyebrow {
+      grid-column: 1 / -1;
+    }
+
+    & > .lead {
+      margin-top: 0;
+    }
+  }
+
+  .builtFlow {
+    margin-top: 2.5rem;
+  }
+}

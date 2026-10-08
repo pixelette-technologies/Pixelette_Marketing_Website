@@ -1,6 +1,7 @@
 const HotJar = () => {
   return (
     <svg
+      aria-hidden='true'
       width='99'
       height='27'
       viewBox='0 0 99 27'

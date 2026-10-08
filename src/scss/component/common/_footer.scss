@@ -1,18 +1,307 @@
-footer {
-  padding: 3.35rem 0rem;
+// The footer ground, eyebrow colour and legal type all come from the .footer
+// primitive. This partial lays the footer out.
+//
+// --- 18 Sep 2026: the group footer ------------------------------------------
+// Rebuilt to the Pixelette Technologies footer's structure — brand-led grid,
+// group band, legal line — so the sister sites share one footer shape. Their
+// measurements are carried across as ratios and rhythm; every COLOUR is this
+// site's own footer token, never theirs. Their accent is a mint that belongs to
+// their palette. Ours is --color-footer-eyebrow, the one tone the tokens file
+// lets speak on this ground (5.11).
+//
+// One breakpoint, the site's 767px. Theirs steps at 1000, 900 and 560; the
+// layout file here says resist a second query, so the grid folds once and
+// the rest is clamp() and wrapping.
+
+.site-footer {
+  padding-top: var(--sec-y);
+  padding-bottom: 2.5rem;
+}
+
+// --- 1. The grid ------------------------------------------------------------
+// 1.6fr + two, which is now the same shape as theirs. It was 1.6fr + three
+// until 22 Sep 2026, when the Who We Help column came out on instruction and
+// What We Do became Services. The brand column keeps their 1.6 weighting.
+.footerGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(2, minmax(0, 1fr));
+  gap: 2.5rem 1.75rem;
+
   & > div {
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  // Matched to the Technologies footer, 22 Sep 2026. Theirs sets the column
+  // heading at 10.5px / 500 / .14em; ours was 11px at the .eyebrow default
+  // weight and .18em, which read heavier and wider than theirs.
+  .eyebrow {
+    margin-bottom: 0.75rem;
+    font-size: 0.65625rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+  }
+}
+
+// --- The link rows ----------------------------------------------------------
+// THE ROW HEIGHT IS THE SPACING. Neither footer puts a gap on the list; the
+// anchor's own min-height is what separates one link from the next. Theirs is
+// 34px and .flink is 44px, which is where the extra air between our nav links
+// came from — 10px per row, and with eight rows in the Services column that is
+// 80px of drift by the bottom of it.
+//
+// SCOPED TO THE FOOTER, deliberately. .flink is shared with Navbar.tsx, and
+// the header's targets are not part of this. 34px still clears WCAG 2.2 AA,
+// whose Target Size (Minimum) floor is 24px; it gives up the 44px AAA-level
+// target the primitive was chosen for. That is the trade the match costs and
+// it is recorded rather than absorbed.
+.site-footer .flink,
+.site-footer .footerList__button {
+  min-height: 34px;
+  font-size: 0.875rem;
+}
+
+.footerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  // .flink carries the 44px tap target, so the rows need no gap of their own.
+  a,
+  .footerList__button {
+    color: var(--color-footer-body);
+  }
+}
+
+// The Privacy choices control is a <button> dressed as the links around it.
+// .flink supplies the tap target and the hover; this only strips the button's
+// own chrome so it cannot read as a different kind of thing in the list.
+.footerList__button {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.footerList__button:hover,
+.footerList__button:focus-visible {
+  color: var(--color-page);
+  text-decoration: underline;
+}
+
+// --- The brand column -------------------------------------------------------
+.footerBrand {
+  & > .small {
+    margin-top: 1.25rem;
+    max-width: 34ch;
+    // 14px, as theirs. .small is 13px site-wide and stays that way.
+    font-size: 0.875rem;
+    color: var(--color-footer-body);
+  }
+}
+
+.footerBrand__logo {
+  display: block;
+
+  & > svg {
+    display: block;
+    height: 3rem;
+    width: auto;
+  }
+}
+
+// In the slot where Technologies lists its ISO certificates.
+.footerSocial {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  // Pull the first icon's 44px hit area back to the text edge above it.
+  margin-left: -0.625rem;
+
+  & > a {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    @media only screen and (max-width: 650px) {
-      flex-direction: column;
-      gap: 1rem;
-    }
-    & > div {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2.45rem;
-    }
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
+    color: var(--color-footer-body);
+  }
+
+  & > a:hover {
+    color: var(--color-page);
+  }
+}
+
+// --- 2. The group band ------------------------------------------------------
+// Their .groupband: a hairline, an intro on the left at 0.85 and the list on
+// the right at 1.15, the list itself two across.
+.groupband {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-footer-line);
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 3rem;
+  align-items: start;
+}
+
+.groupband__intro {
+  // .h4 is --color-ink, invisible here. The footer primitive colours the
+  // eyebrow and the legal line but has no heading rule of its own.
+  & > .h4 {
+    color: var(--color-page);
+    margin-bottom: 0.875rem;
+    // 19px against the .h4 scale's 18px, and theirs tightens the tracking.
+    font-size: 1.1875rem;
+    letter-spacing: -0.01em;
+  }
+
+  & > .small {
+    max-width: 46ch;
+    font-size: 0.875rem;
+    line-height: 1.65;
+    color: var(--color-footer-body);
+  }
+}
+
+.groupband__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.625rem 2rem;
+}
+
+.groupband__name {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-footer-eyebrow);
+
+  & > svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+}
+
+a.groupband__name:hover {
+  color: var(--color-page);
+  text-decoration: underline;
+}
+
+.groupband__name--current {
+  color: var(--color-page);
+}
+
+.groupband__here {
+  font-family: var(--font-mono);
+  font-size: 0.59375rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-footer-muted);
+  border: 1px solid var(--color-footer-line);
+  border-radius: var(--radius-tile);
+  padding: 0.1875rem 0.4375rem;
+}
+
+.groupband__what {
+  display: block;
+  margin-top: 0.4375rem;
+  max-width: 42ch;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--color-footer-muted);
+}
+
+// --- 3. The legal line ------------------------------------------------------
+// Two items, as on Technologies: the copyright, and the company identity —
+// registration, company number, registered office, VAT. Management supplied
+// the identity on 22 Sep 2026; see Footer.tsx. The flex row puts one at each
+// end and wraps to two stacked lines when the identity no longer fits beside
+// the copyright, which on a narrow viewport it will not.
+.footerLegal {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-footer-line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+// The identity, matched to the Technologies footer on 22 Sep 2026. It was one
+// prose sentence ranged right beside a copyright line. Theirs is FIVE DISCRETE
+// ITEMS across two blocks — entity, jurisdiction, company number on the left;
+// registered office and VAT on the right — and carries no copyright at all.
+//
+// The three-class selector is not decoration: .footer .legal in _surfaces.scss
+// sets the mono face, the muted colour AND 11.5px at two classes, so a
+// single-class rule here could not raise the size to theirs.
+.footer .footerLegal .legal {
+  font-size: 0.78125rem;
+  font-weight: 400;
+}
+
+.footerId {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.625rem;
+  max-width: 76ch;
+  // Theirs fades the whole row rather than picking a dimmer token. Doing the
+  // same keeps it one step quieter than the links without inventing a colour
+  // the palette does not have.
+  opacity: 0.62;
+}
+
+.footerId--end {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+@media only screen and (max-width: 767px) {
+  .footerId--end {
+    justify-content: flex-start;
+    text-align: left;
+  }
+}
+
+// --- The one fold -----------------------------------------------------------
+// Brand across the top, the two link columns beneath it side by side, the
+// group band stacked. Theirs goes to one column at 560px; at this site's
+// single breakpoint two columns of short links still fit a phone comfortably.
+// Since 22 Sep the two columns are the whole set rather than three wrapping
+// into a 2x2, so the fold now costs nothing.
+@media only screen and (max-width: 767px) {
+  .footerGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 1.5rem;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1;
+  }
+
+  .groupband,
+  .groupband__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .groupband {
+    gap: 2rem;
+  }
+
+  .groupband__list {
+    gap: 1.375rem;
   }
 }

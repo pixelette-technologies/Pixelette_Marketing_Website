@@ -1,209 +1,249 @@
-@use "../../../globels" as breakPoint;
+// 01 — The home hero. Locked implementation specification, 28 Sep 2026.
+//
+// Replaces the baseline's collage hero and every rule for it (the collage,
+// its five absolutely positioned images, its parallax depths and its mobile
+// stand-in image). The Living Signal rules are ported from commit 3906c3a
+// and adjusted to the final approved reference: a wider, landscape figure,
+// both rail labels hung from a hairline on their right, and the handwritten
+// "From insight to impact" with its arrow.
+//
+// The ground is the site's own .wash, unchanged.
 
-.heroHome {
+// 29 Sep, on instruction: the hero fills the screen below the sticky header
+// (--home-band-h: 100dvh less the header), and the
+// height it had before, its content plus padding, is the floor it never
+// shrinks below on a short screen. The content is centred in the extra room.
+.homeHero {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: var(--home-band-h);
+  min-height: fit-content;
+  padding-block: clamp(2.5rem, 1.5rem + 3vw, 4.5rem) clamp(3rem, 1.75rem + 3.5vw, 5.5rem);
+}
+
+// 29 Sep: container_main's `overflow: hidden` clipped the Living Signal's
+// canvas bleed to the figure's box, cutting the lines the pointer draws up
+// or down. As for the header (_navbar.scss), the clip is lifted HERE, not on
+// the container: sideways it still clips, so nothing can widen the page, and
+// only the vertical axis is let go. (`hidden` cannot do that: it turns the
+// other axis to `auto`; `clip` does not.)
+.homeHero > .container_main {
+  overflow: clip visible;
+}
+
+// Copy and visual. In the reference the picture is the larger half, so its
+// basis and growth are the larger. Wrapping flex rather than a breakpoint: the
+// visual drops beneath the copy when the two bases no longer fit, which is
+// the spec's mobile order (headline, copy, CTA, then the signal).
+.homeHero__grid {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 5.1rem;
-  padding: 4rem 0rem;
-  @media only screen and (max-width: 985px) {
-    flex-direction: column;
+  gap: clamp(2rem, 0.5rem + 3vw, 3.5rem);
+  container-type: inline-size;
+}
+
+.homeHero__copy {
+  flex: 1 1 26rem;
+  min-width: 0;
+}
+
+.homeHero__visual {
+  flex: 1.25 1 24rem;
+  min-width: 0;
+}
+
+// --- Type -------------------------------------------------------------------
+
+// The reference sets the eyebrow in ink, not the brand tone, widely tracked.
+.homeHero__eyebrow {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+// The whole headline is ink in the reference, and it breaks as the reference
+// breaks it at desktop, "Marketing that / matters to your / bottom line".
+// The measure is held in em so the break survives the clamp.
+.homeHero__title {
+  max-width: 8.6em;
+  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.homeHero__support {
+  max-width: 29rem;
+  margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
+  text-wrap: pretty;
+}
+
+// Clean whitespace beneath the actions, by instruction: nothing follows them.
+.homeHero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 2rem;
+  margin-top: 2rem;
+}
+
+// --- The Living Signal --------------------------------------------------------
+// Landscape in the final reference, about 1.2 : 1, and no mask: the shape
+// thins out at its own edges and the point sits at the right edge.
+.livingSignal {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.2 / 1;
+  max-height: 36rem;
+}
+
+// 29 Sep: the canvas bleeds past the figure's box — a fifth of its height
+// above and below, a little either side — so lines and points the pointer
+// draws outward are not cut at the box's edge. The drawing is still laid out
+// in the box (LivingSignal.tsx offsets it), so at rest nothing moves. It
+// never takes the pointer: the copy beside it stays clickable, and the
+// figure follows the pointer on the window anyway.
+.livingSignal__canvas {
+  // A canvas is a replaced element: insets alone do not stretch it, so the
+  // size is explicit. 6% + 100% + 3% wide, 20% + 100% + 20% tall.
+  position: absolute;
+  top: -20%;
+  left: -6%;
+  display: block;
+  width: 109%;
+  height: 140%;
+  pointer-events: none;
+}
+
+// The reference's two rail groups: small, widely tracked capitals, right-
+// aligned, each hung from a vertical hairline on its right. Part of the
+// picture, so they arrive once the drawing has resolved.
+.livingSignal__label {
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.3em;
+  margin: 0;
+  padding-right: 0.875rem;
+  border-right: 1px solid var(--color-line-strong);
+  font-family: var(--font-mono);
+  font-size: clamp(0.5625rem, 0.5rem + 0.18vw, 0.6875rem);
+  line-height: 1.45;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+  animation: livingSignalLabel 900ms ease 2.6s both;
+
+  & > span {
+    margin-right: -0.14em;
+  }
+}
+
+.livingSignal__label--top {
+  top: 3%;
+  padding-bottom: 1.5rem;
+}
+
+.livingSignal__label--bottom {
+  bottom: 2%;
+  padding-top: 1.5rem;
+}
+
+// "From insight to impact". Handwriting in the brand tone, turned a little,
+// with the arrow falling to the point. Placed in percentages of the figure,
+// so it tracks FOCUS in LivingSignal.tsx (0.955, 0.46) at every width.
+.livingSignal__note {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: livingSignalLabel 900ms ease 2.9s both;
+}
+
+.livingSignal__noteText {
+  position: absolute;
+  left: 57%;
+  top: 11%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  font-family: var(--font-hand);
+  font-size: clamp(1.25rem, 0.8rem + 1.3vw, 2.125rem);
+  font-weight: 500;
+  line-height: 0.95;
+  color: var(--color-brand);
+  transform: rotate(-9deg);
+  transform-origin: left top;
+
+  & > span:nth-child(2) {
+    padding-left: 0.3em;
   }
 
-  & > div {
-    padding-top: 23rem;
-    z-index: 1000;
-    & > section {
-      position: relative;
-      max-width: 662px;
-      height: 410px;
-      margin-left: 12rem;
-      & > img {
-        position: absolute;
-        transition: 0.3s ease-in-out;
-      }
-
-      &:hover {
-        & > * {
-          &:first-child {
-            transform: rotate(-4deg);
-          }
-          &:nth-child(2) {
-            transform: rotate(-7deg);
-          }
-          &:nth-child(3) {
-            -ms-transform: scale(1.2);
-            -webkit-transform: scale(1.2);
-            transform: scale(1.2);
-          }
-          &:nth-child(4) {
-            transform: rotate(-7deg);
-          }
-          &:nth-child(5) {
-            transform: rotate(7deg);
-          }
-        }
-      }
-
-      & > * {
-        &:first-child {
-          z-index: 1000 !important;
-          @media only screen and (max-width: 1065px) {
-            height: 340px;
-            width: 330px;
-          }
-        }
-        &:nth-child(2) {
-          top: 4.5rem;
-          left: -11rem;
-          z-index: 80;
-          @media only screen and (max-width: 1065px) {
-            height: 300px;
-            width: 310px;
-          }
-        }
-        &:nth-child(3) {
-          top: -6rem;
-          left: 3rem;
-          @media only screen and (max-width: 1065px) {
-            height: 300px;
-            width: 310px;
-          }
-        }
-        &:nth-child(4) {
-          left: 34rem;
-          top: 16rem;
-          z-index: 80;
-          @media only screen and (max-width: 1065px) {
-            height: 150px;
-            width: 160px;
-          }
-        }
-        &:nth-child(5) {
-          left: 30rem;
-          top: -22rem;
-          @media only screen and (max-width: 1065px) {
-            height: 460px;
-            width: 110px;
-            top: -15rem;
-          }
-        }
-      }
-      @media only screen and (max-width: 988px) {
-        display: none;
-      }
-    }
-    @media only screen and (max-width: 988px) {
-      padding-top: 5rem;
-    }
-    @media only screen and (max-width: 550px) {
-      padding-top: 0rem;
-      margin-top: -4rem;
-    }
+  & > span:nth-child(3) {
+    padding-left: 0.55em;
   }
-  & > img {
-    display: none;
-    @media only screen and (max-width: 988px) {
-      display: block;
-      z-index: 100;
-    }
-    @media only screen and (max-width: 580px) {
-      width: 96%;
-      height: auto;
-    }
+}
+
+.livingSignal__arrow {
+  position: absolute;
+  left: 80%;
+  top: 22%;
+  width: 7%;
+  height: auto;
+  overflow: visible;
+
+  path {
+    fill: none;
+    stroke: var(--color-brand);
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+@keyframes livingSignalLabel {
+  from {
+    opacity: 0;
+  }
+}
+
+// When the hero is too narrow to sit the two side by side (a question about
+// the hero's width, hence a container query) the drawing takes the full width
+// beneath the copy, a little flatter, and square on a phone.
+@container (max-width: 52rem) {
+  .livingSignal {
+    aspect-ratio: 1.35 / 1;
+    max-height: 30rem;
+  }
+}
+
+@container (max-width: 30rem) {
+  .livingSignal {
+    aspect-ratio: 1 / 0.95;
   }
 
-  & > section {
-    padding-top: 3.8rem;
-    padding-bottom: 3.8rem;
-    padding-right: 5.3rem;
-    padding-left: 22rem;
-    margin-left: -0rem;
-    margin-bottom: -8.7rem;
-    border-top-right-radius: 3rem;
-    border-bottom-right-radius: 3rem;
+  .livingSignal__noteText {
+    left: 52%;
+    top: 10%;
+  }
 
-    @media only screen and (max-width: 1346px) {
-      padding-left: 20rem;
-    }
-    @media only screen and (max-width: 1325px) {
-      padding-right: 3rem;
-      padding-left: 19rem;
-    }
-    @media only screen and (max-width: 1280px) {
-      padding-left: 21rem;
-    }
-    @media only screen and (max-width: 1200px) {
-      margin-left: -24rem;
-      margin-bottom: -15rem;
-    }
+  .livingSignal__arrow {
+    left: 78%;
+    top: 24%;
+    width: 9%;
+  }
+}
 
-    @media only screen and (max-width: 1080px) {
-      margin-bottom: -10.5rem;
-    }
-
-    @media only screen and (max-width: 1050px) {
-      padding-left: 19rem;
-    }
-    @media only screen and (max-width: 1050px) {
-      padding-left: 17rem;
-    }
-
-    @media only screen and (max-width: 988px) {
-      padding-left: 3rem;
-      padding-right: 3rem;
-      margin-top: -10rem;
-      padding-top: 9rem;
-      margin-bottom: 0rem;
-      margin-left: -5rem;
-      border-bottom-left-radius: 3rem;
-      border-bottom-right-radius: 3rem;
-      border-top-left-radius: 3rem;
-      border-top-right-radius: 3rem;
-    }
-    @media only screen and (max-width: 580px) {
-      margin-left: 0rem;
-      width: 90%;
-    }
-
-    & > div {
-      max-width: 38.2rem;
-      @media only screen and (max-width: 1050px) {
-        max-width: 300px;
-      }
-
-      @media only screen and (max-width: 988px) {
-        max-width: 420px;
-      }
-      @media only screen and (max-width: 1325px) {
-        & > h1 {
-          font-size: 4.8rem;
-          line-height: 4.5rem;
-          @media only screen and (max-width: 1065px) {
-            font-size: 4rem;
-            line-height: 3.5rem;
-          }
-          @media only screen and (max-width: 1050px) {
-            font-size: 3.5rem;
-            line-height: 3.2rem;
-          }
-        }
-      }
-
-      & > p {
-        margin: 3.2rem 0rem;
-        z-index: 999999;
-        @media only screen and (max-width: 1325px) {
-          margin: 2rem 0rem;
-        }
-        @media only screen and (max-width: 1065px) {
-          margin: 1.6rem 0rem;
-        }
-
-        @media only screen and (max-width: 850px) {
-          margin: 1.5rem 0rem;
-        }
-      }
-    }
+@media (prefers-reduced-motion: reduce) {
+  .livingSignal__label,
+  .livingSignal__note {
+    animation: none;
   }
 }

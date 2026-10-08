@@ -5,6 +5,7 @@ import React from "react";
 
 interface HeroSingleBlogPageProps {
   image: string;
+  imageAlt: string;
   profile: string;
   name: string;
   lastUpdateDate: string;
@@ -12,6 +13,7 @@ interface HeroSingleBlogPageProps {
 
 const HeroSingleBlogPage: React.FC<HeroSingleBlogPageProps> = ({
   image,
+  imageAlt,
   profile,
   name,
   lastUpdateDate
@@ -19,7 +21,7 @@ const HeroSingleBlogPage: React.FC<HeroSingleBlogPageProps> = ({
   return (
     <Container className='main'>
       <div className='heroSingleBlogPage'>
-        <Image src={image} alt='Blog hero Image' height={460} width={1250} />
+        <Image src={image} alt={imageAlt} height={460} width={1250} />
 
         <section>
           <div>
@@ -33,7 +35,7 @@ const HeroSingleBlogPage: React.FC<HeroSingleBlogPageProps> = ({
             <Text>{name}</Text>
           </div>
           <div>
-            <Text>Last Updated: {lastUpdateDate}</Text>
+            <Text>Last updated: {lastUpdateDate}</Text>
           </div>
         </section>
       </div>

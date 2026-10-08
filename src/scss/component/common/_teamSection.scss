@@ -1,39 +1,58 @@
+// D5. Two media queries gone; the cards are an auto-fit grid rather than a
+// flex basis restated at 900px and 600px.
+
 .teamSection {
-  padding: 3.2rem 0rem;
+  padding-block: var(--sec-y);
+
+  // Phase F. mainHeading is the eyebrow, subHeading is the h2 — the pair was
+  // already in the content and both halves were rendering as the same
+  // uppercase display heading. The gap between them is the guide's 20px.
   & > header {
-    margin-bottom: 1.4rem;
-    & > * {
-      &:first-child {
-        margin-bottom: 0.7rem;
-      }
-      &:last-child {
-        margin-bottom: 3rem;
-      }
+    margin-bottom: 2.5rem;
+
+    & > *:first-child {
+      margin-bottom: 1.25rem;
     }
   }
+
   & > ul {
-    margin-bottom: 3.2rem;
+    margin-bottom: 2rem;
+
     & > li {
-      margin-left: 3rem;
-      font-size: 1.4rem;
-      font-weight: 300;
-      line-height: 2rem;
-      margin-bottom: 0.3rem;
+      margin-left: 1.875rem;
+      font-size: var(--fs-body);
+      line-height: 1.6;
+      margin-bottom: 0.1875rem;
+      color: var(--color-body);
     }
   }
 
   & > section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    & > div {
-      flex: 1 1 calc(33.3% - 0.9rem);
-      @media only screen and (max-width: 900px) {
-        flex: 1 1 calc(50% - 0.9rem);
-      }
-      @media only screen and (max-width: 600px) {
-        flex: 1 1 calc(100% - 0.9rem);
-      }
-    }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: 0.5625rem;
   }
+}
+
+// Phase F. The D8 colour rule that sat here is gone: .eyebrow already carries
+// the brand tone and .h2 already carries ink, so restating either here only
+// risked the two drifting apart.
+
+// --- 8 Sep 2026 brief -------------------------------------------------------
+// The results section gains a standfirst and a route to the case studies. Both
+// are optional props, so /services/[slug] and /story/[id] render exactly as
+// they did.
+//
+// The header's `*:first-child` gap still belongs to the eyebrow; the
+// standfirst is selected by class so it cannot pick up the eyebrow's rule if
+// the heading pair is ever reordered.
+.teamSection {
+  & > header > .lead {
+    margin-top: 1.5rem;
+  }
+}
+
+.teamSection__cta {
+  display: inline-flex;
+  margin-top: 2rem;
 }

@@ -68,7 +68,7 @@ const structuredData = {
       "@id": "https://www.pixelettemarketing.com/#organization",
       name: "Pixelette Marketing",
       url: "https://www.pixelettemarketing.com",
-      logo: "https://www.pixelettemarketing.com/favicon.svg",
+      logo: "https://www.pixelettemarketing.com/favicon.png",
       description:
         "Commercially focused marketing and growth company, built to work with businesses across established and emerging sectors, with deeper experience in technology-led markets.",
       contactPoint: {
@@ -105,7 +105,7 @@ const structuredData = {
       "@id": "https://www.pixelettemarketing.com/#localbusiness",
       name: "Pixelette Marketing",
       url: "https://www.pixelettemarketing.com",
-      image: "https://www.pixelettemarketing.com/favicon.svg",
+      image: "https://www.pixelettemarketing.com/favicon.png",
       telephone: "+44 2045188226",
       email: "sales@pixelettemarketing.com",
       address: {
@@ -138,7 +138,7 @@ export default function RootLayout({
       className={`${newsreader.variable} ${outfit.variable} ${plexMono.variable} ${caveat.variable}`}
     >
       <head>
-        <link rel='icon' href='/favicon.svg' />
+        <link rel='icon' href='/favicon.png' />
         <script
           type='application/ld+json'
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

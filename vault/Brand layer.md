@@ -12,7 +12,7 @@ Unlike the Certified conversion, **there was no colour drift to fix**. All three
 |---|---|
 | `src/assets/common/Logo.tsx` | `#B3063C` × 20 fills |
 | `src/assets/common/LogoBlack.tsx` | `#B3063C` × 20 fills, plus `#1F2123` |
-| `public/favicon.svg` | `#B3063C` × 20 fills |
+| `public/favicon.png` | `#B3063C` × 20 fills |
 | `_color.scss` `$primary` | `rgba(179, 6, 60, 1)` — the same value |
 
 No tiebreaker to apply, and **no favicon to re-cut**. The drift is elsewhere: the transactional email template in `app/api/contact/route.ts` carries ten inline hexes forming a completely independent dark palette that shares not one value with the site.

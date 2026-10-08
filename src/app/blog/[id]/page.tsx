@@ -71,7 +71,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
     publisher: {
       "@type": "Organization",
       name: "Pixelette Marketing",
-      logo: { "@type": "ImageObject", url: `${SITE}/favicon.svg` }
+      logo: { "@type": "ImageObject", url: `${SITE}/favicon.png` }
     },
     mainEntityOfPage: `${SITE}/blog/${id}`
   };

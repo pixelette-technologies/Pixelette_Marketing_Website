@@ -5,9 +5,9 @@
  * rebuild of an older Pixelette Marketing website with articles to carry
  * over, the way some other Pixelette Group sites have an `/archive` corpus.
  *
- * The directory exists only so `pix-agent check-sources --archive
- * src/content/archive` has something to point at. `check.mjs`'s
- * `check-sources` command fails outright if the `--archive` path does not
+ * The directory exists only so `npm run pix:check-sources` has an
+ * `--archive src/content/archive` path to point at. The check fails outright
+ * if that path does not
  * exist, and skips its archive-prose probe (rather than failing vacuously)
  * when the directory exists but holds no `*.ts` article files. This file is
  * named `index.ts` and is excluded from that scan for the same reason

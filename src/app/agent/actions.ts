@@ -11,7 +11,7 @@ import { mkdir, open } from 'node:fs/promises';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { headers } from 'next/headers';
 import { Resend } from 'resend';
-import { isEmail, type LeadPayload, type LeadResult } from '@pixelette/agent';
+import { isEmail, type LeadPayload, type LeadResult } from '@/lib/pix';
 import {
   DurableContactDeliveryControl,
   sendWithBoundedRetry,

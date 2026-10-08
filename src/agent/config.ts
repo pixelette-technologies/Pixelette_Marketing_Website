@@ -1,4 +1,5 @@
-import type { AgentConfig, ThemeOptions } from '@pixelette/agent';
+import type { ThemeOptions } from '@/components/pix/theme';
+import type { AgentConfig } from '@/lib/pix';
 
 /**
  * Visitor-facing agent config for Pixelette Marketing.

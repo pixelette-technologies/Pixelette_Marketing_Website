@@ -1,5 +1,5 @@
 import "server-only";
-import type { PixContext } from "@pixelette/agent";
+import type { PixContext } from "@/lib/pix";
 
 /**
  * Pixelette Marketing's `PixContext`. Server-only: this module runs on the

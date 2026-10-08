@@ -14,10 +14,9 @@
     "lint:legacy-tokens": "node scripts/lint-legacy-tokens.mjs",
     "route:walk": "node scripts/route-walk.mjs",
     "pix:kb": "node scripts/build-pix-kb.mjs",
-    "pix:check-sources": "pix-agent check-sources --file src/content/pix-kb.json --archive src/content/archive --allowlist src/agent/allowlist.mjs"
+    "pix:check-sources": "node scripts/check-pix-kb-sources.mjs --file src/content/pix-kb.json --archive src/content/archive --allowlist src/agent/allowlist.mjs"
   },
   "dependencies": {
-    "@pixelette/agent": "file:../pix-agent",
     "formik": "^2.4.6",
     "framer-motion": "^11.18.1",
     "next": "^16.3.0",
@@ -47,8 +46,5 @@
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.4.2",
     "typescript": "^5"
-  },
-  "allowScripts": {
-    "pixelette-technologies/pixelette-agent": true
   }
 }

@@ -10,10 +10,8 @@
  * (`knowledge`, `marketingAgentConfig`, `marketingSitePack`) are either
  * JSON or server-action-free modules safe to bundle for the browser.
  */
-import type { KnowledgeFile, PixContext } from "@pixelette/agent";
-import { Agent, AgentBoundary } from "@pixelette/agent";
-import "@pixelette/agent/agent.css";
-import "@pixelette/agent/signal.css";
+import { Agent, AgentBoundary } from "@/components/pix";
+import type { KnowledgeFile, PixContext } from "@/lib/pix";
 
 import rawKnowledge from "@/content/pix-kb.json";
 import {

@@ -6,7 +6,7 @@ import {
   type Rule,
   type SitePack,
   type TopicRoute,
-} from '@pixelette/agent';
+} from '@/lib/pix';
 
 /**
  * Marketing site pack — demand, pipeline, conversion, growth.

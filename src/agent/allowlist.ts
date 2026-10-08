@@ -2,11 +2,8 @@
  * The explicit allowlist of current sources the agent may be grounded in, for
  * Pixelette Marketing.
  *
- * Same shape and purpose as `@pixelette/agent-kb`'s own
- * `packages/kb/src/allowlist.ts` (the Technologies list): an allowlist, not a
- * denylist, so a new route added next month is excluded from grounding unless
- * someone deliberately adds it here. See that file for the full reasoning;
- * it is not repeated per file.
+ * An allowlist, not a denylist, so a new route added next month is excluded
+ * from grounding unless someone deliberately adds it here.
  *
  * THIS IS A LIST OF FAMILIES, NOT OF PAGES. `/services` covers every
  * `/services/*` detail page without listing each one, and the same for
@@ -19,14 +16,13 @@
  * have no Technologies equivalent at all. A new top-level section on this
  * site is added here, by Marketing, not by editing the shared package.
  *
- * Pass this file to the kb CLI explicitly:
+ * Pass this file to the local source check:
  *
- *     pix-agent check-sources --file src/content/pix-kb.json \
- *       --archive src/content/archive --allowlist src/agent/allowlist.ts
+ *     npm run pix:check-sources
  *
- * The default allowlist built into `@pixelette/agent-kb` is Technologies'
- * own list (`/about-us`, `/contact`, `/cookies`, ...) and must not be used to
- * check this site's knowledge file: every Marketing route would fail it.
+ * That runs `scripts/check-pix-kb-sources.mjs` with this site's allowlist.
+ * A Technologies allowlist (`/about-us`, `/contact`, `/cookies`) must not
+ * check this knowledge file: every Marketing route would fail it.
  */
 
 /** Route families the agent may ground answers in, on pixelettemarketing.com. */

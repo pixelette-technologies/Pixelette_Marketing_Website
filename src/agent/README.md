@@ -1,12 +1,10 @@
 # Marketing site agent
 
-Hand-wired `@pixelette/agent` for Pixelette Marketing.
+The assistant lives in this repo. `src/lib/pix` is the answering machine. `src/components/pix` is the widget. This folder is the Marketing voice: pack, colours, context, and the layout mount.
 
 ## Knowledge
 
-`src/content/pix-kb.json` is assembled by hand. The shared `pix-agent build` parser looks for Technologies-shaped `pageMetadata` / `faqs: { q, a }` / `SectionHead` literals; this site uses `export const metadata`, `question`/`answer` FAQ arrays, and copy in `src/data`, so the builder would see almost nothing.
-
-Services FAQs that are **only** about budget or turnaround are omitted from the KB. Price and timeline rules would suppress those sentences if indexed; leaving them out keeps the corpus cleaner.
+`npm run pix:kb` writes `src/content/pix-kb.json` from the data modules and pages this site actually renders. The Technologies page-file builder does not see those files.
 
 ## Checks
 
@@ -14,4 +12,4 @@ Services FAQs that are **only** about budget or turnaround are omitted from the 
 npm run pix:check-sources
 ```
 
-Uses `src/agent/allowlist.mjs` and an empty `src/content/archive/` (`.gitkeep` only). There is no `pix:check` — the KB is not regenerated from `page.tsx`.
+Uses `src/agent/allowlist.mjs` and an empty `src/content/archive/`. There is no `pix:check`. That check rebuilds from Technologies-shaped `page.tsx` files and would report an empty corpus here.

@@ -12,7 +12,9 @@
     "lint:check": "eslint \"src/**/*.{ts,tsx}\"",
     "compare:palette": "node scripts/build-palette-compare.mjs",
     "lint:legacy-tokens": "node scripts/lint-legacy-tokens.mjs",
-    "route:walk": "node scripts/route-walk.mjs"
+    "route:walk": "node scripts/route-walk.mjs",
+    "pix:kb": "node scripts/build-pix-kb.mjs",
+    "pix:check-sources": "node scripts/check-pix-kb-sources.mjs --file src/content/pix-kb.json --archive src/content/archive --allowlist src/agent/allowlist.mjs"
   },
   "dependencies": {
     "formik": "^2.4.6",
@@ -25,6 +27,7 @@
     "react-slick": "^0.30.3",
     "resend": "^6.12.4",
     "sass": "^1.83.1",
+    "server-only": "^0.0.1",
     "slick-carousel": "^1.8.1",
     "yup": "^1.6.1"
   },

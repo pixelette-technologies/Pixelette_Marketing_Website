@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pixelette Group Revamp Playbook</title>
+<style>
+  :root{
+    --ink:#0A0A0A; --body:#3F4E4E; --muted:#5A6C6C; --soft:#67787A;
+    --page:#FFFFFF; --band:#F4F6F7; --line:#E4E9EA; --line-strong:#C6D0D1;
+    --accent:#2E3B3D; --signal:#7A8C8E; --danger:#B42318; --warn:#8A5A00;
+    --ok:#1F6B4E;
+    --serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --sans: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --wrap: 980px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; scroll-padding-top:24px}
+  body{margin:0; background:var(--page); color:var(--body);
+       font-family:var(--sans); font-size:16px; line-height:1.65;
+       -webkit-font-smoothing:antialiased}
+  .wrap{width:min(var(--wrap), 100% - 40px); margin-inline:auto}
+
+  header.masthead{border-bottom:1px solid var(--line); padding:56px 0 40px; margin-bottom:8px}
+  .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em;
+           text-transform:uppercase; color:var(--muted); margin:0 0 14px}
+  h1{font-family:var(--serif); font-weight:400; font-size:clamp(2.25rem,1.6rem + 2.6667vw,3.5rem);
+     line-height:1.1; color:var(--ink); margin:0 0 18px; letter-spacing:-.01em}
+  h2{font-family:var(--serif); font-weight:400; font-size:clamp(1.75rem,1.425rem + 1.3333vw,2.375rem);
+     line-height:1.2; color:var(--ink); margin:0 0 16px; letter-spacing:-.01em}
+  h3{font-family:var(--serif); font-weight:400; font-size:1.375rem; line-height:1.3;
+     color:var(--ink); margin:34px 0 10px}
+  h4{font-family:var(--sans); font-weight:600; font-size:1rem; color:var(--ink);
+     margin:26px 0 8px; letter-spacing:.005em}
+  p{margin:0 0 14px; max-width:74ch}
+  a{color:var(--accent)}
+  strong{color:var(--ink); font-weight:600}
+  em{font-style:italic}
+
+  section.sec{border-top:1px solid var(--line); padding:48px 0 8px; position:relative}
+  section.sec::before{content:""; position:absolute; top:-1px; left:0;
+                      width:40px; height:3px; background:var(--signal)}
+  .lead{font-size:1.125rem; line-height:1.6; color:var(--body); max-width:70ch}
+  .sub{font-family:var(--mono); font-size:11px; letter-spacing:.16em;
+       text-transform:uppercase; color:var(--muted)}
+
+  ul,ol{max-width:74ch; padding-left:20px; margin:0 0 16px}
+  li{margin-bottom:7px}
+  ul.tight li, ol.tight li{margin-bottom:3px}
+
+  table{border-collapse:collapse; width:100%; margin:0 0 20px; font-size:.9375rem}
+  th,td{text-align:left; vertical-align:top; padding:10px 12px; border-bottom:1px solid var(--line)}
+  th{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+     color:var(--muted); font-weight:400; border-bottom:1px solid var(--line-strong)}
+  td code{white-space:nowrap}
+  .tbl-scroll{overflow-x:auto; margin-bottom:20px}
+  .tbl-scroll table{margin-bottom:0}
+
+  code{font-family:var(--mono); font-size:.875em; background:var(--band);
+       padding:1px 5px; border-radius:3px; color:var(--ink)}
+  pre{font-family:var(--mono); font-size:.8125rem; line-height:1.6; background:#0C1516;
+      color:#D8E2E1; padding:18px 20px; border-radius:6px; overflow-x:auto; margin:0 0 20px}
+  pre code{background:none; padding:0; color:inherit; font-size:inherit; white-space:pre}
+
+  .box{border:1px solid var(--line); border-left:3px solid var(--signal);
+       border-radius:0 6px 6px 0; padding:18px 22px; margin:0 0 22px; background:var(--band)}
+  .box p:last-child, .box ul:last-child, .box ol:last-child{margin-bottom:0}
+  .box .tag{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+            text-transform:uppercase; margin-bottom:8px; color:var(--muted)}
+  .box.law{border-left-color:var(--accent); background:#F2F5F5}
+  .box.law .tag{color:var(--accent)}
+  .box.trap{border-left-color:var(--danger); background:#FDF4F3}
+  .box.trap .tag{color:var(--danger)}
+  .box.warn{border-left-color:var(--warn); background:#FDF8EE}
+  .box.warn .tag{color:var(--warn)}
+  .box.ok{border-left-color:var(--ok); background:#F1F8F4}
+  .box.ok .tag{color:var(--ok)}
+
+  .toc{background:var(--band); border:1px solid var(--line); border-radius:8px;
+       padding:24px 28px; margin:32px 0 8px}
+  .toc ol{list-style:none; padding:0; margin:0; columns:2; column-gap:36px; max-width:none}
+  .toc li{margin-bottom:6px; break-inside:avoid}
+  .toc a{text-decoration:none; color:var(--body)}
+  .toc a:hover{color:var(--ink); text-decoration:underline}
+  .toc .n{font-family:var(--mono); font-size:11px; color:var(--muted); margin-right:8px}
+
+  .phase{border:1px solid var(--line); border-radius:8px; padding:22px 26px; margin:0 0 18px}
+  .phase > h4{margin-top:0; display:flex; align-items:baseline; gap:12px}
+  .phase .step{font-family:var(--mono); font-size:11px; letter-spacing:.12em; color:var(--muted);
+               border:1px solid var(--line-strong); border-radius:3px; padding:2px 7px; font-weight:400}
+  .out{font-size:.9375rem; color:var(--muted); border-top:1px solid var(--line);
+       padding-top:10px; margin-top:14px}
+  .out b{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+         color:var(--muted); font-weight:400; margin-right:8px}
+
+  .example{border:1px solid var(--line-strong); border-radius:8px; padding:20px 24px;
+           margin:0 0 20px; background:#FBFCFC}
+  .example .tag{display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:.14em;
+                text-transform:uppercase; color:var(--muted); margin-bottom:8px}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px}
+  @media(max-width:760px){ .grid2{grid-template-columns:1fr} .toc ol{columns:1} }
+
+  .swatch{display:inline-block; width:11px; height:11px; border-radius:2px;
+          border:1px solid rgba(0,0,0,.15); vertical-align:-1px; margin-right:6px}
+  .checklist{list-style:none; padding-left:0}
+  .checklist li{padding-left:26px; position:relative}
+  .checklist li::before{content:"\2610"; position:absolute; left:0; top:-1px;
+                        font-size:15px; color:var(--soft)}
+
+  footer.foot{border-top:1px solid var(--line); margin-top:56px; padding:28px 0 64px;
+              font-size:.875rem; color:var(--muted)}
+  hr.rule{border:0; border-top:1px solid var(--line); margin:34px 0}
+
+  @media print{
+    body{font-size:11pt} pre{background:#F4F6F7; color:#0A0A0A; border:1px solid #ddd}
+    section.sec{page-break-inside:auto} .phase,.box,.example{page-break-inside:avoid}
+    .toc{page-break-after:always}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Pixelette Group &middot; Internal Method Document &middot; v1.1</p>
+    <h1>The Group Revamp Playbook</h1>
+    <p class="lead">How to convert any Pixelette group website onto the shared pattern guide
+    without erasing what makes that company itself. This is the method, generalised from the
+    first conversion, written to be handed to whoever &mdash; person or agent &mdash; does the next one.</p>
+    <p class="lead" style="font-size:1rem; color:var(--muted)">This document is self-contained. It
+    carries the method, the canonical shared-layer values and the source of the tooling, so no access
+    to any previous conversion's repository is needed or expected.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============================================================ -->
+<section class="sec" id="using">
+  <p class="eyebrow">Section 00</p>
+  <h2>How to use this document</h2>
+
+  <p>You are about to convert one Pixelette group website onto the company-wide design
+  language. This document is the workflow. It was derived from the first completed conversion
+  (Pixelette Certified) and is deliberately written so that nothing in it is specific to that
+  site &mdash; the Certified specifics appear only in boxed worked examples, clearly marked, as
+  illustration.</p>
+
+  <p><strong>Read this document end to end before writing a single line of code.</strong>
+  Then work the phases in order. Phases A to C produce no code at all; they produce an audit,
+  a derived palette and a plan, and all three go to the user for sign-off before implementation
+  starts. Skipping straight to implementation is the most expensive mistake available here,
+  because the constraints in Section 02 silently invalidate a lot of otherwise-good design
+  work, and you will find that out only after building it.</p>
+
+  <div class="box law">
+    <span class="tag">The one-sentence version</span>
+    <p>Take the <strong>look and feel</strong> from the pattern guide; keep the
+    <strong>substance</strong> &mdash; content, colour, imagery, widgets, data &mdash; from the site
+    you are converting. Every group site ends up with the same bones and a different face.</p>
+  </div>
+
+  <h3>What you have, and what you still need</h3>
+
+  <p>You are not given the previous conversion's codebase, and you do not need it. Everything that
+  conversion produced which is of use to you is in this document: the method, the trap catalogue, the
+  canonical values for the layer that must not vary (Appendix E), and the source of the gate script
+  you will build (Appendix B). Treat those as the group's shared property, already derived and signed
+  off &mdash; do not re-derive them, because re-derivation is how a group design system silently
+  forks.</p>
+
+  <p>Three inputs are required before Phase A can start:</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:26%">Input</th><th style="width:16%">Status</th><th>If you do not have it</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>This playbook</strong></td>
+        <td>Supplied</td>
+        <td>&mdash;</td>
+      </tr>
+      <tr>
+        <td><strong>The repository</strong> of the site being converted</td>
+        <td>Supplied</td>
+        <td>Stop and ask. Nothing in Phase A is possible without it.</td>
+      </tr>
+      <tr>
+        <td><strong>The pattern guide</strong> &mdash; the HTML mockup issued by Mr Rana</td>
+        <td>Must be provided separately</td>
+        <td>Stop and ask for it before writing anything. Appendix E gives the shared values but
+        <em>not</em> the page-level compositions, and you cannot infer those.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">Do not substitute Appendix E for the guide</span>
+    <p>Appendix E is the numeric layer &mdash; scale, geometry, type roles, the component class
+    inventory. The guide is the compositional layer: what a hero looks like, how a card grid is laid
+    out, what a page of each type is made of. You need both. If only Appendix E is to hand, you can
+    build the token layer and the primitives, and you must stop before Phase D4.</p>
+  </div>
+
+  <div class="toc">
+    <p class="sub" style="margin:0 0 14px">Contents</p>
+    <ol>
+      <li><span class="n">00</span><a href="#using">How to use this document</a></li>
+      <li><span class="n">01</span><a href="#premise">The premise: two inputs, one output</a></li>
+      <li><span class="n">02</span><a href="#law">The law: fixed, free and forbidden</a></li>
+      <li><span class="n">03</span><a href="#phaseA">Phase A &mdash; Research</a></li>
+      <li><span class="n">04</span><a href="#phaseB">Phase B &mdash; Derive the brand layer</a></li>
+      <li><span class="n">05</span><a href="#phaseC">Phase C &mdash; Plan</a></li>
+      <li><span class="n">06</span><a href="#phaseD">Phase D &mdash; Implement</a></li>
+      <li><span class="n">07</span><a href="#phaseE">Phase E &mdash; The hero</a></li>
+      <li><span class="n">08</span><a href="#phaseF">Phase F &mdash; Gates and verification</a></li>
+      <li><span class="n">09</span><a href="#traps">The trap catalogue</a></li>
+      <li><span class="n">10</span><a href="#escalation">Escalation and decision rights</a></li>
+      <li><span class="n">11</span><a href="#vault">Keep a vault</a></li>
+      <li><span class="n">12</span><a href="#done">Definition of done</a></li>
+      <li><span class="n">A</span><a href="#appA">Appendix A &mdash; Worked example</a></li>
+      <li><span class="n">B</span><a href="#appB">Appendix B &mdash; Portable tooling</a></li>
+      <li><span class="n">C</span><a href="#appC">Appendix C &mdash; Environment hazards</a></li>
+      <li><span class="n">D</span><a href="#appD">Appendix D &mdash; The kickoff prompt</a></li>
+      <li><span class="n">E</span><a href="#appE">Appendix E &mdash; The common layer</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="premise">
+  <p class="eyebrow">Section 01</p>
+  <h2>The premise: two inputs, one output</h2>
+
+  <p>Every conversion in this programme has exactly two inputs, and they are authoritative over
+  different things. Confusing which input governs which decision is the root cause of most of
+  the errors catalogued in Section 09.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:26%">Input</th><th style="width:37%">Authoritative over</th><th style="width:37%">Not authoritative over</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>The pattern guide</strong><br><span class="sub">an HTML mockup issued by Mr Rana</span></td>
+        <td>Layout, spacing rhythm, type roles and scale, radii, shadows, section anatomy, component
+        anatomy, the flat and static register, tap targets, the container width.</td>
+        <td>Colour. Copy. Which sections exist. Imagery. Which widgets a page carries. Anything
+        the guide happens to say about a company that is not the one you are converting.</td>
+      </tr>
+      <tr>
+        <td><strong>The existing codebase</strong><br><span class="sub">the live site being converted</span></td>
+        <td>Every word of copy. Section inventory and order. Brand colour. Logo and imagery.
+        Data, widgets and interactive features. Routing, SEO, structured data, integrations.</td>
+        <td>How any of it looks. Existing visual decoration, motion, glassmorphism, gradients and
+        shadows carry no authority and are expected to go.</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The output is a single site that a visitor would place in the same family as its siblings at
+  a glance, and would never mistake for one of them.</p>
+
+  <h3>Why colour comes from the codebase, not the guide</h3>
+
+  <p>This is the least obvious rule and the one worth internalising first. The pattern guide is
+  drawn in one company's colours because it had to be drawn in some colour. Copying it faithfully
+  produces a site that reads as <em>that</em> company, which defeats the exercise.</p>
+
+  <p>More importantly, the brand palette usually already exists in the repository and is usually
+  already correct. The logo files, the wordmark SVG, the favicon and the original stylesheet are
+  the evidence. When they disagree with each other, the <strong>wordmark is the tiebreaker</strong>:
+  it is the asset that has been printed, signed off and used externally, and the stylesheet is the
+  thing that drifted.</p>
+
+  <div class="box law">
+    <span class="tag">Rule</span>
+    <p>You are not inventing a palette. You are recovering the one the company already owns and
+    expressing it in the structure the guide provides. If you find yourself choosing a hue you
+    like, stop &mdash; you have skipped the audit.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="law">
+  <p class="eyebrow">Section 02</p>
+  <h2>The law: fixed, free and forbidden</h2>
+
+  <h3>Fixed &mdash; the family resemblance</h3>
+  <p>These are shared across the whole group. If a site changes them, the group has no visual
+  coherence and there was no point running the programme. Do not vary them, and do not vary them
+  &ldquo;slightly&rdquo;. <strong>The canonical values are in <a href="#appE">Appendix E</a></strong>
+  &mdash; they were derived from the guide once, during the first conversion, and signed off. Copy
+  them; do not re-derive them from the guide, because two independent derivations will not agree and
+  the divergence will not be visible until the sites are seen side by side.</p>
+
+  <ul>
+    <li><strong>Container.</strong> The wrap width and gutters, unchanged.</li>
+    <li><strong>The fluid type scale.</strong> Every clamp, interpolated between the two widths the
+    guide specifies. Take them verbatim from Appendix E.</li>
+    <li><strong>Type roles.</strong> Serif for display, sans for body, mono for eyebrows and figures,
+    sans for the small heading. The <em>faces</em> are group property. Weight may be tuned by eye
+    with the user; the face may not be swapped.</li>
+    <li><strong>Geometry.</strong> Card radius, button radius, tile radius, and the shadow set.
+    Three shadows, no more.</li>
+    <li><strong>Section anatomy.</strong> Eyebrow, then heading, then lead, then content. Hairline
+    rules, alternating light bands, generous vertical rhythm.</li>
+    <li><strong>Register.</strong> Flat and static. Editorial, not decorative.</li>
+    <li><strong>Accessibility floors.</strong> 44px minimum tap targets, visible focus on every
+    control, body text held at 16px.</li>
+  </ul>
+
+  <h3>Free &mdash; what makes this site itself</h3>
+  <p>Five levers, listed in descending order of how much distinction they buy. Use them in this
+  order; the first two do most of the work.</p>
+
+  <ol>
+    <li><strong>Value structure.</strong> Not hue &mdash; <em>value</em>. See Section 04.</li>
+    <li><strong>Neutral rotation.</strong> Hold every neutral's lightness exactly and rotate its
+    hue toward the brand. Costs nothing measurable and changes the feel of every page.</li>
+    <li><strong>Dark family temperature.</strong> The footer and any dark panel bookend every page;
+    two tokens, high leverage.</li>
+    <li><strong>One signature device.</strong> Exactly one memorable mannerism, built from
+    primitives the guide already contains. One. Not two.</li>
+    <li><strong>Hero ground and widget.</strong> See Section 07.</li>
+  </ol>
+
+  <h3>Forbidden</h3>
+
+  <div class="box trap">
+    <span class="tag">Hard constraint &mdash; content does not change</span>
+    <p>Every heading, paragraph, list item, testimonial, FAQ, statistic, label and call-to-action
+    stays byte-identical. No section is added, removed or <strong>reordered</strong>. This is a UI
+    conversion only, and it remains in force for every follow-up commit on the branch, not just the
+    first one.</p>
+    <p>Two corollaries that catch people out:</p>
+    <ul class="tight">
+      <li><strong>Layout and alignment may change freely; DOM order of content may not.</strong>
+      Moving an element to match the guide's ordering is a content change.</li>
+      <li><strong>A bug fix that requires new visible text is out of scope.</strong> Log it, raise
+      it, do not ship it.</li>
+    </ul>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">Hard constraint &mdash; no regression in SEO or structured data</span>
+    <p>Every <code>metadata</code> export and every JSON-LD block must keep emitting exactly what it
+    emits today. Verify by diffing the emitting code rather than by diffing rendered output; the
+    command is in Section 08.</p>
+  </div>
+
+  <p>Also forbidden without explicit instruction: pushing the branch, opening a pull request, and
+  deploying. Committing in logical chunks on the working branch is expected and encouraged.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseA">
+  <p class="eyebrow">Section 03</p>
+  <h2>Phase A &mdash; Research</h2>
+  <p class="lead">No code is written in this phase. The deliverable is an audit the user can read
+  in five minutes and correct.</p>
+
+  <div class="phase">
+    <h4><span class="step">A1</span> Read the repository's own instructions first</h4>
+    <p>Look for <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>README</code> and anything in
+    <code>.claude/</code>. These override general practice. In this programme at least one repo
+    carries a warning that its framework version has breaking changes against model training data
+    and that the vendored documentation under <code>node_modules</code> must be read before writing
+    framework code. Take such warnings literally.</p>
+    <div class="out"><b>Output</b> A short list of repo-specific rules you are now bound by.</div>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">A2</span> Inventory the existing site</h4>
+    <ul class="tight">
+      <li>Every route, including dynamic ones. Count them; you will need the number to verify the
+      build later.</li>
+      <li>Every section component and where it is used.</li>
+      <li>The client/server component split, and every file carrying a client directive.</li>
+      <li>Every dependency the visual layer touches: animation libraries, icon sets, typography
+      plugins. Check that each is actually installed &mdash; classes referencing an uninstalled
+      plugin are a live bug, not a style choice.</li>
+      <li>Integrations that must not break: forms, chat widgets, analytics, captcha, email
+      templates, CMS or database reads.</li>
+    </ul>
+    <div class="out"><b>Output</b> A route table and a component inventory.</div>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">A3</span> Audit the existing colour</h4>
+    <p>This feeds Phase B and is the most important research step.</p>
+    <ul class="tight">
+      <li>Extract every colour from the logo and wordmark SVG files. Note them exactly.</li>
+      <li>Extract the favicon's colours.</li>
+      <li>Enumerate the colour tokens the current stylesheet defines.</li>
+      <li>Grep the whole source tree for raw hex values and count them per file. Expect the count to
+      be high and concentrated in a few components; expect email templates and any constants file to
+      hold their own separate, probably stale, copy of the palette.</li>
+      <li><strong>Record every disagreement between these sources.</strong> The wordmark wins.</li>
+    </ul>
+    <div class="out"><b>Output</b> A table of every colour in the repo, its source, and which of them
+    agree. Flag the drift explicitly.</div>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">A4</span> Read the pattern guide as a specification</h4>
+    <ul class="tight">
+      <li>Extract its token values, its type scale, its spacing rhythm, its radii and shadows.</li>
+      <li>Note the two viewport widths it is drawn at &mdash; the fluid scale interpolates between
+      exactly those, and both endpoints should land on spec.</li>
+      <li>Catalogue every component pattern it defines, and note what it does <em>not</em> define.
+      A static mockup typically has no focus states, no transitions, no disabled states and no
+      keyframes. Those you will design, and they should be designed once for the group.</li>
+      <li><strong>Look for the guide contradicting itself.</strong> Where the guide renders the same
+      component in a different accent, or assigns each company a different treatment, that is not an
+      inconsistency &mdash; it is the author sanctioning variation, and it is your permission slip.
+      Quote it in your plan.</li>
+    </ul>
+    <div class="out"><b>Output</b> A specification extract, plus a list of the guide's own sanctioned
+    variations.</div>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">A5</span> Map guide patterns to site sections</h4>
+    <p>For each section of the existing site, name the guide pattern it will become. Where the site
+    has something the guide has no pattern for, say so now and propose a derivation from guide
+    primitives. Where the guide's pattern needs copy the site does not have, say so now &mdash; the
+    resolution is always to ship the pattern without the missing element, never to write the copy.</p>
+    <div class="out"><b>Output</b> A section-by-section mapping with the gaps called out.</div>
+  </div>
+
+  <div class="box law">
+    <span class="tag">Gate</span>
+    <p>Give the user the audit before proposing anything. Colour drift in particular is a finding
+    they will want to see, because it usually means something shipped wrong a while ago.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseB">
+  <p class="eyebrow">Section 04</p>
+  <h2>Phase B &mdash; Derive the brand layer</h2>
+  <p class="lead">Still no site code. The deliverable is a proposed palette with contrast
+  arithmetic attached, and a way for the user to look at it.</p>
+
+  <h3>The central insight: hue is not the differentiator</h3>
+
+  <p>Two companies in this group can sit within ten degrees of hue of each other. Swapping one
+  brand colour for another that close produces a site that reads as the same site with a fault in
+  it. The distinction has to come from somewhere else, and the place it comes from is
+  <strong>value structure</strong>: how many tones the brand runs, and what job each tone does.</p>
+
+  <div class="grid2">
+    <div class="example">
+      <span class="tag">One-tone structure</span>
+      <p>A single mid-value brand colour does every job &mdash; eyebrow, link, button fill, card
+      border, wash. Calm, uniform, slightly corporate.</p>
+    </div>
+    <div class="example">
+      <span class="tag">Two-tone structure</span>
+      <p>A dark anchor carries everything that is <em>read</em>; a bright signal <em>marks</em> and
+      never speaks. Same bones, unmistakably a different company.</p>
+    </div>
+  </div>
+
+  <p>Other structures are available and worth considering: a warm accent over a neutral anchor, a
+  three-step ramp where the mid tone does interface work and the extremes do emphasis, a
+  near-monochrome scheme where the brand appears only at section openings. Pick the structure that
+  the company's existing assets already imply. If the wordmark has two colours, the site probably
+  wants two roles.</p>
+
+  <div class="box law">
+    <span class="tag">Rule &mdash; roles, not shades</span>
+    <p>Name every brand token by the job it does, not by how light it is. A token called
+    <code>brand-signal</code> that is barred from text will survive a redesign; a token called
+    <code>brand-light</code> will be misused within a week.</p>
+  </div>
+
+  <h3>The contrast arithmetic is not optional</h3>
+
+  <p>Compute the contrast ratio of every brand token against every ground it will sit on, and write
+  the numbers into your proposal. Do this <em>before</em> designing anything on top of them, because
+  the numbers routinely veto the obvious choice.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:16%">Threshold</th><th>Applies to</th><th style="width:34%">Consequence if missed</th></tr></thead>
+    <tbody>
+      <tr><td><code>4.5:1</code></td><td>Body text, and any text below 24px or below 19px bold.</td><td>Fails WCAG AA. Not shippable.</td></tr>
+      <tr><td><code>3:1</code></td><td>Large text, and non-text elements that carry meaning: borders that identify a control, icon strokes, focus rings, chart marks.</td><td>Fails WCAG 1.4.11. Not shippable.</td></tr>
+      <tr><td><code>&lt;3:1</code></td><td>Nothing that must be perceived. Decorative fills only.</td><td>Invisible to a meaningful share of users.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>Two rules follow from the arithmetic, and both have already cost real work in this programme:</p>
+
+  <div class="box trap">
+    <span class="tag">Trap &mdash; the bright brand colour cannot become the text colour</span>
+    <p>A vivid brand colour that looks correct in a logo is frequently below 3:1 on white. It cannot
+    become the reading colour by direct substitution, because the guide's structure uses the brand
+    colour for eyebrows, inline links, tick glyphs, icon strokes and filled buttons &mdash; often
+    across dozens of call sites. Establish a darker reading tone for those, and restrict the bright
+    tone to solid non-text marks of adequate size, typically a 3px accent.</p>
+    <p>A brand colour at roughly 3:1 clears the non-text threshold and <strong>nothing else</strong>.
+    Never text, never a thin stroke. Icons at a light stroke weight read as washed out even when the
+    ratio technically passes, so send them to the anchor tone.</p>
+  </div>
+
+  <div class="box ok">
+    <span class="tag">The inverse is also true</span>
+    <p>On a dark ground, the bright tone is usually free &mdash; frequently above 5:1 &mdash; and can
+    speak as text. That is what makes a dark hero or a dark panel the one place the signal colour
+    gets a voice. Buttons may need to invert there: a dark brand fill on a dark ground disappears,
+    so the fill becomes the bright tone with near-black label text.</p>
+  </div>
+
+  <h3>Rotate the neutrals</h3>
+
+  <p>Take the guide's neutral ramp and, for every entry, hold the lightness exactly and rotate the
+  hue toward the brand. Nothing measurable moves &mdash; every text contrast ratio holds or improves
+  &mdash; but the page feels like a different building. It is the cheapest convincing distinction
+  available. Do the same for the dark family: footer and panel tokens shift temperature together.</p>
+
+  <h3>Choose one signature device</h3>
+
+  <p>One mannerism, assembled from what the guide already has, applied consistently. Move an accent
+  the guide places on one edge to another edge; cap a rule with a short segment of brand colour;
+  give one card type a distinguishing border. It should be expressible in two or three CSS rules
+  and be removable in one revert. Resist adding a second, because two mannerisms read as
+  decoration and the register is flat and static.</p>
+
+  <h3>Build the comparison page</h3>
+
+  <p>Generate a single HTML page that renders the guide's palette and yours side by side, using
+  specimens lifted from the real stylesheet at build time rather than hand-written swatches, so
+  what you are looking at is the actual site. Include the measured contrast ratio next to every
+  pairing, and badge any failure that is inherited from the guide differently from one you
+  introduced &mdash; the user needs to see it without it being misattributed.</p>
+
+  <div class="box warn">
+    <span class="tag">Invert it once it is signed off</span>
+    <p>The comparison page starts as a decision instrument, with the guide frozen on one side and
+    your proposal on the other. The moment the palette lands in the stylesheet, both columns render
+    identically and it silently stops comparing anything. Invert it: freeze the signed-off values in
+    the generator, keep extracting the live ones from the stylesheet, and <strong>fail the build if
+    they diverge</strong>. It then earns its keep permanently as a regression check. If you fork the
+    generator for the next site, invert it there too.</p>
+  </div>
+
+  <div class="box law">
+    <span class="tag">Gate</span>
+    <p>The palette is signed off by eye, by the user, on the comparison page. Not by you, and not by
+    the arithmetic alone &mdash; the arithmetic only vetoes.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseC">
+  <p class="eyebrow">Section 05</p>
+  <h2>Phase C &mdash; Plan</h2>
+
+  <p>Write the plan down and get it approved before implementing. It must contain, at minimum:</p>
+
+  <ol>
+    <li><strong>The phase list</strong> with a commit boundary for each, in the order given in
+    Section 06.</li>
+    <li><strong>The token table</strong> as signed off, with roles named and ratios attached.</li>
+    <li><strong>The section mapping</strong> from Phase A5, including every gap and its resolution.</li>
+    <li><strong>The judgement calls</strong> the content constraint forces, listed explicitly as a
+    table of <em>situation</em> and <em>resolution</em>. These become settled decisions; recording
+    them stops them being relitigated three days later.</li>
+    <li><strong>What will be deleted</strong>, named file by file.</li>
+    <li><strong>What will not be touched</strong>: structured data, metadata, state, network calls,
+    storage, third-party widget configuration.</li>
+    <li><strong>The verification plan</strong>, terminal and browser separately.</li>
+  </ol>
+
+  <div class="box warn">
+    <span class="tag">State the cost of the constraint before building, not after</span>
+    <p>If the content rule removes the part of an idea that justified it, that idea is probably dead.
+    Say so in the plan and either get the new copy signed off first or pick a different idea. Building
+    the gutted version and showing it is a waste of a cycle, and it will be rejected by eye without
+    anyone being able to say precisely why.</p>
+  </div>
+
+  <p>Expect the site to look deliberately incoherent partway through the conversion. Say that in the
+  plan so nobody reviews it mid-flight and panics.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseD">
+  <p class="eyebrow">Section 06</p>
+  <h2>Phase D &mdash; Implement</h2>
+  <p class="lead">The order matters. It moves from the foundation outward, so each phase compiles
+  against a layer that is already correct.</p>
+
+  <div class="phase">
+    <h4><span class="step">D0</span> Token layer and fonts</h4>
+    <p>Rewrite the global stylesheet from scratch rather than editing the old one; you are replacing
+    a design system, not adjusting it. Install the fonts. Update the manifest and the browser theme
+    colour, which are easy to forget and will otherwise contradict the new palette on mobile.</p>
+    <p>Banner-mark the stylesheet into two parts: a <strong>brand layer</strong> holding the colour
+    block and the signature device, and a <strong>common layer</strong> holding radii, shadows,
+    container, the scale and every component class. The brand layer is the only part that differs
+    per company; keeping the boundary visible is what makes the next conversion cheap.</p>
+    <div class="out"><b>Commit</b> One, on its own.</div>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D1</span> Shared primitives</h4>
+    <p>Rewrite buttons, cards, headings, accordions, breadcrumbs. Add the small primitives the guide
+    implies &mdash; eyebrow, pill, stat tile, an icon set traced from the guide at its stroke weight.
+    Everything downstream depends on these, so they land before any page does.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D2</span> Delete the decorative layer</h4>
+    <p>Particle canvases, custom cursors, floating orbs, dot grids, gradient text, glow shadows and
+    every entrance-animation wrapper. Be thorough and count what you removed; the count is a useful
+    assertion later. Motion survives only where it is functional: a drawer, a menu, an accordion, a
+    chat overlay.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D3</span> Chrome</h4>
+    <p>Header and footer. These bookend every page, so doing them early makes every subsequent page
+    reviewable.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D4</span> Homepage</h4>
+    <p>Every section, in place, including inline blocks that never became components.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D5</span> Interior pages</h4>
+    <p>Templates first, since one template usually drives many routes, then the standalone pages,
+    then index and detail pairs, then the legal pages. Nothing here is optional; a single unconverted
+    page is what someone will land on first.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D6</span> Embedded products and widgets</h4>
+    <p>Chat widgets, configurators, calculators, anything with its own visual identity inside the
+    site. <strong>Detokenise rather than hex-swap.</strong> Replacing raw hex values with token
+    references costs the same effort once and means the widget follows the palette permanently
+    instead of drifting a palette behind at the next change.</p>
+    <p>Colour only. Do not touch state, network calls, storage, or third-party widget configuration
+    while you are in there.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D7</span> Transactional email and favicon</h4>
+    <p>The places colour hides. HTML email cannot read custom properties, so it needs its own exported
+    constant &mdash; give it one, make both templates import it, and delete any stale unused colour
+    constant you find, because an unused palette constant is exactly how email drifts.</p>
+    <p>Re-cut the favicon to agree with the wordmark.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D8</span> Cleanup</h4>
+    <p>Delete the animation helpers, the compatibility shims, the temporary legacy-token block and any
+    deprecated component props the conversion made redundant. Delete primitives you built but never
+    imported &mdash; if the CSS class turned out to be the natural way to write the markup, the React
+    wrapper is dead code. Do not rebuild it without a call site.</p>
+  </div>
+
+  <div class="phase">
+    <h4><span class="step">D9</span> The brand layer and the signature device</h4>
+    <p>If you derived the palette in Phase B you may already have landed it in D0. If the conversion
+    ran first on the guide's own colours, this is where the site stops looking like the guide's
+    company. Either way it is its own reviewable commit, or small series of them.</p>
+  </div>
+
+  <div class="box law">
+    <span class="tag">Commit discipline</span>
+    <p>Logical chunks on the working branch, one concern per commit, so each step is reversible and
+    the diff is reviewable. Do not push, do not open a pull request, do not deploy without being
+    asked.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseE">
+  <p class="eyebrow">Section 07</p>
+  <h2>Phase E &mdash; The hero</h2>
+
+  <p>The hero is where a visitor decides which company they are looking at, so it gets its own phase.
+  The method is the same as the brand layer: freeze the anatomy across the group, vary exactly one
+  or two cells.</p>
+
+  <p>Freeze this sequence everywhere:</p>
+
+  <pre><code>ground  &rarr;  eyebrow / pills  &rarr;  heading  &rarr;  lead  &rarr;  action pair  &rarr;  widget</code></pre>
+
+  <p>Then choose one <strong>ground</strong> and one <strong>widget</strong>.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:22%">Ground</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Centred light wash</td><td>The guide's default homepage treatment.</td></tr>
+      <tr><td>Offset light wash</td><td>Usually the interior-page variant; can be promoted.</td></tr>
+      <tr><td>Dark inverse ground</td><td>Built from the existing dark panel tokens, so it needs no new colour. The one place the bright brand tone can be text. Buttons must invert.</td></tr>
+      <tr><td>Tinted wash</td><td>A brand-derived tint rather than near-white. Quiet, and reads as deliberate.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:22%">Widget</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr><td>Statistic tile strip</td><td>The default every site inherits from the guide. Zero invention, but shared, so it distinguishes nothing on its own.</td></tr>
+      <tr><td>Credential or capability ledger</td><td>A hairline grid replacing a pill cloud. Only worth doing if it can carry a second column of status or value copy &mdash; which is new copy, so <strong>get it signed off before building</strong>. Without it, it is a pill cloud in a grid, and it will be rejected.</td></tr>
+      <tr><td>Proof card</td><td>A single feature card carrying a short ruled sequence. Reinforces the signature device, or competes with it. Judge which.</td></tr>
+      <tr><td>Asymmetric data column</td><td>Ruled out. That is a layout change, and layout is on the fixed list.</td></tr>
+      <tr><td>Composed seal or badge mark</td><td>Ruled out. Returns to the decorative register the conversion exists to delete.</td></tr>
+      <tr><td>Motion ground</td><td>Available only with explicit user request, and see the warning below.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">If motion is requested</span>
+    <p>Flat and static is a group rule, so any motion is an exception and must be scoped like one:
+    one section, one component, mounted with positioning at the call site so the global stylesheet
+    never learns about it, and removable in a single revert. It must render nothing under
+    <code>prefers-reduced-motion</code>, pause when off-screen, be gated away from touch input, and
+    read its colours from live tokens with no hard-coded fallbacks.</p>
+    <p>It must also obey the palette rules rather than sidestep them: solid marks may take the bright
+    signal tone, thin connecting strokes may not.</p>
+    <p><strong>Leave a note for the group.</strong> If more than one site ends up with a motion
+    ground, flat and static is no longer a group rule and the pattern guide needs amending with its
+    author rather than being quietly diverged from.</p>
+  </div>
+
+  <div class="box law">
+    <span class="tag">Expect the first hero to be rejected</span>
+    <p>The hero is the one element decided purely by eye. Build it, show it, and be ready to revert
+    cleanly &mdash; keeping any unrelated change that happened to land in the same file. Record the
+    reasoning and the measured figures even for a rejected attempt: they transfer to the next site,
+    and the next agent should not have to rediscover them.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="phaseF">
+  <p class="eyebrow">Section 08</p>
+  <h2>Phase F &mdash; Gates and verification</h2>
+
+  <h3>Automated gates</h3>
+
+  <p>Three of these are standard for the stack. The fourth is specific to this programme and you
+  should port it to every site.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:30%">Gate</th><th>Expectation</th></tr></thead>
+    <tbody>
+      <tr><td>Type check</td><td>Silence.</td></tr>
+      <tr><td>Lint</td><td>Zero errors. Record the pre-existing warning count before you start so you can prove you did not add any.</td></tr>
+      <tr><td>Full production build</td><td>Every page generated. Compare the count against the route table from Phase A2.</td></tr>
+      <tr><td><strong>Token gate</strong></td><td>Custom script. See below and Appendix B.</td></tr>
+      <tr><td><strong>Palette regression</strong></td><td>Custom script. Fails the build if the stylesheet drifts from the signed-off palette.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Why the token gate exists</span>
+    <p>Modern utility-first CSS emits <strong>nothing</strong> for an unknown utility. A retired class
+    left behind after a token rename renders as inherited colour with no build error and no warning.
+    The failure is completely silent and can survive a full review.</p>
+    <p>So write a script that fails on three things: retired utility names, retired hex values from
+    the previous palette, and raw hex anywhere in the source outside a small exempt list. Exempt
+    files individually, each with a stated reason in a comment &mdash; typically the email colour
+    constants, the stylesheet that defines the tokens, the web app manifest, and any severity colours
+    that are not palette.</p>
+    <p>Keep the matcher deliberately dumb: no comment parsing. That means provenance notes in the
+    stylesheet must write bare values without a hash, or the gate trips on its own documentation.
+    Follow that convention.</p>
+  </div>
+
+  <h3>Structured data non-regression</h3>
+
+  <p>Do not diff rendered output across two builds; diff the emitting code and expect it empty.</p>
+
+  <pre><code>git diff -- src/components/seo/ src/app/layout.tsx    # expect no output</code></pre>
+
+  <p>Then record, per page, which structured-data blocks the built HTML actually emits, and check the
+  table again at the end. Where a component takes a flag to suppress a duplicate block, that is
+  deliberate; do not helpfully re-enable it.</p>
+
+  <h3>Assertions worth grepping</h3>
+
+  <ul class="tight">
+    <li>Zero decorative utilities remaining.</li>
+    <li>Zero dark-theme utilities outside the components that are meant to be dark.</li>
+    <li>The animation library down to an exact expected number of importers.</li>
+    <li>Client directives down to an exact expected number of files.</li>
+    <li>The new tokens present in the built CSS chunk, and the retired values absent from it. Note
+    that the built stylesheet may be a hashed chunk in an unexpected directory; find it rather than
+    assuming the path.</li>
+  </ul>
+
+  <h3>The browser walk &mdash; not optional, and not something you can do from a terminal</h3>
+
+  <div class="box trap">
+    <span class="tag">The standing failure mode of this programme</span>
+    <p>Every terminal gate can pass on a conversion that has never been looked at. That is the state
+    the first conversion sat in for a long time, and it is worth naming: <strong>a clean build is not
+    visual sign-off</strong>. Say so plainly in your status reports rather than reporting the gates
+    and letting them imply more than they prove.</p>
+  </div>
+
+  <p>Walk every static route plus one instance of each dynamic route, and check:</p>
+
+  <ul class="checklist">
+    <li>Each page against its guide counterpart at the guide's wide width.</li>
+    <li>The same at the guide's narrow width. The scale interpolates between exactly those two, so
+    both endpoints should land on spec.</li>
+    <li>The signature device, at both widths.</li>
+    <li>Any embedded widget or chat overlay on the new palette.</li>
+    <li>Keyboard only: visible focus on every control, skip link, menus, drawer, accordion, form
+    submission.</li>
+    <li>Reduced motion switched on at the OS level, observed running &mdash; not merely present in
+    the code.</li>
+    <li>Touch behaviour for anything gated to fine pointers.</li>
+    <li>One real form submission per form, to see the resulting email rendered.</li>
+    <li>Error states, which are the states nobody looks at.</li>
+  </ul>
+
+  <p>Fixes arising from the walk go in follow-up commits on top of the conversion commits, which stay
+  legible as the baseline.</p>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="traps">
+  <p class="eyebrow">Section 09</p>
+  <h2>The trap catalogue</h2>
+  <p class="lead">Every one of these has actually happened. They are listed in the order you are
+  likely to meet them.</p>
+
+  <div class="box trap">
+    <span class="tag">Trap 01 &mdash; Inventing guide-shaped labels</span>
+    <p>The guide's sections nearly all open with a mono eyebrow. Your sections often have no such
+    copy. The pull to write one is very strong and it is a content change. It happened twice in the
+    first conversion and both were reverted.</p>
+    <p><strong>Rule:</strong> if the copy is not already in the file, it does not go on the page. Where
+    the guide demands a label you cannot supply, ship the pattern without it.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 02 &mdash; Reordering to match the guide</span>
+    <p>Moving hero pills below the buttons, or a star row below a quote, to match the guide's ordering.
+    This is a content change and it will be reverted.</p>
+    <p><strong>Rule:</strong> layout and alignment may change freely; DOM order of content may not.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 03 &mdash; Fixing a bug by adding copy</span>
+    <p>You will find real bugs. Some of them &mdash; a form that sets an error state and renders
+    nothing for it &mdash; can only be fixed by adding visible text.</p>
+    <p><strong>Rule:</strong> log it, raise it as a separate change, do not ship it inside the
+    conversion.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 04 &mdash; Building the gutted version of an idea</span>
+    <p>When the content constraint removes the element that made a design worth doing, the remainder
+    is usually worse than the thing it replaced, and it gets rejected by eye without a clear reason
+    &mdash; quite possibly <em>because</em> the justification was removed.</p>
+    <p><strong>Rule:</strong> when the constraint guts an idea, say so before building it.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 05 &mdash; The naive palette swap</span>
+    <p>Substituting the company's bright brand colour directly for the guide's brand colour. It will
+    be below the text threshold on white and it will break every text call site and every filled
+    button at once. See Section 04.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 06 &mdash; Hard-coded hex inside a component class</span>
+    <p>A rule that writes a literal colour instead of reading its token escapes the palette change
+    silently and sits a full palette behind everything around it. This is exactly what the token gate
+    is for, and it has caught real instances in closing bands, footer pills, email constants and a
+    brand-new file written after the gate existed.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 07 &mdash; Cascade layer and specificity mistakes</span>
+    <p>If the framework declares an empty <code>components</code> layer, every hand-written class must
+    go inside it, or an unlayered class outranks every utility on the site and
+    <code>class="card p-0"</code> stops behaving. Likewise, inline theme variables may not be emitted
+    to the document root at all &mdash; component classes must reference whichever variable name is
+    actually emitted. Check both against the framework's own vendored documentation, not from memory.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 08 &mdash; Preflight versus the guide</span>
+    <p>A CSS reset zeroes heading sizes and weights, strips list markers and makes links inherit
+    colour. The guide assumes none of that. Also, do not copy the guide's global coloured link rule
+    &mdash; it will turn the navigation, breadcrumbs and footer brand-coloured. Make inline links opt
+    in through a class, and let article bodies get it automatically.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 09 &mdash; Building primitives nobody imports</span>
+    <p>Wrapper components for layout and typography tend to lose to plain CSS classes, which are the
+    natural way to write the markup. Build them only when a call site demands them, and delete the
+    ones that never got imported.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 10 &mdash; Deleting motion that was requested</span>
+    <p>If an earlier phase deleted all decoration and a later phase added one sanctioned motion
+    surface back at the user's request, a future pass will read it as leftover decoration and remove
+    it. Document the exception at the point where the rule is stated, not somewhere else.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Trap 11 &mdash; Assuming shell portability</span>
+    <p>Scripts that work in a POSIX shell fail when npm runs them through a Windows command
+    interpreter. Write gate scripts in the runtime you already depend on, not in shell. See
+    Appendix C.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="escalation">
+  <p class="eyebrow">Section 10</p>
+  <h2>Escalation and decision rights</h2>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:26%">Decision</th><th style="width:22%">Who decides</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Mapping a section to a guide pattern</td><td>You</td><td>Record it; do not ask.</td></tr>
+      <tr><td>Resolving a gap the content rule creates</td><td>You, then record</td><td>Default resolution is always to ship without the missing element. Put it in the plan's judgement-call table so it is settled.</td></tr>
+      <tr><td>The palette</td><td>The user, by eye</td><td>You propose, with arithmetic. The arithmetic vetoes; it does not choose.</td></tr>
+      <tr><td>Type weight and the hero</td><td>The user, by eye</td><td>Expect iteration. Build, show, revert cleanly.</td></tr>
+      <tr><td>New copy of any kind</td><td>The user</td><td>Get it signed off <em>before</em> building the thing that needs it.</td></tr>
+      <tr><td>Push, pull request, deploy</td><td>The user</td><td>Never assume.</td></tr>
+      <tr><td>Anything in the shared layer</td><td>The guide's author</td><td>See below.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">Faults inherited from the guide are not yours to fix unilaterally</span>
+    <p>You will find defects that come from the pattern guide itself and are therefore identical
+    across every company &mdash; an outline button identified purely by a border that falls well below
+    the 3:1 non-text threshold is the known example. Fixing it on one site silently forks the group
+    design system.</p>
+    <p>The correct handling: fix nothing, report it clearly, mark it in the comparison page as
+    inherited rather than introduced so it is visible without being misattributed, and raise it with
+    the guide's author as a change to the shared layer.</p>
+  </div>
+
+  <p>Two open group-level questions currently sit with the guide's author. Carry them forward and add
+  to the list rather than resolving them locally:</p>
+  <ul class="tight">
+    <li>Whether a motion hero ground is available to every site or remains a single exception. If
+    every site gets one, flat and static is no longer a group rule.</li>
+    <li>The inherited outline-button contrast failure, which needs a dedicated border token in the
+    shared layer.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="vault">
+  <p class="eyebrow">Section 11</p>
+  <h2>Keep a vault</h2>
+
+  <p>A conversion runs across many sessions. Keep a small set of linked notes in the repository,
+  <strong>gitignored</strong> so they never ship, holding the state that is not recoverable from the
+  code or the commit history.</p>
+
+  <p>The set that worked, and which this document was distilled from:</p>
+
+  <ul class="tight">
+    <li><strong>An index note.</strong> Branch state, the commit table, where things stand, standing
+    instructions from the user, and links to everything else. This is the note a fresh session reads
+    first, so it must be accurate about what has and has not been verified.</li>
+    <li><strong>Design system.</strong> Live token values, the component class inventory, and the two
+    or three framework mechanics that will otherwise waste an afternoon.</li>
+    <li><strong>Brand layer.</strong> Why this site's palette is what it is, the levers used, and
+    what must never move. The note the next site's agent actually needs.</li>
+    <li><strong>Hero strategy.</strong> The matrix, what was tried, what was rejected and the measured
+    figures behind both.</li>
+    <li><strong>Build and verification.</strong> Commands, required environment variables, the gates,
+    and the environment hazards.</li>
+    <li><strong>Known bugs and deviations.</strong> Fixed, deliberately left, and deviations from plan
+    with reasons.</li>
+    <li><strong>Rules.</strong> The standing constraints and every trap that actually bit, written up
+    at the moment it bit.</li>
+  </ul>
+
+  <div class="box law">
+    <span class="tag">Write down rejected work</span>
+    <p>A design that was built and rejected is worth more written down than deleted, because the
+    reasoning and the contrast figures transfer to the next site. Record what it was, why it was
+    sound, and the most likely reason it failed.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="done">
+  <p class="eyebrow">Section 12</p>
+  <h2>Definition of done</h2>
+
+  <ul class="checklist">
+    <li>Audit, palette and plan were each signed off before the code they governed was written.</li>
+    <li>Every route converted. None missed.</li>
+    <li>Content byte-identical: no added, removed or reordered sections, no edited copy.</li>
+    <li>Structured data and metadata provably unchanged.</li>
+    <li>Type check silent; lint at zero errors with no new warnings; full build generating the
+    expected page count.</li>
+    <li>Token gate clean: no retired utilities, no retired hex, no raw hex outside the stated
+    exemptions.</li>
+    <li>Palette regression check in place and passing, inverted so that it actually compares.</li>
+    <li>Brand layer and common layer separated and banner-marked in the stylesheet.</li>
+    <li>Exactly one signature device.</li>
+    <li>Every brand token's contrast ratio recorded against every ground it sits on, with the bright
+    tone confined to solid non-text marks on light grounds.</li>
+    <li>Dead code deleted: unused primitives, animation helpers, shims, stale colour constants.</li>
+    <li>The browser walk completed at both scale endpoints, including keyboard, reduced motion, touch,
+    error states and one real submission per form.</li>
+    <li>Vault notes current, including anything built and rejected.</li>
+    <li>Inherited guide faults reported, not silently fixed.</li>
+    <li>Branch committed in logical chunks. Not pushed, no pull request, not deployed, unless
+    explicitly asked.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="appA">
+  <p class="eyebrow">Appendix A</p>
+  <h2>Worked example: the first conversion</h2>
+  <p class="lead">Pixelette Certified, converted across three phases. Included as illustration of the
+  abstract steps above. Do not copy the values &mdash; copy the reasoning.</p>
+
+  <h3>What the two systems were</h3>
+  <p>The existing site was dark-first and decorative: a dark petrol ground, a bright teal,
+  glassmorphism, glow shadows, gradient text, blurred floating orbs, an animated particle canvas, a
+  custom cursor, and an entrance animation on every section. The guide was light, editorial, flat and
+  static: white on pale bands, a single green, hairline rules, light serif headings, mono eyebrows,
+  12px cards, 4px buttons and no motion at all. Two near-opposite systems, so the work was to replace
+  the design system underneath unchanged content.</p>
+
+  <h3>The three findings that set the direction</h3>
+  <ol>
+    <li><strong>The wordmark was already right.</strong> Both logo files had always carried the
+    company's own two colours; only the stylesheet and the favicon had drifted to the guide's green.
+    The task was never to invent a palette &mdash; it was to bring the site back into agreement with
+    its own mark.</li>
+    <li><strong>The guide sanctions accent swapping.</strong> It renders one of its own sections in
+    amber: same card, same eyebrow, same border, different accent. The pattern surviving a hue change
+    is demonstrated in the author's own document.</li>
+    <li><strong>Hue was not the differentiator.</strong> The guide's green sat at 173&deg;; the
+    company's teal at 180&deg; and its petrol at 182&deg;. Nine degrees across the whole set, which is
+    precisely why the obvious swap reads as a fault rather than as a different company.</li>
+  </ol>
+
+  <h3>The value structure that resulted</h3>
+  <div class="example">
+    <span class="tag">One-tone versus two-tone</span>
+    <p><strong>The guide's company is one-tone:</strong> a single mid green does every job.</p>
+    <p><strong>Certified became two-tone:</strong> a dark petrol anchor carries everything that is
+    read; a bright teal signal marks and never speaks.</p>
+    <p>Measured: the anchor at 8.71:1 on white, its hover state at 11.40:1, and the signal at
+    <strong>3.04:1</strong> &mdash; clearing the non-text threshold and nothing else, hence restricted
+    to solid 3px accents on light grounds. The company's original teal measured 2.86:1 on white, so a
+    direct swap would have broken 61 text call sites plus every filled button. On the dark footer the
+    signal measures 5.04:1 and is free.</p>
+  </div>
+
+  <h3>The signature device</h3>
+  <p>Two CSS rules. The guide accents the <em>top</em> of a feature card; Certified moved that accent
+  to the <em>left</em>, and capped section rules with a 40px segment of signal colour. Deliberately
+  not applied to every band &mdash; it marks a section opening, not a background change.</p>
+
+  <h3>What was tried and rejected</h3>
+  <p>A dark inverse hero ground with a credential ledger replacing the hero pill cloud. Every gate
+  passed; it was rejected by eye. The reasoning was sound and is preserved: the dark ground is the one
+  place the signal colour can be text, at 5.94:1; it needed no new tokens because the dark panel family
+  already was that petrol; the filled button had to invert because the anchor fill measured 2.08:1 on
+  that ground and disappeared. The likely cause of the rejection was that the ledger could not carry
+  the status column that justified it, because that column was new copy. That is Trap 04 in the
+  catalogue.</p>
+
+  <h3>What shipped instead</h3>
+  <p>A cursor-reactive particle field behind the homepage hero, at the user's explicit request &mdash;
+  the single sanctioned exception to flat and static, scoped to one component, absent under reduced
+  motion, gated away from touch, reading both its colours from live tokens, and respecting the signal
+  rule: the bright tone paints the dots, which are solid marks, while the joins take the anchor tone
+  because a 1px line is a thin stroke. <strong>This is Certified-specific and is not inherited by other
+  sites</strong> unless the group question in Section 10 is resolved in its favour.</p>
+
+  <h3>Judgement calls the content rule forced</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:52%">Situation</th><th>Resolution</th></tr></thead>
+    <tbody>
+      <tr><td>Guide's trust row carries a mono label; the site has no such copy</td><td>Ship the band without a label</td></tr>
+      <tr><td>Guide requires a label above every form field; one form is placeholder-only</td><td>Visually hidden label</td></tr>
+      <tr><td>Guide's case-study detail has a sticky summary sidebar</td><td>Omit &mdash; it would restate data under invented labels</td></tr>
+      <tr><td>Guide's testimonial card has an initials avatar; attribution is a role, not a name</td><td>Keep text-only attribution</td></tr>
+      <tr><td>Guide's footer is five columns; the site's was four</td><td>Split an existing two-list column in two &mdash; a re-split, nothing added</td></tr>
+      <tr><td>Guide puts the contact form on the right; the site's is form-first in the DOM</td><td>Match the guide visually with ordering utilities, keep source order for accessibility</td></tr>
+      <tr><td>Guide's header is not sticky, because a mockup cannot be</td><td>Keep it sticky, drop only the scroll-state treatment</td></tr>
+      <tr><td>Guide's process strip is four across; some pages run to five stages</td><td>Stack vertically where the count does not fit; keep the horizontal strip where it does</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>Real bugs the conversion uncovered</h3>
+  <ul class="tight">
+    <li>Accordion answers were unmounted when collapsed, so FAQ content was invisible to crawlers and
+    to in-page search across every service page. Panels stay mounted now.</li>
+    <li>Article bodies were styled with a typography plugin that was not a dependency, so they had
+    been rendering unstyled.</li>
+    <li>Reduced motion was declared in CSS but not honoured, because CSS cannot stop a JS animation
+    library writing inline transforms.</li>
+    <li>Sub-44px tap targets throughout the footer and category chips.</li>
+    <li>An unused, stale colour constant, which was how the transactional emails had drifted a full
+    palette behind the site.</li>
+    <li>A form that sets an error state and renders nothing for it. Logged, not fixed &mdash; the fix
+    needs new copy.</li>
+  </ul>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="appB">
+  <p class="eyebrow">Appendix B</p>
+  <h2>Portable tooling</h2>
+
+  <p>Build both of these. They are plain Node scripts wired into npm &mdash; not shell one-liners,
+  because npm runs scripts through the platform shell and a POSIX one-liner fails on Windows with an
+  unhelpful error about <code>!</code> not being a recognised command.</p>
+
+  <pre><code>"scripts": {
+  "lint:legacy-tokens": "node scripts/check-legacy-tokens.mjs",
+  "compare:palette":    "node scripts/build-palette-compare.mjs"
+}</code></pre>
+
+  <h3>The token gate &mdash; full source</h3>
+  <p>Adapt the three marked regions to your site and use it as it stands. It is deliberately small;
+  its value is entirely in being run on every change.</p>
+
+  <pre><code>/**
+ * Fails if colour has escaped the token layer.
+ *
+ * Utility-first CSS emits NOTHING for an unknown utility, so a retired class
+ * left behind after a token rename renders as inherited colour with no build
+ * error and no warning. This gate is the only thing that catches that.
+ */
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join, relative } from "node:path";
+
+// On Windows import.meta.url yields /D:/... so strip the leading slash.
+const ROOT = new URL("..", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
+const SRC = join(ROOT, "src");
+
+// ADAPT 1. Retired utility names: the utility prefixes crossed with the token
+// names you are retiring from the old design system.
+const PATTERN =
+  /\b(bg|text|border|from|via|to|ring|fill|stroke|outline|divide)-(primary|accent|surface|glass)(-(light|dark|border))?\b/;
+
+// ADAPT 2. The previous palette, enumerated. Anything still carrying one of
+// these has been missed by the palette change and will render a full palette
+// behind everything around it, silently.
+const RETIRED_HEX = /#(AAAAAA|BBBBBB|CCCCCC)\b/i;
+
+// Raw hex anywhere else. Colour belongs in a token so that the next brand
+// layer is one file to edit rather than an archaeology exercise. Pure white
+// and black are not palette colours and are always allowed.
+const RAW_HEX = /#(?!(?:FFF{1,4}|FFFFFF|000|000000)\b)[0-9A-Fa-f]{6}\b/i;
+
+// ADAPT 3. Files where a literal hex is unavoidable, each with a stated reason:
+//   constants     email colour export - HTML email cannot read custom properties
+//   globals.css   defines the tokens in the first place
+//   manifest.ts   PWA manifest is JSON, consumed outside the document
+const RAW_HEX_EXEMPT =
+  /^src[\\/](lib[\\/]constants\.ts|app[\\/]globals\.css|app[\\/]manifest\.ts)$/;
+
+const hits = [];
+
+function walk(dir) {
+  for (const entry of readdirSync(dir)) {
+    const full = join(dir, entry);
+    if (statSync(full).isDirectory()) { walk(full); continue; }
+    if (!/\.(tsx?|jsx?|css|mdx?)$/.test(entry)) continue;
+    const rel = relative(ROOT, full);
+    const rawHexAllowed = RAW_HEX_EXEMPT.test(rel);
+    readFileSync(full, "utf8").split("\n").forEach((line, i) =&gt; {
+      const at = `${rel}:${i + 1}: ${line.trim()}`;
+      if (PATTERN.test(line)) hits.push(["retired utility", at]);
+      else if (RETIRED_HEX.test(line)) hits.push(["retired palette hex", at]);
+      else if (!rawHexAllowed &amp;&amp; RAW_HEX.test(line)) hits.push(["raw hex, use a token", at]);
+    });
+  }
+}
+
+walk(SRC);
+
+if (hits.length &gt; 0) {
+  console.error("Colour that has escaped the token layer:\n");
+  for (const [kind, at] of hits) console.error(`  [${kind}] ${at}`);
+  console.error(`\n${hits.length} occurrence(s).`);
+  process.exit(1);
+}
+
+console.log("No retired colour tokens found.");</code></pre>
+
+  <div class="box warn">
+    <span class="tag">Keep the matcher dumb</span>
+    <p>It does not parse comments, so a provenance note in the stylesheet that writes a retired value
+    with a hash will trip the gate on its own documentation. The convention is to write such notes
+    bare &mdash; <code>was 414D5C</code>, no hash. Costs nothing, and keeping the matcher simple is
+    what keeps it trustworthy.</p>
+  </div>
+
+  <h3>The palette comparison generator &mdash; specification</h3>
+
+  <p>The original is around 1200 lines, most of which is site-specific specimen markup, so it is not
+  reproduced here. Build your own to this specification; the design is what matters, not the code.</p>
+
+  <ol>
+    <li><strong>Extract, do not transcribe.</strong> Read the live stylesheet at build time and pull
+    out the token block, the fluid scale block and the component-class layer by locating them in the
+    source text. Unwrap the component classes from their cascade layer, since a standalone page has
+    no utilities to out-rank. Pull the one media query verbatim so narrowing the page reproduces the
+    real responsive behaviour. The point of extracting rather than hand-writing swatches is that the
+    specimens are then <em>the actual site</em>.</li>
+
+    <li><strong>Render two columns.</strong> The guide's frozen values on one side, the live extracted
+    values on the other. Include a specimen board covering every class that carries a brand or neutral
+    token, and one full page-shaped composition in real copy, because tokens judged in isolation read
+    differently from tokens judged in context.</li>
+
+    <li><strong>Attach the arithmetic.</strong> Compute and print the contrast ratio for every
+    token-against-ground pairing. Give each check a kind that selects its threshold: text at 4.5,
+    large text and non-text at 3. Print the number, not just a pass mark.</li>
+
+    <li><strong>Badge failures by provenance.</strong> A failure inherited from the guide is badged
+    differently from one you introduced &mdash; amber against red is enough. This matters: an
+    inherited fault must be visible without being misattributed to your work, and it is what lets you
+    report it upward rather than fixing it unilaterally.</li>
+
+    <li><strong>Then invert it.</strong> Once the palette is signed off, freeze the approved values in
+    a constant inside the generator and have it compare those against what it extracts from the live
+    stylesheet. <strong>Exit non-zero on any drift</strong>, and make the error message say that an
+    intentional token change means updating the frozen constant too. Until you do this, the page
+    silently stops comparing anything the moment the new palette lands, because both columns then
+    render from the same source.</li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="appC">
+  <p class="eyebrow">Appendix C</p>
+  <h2>Environment hazards</h2>
+
+  <div class="box trap">
+    <span class="tag">Never run a production build while the dev server is up</span>
+    <p>This cost a full debugging session. The symptom is that a stylesheet edit is correct on disk and
+    correct in the diff, but the browser shows the old value &mdash; and restarting the dev server,
+    emptying the cache and hard reloading all change nothing, because none of them touch the cause.
+    A concurrent build can leave the dev server pinned to bundler chunks it will not regenerate. That
+    is a frozen module, not a stale browser.</p>
+    <p><strong>Diagnose in this order.</strong> Confirm the source first, then fetch what the server
+    actually serves rather than trusting the browser: request the page, extract the stylesheet chunk
+    URL from the HTML, and fetch that chunk directly. If source and served disagree, touch the
+    stylesheet, request the page again, and check whether the chunk's modification time moves. If it
+    does not move, the watcher is dead and no amount of restarting will help.</p>
+    <p><strong>Fix:</strong> kill every node process belonging to this project, delete the build
+    output directory, restart. A restart alone is not enough &mdash; the cache is on disk and survives
+    it. Identify the processes by command line so you do not kill processes belonging to the user's
+    other projects; there are usually three.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">Build environment variables</span>
+    <p>A production build may need environment variables that are not in the working tree, because
+    page-data collection executes API route modules. Compilation and type checking pass without them;
+    the build dies later. Work out the failure order once, write the incantation with throwaway values
+    into your notes, and note that some clients validate the shape of a key at construction, so the
+    dummy value must look plausible.</p>
+    <p>The dev server generally needs none of this for visual work.</p>
+  </div>
+
+  <div class="box warn">
+    <span class="tag">Shell quoting</span>
+    <p>Where a tool wraps commands in a single-quoted shell invocation, an apostrophe inside a heredoc
+    can terminate the quoting and fail with an unexpected end-of-file error. This is environment
+    dependent rather than universal, so treat it as a hazard to recognise from the error message
+    rather than a standing ban. For any file containing prose, prefer a dedicated write tool over a
+    heredoc. Do not assume Python is on the path for text surgery.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="appD">
+  <p class="eyebrow">Appendix D</p>
+  <h2>The kickoff prompt</h2>
+
+  <p>Paste this alongside the playbook when starting a conversion. Fill the four bracketed values.</p>
+
+  <pre><code>You are taking on the UI revamp of [SITE NAME], one of the Pixelette group
+websites. Attached is the Pixelette Group Revamp Playbook. It is the method we
+used to convert the first site in the group, generalised. Treat it as binding.
+
+Inputs:
+  - Repository:    [PATH TO REPO]
+  - Pattern guide: [PATH TO THE GUIDE HTML FROM MR RANA]
+  - Playbook:      the attached HTML document
+
+You do not have access to the previously converted site's repository and will
+not be given it. The playbook is the only artefact carried across, and it is
+self-contained: the canonical shared-layer values are in its Appendix E and the
+gate script source is in its Appendix B. Take those as already derived and
+signed off. Do not re-derive them from the guide, and do not ask me for the
+other repository.
+
+If the pattern guide above is missing or I have not attached it, stop and ask
+for it before writing anything. Appendix E carries the numbers but not the page
+compositions, and you cannot infer those.
+
+Before anything else, read the playbook end to end, then read this repository's
+own instruction files, which override general practice.
+
+The premise, so it is unambiguous: the look and feel come from the pattern
+guide; the substance stays as it is in this codebase. Content, copy, section
+inventory and order, brand colour, imagery, widgets, data, routing and
+structured data are all authoritative as they exist today and do not change.
+The guide governs layout, spacing, type roles and scale, radii, shadows,
+component anatomy and the flat, static, editorial register. The result should
+be recognisably part of the same family as its sibling sites and impossible to
+mistake for one of them.
+
+Work the playbook's phases in order. Phases A to C produce no site code. Do not
+start implementing until I have signed off the audit, the palette and the plan,
+in that order, as three separate checkpoints. Specifically:
+
+  1. Research and audit. Route and component inventory, a full colour audit
+     covering the wordmark, favicon, stylesheet tokens and every raw hex in the
+     tree with the disagreements between them called out, a specification
+     extract from the guide, and a section-to-pattern mapping with the gaps
+     named. Show me this before proposing a palette.
+
+  2. Brand layer proposal. Derive the palette from this company's own assets,
+     not from the guide and not from taste. Choose a value structure. Name every
+     token by its role. Attach the measured contrast ratio of every brand token
+     against every ground it will sit on, and tell me which uses the arithmetic
+     rules out. Build the comparison page so I can sign it off by eye.
+
+  3. Plan. Phases, commit boundaries, the judgement calls the content rule
+     forces, what gets deleted, what will not be touched, and the verification
+     plan.
+
+Then implement in the playbook's order, committing in logical chunks on a
+working branch, one concern per commit. Do not push, do not open a pull request
+and do not deploy unless I ask.
+
+Standing rules while you work:
+  - Content does not change. If the copy is not already in the file, it does not
+    go on the page. Layout may move; DOM order of content may not. A bug fix
+    that needs new visible text gets logged, not shipped.
+  - If a constraint removes the part of an idea that justified it, tell me
+    before you build it.
+  - Build both gate scripts from Appendix B: the token gate and the palette
+    regression check. Invert the second one once the palette is signed off.
+  - Take the container, the fluid scale, the geometry, the type roles and the
+    component class inventory verbatim from Appendix E. Those are group
+    property and are not yours to retune.
+  - Faults inherited from the pattern guide get reported, not fixed
+    unilaterally. They belong to the shared layer.
+  - Keep a gitignored vault of notes as the playbook describes, including
+    anything built and rejected.
+  - A clean build is not visual sign-off. Say so plainly when reporting status,
+    and tell me exactly what has and has not been looked at in a browser.
+
+Start with Phase A and report back with the audit.</code></pre>
+</section>
+
+<!-- ============================================================ -->
+<section class="sec" id="appE">
+  <p class="eyebrow">Appendix E</p>
+  <h2>The common layer</h2>
+  <p class="lead">The canonical values for everything on the fixed list. Derived from the pattern
+  guide once, during the first conversion, and signed off. Copy them verbatim.</p>
+
+  <div class="box law">
+    <span class="tag">Why this appendix exists</span>
+    <p>Every one of these values <em>could</em> be re-derived from the pattern guide. The reason not
+    to is that two independent derivations will not agree &mdash; a clamp rounded differently, a
+    shadow judged by eye, a tracking value estimated from a screenshot &mdash; and the disagreement
+    will not be visible until two sibling sites are open side by side, long after both have shipped.
+    This is the shared layer. It is group property.</p>
+  </div>
+
+  <h3>Container</h3>
+  <pre><code>--container-wrap: 1160px;
+
+.wrap { width: min(1160px, 100% - 40px); margin-inline: auto; }</code></pre>
+  <p>1160px maximum, 20px gutters either side. Nothing on the site is wider.</p>
+
+  <h3>The fluid type scale</h3>
+  <p>Interpolated between the two viewport widths the guide is actually drawn at &mdash;
+  <strong>390px and 1440px</strong>. Both endpoints therefore land exactly on the guide's
+  specification, which is what makes the browser walk at those two widths meaningful.</p>
+
+  <pre><code>--fs-h1:    clamp(2.25rem,   1.6rem    + 2.6667vw, 4rem);      /* 36 -&gt; 64 */
+--fs-h1p:   clamp(1.9375rem, 1.45rem   + 2vw,      3.25rem);   /* 31 -&gt; 52 */
+--fs-h2:    clamp(1.75rem,   1.425rem  + 1.3333vw, 2.625rem);  /* 28 -&gt; 42 */
+--fs-h3:    clamp(1.375rem,  1.3054rem + 0.2857vw, 1.5625rem); /* 22 -&gt; 25 */
+--fs-h4:    1.125rem;                                          /* 18, flat  */
+--fs-lead:  clamp(1.0625rem, 0.9929rem + 0.2857vw, 1.25rem);   /* 17 -&gt; 20 */
+--fs-body:  1rem;                                              /* 16, flat  */
+
+--sec-y:    clamp(3.5rem, 2.5714rem + 3.8095vw, 6rem);         /* 56 -&gt; 96 */
+--sec-y-sm: clamp(2.5rem, 2.0357rem + 1.9048vw, 4rem);         /* 40 -&gt; 64 */
+--header-h: clamp(4rem,  3.6288rem + 1.5238vw, 5rem);          /* 64 -&gt; 80 */</code></pre>
+
+  <p><code>--fs-h1</code> is the homepage hero heading; <code>--fs-h1p</code> is the interior-page
+  hero variant, which typically drives every service, category and article route, so it has more call
+  sites than anything else on the list. <code>--sec-y</code> is the vertical section rhythm and
+  <code>--header-h</code> the sticky header height.</p>
+
+  <div class="box warn">
+    <span class="tag">Body text is held flat at 16px deliberately</span>
+    <p>Below 16px, iOS zooms the viewport on input focus. Do not make body text fluid.</p>
+  </div>
+
+  <h3>Geometry and shadows</h3>
+  <pre><code>--radius-btn:  4px;
+--radius-tile: 4px;
+--radius-card: 12px;</code></pre>
+  <p>Cards are noticeably rounder than controls; that contrast is part of the look. Three shadows
+  only, and they are used sparingly &mdash; the register is flat, so a shadow is an exception rather
+  than a default. Hover states change <strong>border colour only</strong>: no lift, no shadow change,
+  no scale.</p>
+
+  <h3>Type roles</h3>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:16%">Role</th><th style="width:22%">Face</th><th>Usage</th></tr></thead>
+    <tbody>
+      <tr><td>Display</td><td>Serif &mdash; Newsreader</td><td>h1, h2, h3 and the interior hero variant. Weight <strong>400</strong> at every width.</td></tr>
+      <tr><td>Body</td><td>Sans &mdash; Outfit</td><td>Everything that is read at length. Also the one heading that is sans: h4, at 18px / 600.</td></tr>
+      <tr><td>Mono</td><td>IBM Plex Mono</td><td>Eyebrows, statistics, figures, source lines, small labels.</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p>The eyebrow is the most distinctive small element in the system and is worth specifying exactly:
+  mono, <strong>11px, 0.18em letter-spacing, uppercase, brand colour</strong>.</p>
+
+  <div class="box law">
+    <span class="tag">The faces are fixed; the weight is negotiable</span>
+    <p>A display-face swap was prototyped during the first conversion &mdash; Spectral and Source
+    Serif 4, both rendered live against Newsreader on the comparison page &mdash; and rejected. The
+    face does not move. Display <em>weight</em> did move, from 300 to 400, because the light cut read
+    as too fragile at desktop sizes. That is a by-eye call, made with the user, and it is the only
+    typographic dial you should expect to turn.</p>
+    <p>If you do change weight, change it everywhere at once. Leaving one display token behind is how
+    an interior page ends up with a heading lighter than the subheadings beneath it.</p>
+  </div>
+
+  <h3>Exactly one media query</h3>
+  <pre><code>@media (max-width: 767px) { /* ... */ }</code></pre>
+  <p>Everything else interpolates. The query exists for the two things that cannot: display heading
+  tracking and leading, which do not scale linearly with size, and the hero wash geometry. If your
+  display face is a light cut, it also carries a weight bump here, because a light serif shreds below
+  about 30px. Resist adding a second breakpoint.</p>
+
+  <h3>Framework mechanics that will otherwise cost you an afternoon</h3>
+
+  <div class="box trap">
+    <span class="tag">The layer contract</span>
+    <p>The framework declares its cascade layers and leaves the components layer empty for you.
+    <strong>Every hand-written class goes inside that layer</strong>, so utilities always out-rank it
+    and <code>class="card p-0"</code> behaves as expected. An unlayered class beats every utility on
+    the site, and the symptom is a utility that mysteriously does nothing on one component.</p>
+    <pre><code>@layer theme, base, components, utilities;
+
+@layer components {
+  .card { /* ... */ }
+}</code></pre>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Inline theme variables are not emitted to the root</span>
+    <p>Variables declared in an inline theme block are available to utility generation but are
+    <em>not</em> written into <code>:root</code>. A component class referencing one gets nothing.
+    Reference the variable name that is actually emitted, and declare colour tokens in a static theme
+    block precisely because that forces them into <code>:root</code> even when no utility references
+    them.</p>
+  </div>
+
+  <div class="box trap">
+    <span class="tag">Preflight fights the guide</span>
+    <p>The reset zeroes heading size and weight, strips list markers, and makes links inherit colour.
+    The guide assumes none of that, so every heading and list class must restate what it wants.</p>
+    <p>Do <strong>not</strong> copy the guide's global coloured link rule. It will turn the
+    navigation, the breadcrumbs and the footer brand-coloured. Inline links opt in through a
+    <code>.link</code> class; article bodies get it automatically through the prose class.</p>
+  </div>
+
+  <h3>Component class inventory</h3>
+  <p>The full surface of the common layer. Build these once, in Phase D0 and D1, and write pages
+  against them.</p>
+
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:16%">Group</th><th>Classes</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Layout</strong></td><td><code>.wrap</code> <code>.sec</code> <code>.sec-sm</code> <code>.rule</code></td></tr>
+      <tr><td><strong>Type</strong></td><td><code>.h1</code> <code>.h2</code> <code>.h3</code> <code>.h1p</code> <code>.h4</code> <code>.lead</code> <code>.body</code> <code>.small</code> <code>.eyebrow</code> <code>.src</code> <code>.mono</code> <code>.link</code> <code>.list</code> <code>.list-num</code> <code>.prose</code></td></tr>
+      <tr><td><strong>Surfaces</strong></td><td><code>.card</code> <code>.card-feature</code> <code>.tile</code> <code>.panel</code> <code>.footer</code> <code>.band-alt</code> <code>.band-closing</code> <code>.wash</code> <code>.wash-left</code></td></tr>
+      <tr><td><strong>Controls</strong></td><td><code>.btn</code> <code>.btn2</code> <code>.btn-ghost</code> <code>.pill</code> <code>.pill-brand</code> <code>.flink</code> <code>.label</code> <code>.input</code> <code>.textarea</code> <code>.select</code> <code>.field-error</code> <code>.table</code> <code>.skip-to-content</code></td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <p><code>.card</code> is 12px radius with 28px padding. <code>.btn</code> has a 52px minimum
+  height and <code>.flink</code> a 44px tap target, which is how the accessibility floor is met
+  without thinking about it on every call site.</p>
+
+  <div class="box warn">
+    <span class="tag">Do not build React wrappers for these</span>
+    <p>Five wrapper components &mdash; for the container, the section, the rule, typography and
+    tables &mdash; were built during the first conversion and deleted unused, because the CSS classes
+    turned out to be the natural way to write the markup and the wrappers never got imported. Build
+    one only when a call site demands it.</p>
+  </div>
+
+  <h3>What the guide does not define, and the group has settled</h3>
+  <p>The guide is a static mockup: it contains one hover rule and no focus, transition, disabled or
+  keyframe styling at all. These were designed once and belong to the group, not to any one site.</p>
+
+  <ul>
+    <li><strong>A global <code>:focus-visible</code> ring</strong>, which recolours over dark
+    contexts &mdash; the dark panel and the footer &mdash; so it stays visible on every ground.</li>
+    <li><strong>An explicit disabled fill on the primary button.</strong> Reduced opacity alone is
+    near-invisible on a light button.</li>
+    <li><strong><code>html { scroll-padding-top: calc(var(--header-h) + 16px) }</code></strong>,
+    because smooth scrolling plus a sticky header otherwise lands every anchor underneath the
+    header.</li>
+    <li><strong>Hover is border colour only.</strong> Stated again because it is the rule most often
+    broken by reflex.</li>
+  </ul>
+
+  <h3>Icons</h3>
+  <p>A thin-stroke set traced from the guide: arrows, check, chevrons, plus, minus, close, menu, a
+  quote glyph and a star. All <code>currentColor</code>, all <code>aria-hidden</code>, sized 11&ndash;20px
+  at stroke weight 1.5&ndash;1.8.</p>
+  <p>Where a third-party icon library is also in use for section or category glyphs, <strong>pin the
+  stroke weight to 1.6 at a 16 or 20px box</strong> on every single use. The library defaults are far
+  heavier and will read as a different design system sitting inside yours.</p>
+  <p>Icons take the brand's dark reading tone, never the bright signal tone &mdash; at these stroke
+  weights the signal tone reads washed out even where the contrast ratio technically passes.</p>
+
+  <h3>Naming convention for the brand layer</h3>
+  <p>The common layer is fixed, but the brand layer above it is yours. Name its tokens by role so
+  that the rule survives the next redesign:</p>
+  <div class="tbl-scroll">
+  <table>
+    <thead><tr><th style="width:26%">Token</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><code>--color-brand</code></td><td>The reading tone. Text, links, eyebrows, icon strokes, filled buttons.</td></tr>
+      <tr><td><code>--color-brand-hover</code></td><td>Its darker interaction state.</td></tr>
+      <tr><td><code>--color-brand-signal</code></td><td>The marking tone. Solid non-text accents only on light grounds. Free on dark.</td></tr>
+      <tr><td><code>--color-brand-wash</code></td><td>Hero ground inner stop.</td></tr>
+      <tr><td><code>--color-brand-tint</code></td><td>Diagram and highlight fill.</td></tr>
+      <tr><td><code>--color-ink</code> &hellip; <code>--color-soft</code></td><td>The text ramp, hue-rotated toward the brand at unchanged lightness.</td></tr>
+      <tr><td><code>--color-page</code> <code>--color-band</code></td><td>The two page grounds.</td></tr>
+      <tr><td><code>--color-line*</code></td><td>The hairline ramp: default, card, pill, strong.</td></tr>
+      <tr><td><code>--color-footer-*</code></td><td>The dark footer family.</td></tr>
+      <tr><td><code>--color-panel-*</code></td><td>The dark panel family, which doubles as a dark hero ground.</td></tr>
+      <tr><td><code>--color-danger</code></td><td>Error states.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Banner-mark the stylesheet so the boundary is unmissable: the brand layer is roughly forty lines
+  &mdash; the colour block plus the signature device &mdash; and everything below it is common. That
+  boundary is what makes the conversion after yours cheap.</p>
+
+  <div class="box warn">
+    <span class="tag">Splitting the layers into separate files</span>
+    <p>Tempting, and deliberately not done yet. Theme semantics across an import boundary need
+    verifying against the framework's own vendored documentation first, and the true shared surface is
+    better discovered from a third site than guessed from a second. Keep it as one banner-marked file
+    and raise the extraction when there is enough evidence to do it correctly.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <p><strong>Pixelette Group Revamp Playbook</strong> &middot; version 1.0 &middot; derived from the
+  Pixelette Certified conversion. Internal document. Amend it after every conversion &mdash; anything
+  that bit you belongs in Section 09, and anything that turned out to be site-specific belongs out of
+  Sections 02 and 06.</p>
+</footer>
+
+</div>
+</body>
+</html>

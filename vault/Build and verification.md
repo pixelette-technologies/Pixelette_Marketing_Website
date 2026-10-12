@@ -170,7 +170,25 @@ Fix: kill every node process belonging to *this* project (identify by command li
 
 ### Build environment variables
 
-A production build may need env vars not in the working tree, because page-data collection executes API route modules. Compilation and type checking pass without them; the build dies later. `.env.example` lists what is needed: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `CONTACT_ALLOWED_ORIGINS`, `CONTACT_PRIVACY_NOTICE_VERSION`, `MARKETING_CONTACT_STORE_DIR`, `MARKETING_CONTACT_RATE_LIMIT_SECRET`, plus the three `NEXT_PUBLIC_CONTACT_*` values. Some clients validate key shape at construction, so dummy values must look plausible. The dev server needs none of this for visual work.
+A production build may need env vars not in the working tree, because page-data collection executes API route modules. Compilation and type checking pass without them; the build dies later. `.env.example` lists what is needed: `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `CONTACT_ALLOWED_ORIGINS`, `CONTACT_PRIVACY_NOTICE_VERSION`, `MARKETING_CONTACT_RATE_LIMIT_SECRET`, `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, plus the three `NEXT_PUBLIC_CONTACT_*` values. Some clients validate key shape at construction, so dummy values must look plausible. The dev server needs none of this for visual work.
+
+There is **no** `MARKETING_CONTACT_STORE_DIR`. Filesystem enquiry / receipt storage was removed; durable state lives in the Pixelette Marketing Supabase project.
+
+### Enquiry storage (contact form + site assistant)
+
+As of the Supabase integration on `feature/integrate-supabase-for-agent-and-contactform`:
+
+| Surface | Resend email | Supabase tables |
+|---|---|---|
+| Contact form (`POST /api/contact`) | Yes (primary notify) | `contact_submissions` + delivery control |
+| Assistant identify (`identifyAssistant`) | No | `assistant_contacts` |
+| Assistant lead (`submitAssistantLead`) | No | `contact_enquiries` + delivery control |
+
+Delivery control (rate limit + idempotent receipts) uses `contact_delivery_rate` and `contact_delivery_receipts`. Rate rows store a keyed hash of the source address, never the raw IP beside the enquiry.
+
+**Visitor success rule for the contact form:** if the row is saved in Supabase, the API returns success even when Resend fails. The form then shows the Thank-you panel (`ContactUsForm`); "Send another enquiry" or a refresh brings the fields back.
+
+Server client: `src/lib/supabase/server.ts` (service role only). Persistence helpers: `src/lib/enquiryStore.ts`. Never put `SUPABASE_SERVICE_ROLE_KEY` in `NEXT_PUBLIC_*`.
 
 ### Shell quoting
 

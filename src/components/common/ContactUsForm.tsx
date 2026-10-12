@@ -169,6 +169,11 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
     }
   };
 
+  const showFormAgain = () => {
+    setSubmitState("idle");
+    setEventId(null);
+  };
+
   if (!governanceReady) {
     return (
       <div className='contactUsForm' role='status'>
@@ -177,6 +182,39 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
           The governed privacy notice and consent configuration must be approved before this form
           can accept enquiries.
         </p>
+      </div>
+    );
+  }
+
+  if (submitState === "success") {
+    return (
+      <div className='contactUsForm contactUsForm--success' role='status' aria-live='polite'>
+        <div className='contactUsFormSuccess'>
+          <span className='contactUsFormSuccess__icon' aria-hidden='true'>
+            <svg viewBox='0 0 48 48' width='48' height='48' fill='none'>
+              <circle cx='24' cy='24' r='22' stroke='currentColor' strokeWidth='2' />
+              <path
+                d='M14 24.5 20.5 31 34 17'
+                stroke='currentColor'
+                strokeWidth='2.5'
+                strokeLinecap='round'
+                strokeLinejoin='round'
+              />
+            </svg>
+          </span>
+          <Heading className='h3'>Thank you</Heading>
+          <p className='body'>
+            We have received your enquiry. A member of our team will review it
+            and aim to respond within one working day.
+          </p>
+          <button
+            type='button'
+            className='contactUsFormSuccess__again link'
+            onClick={showFormAgain}
+          >
+            Send another enquiry
+          </button>
+        </div>
       </div>
     );
   }
@@ -281,11 +319,6 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
             <Button type='submit' className='primary-full' disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Request a growth conversation"}
             </Button>
-            {submitState === "success" && (
-              <p role='status' style={{ marginTop: "0.625rem", color: "var(--color-ok)" }}>
-                Thanks, your message has been sent. We&apos;ll be in touch shortly.
-              </p>
-            )}
             {submitState === "error" && (
               <p role='alert' style={{ marginTop: "0.625rem", color: "var(--color-danger)" }}>
                 Sorry, the governed enquiry route is unavailable. No submission has been confirmed.

@@ -59,3 +59,55 @@
 .contactUsForm > .body {
   margin-bottom: 0.75rem;
 }
+
+// Replaces the fields after a successful submit. Refresh or "Send another
+// enquiry" brings the form back.
+.contactUsForm--success {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 18rem;
+  padding: clamp(2rem, 1.5rem + 2vw, 3rem) 1.5rem;
+}
+
+.contactUsFormSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 26rem;
+  margin-inline: auto;
+
+  &__icon {
+    display: inline-flex;
+    color: var(--color-brand);
+    margin-bottom: 1.25rem;
+  }
+
+  & > .h3 {
+    margin-bottom: 0.75rem;
+    color: var(--color-plum-ink);
+  }
+
+  & > .body {
+    margin-bottom: 1.5rem;
+    color: var(--color-ink-muted, var(--color-muted, #5c5a67));
+  }
+
+  &__again {
+    appearance: none;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    color: var(--color-brand);
+
+    &:hover,
+    &:focus-visible {
+      color: var(--color-brand-hover);
+      text-decoration: underline;
+    }
+  }
+}

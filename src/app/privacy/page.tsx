@@ -34,11 +34,12 @@ export const metadata: Metadata = {
 //   to Google" would be false.
 // - THE STORED PREFERENCE is pmw-consent in localStorage, not their
 //   pt-analytics.
-// - PROVIDERS. Theirs names Vercel, Supabase and Resend. This site has no
-//   database: the enquiry reaches us as an email sent by Resend, and the
-//   server keeps a delivery receipt and a rate-limit record, neither of which
-//   holds the enquiry text or the raw IP address (contactDeliveryControl.ts).
-//   Google is added as the analytics provider.
+// - PROVIDERS. Theirs names Vercel, Supabase and Resend. This site does the
+//   same for the contact form: Resend delivers that enquiry as email, and
+//   Supabase stores a backup plus delivery-receipt / rate-limit records
+//   (hashed source key only — no raw IP alongside the enquiry). Assistant
+//   enquiries are stored in Supabase only (no Resend). Google is the
+//   analytics provider.
 // - ASSISTANT. This site now mounts a published-page assistant (see
 //   src/agent/). The paragraph under "What you give us" describes what it
 //   collects. There is still no lead scoring on this site, and no ISO/IEC
@@ -308,7 +309,7 @@ export default function PrivacyPage() {
           <h2 id='sharing'>Who else handles it, and where it goes</h2>
           <p>
             Your enquiry is read by the people here who need to answer it.
-            Beyond that, three providers are involved, and we name them rather
+            Beyond that, four providers are involved, and we name them rather
             than describing them vaguely:
           </p>
           <ul className='list'>
@@ -317,7 +318,14 @@ export default function PrivacyPage() {
               processes the enquiry form when you send it.
             </li>
             <li>
-              <strong>Resend</strong> delivers your enquiry to us as an email.
+              <strong>Resend</strong> delivers a contact-form enquiry to us as
+              an email.
+            </li>
+            <li>
+              <strong>Supabase</strong> stores contact-form enquiries and
+              assistant enquiries (including name and email given to the site
+              assistant), together with delivery-receipt and rate-limit
+              records that do not hold your raw IP address.
             </li>
             <li>
               <strong>Google</strong> provides Google Analytics, only as

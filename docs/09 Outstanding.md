@@ -78,13 +78,13 @@ Rebuilt to the Pixelette Technologies footer's structure: brand-led grid,
 "Part of Pixelette Group" band, legal line. Gaps, all needing management:
 
 - ~~**Company identity for the legal line.**~~ **Answered 22 Sep 2026.**
-  Registered in England and Wales, company number 11716825, registered office
+  Registered in England and Wales, company number 17508478, registered office
   77 Fulham Palace Road, London W6 8JA, VAT GB 432 2377 17. All four are now
   in the footer legal line and in the JSON-LD. **One part is still open:** the
   registered entity NAME — whether Companies House holds "Pixelette Marketing"
   or a suffixed form — was not part of what was supplied, so the line reads
   "Pixelette Marketing is registered in England and Wales" and no suffix was
-  guessed. Worth confirming against the Companies House record for 11716825.
+  guessed. Worth confirming against the Companies House record for 17508478.
 - **Four legal pages do not exist**: Privacy Statement, Terms, Modern slavery,
   Accessibility. Their footer links all four; ours links none rather than 404.
   Privacy is the same blocker as the form's privacy link.
@@ -671,7 +671,7 @@ to a hub page rather than to the home page.
 Built to a consolidated positioning brief. What it left for a human:
 
 - **The privacy statement's controller.** `/privacy` names Pixelette Marketing
-  with company number 11716825, 77 Fulham Palace Road and VAT GB 432 2377 17 —
+  with company number 17508478, 77 Fulham Palace Road and VAT GB 432 2377 17 —
   the footer's details, which are also Pixelette Technologies Ltd's own. If
   Marketing trades under Technologies Ltd, the controller line must say so.
   The retention periods (24 months, six years) are the group's, adopted as
@@ -760,7 +760,7 @@ H-15 (page length, approved as is), H-07 (community management named), H-09
   The five portraits came off on 21 Sep for want of substantiation (see the
   About entry in [[02 Decisions]]).
 - **The founding year**, "began in 2020". Check it against Companies House
-  (11716825) first, since the registered entity may predate the brand.
+  (17508478) first, since the registered entity may predate the brand.
 - **A London office card on `/contactus`**: phone, email, 77 Fulham Palace
   Road. The new site has these only in the footer. Keep the card, not the old
   "stationed all around the globe" heading, which one office does not support.

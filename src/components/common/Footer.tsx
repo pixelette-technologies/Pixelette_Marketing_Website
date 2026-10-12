@@ -273,7 +273,7 @@ export default function Footer() {
             and NO copyright line — theirs carries none.
 
             THE NUMBERS ARE TECHNOLOGIES' OWN, on their own site: company
-            11716825, 77 Fulham Palace Road and VAT GB 432 2377 17 all appear
+            17508478, 77 Fulham Palace Road and VAT GB 432 2377 17 all appear
             in their footer under 'Pixelette Technologies Ltd'. They were
             supplied to this site on 22 Sep for Pixelette Marketing, and the
             entity NAME was the one thing not supplied, which now looks like
@@ -285,11 +285,10 @@ export default function Footer() {
           <p className='legal footerId'>
             <span>Pixelette Marketing</span>{" "}
             <span>Registered in England and Wales</span>{" "}
-            <span>Company number 11716825</span>
+            <span>Company number 17508478</span>
           </p>
           <p className='legal footerId footerId--end'>
             <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>{" "}
-            <span>VAT GB 432 2377 17</span>
           </p>
         </div>
       </Container>

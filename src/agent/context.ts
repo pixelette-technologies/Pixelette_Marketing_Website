@@ -14,7 +14,7 @@ import type { PixContext } from "@/lib/pix";
  *
  * WHAT STAYS NULL, ON INSTRUCTION, AND WHY. `legalName`, `incorporated` and
  * `crn` are left unset rather than filled from Pixelette Technologies Ltd's
- * own company number (11716825), which the Marketing footer and privacy page
+ * own company number (17508478), which the Marketing footer and privacy page
  * also print today with a comment that it has not been confirmed as
  * Marketing's own number rather than a shared/trading-name arrangement. The
  * build brief is explicit: do not invent a legal name, an incorporation year

@@ -90,7 +90,7 @@ const structuredData = {
       identifier: {
         "@type": "PropertyValue",
         name: "Companies House company number",
-        value: "11716825"
+        value: "17508478"
       }
     },
     {

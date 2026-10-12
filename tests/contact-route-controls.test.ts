@@ -28,14 +28,17 @@ test("payload validation runs before provider construction", () => {
 });
 
 test("route binds durable idempotency, receipt storage, rate limiting and bounded provider retry", () => {
-  assert.match(route, /MARKETING_CONTACT_STORE_DIR/);
+  assert.match(route, /SUPABASE_URL|getServiceSupabase/);
   assert.match(route, /MARKETING_CONTACT_RATE_LIMIT_SECRET/);
   assert.match(route, /new DurableContactDeliveryControl/);
+  assert.match(route, /supabase: configuration\.supabase/);
   assert.match(route, /control\.begin\(submission\.eventId/);
   assert.match(route, /idempotencyKey: decision\.idempotencyKey/);
   assert.match(route, /sendWithBoundedRetry/);
   assert.match(route, /control\.complete\(decision\.lease/);
   assert.match(route, /control\.fail\(decision\.lease/);
+  assert.match(route, /saveContactSubmission/);
+  assert.doesNotMatch(route, /MARKETING_CONTACT_STORE_DIR/);
   assert.match(form, /eventId \?\? crypto\.randomUUID\(\)/);
 });
 

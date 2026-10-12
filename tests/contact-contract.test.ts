@@ -65,13 +65,13 @@ test("accepts the enquiry fields when supplied", () => {
   const body = valid() as unknown as Record<string, unknown>;
   body.company = "Example Ltd";
   body.companyWebsite = "example.invalid";
-  body.improve = "Pipeline";
+  body.improve = "Pipeline & Conversion";
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, true);
   if (result.ok) {
     assert.equal(result.value.company, "Example Ltd");
     assert.equal(result.value.companyWebsite, "example.invalid");
-    assert.equal(result.value.improve, "Pipeline");
+    assert.equal(result.value.improve, "Pipeline & Conversion");
   }
 });
 

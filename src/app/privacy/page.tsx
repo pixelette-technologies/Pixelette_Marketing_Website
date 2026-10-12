@@ -95,7 +95,7 @@ export default function PrivacyPage() {
           <p>
             Pixelette Marketing is the controller for the information described
             here. We are registered in England and Wales under company number
-            11716825, with our registered office at 77 Fulham Palace Road,
+            17508478, with our registered office at 77 Fulham Palace Road,
             London W6 8JA. Our VAT registration number is GB 432 2377 17.
           </p>
           <p>
@@ -472,7 +472,7 @@ export default function PrivacyPage() {
             <br />
             77 Fulham Palace Road, London W6 8JA
             <br />
-            Registered in England and Wales, company number 11716825
+            Registered in England and Wales, company number 17508478
             <br />
             <Mail />
           </p>

@@ -418,8 +418,9 @@ notes fall and the ducks drop onto the water one by one, on real gravity and
 a damped buoyant bob, with perspective-flattened splash rings. Committed on
 the branch; **not pushed, not live.** Later the same day the
 ducks became a looping photographic video, which settled the pink duck's
-colour and, for 04, the vector-or-real question; the bricks' is still open. See [[02 Decisions]],
-[[09 Outstanding]] and [[10 Verification]].
+colour and, for 04, the vector-or-real question; **03's vector-or-real later
+settled as an interactive SVG maquette (13 Oct), not Lego and not a photo.**
+See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 **29 Sep, later — section 02's Post-its fall in a loop, and A clearer path is
 lit.** On instruction: every word note now falls from above the band to
@@ -529,6 +530,20 @@ copied, because ours is a governed contract. **A postal address is visible on
 the site again** (London registered office, and the US Naples office taken
 from the Tech page). Seen in headless Chrome at 1440, 768 and 390; **not on a
 real phone.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+
+**13 Oct — section 03's Lego / brick scene becomes an architectural
+maquette.** On instruction, against an approved visual reference and a final
+vector implementation brief: `BrickScene.tsx` and `BrickSceneMotion.tsx` are
+gone; `MaquetteScene.tsx` + `MaquetteSceneMotion.tsx` draw one SVG miniature
+world (five plaster forms, cream bridge, brass ladder, two gold spheres, six
+editorial figures). Desktop hover wakes a one-shot collaboration sequence and
+leave reverses it; touch plays once on viewport entry; reduced motion shows
+the settled pose. Section shell, copy, CTA, room backdrop and layout caps are
+unchanged. Capability names and "Real growth builds here" no longer overlay
+the picture — the copy carries the proposition. Working tree on
+`bilal/revamp`; **not committed, not pushed, not live.** Live
+`pixelettemarketing.com` still shows the brick scene. See [[02 Decisions]],
+[[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

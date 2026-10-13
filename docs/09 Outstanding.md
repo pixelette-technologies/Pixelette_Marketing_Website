@@ -941,29 +941,26 @@ Committed on `feat/home-sections-01-04`; not pushed, not live. See
 
 ## 29 Sep — section 03's builders (`a872913`)
 
-Committed on the branch; **not pushed, not live.** See [[02 Decisions]].
+~~Committed on the branch; **not pushed, not live.**~~ **Superseded 13 Oct** —
+the brick scene was replaced by the architectural maquette. The shirt-colour,
+rung-stay, climb pacing and phone-face items below named `BrickScene.tsx` and
+no longer apply. See [[02 Decisions]] (13 Oct).
 
-- **The second-from-right builder's shirt: violet or green?** The
-  instruction asked for both the same shirt colour and the hero's palette,
-  which has no green. Violet was chosen; setting her `shirt` back is one line
-  in `BrickScene.tsx`.
-- **Should a ladder builder stay a rung higher after hover?** At present it
-  climbs one rung and back down when the pointer leaves, so the scene always
-  returns to the reference. "Climb one step up" could also mean one step per
-  hover, kept.
-- **Frame pacing on a real GPU** for the climb; headless Chrome only. The
-  headless clock ran at about half speed while measuring, so the wall-clock
-  length of the climb (about 2.2s for the left ladder, 2.8s for the right)
-  has not been seen at true speed.
-- **The two women's faces at phone size.** On a phone the scene scrolls
-  sideways at 47.5rem, and the far-right builder is off screen until
-  scrolled to; not looked at closely there.
+- ~~**The second-from-right builder's shirt: violet or green?**~~ Closed —
+  scene removed.
+- ~~**Should a ladder builder stay a rung higher after hover?**~~ Closed —
+  scene removed.
+- ~~**Frame pacing on a real GPU** for the climb~~ Closed for the old climb;
+  the maquette's hover sequence still needs a real-GPU look (see 13 Oct).
+- ~~**The two women's faces at phone size.**~~ Closed for Lego faces; the
+  maquette's editorial figures still need a phone look.
 
 ## 29 Sep — section 04 is a looping video
 
 **Settled:** vector or real for the ducks (real: a looping video), and the
-pink duck's colour (the footage's magenta). **Still open:** vector or real for
-the bricks in 03. See [[02 Decisions]].
+pink duck's colour (the footage's magenta). ~~**Still open:** vector or real
+for the bricks in 03.~~ **Settled 13 Oct for 03:** interactive SVG maquette
+(not Lego, not photography). See [[02 Decisions]].
 
 **Not done yet:**
 
@@ -1203,3 +1200,31 @@ Committed `1daaef9`.
 - Not seen on a real phone or GPU; headless Chrome only. `next build` not
   run (the shared dev server holds `.next`; no server started, on
   instruction). No real enquiry submitted.
+
+## 13 Oct — section 03 architectural maquette
+
+On `bilal/revamp`. **Working tree only — not committed, not pushed, not
+live.** Live production still serves the brick scene. See [[02 Decisions]]
+and [[10 Verification]].
+
+**Calls for the user:**
+
+- **By-eye approval of the maquette** against the approved reference (premium
+  architectural miniature, not Lego, not glossy CGI). Rest state, hover
+  sequence, leave reverse, phone sideways scroll, reduced motion.
+- **Whether capability names should return somehow** outside the SVG. The
+  brief forbids labels in the illustration; the HTML overlays that sat on
+  brick faces were removed with them. The section copy still states the
+  proposition; `capabilitiesCopy.capabilities` / `payoff` remain in data for
+  reuse.
+- **Commit / push / deploy** when ready — none of that was asked in the
+  implementation session.
+
+**Not done yet:**
+
+- Full gate suite beyond `tsc --noEmit` (eslint, token gate, route walk,
+  `next build`).
+- axe and throttled-phone LCP/CLS on the new SVG.
+- Real-device touch path (viewport once-play) and `prefers-reduced-motion`
+  checked in a real browser, not only reasoned from code.
+- Production still shows Lego until this lands on the deployed branch.

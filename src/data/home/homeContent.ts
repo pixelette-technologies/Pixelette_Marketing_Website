@@ -128,7 +128,8 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   accent: "One commercial objective",
   lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
   cta: { label: "Explore all services", to: "/services" },
-  // The site's five capability names, in the hub's order.
+  // Kept for hub / content reuse. No longer overlaid on the maquette visual
+  // (illustration is unlabelled; the copy carries the proposition).
   capabilities: [
     { name: "Strategy & Positioning", icon: "compass" },
     { name: "Demand & Performance", icon: "bars" },

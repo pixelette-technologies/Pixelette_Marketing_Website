@@ -2548,6 +2548,61 @@ instruction, including the 21 Sep rebuild. Committed `8fc53d7`.
   below — flex bases left a blank band at 768 once the pair wrapped.
 - **No hero entrance.** Allowed by the brief, not required.
 
+## 13 Oct 2026 — section 03: architectural maquette replaces the brick scene
+
+On instruction, on `bilal/revamp`. **Not committed, not pushed, not live.**
+The approved visual is a premium architectural maquette (spec sheet +
+photographic reference); the behavioural brief is a final vector
+implementation document. Inspected the live Lego section on
+`pixelettemarketing.com` before changing code.
+
+**What stays**
+
+- Section position, shell (`homeScene--capabilities`), room backdrop, copy
+  column, headline ("Five capabilities" / "One commercial objective"), lead,
+  CTA ("Explore all services" → `/services`), and the bottom-right scene
+  width / phone sideways-scroll behaviour.
+- The interaction *principle*: the visitor triggers coordination; nothing
+  loops; reduced motion stays still. That sits between 02's passive falling
+  notes and 04's environmental duck pond.
+
+**What goes**
+
+- All Lego / toy-brick geometry, studs, plastic finish, minifigure builders,
+  jump animation, per-brick 3px lift, arrival climb, and HTML labels / payoff
+  overlaid on brick faces (`BrickScene.tsx`, `BrickSceneMotion.tsx`, and the
+  brick illustration tokens).
+- Raster images, video, traced photos, and capability names drawn inside the
+  SVG. The brief is explicit: the page copy explains; the illustration
+  demonstrates.
+
+**What replaces it**
+
+- `MaquetteScene.tsx` — one parent SVG, independently animatable groups:
+  burgundy / pink / cream / mustard / blue forms, cream bridge, brass ladder,
+  centre + moving gold spheres, six editorial figures (diverse skin tones,
+  clothing, roles). Matte plaster / paperboard treatment, subtle grain
+  filter, brass radial gradients. `aria-hidden="true"`.
+- `MaquetteSceneMotion.tsx` — state machine
+  `rest → activating → active → returning → rest`. Desktop `mouseenter` /
+  `mouseleave`; touch / coarse pointer plays once when the section enters the
+  viewport; `prefers-reduced-motion` forces the settled composition with
+  transitions off.
+- Tokens: `--maquette-*` (forms, brass, clothing) and editorial
+  `--figure-skin-*` / hair tones in `_tokens.scss`. Former `--brick-*` and
+  Lego-yellow figure tokens removed with the scene.
+- `_surfaces.scss` entry 7 rewritten from "capability lift / climb / jump" to
+  the maquette hover sequence.
+
+**Settled by this change**
+
+- **Vector or real for 03:** vector — a bespoke interactive SVG, not a
+  photograph and not Lego. (04 remains the looping video.)
+- Open items that named `BrickScene.tsx` (shirt colour, rung-stay behaviour)
+  are closed as obsolete; see [[09 Outstanding]].
+
+Related: [[03 Phase 1 — Homepage]], [[10 Verification]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 
 Built on instruction to mirror `pixelette-technologies-website.vercel.app/contact`

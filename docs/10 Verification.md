@@ -1871,6 +1871,27 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   lookup, and every route returned 500 until the forward was changed to a new
   name (`./builtFlow`). Touching the files did not clear it.
 
+## 13 Oct 2026 — section 03 architectural maquette
+
+On `bilal/revamp`. **Uncommitted working tree.** No new server started in the
+implementation session; the user later ran their own `npm run dev` on :3000.
+
+- **`tsc --noEmit`**: clean after the scene landed.
+- **Parse fault caught in the user's browser:** `MaquetteScene.tsx` opened
+  `BrassGlint` as `<radialGradient>` and closed it as `</linearGradient>`,
+  which Turbopack reported as `Expected '</', got 'jsx text'` and 500'd `/`.
+  Closed tag corrected; homepage then compiled.
+- **Live site inspected before the change** (`pixelettemarketing.com`):
+  confirmed the Lego / brick section, labels, payoff, climb/jump hover
+  principle, and position between Post-its and ducks — preserved as shell +
+  interaction principle only.
+- **Not run in that session (on instruction):** commit, push, dependency
+  install, Chromium / headless walk, a second server.
+- **Not yet verified by eye in vault terms:** rest vs hover vs leave, mobile
+  once-play, reduced-motion settled pose, phone sideways scroll of the new
+  SVG, or whether the maquette reads mature enough beside 02 and 04. Those
+  are [[09 Outstanding]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies page
 
 - **Gates on the working tree before commit**: tsc clean, eslint clean on

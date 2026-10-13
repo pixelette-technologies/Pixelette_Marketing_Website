@@ -278,6 +278,16 @@ one:**
 The rule itself is NOT withdrawn. This is one call site with a stated reason,
 not a licence for the next card grid.
 
+## Home section 03 motion (maquette) — 13 Oct 2026
+
+`_surfaces.scss` entry 7 is the home page's calm interactive band: desktop
+hover wakes a one-shot collaboration sequence across SVG groups; leave
+reverses; touch plays once on viewport entry; reduced motion shows the
+settled pose. Transform only, no loop, decorative (`aria-hidden`). It remains
+a registered exception to "hover changes border colour only", not a licence
+for card lifts elsewhere. Files: `MaquetteScene.tsx`,
+`MaquetteSceneMotion.tsx`, `_capabilitiesSection.scss`. See [[02 Decisions]].
+
 ## The first container query, and why it is not a second breakpoint — 22 Sep 2026
 
 `.growthSystem__ring` declares `container-type: inline-size`. It is the only

@@ -1,308 +1,230 @@
-// 03 — The brick scene. Locked implementation specification, 28 Sep 2026.
-// The calm section: a capability brick lifts 3px under the pointer (spec
-// §21); since 29 Sep, on instruction, the ladder builders climb in once and
-// the builders respond to hover. See BrickScene.tsx and CapabilitiesSection.tsx.
+// 03 — Architectural maquette. Replaces the former brick scene.
+// Hover (fine pointer) wakes a one-shot collaboration sequence; leave
+// reverses. Touch plays once on viewport entry. Reduced motion shows the
+// settled composition statically. See MaquetteScene.tsx / MaquetteSceneMotion.
 
-// The scene sits bottom-right, keeping its proportion. Its width is capped so
-// its left edge stays clear of the copy column: the container's left edge
-// plus 16rem, which is under the lead and CTA, where the scene only has
-// floor bricks at its very foot.
-.brickScene {
+// Scene sits bottom-right, proportion preserved. Width capped so the left
+// edge stays clear of the copy column (container left + 16rem).
+.maquetteScene {
   position: absolute;
   right: 0;
   bottom: 0;
   width: min(calc(100% - max(0px, (100% - 1160px) / 2) - 20px - 16rem), 82%);
 }
 
-// The frame's proportion is the drawing's (SCENE in BrickScene.tsx), set
-// inline so the two cannot disagree.
-.brickScene__frame {
+.maquetteScene__frame {
   position: relative;
 }
 
-.brickScene__svg {
+.maquetteScene__svg {
   display: block;
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-// --- Drawing ------------------------------------------------------------------
+// --- Motion primitives -------------------------------------------------------
 
-.brick__face {
-  fill: var(--b);
-}
-
-.brick__top {
-  fill: var(--b-top);
-}
-
-.brick__side {
-  fill: var(--b-side);
-}
-
-.brick__glint {
-  fill: var(--color-page);
-  opacity: 0.7;
-}
-
-.brick__edgeLight {
-  fill: var(--b-top);
-  opacity: 0.9;
-}
-
-.sheen__stop--light {
-  stop-color: var(--color-page);
-}
-
-.sheen__stop--dark {
-  stop-color: var(--note-ink);
-}
-
-.figure__legs {
-  fill: var(--legs);
-}
-
-.figure__seam {
-  fill: var(--note-ink);
-  opacity: 0.35;
-}
-
-.figure__shirt {
-  fill: var(--shirt);
-}
-
-.figure__collar {
-  fill: none;
-  stroke: var(--note-ink);
-  stroke-width: 0.7;
-  stroke-linejoin: round;
-  opacity: 0.35;
-}
-
-.figure__arm {
-  fill: none;
-  stroke: var(--shirt);
-  stroke-width: 6;
-  stroke-linecap: round;
-}
-
-.figure__hand {
-  fill: var(--skin);
-  fill-rule: evenodd;
-}
-
-.figure__skin {
-  fill: var(--skin);
-}
-
-.figure__lips {
-  fill: var(--figure-lips);
-}
-
-.figure__eye,
-.figure__brow {
-  fill: var(--note-ink);
-}
-
-.figure__brow {
-  fill: none;
-  stroke: var(--note-ink);
-  stroke-width: 0.8;
-  stroke-linecap: round;
-}
-
-.figure__eyeGlint {
-  fill: var(--color-page);
-}
-
-.figure__smile {
-  fill: none;
-  stroke: var(--note-ink);
-  stroke-width: 0.9;
-  stroke-linecap: round;
-}
-
-.figure__hair {
-  fill: var(--hair);
-}
-
-.figure__hairGlint {
-  fill: none;
-  stroke: var(--color-page);
-  stroke-width: 1;
-  stroke-linecap: round;
-  opacity: 0.35;
-}
-
-.ladder__rail {
-  stroke: var(--ladder-wood);
-  stroke-width: 7;
-  stroke-linecap: round;
-}
-
-.ladder__rung {
-  stroke: var(--ladder-wood-shade);
-  stroke-width: 5;
-  stroke-linecap: round;
-}
-
-.ladder__glint {
-  stroke: var(--color-page);
-  stroke-width: 1.2;
-  stroke-linecap: round;
-  opacity: 0.3;
-}
-
-// --- The HTML over the drawing ------------------------------------------------------
-
-// The list covers the whole frame; only the labels themselves take the
-// pointer, so the builders above the bricks can be hovered.
-.brickScene__labels {
-  position: absolute;
-  inset: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  pointer-events: none;
-}
-
-.brickScene__label {
-  pointer-events: auto;
-}
-
-// On the deep-blue and violet faces the ink would not read.
-.brickScene__label.brickScene__label--light {
-  color: var(--color-page);
-}
-
-.brickScene__label {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em 0.35em 0.7em;
-  font-family: var(--font-hand);
-  font-size: clamp(0.875rem, 0.3rem + 1.1vw, 1.5rem);
-  font-weight: 700;
-  line-height: 1.02;
-  text-align: center;
-  color: var(--note-ink);
-  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-.brickScene__icon {
-  width: 2.1em;
-  height: 2.1em;
-  stroke-width: 1.6;
-}
-
-.brickScene__payoff {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8em;
-  margin: 0;
-  font-family: var(--font-hand);
-  font-size: clamp(1.125rem, 0.3rem + 1.9vw, 2.5rem);
-  font-weight: 700;
-  color: var(--note-ink);
-
-  u {
-    text-decoration: underline;
-    text-decoration-thickness: 1.5px;
-    text-underline-offset: 0.25em;
-  }
-}
-
-.brickScene__smile {
-  width: 1.25em;
-  height: 1.25em;
-  stroke-width: 1.5;
-}
-
-// --- The one response: a capability lifts 3px, its drawn brick with it --------------
-// Hover is on the HTML label (it is what sits under the pointer); :has() maps
-// it onto the matching drawn brick. A spec-mandated exception to "hover
-// changes border colour only", registered in _surfaces.scss.
-
-.brickScene__cap {
-  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  @for $i from 1 through 5 {
-    .brickScene__frame:has(.brickScene__label--#{$i}:hover) .brickScene__cap--#{$i},
-    .brickScene__label--#{$i}:hover {
-      transform: translateY(-3px);
-    }
-  }
-}
-
-// --- The builders (29 Sep, on instruction) -------------------------------------------
-// Each builder is an outer group that never moves, holding a still hit area,
-// and an inner body that does, so a builder moving under the pointer cannot
-// un-hover itself. The ladder builders climb one rung and come back down when
-// the pointer leaves; the builders on top jump once per hover. The arrival
-// climb is BrickSceneMotion; hover waits until it is done (data-crew).
-
-.crew__hit {
-  fill: transparent;
-}
-
-.crew__body {
+.maquette__part,
+.maquette__person {
   transform-box: fill-box;
-  transform-origin: 50% 100%;
+  transform-origin: center;
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.45, 0.05, 0.25, 1);
+  transition-duration: 800ms;
+  transition-delay: 0ms;
+  will-change: transform;
 }
 
-@keyframes figureJump {
-  0% {
-    transform: translateY(0) scale(1, 1);
-    animation-timing-function: cubic-bezier(0.3, 0, 0.6, 1);
+.maquette__tablet {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    transform 800ms cubic-bezier(0.45, 0.05, 0.25, 1);
+}
+
+// Forward sequence: staggered, deliberate, settles. No bounce / loop.
+@media (prefers-reduced-motion: no-preference) {
+  .maquetteScene__frame.is-active:not(.is-static) {
+    .maquette__pink {
+      transform: translateY(-8px);
+      transition-duration: 420ms;
+      transition-delay: 40ms;
+      transition-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1);
+    }
+
+    .maquette__mustard {
+      transform: translateY(-5px);
+      transition-duration: 460ms;
+      transition-delay: 80ms;
+      transition-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1);
+    }
+
+    .maquette__blue {
+      transform: translateX(-10px);
+      transition-duration: 520ms;
+      transition-delay: 60ms;
+      transition-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1);
+    }
+
+    .maquette__bridge {
+      transform: translate(2px, -4px);
+      transition-duration: 560ms;
+      transition-delay: 120ms;
+      transition-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1);
+    }
+
+    .maquette__ladderPerson {
+      transform: translate(6px, -16px);
+      transition-duration: 900ms;
+      transition-delay: 320ms;
+      transition-timing-function: cubic-bezier(0.4, 0.05, 0.2, 1);
+    }
+
+    .maquette__bridgePerson {
+      transform: translate(4px, -2px) rotate(-4deg);
+      transition-duration: 700ms;
+      transition-delay: 360ms;
+    }
+
+    .maquette__spherePerson {
+      transform: translate(-6px, -1px) rotate(3deg);
+      transition-duration: 720ms;
+      transition-delay: 400ms;
+    }
+
+    .maquette__directorPerson {
+      transform: translateY(-2px) rotate(-2deg);
+      transition-duration: 640ms;
+      transition-delay: 380ms;
+    }
+
+    .maquette__tabletPerson {
+      transform: translate(2px, -1px) rotate(2deg);
+      transition-duration: 620ms;
+      transition-delay: 420ms;
+    }
+
+    .maquette__tabletPerson .maquette__tablet {
+      transform: rotate(-8deg) translateY(1px);
+      transition-duration: 620ms;
+      transition-delay: 420ms;
+    }
+
+    .maquette__bluePerson {
+      transform: translate(-8px, 1px) rotate(-3deg);
+      transition-duration: 780ms;
+      transition-delay: 300ms;
+    }
+
+    .maquette__movingSphere {
+      transform: translate(-28px, -1px);
+      transition-duration: 1000ms;
+      transition-delay: 820ms;
+      transition-timing-function: cubic-bezier(0.4, 0.05, 0.2, 1);
+    }
+
+    .maquette__centreSphere {
+      transform: translateY(-2px);
+      transition-duration: 500ms;
+      transition-delay: 200ms;
+    }
+
+    .maquette__burgundy {
+      transform: translateY(-1px);
+      transition-duration: 480ms;
+      transition-delay: 100ms;
+    }
+
+    .maquette__creamCyl {
+      transform: translateY(-1px);
+      transition-duration: 480ms;
+      transition-delay: 140ms;
+    }
+
+    .maquette__ladder {
+      transform: translate(1px, -2px);
+      transition-duration: 500ms;
+      transition-delay: 100ms;
+    }
   }
-  14% {
-    transform: translateY(0) scale(1.06, 0.92);
-    animation-timing-function: cubic-bezier(0.2, 0.7, 0.4, 1);
-  }
-  48% {
-    transform: translateY(-26px) scale(0.97, 1.04);
-    animation-timing-function: cubic-bezier(0.6, 0, 0.8, 0.4);
-  }
-  80% {
-    transform: translateY(0) scale(1.05, 0.94);
-    animation-timing-function: cubic-bezier(0.3, 0, 0.4, 1);
-  }
-  100% {
-    transform: translateY(0) scale(1, 1);
+
+  // Return: unified shorter reverse, no stagger (mouse leave).
+  .maquetteScene__frame.is-returning:not(.is-static) {
+    .maquette__part,
+    .maquette__person {
+      transition-duration: 780ms;
+      transition-delay: 0ms;
+      transition-timing-function: cubic-bezier(0.4, 0.05, 0.3, 1);
+    }
+
+    .maquette__tablet {
+      transition-duration: 780ms;
+      transition-delay: 0ms;
+    }
   }
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .brickScene__frame:not([data-crew="armed"], [data-crew="climbing"]) {
-    .crew {
-      cursor: default;
-    }
+// Reduced motion / static: show settled composition without animating in.
+.maquetteScene__frame.is-static {
+  .maquette__part,
+  .maquette__person,
+  .maquette__tablet {
+    transition: none !important;
+  }
 
-    .crew--climb .crew__body {
-      transition: transform 480ms cubic-bezier(0.45, 0, 0.3, 1);
-    }
+  .maquette__pink {
+    transform: translateY(-8px);
+  }
 
-    .crew--climb:hover .crew__body {
-      transform: translate(var(--rung-x), var(--rung-y));
-    }
+  .maquette__mustard {
+    transform: translateY(-5px);
+  }
 
-    .crew--jump:hover .crew__body {
-      animation: figureJump 640ms both;
-    }
+  .maquette__blue {
+    transform: translateX(-10px);
+  }
+
+  .maquette__bridge {
+    transform: translate(2px, -4px);
+  }
+
+  .maquette__ladderPerson {
+    transform: translate(6px, -16px);
+  }
+
+  .maquette__bridgePerson {
+    transform: translate(4px, -2px) rotate(-4deg);
+  }
+
+  .maquette__spherePerson {
+    transform: translate(-6px, -1px) rotate(3deg);
+  }
+
+  .maquette__directorPerson {
+    transform: translateY(-2px) rotate(-2deg);
+  }
+
+  .maquette__tabletPerson {
+    transform: translate(2px, -1px) rotate(2deg);
+  }
+
+  .maquette__bluePerson {
+    transform: translate(-8px, 1px) rotate(-3deg);
+  }
+
+  .maquette__movingSphere {
+    transform: translate(-28px, -1px);
+  }
+
+  .maquette__centreSphere {
+    transform: translateY(-2px);
   }
 }
 
-// --- Phone: the scene scrolls sideways under the copy --------------------------------
+// --- Phone: scene scrolls sideways under the copy ------------------------------
 
 @media (max-width: 767px) {
-  // The scene stands on the floor of its row, at its bottom edge.
   .homeScene--capabilities .homeScene__art {
     display: flex;
     align-items: flex-end;
@@ -310,8 +232,6 @@
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
     scrollbar-width: none;
-    // The fade on the right says "there is more". A mask reads alpha only,
-    // so any opaque token will do; the gate bars a colour literal.
     mask-image: linear-gradient(90deg, var(--note-ink) 85%, transparent);
   }
 
@@ -323,9 +243,7 @@
     width: 47.5rem;
   }
 
-  // flex: none, because the row is a flex container now (to stand the scene
-  // on the floor) and a flex item would shrink to the phone's width.
-  .brickScene {
+  .maquetteScene {
     position: relative;
     flex: none;
     width: 47.5rem;
@@ -333,18 +251,58 @@
     scroll-snap-align: start;
   }
 
-  // The drawing's top fifth is headroom for the lifted bricks; on a phone,
-  // where the scene sits under the copy rather than beside it, most of that
-  // headroom is taken back.
-  .brickScene__frame {
-    margin-top: -2.5rem;
+  .maquetteScene__frame {
+    margin-top: -1.5rem;
   }
 
-  .brickScene__label {
-    font-size: 0.8125rem;
-  }
+  // Smaller movement distances on narrow viewports.
+  .maquetteScene__frame.is-active:not(.is-static) {
+    .maquette__pink {
+      transform: translateY(-5px);
+    }
 
-  .brickScene__payoff {
-    font-size: 1.0625rem;
+    .maquette__mustard {
+      transform: translateY(-3px);
+    }
+
+    .maquette__blue {
+      transform: translateX(-6px);
+    }
+
+    .maquette__ladderPerson {
+      transform: translate(4px, -10px);
+    }
+
+    .maquette__movingSphere {
+      transform: translate(-16px, -1px);
+    }
+
+    .maquette__bluePerson {
+      transform: translate(-5px, 1px) rotate(-2deg);
+    }
+  }
+}
+
+@media (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .maquetteScene__frame.is-static {
+    .maquette__pink {
+      transform: translateY(-5px);
+    }
+
+    .maquette__mustard {
+      transform: translateY(-3px);
+    }
+
+    .maquette__blue {
+      transform: translateX(-6px);
+    }
+
+    .maquette__ladderPerson {
+      transform: translate(4px, -10px);
+    }
+
+    .maquette__movingSphere {
+      transform: translate(-16px, -1px);
+    }
   }
 }

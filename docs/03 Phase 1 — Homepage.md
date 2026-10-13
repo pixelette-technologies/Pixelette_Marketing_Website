@@ -94,6 +94,19 @@ anywhere.
 Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]],
 [[10 Verification]]
 
+## 13 Oct — section 03 illustration is an architectural maquette
+
+The Lego / toy-brick SVG (`BrickScene`) is replaced by a premium architectural
+maquette (`MaquetteScene`): five plaster forms, a cream bridge, a brass ladder,
+two gold spheres and six editorial miniature figures. Interaction moves from
+per-brick lift + climb/jump to a coordinated hover (desktop) or once-on-view
+(touch) collaboration sequence that settles and does not loop.
+
+**Unchanged:** section shell, editorial copy, CTA, room backdrop, bottom-right
+placement and the phone sideways-scroll art row. **Removed from the picture:**
+capability name/icon overlays and "Real growth builds here" — the brief keeps
+labels out of the illustration. See [[02 Decisions]] and [[09 Outstanding]].
+
 ## 23 Sep — section 03's figure, for the fifth time
 
 The ring of bare pills is now the reference's ring of cards: an icon badge and

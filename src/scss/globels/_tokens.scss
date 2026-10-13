@@ -152,14 +152,14 @@
   // THE SECOND TIME THE SITE HAS STOPPED BEING TWO-TONE, and it was asked
   // for in so many words. The approved home page reference (sections 01-04)
   // deliberately pairs Pixelette UI colour with MULTICOLOURED VISUAL
-  // METAPHORS: a blue-violet-pink-orange signal, rainbow Post-its, five
-  // coloured bricks, yellow ducks on pale water. The brief is explicit that
-  // the UI stays pink and burgundy and the illustrated OBJECTS may not.
+  // METAPHORS: a blue-violet-pink-orange signal, rainbow Post-its, the
+  // architectural maquette, yellow ducks on pale water. The brief is explicit
+  // that the UI stays pink and burgundy and the illustrated OBJECTS may not.
   //
   // So the same social rule as the sector tones above, stated more strongly:
   // THESE ARE FOR ILLUSTRATIONS ONLY. No text, no control, no border, no
   // band. Each group belongs to one section and is named for its object, so
-  // a stray use reads as wrong on sight (a button in --brick-green).
+  // a stray use reads as wrong on sight (a button in --maquette-mustard).
   //
   // They live here, not in the section partials, for the same reason the
   // sector tones do: the token gate is right that one file answers "what
@@ -201,44 +201,44 @@
   --room-warm: #f5ede7;
   --room-light: #fffaf6;
 
-  // 03: the bricks. Top, face and side of each, plus the white plinth.
-  // 29 Sep, on instruction: the bricks and the builders' shirts take the
-  // Living Signal's five colours, so 01 and 03 read as one palette. Each
-  // face IS the signal token; only the lit top and shaded side are new.
-  --brick-deep-top: #5d7ee6;
-  --brick-deep: var(--signal-deep);
-  --brick-deep-side: #152b82;
-  --brick-blue-top: #85a6ff;
-  --brick-blue: var(--signal-blue);
-  --brick-blue-side: #2349b9;
-  --brick-violet-top: #b88aff;
-  --brick-violet: var(--signal-violet);
-  --brick-violet-side: #5f24b6;
-  --brick-magenta-top: #ff85c8;
-  --brick-magenta: var(--signal-magenta);
-  --brick-magenta-side: #ad1a70;
-  --brick-orange-top: #ffb088;
-  --brick-orange: var(--signal-orange);
-  --brick-orange-side: #d8541b;
-  --brick-base-top: #ffffff;
-  --brick-base: #f3efec;
-  --brick-base-side: #d8d1cc;
+  // 03: the architectural maquette. Premium plaster / paperboard forms and
+  // editorial miniature figures (replacing the former brick scene). Colours
+  // follow the approved maquette brief and sit with the homepage room tones.
+  --maquette-burgundy: #4b1635;
+  --maquette-burgundy-lit: #6a2a4a;
+  --maquette-burgundy-shade: #351024;
+  --maquette-pink: #d63d7c;
+  --maquette-pink-lit: #e56a9a;
+  --maquette-pink-shade: #a82e5f;
+  --maquette-mustard: #c9952e;
+  --maquette-mustard-lit: #dbb04a;
+  --maquette-mustard-shade: #9a7120;
+  --maquette-blue: #3f6ecc;
+  --maquette-blue-lit: #5a86d8;
+  --maquette-blue-shade: #2d5299;
+  --maquette-cream: #f7efe6;
+  --maquette-cream-lit: #fffaf4;
+  --maquette-cream-shade: #e2d5c6;
+  --maquette-ink: #24181f;
+  --maquette-brass: #d4a044;
+  --maquette-brass-lit: #e8c078;
+  --maquette-brass-shade: #a6782e;
+  --maquette-shirt: #f4f0ea;
+  --maquette-khaki: #b8a078;
+  --maquette-olive: #6e7358;
+  --maquette-navy: #2c3a5a;
+  --maquette-suit: #2a2430;
+  --maquette-rust: #b85a3a;
+  --maquette-slate: #3b4150;
 
-  // 03: the builders and their ladders. Generic figures, no maker's mark.
-  // 29 Sep: re-read off the supplied brick reference image.
-  // Shirts are the --signal-* tokens directly.
-  --figure-skin: #f8c93f;
-  --figure-skin-shade: #d8a21f;
-  // 29 Sep, on instruction: two of the builders are women of colour. Both
-  // tones are light enough that the ink features still read on them.
-  --figure-skin-brown: #b77a4e; // the Asian builder, second from right
-  --figure-skin-deep: #7b4a2d; // the Black builder, far right
-  --figure-lips: #a8324f;
-  --figure-hair: #1f1b1d; // black hair, and the darkest trousers
-  --figure-auburn: #b04a24; // the builder with long hair
-  --figure-slate: #3b4150; // trousers
-  --ladder-wood: #b86a3a;
-  --ladder-wood-shade: #8a4a24;
+  // 03: editorial miniature figures (architectural-model style).
+  --figure-skin-light: #e8c4a8;
+  --figure-skin-warm: #c9956c;
+  --figure-skin-brown: #9a6848;
+  --figure-skin-deep: #5c3a28;
+  --figure-hair: #1f1b1d;
+  --figure-hair-grey: #8a8480;
+  --figure-hair-dark: #2a1f1c;
 
   // 04: the ducks, the sky and the water, re-read on 29 Sep off the supplied
   // duck reference image: a bright blue day, glossy yellow ducks and ONE hot

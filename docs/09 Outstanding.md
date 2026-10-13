@@ -1201,30 +1201,44 @@ Committed `1daaef9`.
   run (the shared dev server holds `.next`; no server started, on
   instruction). No real enquiry submitted.
 
-## 13 Oct — section 03 architectural maquette
+## 13 Oct — section 03 architectural maquette (layered Option 1)
 
-On `bilal/revamp`. **Working tree only — not committed, not pushed, not
-live.** Live production still serves the brick scene. See [[02 Decisions]]
-and [[10 Verification]].
+On `bilal/revamp`. Commits `80fcb7b` (SVG shell), `d6847a6` (layer review
+assets), plus the border-flood transparent batch in `layers/`. **Not
+pushed, not live.** Production still serves the brick scene. See
+[[02 Decisions]] and [[10 Verification]].
+
+**Done:**
+
+- ~~Border-flood alpha test on `05` / `07`~~ — approved by eye.
+- ~~Batch all fifteen to true transparent PNGs~~ —
+  `public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
+
+**Next session — agreed order:**
+
+1. **Wire layers** into section 03 (replace or composite over schematic SVG
+   groups), keeping locked concept and interaction principle.
+2. **Rebuild motion** as a multi-keyframe collaboration sequence with real
+   travel (not 8–16px CSS nudges).
+3. Gates + by-eye (rest / hover / leave / phone scroll / reduced motion).
 
 **Calls for the user:**
 
-- **By-eye approval of the maquette** against the approved reference (premium
-  architectural miniature, not Lego, not glossy CGI). Rest state, hover
-  sequence, leave reverse, phone sideways scroll, reduced motion.
-- **Whether capability names should return somehow** outside the SVG. The
-  brief forbids labels in the illustration; the HTML overlays that sat on
-  brick faces were removed with them. The section copy still states the
-  proposition; `capabilitiesCopy.capabilities` / `payoff` remain in data for
-  reuse.
-- **Commit / push / deploy** when ready — none of that was asked in the
-  implementation session.
+- ~~Approve or reject the two-file alpha test before batching~~ — approved;
+  batch done.
+- ~~By-eye of the schematic SVG as final art~~ — rejected; layers are the art
+  path now. By-eye of the **composited layered scene** is still open.
+- Minor alpha fringe (silhouette halos, form bases) acceptable for now or
+  refine later — user called the batch perfect.
+- **Whether capability names should return somehow** outside the picture.
+  Brief still forbids labels in the illustration; copy carries the
+  proposition; `capabilitiesCopy.capabilities` / `payoff` remain in data.
+- **Push / deploy** when the layered scene is ready — not asked yet.
 
 **Not done yet:**
 
-- Full gate suite beyond `tsc --noEmit` (eslint, token gate, route walk,
-  `next build`).
-- axe and throttled-phone LCP/CLS on the new SVG.
-- Real-device touch path (viewport once-play) and `prefers-reduced-motion`
-  checked in a real browser, not only reasoned from code.
-- Production still shows Lego until this lands on the deployed branch.
+- Compositing layers into `CapabilitiesSection` / scene components.
+- Motion rebuild on layers.
+- Full gate suite beyond the earlier `tsc --noEmit` on the SVG pass.
+- axe / phone LCP/CLS; real-device touch and reduced-motion check.
+- Production still shows Lego until this branch deploys.

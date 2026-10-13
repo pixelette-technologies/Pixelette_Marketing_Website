@@ -2594,14 +2594,67 @@ implementation document. Inspected the live Lego section on
 - `_surfaces.scss` entry 7 rewritten from "capability lift / climb / jump" to
   the maquette hover sequence.
 
-**Settled by this change**
+**Settled by this change (later revised the same day — see below)**
 
-- **Vector or real for 03:** vector — a bespoke interactive SVG, not a
-  photograph and not Lego. (04 remains the looping video.)
+- ~~**Vector or real for 03:** vector — a bespoke interactive SVG~~ **Superseded
+  the same day:** the SVG remains the *interaction shell* for now, but the
+  approved look is the FreeCreate / spec-sheet still, to be delivered as
+  layered raster cutouts (Option 1), not as code-drawn primitives.
 - Open items that named `BrickScene.tsx` (shirt colour, rung-stay behaviour)
   are closed as obsolete; see [[09 Outstanding]].
 
 Related: [[03 Phase 1 — Homepage]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 moves to layered art (Option 1)
+
+On instruction after by-eye rejection of the SVG against the approved
+spec-sheet image. Concept **locked** (five forms, cream beam, gold ladder,
+two gold spheres, six people, colours). Finish and motion are not.
+
+**Path chosen:** Option 1 — keep `MaquetteSceneMotion` / section shell /
+hover-once collaboration principle; replace schematic SVG geometry with
+finished layered cutouts; rebuild motion as multi-keyframe travel (not 8–16px
+CSS nudges). Three.js deferred unless layered 2D still cannot sell depth.
+Video loop (04's method) deferred because hover choreography is required.
+
+**What was tried and discarded**
+
+- Code flood-fill / chroma cuts from the flat spec sheet — edges and overlaps
+  too poor for review.
+- Aggressive white-keying for alpha — punches gold highlights and white
+  clothing; rejected as unsafe for cream forms and shirts.
+
+**What landed**
+
+- `80fcb7b` — SVG maquette replaces brick scene (shell kept).
+- `d6847a6` — `public/home/maquette/source/spec-sheet.png` and fifteen
+  subject-on-white review cutouts in `layers-review/` (forms `01`–`09`,
+  people `11`–`16`), generated via Cursor image gen driven by a Grok-model
+  session. Quality accepted by the user for shape/finish on white.
+- Review files were JPEG bytes under `.png` names (tool limitation) —
+  **no alpha until the border-flood pass below**.
+
+**Border-flood alpha (same day, after Option 1 assets)**
+
+- Cursor GenerateImage still cannot emit PNG alpha; no xAI bg-remove key.
+- Path taken: `scripts/maquette-border-alpha.mjs` — edge-connected white →
+  transparent only (not global white-key). Soft contact shadows only when
+  true gray (chroma ≤ 2). Ladder gets an extra enclosed-white clear for
+  rung gaps; spheres and people do not (specular / shirt whites).
+- Two-file test on `05-blue-cylinder` and `07-centre-sphere` **approved by
+  eye**; then all fifteen layers batched to
+  `public/home/maquette/layers/`. Chequer/dark previews in
+  `layers-alpha-preview/`.
+- Cream forms and pale clothing watched: an earlier soft-shadow chroma of
+  18 punched cream/clothes and was tightened; morphological hole-close was
+  tried and discarded (restored white in arm gaps).
+
+**Still open after alpha**
+
+- Wire transparent layers into the capabilities scene; rebuild hover
+  collaboration as real multi-keyframe travel.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
 
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 

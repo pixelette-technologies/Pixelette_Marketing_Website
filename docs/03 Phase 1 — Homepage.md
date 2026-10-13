@@ -97,10 +97,14 @@ Related: [[02 Decisions]], [[05 Components]], [[08 Design system constraints]],
 ## 13 Oct — section 03 illustration is an architectural maquette
 
 The Lego / toy-brick SVG (`BrickScene`) is replaced by a premium architectural
-maquette (`MaquetteScene`): five plaster forms, a cream bridge, a brass ladder,
-two gold spheres and six editorial miniature figures. Interaction moves from
-per-brick lift + climb/jump to a coordinated hover (desktop) or once-on-view
-(touch) collaboration sequence that settles and does not loop.
+maquette. First as `MaquetteScene` SVG primitives (`80fcb7b`); then, after the
+SVG failed by-eye against the approved spec sheet, onto **Option 1 layered
+cutouts** (`d6847a6` review assets; border-flood transparent PNGs in
+`public/home/maquette/layers/`). Concept locked; art finish comes from the
+layers, not from code-drawn shapes. Interaction principle unchanged:
+coordinated hover (desktop) or once-on-view (touch), no loop. Layers are not
+composited into the scene yet; motion still needs rebuilding onto them
+(larger travel, multi-step).
 
 **Unchanged:** section shell, editorial copy, CTA, room backdrop, bottom-right
 placement and the phone sideways-scroll art row. **Removed from the picture:**

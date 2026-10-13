@@ -532,18 +532,19 @@ from the Tech page). Seen in headless Chrome at 1440, 768 and 390; **not on a
 real phone.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 **13 Oct — section 03's Lego / brick scene becomes an architectural
-maquette.** On instruction, against an approved visual reference and a final
-vector implementation brief: `BrickScene.tsx` and `BrickSceneMotion.tsx` are
-gone; `MaquetteScene.tsx` + `MaquetteSceneMotion.tsx` draw one SVG miniature
-world (five plaster forms, cream bridge, brass ladder, two gold spheres, six
-editorial figures). Desktop hover wakes a one-shot collaboration sequence and
-leave reverses it; touch plays once on viewport entry; reduced motion shows
-the settled pose. Section shell, copy, CTA, room backdrop and layout caps are
-unchanged. Capability names and "Real growth builds here" no longer overlay
-the picture — the copy carries the proposition. Working tree on
-`bilal/revamp`; **not committed, not pushed, not live.** Live
-`pixelettemarketing.com` still shows the brick scene. See [[02 Decisions]],
-[[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
+maquette, then moves onto a layered-art path.** First commit `80fcb7b`:
+`BrickScene` gone; `MaquetteScene` + motion as an interactive SVG (concept
+locked). SVG failed by-eye against the FreeCreate / spec-sheet still —
+Option 1: keep the interaction shell, replace art with layered cutouts,
+rebuild motion as real travel. Layer review assets `d6847a6`
+(`public/home/maquette/layers-review/`). Then **border-flood alpha** (not
+global white-key): two-file test on `05-blue-cylinder` and
+`07-centre-sphere` approved by eye; all fifteen true transparent PNGs in
+`public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
+Still open: wire layers into the scene and rebuild collaboration motion.
+On `bilal/revamp`; **not pushed, not live.** Production still shows Lego.
+See [[02 Decisions]], [[03 Phase 1 — Homepage]], [[09 Outstanding]] and
+[[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

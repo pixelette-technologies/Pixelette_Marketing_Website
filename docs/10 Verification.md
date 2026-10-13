@@ -1873,24 +1873,32 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
 
 ## 13 Oct 2026 — section 03 architectural maquette
 
-On `bilal/revamp`. **Uncommitted working tree.** No new server started in the
-implementation session; the user later ran their own `npm run dev` on :3000.
+On `bilal/revamp`. Commits `80fcb7b` (SVG) and `d6847a6` (layer assets),
+plus the border-flood transparent batch.
 
-- **`tsc --noEmit`**: clean after the scene landed.
+- **`tsc --noEmit`**: clean after the SVG scene landed.
 - **Parse fault caught in the user's browser:** `MaquetteScene.tsx` opened
   `BrassGlint` as `<radialGradient>` and closed it as `</linearGradient>`,
   which Turbopack reported as `Expected '</', got 'jsx text'` and 500'd `/`.
   Closed tag corrected; homepage then compiled.
-- **Live site inspected before the change** (`pixelettemarketing.com`):
-  confirmed the Lego / brick section, labels, payoff, climb/jump hover
-  principle, and position between Post-its and ducks — preserved as shell +
-  interaction principle only.
-- **Not run in that session (on instruction):** commit, push, dependency
-  install, Chromium / headless walk, a second server.
-- **Not yet verified by eye in vault terms:** rest vs hover vs leave, mobile
-  once-play, reduced-motion settled pose, phone sideways scroll of the new
-  SVG, or whether the maquette reads mature enough beside 02 and 04. Those
-  are [[09 Outstanding]].
+- **Live site inspected before the SVG change** (`pixelettemarketing.com`):
+  confirmed the Lego / brick section — shell + interaction principle kept.
+- **By-eye of SVG vs approved spec sheet:** failed. Schematic primitives did
+  not match FreeCreate finish; Option 1 (layered cutouts) chosen.
+- **Layer assets (`d6847a6`):** fifteen subject-on-white cutouts in
+  `public/home/maquette/layers-review/`, plus `source/spec-sheet.png`. User
+  accepted cutout quality on white. Review files were JPEG-under-`.png`
+  (Cursor GenerateImage limitation) — no alpha until the border-flood pass.
+- **Border-flood alpha:** `scripts/maquette-border-alpha.mjs`. Test on
+  `05-blue-cylinder` and `07-centre-sphere` approved by eye (chequer + dark
+  previews); batch of all fifteen to `public/home/maquette/layers/` with
+  real PNG alpha. Specular highlights on gold spheres kept; cream forms and
+  pale clothing checked after tightening soft-shadow chroma. Ladder rung
+  gaps cleared with a ladder-only enclosed-white pass.
+- **Not yet verified by eye in vault terms for the layered scene:** rest /
+  hover / leave / mobile once-play / reduced motion / phone sideways scroll
+  of the composited layers beside 02 and 04 (layers not wired yet). See
+  [[09 Outstanding]].
 
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies page
 

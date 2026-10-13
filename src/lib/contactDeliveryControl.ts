@@ -1,8 +1,8 @@
 import { createHmac, randomUUID } from "node:crypto";
-import { mkdir, open, readFile, rename, unlink } from "node:fs/promises";
-import { dirname, isAbsolute, join, parse, resolve } from "node:path";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
-const EVENT_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const EVENT_ID =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const ENTITY = /^[A-Z][A-Z0-9_-]{1,31}$/;
 const PAYLOAD_HASH = /^[a-f0-9]{64}$/;
 const PROVIDER_RECEIPT_ID = /^[A-Za-z0-9_-]{1,256}$/;
@@ -10,7 +10,6 @@ const PROVIDER_RECEIPT_ID = /^[A-Za-z0-9_-]{1,256}$/;
 type ReceiptState = "PENDING" | "FAILED" | "SUCCEEDED";
 
 interface ReceiptRecord {
-  schemaVersion: 1;
   entity: string;
   eventId: string;
   payloadHash: string;
@@ -20,20 +19,14 @@ interface ReceiptRecord {
   updatedAt: string;
   providerReceiptId?: string;
   failureCode?: "PROVIDER_DELIVERY_FAILED";
-}
-
-interface LockRecord {
-  schemaVersion: 1;
-  token: string;
-  expiresAt: number;
+  lockToken?: string | null;
+  lockExpiresAt?: number | null;
 }
 
 export interface DeliveryLease {
   eventId: string;
   payloadHash: string;
   lockToken: string;
-  receiptPath: string;
-  lockPath: string;
 }
 
 export type BeginDeliveryResult =
@@ -46,8 +39,11 @@ export type BeginDeliveryResult =
 
 export interface ContactDeliveryOptions {
   entity: string;
-  storeDirectory: string;
   hmacSecret: string;
+  /** Production: Supabase service client. Tests: omit and pass `store`. */
+  supabase?: SupabaseClient;
+  /** In-memory store for unit tests. */
+  store?: DeliveryStore;
   rateLimitMax?: number;
   rateLimitWindowMs?: number;
   leaseMs?: number;
@@ -55,19 +51,19 @@ export interface ContactDeliveryOptions {
   now?: () => number;
 }
 
+export interface DeliveryStore {
+  getRateTimestamps(entity: string, keyHash: string): Promise<number[]>;
+  setRateTimestamps(
+    entity: string,
+    keyHash: string,
+    timestamps: number[],
+  ): Promise<void>;
+  getReceipt(entity: string, eventId: string): Promise<ReceiptRecord | null>;
+  putReceipt(record: ReceiptRecord): Promise<void>;
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
-function hasExactKeys(value: Record<string, unknown>, allowed: readonly string[], required: readonly string[]): boolean {
-  const keys = Object.keys(value);
-  return keys.every((key) => allowed.includes(key)) && required.every((key) => keys.includes(key));
-}
-
-function isIsoTimestamp(value: unknown): value is string {
-  if (typeof value !== "string") return false;
-  const milliseconds = Date.parse(value);
-  return Number.isFinite(milliseconds) && new Date(milliseconds).toISOString() === value;
 }
 
 function stableJson(value: unknown): string {
@@ -89,81 +85,114 @@ function stableJson(value: unknown): string {
   throw new Error("UNSUPPORTED_PAYLOAD_VALUE");
 }
 
-async function readJson(path: string): Promise<Record<string, unknown> | null> {
-  try {
-    const parsed: unknown = JSON.parse(await readFile(path, "utf8"));
-    if (!isRecord(parsed)) throw new Error("CORRUPT_DURABLE_RECORD");
-    return parsed;
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
-    throw error;
-  }
+/** In-memory delivery store for unit tests. */
+export function createMemoryDeliveryStore(): DeliveryStore {
+  const rates = new Map<string, number[]>();
+  const receipts = new Map<string, ReceiptRecord>();
+
+  return {
+    async getRateTimestamps(entity, keyHash) {
+      return [...(rates.get(`${entity}:${keyHash}`) ?? [])];
+    },
+    async setRateTimestamps(entity, keyHash, timestamps) {
+      rates.set(`${entity}:${keyHash}`, [...timestamps]);
+    },
+    async getReceipt(entity, eventId) {
+      const existing = receipts.get(`${entity}:${eventId}`);
+      return existing ? { ...existing } : null;
+    },
+    async putReceipt(record) {
+      receipts.set(`${record.entity}:${record.eventId}`, { ...record });
+    },
+  };
 }
 
-async function writeJsonAtomically(path: string, value: unknown): Promise<void> {
-  await mkdir(dirname(path), { recursive: true });
-  const temporary = `${path}.${process.pid}.${randomUUID()}.tmp`;
-  const handle = await open(temporary, "wx", 0o600);
-  try {
-    await handle.writeFile(`${JSON.stringify(value)}\n`, "utf8");
-    await handle.sync();
-  } finally {
-    await handle.close();
-  }
-  try {
-    await rename(temporary, path);
-  } catch (error) {
-    await unlink(temporary).catch(() => undefined);
-    throw error;
-  }
-}
-
-function receiptFrom(value: Record<string, unknown> | null): ReceiptRecord | null {
-  if (value === null) return null;
-  const allowed = [
-    "schemaVersion", "entity", "eventId", "payloadHash", "state", "attempts",
-    "createdAt", "updatedAt", "providerReceiptId", "failureCode",
-  ];
-  const required = ["schemaVersion", "entity", "eventId", "payloadHash", "state", "attempts", "createdAt", "updatedAt"];
-  if (
-    !hasExactKeys(value, allowed, required) ||
-    value.schemaVersion !== 1 ||
-    typeof value.entity !== "string" || !ENTITY.test(value.entity) ||
-    typeof value.eventId !== "string" || !EVENT_ID.test(value.eventId) || value.eventId !== value.eventId.toLowerCase() ||
-    typeof value.payloadHash !== "string" || !PAYLOAD_HASH.test(value.payloadHash) ||
-    !["PENDING", "FAILED", "SUCCEEDED"].includes(String(value.state)) ||
-    !Number.isSafeInteger(value.attempts) ||
-    Number(value.attempts) < 1 ||
-    !isIsoTimestamp(value.createdAt) ||
-    !isIsoTimestamp(value.updatedAt) ||
-    Date.parse(value.updatedAt) < Date.parse(value.createdAt)
-  ) {
-    throw new Error("CORRUPT_DURABLE_RECEIPT");
-  }
-  const validStateShape =
-    (value.state === "PENDING" && value.providerReceiptId === undefined && value.failureCode === undefined) ||
-    (value.state === "FAILED" && value.providerReceiptId === undefined && value.failureCode === "PROVIDER_DELIVERY_FAILED") ||
-    (value.state === "SUCCEEDED" && typeof value.providerReceiptId === "string"
-      && PROVIDER_RECEIPT_ID.test(value.providerReceiptId) && value.failureCode === undefined);
-  if (!validStateShape) {
-    throw new Error("CORRUPT_DURABLE_RECEIPT");
-  }
-  return value as unknown as ReceiptRecord;
-}
-
-function lockFrom(value: Record<string, unknown> | null): LockRecord {
-  if (!value || !hasExactKeys(value, ["schemaVersion", "token", "expiresAt"], ["schemaVersion", "token", "expiresAt"])
-    || value.schemaVersion !== 1 || typeof value.token !== "string" || !EVENT_ID.test(value.token)
-    || typeof value.expiresAt !== "number" || !Number.isSafeInteger(value.expiresAt) || value.expiresAt < 0) {
-    throw new Error("CORRUPT_DURABLE_LOCK");
-  }
-  return value as unknown as LockRecord;
+function createSupabaseDeliveryStore(supabase: SupabaseClient): DeliveryStore {
+  return {
+    async getRateTimestamps(entity, keyHash) {
+      const { data, error } = await supabase
+        .from("contact_delivery_rate")
+        .select("timestamps")
+        .eq("entity", entity)
+        .eq("key_hash", keyHash)
+        .maybeSingle();
+      if (error) throw error;
+      const timestamps = data?.timestamps;
+      if (!Array.isArray(timestamps)) return [];
+      return timestamps.map(Number).filter((item) => Number.isSafeInteger(item));
+    },
+    async setRateTimestamps(entity, keyHash, timestamps) {
+      const { error } = await supabase.from("contact_delivery_rate").upsert(
+        {
+          entity,
+          key_hash: keyHash,
+          timestamps,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "entity,key_hash" },
+      );
+      if (error) throw error;
+    },
+    async getReceipt(entity, eventId) {
+      const { data, error } = await supabase
+        .from("contact_delivery_receipts")
+        .select(
+          "entity, event_id, payload_hash, state, attempts, created_at, updated_at, provider_receipt_id, failure_code, lock_token, lock_expires_at",
+        )
+        .eq("entity", entity)
+        .eq("event_id", eventId)
+        .maybeSingle();
+      if (error) throw error;
+      if (!data) return null;
+      return {
+        entity: String(data.entity),
+        eventId: String(data.event_id),
+        payloadHash: String(data.payload_hash),
+        state: data.state as ReceiptState,
+        attempts: Number(data.attempts),
+        createdAt: String(data.created_at),
+        updatedAt: String(data.updated_at),
+        providerReceiptId: data.provider_receipt_id
+          ? String(data.provider_receipt_id)
+          : undefined,
+        failureCode: data.failure_code
+          ? (data.failure_code as "PROVIDER_DELIVERY_FAILED")
+          : undefined,
+        lockToken: data.lock_token ? String(data.lock_token) : null,
+        lockExpiresAt: data.lock_expires_at
+          ? Date.parse(String(data.lock_expires_at))
+          : null,
+      };
+    },
+    async putReceipt(record) {
+      const { error } = await supabase.from("contact_delivery_receipts").upsert(
+        {
+          entity: record.entity,
+          event_id: record.eventId,
+          payload_hash: record.payloadHash,
+          state: record.state,
+          attempts: record.attempts,
+          created_at: record.createdAt,
+          updated_at: record.updatedAt,
+          provider_receipt_id: record.providerReceiptId ?? null,
+          failure_code: record.failureCode ?? null,
+          lock_token: record.lockToken ?? null,
+          lock_expires_at:
+            record.lockExpiresAt != null
+              ? new Date(record.lockExpiresAt).toISOString()
+              : null,
+        },
+        { onConflict: "entity,event_id" },
+      );
+      if (error) throw error;
+    },
+  };
 }
 
 export class DurableContactDeliveryControl {
   private readonly entity: string;
-  private readonly storeDirectory: string;
   private readonly hmacSecret: string;
+  private readonly store: DeliveryStore;
   private readonly rateLimitMax: number;
   private readonly rateLimitWindowMs: number;
   private readonly leaseMs: number;
@@ -172,25 +201,33 @@ export class DurableContactDeliveryControl {
 
   constructor(options: ContactDeliveryOptions) {
     if (!ENTITY.test(options.entity)) throw new Error("INVALID_ENTITY");
-    const resolvedStoreDirectory = resolve(options.storeDirectory);
-    if (!isAbsolute(options.storeDirectory) || resolvedStoreDirectory !== options.storeDirectory
-      || parse(resolvedStoreDirectory).root === resolvedStoreDirectory) {
-      throw new Error("STORE_DIRECTORY_MUST_BE_CANONICAL_NON_ROOT_ABSOLUTE");
-    }
     if (options.hmacSecret.length < 32) throw new Error("HMAC_SECRET_TOO_SHORT");
+    if (!options.store && !options.supabase) {
+      throw new Error("DELIVERY_STORE_REQUIRED");
+    }
     const rateLimitMax = options.rateLimitMax ?? 5;
     const rateLimitWindowMs = options.rateLimitWindowMs ?? 600_000;
     const leaseMs = options.leaseMs ?? 30_000;
     const maxSubmissionAttempts = options.maxSubmissionAttempts ?? 3;
-    if (![rateLimitMax, rateLimitWindowMs, leaseMs, maxSubmissionAttempts].every(Number.isSafeInteger)) {
+    if (
+      ![rateLimitMax, rateLimitWindowMs, leaseMs, maxSubmissionAttempts].every(
+        Number.isSafeInteger,
+      )
+    ) {
       throw new Error("INVALID_CONTROL_LIMIT");
     }
-    if (rateLimitMax < 1 || rateLimitWindowMs < 1000 || leaseMs < 1000 || maxSubmissionAttempts < 1) {
+    if (
+      rateLimitMax < 1 ||
+      rateLimitWindowMs < 1000 ||
+      leaseMs < 1000 ||
+      maxSubmissionAttempts < 1
+    ) {
       throw new Error("INVALID_CONTROL_LIMIT");
     }
     this.entity = options.entity;
-    this.storeDirectory = resolvedStoreDirectory;
     this.hmacSecret = options.hmacSecret;
+    this.store =
+      options.store ?? createSupabaseDeliveryStore(options.supabase!);
     this.rateLimitMax = rateLimitMax;
     this.rateLimitWindowMs = rateLimitWindowMs;
     this.leaseMs = leaseMs;
@@ -202,189 +239,169 @@ export class DurableContactDeliveryControl {
     return createHmac("sha256", this.hmacSecret).update(value, "utf8").digest("hex");
   }
 
-  private async acquireLock(path: string): Promise<string | null> {
-    await mkdir(dirname(path), { recursive: true });
-    const token = randomUUID();
-    const record: LockRecord = { schemaVersion: 1, token, expiresAt: this.now() + this.leaseMs };
-    try {
-      const handle = await open(path, "wx", 0o600);
-      try {
-        await handle.writeFile(`${JSON.stringify(record)}\n`, "utf8");
-        await handle.sync();
-      } finally {
-        await handle.close();
-      }
-      return token;
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code !== "EEXIST") throw error;
-    }
-
-    const existing = lockFrom(await readJson(path));
-    if (existing.expiresAt > this.now()) return null;
-
-    const stalePath = `${path}.stale.${randomUUID()}`;
-    try {
-      await rename(path, stalePath);
-      await unlink(stalePath);
-    } catch (error) {
-      if ((error as NodeJS.ErrnoException).code === "ENOENT") return null;
-      throw error;
-    }
-    return this.acquireLock(path);
-  }
-
-  private async releaseLock(path: string, token: string): Promise<void> {
-    const existing = lockFrom(await readJson(path));
-    if (!existing || existing.token !== token) throw new Error("LOCK_OWNERSHIP_LOST");
-    await unlink(path);
-  }
-
-  private async reserveRateLimit(sourceKey: string): Promise<{ allowed: true } | { allowed: false; retryAfterSeconds: number }> {
+  private async reserveRateLimit(
+    sourceKey: string,
+  ): Promise<{ allowed: true } | { allowed: false; retryAfterSeconds: number }> {
     if (!sourceKey || sourceKey.length > 512) throw new Error("INVALID_RATE_LIMIT_KEY");
     const keyHash = this.hmac(`rate:${sourceKey}`);
-    const directory = join(this.storeDirectory, this.entity, "rate");
-    const recordPath = join(directory, `${keyHash}.json`);
-    const lockPath = join(directory, `${keyHash}.lock`);
-    const token = await this.acquireLock(lockPath);
-    if (!token) return { allowed: false, retryAfterSeconds: 1 };
-    try {
-      const existing = await readJson(recordPath);
-      const rawTimestamps = existing?.timestamps ?? [];
-      if ((existing && (!hasExactKeys(existing, ["schemaVersion", "timestamps"], ["schemaVersion", "timestamps"])
-        || existing.schemaVersion !== 1)) || !Array.isArray(rawTimestamps)
-        || rawTimestamps.some((item) => typeof item !== "number" || !Number.isSafeInteger(item) || item < 0)) {
-        throw new Error("CORRUPT_RATE_LIMIT_RECORD");
-      }
-      const now = this.now();
-      const timestamps = rawTimestamps.filter((item) => item > now - this.rateLimitWindowMs);
-      if (timestamps.length >= this.rateLimitMax) {
-        const retryAfterSeconds = Math.max(1, Math.ceil((timestamps[0] + this.rateLimitWindowMs - now) / 1000));
-        return { allowed: false, retryAfterSeconds };
-      }
-      timestamps.push(now);
-      await writeJsonAtomically(recordPath, { schemaVersion: 1, timestamps });
-      return { allowed: true };
-    } finally {
-      await this.releaseLock(lockPath, token);
+    const now = this.now();
+    const existing = await this.store.getRateTimestamps(this.entity, keyHash);
+    const timestamps = existing.filter((item) => item > now - this.rateLimitWindowMs);
+    if (timestamps.length >= this.rateLimitMax) {
+      const retryAfterSeconds = Math.max(
+        1,
+        Math.ceil((timestamps[0] + this.rateLimitWindowMs - now) / 1000),
+      );
+      return { allowed: false, retryAfterSeconds };
     }
+    timestamps.push(now);
+    await this.store.setRateTimestamps(this.entity, keyHash, timestamps);
+    return { allowed: true };
   }
 
-  async begin(eventId: string, payload: unknown, sourceKey: string): Promise<BeginDeliveryResult> {
+  async begin(
+    eventId: string,
+    payload: unknown,
+    sourceKey: string,
+  ): Promise<BeginDeliveryResult> {
     if (!EVENT_ID.test(eventId)) throw new Error("INVALID_EVENT_ID");
     const rate = await this.reserveRateLimit(sourceKey);
-    if (!rate.allowed) return { action: "RATE_LIMITED", retryAfterSeconds: rate.retryAfterSeconds };
+    if (!rate.allowed) {
+      return { action: "RATE_LIMITED", retryAfterSeconds: rate.retryAfterSeconds };
+    }
 
+    const normalizedEventId = eventId.toLowerCase();
     const payloadHash = this.hmac(`payload:${stableJson(payload)}`);
-    const directory = join(this.storeDirectory, this.entity, "receipts");
-    const receiptPath = join(directory, `${eventId.toLowerCase()}.json`);
-    const lockPath = join(directory, `${eventId.toLowerCase()}.lock`);
-    const lockToken = await this.acquireLock(lockPath);
-    if (!lockToken) return { action: "IN_PROGRESS" };
+    const existing = await this.store.getReceipt(this.entity, normalizedEventId);
 
-    try {
-      const existing = receiptFrom(await readJson(receiptPath));
-      if (existing && (existing.entity !== this.entity || existing.eventId !== eventId.toLowerCase())) {
-        throw new Error("CORRUPT_DURABLE_RECEIPT");
-      }
-      if (existing && existing.payloadHash !== payloadHash) {
-        await this.releaseLock(lockPath, lockToken);
-        return { action: "CONFLICT" };
-      }
-      if (existing?.state === "SUCCEEDED") {
-        if (!existing.providerReceiptId) throw new Error("CORRUPT_DURABLE_RECEIPT");
-        await this.releaseLock(lockPath, lockToken);
-        return { action: "REPLAY", submissionId: existing.eventId, providerReceiptId: existing.providerReceiptId };
-      }
-      if (existing && existing.attempts >= this.maxSubmissionAttempts) {
-        await this.releaseLock(lockPath, lockToken);
-        return { action: "EXHAUSTED" };
-      }
-
-      const now = new Date(this.now()).toISOString();
-      const record: ReceiptRecord = {
-        schemaVersion: 1,
-        entity: this.entity,
-        eventId: eventId.toLowerCase(),
-        payloadHash,
-        state: "PENDING",
-        attempts: (existing?.attempts ?? 0) + 1,
-        createdAt: existing?.createdAt ?? now,
-        updatedAt: now,
-      };
-      await writeJsonAtomically(receiptPath, record);
+    if (existing && existing.payloadHash !== payloadHash) {
+      return { action: "CONFLICT" };
+    }
+    if (existing?.state === "SUCCEEDED") {
+      if (!existing.providerReceiptId) throw new Error("CORRUPT_DURABLE_RECEIPT");
       return {
-        action: "SEND",
-        idempotencyKey: `contact/${this.entity.toLowerCase()}/${eventId.toLowerCase()}`,
-        lease: { eventId: eventId.toLowerCase(), payloadHash, lockToken, receiptPath, lockPath },
+        action: "REPLAY",
+        submissionId: existing.eventId,
+        providerReceiptId: existing.providerReceiptId,
       };
-    } catch (error) {
-      await this.releaseLock(lockPath, lockToken).catch(() => undefined);
-      throw error;
     }
+    if (existing && existing.attempts >= this.maxSubmissionAttempts) {
+      return { action: "EXHAUSTED" };
+    }
+
+    const now = this.now();
+    if (
+      existing?.lockToken &&
+      existing.lockExpiresAt != null &&
+      existing.lockExpiresAt > now &&
+      existing.state === "PENDING"
+    ) {
+      return { action: "IN_PROGRESS" };
+    }
+
+    const lockToken = randomUUID();
+    const isoNow = new Date(now).toISOString();
+    const record: ReceiptRecord = {
+      entity: this.entity,
+      eventId: normalizedEventId,
+      payloadHash,
+      state: "PENDING",
+      attempts: (existing?.attempts ?? 0) + 1,
+      createdAt: existing?.createdAt ?? isoNow,
+      updatedAt: isoNow,
+      lockToken,
+      lockExpiresAt: now + this.leaseMs,
+    };
+    await this.store.putReceipt(record);
+
+    return {
+      action: "SEND",
+      idempotencyKey: `contact/${this.entity.toLowerCase()}/${normalizedEventId}`,
+      lease: {
+        eventId: normalizedEventId,
+        payloadHash,
+        lockToken,
+      },
+    };
   }
 
-  private assertLease(lease: DeliveryLease): void {
-    if (!EVENT_ID.test(lease.eventId) || !EVENT_ID.test(lease.lockToken) || !/^[a-f0-9]{64}$/.test(lease.payloadHash)) {
+  private async assertActiveLease(lease: DeliveryLease): Promise<ReceiptRecord> {
+    if (
+      !EVENT_ID.test(lease.eventId) ||
+      !EVENT_ID.test(lease.lockToken) ||
+      !PAYLOAD_HASH.test(lease.payloadHash)
+    ) {
       throw new Error("INVALID_DELIVERY_LEASE");
     }
-    const directory = join(this.storeDirectory, this.entity, "receipts");
-    if (lease.receiptPath !== join(directory, `${lease.eventId.toLowerCase()}.json`)
-      || lease.lockPath !== join(directory, `${lease.eventId.toLowerCase()}.lock`)) {
-      throw new Error("INVALID_DELIVERY_LEASE");
-    }
-  }
-
-  private async assertActiveLease(lease: DeliveryLease): Promise<void> {
-    this.assertLease(lease);
-    const lock = lockFrom(await readJson(lease.lockPath));
-    if (lock.token !== lease.lockToken || lock.expiresAt <= this.now()) {
+    const existing = await this.store.getReceipt(this.entity, lease.eventId);
+    if (
+      !existing ||
+      existing.lockToken !== lease.lockToken ||
+      existing.lockExpiresAt == null ||
+      existing.lockExpiresAt <= this.now() ||
+      existing.payloadHash !== lease.payloadHash
+    ) {
       throw new Error("LOCK_OWNERSHIP_LOST");
     }
+    return existing;
   }
 
   async complete(lease: DeliveryLease, providerReceiptId: string): Promise<void> {
-    await this.assertActiveLease(lease);
-    if (!PROVIDER_RECEIPT_ID.test(providerReceiptId)) throw new Error("INVALID_PROVIDER_RECEIPT_ID");
-    const existing = receiptFrom(await readJson(lease.receiptPath));
-    if (!existing || existing.state !== "PENDING" || existing.eventId !== lease.eventId || existing.payloadHash !== lease.payloadHash) {
-      throw new Error("DELIVERY_LEASE_MISMATCH");
+    const existing = await this.assertActiveLease(lease);
+    if (!PROVIDER_RECEIPT_ID.test(providerReceiptId)) {
+      throw new Error("INVALID_PROVIDER_RECEIPT_ID");
     }
-    const record: ReceiptRecord = {
+    if (existing.state !== "PENDING") throw new Error("DELIVERY_LEASE_MISMATCH");
+    await this.store.putReceipt({
       ...existing,
       state: "SUCCEEDED",
       updatedAt: new Date(this.now()).toISOString(),
       providerReceiptId,
-    };
-    await writeJsonAtomically(lease.receiptPath, record);
-    await this.releaseLock(lease.lockPath, lease.lockToken);
+      failureCode: undefined,
+      lockToken: null,
+      lockExpiresAt: null,
+    });
   }
 
   async fail(lease: DeliveryLease): Promise<void> {
-    await this.assertActiveLease(lease);
-    const existing = receiptFrom(await readJson(lease.receiptPath));
-    if (!existing || existing.state !== "PENDING" || existing.eventId !== lease.eventId || existing.payloadHash !== lease.payloadHash) {
-      throw new Error("DELIVERY_LEASE_MISMATCH");
-    }
-    const record: ReceiptRecord = {
+    const existing = await this.assertActiveLease(lease);
+    if (existing.state !== "PENDING") throw new Error("DELIVERY_LEASE_MISMATCH");
+    await this.store.putReceipt({
       ...existing,
       state: "FAILED",
       updatedAt: new Date(this.now()).toISOString(),
       failureCode: "PROVIDER_DELIVERY_FAILED",
-    };
-    await writeJsonAtomically(lease.receiptPath, record);
-    await this.releaseLock(lease.lockPath, lease.lockToken);
+      providerReceiptId: undefined,
+      lockToken: null,
+      lockExpiresAt: null,
+    });
   }
 }
 
 export async function sendWithBoundedRetry<T>(
   operation: () => Promise<T>,
   accepted: (value: T) => boolean,
-  options: { maxAttempts?: number; baseDelayMs?: number; sleep?: (milliseconds: number) => Promise<void> } = {},
-): Promise<{ ok: true; value: T; attempts: number } | { ok: false; attempts: number }> {
+  options: {
+    maxAttempts?: number;
+    baseDelayMs?: number;
+    sleep?: (milliseconds: number) => Promise<void>;
+  } = {},
+): Promise<
+  { ok: true; value: T; attempts: number } | { ok: false; attempts: number }
+> {
   const maxAttempts = options.maxAttempts ?? 3;
   const baseDelayMs = options.baseDelayMs ?? 250;
-  const sleep = options.sleep ?? ((milliseconds: number) => new Promise<void>((resolve) => setTimeout(resolve, milliseconds)));
-  if (!Number.isSafeInteger(maxAttempts) || maxAttempts < 1 || maxAttempts > 3 || !Number.isSafeInteger(baseDelayMs) || baseDelayMs < 0) {
+  const sleep =
+    options.sleep ??
+    ((milliseconds: number) =>
+      new Promise<void>((resolve) => setTimeout(resolve, milliseconds)));
+  if (
+    !Number.isSafeInteger(maxAttempts) ||
+    maxAttempts < 1 ||
+    maxAttempts > 3 ||
+    !Number.isSafeInteger(baseDelayMs) ||
+    baseDelayMs < 0
+  ) {
     throw new Error("INVALID_RETRY_POLICY");
   }
   for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {

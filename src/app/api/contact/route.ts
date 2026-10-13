@@ -3,6 +3,8 @@ import { Resend } from "resend";
 import { validateContactPayload, type GovernedContactSubmission } from "@/lib/contactContract";
 import { DurableContactDeliveryControl, sendWithBoundedRetry } from "@/lib/contactDeliveryControl";
 import { emailPalette } from "@/lib/emailPalette";
+import { saveContactSubmission } from "@/lib/enquiryStore";
+import { getServiceSupabase } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
 
@@ -20,14 +22,35 @@ function providerConfiguration() {
   const to = process.env.CONTACT_TO_EMAIL?.trim();
   const from = process.env.CONTACT_FROM_EMAIL?.trim();
   const noticeVersion = process.env.CONTACT_PRIVACY_NOTICE_VERSION?.trim();
-  const storeDirectory = process.env.MARKETING_CONTACT_STORE_DIR?.trim();
   const rateLimitSecret = process.env.MARKETING_CONTACT_RATE_LIMIT_SECRET?.trim();
+  const consentText = process.env.NEXT_PUBLIC_CONTACT_CONSENT_TEXT?.trim();
   const allowedOrigins = (process.env.CONTACT_ALLOWED_ORIGINS ?? "")
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
-  if (!apiKey || !to || !from || !noticeVersion || !storeDirectory || !rateLimitSecret || allowedOrigins.length === 0) return null;
-  return { apiKey, to, from, noticeVersion, storeDirectory, rateLimitSecret, allowedOrigins };
+  const supabase = getServiceSupabase();
+  if (
+    !apiKey ||
+    !to ||
+    !from ||
+    !noticeVersion ||
+    !rateLimitSecret ||
+    !consentText ||
+    !supabase ||
+    allowedOrigins.length === 0
+  ) {
+    return null;
+  }
+  return {
+    apiKey,
+    to,
+    from,
+    noticeVersion,
+    rateLimitSecret,
+    consentText,
+    allowedOrigins,
+    supabase,
+  };
 }
 
 function buildTextMessage(
@@ -151,16 +174,24 @@ export async function POST(req: Request) {
   if (!sourceAddress) {
     return NextResponse.json({ error: "Request source unavailable" }, { status: 400 });
   }
+
+  // Persist to Supabase first. A saved row is enough for the visitor to see success
+  // even if Resend fails afterward.
+  const stored = await saveContactSubmission(submission, configuration.consentText);
+
   let control: DurableContactDeliveryControl;
   let decision;
   try {
     control = new DurableContactDeliveryControl({
       entity: "MARKETING",
-      storeDirectory: configuration.storeDirectory,
+      supabase: configuration.supabase,
       hmacSecret: configuration.rateLimitSecret,
     });
     decision = await control.begin(submission.eventId, submission, sourceAddress);
   } catch {
+    if (stored) {
+      return NextResponse.json({ ok: true, submissionId: submission.eventId, replayed: false });
+    }
     return NextResponse.json({ error: "Durable submission control unavailable" }, { status: 503 });
   }
   if (decision.action === "RATE_LIMITED") {
@@ -176,6 +207,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Submission identity conflict" }, { status: 409 });
   }
   if (decision.action === "EXHAUSTED") {
+    if (stored) {
+      return NextResponse.json({ ok: true, submissionId: submission.eventId, replayed: false });
+    }
     return NextResponse.json({ error: "Submission retry limit exhausted" }, { status: 503 });
   }
   if (decision.action === "REPLAY") {
@@ -216,12 +250,22 @@ export async function POST(req: Request) {
 
   if (!delivery.ok) {
     await control.fail(decision.lease).catch(() => undefined);
+    // Email failed, but the enquiry is already in Supabase — treat as received.
+    if (stored) {
+      return NextResponse.json({ ok: true, submissionId, replayed: false, emailDelivered: false });
+    }
     return NextResponse.json({ error: "Failed to send message" }, { status: 502 });
   }
+  const resendId = delivery.value.data!.id;
   try {
-    await control.complete(decision.lease, delivery.value.data!.id);
+    await control.complete(decision.lease, resendId);
   } catch {
+    if (stored) {
+      await saveContactSubmission(submission, configuration.consentText, resendId);
+      return NextResponse.json({ ok: true, submissionId, replayed: false });
+    }
     return NextResponse.json({ error: "Delivery receipt could not be committed" }, { status: 503 });
   }
-  return NextResponse.json({ ok: true, submissionId, replayed: false });
+  await saveContactSubmission(submission, configuration.consentText, resendId);
+  return NextResponse.json({ ok: true, submissionId, replayed: false, emailDelivered: true });
 }

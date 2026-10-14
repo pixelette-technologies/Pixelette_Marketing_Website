@@ -9,6 +9,7 @@ import {
 } from "@/components/common";
 import AgentMount from "@/agent/mount";
 import { pixContext } from "@/agent/context";
+import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/data/site";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -50,10 +51,27 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.pixelettemarketing.com"),
-  title: "Pixelette Marketing",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: "%s"
+  },
   description:
-    "Commercially focused marketing and growth for businesses across established and emerging sectors."
+    "Marketing that matters to your bottom line — strategy, demand, search, pipeline and growth intelligence working together around commercial outcomes.",
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    siteName: SITE_NAME,
+    url: SITE_URL
+  },
+  twitter: {
+    card: "summary",
+    creator: TWITTER_HANDLE
+  },
+  robots: {
+    index: true,
+    follow: true
+  }
 };
 
 import "slick-carousel/slick/slick.css";
@@ -65,12 +83,12 @@ const structuredData = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://www.pixelettemarketing.com/#organization",
-      name: "Pixelette Marketing",
-      url: "https://www.pixelettemarketing.com",
-      logo: "https://www.pixelettemarketing.com/favicon.png",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: `${SITE_URL}/favicon.png`,
       description:
-        "Commercially focused marketing and growth company, built to work with businesses across established and emerging sectors, with deeper experience in technology-led markets.",
+        "Marketing that matters to your bottom line. Pixelette Marketing brings strategy, demand, search, pipeline and growth intelligence together around commercial outcomes, with deeper experience in technology-led markets.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",
@@ -95,17 +113,17 @@ const structuredData = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://www.pixelettemarketing.com/#website",
-      name: "Pixelette Marketing",
-      url: "https://www.pixelettemarketing.com",
-      publisher: { "@id": "https://www.pixelettemarketing.com/#organization" }
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      publisher: { "@id": `${SITE_URL}/#organization` }
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://www.pixelettemarketing.com/#localbusiness",
-      name: "Pixelette Marketing",
-      url: "https://www.pixelettemarketing.com",
-      image: "https://www.pixelettemarketing.com/favicon.png",
+      "@id": `${SITE_URL}/#localbusiness`,
+      name: SITE_NAME,
+      url: SITE_URL,
+      image: `${SITE_URL}/favicon.png`,
       telephone: "+44 2045188226",
       email: "sales@pixelettemarketing.com",
       address: {
@@ -117,7 +135,7 @@ const structuredData = {
       },
       areaServed: "GB",
       priceRange: "£££",
-      parentOrganization: { "@id": "https://www.pixelettemarketing.com/#organization" }
+      parentOrganization: { "@id": `${SITE_URL}/#organization` }
     }
   ]
 };

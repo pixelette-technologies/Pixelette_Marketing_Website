@@ -1,11 +1,9 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { IndustryExplorer, WorkInPractice } from "@/components/ui/industries";
 import { industries, industriesPage } from "@/data/industries/industries";
-
-const baseUrl = "https://www.pixelettemarketing.com";
+import { pageMetadata, SITE_URL } from "@/data/site";
 
 // The keywords are unchanged: this is an indexed page and the search intent
 // behind "web3 marketing" and the rest still lands here. The title follows the
@@ -15,36 +13,13 @@ const baseUrl = "https://www.pixelettemarketing.com";
 const description =
   "See how Pixelette adapts marketing strategy around different markets, audiences, buying journeys and commercial challenges.";
 
-export const metadata: Metadata = {
-  title: "Industries | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "Industries",
   description,
+  path: "/industries",
   keywords:
-    "web3 marketing, fintech marketing, saas marketing, ai marketing, technology marketing agency",
-  alternates: { canonical: `${baseUrl}/industries` },
-  openGraph: {
-    title: "Industries | Pixelette Marketing",
-    description,
-    url: `${baseUrl}/industries`,
-    siteName: "Pixelette Marketing",
-    type: "website",
-    images: [
-      {
-        url: "/industries/industriesHero.webp",
-        width: 1200,
-        height: 630,
-        alt: "Industries Pixelette Marketing supports"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Industries | Pixelette Marketing",
-    description,
-    images: ["/industries/industriesHero.webp"],
-    creator: "@pixelettemarketing"
-  },
-  robots: { index: true, follow: true }
-};
+    "web3 marketing, fintech marketing, saas marketing, ai marketing, technology marketing agency"
+});
 
 // --- 29 Sep 2026: the locked information architecture -------------------------
 // Rebuilt to the master structure correction. FOUR CHAPTERS AND ONLY FOUR:
@@ -59,10 +34,10 @@ export const metadata: Metadata = {
 // specialist pages, and the business stages. Also barred: "Why it works", a
 // process, tools, service grids, benefit cards.
 //
-// THE FIVE SPECIALIST ROUTES STAY LIVE (/industries/ai and the rest). They are
-// in the sitemap and keep their SEO value; this page simply stops presenting
-// them as a hierarchy of sector expertise. Their internal linking is to be
-// reviewed separately.
+// THE FIVE SPECIALIST ROUTES STAY LIVE (/industries/ai and the rest) for
+// direct and legacy traffic, but they are not linked from nav, footer or this
+// hub, so they are omitted from the sitemap until internal linking returns.
+// This page simply stops presenting them as a hierarchy of sector expertise.
 //
 // The page answers how the approach adapts to a market — not how many clients
 // Pixelette has in it. Nothing below claims a track record.
@@ -80,8 +55,8 @@ export default function IndustriesIndexPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
-      { "@type": "ListItem", position: 2, name: "Industries", item: `${baseUrl}/industries` }
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Industries", item: `${SITE_URL}/industries` }
     ]
   };
 

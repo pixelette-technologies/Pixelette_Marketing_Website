@@ -5,9 +5,7 @@ import { CaseStudySection } from "@/components/ui/results";
 import { finalConversionCopy, resultsCopy } from "@/data/home";
 import { caseStudies } from "@/data/results/caseStudies";
 import Link from "next/link";
-import type { Metadata } from "next";
-
-const baseUrl = "https://www.pixelettemarketing.com";
+import { pageMetadata } from "@/data/site";
 
 // The destination for every "See client results" link the brief puts on the
 // homepage — the hero, the proof band and the results section.
@@ -34,21 +32,12 @@ const baseUrl = "https://www.pixelettemarketing.com";
 // home page's TeamSection is untouched and still reads from the same single
 // definition in teamData.ts.
 
-export const metadata: Metadata = {
-  title: "Client Results | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "Client Results",
   description:
     "What changed after the work started. Client evidence from Pixelette Marketing's growth engagements, with the commercial problem, the work delivered and the outcome.",
-  alternates: { canonical: `${baseUrl}/results` },
-  openGraph: {
-    title: "Client Results | Pixelette Marketing",
-    description:
-      "What changed after the work started. Client evidence from Pixelette Marketing's growth engagements.",
-    url: `${baseUrl}/results`,
-    siteName: "Pixelette Marketing",
-    type: "website"
-  },
-  robots: { index: true, follow: true }
-};
+  path: "/results"
+});
 
 export default function ResultsPage() {
   return (

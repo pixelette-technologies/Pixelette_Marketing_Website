@@ -6,7 +6,7 @@ import {
   AboutWhy,
   Principles
 } from "@/components/ui/aboutUs";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/data/site";
 
 // The About page, rebuilt 30 September 2026 to the final About page brief,
 // which supersedes every earlier About instruction (including the 21 Sep
@@ -26,20 +26,13 @@ import type { Metadata } from "next";
 // No team, no people, no imagery. The one interaction is the How we're built
 // flow, which runs once. The one .rule-cap is on AboutWhy. No .band-dark.
 
-export const metadata: Metadata = {
-  title: "About | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "About",
   description:
-    "Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
-  keywords: ["digital marketing solutions", "digital marketing agency"],
-  alternates: {
-    canonical: "https://www.pixelettemarketing.com/aboutus"
-  },
-  openGraph: {
-    title: "About | Pixelette Marketing",
-    description:
-      "Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us."
-  }
-};
+    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
+  path: "/aboutus",
+  keywords: ["about Pixelette Marketing", "growth marketing agency", "commercial marketing"]
+});
 
 export default function AboutUs() {
   return (

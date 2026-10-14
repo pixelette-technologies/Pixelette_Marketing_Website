@@ -1,46 +1,19 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/common";
 import Link from "next/link";
 import { Heading, Text } from "@/components/feature";
 import { servicesData } from "@/data/services/servicesData";
 import { capabilityGroups } from "@/data/services/capabilityGroups";
 import { CapabilityExplorer } from "@/components/ui/services";
+import { pageMetadata, SITE_URL } from "@/data/site";
 
-const baseUrl = "https://www.pixelettemarketing.com";
-
-export const metadata: Metadata = {
-  title: "Digital Marketing Services | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "What we do",
   description:
-    "Five connected capabilities — strategy, demand, search, pipeline and growth intelligence — covering SEO, social media, paid ads, PR, email, influencer and lead generation. For businesses across established and emerging sectors.",
+    "Five connected capabilities — strategy and positioning, demand and performance, search and authority, pipeline and conversion, and growth intelligence — for businesses across established and emerging sectors.",
+  path: "/services",
   keywords:
-    "digital marketing services, marketing agency services, SEO services, social media marketing, PPC, PR, email marketing, lead generation",
-  alternates: { canonical: `${baseUrl}/services` },
-  openGraph: {
-    title: "Digital Marketing Services | Pixelette Marketing",
-    description:
-      "Five connected capabilities covering the full marketing offer, for businesses across established and emerging sectors.",
-    url: `${baseUrl}/services`,
-    siteName: "Pixelette Marketing",
-    type: "website",
-    images: [
-      {
-        url: "/services/heroImageServices.webp",
-        width: 1200,
-        height: 630,
-        alt: "Pixelette Marketing Services"
-      }
-    ]
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Digital Marketing Services | Pixelette Marketing",
-    description:
-      "Five connected capabilities covering the full marketing offer, for businesses across established and emerging sectors.",
-    images: ["/services/heroImageServices.webp"],
-    creator: "@pixelettemarketing"
-  },
-  robots: { index: true, follow: true }
-};
+    "growth marketing services, marketing strategy, demand generation, SEO, paid media, pipeline, growth intelligence"
+});
 
 // Added 10 Jun 2026 as an SEO hub and never taken through the design
 // conversion. It carried twenty-odd inline style objects: the h1 hard-coded at
@@ -66,20 +39,20 @@ export default function ServicesIndexPage() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
-      { "@type": "ListItem", position: 2, name: "Services", item: `${baseUrl}/services` }
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Services", item: `${SITE_URL}/services` }
     ]
   };
 
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Digital Marketing Services",
+    name: "Pixelette Marketing services",
     itemListElement: servicesData.map((service, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: service.title,
-      url: `${baseUrl}/services/${service.route}`
+      url: `${SITE_URL}/services/${service.route}`
     }))
   };
 

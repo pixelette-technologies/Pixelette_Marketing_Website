@@ -6,6 +6,7 @@ import { Heading, Text } from "@/components/feature";
 import { industriesData } from "@/data/industries/industriesData";
 import { caseStudies } from "@/data/results/caseStudies";
 import { finalConversionCopy } from "@/data/home";
+import { pageMetadata, SITE_URL } from "@/data/site";
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,11 +17,14 @@ type PageProps = {
   }>;
 };
 
-const baseUrl = "https://www.pixelettemarketing.com";
+const baseUrl = SITE_URL;
 
 // 25 Sep 2026: /industries/undefined returned 200 with an empty template (the
 // old site's Startup card linked there). Only the five pages exist; anything
 // else is a 404 now, from the router rather than from a check in the page.
+//
+// These routes stay live for direct/legacy traffic but are not linked from
+// nav, footer or /industries, so they are omitted from the sitemap.
 export const dynamicParams = false;
 
 export function generateStaticParams() {
@@ -32,48 +36,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageData = industriesData.find(item => item.route === slug);
   if (!pageData) return {};
 
-  return {
+  // Still indexable for legacy/direct traffic; omitted from sitemap until
+  // internal links return. Share images left empty until dedicated assets exist.
+  return pageMetadata({
     title: pageData.metaTitle,
     description: pageData.metaDescription,
-    keywords: pageData.metaKeywords,
-    alternates: {
-      canonical: `${baseUrl}/industries/${slug}`
-    },
-    openGraph: {
-      title: pageData.metaTitle,
-      description: pageData.metaDescription,
-      url: `${baseUrl}/industries/${slug}`,
-      siteName: "Pixelette Marketing",
-      images: [
-        {
-          url: pageData.image,
-          width: 1200,
-          height: 630,
-          alt: pageData.metaTitle
-        }
-      ],
-      locale: "en_GB",
-      type: "website"
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageData.metaTitle,
-      description: pageData.metaDescription,
-      images: [pageData.image],
-      creator: "@pixelettemarketing"
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1
-      }
-    }
-  };
+    path: `/industries/${slug}`,
+    keywords: pageData.metaKeywords
+  });
 }
 
 // The deeper-experience page, rebuilt 25 Sep 2026 on components the site

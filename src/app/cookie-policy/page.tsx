@@ -1,20 +1,14 @@
-import type { Metadata } from "next";
 import { Container } from "@/components/common";
 import ManageCookies from "@/components/common/ManageCookies";
 import { Heading, Text } from "@/components/feature";
+import { pageMetadata } from "@/data/site";
 
-export const metadata: Metadata = {
-  title: "Cookie Policy | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "Cookie Policy",
   description:
     "How Pixelette Marketing uses cookies, the analytics cookies we set only with your consent, and how to change your choice.",
-  alternates: { canonical: "https://www.pixelettemarketing.com/cookie-policy" },
-  openGraph: {
-    title: "Cookie Policy | Pixelette Marketing",
-    url: "https://www.pixelettemarketing.com/cookie-policy",
-    siteName: "Pixelette Marketing",
-    type: "website"
-  }
-};
+  path: "/cookie-policy"
+});
 
 // 18 Sep 2026. Taken onto the design system. The page was a bare <article>
 // with an inline style object and unclassed h1/h2/p, so it rendered in the

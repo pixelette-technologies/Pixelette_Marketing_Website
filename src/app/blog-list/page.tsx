@@ -5,7 +5,7 @@ import {
   LatestThinking,
   TryTheThinking
 } from "@/components/ui/blog";
-import type { Metadata } from "next";
+import { pageMetadata } from "@/data/site";
 
 // 30 Sep 2026, THE FINAL INSIGHTS BRIEF. The route stays /blog-list. The page
 // is a shop window for the thinking rather than an archive, in this order and
@@ -22,20 +22,12 @@ import type { Metadata } from "next";
 // Built for a weekly cadence and five pieces: nothing here gets thinner when
 // the article count is small, and nothing promises daily publishing.
 
-const description =
-  "Points of view, practical playbooks and tools for making better marketing decisions, from the Pixelette Marketing team.";
-
-export const metadata: Metadata = {
-  title: "Insights | Pixelette Marketing",
-  description,
-  alternates: { canonical: "https://www.pixelettemarketing.com/blog-list" },
-  openGraph: {
-    title: "Insights | Pixelette Marketing",
-    description,
-    url: "https://www.pixelettemarketing.com/blog-list",
-    type: "website"
-  }
-};
+export const metadata = pageMetadata({
+  title: "Insights",
+  description:
+    "Points of view, practical playbooks and tools for making better marketing decisions, from the Pixelette Marketing team.",
+  path: "/blog-list"
+});
 
 export default function Page() {
   return (

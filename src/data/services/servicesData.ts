@@ -7,9 +7,9 @@ export const servicesData = [
     // from data/services/specialist/demandPerformance.ts, and the fields below
     // no longer render there. Nav, /services and the footer read this title.
     title: "Social & Community",
-    metaTitle: "Social Media Marketing Agency | Pixelette Marketing",
-    metaDescription: "Social media marketing planned around the audiences, platforms and outcomes that matter to your business, and measured on what it produces.",
-    metaKeywords: "social media marketing agency, social media marketing services, social media solutions",
+    metaTitle: "Social & Community | Social Media Marketing | Pixelette Marketing",
+    metaDescription: "Social media strategy, content and community management designed to turn social attention into meaningful audience growth, learning and demand.",
+    metaKeywords: "social media marketing, social and community, community management, social media strategy",
     route: "social_media_marketing",
     mainHeading: "From starting out to standing out,",
     subHeading: "we’re the social media marketing agency for GROWTH",
@@ -847,9 +847,9 @@ export const servicesData = [
     // from data/services/specialist/demandPerformance.ts, and the fields below
     // no longer render there. Nav, /services and the footer read this title.
     title: "PR & Earned Media",
-    metaTitle: "Public Relations Agency for Next-Gen Companies",
-    metaDescription: "PR from Pixelette Marketing: strategic outreach, credible storytelling and coverage that builds lasting visibility.",
-    metaKeywords: "public relations agency, public relations services, pr outreach service",
+    metaTitle: "PR & Earned Media | Pixelette Marketing",
+    metaDescription: "PR and earned-media campaigns that create credible visibility, strengthen reputation and give the market something worth repeating.",
+    metaKeywords: "PR agency, earned media, public relations, media relations",
     
     route: "pr",
     mainHeading: "From buzz to brand authority,",
@@ -1133,8 +1133,8 @@ export const servicesData = [
     // from data/services/specialist/demandPerformance.ts, and the fields below
     // no longer render there. Nav, /services and the footer read this title.
     title: "Influencer & Partnerships",
-    metaTitle: "Influencer Marketing Agency for B2C & B2B Brands",
-    metaDescription: "Influencer marketing for brands that want more than likes: creators chosen for credibility with your audience, and campaigns measured on outcomes.",
+    metaTitle: "Influencer & Partnerships | Influencer Marketing | Pixelette Marketing",
+    metaDescription: "Find the right creators, build partnerships audiences believe and connect influencer marketing to measurable outcomes.",
     route: "influencer_marketing",
     mainHeading: "From influencer trust to sustained success,",
     subHeading: "we’re the influencer marketing agency for GROWTH",
@@ -1342,8 +1342,8 @@ export const servicesData = [
     // from data/services/specialist/demandPerformance.ts, and the fields below
     // no longer render there. Nav, /services and the footer read this title.
     title: "Paid Media & PPC",
-    metaTitle: "Paid Social Advertising Agency | Pay Per Click (PPC) Agency",
-    metaDescription: "Paid ads and PPC campaigns across Google, Meta, LinkedIn and X, planned and optimised to improve return on ad spend.",
+    metaTitle: "Paid Media & PPC | Pixelette Marketing",
+    metaDescription: "Paid search, paid social and performance campaigns across the platforms your audience uses, built to test what works and put budget behind evidence.",
     metaKeywords: "paid social advertising agency, paid ads agency, pay per click agency, ppc agency, paid ads services",
     
     route: "ads_ppc",
@@ -1970,9 +1970,9 @@ export const servicesData = [
   {
     id: 8,
     title: "Lead Generation",
-    metaTitle: "Lead Generation Services for B2B & Beyond",
-    metaDescription: "Lead generation built for qualified pipeline rather than volume, with nurture and a clean handoff to sales.",
-    metaKeywords: "lead generation services, lead generation agency, b2b lead generation agency",
+    metaTitle: "Lead Generation | Pixelette Marketing",
+    metaDescription: "Lead generation built for qualified pipeline rather than volume, with targeting, landing pages, nurture and a clean handoff to sales.",
+    metaKeywords: "lead generation services, lead generation agency, b2b lead generation, qualified pipeline",
     route: "lead_generation",
     mainHeading: "From prospects to loyal customers,",
     subHeading: "we’re the lead generation agency for GROWTH",

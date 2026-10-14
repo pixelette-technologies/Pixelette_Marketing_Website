@@ -1871,6 +1871,66 @@ Uncommitted working tree on `feat/what-we-do-capability-explorer`.
   lookup, and every route returned 500 until the forward was changed to a new
   name (`./builtFlow`). Touching the files did not clear it.
 
+## 13 Oct 2026 — section 03 architectural maquette
+
+On `bilal/revamp`. Commits `80fcb7b` (SVG) and `d6847a6` (layer assets),
+plus the border-flood transparent batch.
+
+- **`tsc --noEmit`**: clean after the SVG scene landed.
+- **Parse fault caught in the user's browser:** `MaquetteScene.tsx` opened
+  `BrassGlint` as `<radialGradient>` and closed it as `</linearGradient>`,
+  which Turbopack reported as `Expected '</', got 'jsx text'` and 500'd `/`.
+  Closed tag corrected; homepage then compiled.
+- **Live site inspected before the SVG change** (`pixelettemarketing.com`):
+  confirmed the Lego / brick section — shell + interaction principle kept.
+- **By-eye of SVG vs approved spec sheet:** failed. Schematic primitives did
+  not match FreeCreate finish; Option 1 (layered cutouts) chosen.
+- **Layer assets (`d6847a6`):** fifteen subject-on-white cutouts in
+  `public/home/maquette/layers-review/`, plus `source/spec-sheet.png`. User
+  accepted cutout quality on white. Review files were JPEG-under-`.png`
+  (Cursor GenerateImage limitation) — no alpha until the border-flood pass.
+- **Border-flood alpha:** `scripts/maquette-border-alpha.mjs`. Test on
+  `05-blue-cylinder` and `07-centre-sphere` approved by eye (chequer + dark
+  previews); batch of all fifteen to `public/home/maquette/layers/` with
+  real PNG alpha. Specular highlights on gold spheres kept; cream forms and
+  pale clothing checked after tightening soft-shadow chroma. Ladder rung
+  gaps cleared with a ladder-only enclosed-white pass.
+- **Layers wired (same day):** `MaquetteScene` is an HTML stack of the fifteen
+  transparent PNGs; `tsc --noEmit` clean. Rest composition looked at in the
+  browser against the section at desktop width; phone art row measured
+  (`overflow-x: auto`, fifteen layers, aspect `1001/403`).
+- **Still-as-rest (same day):** briefly swapped rest to a single crop of the
+  approved still after an alignment complaint; **undone on instruction** —
+  fifteen-layer stack restored; crop files removed.
+- **14 Oct — placement retune:** content rects remeasured against the
+  approved still / spec sheet; layer PNGs not edited. Beam core inset
+  tightened; mustard uses optional vertical stretch (cutout aspect squat vs
+  still). Rest composition looked at in the browser at desktop width after
+  the retune. Side-by-side composites used while tuning; temp compare files
+  removed.
+- **Still open by eye:** rest-pose sign-off (placement pass done) / hover /
+  leave / mobile once-play / reduced motion / phone sideways scroll judged
+  beside 02 and 04; motion rebuild not started. See [[09 Outstanding]].
+
+## 14 Oct 2026, later — section 03 by-eye scale, layout, entrance
+
+On `bilal/revamp`, after the placement retune.
+
+- **By-eye (desktop rest):** people too small → ~1.5× content widths; ladder
+  climber left onto rails; centre and moving spheres seated. Layer PNGs not
+  edited. Checked in the Cursor browser at desktop width.
+- **Layout:** scene vertically centred in the stage. Phone (390 emulated):
+  art row shows the full composition (mustard + blue cylinder inside the
+  viewport); sideways `47.5rem` scroll and right fade removed; scene width
+  100% of the art row; vertical centre in the art row measured
+  (`offsetFromCenter` 0).
+- **Entrance:** `is-reveal-armed` / `is-revealed` on the frame; wave delays
+  forms → props → people confirmed in computed styles after scrolling into
+  view (`maquetteFadeIn` with staggered `animation-delay`). Reduced-motion
+  path left unexercised in this pass.
+- **Not done:** full gate suite; real phone; collaboration motion rebuild;
+  hover / leave by-eye after the longer entrance. See [[09 Outstanding]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies page
 
 - **Gates on the working tree before commit**: tsc clean, eslint clean on

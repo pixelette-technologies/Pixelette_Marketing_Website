@@ -2,7 +2,7 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **1 September 2026** — through `4fce2e8` (F19).
+Last updated: **14 October 2026** — SEO / sitemap / metadata pass recorded (code already pushed). Phase F history below still starts from 1 Sep.
 
 ## Where things stand
 
@@ -227,7 +227,7 @@ Written down because the header is the first positioned element above the page, 
 | Palette drift | `npm run compare:palette` | 0 introduced, 1 inherited, no drift, nothing ungated |
 | Route walk | `npm run route:walk` | 34/34 |
 | Contract tests | `npm run test:contact` | 30 pass, 0 fail |
-| Structured data | diff `636659d..HEAD` | **no metadata or JSON-LD line changed** |
+| Structured data / metadata | see [[Build and verification]] | **Intentionally rewritten 14 Oct 2026** — `src/data/site.ts`, linked-only sitemap. Diff is expected; do not “restore” the old freeze. |
 
 ## Assertions
 
@@ -250,13 +250,25 @@ The 27 remaining media queries: **14 belong to the quarantined `Importance`** an
 
 ## What is left
 
+### SEO / indexing (14 Oct 2026)
+
+**In code: done.** Shared `pageMetadata`, robots, linked-only sitemap (~23 URLs), titles/descriptions aligned with current voice. See [[Build and verification]].
+
+**Still open:**
+1. Drop **one** sitewide share image at `/public/og/default.png` (1200×630) and wire it in `src/data/site.ts`.
+2. After deploy: confirm live `/robots.txt` + `/sitemap.xml`, then submit the sitemap in Google Search Console.
+
+The five `/industries/[slug]` specialist pages stay live but unlinked and out of the sitemap — see [[Known bugs and deviations]].
+
+### From the Phase F note (may be partly stale)
+
 1. **Phase F on the other twelve sections.** The home page is done; everything else is still on the legacy vocabulary and still looks like the version the user rejected. The pass is mechanical now that F2 has made the primitives reachable: re-role `mainHeading` → `.eyebrow`, `subHeading` → `.h2`, standfirst → `.lead`; retire `uppercase` and `font_family_glory` from headings; delete the D8 colour blocks that restate what the primitives already carry. **Do the sections the user can see soonest first, and show one page before repeating it twelve times.**
-2. **The browser walk on everything except the home page.** All 8 static routes plus one of each of the 4 dynamic templates, at 1440px and 390px. The home page has been looked at repeatedly; nothing else has been looked at at all.
+2. **The browser walk on everything except the home page.** All static routes plus one of each dynamic template, at 1440px and 390px. The home page has been looked at repeatedly; nothing else has been looked at at all.
 3. **`CONTACT FORM TEMPORARILY UNAVAILABLE` is live on the home page** — `ContactUsForm.tsx:101`. Configuration, not UI, and it is on the most valuable section of the site. Raise it early.
 4. **33 inline `style={{…}}` blocks** remain, mostly in page-level files and the two carousels.
 5. **`.small` is 13px; the guide's is 14px.** Appendix E is "fixed, do not vary". Noticed during Phase F, not changed, because it is a site-wide type change and belongs in its own commit with the user warned.
 6. **Raised, not fixed** — see [[Known bugs and deviations]]: the placeholder copy on `/contactus`, the five off-palette pastels on About, `FinalResult`'s permanently hidden icon row, the article table of contents moving below the article on phones.
-7. **NONE of the three motion surfaces has been seen moving.** The marquee, the hero parallax and now the F19 scroll reveal were all verified in the rendered DOM and the compiled CSS, not by eye. There is no headless browser in this project and one was not added. Specifically unverified: whether the marquee seam is invisible at the loop point; whether the parallax amplitudes read as depth or as drift; and for the reveal — whether 640ms at a 12px rise reads as elegant or as sluggish, whether the 70ms grid cascade reads as a cascade or as a queue, and whether a fade on EVERY block turns out to be too much on the long templates (`/services/*` has 15 staggered grids). All by-eye calls only the user can make. **Expect the reveal timing to need one iteration.**
+7. **NONE of the three motion surfaces has been seen moving.** The marquee, the hero parallax and now the F19 scroll reveal were all verified in the rendered DOM and the compiled CSS, not by eye. There is no headless browser in this project and one was not added. Specifically unverified: whether the marquee seam is invisible at the loop point; whether the parallax amplitudes read as depth or as drift; and for the reveal — whether 640ms at a 12px rise reads as elegant or as sluggish, whether the 70ms grid cascade reads as a cascade or as a wave, and whether a fade on EVERY block turns out to be too much on the long templates (`/services/*` has 15 staggered grids). All by-eye calls only the user can make. **Expect the reveal timing to need one iteration.**
 8. The security follow-ups in [[Security incident 2026-08-11]] remain the more urgent item. **Remote `main` still carries the payload.**
 
 ## The one-sentence version
@@ -275,7 +287,7 @@ Take the look and feel from the pattern guide; keep the substance — content, c
 - [[Design system]] — token values, class inventory, framework mechanics
 - [[Brand layer]] — why the palette is what it is
 - [[Hero strategy]] — the matrix and what has been decided
-- [[Build and verification]] — commands, gates, environment hazards
+- [[Build and verification]] — commands, gates, environment hazards, **route inventory + SEO/metadata (14 Oct 2026)**
 - [[Known bugs and deviations]]
-- [[Rules]] — standing constraints and the traps that actually bit
+- [[Rules]] — standing constraints, traps, and the updated SEO non-regression rule after the metadata rewrite
 - [[Security incident 2026-08-11]]

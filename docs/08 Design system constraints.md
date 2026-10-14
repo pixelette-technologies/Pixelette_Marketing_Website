@@ -278,6 +278,32 @@ one:**
 The rule itself is NOT withdrawn. This is one call site with a stated reason,
 not a licence for the next card grid.
 
+## Home section 03 motion (maquette) — 13 Oct 2026
+
+`_surfaces.scss` entry 7 is the home page's calm interactive band: first view
+runs a one-shot layered opacity fade-in (forms → props → people); desktop
+hover then wakes a one-shot collaboration sequence across layered cutouts;
+leave reverses; touch plays collaboration once after the entrance; reduced
+motion shows the settled pose with no entrance or movement. Collaboration
+uses transform only, no loop; decorative (`aria-hidden`). It remains a
+registered exception to "hover changes border colour only", not a licence
+for card lifts elsewhere. Art is HTML absolute layers (not SVG primitives);
+interim SCSS nudges still apply until the multi-keyframe rebuild. Files:
+`MaquetteScene.tsx`, `MaquetteSceneMotion.tsx`, `_capabilitiesSection.scss`.
+See [[02 Decisions]].
+
+**14 Oct — one placement stretch, not a general rule.** Layer placement is
+content-box (subject % of the 1001×403 frame + PNG alpha inset → image box).
+The mustard cube cutout is too squat to reach the still's ground at the
+still's width under uniform scale, so that layer alone may set
+`content.height` and use `.is-stretched` / `object-fit: fill`. That is a
+single call site to match the approved still without rewriting the PNG — not
+a licence to stretch other layers by default. See [[02 Decisions]].
+
+**14 Oct, later — entrance opacity is allowed here.** The layered fade-in is
+opacity animation on first view only (CSS `maquetteFadeIn`, wave delays). It
+does not extend the hover collaboration surface, which stays transform-only.
+
 ## The first container query, and why it is not a second breakpoint — 22 Sep 2026
 
 `.growthSystem__ring` declares `container-type: inline-size`. It is the only

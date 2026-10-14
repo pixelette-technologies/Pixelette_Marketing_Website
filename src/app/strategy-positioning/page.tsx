@@ -1,5 +1,5 @@
 import { StrategyExperience } from "@/components/ui/strategy";
-import type { Metadata } from "next";
+import { pageMetadata, SITE_URL } from "@/data/site";
 
 // /strategy-positioning — the Strategy & Positioning Diagnostic.
 //
@@ -34,15 +34,11 @@ import type { Metadata } from "next";
 // it is none of those. The only numbers rendered anywhere are computed from
 // the visitor's own twelve answers. See diagnosticContent.ts.
 
-const baseUrl = "https://www.pixelettemarketing.com";
-
-const title = "Strategy & Positioning Diagnostic | Pixelette Marketing";
-const description =
-  "Assess your market, audience, differentiation, positioning, messaging and growth priorities with Pixelette Marketing's interactive Strategy & Positioning Diagnostic.";
-
-export const metadata: Metadata = {
-  title,
-  description,
+export const metadata = pageMetadata({
+  title: "Strategy & Positioning Diagnostic",
+  description:
+    "Assess your market, audience, differentiation, positioning, messaging and growth priorities with Pixelette Marketing's interactive Strategy & Positioning Diagnostic.",
+  path: "/strategy-positioning",
   keywords: [
     "marketing strategy",
     "brand positioning",
@@ -50,40 +46,26 @@ export const metadata: Metadata = {
     "go to market strategy",
     "competitor analysis",
     "messaging strategy"
-  ],
-  alternates: { canonical: `${baseUrl}/strategy-positioning` },
-  openGraph: {
-    title,
-    description,
-    url: `${baseUrl}/strategy-positioning`,
-    siteName: "Pixelette Marketing",
-    type: "website"
-  },
-  twitter: {
-    card: "summary",
-    title,
-    description
-  },
-  robots: { index: true, follow: true }
-};
+  ]
+});
 
 export default function StrategyPositioningPage() {
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: baseUrl },
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
       {
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: `${baseUrl}/services`
+        item: `${SITE_URL}/services`
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Strategy & Positioning Diagnostic",
-        item: `${baseUrl}/strategy-positioning`
+        item: `${SITE_URL}/strategy-positioning`
       }
     ]
   };

@@ -1,14 +1,14 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/data/site";
 
 // Generates /robots.txt at build time (Next.js App Router metadata route).
-// The live site currently returns 404 for /robots.txt; this fixes that.
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/"
     },
-    sitemap: "https://www.pixelettemarketing.com/sitemap.xml",
-    host: "https://www.pixelettemarketing.com"
+    sitemap: `${SITE_URL}/sitemap.xml`,
+    host: SITE_URL
   };
 }

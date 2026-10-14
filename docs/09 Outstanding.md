@@ -941,29 +941,26 @@ Committed on `feat/home-sections-01-04`; not pushed, not live. See
 
 ## 29 Sep — section 03's builders (`a872913`)
 
-Committed on the branch; **not pushed, not live.** See [[02 Decisions]].
+~~Committed on the branch; **not pushed, not live.**~~ **Superseded 13 Oct** —
+the brick scene was replaced by the architectural maquette. The shirt-colour,
+rung-stay, climb pacing and phone-face items below named `BrickScene.tsx` and
+no longer apply. See [[02 Decisions]] (13 Oct).
 
-- **The second-from-right builder's shirt: violet or green?** The
-  instruction asked for both the same shirt colour and the hero's palette,
-  which has no green. Violet was chosen; setting her `shirt` back is one line
-  in `BrickScene.tsx`.
-- **Should a ladder builder stay a rung higher after hover?** At present it
-  climbs one rung and back down when the pointer leaves, so the scene always
-  returns to the reference. "Climb one step up" could also mean one step per
-  hover, kept.
-- **Frame pacing on a real GPU** for the climb; headless Chrome only. The
-  headless clock ran at about half speed while measuring, so the wall-clock
-  length of the climb (about 2.2s for the left ladder, 2.8s for the right)
-  has not been seen at true speed.
-- **The two women's faces at phone size.** On a phone the scene scrolls
-  sideways at 47.5rem, and the far-right builder is off screen until
-  scrolled to; not looked at closely there.
+- ~~**The second-from-right builder's shirt: violet or green?**~~ Closed —
+  scene removed.
+- ~~**Should a ladder builder stay a rung higher after hover?**~~ Closed —
+  scene removed.
+- ~~**Frame pacing on a real GPU** for the climb~~ Closed for the old climb;
+  the maquette's hover sequence still needs a real-GPU look (see 13 Oct).
+- ~~**The two women's faces at phone size.**~~ Closed for Lego faces; the
+  maquette's editorial figures still need a phone look.
 
 ## 29 Sep — section 04 is a looping video
 
 **Settled:** vector or real for the ducks (real: a looping video), and the
-pink duck's colour (the footage's magenta). **Still open:** vector or real for
-the bricks in 03. See [[02 Decisions]].
+pink duck's colour (the footage's magenta). ~~**Still open:** vector or real
+for the bricks in 03.~~ **Settled 13 Oct for 03:** interactive layered
+maquette (not Lego, not photography). See [[02 Decisions]].
 
 **Not done yet:**
 
@@ -1203,3 +1200,73 @@ Committed `1daaef9`.
 - Not seen on a real phone or GPU; headless Chrome only. `next build` not
   run (the shared dev server holds `.next`; no server started, on
   instruction). No real enquiry submitted.
+
+## 13–14 Oct — section 03 architectural maquette (layered Option 1)
+
+On `bilal/revamp`. Commits `80fcb7b` (SVG shell), `d6847a6` (layer review
+assets), border-flood transparent batch in `layers/`, the **layer wire** into
+`MaquetteScene` (HTML stack), the **14 Oct placement retune**, **by-eye
+scale / layout / entrance fade**, **browser rest-pose locks**, then asset
+trim `feb8082` (only `layers/` remains under `public/home/maquette/`).
+A still-as-rest swap was tried and **undone on instruction** — rest is the
+fifteen-layer stack. **Not pushed, not live.** Production still serves the
+brick scene. See [[02 Decisions]] and [[10 Verification]].
+
+**Done:**
+
+- ~~Border-flood alpha test on `05` / `07`~~ — approved by eye.
+- ~~Batch all fifteen to true transparent PNGs~~ —
+  `public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
+- ~~**Wire layers** into section 03~~ — schematic SVG geometry removed;
+  fifteen absolute layers with content-box placement against the then
+  `source/spec-sheet.png` (since removed); `MaquetteSceneMotion` and class
+  hooks kept; `SCENE` is `1001×403`; stage at `--scene-stage-left`.
+- ~~Still-as-rest experiment~~ — tried, then undone; crop files removed.
+- ~~**Tune layer placement**~~ — content rects remeasured to the approved
+  still (PNGs unchanged; mustard alone may stretch vertically).
+- ~~**By-eye scale and alignment**~~ — people ~1.5×; ladder climber on the
+  rails; spheres seated; PNGs unchanged.
+- ~~**Vertical centre + phone full-fit**~~ — scene centred in the band;
+  phone shows the whole composition at art-row width (sideways scroll gone).
+- ~~**Layered entrance fade-in**~~ — forms → props → people on first view;
+  longer delays on instruction; reduced motion skips it.
+- ~~**Rest-pose browser locks**~~ — mustard/beam seating; cream beam 7°;
+  beam-person, moving sphere, plum + blue cylinders, blue-person, ladder,
+  sphere-person from inspector image boxes.
+- ~~**Trim unused maquette dirs**~~ — `layers-review/`,
+  `layers-alpha-preview/`, and `source/` removed (`feb8082`); site uses
+  only `layers/`.
+
+**Next session — agreed order:**
+
+1. ~~Wire layers~~
+2. ~~Tune layer placement~~ / by-eye scale / layout / entrance / rest locks
+3. ~~Trim unused maquette asset dirs~~
+4. **Rebuild collaboration motion** as a multi-keyframe sequence with real
+   travel (not 8–16px CSS nudges).
+5. Gates + by-eye (rest / hover / leave / phone / reduced motion).
+
+**Calls for the user:**
+
+- ~~Approve or reject the two-file alpha test before batching~~ — approved;
+  batch done.
+- ~~By-eye of the schematic SVG as final art~~ — rejected; layers are the art
+  path now.
+- ~~By-eye of the composited layered rest pose + entrance~~ — further
+  placement locked from inspector; more nudges only if asked.
+- Minor alpha fringe (silhouette halos, form bases) acceptable for now or
+  refine later — user called the batch perfect.
+- **Whether capability names should return somehow** outside the picture.
+  Brief still forbids labels in the illustration; copy carries the
+  proposition; `capabilitiesCopy.capabilities` / `payoff` remain in data.
+- **Push / deploy** when the layered scene is ready — not asked yet.
+
+**Not done yet:**
+
+- Collaboration motion rebuild on layers (interim SCSS nudges still fire).
+- Full gate suite beyond `tsc --noEmit` on the wire / placement / entrance
+  passes.
+- axe / phone LCP/CLS; real-device touch and reduced-motion check.
+- Production still shows Lego until this branch deploys.
+- Re-batch via `maquette-border-alpha.mjs` would need `layers-review/`
+  restored first (deleted with the trim).

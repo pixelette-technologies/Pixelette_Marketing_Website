@@ -4,6 +4,7 @@ import { ContactSection } from "@/components/common";
 import { finalConversionCopy } from "@/data/home";
 import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
 import blogsData from "@/data/blogs/blogsData";
+import { pageMetadata, SITE_URL } from "@/data/site";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -13,32 +14,31 @@ interface PageProps {
   }>;
 }
 
-const SITE = "https://www.pixelettemarketing.com";
+const SITE = SITE_URL;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const blog = blogsData.flatMap(c => c.data).find(item => item.id === parseInt(id, 10));
   if (!blog) {
-    return {
-      title: "Insights | Pixelette Marketing",
-      alternates: { canonical: `${SITE}/blog/${id}` }
-    };
+    return pageMetadata({
+      title: "Insights",
+      description:
+        "Points of view, practical playbooks and tools for making better marketing decisions.",
+      path: `/blog/${id}`,
+      index: false
+    });
   }
   const desc =
     typeof blog.description === "string"
       ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 160)
       : "";
-  return {
-    title: `${blog.heading} | Pixelette Marketing`,
-    description: desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,
-    alternates: { canonical: `${SITE}/blog/${id}` },
-    openGraph: {
-      title: `${blog.heading}`,
-      description: desc || undefined,
-      url: `${SITE}/blog/${id}`,
-      type: "article"
-    }
-  };
+  return pageMetadata({
+    title: blog.heading,
+    description:
+      desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,
+    path: `/blog/${id}`,
+    type: "article"
+  });
 }
 
 export default async function SingleBlogPage({ params }: PageProps) {

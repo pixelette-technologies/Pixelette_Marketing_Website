@@ -32,9 +32,9 @@ import { COOKIE_POLICY_HREF, PRIVACY_HREF } from "@/data/legal";
 //
 //   WHAT THAT COSTS, so nobody has to rediscover it: the five sector pages
 //   /industries/web_3, fintech, tech, saas and ai were linked from every page
-//   on the site by this column and are now reachable only from the nav and
-//   from /industries. They are still in the sitemap and still indexed; they
-//   have simply lost their site-wide internal links. Strategy & Positioning
+//   on the site by this column and are no longer linked from nav, footer or
+//   /industries. They stay live for direct/legacy traffic but are omitted
+//   from the sitemap until internal linking returns. Strategy & Positioning
 //   moves the other way and gains its first footer link.
 //
 // - THE COMPANY COLUMN CARRIES ONLY PAGES THAT EXIST. Theirs lists Privacy

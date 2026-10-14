@@ -7,20 +7,22 @@ import {
 import { ContactSection } from "@/components/common";
 import { finalConversionCopy } from "@/data/home";
 
-import type { Metadata } from 'next'
+import { pageMetadata } from "@/data/site";
 
-export const metadata: Metadata = {
-  title: "Pixelette Marketing | Growth Marketing & Commercial Growth",
-  description: "Build demand, qualified pipeline, conversion and measurable growth with connected strategy, search, content, paid media, lifecycle marketing and growth intelligence.",
-  keywords: ['digital marketing agency', 'digital marketing services', 'digital marketing solutions'],
-  alternates: {
-    canonical: 'https://www.pixelettemarketing.com',
-  },
-  openGraph: {
-    title: "Pixelette Marketing | Growth Marketing & Commercial Growth",
-    description: "Build demand, qualified pipeline, conversion and measurable growth with connected strategy, search, content, paid media, lifecycle marketing and growth intelligence.",
-  },
-}
+export const metadata = pageMetadata({
+  title: "Pixelette Marketing | Marketing that matters to your bottom line",
+  description:
+    "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter. Growth marketing for ambitious businesses.",
+  path: "",
+  absoluteTitle: true,
+  keywords: [
+    "growth marketing",
+    "digital marketing agency",
+    "marketing strategy",
+    "demand generation",
+    "commercial growth"
+  ]
+});
 
 // Home opens on the approved four sections, then the contact form.
 //

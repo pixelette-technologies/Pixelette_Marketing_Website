@@ -27,7 +27,11 @@ const EXEMPT = [
   ["src/scss/globels/_tokens.scss", "defines the tokens in the first place"],
   ["src/assets/common/Logo.tsx", "the wordmark is the colour authority"],
   ["src/assets/common/LogoBlack.tsx", "the wordmark is the colour authority"],
-  ["src/lib/emailPalette.ts", "HTML email cannot resolve var(); see the file's own note"]
+  ["src/lib/emailPalette.ts", "HTML email cannot resolve var(); see the file's own note"],
+  [
+    "src/lib/ogPalette.ts",
+    "ImageResponse/Satori cannot resolve var(); see the file's own note"
+  ]
   // src/data/aboutus/ourTeamData.ts held five per-person card tints and was
   // exempt for them. The file went with the About page's team section on
   // 21 Sep 2026; the exemption goes with the file, because an exemption for a

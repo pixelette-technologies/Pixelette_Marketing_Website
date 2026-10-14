@@ -45,6 +45,16 @@ export const RESULTS_HREF = "/results";
 export const heroCopy = {
   eyebrow: "Clarity. Momentum. Commercial impact.",
   headline: { lead: "Marketing that matters", tail: "to your bottom line" },
+  /**
+   * Desktop break of the home H1 (see `.homeHero__title` in `_heroHome.scss`):
+   * "Marketing that / matters to your / bottom line". The default OG card
+   * uses this same break so share previews stay in lockstep with the page.
+   */
+  ogHeadline: [
+    "Marketing that",
+    "matters to your",
+    "bottom line"
+  ] as const,
   support:
     "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
   primaryCta: { label: "Build my growth plan", to: "/contactus" },
@@ -128,7 +138,8 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   accent: "One commercial objective",
   lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
   cta: { label: "Explore all services", to: "/services" },
-  // The site's five capability names, in the hub's order.
+  // Kept for hub / content reuse. No longer overlaid on the maquette visual
+  // (illustration is unlabelled; the copy carries the proposition).
   capabilities: [
     { name: "Strategy & Positioning", icon: "compass" },
     { name: "Demand & Performance", icon: "bars" },

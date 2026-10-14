@@ -15,6 +15,7 @@ import { SpecialistServicePage } from "@/components/ui/specialist";
 import { servicesData } from "@/data/services/servicesData";
 import { specialistPages } from "@/data/services/specialist";
 import { proofCopy } from "@/data/home";
+import { pageMetadata, SITE_URL } from "@/data/site";
 import { Metadata } from "next";
 
 type PageProps = {
@@ -35,83 +36,24 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const pageData = servicesData.find(item => item.route === slug);
-  const baseUrl = "https://www.pixelettemarketing.com";
+  const path = `/services/${slug}`;
 
   // 30 Sep 2026: a specialist page takes its title and description from its
-  // own config, written to its display label and proposition. The share
-  // image stays the route's existing one: it is a link-preview card, not page
-  // imagery, and the site has no default to fall back to.
+  // own config. Share image defaults to `/opengraph-image` via pageMetadata;
+  // pass ogImage when a page-specific asset is cleared for public use.
   const specialist = specialistPages[slug];
   if (specialist) {
     const { title, description } = specialist.meta;
-    const url = `${baseUrl}/services/${slug}`;
-    const image = pageData?.image || "/services/heroImageServices.webp";
-    return {
-      title,
-      description,
-      alternates: { canonical: url },
-      openGraph: {
-        title,
-        description,
-        url,
-        siteName: "Pixelette Marketing",
-        images: [{ url: image, width: 1200, height: 630, alt: title }],
-        locale: "en_GB",
-        type: "website"
-      },
-      twitter: {
-        card: "summary_large_image",
-        title,
-        description,
-        images: [image],
-        creator: "@pixelettemarketing"
-      },
-      robots: { index: true, follow: true }
-    };
+    return pageMetadata({ title, description, path });
   }
 
-  return {
+  return pageMetadata({
     title: pageData?.metaTitle || "Services",
-    description: pageData?.metaDescription || "Explore our professional services",
-    keywords: pageData?.metaKeywords || "digital marketing services",
-    alternates: {
-      canonical: `${baseUrl}/services/${slug}`,
-    },
-    openGraph: {
-      title: pageData?.metaTitle || "Services",
-      description: pageData?.metaDescription || "Explore our professional services",
-      url: `${baseUrl}/services/${slug}`,
-      siteName: "Pixelette Marketing",
-      images: [
-        {
-          url: pageData?.image || "/services/heroImageServices.webp",
-          width: 1200,
-          height: 630,
-          alt: pageData?.metaTitle || "Services",
-        },
-      ],
-      locale: "en_GB",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: pageData?.metaTitle || "Services",
-      description: pageData?.metaDescription || "Explore our professional services",
-      images: [pageData?.image || "/services/heroImageServices.webp"],
-      creator: "@pixelettemarketing",
-    },
-    robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        'max-video-preview': -1,
-        'max-image-preview': 'large',
-        'max-snippet': -1,
-      },
-    },
-  };
+    description:
+      pageData?.metaDescription || "Explore our professional services",
+    path,
+    keywords: pageData?.metaKeywords || "digital marketing services"
+  });
 }
 
 export default async function Page({ params }: PageProps) {
@@ -125,7 +67,7 @@ export default async function Page({ params }: PageProps) {
   if (specialist) return <SpecialistServicePage page={specialist} />;
 
   const pageData = servicesData.find(item => item.route === slug);
-  const baseUrl = "https://www.pixelettemarketing.com";
+  const baseUrl = SITE_URL;
 
   const serviceData = pageData?.services;
   const contactData = pageData?.howWeWork;

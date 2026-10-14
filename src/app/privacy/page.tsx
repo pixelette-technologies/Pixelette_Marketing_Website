@@ -1,22 +1,16 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/common";
 import ManageCookies from "@/components/common/ManageCookies";
 import { Heading, Text } from "@/components/feature";
 import { COOKIE_POLICY_HREF } from "@/data/legal";
+import { pageMetadata } from "@/data/site";
 
-export const metadata: Metadata = {
-  title: "Privacy Statement | Pixelette Marketing",
+export const metadata = pageMetadata({
+  title: "Privacy Statement",
   description:
     "How Pixelette Marketing collects, uses, shares and protects personal information, how long we keep it, and the rights you have over it.",
-  alternates: { canonical: "https://www.pixelettemarketing.com/privacy" },
-  openGraph: {
-    title: "Privacy Statement | Pixelette Marketing",
-    url: "https://www.pixelettemarketing.com/privacy",
-    siteName: "Pixelette Marketing",
-    type: "website"
-  }
-};
+  path: "/privacy"
+});
 
 // --- 23 Sep 2026 ------------------------------------------------------------
 // ADAPTED FROM THE PIXELETTE TECHNOLOGIES PRIVACY STATEMENT (their /privacy,

@@ -55,3 +55,5 @@ config.bat
 # record. The editor's own per-user layout state is not. /vault was the vault's
 # path before 9 Sep 2026 and that directory no longer exists.
 docs/.obsidian/
+
+/.cursor

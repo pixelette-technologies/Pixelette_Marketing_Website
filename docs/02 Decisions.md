@@ -2548,6 +2548,281 @@ instruction, including the 21 Sep rebuild. Committed `8fc53d7`.
   below — flex bases left a blank band at 768 once the pair wrapped.
 - **No hero entrance.** Allowed by the brief, not required.
 
+## 13 Oct 2026 — section 03: architectural maquette replaces the brick scene
+
+On instruction, on `bilal/revamp`. **Not committed, not pushed, not live.**
+The approved visual is a premium architectural maquette (spec sheet +
+photographic reference); the behavioural brief is a final vector
+implementation document. Inspected the live Lego section on
+`pixelettemarketing.com` before changing code.
+
+**What stays**
+
+- Section position, shell (`homeScene--capabilities`), room backdrop, copy
+  column, headline ("Five capabilities" / "One commercial objective"), lead,
+  CTA ("Explore all services" → `/services`), and the bottom-right scene
+  width / phone sideways-scroll behaviour.
+- The interaction *principle*: the visitor triggers coordination; nothing
+  loops; reduced motion stays still. That sits between 02's passive falling
+  notes and 04's environmental duck pond.
+
+**What goes**
+
+- All Lego / toy-brick geometry, studs, plastic finish, minifigure builders,
+  jump animation, per-brick 3px lift, arrival climb, and HTML labels / payoff
+  overlaid on brick faces (`BrickScene.tsx`, `BrickSceneMotion.tsx`, and the
+  brick illustration tokens).
+- Raster images, video, traced photos, and capability names drawn inside the
+  SVG. The brief is explicit: the page copy explains; the illustration
+  demonstrates.
+
+**What replaces it**
+
+- `MaquetteScene.tsx` — one parent SVG, independently animatable groups:
+  burgundy / pink / cream / mustard / blue forms, cream bridge, brass ladder,
+  centre + moving gold spheres, six editorial figures (diverse skin tones,
+  clothing, roles). Matte plaster / paperboard treatment, subtle grain
+  filter, brass radial gradients. `aria-hidden="true"`.
+- `MaquetteSceneMotion.tsx` — state machine
+  `rest → activating → active → returning → rest`. Desktop `mouseenter` /
+  `mouseleave`; touch / coarse pointer plays once when the section enters the
+  viewport; `prefers-reduced-motion` forces the settled composition with
+  transitions off.
+- Tokens: `--maquette-*` (forms, brass, clothing) and editorial
+  `--figure-skin-*` / hair tones in `_tokens.scss`. Former `--brick-*` and
+  Lego-yellow figure tokens removed with the scene.
+- `_surfaces.scss` entry 7 rewritten from "capability lift / climb / jump" to
+  the maquette hover sequence.
+
+**Settled by this change (later revised the same day — see below)**
+
+- ~~**Vector or real for 03:** vector — a bespoke interactive SVG~~ **Superseded
+  the same day:** the SVG remains the *interaction shell* for now, but the
+  approved look is the FreeCreate / spec-sheet still, to be delivered as
+  layered raster cutouts (Option 1), not as code-drawn primitives.
+- Open items that named `BrickScene.tsx` (shirt colour, rung-stay behaviour)
+  are closed as obsolete; see [[09 Outstanding]].
+
+Related: [[03 Phase 1 — Homepage]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 moves to layered art (Option 1)
+
+On instruction after by-eye rejection of the SVG against the approved
+spec-sheet image. Concept **locked** (five forms, cream beam, gold ladder,
+two gold spheres, six people, colours). Finish and motion are not.
+
+**Path chosen:** Option 1 — keep `MaquetteSceneMotion` / section shell /
+hover-once collaboration principle; replace schematic SVG geometry with
+finished layered cutouts; rebuild motion as multi-keyframe travel (not 8–16px
+CSS nudges). Three.js deferred unless layered 2D still cannot sell depth.
+Video loop (04's method) deferred because hover choreography is required.
+
+**What was tried and discarded**
+
+- Code flood-fill / chroma cuts from the flat spec sheet — edges and overlaps
+  too poor for review.
+- Aggressive white-keying for alpha — punches gold highlights and white
+  clothing; rejected as unsafe for cream forms and shirts.
+
+**What landed**
+
+- `80fcb7b` — SVG maquette replaces brick scene (shell kept).
+- `d6847a6` — `public/home/maquette/source/spec-sheet.png` and fifteen
+  subject-on-white review cutouts in `layers-review/` (forms `01`–`09`,
+  people `11`–`16`), generated via Cursor image gen driven by a Grok-model
+  session. Quality accepted by the user for shape/finish on white.
+- Review files were JPEG bytes under `.png` names (tool limitation) —
+  **no alpha until the border-flood pass below**.
+
+**Border-flood alpha (same day, after Option 1 assets)**
+
+- Cursor GenerateImage still cannot emit PNG alpha; no xAI bg-remove key.
+- Path taken: `scripts/maquette-border-alpha.mjs` — edge-connected white →
+  transparent only (not global white-key). Soft contact shadows only when
+  true gray (chroma ≤ 2). Ladder gets an extra enclosed-white clear for
+  rung gaps; spheres and people do not (specular / shirt whites).
+- Two-file test on `05-blue-cylinder` and `07-centre-sphere` **approved by
+  eye**; then all fifteen layers batched to
+  `public/home/maquette/layers/`. Chequer/dark previews in
+  `layers-alpha-preview/`.
+- Cream forms and pale clothing watched: an earlier soft-shadow chroma of
+  18 punched cream/clothes and was tightened; morphological hole-close was
+  tried and discarded (restored white in arm gaps).
+
+**Still open after alpha**
+
+- ~~Wire transparent layers into the capabilities scene~~ — done same day
+  (see below); rebuild hover collaboration as real multi-keyframe travel.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 layers wired into the scene
+
+On instruction after the alpha batch. Option 1 art path lands in the live
+section shell.
+
+**What changed**
+
+- `MaquetteScene.tsx` no longer draws SVG primitives. It renders fifteen
+  absolute `next/image` layers from `public/home/maquette/layers/`.
+- Frame aspect follows the spec sheet: `SCENE = { w: 1001, h: 403 }`.
+- Placement is **content-box**: each layer stores a desired content rect (%
+  of frame) plus the PNG's alpha inset; image `left/top/width` are derived so
+  empty padding does not drift subjects. The cream beam's vertical inset was
+  tightened to the bar (full alpha bbox is shadow-tall).
+- **Copy clearance:** the scene uses `left: var(--scene-stage-left)` (same
+  31rem stage token as section 02), not the old 16rem width calc — that was
+  letting the pink cube sit under "One commercial objective". Placement was
+  then retuned against the approved still so forms share a floor plane and
+  the beam sits on both towers.
+- Motion class names (`maquette__pink`, `maquette__ladderPerson`, …) and
+  `MaquetteSceneMotion` are unchanged. `_capabilitiesSection.scss` targets
+  HTML layers (`transform-origin: center bottom`; SVG `fill-box` and tablet
+  rules removed). Interim small CSS nudges still fire; multi-keyframe travel
+  is the next pass.
+
+**What stayed**
+
+- Section shell, copy, CTA, room backdrop, bottom-right placement, phone
+  sideways-scroll art row, decorative `aria-hidden`.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 still-as-rest tried and undone
+
+On instruction to match the approved still pixel-for-pixel, rest was briefly
+swapped to a single crop of `spec-sheet.png` (`maquette-rest.png`). On further
+instruction that change was **undone**: rest is again the fifteen-layer HTML
+stack in `MaquetteScene.tsx`. The still crop files were removed. Option 1
+(layered cutouts) remains the art path for both rest and motion rebuild.
+Placement against the still was the next pass (see 14 Oct below).
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026 — section 03 layer placement retuned to the approved still
+
+On instruction: align the fifteen wired layers to the original spec-sheet
+composition; **do not alter layer PNGs** — position (and uniform scale) only.
+
+**What changed**
+
+- Content rects in `MaquetteScene.tsx` remeasured against
+  `public/home/maquette/source/spec-sheet.png` (and the attached hero still):
+  shared ground plane, beam seated on both towers, centre sphere on the cream
+  cylinder, moving sphere on the mustard top at the beam end, cube-top people
+  with feet on cube tops, ground people planted, blue person to the right of
+  the blue cylinder.
+- Cream-beam alpha inset tightened to the dense bar core (soft shadow left
+  outside the content box) so seating tracks the bar, not the shadow bbox.
+- **Mustard cube only:** optional `content.height` + `.is-stretched` /
+  `object-fit: fill`. The cutout's aspect is squat versus the still's tall
+  cube; uniform scale cannot reach the ground at the still's width. Stretch
+  is placement to match the still, not a rewritten asset.
+- Layer PNG files untouched.
+
+**What stayed**
+
+- Fifteen-layer HTML stack, `SCENE` 1001×403, content-box placement model,
+  motion class hooks, interim SCSS nudges, section shell / copy / CTA.
+
+**Still open**
+
+- User by-eye sign-off on the composited rest pose (further pixel nudges if
+  asked).
+- Motion rebuild (multi-keyframe travel).
+- Full gates + hover / leave / phone / reduced-motion by-eye.
+
+Related: [[03 Phase 1 — Homepage]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026, later — section 03 by-eye scale, layout, and entrance fade
+
+On instruction after looking at the composited rest pose in the browser.
+Layer PNGs still untouched — placement, layout CSS, and motion only.
+
+**Placement (by-eye)**
+
+- All six people scaled ~1.5× vs the still-aligned widths; feet kept on
+  ground / cube tops. Ladder scaled with the climber; climber shifted left
+  onto the rails. Centre sphere seated on the cream cylinder; moving sphere
+  seated on the mustard top under the sphere person's hands.
+
+**Layout**
+
+- Maquette vertically centred in the stage (no longer pinned to the floor).
+- Phone: full scene fits the art row width — the fixed `47.5rem` sideways
+  scroll and right-edge fade are gone. Art row centres the scene; room
+  backdrop is full width.
+
+**Entrance**
+
+- One-shot layered fade-in on first viewport entry: forms (cylinders, cubes,
+  beam) → props (ladder, both gold spheres) → people, with soft within-wave
+  cascade and longer delays on instruction. `MaquetteSceneMotion` arms hide
+  before paint when motion is allowed; reduced motion shows the full
+  composition. Desktop hover collaboration waits until the reveal has run;
+  touch collaboration plays once after the entrance settles (~3s).
+
+**Still open**
+
+- Collaboration motion rebuild (multi-keyframe travel; interim SCSS nudges).
+- Full gates + rest / hover / leave / phone / reduced-motion by-eye sign-off.
+- Push / deploy when asked.
+
+Related: [[03 Phase 1 — Homepage]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026, later — section 03 rest-pose placement locked from the browser
+
+On instruction after looking at the layered rest pose and tuning live in
+Chrome. Layer PNGs still untouched — `MaquetteScene` content rects, optional
+`rotate`, and bridge motion CSS only.
+
+**Seating the cream beam**
+
+- Mustard moved right and its top matched to pink (`17.2`) so both cube tops
+  are level. Cream beam content retuned so the bar-core underside lands on
+  those tops, then grown and inspector-locked; rest **rotate 7°** via
+  `--maquette-rotate` (hover/static transforms compose with it).
+
+**Inspector-locked image boxes** (reversed into content rects)
+
+- Beam-person — push figure scale/position from DevTools.
+- Cream beam — left / top / width / rotate from DevTools (retuned once more).
+- Moving sphere — into the sphere person's hands (z above him).
+- Plum cylinder — bottom-left under the ladder.
+- Blue cylinder — bottom-right (correct inspector values after a duplicate
+  plum screenshot was rejected).
+- Blue-person — pushing the blue cylinder.
+- Ladder — left of pink, aligned with the climber.
+- Sphere-person — further by-eye lock on the mustard.
+
+**Still open**
+
+- Collaboration motion rebuild; full gates; push / deploy when asked.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026, later — only `layers/` kept under `public/home/maquette/`
+
+Asked which of the four maquette directories the site uses. Answer: **only
+`layers/`** — every `MaquetteScene` `next/image` src is
+`/home/maquette/layers/…`.
+
+| Directory | Role | Kept? |
+|---|---|---|
+| `layers/` | Live transparent PNGs served on the page | Yes |
+| `layers-review/` | Subject-on-white cutouts; input to `maquette-border-alpha.mjs` | No |
+| `layers-alpha-preview/` | Chequer/dark previews from that script | No |
+| `source/` | Spec sheet for placement reference (comment-only in code) | No |
+
+Removed in `feb8082`. Historical vault entries that name the deleted paths
+remain as build history; they are no longer on disk. The border-alpha
+script still points at `layers-review/` — restore those assets before
+re-batching.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 
 Built on instruction to mirror `pixelette-technologies-website.vercel.app/contact`

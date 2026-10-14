@@ -418,8 +418,9 @@ notes fall and the ducks drop onto the water one by one, on real gravity and
 a damped buoyant bob, with perspective-flattened splash rings. Committed on
 the branch; **not pushed, not live.** Later the same day the
 ducks became a looping photographic video, which settled the pink duck's
-colour and, for 04, the vector-or-real question; the bricks' is still open. See [[02 Decisions]],
-[[09 Outstanding]] and [[10 Verification]].
+colour and, for 04, the vector-or-real question; **03's vector-or-real later
+settled as an interactive layered maquette (13 Oct), not Lego and not a photo.**
+See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 **29 Sep, later — section 02's Post-its fall in a loop, and A clearer path is
 lit.** On instruction: every word note now falls from above the band to
@@ -529,6 +530,45 @@ copied, because ours is a governed contract. **A postal address is visible on
 the site again** (London registered office, and the US Naples office taken
 from the Tech page). Seen in headless Chrome at 1440, 768 and 390; **not on a
 real phone.** See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
+
+**13 Oct — section 03's Lego / brick scene becomes an architectural
+maquette, then moves onto a layered-art path.** First commit `80fcb7b`:
+`BrickScene` gone; `MaquetteScene` + motion as an interactive SVG (concept
+locked). SVG failed by-eye against the FreeCreate / spec-sheet still —
+Option 1: keep the interaction shell, replace art with layered cutouts,
+rebuild motion as real travel. Layer review assets `d6847a6`
+(`public/home/maquette/layers-review/`). Then **border-flood alpha** (not
+global white-key): two-file test on `05-blue-cylinder` and
+`07-centre-sphere` approved by eye; all fifteen true transparent PNGs in
+`public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
+**Layers wired** into section 03 as an HTML absolute stack
+(`MaquetteScene.tsx`, content-box placement against the spec sheet; frame
+`1001×403`). A brief still-as-rest experiment was tried and **undone on
+instruction** — rest remains the fifteen-layer stack. **14 Oct — placement
+retuned** against the approved still (content rects remeasured; beam core
+inset tightened; mustard stretched vertically because its cutout is squat vs
+the still). Same day **by-eye:** people ~1.5×, ladder/sphere seating, scene
+vertically centred, phone full-fit (sideways scroll dropped), and a one-shot
+layered entrance fade (forms → props → people). Layer PNGs unchanged.
+Interim CSS nudges kept; **collaboration motion rebuild** (real
+multi-keyframe travel) still open.
+
+**14 Oct, later — rest-pose placement locked by eye in the browser.**
+Mustard shifted right so the cream beam seats on pink + mustard tops;
+cream beam widened, raised, and rest-rotated **7°** (`--maquette-rotate`,
+composed with hover). Inspector-locked image boxes (reversed into content
+rects): beam-person, cream beam, moving sphere in the sphere person's
+hands, plum cylinder, blue cylinder, blue-person, ladder, and a further
+sphere-person / cream-beam nudge. PNGs still untouched.
+
+**14 Oct, later — maquette asset tree trimmed.** Confirmed only
+`public/home/maquette/layers/` is loaded by the site (`MaquetteScene`).
+`layers-review/`, `layers-alpha-preview/`, and `source/` removed
+(`feb8082`) — they were review / alpha-preview / placement-reference
+assets, not runtime. Re-running `maquette-border-alpha.mjs` would need
+the review cutouts restored. On `bilal/revamp`; **not pushed, not live.**
+Production still shows Lego. See [[02 Decisions]],
+[[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

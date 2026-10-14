@@ -559,8 +559,15 @@ cream beam widened, raised, and rest-rotated **7°** (`--maquette-rotate`,
 composed with hover). Inspector-locked image boxes (reversed into content
 rects): beam-person, cream beam, moving sphere in the sphere person's
 hands, plum cylinder, blue cylinder, blue-person, ladder, and a further
-sphere-person / cream-beam nudge. PNGs still untouched. On `bilal/revamp`;
-**not pushed, not live.** Production still shows Lego. See [[02 Decisions]],
+sphere-person / cream-beam nudge. PNGs still untouched.
+
+**14 Oct, later — maquette asset tree trimmed.** Confirmed only
+`public/home/maquette/layers/` is loaded by the site (`MaquetteScene`).
+`layers-review/`, `layers-alpha-preview/`, and `source/` removed
+(`feb8082`) — they were review / alpha-preview / placement-reference
+assets, not runtime. Re-running `maquette-border-alpha.mjs` would need
+the review cutouts restored. On `bilal/revamp`; **not pushed, not live.**
+Production still shows Lego. See [[02 Decisions]],
 [[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:

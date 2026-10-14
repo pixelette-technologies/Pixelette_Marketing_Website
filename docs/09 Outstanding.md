@@ -1206,8 +1206,8 @@ Committed `1daaef9`.
 On `bilal/revamp`. Commits `80fcb7b` (SVG shell), `d6847a6` (layer review
 assets), border-flood transparent batch in `layers/`, the **layer wire** into
 `MaquetteScene` (HTML stack), the **14 Oct placement retune**, **by-eye
-scale / layout / entrance fade**, then **browser rest-pose locks** (cream
-beam seating + rotate, beam-person, moving sphere in hands, plum cylinder).
+scale / layout / entrance fade**, **browser rest-pose locks**, then asset
+trim `feb8082` (only `layers/` remains under `public/home/maquette/`).
 A still-as-rest swap was tried and **undone on instruction** — rest is the
 fifteen-layer stack. **Not pushed, not live.** Production still serves the
 brick scene. See [[02 Decisions]] and [[10 Verification]].
@@ -1218,9 +1218,9 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
 - ~~Batch all fifteen to true transparent PNGs~~ —
   `public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
 - ~~**Wire layers** into section 03~~ — schematic SVG geometry removed;
-  fifteen absolute layers with content-box placement against
-  `source/spec-sheet.png`; `MaquetteSceneMotion` and class hooks kept;
-  `SCENE` is `1001×403`; stage at `--scene-stage-left`.
+  fifteen absolute layers with content-box placement against the then
+  `source/spec-sheet.png` (since removed); `MaquetteSceneMotion` and class
+  hooks kept; `SCENE` is `1001×403`; stage at `--scene-stage-left`.
 - ~~Still-as-rest experiment~~ — tried, then undone; crop files removed.
 - ~~**Tune layer placement**~~ — content rects remeasured to the approved
   still (PNGs unchanged; mustard alone may stretch vertically).
@@ -1233,14 +1233,18 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
 - ~~**Rest-pose browser locks**~~ — mustard/beam seating; cream beam 7°;
   beam-person, moving sphere, plum + blue cylinders, blue-person, ladder,
   sphere-person from inspector image boxes.
+- ~~**Trim unused maquette dirs**~~ — `layers-review/`,
+  `layers-alpha-preview/`, and `source/` removed (`feb8082`); site uses
+  only `layers/`.
 
 **Next session — agreed order:**
 
 1. ~~Wire layers~~
 2. ~~Tune layer placement~~ / by-eye scale / layout / entrance / rest locks
-3. **Rebuild collaboration motion** as a multi-keyframe sequence with real
+3. ~~Trim unused maquette asset dirs~~
+4. **Rebuild collaboration motion** as a multi-keyframe sequence with real
    travel (not 8–16px CSS nudges).
-4. Gates + by-eye (rest / hover / leave / phone / reduced motion).
+5. Gates + by-eye (rest / hover / leave / phone / reduced motion).
 
 **Calls for the user:**
 
@@ -1264,3 +1268,5 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
   passes.
 - axe / phone LCP/CLS; real-device touch and reduced-motion check.
 - Production still shows Lego until this branch deploys.
+- Re-batch via `maquette-border-alpha.mjs` would need `layers-review/`
+  restored first (deleted with the trim).

@@ -2803,6 +2803,26 @@ Chrome. Layer PNGs still untouched — `MaquetteScene` content rects, optional
 
 Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
 
+## 14 Oct 2026, later — only `layers/` kept under `public/home/maquette/`
+
+Asked which of the four maquette directories the site uses. Answer: **only
+`layers/`** — every `MaquetteScene` `next/image` src is
+`/home/maquette/layers/…`.
+
+| Directory | Role | Kept? |
+|---|---|---|
+| `layers/` | Live transparent PNGs served on the page | Yes |
+| `layers-review/` | Subject-on-white cutouts; input to `maquette-border-alpha.mjs` | No |
+| `layers-alpha-preview/` | Chequer/dark previews from that script | No |
+| `source/` | Spec sheet for placement reference (comment-only in code) | No |
+
+Removed in `feb8082`. Historical vault entries that name the deleted paths
+remain as build history; they are no longer on disk. The border-alpha
+script still points at `layers-review/` — restore those assets before
+re-batching.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 
 Built on instruction to mirror `pixelette-technologies-website.vercel.app/contact`

@@ -17,7 +17,11 @@ The single approved exception is the footer columns — see [[Known bugs and dev
 
 ## No regression in SEO or structured data
 
-Every metadata export and every JSON-LD block must keep emitting exactly what it emits today. Verify by diffing the emitting code, not rendered output. Command in [[Build and verification]].
+**Updated 14 Oct 2026.** Metadata and the sitemap were deliberately rewritten (shared `pageMetadata` in `src/data/site.ts`, linked-only sitemap, titles/descriptions aligned with current page voice). The old conversion rule — “emit exactly what it emits today” — no longer applies to those files as a freeze. What still holds:
+
+1. **Do not silently change** titles, descriptions, canonicals, JSON-LD or sitemap membership without an instruction.
+2. **Verify by reading the emitting code** (`src/data/site.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, page `metadata` / `generateMetadata`, inline JSON-LD), not by eyeballing rendered `<head>` alone. Command shape in [[Build and verification]].
+3. **Sitemap membership = internally linked.** Orphan routes that stay live for legacy traffic (the five `/industries/[slug]` specialist pages) stay out of the sitemap until they are linked again.
 
 ## Also forbidden without explicit instruction
 
@@ -76,7 +80,7 @@ Pushing the branch. Opening a pull request. Deploying. Committing in logical chu
 
 ## Traps that actually bit — this conversion
 
-**Count from the routes, not from the data file.** The audit recorded 27 blog posts and 50 dynamic pages by counting `id:` occurrences in `blogsData.ts`. Most of those were nested `dataContent` SECTION ids inside each post. There are three posts; `/blog/4` is a 404; the real inventory is 34 routes, not 58. The route walk found it because it discovers routes from `/sitemap.xml` instead of trusting a hand count — which is the whole argument for discovering them.
+**Count from the routes, not from the data file.** The audit recorded 27 blog posts and 50 dynamic pages by counting `id:` occurrences in `blogsData.ts`. Most of those were nested `dataContent` SECTION ids inside each post. That count was wrong then and is wrong again now: there are **five** Insights posts (`/blog/1`–`/blog/5`), eight service pages, and the sitemap lists only **internally linked** URLs (~23). `/success_stories` and `/story/[id]` were deleted 25 Sep 2026. The route walk discovers routes from `/sitemap.xml` rather than trusting a hand count — which is the whole argument for discovering them. See [[Build and verification]].
 
 **The shell-quoting hazard is real, and it bites more than once.** An apostrophe inside a `node -e` script wrapped in a single-quoted shell invocation terminates the quoting. It happened again in the D-phase work: a `node -e` carrying backticks and `${...}` was expanded by the shell before node ever saw it, and silently corrupted two component files — recovered with `git checkout`, but only because the tree was clean.
 

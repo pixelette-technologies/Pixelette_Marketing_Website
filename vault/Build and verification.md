@@ -57,7 +57,7 @@ One caveat: a Next.js App Router response embeds the RSC flight payload alongsid
 | Type check | As written. |
 | Lint | `npm run lint` runs `eslint --fix` and rewrites the working tree, so it cannot serve as a gate. `lint:check` was added for this. |
 | Full build | **Weak signal here.** No route uses `generateStaticParams`, so a production build does not pre-render the 50 dynamic pages and there is nothing to count against the route table. |
-| Route walk | **Built: `npm run route:walk`.** Discovers routes from `/sitemap.xml`, adds `/success_stories` and the `/story/[id]` ids scraped from it (both are deliberately absent from the sitemap as noindex content), then asserts 200 and a rendered `<h1>` on each. Takes an optional base URL; defaults to `:3001`. Currently 34/34. |
+| Route walk | **Built: `npm run route:walk`.** Discovers routes from `/sitemap.xml` (the linked public set), then asserts 200, a rendered `<h1>`, and the design-system ground caps on each. Separately asserts that deleted routes (`/success_stories`, `/story/1`, `/industries/undefined`, `/services/undefined`) return **404**. Takes an optional base URL; defaults to `:3001`. Count tracks the sitemap — currently ~23 linked routes. |
 | Token gate | **Built: `npm run lint:legacy-tokens`.** Appendix B's script with the glob extended to `.scss`, `.ts`, `.tsx` and `.css`. Every exemption carries its reason in the file. Mutation-tested. Currently clean. |
 | Palette regression | **Inverted and live.** `npm run compare:palette` reads the tokens back out of `_tokens.scss` and exits non-zero on an introduced contrast failure, on drift from the approved values, or on a gated token the stylesheet no longer defines. Mutation-tested. A token added to the brand layer must be added to `TOKEN_OF` in the script or it goes unwatched. |
 | Contract tests | 3 suites covering contact delivery. Keep green; do not touch them. |
@@ -70,28 +70,55 @@ One caveat: a Next.js App Router response embeds the RSC flight payload alongsid
 
 **Keep the matcher dumb.** It does not parse comments, so a provenance note that writes a retired value with a hash trips the gate on its own documentation. Convention: write such notes bare — `was B3063C`, no hash. `build-palette-compare.mjs` already follows this.
 
-## Route inventory — CORRECTED
+## Route inventory — CORRECTED (again, 14 Oct 2026)
 
-8 static: `/`, `/aboutus`, `/contactus`, `/services`, `/industries`, `/blog-list`, `/success_stories`, `/cookie-policy`.
+**In the sitemap (internally linked only):**
 
-4 dynamic templates rendering **26** pages: `services/[slug]` (8), `industries/[slug]` (5), **`blog/[id]` (3)**, `story/[id]` (10). **34 routes in total, not 58.**
+| Group | Routes |
+|---|---|
+| Static | `/`, `/services`, `/strategy-positioning`, `/industries`, `/results`, `/aboutus`, `/blog-list`, `/contactus`, `/privacy`, `/cookie-policy` |
+| Services | 8 from `servicesData` (`/services/[slug]`) |
+| Insights | 5 from `blogsData` (`/blog/1`–`/blog/5`) |
+| **Total** | **~23** |
 
-> **The audit said 27 blogs and 50 dynamic pages. That was wrong.** `blogsData` is one category whose `data` array holds three posts; the 27 came from counting the nested `dataContent` section ids inside each post as if they were post ids. `/blog/4` returns 404. Found by the route walk, which discovers routes from `/sitemap.xml` rather than trusting a hand count — which is exactly why it discovers them.
+**Live but omitted from the sitemap** (not linked from nav, footer or `/industries`; kept for direct/legacy traffic until internal linking returns): `/industries/web_3`, `/fintech`, `/tech`, `/saas`, `/ai`.
+
+**Deleted (must 404):** `/success_stories`, `/story/[id]`. Asserted by the route walk.
+
+> Earlier vault counts (34 routes, 3 blogs, `/success_stories` still present) are historical. The audit’s “27 blogs” was always wrong — nested `dataContent` section ids. Trust `/sitemap.xml` and the walk, not a hand count.
 
 Plus route handlers: `api/contact`, `robots.ts`, `sitemap.ts`.
 
-## Structured data non-regression
+## Metadata and indexing — 14 Oct 2026
 
-There is **no `src/components/seo/`** — JSON-LD is inline in `layout.tsx` and five page files. Diff the emitting code, not rendered output:
+Shared helper: **`src/data/site.ts`** (`SITE_URL`, `SITE_NAME`, `pageMetadata`). Every public page’s `metadata` / `generateMetadata` goes through it: title (brand suffix), description, canonical, Open Graph (no images yet), Twitter `summary`, `robots: index, follow`.
+
+| Piece | Where | State |
+|---|---|---|
+| Canonical host | `SITE_URL` | `https://www.pixelettemarketing.com` |
+| `robots.txt` | `src/app/robots.ts` | allow `/`, sitemap + host |
+| `sitemap.xml` | `src/app/sitemap.ts` | linked routes only; priorities set |
+| JSON-LD | inline in `layout.tsx` + page files | Organization / WebSite / LocalBusiness; breadcrumbs / FAQ / Article where already present |
+| Share image | — | **Open:** one sitewide asset at `/public/og/default.png` (1200×630). Wire into `pageMetadata` and switch Twitter to `summary_large_image` when it lands. |
+
+**Operational (outside the repo):** deploy → confirm live `/robots.txt` and `/sitemap.xml` → submit the sitemap in Google Search Console (and Bing if used).
+
+## Structured data — how to check after the SEO pass
+
+There is **no `src/components/seo/`** — JSON-LD is inline in `layout.tsx` and page files. Metadata is centralised in `src/data/site.ts`. Diff the emitting code, not rendered output alone:
 
 ```
-git diff -- src/app/layout.tsx src/app/sitemap.ts src/app/robots.ts \
+git diff -- src/data/site.ts src/app/layout.tsx src/app/sitemap.ts src/app/robots.ts \
+  src/app/page.tsx src/app/aboutus/page.tsx src/app/contactus/page.tsx \
   src/app/services/page.tsx src/app/industries/page.tsx \
+  src/app/results/page.tsx src/app/blog-list/page.tsx \
+  src/app/strategy-positioning/page.tsx src/app/privacy/page.tsx \
+  src/app/cookie-policy/page.tsx \
   "src/app/services/[slug]/page.tsx" "src/app/industries/[slug]/page.tsx" \
-  "src/app/blog/[id]/page.tsx" "src/app/story/[id]/page.tsx"     # expect no output
+  "src/app/blog/[id]/page.tsx"
 ```
 
-Every `export const metadata` must keep emitting exactly what it emits today, including the `robots: { index: false }` on `/success_stories` and `/story/[id]`.
+Do not “restore” deleted `/success_stories` or `/story/[id]` metadata — those routes are gone. Do not add the five industry specialist URLs back to the sitemap without restoring internal links first.
 
 ## The D4/D5 run — 1 September 2026
 
@@ -109,7 +136,7 @@ All gates re-run after every commit and all green at the end. Numbers moved as f
 
 **The token gate gained a pattern.** Its named-colour rule only matched CSS value position — after a colon, or after `solid` — so `fill='white'` and `stroke='white'` in the hand-written SVG components walked past it for the whole conversion. Eleven instances across eight files, all missed by D1's pass over the icon set. Verified by mutation: a planted `fill='white'` fails the gate and names the file. **A matcher written for CSS will not see JSX attributes.**
 
-**The structured-data check was re-run at the end of the run** with `git diff 636659d..HEAD` over the nine emitting files. No metadata or JSON-LD line changed. The only diff in any of those files is one `className` on `/blog/[id]`.
+**The structured-data check was re-run at the end of the D4/D5 run** with `git diff 636659d..HEAD` over the nine emitting files. No metadata or JSON-LD line changed then. **That freeze ended 14 Oct 2026** when metadata and the sitemap were deliberately rewritten — see “Metadata and indexing” above.
 
 ## Assertions worth grepping
 

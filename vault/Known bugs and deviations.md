@@ -100,7 +100,7 @@ These need new visible content or structural change, so they are out of scope. R
 Three `h2`s per section, a heading-hierarchy problem. Changing the level is a structural DOM change.
 
 **Malformed markup in a content string.**
-`/story/[id]` passes `` `let's <span> talk business <span/>` `` to `ContactSection` — note `<span/>` where `</span>` was meant. It is content; leave it.
+~~`/story/[id]` passes `` `let's <span> talk business <span/>` `` to `ContactSection` — note `<span/>` where `</span>` was meant.~~ **Obsolete:** `/story/[id]` was deleted 25 Sep 2026.
 
 **`Navbar` desktop/mobile link asymmetry.**
 The desktop bar has a Blogs link; the mobile drawer does not — it sits inside a commented-out block alongside the hidden Portfolio link. **Preserve this.** It is a content difference, not a styling one.
@@ -114,8 +114,14 @@ Do not convert it, do not delete it. Only detokenise the two raw hexes in `_impo
 
 (It also renders `el.name` twice, in two `Heading` elements — dead code, not worth touching.)
 
-**`/success_stories` and `/story/[id]` are `noindex`.**
-Interim, pending real content. Convert the pages; leave the robots blocks exactly as they are.
+**~~`/success_stories` and `/story/[id]` are `noindex`.~~ DELETED 25 Sep 2026.**
+Those routes must 404. The route walk asserts `/success_stories` and `/story/1` return 404. Do not restore them.
+
+**Five industry specialist pages are live but unlinked (14 Oct 2026).**
+`/industries/web_3`, `/fintech`, `/tech`, `/saas`, `/ai` stay reachable for direct/legacy traffic and keep their own metadata, but they are not linked from nav, footer or `/industries`, and they are **omitted from the sitemap** until internal linking returns. Do not put them back in the sitemap without links.
+
+**Sitewide Open Graph image is missing (14 Oct 2026).**
+Metadata is otherwise standardised via `src/data/site.ts`. One share asset is still owed: `/public/og/default.png` at 1200×630, then wire it in `pageMetadata` and switch Twitter to `summary_large_image`. Social previews only — not an indexing blocker.
 
 ## Dead code — ALL CLEARED
 

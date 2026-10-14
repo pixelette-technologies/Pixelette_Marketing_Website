@@ -102,14 +102,23 @@ SVG failed by-eye against the approved spec sheet, onto **Option 1 layered
 cutouts** (`d6847a6` review assets; border-flood transparent PNGs in
 `public/home/maquette/layers/`). Concept locked; art finish comes from the
 layers, not from code-drawn shapes. Interaction principle unchanged:
-coordinated hover (desktop) or once-on-view (touch), no loop. Layers are not
-composited into the scene yet; motion still needs rebuilding onto them
-(larger travel, multi-step).
+coordinated hover (desktop) or once-on-view (touch), no loop. **Layers are
+composited** as an HTML stack in `MaquetteScene` (content rect + PNG alpha
+inset → image box; motion class names preserved; `SCENE` 1001×403; stage at
+`--scene-stage-left`). A single-still rest experiment was tried and **undone
+on instruction** — rest stays the fifteen-layer stack. **14 Oct:** content
+rects retuned to the approved still (PNGs unchanged; mustard alone may stretch
+vertically because its cutout aspect is squat). Same day by-eye: people ~1.5×,
+ladder climber and spheres seated, scene vertically centred, phone shows the
+full composition at art-row width, and a layered entrance fade-in (forms →
+props → people) on first view. Collaboration motion still needs rebuilding
+(larger travel, multi-step) — interim SCSS nudges only.
 
 **Unchanged:** section shell, editorial copy, CTA, room backdrop, bottom-right
-placement and the phone sideways-scroll art row. **Removed from the picture:**
-capability name/icon overlays and "Real growth builds here" — the brief keeps
-labels out of the illustration. See [[02 Decisions]] and [[09 Outstanding]].
+placement. Phone art is full-fit (no sideways scroll). **Removed from the
+picture:** capability name/icon overlays and "Real growth builds here" — the
+brief keeps labels out of the illustration. See [[02 Decisions]] and
+[[09 Outstanding]].
 
 ## 23 Sep — section 03's figure, for the fifth time
 

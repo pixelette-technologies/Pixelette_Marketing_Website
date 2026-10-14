@@ -959,8 +959,8 @@ no longer apply. See [[02 Decisions]] (13 Oct).
 
 **Settled:** vector or real for the ducks (real: a looping video), and the
 pink duck's colour (the footage's magenta). ~~**Still open:** vector or real
-for the bricks in 03.~~ **Settled 13 Oct for 03:** interactive SVG maquette
-(not Lego, not photography). See [[02 Decisions]].
+for the bricks in 03.~~ **Settled 13 Oct for 03:** interactive layered
+maquette (not Lego, not photography). See [[02 Decisions]].
 
 **Not done yet:**
 
@@ -1201,10 +1201,13 @@ Committed `1daaef9`.
   run (the shared dev server holds `.next`; no server started, on
   instruction). No real enquiry submitted.
 
-## 13 Oct — section 03 architectural maquette (layered Option 1)
+## 13–14 Oct — section 03 architectural maquette (layered Option 1)
 
 On `bilal/revamp`. Commits `80fcb7b` (SVG shell), `d6847a6` (layer review
-assets), plus the border-flood transparent batch in `layers/`. **Not
+assets), border-flood transparent batch in `layers/`, the **layer wire** into
+`MaquetteScene` (HTML stack), the **14 Oct placement retune**, then the same
+day **by-eye scale / layout / entrance fade**. A still-as-rest swap was tried
+and **undone on instruction** — rest is the fifteen-layer stack. **Not
 pushed, not live.** Production still serves the brick scene. See
 [[02 Decisions]] and [[10 Verification]].
 
@@ -1213,21 +1216,36 @@ pushed, not live.** Production still serves the brick scene. See
 - ~~Border-flood alpha test on `05` / `07`~~ — approved by eye.
 - ~~Batch all fifteen to true transparent PNGs~~ —
   `public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
+- ~~**Wire layers** into section 03~~ — schematic SVG geometry removed;
+  fifteen absolute layers with content-box placement against
+  `source/spec-sheet.png`; `MaquetteSceneMotion` and class hooks kept;
+  `SCENE` is `1001×403`; stage at `--scene-stage-left`.
+- ~~Still-as-rest experiment~~ — tried, then undone; crop files removed.
+- ~~**Tune layer placement**~~ — content rects remeasured to the approved
+  still (PNGs unchanged; mustard alone may stretch vertically).
+- ~~**By-eye scale and alignment**~~ — people ~1.5×; ladder climber on the
+  rails; spheres seated; PNGs unchanged.
+- ~~**Vertical centre + phone full-fit**~~ — scene centred in the band;
+  phone shows the whole composition at art-row width (sideways scroll gone).
+- ~~**Layered entrance fade-in**~~ — forms → props → people on first view;
+  longer delays on instruction; reduced motion skips it.
 
 **Next session — agreed order:**
 
-1. **Wire layers** into section 03 (replace or composite over schematic SVG
-   groups), keeping locked concept and interaction principle.
-2. **Rebuild motion** as a multi-keyframe collaboration sequence with real
+1. ~~Wire layers~~
+2. ~~Tune layer placement~~ / by-eye scale / layout / entrance
+3. **Rebuild collaboration motion** as a multi-keyframe sequence with real
    travel (not 8–16px CSS nudges).
-3. Gates + by-eye (rest / hover / leave / phone scroll / reduced motion).
+4. Gates + by-eye (rest / hover / leave / phone / reduced motion).
 
 **Calls for the user:**
 
 - ~~Approve or reject the two-file alpha test before batching~~ — approved;
   batch done.
 - ~~By-eye of the schematic SVG as final art~~ — rejected; layers are the art
-  path now. By-eye of the **composited layered scene** is still open.
+  path now.
+- **By-eye of the composited layered rest pose + entrance** — further nudges
+  only if asked after this pass.
 - Minor alpha fringe (silhouette halos, form bases) acceptable for now or
   refine later — user called the batch perfect.
 - **Whether capability names should return somehow** outside the picture.
@@ -1237,8 +1255,8 @@ pushed, not live.** Production still serves the brick scene. See
 
 **Not done yet:**
 
-- Compositing layers into `CapabilitiesSection` / scene components.
-- Motion rebuild on layers.
-- Full gate suite beyond the earlier `tsc --noEmit` on the SVG pass.
+- Collaboration motion rebuild on layers (interim SCSS nudges still fire).
+- Full gate suite beyond `tsc --noEmit` on the wire / placement / entrance
+  passes.
 - axe / phone LCP/CLS; real-device touch and reduced-motion check.
 - Production still shows Lego until this branch deploys.

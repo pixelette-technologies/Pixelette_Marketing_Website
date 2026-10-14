@@ -2651,10 +2651,126 @@ Video loop (04's method) deferred because hover choreography is required.
 
 **Still open after alpha**
 
-- Wire transparent layers into the capabilities scene; rebuild hover
-  collaboration as real multi-keyframe travel.
+- ~~Wire transparent layers into the capabilities scene~~ — done same day
+  (see below); rebuild hover collaboration as real multi-keyframe travel.
 
 Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 layers wired into the scene
+
+On instruction after the alpha batch. Option 1 art path lands in the live
+section shell.
+
+**What changed**
+
+- `MaquetteScene.tsx` no longer draws SVG primitives. It renders fifteen
+  absolute `next/image` layers from `public/home/maquette/layers/`.
+- Frame aspect follows the spec sheet: `SCENE = { w: 1001, h: 403 }`.
+- Placement is **content-box**: each layer stores a desired content rect (%
+  of frame) plus the PNG's alpha inset; image `left/top/width` are derived so
+  empty padding does not drift subjects. The cream beam's vertical inset was
+  tightened to the bar (full alpha bbox is shadow-tall).
+- **Copy clearance:** the scene uses `left: var(--scene-stage-left)` (same
+  31rem stage token as section 02), not the old 16rem width calc — that was
+  letting the pink cube sit under "One commercial objective". Placement was
+  then retuned against the approved still so forms share a floor plane and
+  the beam sits on both towers.
+- Motion class names (`maquette__pink`, `maquette__ladderPerson`, …) and
+  `MaquetteSceneMotion` are unchanged. `_capabilitiesSection.scss` targets
+  HTML layers (`transform-origin: center bottom`; SVG `fill-box` and tablet
+  rules removed). Interim small CSS nudges still fire; multi-keyframe travel
+  is the next pass.
+
+**What stayed**
+
+- Section shell, copy, CTA, room backdrop, bottom-right placement, phone
+  sideways-scroll art row, decorative `aria-hidden`.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 13 Oct 2026, later — section 03 still-as-rest tried and undone
+
+On instruction to match the approved still pixel-for-pixel, rest was briefly
+swapped to a single crop of `spec-sheet.png` (`maquette-rest.png`). On further
+instruction that change was **undone**: rest is again the fifteen-layer HTML
+stack in `MaquetteScene.tsx`. The still crop files were removed. Option 1
+(layered cutouts) remains the art path for both rest and motion rebuild.
+Placement against the still was the next pass (see 14 Oct below).
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026 — section 03 layer placement retuned to the approved still
+
+On instruction: align the fifteen wired layers to the original spec-sheet
+composition; **do not alter layer PNGs** — position (and uniform scale) only.
+
+**What changed**
+
+- Content rects in `MaquetteScene.tsx` remeasured against
+  `public/home/maquette/source/spec-sheet.png` (and the attached hero still):
+  shared ground plane, beam seated on both towers, centre sphere on the cream
+  cylinder, moving sphere on the mustard top at the beam end, cube-top people
+  with feet on cube tops, ground people planted, blue person to the right of
+  the blue cylinder.
+- Cream-beam alpha inset tightened to the dense bar core (soft shadow left
+  outside the content box) so seating tracks the bar, not the shadow bbox.
+- **Mustard cube only:** optional `content.height` + `.is-stretched` /
+  `object-fit: fill`. The cutout's aspect is squat versus the still's tall
+  cube; uniform scale cannot reach the ground at the still's width. Stretch
+  is placement to match the still, not a rewritten asset.
+- Layer PNG files untouched.
+
+**What stayed**
+
+- Fifteen-layer HTML stack, `SCENE` 1001×403, content-box placement model,
+  motion class hooks, interim SCSS nudges, section shell / copy / CTA.
+
+**Still open**
+
+- User by-eye sign-off on the composited rest pose (further pixel nudges if
+  asked).
+- Motion rebuild (multi-keyframe travel).
+- Full gates + hover / leave / phone / reduced-motion by-eye.
+
+Related: [[03 Phase 1 — Homepage]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]].
+
+## 14 Oct 2026, later — section 03 by-eye scale, layout, and entrance fade
+
+On instruction after looking at the composited rest pose in the browser.
+Layer PNGs still untouched — placement, layout CSS, and motion only.
+
+**Placement (by-eye)**
+
+- All six people scaled ~1.5× vs the still-aligned widths; feet kept on
+  ground / cube tops. Ladder scaled with the climber; climber shifted left
+  onto the rails. Centre sphere seated on the cream cylinder; moving sphere
+  seated on the mustard top under the sphere person's hands.
+
+**Layout**
+
+- Maquette vertically centred in the stage (no longer pinned to the floor).
+- Phone: full scene fits the art row width — the fixed `47.5rem` sideways
+  scroll and right-edge fade are gone. Art row centres the scene; room
+  backdrop is full width.
+
+**Entrance**
+
+- One-shot layered fade-in on first viewport entry: forms (cylinders, cubes,
+  beam) → props (ladder, both gold spheres) → people, with soft within-wave
+  cascade and longer delays on instruction. `MaquetteSceneMotion` arms hide
+  before paint when motion is allowed; reduced motion shows the full
+  composition. Desktop hover collaboration waits until the reveal has run;
+  touch collaboration plays once after the entrance settles (~3s).
+
+**Still open**
+
+- Collaboration motion rebuild (multi-keyframe travel; interim SCSS nudges).
+- Full gates + rest / hover / leave / phone / reduced-motion by-eye sign-off.
+- Push / deploy when asked.
+
+Related: [[03 Phase 1 — Homepage]], [[08 Design system constraints]],
+[[09 Outstanding]], [[10 Verification]].
 
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 

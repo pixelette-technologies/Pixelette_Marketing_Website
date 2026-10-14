@@ -419,7 +419,7 @@ a damped buoyant bob, with perspective-flattened splash rings. Committed on
 the branch; **not pushed, not live.** Later the same day the
 ducks became a looping photographic video, which settled the pink duck's
 colour and, for 04, the vector-or-real question; **03's vector-or-real later
-settled as an interactive SVG maquette (13 Oct), not Lego and not a photo.**
+settled as an interactive layered maquette (13 Oct), not Lego and not a photo.**
 See [[02 Decisions]], [[09 Outstanding]] and [[10 Verification]].
 
 **29 Sep, later — section 02's Post-its fall in a loop, and A clearer path is
@@ -541,10 +541,19 @@ rebuild motion as real travel. Layer review assets `d6847a6`
 global white-key): two-file test on `05-blue-cylinder` and
 `07-centre-sphere` approved by eye; all fifteen true transparent PNGs in
 `public/home/maquette/layers/` via `scripts/maquette-border-alpha.mjs`.
-Still open: wire layers into the scene and rebuild collaboration motion.
-On `bilal/revamp`; **not pushed, not live.** Production still shows Lego.
-See [[02 Decisions]], [[03 Phase 1 — Homepage]], [[09 Outstanding]] and
-[[10 Verification]].
+**Layers wired** into section 03 as an HTML absolute stack
+(`MaquetteScene.tsx`, content-box placement against the spec sheet; frame
+`1001×403`). A brief still-as-rest experiment was tried and **undone on
+instruction** — rest remains the fifteen-layer stack. **14 Oct — placement
+retuned** against the approved still (content rects remeasured; beam core
+inset tightened; mustard stretched vertically because its cutout is squat vs
+the still). Same day **by-eye:** people ~1.5×, ladder/sphere seating, scene
+vertically centred, phone full-fit (sideways scroll dropped), and a one-shot
+layered entrance fade (forms → props → people). Layer PNGs unchanged.
+Interim CSS nudges kept; **collaboration motion rebuild** (real
+multi-keyframe travel) still open. On `bilal/revamp`; **not pushed, not
+live.** Production still shows Lego. See [[02 Decisions]],
+[[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:
 

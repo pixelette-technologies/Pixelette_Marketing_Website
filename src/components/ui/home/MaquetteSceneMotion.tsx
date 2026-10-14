@@ -3,6 +3,7 @@
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -14,15 +15,18 @@ import {
   useMotionAllowed
 } from "@/lib/useInView";
 
-// 03 — Maquette interaction. Desktop: hover wakes the miniature world into a
-// coordinated collaboration sequence, then settles; leave reverses smoothly.
-// Touch: play once when the section enters the viewport and remain active.
-// Reduced motion: static final composition, no movement.
+// 03 — Maquette interaction.
+// Entrance: one-shot layered fade-in when the scene first enters view
+// (forms → props → people). Desktop hover then wakes the collaboration
+// sequence; leave reverses. Touch plays collaboration once after the
+// entrance finishes. Reduced motion: full composition, no movement.
 
 type Phase = "rest" | "activating" | "active" | "returning";
 
 const ACTIVATE_MS = 2400;
 const RETURN_MS = 800;
+/** Last person delay (1920ms) + fade (950ms), plus a short beat. */
+const REVEAL_SETTLE_MS = 3000;
 
 export default function MaquetteSceneMotion({
   className,
@@ -38,8 +42,10 @@ export default function MaquetteSceneMotion({
   const mobilePlayed = useRef(false);
   const motion = useMotionAllowed();
   const fine = useFinePointer();
-  const arrived = useInView(rootRef, "0px 0px -25% 0px");
+  const arrived = useInView(rootRef, "0px 0px -20% 0px");
   const [phase, setPhase] = useState<Phase>("rest");
+  const [revealArmed, setRevealArmed] = useState(false);
+  const [revealed, setRevealed] = useState(false);
 
   const clearTimers = useCallback(() => {
     timers.current.forEach(id => window.clearTimeout(id));
@@ -62,7 +68,19 @@ export default function MaquetteSceneMotion({
     timers.current.push(id);
   }, [clearTimers, motion]);
 
-  // Reduced motion: always show the completed composition, never animate.
+  // Read reduced-motion in layout so we can hide layers before paint when
+  // the entrance will run — avoids a full-opaque flash then vanish.
+  useLayoutEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      setRevealArmed(false);
+      setRevealed(true);
+      return;
+    }
+    setRevealArmed(true);
+  }, []);
+
+  // Reduced motion: settled composition, no collaboration movement.
   useEffect(() => {
     if (!motion) {
       clearTimers();
@@ -74,17 +92,29 @@ export default function MaquetteSceneMotion({
     }
   }, [motion, fine, clearTimers]);
 
-  // Mobile / coarse pointer: trigger once on viewport entry.
+  // First time on screen: run the layered fade-in once.
   useEffect(() => {
-    if (!motion || fine || mobilePlayed.current || !arrived) return;
-    mobilePlayed.current = true;
-    activate();
-  }, [arrived, fine, motion, activate]);
+    if (!revealArmed || !arrived || revealed) return;
+    setRevealed(true);
+  }, [revealArmed, arrived, revealed]);
+
+  // Mobile / coarse pointer: collaboration once, after the entrance settles.
+  useEffect(() => {
+    if (!motion || fine || mobilePlayed.current || !arrived || !revealed) {
+      return;
+    }
+    const id = window.setTimeout(() => {
+      mobilePlayed.current = true;
+      activate();
+    }, REVEAL_SETTLE_MS);
+    timers.current.push(id);
+    return () => window.clearTimeout(id);
+  }, [arrived, revealed, fine, motion, activate]);
 
   useEffect(() => () => clearTimers(), [clearTimers]);
 
   const onEnter = () => {
-    if (!fine || !motion) return;
+    if (!fine || !motion || !revealed) return;
     activate();
   };
 
@@ -98,7 +128,9 @@ export default function MaquetteSceneMotion({
     className,
     isLit ? "is-active" : "",
     phase === "returning" ? "is-returning" : "",
-    !motion ? "is-static" : ""
+    !motion ? "is-static" : "",
+    revealArmed ? "is-reveal-armed" : "",
+    revealed ? "is-revealed" : ""
   ]
     .filter(Boolean)
     .join(" ");

@@ -1,46 +1,172 @@
-// 03 — Architectural maquette. Replaces the former brick scene.
-// Hover (fine pointer) wakes a one-shot collaboration sequence; leave
-// reverses. Touch plays once on viewport entry. Reduced motion shows the
-// settled composition statically. See MaquetteScene.tsx / MaquetteSceneMotion.
+// 03 — Architectural maquette. Layered transparent cutouts replace the
+// schematic SVG. First view: layered fade-in (forms → props → people).
+// Hover (fine pointer) then wakes a one-shot collaboration sequence; leave
+// reverses. Touch plays collaboration once after the entrance. Reduced
+// motion shows the settled composition statically. See MaquetteScene.tsx /
+// MaquetteSceneMotion. Interim transforms are small CSS nudges; multi-keyframe
+// travel is a follow-up pass.
 
-// Scene sits bottom-right, proportion preserved. Width capped so the left
-// edge stays clear of the copy column (container left + 16rem).
+// Scene sits in the stage to the right of the copy column — same
+// --scene-stage-left token as section 02's Post-it field, so the headline
+// ("One commercial objective") never runs under the pink cube.
+// Vertically centred in the band (not pinned to the floor).
 .maquetteScene {
   position: absolute;
+  left: var(--scene-stage-left);
   right: 0;
+  top: 0;
   bottom: 0;
-  width: min(calc(100% - max(0px, (100% - 1160px) / 2) - 20px - 16rem), 82%);
+  display: flex;
+  align-items: center;
 }
 
 .maquetteScene__frame {
+  --maquette-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --maquette-reveal-dur: 720ms;
+
   position: relative;
+  width: 100%;
 }
 
-.maquetteScene__svg {
-  display: block;
+.maquetteScene__stack {
+  position: relative;
   width: 100%;
   height: 100%;
   overflow: visible;
+}
+
+.maquetteScene__layer {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  line-height: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  // Mustard cube cutout is squat vs the still — stretch to the measured
+  // content height without rewriting the PNG.
+  &.is-stretched img {
+    height: 100%;
+    object-fit: fill;
+  }
+}
+
+// --- Entrance reveal (forms → props → people), once on first view -----------
+
+@keyframes maquetteFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+// Armed before paint when motion is allowed — hide until the wave animation.
+.maquetteScene__frame.is-reveal-armed:not(.is-revealed) {
+  .maquette__part,
+  .maquette__person {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .maquetteScene__frame.is-revealed {
+    .maquette__wave1 {
+      animation: maquetteFadeIn var(--maquette-reveal-dur)
+        var(--maquette-reveal-ease) both;
+      animation-delay: 0ms;
+    }
+
+    .maquette__wave2 {
+      animation: maquetteFadeIn var(--maquette-reveal-dur)
+        var(--maquette-reveal-ease) both;
+      animation-delay: 700ms;
+    }
+
+    .maquette__wave3 {
+      animation: maquetteFadeIn 950ms var(--maquette-reveal-ease) both;
+      animation-delay: 1400ms;
+    }
+
+    // Soft cascade within each wave (left → right / props / people).
+    .maquette__burgundy {
+      animation-delay: 0ms;
+    }
+
+    .maquette__pink {
+      animation-delay: 120ms;
+    }
+
+    .maquette__creamCyl {
+      animation-delay: 180ms;
+    }
+
+    .maquette__mustard {
+      animation-delay: 240ms;
+    }
+
+    .maquette__blue {
+      animation-delay: 300ms;
+    }
+
+    .maquette__bridge {
+      animation-delay: 360ms;
+    }
+
+    .maquette__ladder {
+      animation-delay: 700ms;
+    }
+
+    .maquette__centreSphere {
+      animation-delay: 820ms;
+    }
+
+    .maquette__movingSphere {
+      animation-delay: 920ms;
+    }
+
+    .maquette__ladderPerson {
+      animation-delay: 1400ms;
+    }
+
+    .maquette__bridgePerson {
+      animation-delay: 1520ms;
+    }
+
+    .maquette__directorPerson {
+      animation-delay: 1620ms;
+    }
+
+    .maquette__tabletPerson {
+      animation-delay: 1720ms;
+    }
+
+    .maquette__spherePerson {
+      animation-delay: 1820ms;
+    }
+
+    .maquette__bluePerson {
+      animation-delay: 1920ms;
+    }
+  }
 }
 
 // --- Motion primitives -------------------------------------------------------
 
 .maquette__part,
 .maquette__person {
-  transform-box: fill-box;
-  transform-origin: center;
+  transform-origin: center bottom;
   transition-property: transform;
   transition-timing-function: cubic-bezier(0.45, 0.05, 0.25, 1);
   transition-duration: 800ms;
   transition-delay: 0ms;
   will-change: transform;
-}
-
-.maquette__tablet {
-  transform-box: fill-box;
-  transform-origin: center;
-  transition:
-    transform 800ms cubic-bezier(0.45, 0.05, 0.25, 1);
 }
 
 // Forward sequence: staggered, deliberate, settles. No bounce / loop.
@@ -105,12 +231,6 @@
       transition-delay: 420ms;
     }
 
-    .maquette__tabletPerson .maquette__tablet {
-      transform: rotate(-8deg) translateY(1px);
-      transition-duration: 620ms;
-      transition-delay: 420ms;
-    }
-
     .maquette__bluePerson {
       transform: translate(-8px, 1px) rotate(-3deg);
       transition-duration: 780ms;
@@ -157,19 +277,13 @@
       transition-delay: 0ms;
       transition-timing-function: cubic-bezier(0.4, 0.05, 0.3, 1);
     }
-
-    .maquette__tablet {
-      transition-duration: 780ms;
-      transition-delay: 0ms;
-    }
   }
 }
 
 // Reduced motion / static: show settled composition without animating in.
 .maquetteScene__frame.is-static {
   .maquette__part,
-  .maquette__person,
-  .maquette__tablet {
+  .maquette__person {
     transition: none !important;
   }
 
@@ -222,37 +336,36 @@
   }
 }
 
-// --- Phone: scene scrolls sideways under the copy ------------------------------
+// --- Phone: full scene fits the art row (no sideways scroll / clip) ------------
 
 @media (max-width: 767px) {
   .homeScene--capabilities .homeScene__art {
     display: flex;
-    align-items: flex-end;
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-    mask-image: linear-gradient(90deg, var(--note-ink) 85%, transparent);
-  }
-
-  .homeScene--capabilities .homeScene__art::-webkit-scrollbar {
-    display: none;
+    align-items: center;
+    justify-content: center;
+    min-height: 14rem;
+    overflow: hidden;
   }
 
   .homeScene--capabilities .roomBackdrop {
-    width: 47.5rem;
+    width: 100%;
   }
 
   .maquetteScene {
     position: relative;
-    flex: none;
-    width: 47.5rem;
-    padding: 1rem 1.25rem 1.5rem;
-    scroll-snap-align: start;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.75rem 1rem 1rem;
+    box-sizing: border-box;
   }
 
   .maquetteScene__frame {
-    margin-top: -1.5rem;
+    width: 100%;
+    margin-top: 0;
   }
 
   // Smaller movement distances on narrow viewports.

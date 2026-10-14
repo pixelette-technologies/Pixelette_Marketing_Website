@@ -6,11 +6,11 @@ import MaquetteSceneMotion from "./MaquetteSceneMotion";
 import RoomBackdrop from "./RoomBackdrop";
 
 // 03 — "Five capabilities / One commercial objective".
-// Premium architectural-maquette SVG replaces the former brick / Lego visual.
+// Layered transparent cutouts (Option 1) replace the schematic SVG maquette.
 // Section shell, copy, CTA, room backdrop and layout are unchanged.
-// Interaction: desktop hover activates a coordinated one-shot sequence;
-// touch plays once on viewport entry; reduced motion shows the settled pose.
-// The illustration is decorative (aria-hidden); meaning lives in the copy.
+// First view: layered fade-in (forms → props → people). Then desktop hover
+// runs a coordinated one-shot sequence; touch plays once after the entrance;
+// reduced motion shows the settled pose. Decorative (aria-hidden).
 
 export default function CapabilitiesSection() {
   return (

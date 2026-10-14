@@ -556,12 +556,11 @@ multi-keyframe travel) still open.
 **14 Oct, later — rest-pose placement locked by eye in the browser.**
 Mustard shifted right so the cream beam seats on pink + mustard tops;
 cream beam widened, raised, and rest-rotated **7°** (`--maquette-rotate`,
-composed with hover). Beam-person and cream beam image boxes locked from
-Chrome inspector values; moving sphere moved into the sphere person's
-hands; plum cylinder retuned the same way. Blue cylinder / blue-person
-inspector pass started but not committed (wrong screenshot attached for
-the cylinder). PNGs still untouched. On `bilal/revamp`; **not pushed, not
-live.** Production still shows Lego. See [[02 Decisions]],
+composed with hover). Inspector-locked image boxes (reversed into content
+rects): beam-person, cream beam, moving sphere in the sphere person's
+hands, plum cylinder, blue cylinder, blue-person, ladder, and a further
+sphere-person / cream-beam nudge. PNGs still untouched. On `bilal/revamp`;
+**not pushed, not live.** Production still shows Lego. See [[02 Decisions]],
 [[03 Phase 1 — Homepage]], [[09 Outstanding]] and [[10 Verification]].
 
 Two things are still true and worth repeating anywhere this is read:

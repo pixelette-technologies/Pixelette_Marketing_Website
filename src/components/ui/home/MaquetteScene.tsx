@@ -111,11 +111,12 @@ const LAYERS: Layer[] = [
     src: "/home/maquette/layers/05-blue-cylinder.png",
     className: "maquette__part maquette__blue",
     wave: 1,
+    // Image box locked to: left 62.09%, top 63.60%, width 21.07%.
     z: 5,
     iw: 1152,
     ih: 864,
     inset: { left: 11.46, top: 17.59, width: 75.95, height: 64.93 },
-    content: { left: 69.5, top: 63.5, width: 16.0 }
+    content: { left: 64.5, top: 70.5, width: 16.0 }
   },
   {
     id: "cream-beam",
@@ -126,9 +127,9 @@ const LAYERS: Layer[] = [
     iw: 1280,
     ih: 720,
     // Dense bar core only — soft shadow excluded so seating is on the bar.
-    // Image box locked to: left 25.13%, top -23.89%, width 45.86%, rotate 7deg.
+    // Image box locked to: left 25.13%, top -21.89%, width 45.86%, rotate 7deg.
     inset: { left: 6.25, top: 39.03, width: 88.75, height: 17.78 },
-    content: { left: 28.0, top: 1.12, width: 40.7 },
+    content: { left: 28.0, top: 3.12, width: 40.7 },
     rotate: 7
   },
   {
@@ -136,12 +137,12 @@ const LAYERS: Layer[] = [
     src: "/home/maquette/layers/09-ladder.png",
     className: "maquette__part maquette__ladder",
     wave: 2,
+    // Image box locked to: left 11.42%, top 17.69%, width 16.87%.
     z: 7,
     iw: 864,
     ih: 1152,
     inset: { left: 29.51, top: 5.03, width: 43.87, height: 89.24 },
-    // Scaled with the ladder person so rungs stay under hands/feet.
-    content: { left: 15.4, top: 20.5, width: 7.4 }
+    content: { left: 16.4, top: 20.5, width: 7.4 }
   },
   {
     id: "centre-sphere",
@@ -210,19 +211,20 @@ const LAYERS: Layer[] = [
     iw: 864,
     ih: 1152,
     inset: { left: 12.15, top: 3.65, width: 78.59, height: 86.98 },
-    // Feet on mustard top (~17.2); shifted left 5% from prior seat.
-    content: { left: 66.5, top: -21.5, width: 11.2 }
+    // Image box locked to: left 64.77%, top -19.22%, width 14.25%.
+    content: { left: 66.5, top: -17.5, width: 11.2 }
   },
   {
     id: "blue-person",
     src: "/home/maquette/layers/16-person-blue.png",
     className: "maquette__person maquette__bluePerson",
     wave: 3,
+    // Image box locked to: left 78.29%, top 60.13%, width 15.80%.
     z: 14,
     iw: 864,
     ih: 1152,
     inset: { left: 8.8, top: 7.38, width: 89.12, height: 78.82 },
-    content: { left: 79.5, top: 52.5, width: 12.3 }
+    content: { left: 79.68, top: 63.99, width: 14.08 }
   },
   {
     id: "moving-sphere",

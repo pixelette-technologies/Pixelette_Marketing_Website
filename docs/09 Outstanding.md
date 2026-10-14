@@ -1231,17 +1231,16 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
 - ~~**Layered entrance fade-in**~~ — forms → props → people on first view;
   longer delays on instruction; reduced motion skips it.
 - ~~**Rest-pose browser locks**~~ — mustard/beam seating; cream beam 7°;
-  beam-person, moving sphere, plum cylinder from inspector image boxes.
+  beam-person, moving sphere, plum + blue cylinders, blue-person, ladder,
+  sphere-person from inspector image boxes.
 
 **Next session — agreed order:**
 
 1. ~~Wire layers~~
 2. ~~Tune layer placement~~ / by-eye scale / layout / entrance / rest locks
-3. **Lock blue cylinder + blue-person** when correct inspector screenshots
-   arrive (cylinder attach was a duplicate of plum).
-4. **Rebuild collaboration motion** as a multi-keyframe sequence with real
+3. **Rebuild collaboration motion** as a multi-keyframe sequence with real
    travel (not 8–16px CSS nudges).
-5. Gates + by-eye (rest / hover / leave / phone / reduced motion).
+4. Gates + by-eye (rest / hover / leave / phone / reduced motion).
 
 **Calls for the user:**
 
@@ -1251,8 +1250,6 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
   path now.
 - ~~By-eye of the composited layered rest pose + entrance~~ — further
   placement locked from inspector; more nudges only if asked.
-- **Re-send blue cylinder inspector values** (and confirm blue-person box
-  `left 78.29% / top 60.13% / width 15.80% / z 14` if still wanted).
 - Minor alpha fringe (silhouette halos, form bases) acceptable for now or
   refine later — user called the batch perfect.
 - **Whether capability names should return somehow** outside the picture.
@@ -1262,7 +1259,6 @@ brick scene. See [[02 Decisions]] and [[10 Verification]].
 
 **Not done yet:**
 
-- Blue cylinder + blue-person inspector lock.
 - Collaboration motion rebuild on layers (interim SCSS nudges still fire).
 - Full gate suite beyond `tsc --noEmit` on the wire / placement / entrance
   passes.

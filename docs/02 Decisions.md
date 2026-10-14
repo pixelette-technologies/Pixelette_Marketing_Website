@@ -2788,20 +2788,17 @@ Chrome. Layer PNGs still untouched — `MaquetteScene` content rects, optional
 **Inspector-locked image boxes** (reversed into content rects)
 
 - Beam-person — push figure scale/position from DevTools.
-- Cream beam — left / top / width / rotate from DevTools.
+- Cream beam — left / top / width / rotate from DevTools (retuned once more).
 - Moving sphere — into the sphere person's hands (z above him).
 - Plum cylinder — bottom-left under the ladder.
-- Sphere-person left nudged with the mustard shift.
-
-**Not in this commit**
-
-- Blue cylinder and blue-person: user supplied inspector values; the
-  cylinder attachment was a duplicate of the plum screenshot, so those two
-  layers were left for a follow-up.
+- Blue cylinder — bottom-right (correct inspector values after a duplicate
+  plum screenshot was rejected).
+- Blue-person — pushing the blue cylinder.
+- Ladder — left of pink, aligned with the climber.
+- Sphere-person — further by-eye lock on the mustard.
 
 **Still open**
 
-- Finish blue cylinder + blue-person lock when the right screenshots arrive.
 - Collaboration motion rebuild; full gates; push / deploy when asked.
 
 Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].

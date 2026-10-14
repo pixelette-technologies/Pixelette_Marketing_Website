@@ -45,6 +45,16 @@ export const RESULTS_HREF = "/results";
 export const heroCopy = {
   eyebrow: "Clarity. Momentum. Commercial impact.",
   headline: { lead: "Marketing that matters", tail: "to your bottom line" },
+  /**
+   * Desktop break of the home H1 (see `.homeHero__title` in `_heroHome.scss`):
+   * "Marketing that / matters to your / bottom line". The default OG card
+   * uses this same break so share previews stay in lockstep with the page.
+   */
+  ogHeadline: [
+    "Marketing that",
+    "matters to your",
+    "bottom line"
+  ] as const,
   support:
     "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
   primaryCta: { label: "Build my growth plan", to: "/contactus" },

@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     url: SITE_URL
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     creator: TWITTER_HANDLE
   },
   robots: {

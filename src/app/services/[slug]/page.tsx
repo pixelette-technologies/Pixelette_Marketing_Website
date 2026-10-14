@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const path = `/services/${slug}`;
 
   // 30 Sep 2026: a specialist page takes its title and description from its
-  // own config. Open Graph images are omitted until dedicated share assets
-  // exist — add them via pageMetadata / openGraph.images when ready.
+  // own config. Share image defaults to `/opengraph-image` via pageMetadata;
+  // pass ogImage when a page-specific asset is cleared for public use.
   const specialist = specialistPages[slug];
   if (specialist) {
     const { title, description } = specialist.meta;

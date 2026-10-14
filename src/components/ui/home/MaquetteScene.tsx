@@ -2,8 +2,8 @@ import Image from "next/image";
 
 // 03 — Architectural maquette scene as layered cutouts (Option 1).
 // Content rects start from public/home/maquette/source/spec-sheet.png (1001×403),
-// then by-eye: people ~1.5× still scale; ladder person seated on the rails;
-// spheres seated on cream / mustard. PNGs unchanged — placement only.
+// then by-eye: people scaled to match; beam raised for the push; moving sphere
+// carried at the sphere person's chest. PNGs unchanged — placement only.
 // Image boxes are derived from those content rects + each PNG's alpha inset.
 
 export const SCENE = { w: 1001, h: 403 };
@@ -36,6 +36,8 @@ type Layer = {
   inset: Inset;
   /** Subject rect as % of the 1001×403 spec sheet */
   content: Content;
+  /** Optional rest rotation in degrees (composed with motion transforms). */
+  rotate?: number;
 };
 
 function imageBox(content: Content, inset: Inset, iw: number, ih: number) {
@@ -62,11 +64,12 @@ const LAYERS: Layer[] = [
     src: "/home/maquette/layers/01-plum-cylinder.png",
     className: "maquette__part maquette__burgundy",
     wave: 1,
-    z: 1,
+    // Image box locked to: left 5.10%, top 57.50%, width 21.78%.
+    z: 4,
     iw: 1152,
     ih: 864,
     inset: { left: 14.24, top: 20.95, width: 71.18, height: 60.76 },
-    content: { left: 3.2, top: 64.0, width: 15.5 }
+    content: { left: 8.2, top: 66.0, width: 15.5 }
   },
   {
     id: "cream-cylinder",
@@ -100,7 +103,8 @@ const LAYERS: Layer[] = [
     ih: 1024,
     inset: { left: 14.75, top: 15.53, width: 71.97, height: 66.89 },
     // Cutout is squat vs the still's tall cube — stretch height to the still.
-    content: { left: 53.5, top: 18.0, width: 17.0, height: 73.0 }
+    // Nudged right + top matched to pink (17.2) so the cream beam seats level.
+    content: { left: 63.0, top: 17.2, width: 17.5, height: 73.0 }
   },
   {
     id: "blue-cylinder",
@@ -122,8 +126,10 @@ const LAYERS: Layer[] = [
     iw: 1280,
     ih: 720,
     // Dense bar core only — soft shadow excluded so seating is on the bar.
+    // Image box locked to: left 25.13%, top -23.89%, width 45.86%, rotate 7deg.
     inset: { left: 6.25, top: 39.03, width: 88.75, height: 17.78 },
-    content: { left: 26.5, top: 8.5, width: 40.0 }
+    content: { left: 28.0, top: 1.12, width: 40.7 },
+    rotate: 7
   },
   {
     id: "ladder",
@@ -170,8 +176,8 @@ const LAYERS: Layer[] = [
     iw: 864,
     ih: 1152,
     inset: { left: 9.26, top: 11.02, width: 87.15, height: 70.66 },
-    // Feet on pink top (~17); head may clip above the frame.
-    content: { left: 21.6, top: -9.5, width: 10.2 }
+    // Image box locked to: left 20.73%, top -23.99%, width 16.14%.
+    content: { left: 22.22, top: -18.09, width: 14.07 }
   },
   {
     id: "pointing-person",
@@ -204,8 +210,8 @@ const LAYERS: Layer[] = [
     iw: 864,
     ih: 1152,
     inset: { left: 12.15, top: 3.65, width: 78.59, height: 86.98 },
-    // Feet on mustard top (~18); head clips above the frame like the still.
-    content: { left: 62.5, top: -21.5, width: 11.2 }
+    // Feet on mustard top (~17.2); shifted left 5% from prior seat.
+    content: { left: 66.5, top: -21.5, width: 11.2 }
   },
   {
     id: "blue-person",
@@ -223,12 +229,13 @@ const LAYERS: Layer[] = [
     src: "/home/maquette/layers/08-moving-sphere.png",
     className: "maquette__part maquette__movingSphere",
     wave: 2,
-    z: 15,
+    // In front of the sphere person so the carry reads clearly.
+    z: 16,
     iw: 1024,
     ih: 1024,
     inset: { left: 21.29, top: 17.29, width: 59.57, height: 59.28 },
-    // On mustard top at the beam end, under the sphere person's hands.
-    content: { left: 60.8, top: 12.2, width: 6.2 }
+    // Image box locked to: left 61.20%, top -18.04%, width 9.40% (in his hands).
+    content: { left: 63.2, top: -14.0, width: 5.6 }
   }
 ];
 
@@ -248,7 +255,13 @@ export default function MaquetteScene() {
               top: `${box.top}%`,
               width: `${box.width}%`,
               ...(box.stretch ? { height: `${box.height}%` } : null),
-              zIndex: layer.z
+              zIndex: layer.z,
+              ...(layer.rotate != null
+                ? {
+                    ["--maquette-rotate" as `--maquette-rotate`]: `${layer.rotate}deg`,
+                    transform: `rotate(${layer.rotate}deg)`
+                  }
+                : null)
             }}
           >
             <Image

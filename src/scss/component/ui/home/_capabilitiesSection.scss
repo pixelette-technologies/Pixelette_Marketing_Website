@@ -194,7 +194,7 @@
     }
 
     .maquette__bridge {
-      transform: translate(2px, -4px);
+      transform: translate(2px, -4px) rotate(var(--maquette-rotate, 0deg));
       transition-duration: 560ms;
       transition-delay: 120ms;
       transition-timing-function: cubic-bezier(0.33, 0.1, 0.25, 1);
@@ -300,7 +300,7 @@
   }
 
   .maquette__bridge {
-    transform: translate(2px, -4px);
+    transform: translate(2px, -4px) rotate(var(--maquette-rotate, 0deg));
   }
 
   .maquette__ladderPerson {

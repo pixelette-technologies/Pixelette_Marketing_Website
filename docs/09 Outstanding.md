@@ -1205,11 +1205,12 @@ Committed `1daaef9`.
 
 On `bilal/revamp`. Commits `80fcb7b` (SVG shell), `d6847a6` (layer review
 assets), border-flood transparent batch in `layers/`, the **layer wire** into
-`MaquetteScene` (HTML stack), the **14 Oct placement retune**, then the same
-day **by-eye scale / layout / entrance fade**. A still-as-rest swap was tried
-and **undone on instruction** — rest is the fifteen-layer stack. **Not
-pushed, not live.** Production still serves the brick scene. See
-[[02 Decisions]] and [[10 Verification]].
+`MaquetteScene` (HTML stack), the **14 Oct placement retune**, **by-eye
+scale / layout / entrance fade**, then **browser rest-pose locks** (cream
+beam seating + rotate, beam-person, moving sphere in hands, plum cylinder).
+A still-as-rest swap was tried and **undone on instruction** — rest is the
+fifteen-layer stack. **Not pushed, not live.** Production still serves the
+brick scene. See [[02 Decisions]] and [[10 Verification]].
 
 **Done:**
 
@@ -1229,14 +1230,18 @@ pushed, not live.** Production still serves the brick scene. See
   phone shows the whole composition at art-row width (sideways scroll gone).
 - ~~**Layered entrance fade-in**~~ — forms → props → people on first view;
   longer delays on instruction; reduced motion skips it.
+- ~~**Rest-pose browser locks**~~ — mustard/beam seating; cream beam 7°;
+  beam-person, moving sphere, plum cylinder from inspector image boxes.
 
 **Next session — agreed order:**
 
 1. ~~Wire layers~~
-2. ~~Tune layer placement~~ / by-eye scale / layout / entrance
-3. **Rebuild collaboration motion** as a multi-keyframe sequence with real
+2. ~~Tune layer placement~~ / by-eye scale / layout / entrance / rest locks
+3. **Lock blue cylinder + blue-person** when correct inspector screenshots
+   arrive (cylinder attach was a duplicate of plum).
+4. **Rebuild collaboration motion** as a multi-keyframe sequence with real
    travel (not 8–16px CSS nudges).
-4. Gates + by-eye (rest / hover / leave / phone / reduced motion).
+5. Gates + by-eye (rest / hover / leave / phone / reduced motion).
 
 **Calls for the user:**
 
@@ -1244,8 +1249,10 @@ pushed, not live.** Production still serves the brick scene. See
   batch done.
 - ~~By-eye of the schematic SVG as final art~~ — rejected; layers are the art
   path now.
-- **By-eye of the composited layered rest pose + entrance** — further nudges
-  only if asked after this pass.
+- ~~By-eye of the composited layered rest pose + entrance~~ — further
+  placement locked from inspector; more nudges only if asked.
+- **Re-send blue cylinder inspector values** (and confirm blue-person box
+  `left 78.29% / top 60.13% / width 15.80% / z 14` if still wanted).
 - Minor alpha fringe (silhouette halos, form bases) acceptable for now or
   refine later — user called the batch perfect.
 - **Whether capability names should return somehow** outside the picture.
@@ -1255,6 +1262,7 @@ pushed, not live.** Production still serves the brick scene. See
 
 **Not done yet:**
 
+- Blue cylinder + blue-person inspector lock.
 - Collaboration motion rebuild on layers (interim SCSS nudges still fire).
 - Full gate suite beyond `tsc --noEmit` on the wire / placement / entrance
   passes.

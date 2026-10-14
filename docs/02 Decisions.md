@@ -2772,6 +2772,40 @@ Layer PNGs still untouched — placement, layout CSS, and motion only.
 Related: [[03 Phase 1 — Homepage]], [[08 Design system constraints]],
 [[09 Outstanding]], [[10 Verification]].
 
+## 14 Oct 2026, later — section 03 rest-pose placement locked from the browser
+
+On instruction after looking at the layered rest pose and tuning live in
+Chrome. Layer PNGs still untouched — `MaquetteScene` content rects, optional
+`rotate`, and bridge motion CSS only.
+
+**Seating the cream beam**
+
+- Mustard moved right and its top matched to pink (`17.2`) so both cube tops
+  are level. Cream beam content retuned so the bar-core underside lands on
+  those tops, then grown and inspector-locked; rest **rotate 7°** via
+  `--maquette-rotate` (hover/static transforms compose with it).
+
+**Inspector-locked image boxes** (reversed into content rects)
+
+- Beam-person — push figure scale/position from DevTools.
+- Cream beam — left / top / width / rotate from DevTools.
+- Moving sphere — into the sphere person's hands (z above him).
+- Plum cylinder — bottom-left under the ladder.
+- Sphere-person left nudged with the mustard shift.
+
+**Not in this commit**
+
+- Blue cylinder and blue-person: user supplied inspector values; the
+  cylinder attachment was a duplicate of the plum screenshot, so those two
+  layers were left for a follow-up.
+
+**Still open**
+
+- Finish blue cylinder + blue-person lock when the right screenshots arrive.
+- Collaboration motion rebuild; full gates; push / deploy when asked.
+
+Related: [[03 Phase 1 — Homepage]], [[09 Outstanding]], [[10 Verification]].
+
 ## 30 Sep 2026 — Contact, on the Pixelette Technologies contact page
 
 Built on instruction to mirror `pixelette-technologies-website.vercel.app/contact`

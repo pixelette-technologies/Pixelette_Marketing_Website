@@ -7,8 +7,6 @@ import {
   Navbar,
   ScrollReveal
 } from "@/components/common";
-import AgentMount from "@/agent/mount";
-import { pixContext } from "@/agent/context";
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/data/site";
 
 // The three type roles, self-hosted. This replaces two render-blocking
@@ -189,10 +187,8 @@ gtag('config', 'G-1HGJEBFGRW');`}
         <Footer />
         <ScrollReveal />
         <CookieConsent />
-        {/* Mounted last and once, on every route, so the launcher sits above
-            the cookie banner (see marketingThemeOptions in src/agent/config.ts)
-            without depending on render order elsewhere on the page. */}
-        <AgentMount context={pixContext()} />
+        {/* Ask Pix M unmounted for the 12 Nov 2026 mock-up. Code remains in
+            src/agent/. */}
       </body>
     </html>
   );

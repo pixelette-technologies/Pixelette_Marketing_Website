@@ -65,13 +65,13 @@ test("accepts the enquiry fields when supplied", () => {
   const body = valid() as unknown as Record<string, unknown>;
   body.company = "Example Ltd";
   body.companyWebsite = "example.invalid";
-  body.improve = "Pipeline & Conversion";
+  body.improve = "Digital Visibility and Growth";
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, true);
   if (result.ok) {
     assert.equal(result.value.company, "Example Ltd");
     assert.equal(result.value.companyWebsite, "example.invalid");
-    assert.equal(result.value.improve, "Pipeline & Conversion");
+    assert.equal(result.value.improve, "Digital Visibility and Growth");
   }
 });
 
@@ -109,6 +109,17 @@ for (const [name, mutate] of [
 test("still rejects a field outside the widened allowlist", () => {
   const body = valid() as unknown as Record<string, unknown>;
   body.budget = "50000";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, false);
+  if (!result.ok) assert.equal(result.code, "UNSUPPORTED_FIELD");
+});
+
+// 12 Nov brief added an Indicative budget control on the contact form. Options
+// and contract acceptance were not supplied, so ContactUsForm omits the field
+// from the POST. If it ever leaks onto the wire, the allowlist must reject it.
+test("rejects indicativeBudget until the governed contract accepts it", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "";
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.code, "UNSUPPORTED_FIELD");

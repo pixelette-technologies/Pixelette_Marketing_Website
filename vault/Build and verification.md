@@ -16,6 +16,17 @@ npx tsc --noEmit         type check
 
 Node v25.0.0, sass 1.83.4, next 16.3.0, eslint 9.39.5.
 
+## 12 Nov 2026 brief mock-up — gates for this pass
+
+```
+npx tsc --noEmit
+npm run test:contact
+```
+
+Also: curl the seventeen new brief routes (and gated stubs) for 200 + one `h1`. Contact POST must **not** send `indicativeBudget` — a payload that includes it gets `UNSUPPORTED_FIELD` from `contactContract`. Hand-back lives at `mockup-screenshots/HANDBACK.md` and must be updated when the fix pass lands. Screenshot pack: full-page PNG at ~1440 and ~390, real viewport width, cookie banner dismissed when possible (pack quality currently deferred by user).
+
+**Browser checks that have bitten this brief:** open What we do at 1280 and 1440 — panel must stay inside the viewport (`scrollWidth` / `getBoundingClientRect`); homepage capabilities section — five names must sit under the copy, not overlapping the illustration; analytics connections — no React duplicate-key console errors.
+
 ## Baselines recorded 1 Sep 2026, before any conversion code
 
 | Gate | State |

@@ -1,6 +1,7 @@
 import {
   ContactFaq,
   ContactGetInTouch,
+  ContactProcurementSlot,
   ContactRoutes,
   ContactUsHero,
   HowItWork
@@ -42,11 +43,13 @@ const breadcrumbSchema = {
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  mainEntity: contactFaqs.items.map(faq => ({
-    "@type": "Question",
-    name: faq.question,
-    acceptedAnswer: { "@type": "Answer", text: faq.answer }
-  }))
+  mainEntity: contactFaqs.items
+    .filter(faq => faq.answer.trim().length > 0)
+    .map(faq => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: { "@type": "Answer", text: faq.answer }
+    }))
 };
 
 export default function ContactUs() {
@@ -62,6 +65,7 @@ export default function ContactUs() {
       <ContactUsHero />
       <ContactGetInTouch />
       <HowItWork />
+      <ContactProcurementSlot />
       <ContactRoutes />
       <ContactFaq />
     </>

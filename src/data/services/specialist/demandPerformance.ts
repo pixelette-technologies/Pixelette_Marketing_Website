@@ -16,11 +16,9 @@ import type { SpecialistPageConfig } from "./types";
 // media runs on, is in the Paid Media meta description rather than in a list
 // on the page, and the FAQ that answers it is the brief's.
 
-const CAPABILITY = "Demand & Performance";
-
 export const socialAndCommunity: SpecialistPageConfig = {
   route: "social_media_marketing",
-  capability: CAPABILITY,
+  capability: "Communications and Engagement",
   label: "Social & Community",
   meta: {
     title: "Social & Community | Social Media Marketing | Pixelette Marketing",
@@ -90,12 +88,12 @@ export const socialAndCommunity: SpecialistPageConfig = {
         body: "Strong organic content can be selectively amplified when paid distribution improves reach or economics."
       },
       {
-        capability: "Growth Intelligence",
+        capability: "Measurement and Insight",
         title: "Understand contribution",
         body: "Social data should contribute to a wider view of demand, not sit in an isolated channel report."
       },
       {
-        capability: "Strategy & Positioning",
+        capability: "Brand and Strategy",
         title: "Fix the proposition first",
         body: "If the audience or proposition is unclear, social execution should not be asked to compensate for it."
       }
@@ -133,7 +131,7 @@ export const socialAndCommunity: SpecialistPageConfig = {
 
 export const paidMediaAndPpc: SpecialistPageConfig = {
   route: "ads_ppc",
-  capability: CAPABILITY,
+  capability: "Digital Visibility and Growth",
   label: "Paid Media & PPC",
   meta: {
     title: "Paid Media & PPC | Pixelette Marketing",
@@ -198,17 +196,17 @@ export const paidMediaAndPpc: SpecialistPageConfig = {
   connections: {
     items: [
       {
-        capability: "Pipeline & Conversion",
+        capability: "Digital Visibility and Growth",
         title: "Traffic arrives but does not convert",
         body: "The landing page, offer or conversion journey may be the real constraint rather than media buying."
       },
       {
-        capability: "Strategy & Positioning",
+        capability: "Brand and Strategy",
         title: "The proposition is not landing",
         body: "More spend is unlikely to fix a weak reason to choose you."
       },
       {
-        capability: "Growth Intelligence",
+        capability: "Measurement and Insight",
         title: "Attribution is unclear",
         body: "Cross-channel analysis should determine what paid media is actually contributing."
       }
@@ -246,7 +244,7 @@ export const paidMediaAndPpc: SpecialistPageConfig = {
 
 export const influencerAndPartnerships: SpecialistPageConfig = {
   route: "influencer_marketing",
-  capability: CAPABILITY,
+  capability: "Creative and Campaigns",
   label: "Influencer & Partnerships",
   meta: {
     title: "Influencer & Partnerships | Influencer Marketing | Pixelette Marketing",
@@ -321,7 +319,7 @@ export const influencerAndPartnerships: SpecialistPageConfig = {
         body: "The best creator assets can be selectively amplified when paid distribution improves performance."
       },
       {
-        capability: "Growth Intelligence",
+        capability: "Measurement and Insight",
         title: "Compare contribution",
         body: "Creator activity should be evaluated alongside other demand channels using consistent measures."
       }
@@ -359,7 +357,7 @@ export const influencerAndPartnerships: SpecialistPageConfig = {
 
 export const prAndEarnedMedia: SpecialistPageConfig = {
   route: "pr",
-  capability: CAPABILITY,
+  capability: "Communications and Engagement",
   label: "PR & Earned Media",
   meta: {
     title: "PR & Earned Media | Pixelette Marketing",
@@ -424,14 +422,14 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
   connections: {
     items: [
       {
-        capability: "Strategy & Positioning",
+        capability: "Brand and Strategy",
         title: "The underlying narrative is weak",
         body: "PR should not be asked to manufacture a proposition that has not been resolved upstream."
       },
       {
-        capability: "Search & Authority",
+        capability: "Digital Visibility and Growth",
         title: "The objective is search authority",
-        body: "Digital PR primarily intended to build organic authority belongs within Search & Authority."
+        body: "Digital PR primarily intended to build organic authority belongs within Digital Visibility and Growth."
       },
       {
         capability: "Social & Community",
@@ -462,9 +460,9 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
           "Earned media cannot be credibly guaranteed; the role is to strengthen the story, targeting and outreach."
       },
       {
-        question: "How is this different from Search & Authority?",
+        question: "How is this different from Digital Visibility and Growth?",
         answer:
-          "PR here focuses on earned attention and credibility. Search-led authority building belongs within Search & Authority."
+          "PR here focuses on earned attention and credibility. Search-led authority building belongs within Digital Visibility and Growth."
       }
     ]
   }

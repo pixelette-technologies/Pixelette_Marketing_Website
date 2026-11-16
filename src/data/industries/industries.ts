@@ -47,6 +47,8 @@ export interface Industry {
   challenge: string;
   /** How Pixelette would approach it. */
   approach: string;
+  /** Optional child route under /industries when the brief gives one. */
+  href?: string;
 }
 
 export const industries: Industry[] = [
@@ -144,7 +146,8 @@ export const industries: Industry[] = [
     challenge:
       "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance.",
     approach:
-      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards confident enrolment."
+      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards confident enrolment.",
+    href: "/industries/education-and-learning"
   },
   {
     id: "industrial",
@@ -163,6 +166,27 @@ export const industries: Industry[] = [
       "Make capability easy to verify while supporting both technical evaluation and the commercial case for change.",
     approach:
       "Lead with proof, technical authority and clear commercial value, then support complex buying groups with targeted content, search and demand activity."
+  },
+  // 12 Nov 2026 brief §5 / §4.2 — two markets added; blurbs not supplied.
+  {
+    id: "public-sector-and-local-government",
+    name: "Public sector and local government",
+    descriptor: "",
+    journey: ["", "", "", "", ""],
+    market: "",
+    challenge: "",
+    approach: "",
+    href: "/industries/public-sector-and-local-government"
+  },
+  {
+    id: "charities-and-non-profit",
+    name: "Charities and non-profit",
+    descriptor: "",
+    journey: ["", "", "", "", ""],
+    market: "",
+    challenge: "",
+    approach: "",
+    href: "/industries/charities-and-non-profit"
   }
 ];
 
@@ -189,7 +213,7 @@ export const industriesPage = {
     lead: "Every market behaves differently. Pixelette adapts the marketing approach around the audience, buying journey, competitive environment and commercial challenge."
   },
   explorer: {
-    eyebrow: "Eight markets",
+    eyebrow: "Markets",
     heading: "Choose a market to see how the thinking changes"
   },
   work: {

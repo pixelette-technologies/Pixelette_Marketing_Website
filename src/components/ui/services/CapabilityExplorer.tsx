@@ -284,7 +284,7 @@ export default function CapabilityExplorer({
                 inert={!isOpen}
               >
                 <div className='capItem__panelInner'>
-                  {stage && (
+                  {stage && stage.statement.length > 0 ? (
                     <p className='capItem__statement'>
                       {stage.statement.map((line, i) => (
                         <span key={line} className='capItem__statementLine'>
@@ -293,9 +293,11 @@ export default function CapabilityExplorer({
                         </span>
                       ))}
                     </p>
-                  )}
+                  ) : null}
 
-                  <p className='capItem__body'>{group.body}</p>
+                  {group.body ? (
+                    <p className='capItem__body'>{group.body}</p>
+                  ) : null}
 
                   {group.scope.length > 0 && (
                     <ul

@@ -38,9 +38,17 @@ const CapabilityConnections = ({
   items,
   defaultIndex = 0
 }: CapabilityConnectionsProps) => {
-  const [active, setActive] = useState(defaultIndex);
+  const safeDefault =
+    items.length === 0
+      ? 0
+      : Math.min(Math.max(defaultIndex, 0), items.length - 1);
+  const [active, setActive] = useState(safeDefault);
   const panelId = useId();
   const current = items[active];
+
+  if (items.length === 0 || !current) {
+    return null;
+  }
 
   return (
     <div className='spConnect'>
@@ -52,21 +60,25 @@ const CapabilityConnections = ({
           aria-hidden='true'
           focusable='false'
         >
-          {items.map((item, index) => (
-            <line
-              key={item.capability}
-              x1='50'
-              y1='50'
-              x2={POSITIONS[index].x}
-              y2={POSITIONS[index].y}
-              className={
-                index === active
-                  ? "spConnect__spoke is-active"
-                  : "spConnect__spoke"
-              }
-              vectorEffect='non-scaling-stroke'
-            />
-          ))}
+          {items.map((item, index) => {
+            const pos = POSITIONS[index];
+            if (!pos) return null;
+            return (
+              <line
+                key={`${item.capability}-${item.title}`}
+                x1='50'
+                y1='50'
+                x2={pos.x}
+                y2={pos.y}
+                className={
+                  index === active
+                    ? "spConnect__spoke is-active"
+                    : "spConnect__spoke"
+                }
+                vectorEffect='non-scaling-stroke'
+              />
+            );
+          })}
         </svg>
 
         <p className='spConnect__centre'>{centre}</p>
@@ -74,7 +86,7 @@ const CapabilityConnections = ({
         <ul className='spConnect__nodes'>
           {items.map((item, index) => (
             <li
-              key={item.capability}
+              key={`${item.capability}-${item.title}`}
               className={`spConnect__node spConnect__node--${index}`}
             >
               <button

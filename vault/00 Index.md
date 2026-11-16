@@ -2,18 +2,43 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **14 October 2026** — SEO / sitemap / metadata pass recorded (code already pushed). Phase F history below still starts from 1 Sep.
+Last updated: **16 November 2026** — independent PDF review **COMPLETE WITH ACCEPTED GAPS**; user authorised push of `bilal/revamp` (not production). Phase F history below still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | `revamp/ui` (branched from `main`, which it is otherwise level with) |
-| Phase | A and B signed off · C approved · D0–D9 and E's ground complete · **F in progress — home, About, blog, services and industries have had passes** |
-| Site code written | The whole design system, every page and section converted, the legacy colour layer deleted, the responsive surface down to one breakpoint. |
-| Pushed? | No. No PR. Not deployed. |
-| Seen in a browser? | **Partly, by the user, and iterating.** Home has been through many rounds; About, the blog list and the services/industries templates have had targeted by-eye fixes (F12–F18). **The full walk — 8 static routes plus one of each of the 4 dynamic templates, at 1440px and 390px — has still never been done.** Nothing about F19's scroll reveal has been seen moving at all. |
-| Behaviour added beyond the guide | A sticky header, two motion exceptions, and — as of F19 — **a site-wide scroll reveal, which does not sit alongside "flat and static" but replaces it.** All at the user's explicit request, all reversing or deviating from a settled decision. The reveal is a GROUP-level change and Mr Rana has not been asked. See [[Rules]]. |
+| Branch | **`bilal/revamp`**. Older Phase F work also lived on `revamp/ui`. |
+| Phase | Phase F history below. **12 Nov 2026 developer brief mock-up** — IA regroup, Public sector nav, seventeen new routes, gated banners; blocker + flags closed. |
+| Site code written | Design system + pages as before, plus brief scaffolding and 13–16 Nov fix passes, plus 16 Nov evening closure of the homepage blocker and three flags. |
+| Pushed? | **Yes — `bilal/revamp` only**, on explicit user instruction 16 Nov. No PR to production. Live domain untouched. |
+| Seen in a browser? | Local mock-up + independent Playwright reviews. Screenshot pack at `mockup-screenshots/` (quality deferred by user). |
+| Sign-off | **Not signed off for live.** Independent review (16 Nov evening): **COMPLETE WITH ACCEPTED GAPS** — §10 ready for Rana; empty plan-copy slots and deferred items remain. See [[Known bugs and deviations]]. |
+
+## Start here — next session, in order
+
+1. Read [[Rules]] (12 Nov brief rule + traps that bit).
+2. Read [[Known bugs and deviations]] — deferred/accepted gaps only.
+3. Await Rana review / plan copy / separate instruction before PR to production or live deploy.
+4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
+
+## 12 November 2026 — developer brief mock-up
+
+**Source:** `Pixelette_Marketing_Developer_Brief_v1.0_12Nov2026.pdf`. User ruled the PDF absolute instruction; the three “plan” markdown paths named in §12 are context only and **are not in this repo**, so named blocks without supplied words stay empty (no invented draft copy).
+
+**Stack answers (§2), from the codebase:** Next.js 16.3 App Router; copy in `src/data` / blogs / `pix-kb.json` (no CMS); nav in `Navbar.tsx` + `navigation.ts` + `capabilityGroups.ts`; sitemap `src/app/sitemap.ts` build-time one `Date()`; `/industries/[slug]` already exists; Ask Pix M = in-repo assistant (`src/agent/`), unmounted for mock-up; homepage has no five-column capability grid (names listed under section 03).
+
+**Built locally:** five new capability group labels; §4.1 reparenting; Public sector second in top nav; Governance footer; homepage H1 / capability heading; second-market band slot; seventeen new routes; §6 banners; people placeholders; `[PENDING AUDIT]` on accessibility; Ask Pix M off; `/strategy-positioning` untouched; sitemap/analytics untouched.
+
+**Fix passes (13–16 Nov, local):** contact `indicativeBudget` omit; SecondMarketBand `{null}`; cleared `growthSystemData` + `capabilityStage` leads; Escape/drawer/About/demos; five-column mega-menu + viewport clamp; `IMPROVE_OPTIONS` → §4.1 names; analytics demo heading; connection parent tags + unique keys; industries journey keys; FAQ JSON-LD filter; contact incorporation/procurement slots; home document title.
+
+**Closed 16 Nov evening (blocker + flags):** homepage names wrapped in `homeScene__copyStack` under the copy; analytics Demand node → Creative and Campaigns; SEO/PPC keep the conversion card (self-group filter waived on those two routes only); `/blog-list` filters remapped with the brief §4.1 table.
+
+**Independent review (16 Nov evening):** **COMPLETE WITH ACCEPTED GAPS.** All four formerly open items FIXED in browser; §10 checklist ready for Rana. Accepted gaps = empty plan-copy slots (public-sector bodies, second-market band, procurement body, budget options, FAQ answer, etc.), Brand Logo alts, screenshot polish. User then authorised vault update, commit, and push of `bilal/revamp` only.
+
+Hand-back note: `mockup-screenshots/HANDBACK.md`.
+
+---
 
 ## Read this first — Phase F and what it found
 

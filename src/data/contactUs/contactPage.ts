@@ -1,5 +1,4 @@
 import { DIAGNOSTIC_HREF, strategyHero } from "@/data/strategy";
-import { PRIVACY_HREF } from "@/data/legal";
 
 // /contactus, rebuilt 30 Sep 2026 on the Pixelette Technologies contact page:
 // hero, offices beside the form, other routes in, and a short FAQ. Their
@@ -60,8 +59,8 @@ export interface ContactRoute {
   link: { label: string; href: string };
 }
 
-// Three ways in that are not the form. Each goes somewhere real: the live
-// diagnostic, the privacy statement, the sales inbox.
+// Ways in that are not the form. Each goes somewhere real: the live
+// diagnostic, the sales inbox.
 export const contactRoutes = {
   heading: "Other routes in",
   items: [
@@ -72,17 +71,22 @@ export const contactRoutes = {
       link: { label: "Take the diagnostic", href: DIAGNOSTIC_HREF }
     },
     {
-      heading: "Procurement and supplier checks",
-      text: "Data handling, privacy and company details go direct to your reviewer. Tell us what your review needs and who it should go to, and we will send what we can evidence.",
-      link: { label: "Read the privacy notice", href: PRIVACY_HREF }
-    },
-    {
       heading: "Press and speaking",
       text: "Happy to talk on the record about growth, positioning and how buyers now find and shortlist suppliers, including through AI search.",
       link: { label: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` }
     }
   ] satisfies ContactRoute[]
 };
+
+/** 12 Nov brief §5 — replacement for "Procurement and supplier checks".
+ *  Plan §9.3 copy is not in the repo; keep a visible empty slot. */
+export const contactProcurementSlot = {
+  heading: "",
+  body: ""
+};
+
+/** Company number printed on the brief and already on the site. */
+export const CONTACT_COMPANY_NUMBER = "17508478";
 
 export interface ContactFaqItem {
   question: string;
@@ -113,7 +117,8 @@ export const contactFaqs = {
     },
     {
       question: "We have a supplier questionnaire. Where does it go?",
-      answer: `Send it to ${CONTACT_EMAIL}, or mention it in the enquiry, and tell us who the response should go to. We will complete it with what we can evidence rather than publishing that detail on this site.`
+      // 12 Nov 2026 brief §5 — question stays; replacement answer not supplied.
+      answer: ""
     }
   ] satisfies ContactFaqItem[]
 };

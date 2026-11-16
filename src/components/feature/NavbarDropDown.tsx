@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { IoIosArrowDown } from "react-icons/io";
 import Link from "next/link";
@@ -13,31 +13,8 @@ interface NavbarDropDownProps {
   onLinkClick?: (route: string) => void;
 }
 
-// The 8 Sep 2026 brief groups the pages under capability headings rather than
-// listing them flat, so this takes GROUPS now. The group labels are not links:
-// the five capabilities are parents in the information architecture, not pages,
-// and a heading that looks clickable but is not is worse than one that plainly
-// is not.
-//
-// ITEMS CARRY THEIR OWN HREF. This used to build each one as
-// `/${mainRoute}/${item.route}`, which assumed every destination in the panel
-// sat under the trigger's route. The Strategy & Positioning capability breaks
-// that assumption: it is a What We Do group whose destination is the diagnostic
-// at /strategy-positioning, a top-level page. `mainRoute` still addresses the
-// trigger itself, which genuinely is the panel's parent page.
-//
-// THE TRIGGER IS A LINK NOW. "Services" and "Industries" were plain text, so
-// /services and /industries were in the sitemap but reachable from nowhere in
-// the navigation. The brief puts "What We Do" and "Who We Help" in the top
-// level as destinations, which resolves that.
-//
-// It also opens ON FOCUS, not on hover alone. The panel is conditionally
-// rendered in JavaScript, so no CSS :focus-within can reach it, and a hover-only
-// dropdown cannot be opened from a keyboard at all — the links inside were
-// unreachable without a mouse. React's onFocus/onBlur bubble, so one pair on
-// the wrapper covers the trigger and every link in the panel; the blur guard
-// checks the new focus target is outside before closing, or tabbing INTO the
-// panel would close it.
+// Opens on focus and hover. Escape closes. Empty group labels render no eyebrow
+// (Public sector is a flat list per the 12 Nov 2026 brief).
 const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
   name,
   groups,
@@ -45,7 +22,64 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
   onLinkClick
 }) => {
   const [active, setActive] = useState(false);
+  // After Escape, focusing the trigger would re-fire onFocus and reopen.
+  const ignoreNextFocusRef = useRef(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  // Five labelled capability groups → desktop columns (§4.3). Flat menus
+  // (Public sector) stay a single list.
+  const useColumns = groups.filter(group => group.label).length >= 5;
+
+  useEffect(() => {
+    if (!active) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActive(false);
+        ignoreNextFocusRef.current = true;
+        const label = dropdownRef.current?.querySelector<HTMLElement>(
+          ".navdropDown__label"
+        );
+        label?.blur();
+        label?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [active]);
+
+  // Keep the five-column panel inside the viewport (brief §8 / §10).
+  useEffect(() => {
+    if (!active || !useColumns) return;
+    const panel = dropdownRef.current?.querySelector<HTMLElement>(
+      ".dropdown-content--columns"
+    );
+    if (!panel) return;
+
+    const clamp = () => {
+      // marginLeft — do not touch transform; framer-motion owns it for enter.
+      panel.style.marginLeft = "0px";
+      const rect = panel.getBoundingClientRect();
+      const edge = 12;
+      let shift = 0;
+      if (rect.right > window.innerWidth - edge) {
+        shift -= rect.right - (window.innerWidth - edge);
+      }
+      if (rect.left + shift < edge) {
+        shift += edge - (rect.left + shift);
+      }
+      if (shift !== 0) {
+        panel.style.marginLeft = `${shift}px`;
+      }
+    };
+
+    // After the open animation paints.
+    const frame = window.requestAnimationFrame(clamp);
+    window.addEventListener("resize", clamp);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", clamp);
+      panel.style.marginLeft = "";
+    };
+  }, [active, useColumns]);
 
   return (
     <div
@@ -53,7 +87,13 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
       className='navdropDown'
       onMouseEnter={() => setActive(true)}
       onMouseLeave={() => setActive(false)}
-      onFocus={() => setActive(true)}
+      onFocus={() => {
+        if (ignoreNextFocusRef.current) {
+          ignoreNextFocusRef.current = false;
+          return;
+        }
+        setActive(true);
+      }}
       onBlur={event => {
         if (!event.currentTarget.contains(event.relatedTarget as Node)) {
           setActive(false);
@@ -61,9 +101,6 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
       }}
     >
       <section>
-        {/* color_white dropped in D3: the header ground moved from the dark
-            bar to the guide's page ground, and the label would have been white
-            on white. */}
         <Link href={`/${mainRoute}`} className='navdropDown__label'>
           {name}
         </Link>
@@ -84,11 +121,18 @@ const NavbarDropDown: React.FC<NavbarDropDownProps> = ({
           initial={{ y: "-3.75rem", opacity: 0 }}
           animate={{ y: "0rem", opacity: 1 }}
           exit={{ opacity: 0 }}
-          className='dropdown-content'
+          className={
+            useColumns
+              ? "dropdown-content dropdown-content--columns"
+              : "dropdown-content"
+          }
         >
-          {groups.map(group => (
-            <div key={group.label} className='navdropDown__group'>
-              <p className='eyebrow'>{group.label}</p>
+          {groups.map((group, groupIndex) => (
+            <div
+              key={group.label || `group-${groupIndex}`}
+              className='navdropDown__group'
+            >
+              {group.label ? <p className='eyebrow'>{group.label}</p> : null}
               {group.items.map(item => (
                 <Link
                   key={item.href}

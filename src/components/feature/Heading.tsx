@@ -2,6 +2,7 @@ interface HeadingProps {
   className?: string;
   children: React.ReactNode;
   level?: 1 | 2 | 3 | 4 | 5 | 6; // Optional, defaults to 2 (h1 reserved for the page hero title)
+  id?: string;
 }
 
 const tagMap = {
@@ -37,11 +38,16 @@ const tagMap = {
 const Heading = ({
   className = "",
   children,
-  level = 2
+  level = 2,
+  id
 }: HeadingProps) => {
   const Tag = tagMap[level];
 
-  return <Tag className={className}>{children}</Tag>;
+  return (
+    <Tag className={className} id={id}>
+      {children}
+    </Tag>
+  );
 };
 
 export default Heading;

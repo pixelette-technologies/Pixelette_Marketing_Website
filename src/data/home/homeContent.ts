@@ -44,16 +44,19 @@ export const RESULTS_HREF = "/results";
 
 export const heroCopy = {
   eyebrow: "Clarity. Momentum. Commercial impact.",
-  headline: { lead: "Marketing that matters", tail: "to your bottom line" },
+  // 12 Nov 2026 developer brief §5 — approved umbrella proposition.
+  headline: {
+    lead: "Marketing and communications that build brands, engage audiences and deliver measurable results.",
+    tail: ""
+  },
   /**
-   * Desktop break of the home H1 (see `.homeHero__title` in `_heroHome.scss`):
-   * "Marketing that / matters to your / bottom line". The default OG card
-   * uses this same break so share previews stay in lockstep with the page.
+   * Desktop break of the home H1. Meta/OG left to existing strings —
+   * SEO is out of this pass per the brief.
    */
   ogHeadline: [
-    "Marketing that",
-    "matters to your",
-    "bottom line"
+    "Marketing and communications that",
+    "build brands, engage audiences",
+    "and deliver measurable results."
   ] as const,
   support:
     "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
@@ -134,18 +137,18 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   number: "03",
   eyebrow: "What we do",
   headline: ["Five capabilities"],
-  // In the brand tone, as 02 and 04 carry their last line (29 Sep).
-  accent: "One commercial objective",
+  // 12 Nov 2026 developer brief §5.
+  accent: "Built around your objective",
   lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
   cta: { label: "Explore all services", to: "/services" },
   // Kept for hub / content reuse. No longer overlaid on the maquette visual
   // (illustration is unlabelled; the copy carries the proposition).
   capabilities: [
-    { name: "Strategy & Positioning", icon: "compass" },
-    { name: "Demand & Performance", icon: "bars" },
-    { name: "Search & Authority", icon: "search" },
-    { name: "Pipeline & Conversion", icon: "funnel" },
-    { name: "Growth Intelligence", icon: "rise" }
+    { name: "Brand and Strategy", icon: "compass" },
+    { name: "Creative and Campaigns", icon: "bars" },
+    { name: "Communications and Engagement", icon: "search" },
+    { name: "Digital Visibility and Growth", icon: "funnel" },
+    { name: "Measurement and Insight", icon: "rise" }
   ],
   payoff: "Real growth builds here"
 };
@@ -236,88 +239,43 @@ export const proofCopy = {
 
 export const growthSystemData: ItemsSectionContent = {
   eyebrow: "One connected growth system",
-  heading: "Five capabilities. One commercial objective",
+  // 12 Nov 2026 developer brief §5 — capability group titles only.
+  heading: "Five capabilities. Built around your objective",
   lead: "Growth works best when positioning, demand, search, conversion and measurement operate as one system. Pixelette can lead the full programme or deploy the specialist capability the business actually needs.",
+  // 13 Nov fix pass: titles are the 12 Nov brief groups. Bodies and scope
+  // lists cleared — the PDF did not supply replacement sublines, and leaving
+  // the old five's copy under new names read as a rename, not a regrouping.
+  // Service links still come from capabilityGroups / ROUTES_BY_CAPABILITY.
   items: [
     {
       index: "01",
-      title: "Strategy & Positioning",
-      body: "Clarify who you are for, why the market should care and how growth will be won.",
-      // 29 Sep 2026: every list below was revised to the locked information
-      // architecture's service families (its §14–18). Where the specification
-      // and the 8 Sep wording name the same thing, the two were merged; where
-      // they overlap between capabilities, the service sits in one place only
-      // (growth planning here, not also in 05; PR in 02, not also as "digital
-      // PR" in 03). Nothing was added that neither source names.
-      //
-      // Since the same day these lists render on /services, which owns the
-      // service-level detail. The home page no longer shows them.
-      capabilities: [
-        "Brand strategy",
-        "value proposition",
-        "market positioning",
-        "ICP and buyer insight",
-        "market and competitor intelligence",
-        "messaging",
-        "growth planning",
-        "go-to-market strategy"
-      ]
+      title: "Brand and Strategy",
+      body: "",
+      capabilities: []
     },
     {
       index: "02",
-      title: "Demand & Performance",
-      body: "Create and capture demand across paid, owned, social and partner channels.",
-      capabilities: [
-        "Paid media and PPC",
-        "social media",
-        "campaigns",
-        "influencer marketing",
-        "PR and earned visibility",
-        // 25 Sep 2026: back by name — BlockGuard, the lead case, is largely a
-        // community result. 29 Sep 2026: restored in full, on instruction, as
-        // community management AND growth. It is not social posting, and the
-        // line says so; it is not a sixth capability, and it stays here.
-        "community management and growth: strategy, engagement, moderation and activation"
-      ]
+      title: "Creative and Campaigns",
+      body: "",
+      capabilities: []
     },
     {
       index: "03",
-      title: "Search & Authority",
-      body: "Make your expertise discoverable, credible and easier to choose.",
-      capabilities: [
-        "SEO and organic search",
-        "content marketing",
-        "thought leadership",
-        "authority building",
-        "AI search visibility"
-      ]
+      title: "Communications and Engagement",
+      body: "",
+      capabilities: []
     },
     {
       index: "04",
-      title: "Pipeline & Conversion",
-      body: "Turn attention into qualified opportunity and improve the path from first touch to sales conversation.",
-      capabilities: [
-        "Lead generation",
-        "email and lifecycle marketing",
-        "nurture",
-        "landing pages and CRO",
-        "conversion journeys",
-        "sales handoff"
-      ]
+      title: "Digital Visibility and Growth",
+      body: "",
+      capabilities: []
     },
     {
       index: "05",
-      title: "Growth Intelligence",
-      body: "Connect channel performance to better commercial decisions.",
-      capabilities: [
-        "Analytics and performance tracking",
-        "insight and reporting",
-        "attribution",
-        "dashboards",
-        "experimentation",
-        "strategic optimisation",
-        "workflow automation"
-      ]
+      title: "Measurement and Insight",
+      body: "",
+      capabilities: []
     }
   ],
   cta: { label: "Explore what we do", to: "/services" }

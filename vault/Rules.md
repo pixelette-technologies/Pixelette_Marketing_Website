@@ -6,6 +6,10 @@ Standing constraints, settled decisions, and every trap that actually bit. Writt
 
 **Content does not change.** Every heading, paragraph, list item, testimonial, FAQ, statistic, label and call-to-action stays byte-identical. No section is added, removed or reordered. This is a UI conversion only, and it stays in force for every follow-up commit on the branch, not just the first.
 
+### Exception — 12 November 2026 developer brief mock-up
+
+For surfaces the **12 Nov PDF** names, that brief overrides the Phase F freeze (capability regroup, new routes, named blocks, nav/footer). **Still forbidden:** inventing draft copy the PDF did not write. Where the PDF only names a block or control, ship the empty slot. Local only — no push, PR, or live deploy under that brief.
+
 Two corollaries that catch people out:
 
 1. **Layout and alignment may change freely; DOM order of content may not.** Moving an element to match the guide's ordering is a content change. Use ordering utilities to match the guide visually while keeping source order.
@@ -79,6 +83,16 @@ Pushing the branch. Opening a pull request. Deploying. Committing in logical chu
 3. The inherited `.btn2` contrast failure — `#C3D1DE` border at **1.56:1 on white**, below the 3:1 non-text threshold. Needs a dedicated border token in the shared layer.
 
 ## Traps that actually bit — this conversion
+
+**A UI-only form field spread into `POST /api/contact` is `UNSUPPORTED_FIELD`.** The 12 Nov brief required an indicative-budget selector. It was added to Formik state and then `JSON.stringify({ ...values })` posted it. `contactContract` `TOP_LEVEL_FIELDS` rejects unknown keys, so every enquiry on every page with the form failed. **Omit client-only fields from the wire payload until options and the governed contract are supplied together.** Found by independent review 13 Nov 2026.
+
+**An empty brief slot implemented as `<Container />` fails `tsc`.** `Container` requires `children`. Pass `{null}` (or equivalent). Same review.
+
+**Renaming capability titles while leaving old `growthSystemData` bodies/scope looks like a rename, not a regrouping.** `/services` showed “Communications and Engagement” with Search & Authority headline/scope. Clear stale bodies and capability lists when the PDF did not supply replacement sublines; keep reparented service links. Also clear `capabilityStage` lead statements under the same rule.
+
+**Putting `capabilitiesNames` inside `.homeScene__inner` lays the five names beside the copy, not under it.** That inner is a side-by-side layout for editorial + art/body pairing. The list overlapped the illustration on desktop and crushed the headline on phone (independent review 16 Nov). Stack the names under the copy, or wrap copy+list as one child of `__inner`.
+
+**Connection nodes keyed only on `capability` break when two cards share a group after regroup.** Use `` `${capability}-${title}` `` (or index). Self-parent cards filtered out can leave a two-node figure — flag rather than inventing a third connection.
 
 **Count from the routes, not from the data file.** The audit recorded 27 blog posts and 50 dynamic pages by counting `id:` occurrences in `blogsData.ts`. Most of those were nested `dataContent` SECTION ids inside each post. That count was wrong then and is wrong again now: there are **five** Insights posts (`/blog/1`–`/blog/5`), eight service pages, and the sitemap lists only **internally linked** URLs (~23). `/success_stories` and `/story/[id]` were deleted 25 Sep 2026. The route walk discovers routes from `/sitemap.xml` rather than trusting a hand count — which is the whole argument for discovering them. See [[Build and verification]].
 

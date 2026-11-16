@@ -77,6 +77,15 @@ export default function ResultsPage() {
         />
       ))}
 
+      {/* 12 Nov 2026 brief §5 — titled block only; sourcing statement not supplied. */}
+      <Container className='main'>
+        <section className='sec' aria-labelledby='how-we-report-title'>
+          <Heading className='h2' level={2} id='how-we-report-title'>
+            How we report results
+          </Heading>
+        </section>
+      </Container>
+
       <ContactSection
         heading={finalConversionCopy.heading}
         text={finalConversionCopy.lead}

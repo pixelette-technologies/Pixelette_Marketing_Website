@@ -9,14 +9,14 @@ export interface ContactAttribution {
   referrer?: string;
 }
 
-/** What the enquirer is trying to move, from the 8 Sep 2026 brief. The order
- *  is the brief's: the four commercial outcomes, then Launch, then Other. */
+/** What the enquirer is trying to improve. Synced to the 12 Nov 2026 brief
+ *  §4.1 capability groups (replacing the pre-brief five). */
 export const IMPROVE_OPTIONS = [
-  "Strategy & Positioning",
-  "Demand & Performance",
-  "Search & Authority",
-  "Pipeline & Conversion",
-  "Growth Intelligence"
+  "Brand and Strategy",
+  "Creative and Campaigns",
+  "Communications and Engagement",
+  "Digital Visibility and Growth",
+  "Measurement and Insight"
 ] as const;
 
 export type ImproveOption = (typeof IMPROVE_OPTIONS)[number];

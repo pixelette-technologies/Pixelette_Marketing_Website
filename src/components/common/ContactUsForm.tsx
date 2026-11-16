@@ -28,6 +28,8 @@ interface FormValues {
   company: string;
   companyWebsite: string;
   improve: string;
+  /** 12 Nov 2026 brief — control only; choices not supplied. */
+  indicativeBudget: string;
   description: string;
   consent: boolean;
   noticeVersion: string;
@@ -103,6 +105,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
     company: "",
     companyWebsite: "",
     improve: "",
+    indicativeBudget: "",
     description: "",
     consent: false,
     noticeVersion,
@@ -129,11 +132,15 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
       } catch {
         referrer = "";
       }
+      // indicativeBudget is UI-only until the brief supplies options and the
+      // governed contract accepts it. Spreading it into the POST yields
+      // UNSUPPORTED_FIELD on every enquiry (12 Nov brief / 13 Nov review).
+      const { indicativeBudget: _indicativeBudget, ...governedValues } = values;
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...values,
+          ...governedValues,
           eventId: activeEventId,
           noticeVersion,
           sourcePage: window.location.pathname,
@@ -291,6 +298,12 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               name='improve'
               place='Select one'
               options={IMPROVE_OPTIONS}
+            />
+            <FormSelect
+              label='Indicative budget'
+              name='indicativeBudget'
+              place='Select one'
+              options={[]}
             />
             <FormTextArea
               label='What is happening now?'

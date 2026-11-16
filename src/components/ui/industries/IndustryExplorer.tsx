@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import { industries, industryLabels } from "@/data/industries/industries";
 import MarketJourney from "./MarketJourney";
@@ -103,7 +104,7 @@ export default function IndustryExplorer() {
         className='marketExplorer__list'
         ref={list}
         role='tablist'
-        aria-label='Eight markets'
+        aria-label='Markets'
         aria-orientation='vertical'
         data-indicator={bar ? "" : undefined}
       >
@@ -158,20 +159,32 @@ export default function IndustryExplorer() {
             >
               <header className='marketPanel__head'>
                 <h3 className='marketPanel__name'>{industry.name}</h3>
-                <p className='marketPanel__descriptor'>{industry.descriptor}</p>
+                {industry.descriptor ? (
+                  <p className='marketPanel__descriptor'>{industry.descriptor}</p>
+                ) : null}
+                {industry.href ? (
+                  <Link href={industry.href} className='textLink'>
+                    Open market page
+                    <span aria-hidden='true'>→</span>
+                  </Link>
+                ) : null}
               </header>
 
-              <MarketJourney id={industry.id} stages={industry.journey} />
+              {industry.journey.some(Boolean) ? (
+                <MarketJourney id={industry.id} stages={industry.journey} />
+              ) : null}
 
               <dl className='marketPanel__points'>
-                {(["market", "challenge", "approach"] as const).map(key => (
-                  <div className='marketPanel__point' key={key}>
-                    <dt className='marketPanel__label'>
-                      {industryLabels[key]}
-                    </dt>
-                    <dd className='marketPanel__text'>{industry[key]}</dd>
-                  </div>
-                ))}
+                {(["market", "challenge", "approach"] as const).map(key =>
+                  industry[key] ? (
+                    <div className='marketPanel__point' key={key}>
+                      <dt className='marketPanel__label'>
+                        {industryLabels[key]}
+                      </dt>
+                      <dd className='marketPanel__text'>{industry[key]}</dd>
+                    </div>
+                  ) : null
+                )}
               </dl>
             </section>
           );

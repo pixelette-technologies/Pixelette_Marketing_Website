@@ -186,3 +186,25 @@
   color: var(--color-body);
   text-wrap: pretty;
 }
+
+// 12 Nov 2026 brief — five capability names under the section copy.
+// One column inside __inner so the list stacks under the headline instead of
+// sitting beside it (and over the illustration) as a second flex child.
+.homeScene__copyStack {
+  max-width: 27rem;
+}
+
+.capabilitiesNames {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+
+  li {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    color: var(--color-body);
+  }
+}

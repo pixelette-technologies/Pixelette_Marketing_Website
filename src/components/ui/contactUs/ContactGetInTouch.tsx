@@ -2,7 +2,13 @@ import { MailIcon, PhoneIcon, PinIcon } from "@/assets/contactUs";
 import { Container } from "@/components/common";
 import ContactUsForm from "@/components/common/ContactUsForm";
 import { Heading } from "@/components/feature";
-import { CONTACT_EMAIL, contactForm, offices } from "@/data/contactUs";
+import {
+  CONTACT_COMPANY_NUMBER,
+  CONTACT_EMAIL,
+  contactForm,
+  offices
+} from "@/data/contactUs";
+import { company } from "@/data/company";
 
 // Offices beside the form, the Pixelette Technologies layout: a narrow column
 // of addresses and numbers, the form in a card taking the wider share.
@@ -51,6 +57,13 @@ const ContactGetInTouch = () => {
                 {CONTACT_EMAIL}
               </a>
             </div>
+            <p className='contactTouch__note'>
+              Company number {CONTACT_COMPANY_NUMBER}
+            </p>
+            <p className='contactTouch__note'>
+              Incorporation date
+              {company.incorporated != null ? ` ${company.incorporated}` : ""}
+            </p>
           </div>
           <div className='contactTouch__card'>
             <Heading className='h3' level={3}>

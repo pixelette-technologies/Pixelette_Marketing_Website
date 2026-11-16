@@ -110,7 +110,7 @@ const bySource = (values: [number, number, number, number]) =>
 
 export const growthIntelligenceDemo: GrowthDemoConfig = {
   eyebrow: "See how we turn data into a decision",
-  heading: "The Growth Intelligence view",
+  heading: "The Measurement and Insight view",
   qualification: "Illustrative data — demonstration only",
   periods: WEEKS,
   modes: [

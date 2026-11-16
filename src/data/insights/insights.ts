@@ -19,11 +19,11 @@ import {
 // a claim the article does not make.
 
 export const INSIGHT_FILTERS = [
-  "Strategy & positioning",
-  "Demand & performance",
-  "Search & authority",
-  "Pipeline & conversion",
-  "Growth intelligence",
+  "Brand and Strategy",
+  "Creative and Campaigns",
+  "Communications and Engagement",
+  "Digital Visibility and Growth",
+  "Measurement and Insight",
   "Market signals"
 ] as const;
 
@@ -47,25 +47,25 @@ const editorial: Record<number, Editorial> = {
       "Where the UK financial-promotion line sits, and how to market boldly inside it."
   },
   2: {
-    capability: "Demand & performance",
+    capability: "Creative and Campaigns",
     format: "Playbook",
     summary:
       "Paid is gated for most Web3 products. Build the reach an ad policy cannot switch off."
   },
   3: {
-    capability: "Growth intelligence",
+    capability: "Measurement and Insight",
     format: "Guide",
     summary:
       "Five numbers that decide where the next pound goes, and the ones that only reassure."
   },
   4: {
-    capability: "Search & authority",
+    capability: "Communications and Engagement",
     format: "Point of view",
     summary:
       "If an assistant cannot quote your page accurately, the shortlist is made without you."
   },
   5: {
-    capability: "Strategy & positioning",
+    capability: "Brand and Strategy",
     format: "Playbook",
     summary:
       "Five checks worth running before the next increase. None of them is about the budget."
@@ -181,21 +181,21 @@ export const radar = {
       title: "Search is becoming recommendation",
       summary:
         "An assistant reads the page first and decides whether your name reaches the buyer.",
-      category: "Search & authority" as InsightFilter,
+      category: "Communications and Engagement" as InsightFilter,
       href: byId(4).href
     },
     {
       title: "Why attribution certainty is often overstated",
       summary:
         "Until channel data meets the CRM, the report credits the last touch, not what persuaded.",
-      category: "Growth intelligence" as InsightFilter,
+      category: "Measurement and Insight" as InsightFilter,
       href: byId(5).href
     },
     {
       title: "More activity is not always the answer",
       summary:
         "Volume stopped signalling commitment when text became free. Fewer, deeper pieces win.",
-      category: "Demand & performance" as InsightFilter,
+      category: "Creative and Campaigns" as InsightFilter,
       href: byId(5).href
     }
   ]

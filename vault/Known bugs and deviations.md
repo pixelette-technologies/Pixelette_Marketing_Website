@@ -2,6 +2,72 @@
 
 Everything the audit turned up, sorted by what happens to it. See [[Rules]] for why the boundary falls where it does.
 
+## 12 Nov 2026 brief mock-up — status (16 Nov evening)
+
+Independent PDF review: **COMPLETE WITH ACCEPTED GAPS.** Plan document named in the PDF is not in this repo, so page bodies stay empty by rule — that is expected, not a bug.
+
+### Blocking / flagged — closed 16 Nov evening (verified by independent review)
+
+| Item | Resolution |
+|---|---|
+| **Homepage capability names layout** | `EditorialCopy` + `ul.capabilitiesNames` wrapped in `homeScene__copyStack` (single child of `__inner`); list width capped to the copy column. |
+| **Analytics connection nodes** | “Performance needs optimisation” capability → Creative and Campaigns (brief table for Demand & Performance). |
+| **SEO / PPC connection figures** | Full `connections.items` passed for those two routes so the conversion card stays; other specialist pages keep the self-group filter. |
+| **`/blog-list` filters** | `INSIGHT_FILTERS`, editorial tags, and radar categories remapped with the brief §4.1 table; Market signals unchanged; empty Digital Visibility and Growth filter retained. |
+
+### Deferred / accepted gaps (do not block Rana review)
+
+| Item | Notes |
+|---|---|
+| **Brand Logo 0–5** | Still in `TrustedBrands`; brief named the fault, no real names supplied — report only. |
+| **Home support / footer blurb** | Pre-brief vocabulary; PDF supplies new H1 only — no replacement strings. |
+| **Empty FAQ answer / procurement body / budget options** | Question and empty slots kept; replacement text not in PDF. |
+| **Stray preview URL** | `pixelette-marketing-website.vercel.app` — recommend protection/`noindex`, do not action without approval. |
+| **Empty public-sector / About / second-market bodies** | Empty by PDF rule until plan copy lands. |
+| **Screenshot pack quality** | Deferred by user; capture needs scroll for below-the-fold on some routes. |
+| **Incorporation date value** | Label shown; `company.incorporated` null — no year in PDF. |
+
+Hand-back: `mockup-screenshots/HANDBACK.md`.
+
+## Fixed in the 16 Nov evening closure (blocker + flags)
+
+| | |
+|---|---|
+| **Homepage capability names** | Wrapped copy + list in `homeScene__copyStack`; list width capped to the copy column. |
+| **Analytics duplicate node** | Demand card labelled Creative and Campaigns. |
+| **SEO / PPC conversion card** | Full connection items on those two routes; other specialist pages keep the self-group filter. |
+| **`/blog-list` filters** | Remapped with the brief §4.1 table; Market signals unchanged; empty Digital Visibility and Growth retained. |
+
+## Fixed in the 16 Nov incomplete / blocker passes
+
+| | |
+|---|---|
+| **What we do five columns** | Desktop mega-menu grid; Public sector stays flat. |
+| **Mega-menu overflow** | Panel clamped into viewport on open (margin shift); verified 1280/1440. |
+| **`IMPROVE_OPTIONS`** | Synced to PDF §4.1 five group names; tests updated. |
+| **Analytics demo heading** | “The Measurement and Insight view”. |
+| **Connection parents** | PR/analytics tags fixed; self-parent connection items filtered. |
+| **Connection React keys** | `` `${capability}-${title}` `` — no duplicate-key console error on analytics. |
+| **Industries journey keys** | Index keys; empty journeys skipped. |
+| **FAQ JSON-LD** | Empty answers omitted from schema. |
+| **Home document title** | Brief umbrella proposition. |
+| **Contact incorporation slot** | Label shown; year blank while `incorporated` is null. |
+| **Contact procurement slot** | Visible empty `ContactProcurementSlot`. |
+| **`/services` stage leads** | `capabilityStage` statements cleared (earlier in session). |
+
+## Fixed in the 13 Nov brief fix pass
+
+| | |
+|---|---|
+| **Contact `indicativeBudget`** | UI select kept; omitted from POST. Contract test documents rejection if leaked. |
+| **SecondMarketBand `tsc`** | `{null}` children on `Container`. |
+| **`/services` stale framing** | `growthSystemData` bodies and scope lists cleared under new titles. |
+| **Escape mega-menu reopen** | Ignore-next-focus after Escape; blur then focus trigger. |
+| **About duplicate Group** | Empty “Part of Pixelette Group” removed from `AboutBriefBlocks`. |
+| **Public sector drawer hub** | Hub row skipped when first item is already `/public-sector`. |
+| **Demonstrations developer note** | Removed from visitor copy. |
+| **Screenshot pack** | Recaptured full-page 1440/390 (see hand-back). |
+
 ## Fixed
 
 | | |

@@ -171,6 +171,16 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 }
 
+// --- Procurement replacement slot (12 Nov brief; copy from plan when present) -
+
+.contactProcurement {
+  padding-block: var(--sec-y);
+
+  &__slot {
+    min-height: 3rem;
+  }
+}
+
 // --- Other routes in -----------------------------------------------------------
 
 .contactRoutes {

@@ -33,10 +33,17 @@ export default function CapabilitiesSection() {
       <div className='homeScene__body'>
         <Container className='main'>
           <div className='homeScene__inner'>
-            <EditorialCopy
-              copy={capabilitiesCopy}
-              titleId='capabilities-title'
-            />
+            <div className='homeScene__copyStack'>
+              <EditorialCopy
+                copy={capabilitiesCopy}
+                titleId='capabilities-title'
+              />
+              <ul className='capabilitiesNames'>
+                {capabilitiesCopy.capabilities.map(capability => (
+                  <li key={capability.name}>{capability.name}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </Container>
       </div>

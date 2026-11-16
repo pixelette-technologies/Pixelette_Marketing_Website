@@ -34,7 +34,9 @@ export default function HomeHero() {
             <p className='homeHero__eyebrow'>{eyebrow}</p>
 
             <h1 className='h1 homeHero__title'>
-              {headline.lead} {headline.tail}
+              {headline.tail
+                ? `${headline.lead} ${headline.tail}`
+                : headline.lead}
             </h1>
 
             <p className='lead homeHero__support'>{support}</p>

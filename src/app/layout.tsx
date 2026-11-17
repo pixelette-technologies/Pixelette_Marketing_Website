@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     template: "%s"
   },
   description:
-    "Marketing and communications that build brands, engage audiences and deliver measurable results — strategy, demand, search, pipeline and growth intelligence working together.",
+    "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -86,7 +86,7 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.png`,
       description:
-        "Marketing and communications that build brands, engage audiences and deliver measurable results. Pixelette Marketing brings strategy, demand, search, pipeline and growth intelligence together for commercial and public and civic buyers.",
+        "Marketing and communications that build brands, engage audiences and deliver measurable results. Pixelette Marketing serves commercial buyers and public and civic organisations with one delivery capability across five groups.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",
@@ -102,7 +102,8 @@ const structuredData = {
         postalCode: "W6 8JA",
         addressCountry: "GB"
       },
-      vatID: "GB 432 2377 17",
+      // VAT omitted until management confirms Marketing Ltd holds GB 432 2377 17
+      // (same number publishes on Pixelette Technologies' site — see privacy comments).
       identifier: {
         "@type": "PropertyValue",
         name: "Companies House company number",

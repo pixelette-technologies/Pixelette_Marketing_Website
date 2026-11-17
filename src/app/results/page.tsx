@@ -60,11 +60,12 @@ export default function ResultsPage() {
             How we report results
           </Heading>
           <Text className='body'>
-            Every figure on these pages names its source and the period it
-            covers. We quote results exactly as published and we do not round,
-            extrapolate or combine them. Where a number is ours rather than a
-            client&apos;s, we say so. Where a result cannot be attributed to our
-            work with confidence, we say that too.
+            Every figure on these pages names its source and its period —
+            including when the period is not yet recorded. We quote results
+            exactly as published and we do not round, extrapolate or combine
+            them. Where a number is ours rather than a client&apos;s, we say
+            so. Where a result cannot be attributed to our work with
+            confidence, we say that too.
           </Text>
           <Text className='body'>
             We hold ourselves to this because we sell measurement. An agency

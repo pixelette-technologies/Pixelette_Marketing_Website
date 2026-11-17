@@ -114,8 +114,8 @@ export default function Footer() {
             </span>
             <Text className='small'>
               Marketing and communications that build brands, engage audiences
-              and deliver measurable results — strategy, demand, search,
-              pipeline, conversion and growth intelligence.
+              and deliver measurable results — for commercial buyers and for
+              public and civic organisations.
             </Text>
             <div className='footerSocial'>
               <a

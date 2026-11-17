@@ -67,7 +67,7 @@ export default function PrivacyPage() {
             <Heading className='h1p' level={1}>
               Privacy Statement
             </Heading>
-            <Text className='small'>Effective 23 September 2026 · Version 1.0</Text>
+            <Text className='small'>Effective 8 October 2026 · Version 1.0</Text>
           </header>
         </Container>
       </div>
@@ -91,8 +91,7 @@ export default function PrivacyPage() {
             Pixelette Marketing Ltd is the controller for the information
             described here. We are registered in England and Wales under company
             number 17508478, incorporated 8 October 2026, with our registered
-            office at 77 Fulham Palace Road, London W6 8JA. Our VAT registration
-            number is GB 432 2377 17.
+            office at 77 Fulham Palace Road, London W6 8JA.
           </p>
           <p>
             For anything in this statement, or about your information

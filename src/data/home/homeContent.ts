@@ -59,7 +59,7 @@ export const heroCopy = {
     "and deliver measurable results."
   ] as const,
   support:
-    "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
+    "One company, two markets: commercial growth and public and civic communications — five capabilities, measured properly.",
   primaryCta: { label: "Build my growth plan", to: "/contactus" },
   secondaryCta: { label: "Explore what we do", to: "/services" },
   // The Living Signal's two rail labels and its handwritten line. All three

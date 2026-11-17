@@ -1,32 +1,6 @@
-import {
-  AboutBuilt,
-  AboutClose,
-  AboutGroup,
-  AboutUsHero,
-  AboutWhy,
-  Principles
-} from "@/components/ui/aboutUs";
-import AboutBriefBlocks from "@/components/ui/aboutUs/AboutBriefBlocks";
-import { pageMetadata } from "@/data/site";
+import { redirect } from "next/navigation";
 
-export const metadata = pageMetadata({
-  title: "About",
-  description:
-    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
-  path: "/aboutus",
-  keywords: ["about Pixelette Marketing", "growth marketing agency", "commercial marketing"]
-});
-
-export default function AboutUs() {
-  return (
-    <>
-      <AboutUsHero />
-      <AboutWhy />
-      <AboutBuilt />
-      <Principles />
-      <AboutBriefBlocks />
-      <AboutGroup />
-      <AboutClose />
-    </>
-  );
+// Plan §9.5 / §8 — /aboutus permanently moves to /about.
+export default function AboutUsRedirect() {
+  redirect("/about");
 }

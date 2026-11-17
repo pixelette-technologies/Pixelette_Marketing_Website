@@ -9,10 +9,10 @@ import { pageMetadata, SITE_URL } from "@/data/site";
 export const metadata = pageMetadata({
   title: "What we do",
   description:
-    "Five connected capabilities — strategy and positioning, demand and performance, search and authority, pipeline and conversion, and growth intelligence — for businesses across established and emerging sectors.",
+    "Five connected capabilities — brand and strategy, creative and campaigns, communications and engagement, digital visibility and growth, and measurement and insight — for commercial and public buyers.",
   path: "/services",
   keywords:
-    "growth marketing services, marketing strategy, demand generation, SEO, paid media, pipeline, growth intelligence"
+    "marketing services, brand strategy, campaigns, communications, SEO, paid media, measurement"
 });
 
 // Added 10 Jun 2026 as an SEO hub and never taken through the design
@@ -74,10 +74,14 @@ export default function ServicesIndexPage() {
               What we do
             </Heading>
             <Text className='lead'>
-              Pixelette Marketing works with businesses across established and
-              emerging sectors. The work is organised as five connected
-              capabilities rather than a menu of channels — the starting point
-              is what is actually limiting growth, not a predetermined service.
+              The work is organised as five connected capabilities rather than
+              a menu of channels. Not every marketing problem is a
+              lead-generation problem. You may need to define your brand,
+              launch something, tell a stronger story, build an audience,
+              improve how easily you are found, or understand what is actually
+              working. We organise around the objective rather than the
+              channel, and the same five capabilities serve a commercial buyer
+              and a public one.
             </Text>
           </section>
         </Container>

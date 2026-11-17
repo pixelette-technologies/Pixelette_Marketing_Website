@@ -72,7 +72,8 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
     heading: page.cta?.heading ?? d.cta.heading,
     body: page.cta?.body ?? d.cta.body,
     label: page.cta?.label ?? navCta.label,
-    href: page.cta?.href ?? navCta.to
+    href: page.cta?.href ?? navCta.to,
+    secondary: page.cta?.secondary
   };
   const url = `${BASE_URL}/services/${page.route}`;
 
@@ -190,8 +191,8 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
               // remapped Pipeline & Conversion onto Digital Visibility and
               // Growth — the same string as their parent group. Other pages
               // still drop a self-group node so the figure stays three others.
-              page.route === "seo_and_content_marketing" ||
-              page.route === "ads_ppc"
+              page.route === "seo-and-content-marketing" ||
+              page.route === "ads-ppc"
                 ? page.connections.items
                 : page.connections.items.filter(
                     item => item.capability !== page.capability
@@ -239,6 +240,14 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
             <Link href={cta.href} className='spClose__button'>
               {cta.label}
             </Link>
+            {cta.secondary ? (
+              <p className='spClose__secondary'>
+                <Link href={cta.secondary.href} className='textLink'>
+                  {cta.secondary.label}
+                  <span aria-hidden='true'> →</span>
+                </Link>
+              </p>
+            ) : null}
           </section>
         </div>
       </div>

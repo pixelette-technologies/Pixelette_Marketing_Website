@@ -24,7 +24,7 @@ import type { SpecialistPageConfig } from "./types";
 // reputation and launches. Neither page should sell the other's proposition.
 
 export const seoContentAndAiVisibility: SpecialistPageConfig = {
-  route: "seo_and_content_marketing",
+  route: "seo-and-content-marketing",
   capability: "Digital Visibility and Growth",
   label: "SEO, Content & AI Visibility",
   meta: {

@@ -87,6 +87,14 @@
   color: var(--color-body);
 }
 
+.caseStudy__provenance {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: var(--fs-small, 0.8125rem);
+  line-height: 1.4;
+  color: var(--color-muted, var(--color-body));
+}
+
 // --- The qualitative outcomes -----------------------------------------------
 // WebBookingPro's impact is four sentences, not four numbers, because that is
 // what management supplied. They are NOT dressed as figures: an outcome tile

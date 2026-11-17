@@ -14,7 +14,7 @@ export const metadata = pageMetadata({
   title:
     "Pixelette Marketing | Marketing and communications that build brands, engage audiences and deliver measurable results",
   description:
-    "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter. Growth marketing for ambitious businesses.",
+    "Marketing and communications that build brands, engage audiences and deliver measurable results. Strategy, demand, search, pipeline and intelligence working together for commercial and public and civic buyers.",
   path: "",
   absoluteTitle: true,
   keywords: [

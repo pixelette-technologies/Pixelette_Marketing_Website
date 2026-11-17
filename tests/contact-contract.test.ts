@@ -114,13 +114,27 @@ test("still rejects a field outside the widened allowlist", () => {
   if (!result.ok) assert.equal(result.code, "UNSUPPORTED_FIELD");
 });
 
-// 12 Nov brief added an Indicative budget control on the contact form. Options
-// and contract acceptance were not supplied, so ContactUsForm omits the field
-// from the POST. If it ever leaks onto the wire, the allowlist must reject it.
-test("rejects indicativeBudget until the governed contract accepts it", () => {
+// Plan §9.3 — optional indicative budget bands are allowed on the contract.
+test("accepts empty indicativeBudget as optional", () => {
   const body = valid() as unknown as Record<string, unknown>;
   body.indicativeBudget = "";
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, true);
+  if (result.ok) assert.equal(result.value.indicativeBudget, undefined);
+});
+
+test("accepts a known indicativeBudget band", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "£5,000–£15,000";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, true);
+  if (result.ok) assert.equal(result.value.indicativeBudget, "£5,000–£15,000");
+});
+
+test("rejects an unknown indicativeBudget band", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "£1,000,000";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, false);
-  if (!result.ok) assert.equal(result.code, "UNSUPPORTED_FIELD");
+  if (!result.ok) assert.equal(result.code, "INVALID_CONTACT_FIELDS");
 });

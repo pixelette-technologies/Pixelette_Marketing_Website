@@ -17,7 +17,7 @@ import type { SpecialistPageConfig } from "./types";
 // on the page, and the FAQ that answers it is the brief's.
 
 export const socialAndCommunity: SpecialistPageConfig = {
-  route: "social_media_marketing",
+  route: "social-media-marketing",
   capability: "Communications and Engagement",
   label: "Social & Community",
   meta: {
@@ -130,7 +130,7 @@ export const socialAndCommunity: SpecialistPageConfig = {
 };
 
 export const paidMediaAndPpc: SpecialistPageConfig = {
-  route: "ads_ppc",
+  route: "ads-ppc",
   capability: "Digital Visibility and Growth",
   label: "Paid Media & PPC",
   meta: {
@@ -243,7 +243,7 @@ export const paidMediaAndPpc: SpecialistPageConfig = {
 };
 
 export const influencerAndPartnerships: SpecialistPageConfig = {
-  route: "influencer_marketing",
+  route: "influencer-marketing",
   capability: "Creative and Campaigns",
   label: "Influencer & Partnerships",
   meta: {
@@ -360,63 +360,64 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
   capability: "Communications and Engagement",
   label: "PR & Earned Media",
   meta: {
-    title: "PR & Earned Media | Pixelette Marketing",
+    title: "PR, reputation and stakeholder communications | Pixelette Marketing",
     description:
-      "PR and earned-media campaigns that create credible visibility, strengthen reputation and give the market something worth repeating."
+      "When the objective is standing, not pipeline — reputation, stakeholder relationships, change with staff, and credibility with people who will never be customers."
   },
+  // Plan §10.10 — widen PR to reputation and stakeholder; no standalone page.
   hero: {
-    heading: "Earn attention from voices people already trust",
-    lead: "PR and earned-media campaigns that create credible visibility, strengthen reputation and give the market something worth repeating."
+    heading: "When the objective is standing, not pipeline",
+    lead: "Not all commercial marketing is built to generate demand. Some of it exists to protect a reputation, hold a stakeholder relationship together, land a difficult change with staff, or make a company credible to people who will never be its customers — investors, regulators, partners, journalists, acquirers. That work is measured differently, and most of it never shows up in a pipeline report."
   },
   earnsItsPlace: {
-    heading: "Use earned media when third-party credibility matters",
+    heading: "Use this work when credibility and standing matter more than leads",
     intro:
-      "PR earns its place when the story benefits from independent attention rather than another brand-controlled message.",
+      "Reputation and stakeholder communications earn their place when the objective is trust, continuity or understanding rather than another brand-controlled demand campaign.",
     items: [
       {
-        title: "You have a story worth earning attention for",
-        body: "Launches, announcements and credible points of view can justify media interest."
+        title: "Reputation and issues need handling",
+        body: "Independent coverage, issues readiness and message discipline protect standing when scrutiny arrives."
       },
       {
-        title: "Reputation matters to the buying decision",
-        body: "Independent coverage can strengthen trust around a business, product or leadership position."
+        title: "Stakeholders need a clear account",
+        body: "Investors, regulators, partners and journalists need a coherent story that holds under questioning."
       },
       {
-        title: "The market needs to hear it from someone else",
-        body: "Earned voices can add credibility that owned channels cannot manufacture alone."
+        title: "Change has to land with staff first",
+        body: "Internal and change communications keep people from finding out somewhere else first."
       }
     ]
   },
   services: {
     items: [
       {
-        title: "PR strategy & narrative",
-        body: "Define what is genuinely newsworthy and how the story should be framed."
+        title: "Brand and narrative",
+        body: "Positioning, identity direction and the story the market should be able to retell."
       },
       {
-        title: "Media relations",
-        body: "Identify relevant journalists and build focused outreach around credible angles."
+        title: "Reputation and issues",
+        body: "Proactive reputation work, issues readiness and earned attention from voices people already trust."
       },
       {
-        title: "Launches & earned campaigns",
-        body: "Coordinate media activity around products, company moments and market stories."
+        title: "Stakeholder and investor communications",
+        body: "Communications for people who shape the conditions of the business without buying from it."
       },
       {
-        title: "Reputation & thought leadership",
-        body: "Use expertise, commentary and proactive communications to strengthen credibility."
+        title: "Internal and change communications",
+        body: "Staff communications through change — understanding tested, not assumed from distribution."
       }
     ]
   },
   measure: {
-    heading: "Measure quality of attention, not press volume",
-    body: "Coverage only matters when the audience, message and downstream effect are relevant.",
+    heading: "Measure the conditions, not a pipeline that was never the point",
+    body: "That work is measured differently, and most of it never shows up in a pipeline report.",
     metrics: [
-      "Coverage relevance",
-      "Message penetration",
-      "Referral demand",
-      "Quality of publications",
-      "Relevant conversation",
-      "Search / traffic effects"
+      "Share and quality of relevant conversation",
+      "Message penetration among named stakeholder groups",
+      "Sentiment over time against a baseline",
+      "Inbound enquiry quality",
+      "Recruitment and retention signals where relevant",
+      "Absence of avoidable escalation"
     ]
   },
   connections: {
@@ -424,7 +425,7 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
       {
         capability: "Brand and Strategy",
         title: "The underlying narrative is weak",
-        body: "PR should not be asked to manufacture a proposition that has not been resolved upstream."
+        body: "Reputation work should not be asked to manufacture a proposition that has not been resolved upstream."
       },
       {
         capability: "Digital Visibility and Growth",
@@ -434,25 +435,25 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
       {
         capability: "Social & Community",
         title: "Earned attention needs amplification",
-        body: "Relevant coverage can be extended through owned social when that helps the wider demand system."
+        body: "Relevant coverage can be extended through owned social when that helps the wider system."
       }
     ]
   },
   goodLooksLike: {
-    heading: "What good PR & earned media should achieve",
+    heading: "What good reputation and stakeholder work should achieve",
     points: [
       "The story earns attention because it is relevant, not because it was pushed harder.",
-      "Coverage appears in places that matter to the intended audience.",
-      "The messages you wanted the market to understand actually appear in the coverage.",
-      "Earned visibility creates useful downstream effects such as trust, traffic, search demand or conversation."
+      "Coverage and conversation appear where the intended audience already looks.",
+      "Named stakeholder groups understand the messages that were meant for them.",
+      "Staff hear about change from the organisation first, with understanding tested rather than assumed."
     ]
   },
   faqs: {
     items: [
       {
-        question: "What stories are suitable for PR?",
+        question: "Can you prove this generated revenue?",
         answer:
-          "There needs to be a credible reason for the media or market to care — not every company announcement earns attention."
+          "Usually not directly, and we will not claim it did. Reputation work changes the conditions in which commercial work happens. We measure the conditions, name what we cannot attribute, and let you judge it against what it cost."
       },
       {
         question: "Do you guarantee coverage?",
@@ -462,7 +463,7 @@ export const prAndEarnedMedia: SpecialistPageConfig = {
       {
         question: "How is this different from Digital Visibility and Growth?",
         answer:
-          "PR here focuses on earned attention and credibility. Search-led authority building belongs within Digital Visibility and Growth."
+          "This page focuses on standing, reputation and stakeholder relationships. Search-led authority building belongs within Digital Visibility and Growth."
       }
     ]
   }

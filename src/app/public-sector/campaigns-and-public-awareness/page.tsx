@@ -1,14 +1,15 @@
-import PublicSectorServiceTemplate from "@/components/ui/publicSector/PublicSectorServiceTemplate";
+import MarketBServicePage from "@/components/ui/publicSector/MarketBServicePage";
+import { marketBServiceLines } from "@/data/publicSector/serviceLines";
 import { pageMetadata } from "@/data/site";
 
+const line = marketBServiceLines[0]!;
+
 export const metadata = pageMetadata({
-  title: "Campaigns and public awareness",
-  description: "Campaigns and public awareness.",
-  path: "/public-sector/campaigns-and-public-awareness"
+  title: line.title,
+  description: line.h1,
+  path: line.path
 });
 
 export default function Page() {
-  return (
-    <PublicSectorServiceTemplate title='Campaigns and public awareness' />
-  );
+  return <MarketBServicePage line={line} />;
 }

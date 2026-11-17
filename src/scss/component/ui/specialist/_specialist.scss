@@ -692,6 +692,19 @@
       outline-offset: 3px;
     }
   }
+
+  &__secondary {
+    margin-top: 1rem;
+    margin-bottom: 0;
+
+    .textLink {
+      color: var(--color-brand-wash);
+
+      &:hover {
+        color: var(--color-page);
+      }
+    }
+  }
 }
 
 // --- 09 Useful questions ------------------------------------------------------------

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { servicesData } from "@/data/services/servicesData";
 import blogsData from "@/data/blogs/blogsData";
+import { blogHref } from "@/data/blogs/slugs";
 import { SITE_URL } from "@/data/site";
 
 // Generates /sitemap.xml at build time (Next.js App Router metadata route).
@@ -28,9 +29,70 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/strategy-positioning", changeFrequency: "weekly", priority: 0.9 },
     { path: "/industries", changeFrequency: "weekly", priority: 0.8 },
     { path: "/results", changeFrequency: "monthly", priority: 0.8 },
-    { path: "/aboutus", changeFrequency: "monthly", priority: 0.7 },
-    { path: "/blog-list", changeFrequency: "weekly", priority: 0.7 },
+    { path: "/results/blockguard", changeFrequency: "monthly", priority: 0.7 },
+    {
+      path: "/results/webbookingpro",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    { path: "/about", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/about/people", changeFrequency: "monthly", priority: 0.6 },
+    { path: "/insights", changeFrequency: "weekly", priority: 0.7 },
     { path: "/contactus", changeFrequency: "monthly", priority: 0.7 },
+    { path: "/public-sector", changeFrequency: "weekly", priority: 0.8 },
+    {
+      path: "/public-sector/campaign-evaluation",
+      changeFrequency: "monthly",
+      priority: 0.8
+    },
+    {
+      path: "/public-sector/campaigns-and-public-awareness",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/public-sector/digital-communications",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/public-sector/community-engagement",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/public-sector/internal-and-change-communications",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/public-sector/education-marketing",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/public-sector/how-to-buy",
+      changeFrequency: "monthly",
+      priority: 0.8
+    },
+    { path: "/accessibility", changeFrequency: "yearly", priority: 0.5 },
+    { path: "/social-value", changeFrequency: "yearly", priority: 0.5 },
+    { path: "/policies", changeFrequency: "yearly", priority: 0.5 },
+    {
+      path: "/industries/public-sector-and-local-government",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/industries/charities-and-non-profit",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      path: "/industries/education-and-learning",
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/cookie-policy", changeFrequency: "yearly", priority: 0.3 }
   ];
@@ -42,9 +104,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8
   }));
 
-  // Every article is linked from /blog-list (Insights).
+  // Every article is linked from /insights.
   const blogs: Entry[] = blogsData.flatMap(c => c.data).map(b => ({
-    path: `/blog/${b.id}`,
+    path: blogHref(b.id),
     changeFrequency: "monthly" as const,
     priority: 0.6
   }));

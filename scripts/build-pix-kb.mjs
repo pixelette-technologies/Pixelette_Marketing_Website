@@ -20,15 +20,15 @@ const OUT = path.join(ROOT, 'src', 'content', 'pix-kb.json');
 const QUESTIONS = path.join(ROOT, 'src', 'content', 'pix-questions.json');
 
 const SPECIALIST_ROUTES = new Set([
-  'social_media_marketing',
-  'ads_ppc',
-  'influencer_marketing',
+  'social-media-marketing',
+  'ads-ppc',
+  'influencer-marketing',
   'pr',
-  'seo_and_content_marketing',
-  'marketing_analytics_and_reporting',
+  'seo-and-content-marketing',
+  'marketing-analytics',
 ]);
 
-const LEGACY_SERVICE_ROUTES = new Set(['email_marketing', 'lead_generation']);
+const LEGACY_SERVICE_ROUTES = new Set(['email-marketing', 'lead-generation']);
 
 const docs = [];
 

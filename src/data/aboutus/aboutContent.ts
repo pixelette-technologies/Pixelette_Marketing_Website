@@ -105,9 +105,9 @@ export const aboutPrinciples = {
 // would have been the on-site answer is hidden (22 Sep 2026).
 
 export const aboutGroup = {
-  eyebrow: "Part of the wider Pixelette Group",
-  heading: "Marketing that can connect with more than marketing",
-  body: "Pixelette Marketing sits within the wider Pixelette Group. Where the brief genuinely requires it, marketing work can connect with broader product, software, AI and automation or assurance capability across the group."
+  eyebrow: "Part of Pixelette Group",
+  heading: "Part of Pixelette Group",
+  body: "Pixelette Marketing Ltd is one of four companies in Pixelette Group. Where a marketing engagement needs software built, we refer to Pixelette Technologies under a documented referral arrangement. Where it needs assurance or certification work, we refer to Pixelette Certified. We do not deliver either ourselves, and we say so rather than letting a group website imply otherwise."
 };
 
 // --- 06 Close ---------------------------------------------------------------

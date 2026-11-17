@@ -1,12 +1,15 @@
-import PublicSectorServiceTemplate from "@/components/ui/publicSector/PublicSectorServiceTemplate";
+import MarketBServicePage from "@/components/ui/publicSector/MarketBServicePage";
+import { marketBServiceLines } from "@/data/publicSector/serviceLines";
 import { pageMetadata } from "@/data/site";
 
+const line = marketBServiceLines[1]!;
+
 export const metadata = pageMetadata({
-  title: "Digital communications",
-  description: "Digital communications.",
-  path: "/public-sector/digital-communications"
+  title: line.title,
+  description: line.h1,
+  path: line.path
 });
 
 export default function Page() {
-  return <PublicSectorServiceTemplate title='Digital communications' />;
+  return <MarketBServicePage line={line} />;
 }

@@ -648,6 +648,14 @@
   max-width: 40rem;
 }
 
+.workFeature__provenance {
+  max-width: 40rem;
+  margin: 0;
+  font-size: var(--fs-small, 0.8125rem);
+  line-height: 1.4;
+  color: var(--color-muted, var(--color-body));
+}
+
 // Five figures. The two before-and-after figures lead across the full width;
 // the three counts share the row beneath.
 .workFigures {

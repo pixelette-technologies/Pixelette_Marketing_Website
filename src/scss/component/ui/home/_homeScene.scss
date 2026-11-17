@@ -199,12 +199,24 @@
   margin: 1.5rem 0 0;
   padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
+  flex-direction: column;
+  gap: 0.75rem;
 
   li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
     font-size: 0.875rem;
     line-height: 1.4;
     color: var(--color-body);
+  }
+
+  &__name {
+    font-weight: 600;
+  }
+
+  &__cadence {
+    font-size: 0.8125rem;
+    color: var(--color-muted, var(--color-body));
   }
 }

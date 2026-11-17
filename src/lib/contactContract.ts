@@ -21,6 +21,17 @@ export const IMPROVE_OPTIONS = [
 
 export type ImproveOption = (typeof IMPROVE_OPTIONS)[number];
 
+/** Plan §9.3 — optional indicative budget bands. */
+export const BUDGET_OPTIONS = [
+  "Under £5,000",
+  "£5,000–£15,000",
+  "£15,000–£50,000",
+  "£50,000+",
+  "Not yet known"
+] as const;
+
+export type BudgetOption = (typeof BUDGET_OPTIONS)[number];
+
 export interface GovernedContactSubmission {
   eventId: string;
   firstName: string;
@@ -31,6 +42,8 @@ export interface GovernedContactSubmission {
   company?: string;
   companyWebsite?: string;
   improve?: ImproveOption;
+  /** Optional. Plan §9.3 budget bands. */
+  indicativeBudget?: BudgetOption;
   description: string;
   consent: true;
   noticeVersion: string;
@@ -45,10 +58,11 @@ export type ContactValidationResult =
 
 const TOP_LEVEL_FIELDS = new Set([
   "eventId", "firstName", "lastName", "email", "company", "companyWebsite", "improve",
-  "description", "consent", "noticeVersion", "formStartedAt", "sourcePage", "_website",
-  "attribution"
+  "indicativeBudget", "description", "consent", "noticeVersion", "formStartedAt",
+  "sourcePage", "_website", "attribution"
 ]);
 const IMPROVE_VALUES: ReadonlySet<string> = new Set(IMPROVE_OPTIONS);
+const BUDGET_VALUES: ReadonlySet<string> = new Set(BUDGET_OPTIONS);
 const ATTRIBUTION_FIELDS = new Set([
   "campaignId", "utmSource", "utmMedium", "utmCampaign", "utmContent", "utmTerm",
   "landingPage", "referrer"
@@ -124,14 +138,23 @@ export function validateContactPayload(
 
   // Membership, not shape. An unrecognised value is rejected rather than
   // passed through, so the notification email can only ever carry one of the
-  // six the brief names.
+  // five the brief names.
   let improve: ImproveOption | undefined;
   if (input.improve !== undefined && input.improve !== "") {
-    const normalized = boundedString(input.improve, 1, 32);
+    const normalized = boundedString(input.improve, 1, 40);
     if (!normalized || !IMPROVE_VALUES.has(normalized)) {
       return { ok: false, code: "INVALID_CONTACT_FIELDS" };
     }
     improve = normalized as ImproveOption;
+  }
+
+  let indicativeBudget: BudgetOption | undefined;
+  if (input.indicativeBudget !== undefined && input.indicativeBudget !== "") {
+    const normalized = boundedString(input.indicativeBudget, 1, 40);
+    if (!normalized || !BUDGET_VALUES.has(normalized)) {
+      return { ok: false, code: "INVALID_CONTACT_FIELDS" };
+    }
+    indicativeBudget = normalized as BudgetOption;
   }
 
   const attributionInput = input.attribution ?? {};
@@ -158,6 +181,7 @@ export function validateContactPayload(
       company,
       companyWebsite,
       improve,
+      indicativeBudget,
       description,
       consent: true,
       noticeVersion,

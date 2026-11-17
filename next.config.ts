@@ -34,9 +34,78 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        // Fix the historical slug typo while preserving the indexed URL.
         source: "/services/lead_genration",
-        destination: "/services/lead_generation",
+        destination: "/services/lead-generation",
+        permanent: true
+      },
+      {
+        source: "/aboutus",
+        destination: "/about",
+        permanent: true
+      },
+      {
+        source: "/blog-list",
+        destination: "/insights",
+        permanent: true
+      },
+      {
+        source: "/blog/1",
+        destination: "/insights/marketing-uk-fintech-fca-rules",
+        permanent: true
+      },
+      {
+        source: "/blog/2",
+        destination: "/insights/market-web3-product-ad-platforms",
+        permanent: true
+      },
+      {
+        source: "/blog/3",
+        destination: "/insights/marketing-metrics-early-stage-saas",
+        permanent: true
+      },
+      {
+        source: "/blog/4",
+        destination: "/insights/buyers-asking-ai-not-search-engine",
+        permanent: true
+      },
+      {
+        source: "/blog/5",
+        destination: "/insights/five-things-before-increasing-marketing-spend",
+        permanent: true
+      },
+      {
+        source: "/services/social_media_marketing",
+        destination: "/services/social-media-marketing",
+        permanent: true
+      },
+      {
+        source: "/services/email_marketing",
+        destination: "/services/email-marketing",
+        permanent: true
+      },
+      {
+        source: "/services/seo_and_content_marketing",
+        destination: "/services/seo-and-content-marketing",
+        permanent: true
+      },
+      {
+        source: "/services/influencer_marketing",
+        destination: "/services/influencer-marketing",
+        permanent: true
+      },
+      {
+        source: "/services/ads_ppc",
+        destination: "/services/ads-ppc",
+        permanent: true
+      },
+      {
+        source: "/services/lead_generation",
+        destination: "/services/lead-generation",
+        permanent: true
+      },
+      {
+        source: "/services/marketing_analytics_and_reporting",
+        destination: "/services/marketing-analytics",
         permanent: true
       },
       // 25 Sep 2026. The indexed deeper-experience URLs are /industries/web_3

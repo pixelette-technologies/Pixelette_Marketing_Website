@@ -98,6 +98,13 @@ export default function WorkInPractice() {
     return figure;
   });
 
+  // Same provenance already required on /results figures — reused, not invented.
+  const leadProvenance = lead.impact.find(
+    item => item.value && item.source && item.period
+  );
+  const leadHref = `/results/${caseStudyAnchor(lead.client)}`;
+  const supportHref = `/results/${caseStudyAnchor(support.client)}`;
+
   return (
     <div className='band-alt' id={WORK_IN_PRACTICE_ID}>
       <Container className='main'>
@@ -124,10 +131,14 @@ export default function WorkInPractice() {
 
               <FigureReveal figures={figures} />
 
-              <Link
-                href={`/results#${caseStudyAnchor(lead.client)}`}
-                className='textLink textLink--brand'
-              >
+              {leadProvenance?.source && leadProvenance.period ? (
+                <p className='workFeature__provenance'>
+                  Source: {leadProvenance.source}. Period:{" "}
+                  {leadProvenance.period}. Full story on {leadHref}.
+                </p>
+              ) : null}
+
+              <Link href={leadHref} className='textLink textLink--brand'>
                 See the work
                 <span aria-hidden='true'>→</span>
               </Link>
@@ -151,10 +162,7 @@ export default function WorkInPractice() {
                 ))}
               </ul>
 
-              <Link
-                href={`/results#${caseStudyAnchor(support.client)}`}
-                className='textLink textLink--brand'
-              >
+              <Link href={supportHref} className='textLink textLink--brand'>
                 See the work
                 <span aria-hidden='true'>→</span>
               </Link>

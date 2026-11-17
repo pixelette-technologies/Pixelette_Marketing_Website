@@ -10,7 +10,7 @@ import {
   useFormikContext
 } from "formik";
 import { contactUSvalidationSchema } from "@/validations/contactUsValidation";
-import { IMPROVE_OPTIONS } from "@/lib/contactContract";
+import { BUDGET_OPTIONS, IMPROVE_OPTIONS } from "@/lib/contactContract";
 import { PRIVACY_HREF } from "@/data/legal";
 import {
   Button,
@@ -132,15 +132,11 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
       } catch {
         referrer = "";
       }
-      // indicativeBudget is UI-only until the brief supplies options and the
-      // governed contract accepts it. Spreading it into the POST yields
-      // UNSUPPORTED_FIELD on every enquiry (12 Nov brief / 13 Nov review).
-      const { indicativeBudget: _indicativeBudget, ...governedValues } = values;
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...governedValues,
+          ...values,
           eventId: activeEventId,
           noticeVersion,
           sourcePage: window.location.pathname,
@@ -300,10 +296,10 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               options={IMPROVE_OPTIONS}
             />
             <FormSelect
-              label='Indicative budget'
+              label='Indicative budget (optional)'
               name='indicativeBudget'
               place='Select one'
-              options={[]}
+              options={BUDGET_OPTIONS}
             />
             <FormTextArea
               label='What is happening now?'

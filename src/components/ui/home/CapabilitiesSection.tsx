@@ -40,7 +40,14 @@ export default function CapabilitiesSection() {
               />
               <ul className='capabilitiesNames'>
                 {capabilitiesCopy.capabilities.map(capability => (
-                  <li key={capability.name}>{capability.name}</li>
+                  <li key={capability.name}>
+                    <span className='capabilitiesNames__name'>
+                      {capability.name}
+                    </span>
+                    <span className='capabilitiesNames__cadence'>
+                      {capability.cadence}
+                    </span>
+                  </li>
                 ))}
               </ul>
             </div>

@@ -32,7 +32,7 @@ import type { SpecialistPageConfig } from "./types";
 // one of those patterns; Industries owns market context.
 
 export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
-  route: "marketing_analytics_and_reporting",
+  route: "marketing-analytics",
   capability: "Measurement and Insight",
   label: "Marketing Analytics & Measurement",
   meta: {
@@ -171,11 +171,20 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   },
   cta: {
     heading: "Have plenty of data but not enough clarity?",
-    body: "Start with the decisions you are trying to make — then work backwards to the evidence required.",
-    label: "Build my growth plan"
+    body: "Start with the decisions you are trying to make — then work backwards to the evidence required. For public and civic campaign evaluation — the same discipline pointed at public outcomes — see Campaign evaluation under Public sector.",
+    label: "Build my growth plan",
+    secondary: {
+      label: "Campaign evaluation",
+      href: "/public-sector/campaign-evaluation"
+    }
   },
   faqs: {
     items: [
+      {
+        question: "Do you evaluate public-sector campaigns?",
+        answer:
+          "Yes. Campaign evaluation for public and civic buyers is at /public-sector/campaign-evaluation. It is the same measurement discipline, pointed at whether a campaign achieved its intended public outcome rather than a sale."
+      },
       {
         question: "Can you work with our existing analytics stack?",
         answer:

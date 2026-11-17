@@ -34,11 +34,36 @@ export const caseStudies: CaseStudyContent[] = [
     impactHeading: "The impact",
     impactStyle: "figures",
     impact: [
-      { value: "160", label: "ranking keywords - up from 5" },
-      { value: "16.9k", label: "organic impressions - up from 200" },
-      { value: "2,435", label: "campaign participants" },
-      { value: "29,974", label: "campaign engagements" },
-      { value: "975", label: "new Telegram and Discord community members" }
+      {
+        value: "160",
+        label: "ranking keywords - up from 5",
+        source: "Client case study supplied by management",
+        period: "Period not yet recorded"
+      },
+      {
+        value: "16.9k",
+        label: "organic impressions - up from 200",
+        source: "Client case study supplied by management",
+        period: "Period not yet recorded"
+      },
+      {
+        value: "2,435",
+        label: "campaign participants",
+        source: "Client case study supplied by management",
+        period: "Period not yet recorded"
+      },
+      {
+        value: "29,974",
+        label: "campaign engagements",
+        source: "Client case study supplied by management",
+        period: "Period not yet recorded"
+      },
+      {
+        value: "975",
+        label: "new Telegram and Discord community members",
+        source: "Client case study supplied by management",
+        period: "Period not yet recorded"
+      }
     ],
     closing:
       "From search visibility to community activation, we connected strategy and execution to create measurable growth across multiple digital channels.",

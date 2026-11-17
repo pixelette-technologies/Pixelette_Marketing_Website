@@ -6,7 +6,8 @@ import { pageMetadata } from "@/data/site";
 export const metadata = pageMetadata({
   title: "Demonstration work",
   description: "Demonstration work.",
-  path: "/public-sector/demonstrations"
+  path: "/public-sector/demonstrations",
+  index: false
 });
 
 export default function DemonstrationsPage() {

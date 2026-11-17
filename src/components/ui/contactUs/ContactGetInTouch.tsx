@@ -61,8 +61,7 @@ const ContactGetInTouch = () => {
               Company number {CONTACT_COMPANY_NUMBER}
             </p>
             <p className='contactTouch__note'>
-              Incorporation date
-              {company.incorporated != null ? ` ${company.incorporated}` : ""}
+              Incorporated {company.incorporatedDate}
             </p>
           </div>
           <div className='contactTouch__card'>

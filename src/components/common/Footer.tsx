@@ -6,6 +6,7 @@ import Link from "next/link";
 // Used only by the group band, which is temporarily hidden — see the
 // TEMPORARILY HIDDEN block below. Restore this import with it.
 // import { MdArrowOutward } from "react-icons/md";
+import { company } from "@/data/company";
 import { footerCapabilityGroups } from "@/data/navigation";
 import { COOKIE_POLICY_HREF, PRIVACY_HREF } from "@/data/legal";
 
@@ -112,9 +113,9 @@ export default function Footer() {
               <Logo />
             </span>
             <Text className='small'>
-              Growth marketing built around commercial outcomes, connecting
-              strategy, demand, search, pipeline, conversion and growth
-              intelligence.
+              Marketing and communications that build brands, engage audiences
+              and deliver measurable results — strategy, demand, search,
+              pipeline, conversion and growth intelligence.
             </Text>
             <div className='footerSocial'>
               <a
@@ -164,7 +165,7 @@ export default function Footer() {
             </Heading>
             <ul className='footerList'>
               <li>
-                <Link href='/aboutus' className='flink small'>
+                <Link href='/about' className='flink small'>
                   About
                 </Link>
               </li>
@@ -174,7 +175,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='/blog-list' className='flink small'>
+                <Link href='/insights' className='flink small'>
                   Insights
                 </Link>
               </li>
@@ -292,9 +293,9 @@ export default function Footer() {
             suffix, until someone confirms which. See [[09 Outstanding]]. */}
         <div className='footerLegal'>
           <p className='legal footerId'>
-            <span>Pixelette Marketing</span>{" "}
+            <span>{company.legalName}</span>{" "}
             <span>Registered in England and Wales</span>{" "}
-            <span>Company number 17508478</span>
+            <span>Company number {company.companyNumber}</span>
           </p>
           <p className='legal footerId footerId--end'>
             <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>{" "}

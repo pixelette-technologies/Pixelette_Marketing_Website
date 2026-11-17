@@ -6,7 +6,8 @@ import { pageMetadata } from "@/data/site";
 export const metadata = pageMetadata({
   title: "Web3 marketing",
   description: "Web3 marketing.",
-  path: "/specialisms/web3-marketing"
+  path: "/specialisms/web3-marketing",
+  index: false
 });
 
 export default function Web3MarketingStubPage() {

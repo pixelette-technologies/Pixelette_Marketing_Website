@@ -7,6 +7,10 @@ export interface CaseStudyImpact {
   /** The figure. Absent on a qualitative outcome. */
   value?: string;
   label: string;
+  /** Required when `value` is set — every rendered figure names its source. */
+  source?: string;
+  /** Required when `value` is set — every rendered figure names its period. */
+  period?: string;
 }
 
 export interface CaseStudyContent {
@@ -101,14 +105,26 @@ const CaseStudySection: FC<CaseStudySectionProps> = ({
             className={`caseStudy__impactList caseStudy__impactList--${impactStyle}`}
             data-reveal='stagger'
           >
-            {impact.map((item, index) => (
-              <li key={index}>
-                {item.value && (
-                  <span className='caseStudy__figure'>{item.value}</span>
-                )}{" "}
-                <span className='caseStudy__label'>{item.label}</span>
-              </li>
-            ))}
+            {impact
+              .filter(item => {
+                // A figure with a value must name source and period, or it
+                // does not render — keeps the /results sourcing statement true.
+                if (!item.value) return true;
+                return Boolean(item.source && item.period);
+              })
+              .map((item, index) => (
+                <li key={index}>
+                  {item.value && (
+                    <span className='caseStudy__figure'>{item.value}</span>
+                  )}{" "}
+                  <span className='caseStudy__label'>{item.label}</span>
+                  {item.value && item.source && item.period ? (
+                    <span className='caseStudy__provenance'>
+                      Source: {item.source}. Period: {item.period}.
+                    </span>
+                  ) : null}
+                </li>
+              ))}
           </ul>
         </section>
 

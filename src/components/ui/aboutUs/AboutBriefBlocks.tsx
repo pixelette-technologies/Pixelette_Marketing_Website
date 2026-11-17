@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { Container } from "@/components/common";
-import { Heading } from "@/components/feature";
+import { Heading, Text } from "@/components/feature";
 
-// 12 Nov brief empty slots on About. "Part of Pixelette Group" is already
-// covered by AboutGroup — do not duplicate that heading here.
+// Plan §9.5 — How the work is delivered. Group relationship lives in AboutGroup.
+
 export default function AboutBriefBlocks() {
   return (
     <Container className='main'>
@@ -11,13 +11,24 @@ export default function AboutBriefBlocks() {
         <Heading className='h2' level={2} id='how-delivered-title'>
           How the work is delivered
         </Heading>
+        <Text className='body'>
+          Pixelette Marketing brings together company leadership and specialist
+          practitioners around the needs of each engagement. We agree scope and
+          responsibilities before work starts, appoint appropriately qualified
+          specialists, and remain accountable for the client relationship, the
+          contract and delivery standards.
+        </Text>
+        <Text className='body'>
+          We tell you who is working on your assignment rather than imply that
+          every speciality sits in a permanent internal department.
+        </Text>
+        <p className='sec-sm'>
+          <Link href='/about/people' className='textLink'>
+            The people doing the work
+            <span aria-hidden='true'> →</span>
+          </Link>
+        </p>
       </section>
-      <p className='sec-sm'>
-        <Link href='/about/people' className='textLink'>
-          People
-          <span aria-hidden='true'>→</span>
-        </Link>
-      </p>
     </Container>
   );
 }

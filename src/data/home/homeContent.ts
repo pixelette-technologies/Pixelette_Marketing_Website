@@ -131,7 +131,11 @@ export const activityCopy: EditorialSectionCopy & {
 export type CapabilityIcon = "compass" | "bars" | "search" | "funnel" | "rise";
 
 export const capabilitiesCopy: EditorialSectionCopy & {
-  capabilities: readonly { name: string; icon: CapabilityIcon }[];
+  capabilities: readonly {
+    name: string;
+    cadence: string;
+    icon: CapabilityIcon;
+  }[];
   payoff: string;
 } = {
   number: "03",
@@ -144,11 +148,31 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   // Kept for hub / content reuse. No longer overlaid on the maquette visual
   // (illustration is unlabelled; the copy carries the proposition).
   capabilities: [
-    { name: "Brand and Strategy", icon: "compass" },
-    { name: "Creative and Campaigns", icon: "bars" },
-    { name: "Communications and Engagement", icon: "search" },
-    { name: "Digital Visibility and Growth", icon: "funnel" },
-    { name: "Measurement and Insight", icon: "rise" }
+    {
+      name: "Brand and Strategy",
+      cadence: "Know who you are. Know where you win.",
+      icon: "compass" as const
+    },
+    {
+      name: "Creative and Campaigns",
+      cadence: "Ideas people notice and remember",
+      icon: "bars" as const
+    },
+    {
+      name: "Communications and Engagement",
+      cadence: "Keep the right people with you",
+      icon: "search" as const
+    },
+    {
+      name: "Digital Visibility and Growth",
+      cadence: "Be found. Be chosen. Be measured.",
+      icon: "funnel" as const
+    },
+    {
+      name: "Measurement and Insight",
+      cadence: "Know what worked. Know what next.",
+      icon: "rise" as const
+    }
   ],
   payoff: "Real growth builds here"
 };
@@ -242,40 +266,65 @@ export const growthSystemData: ItemsSectionContent = {
   // 12 Nov 2026 developer brief §5 — capability group titles only.
   heading: "Five capabilities. Built around your objective",
   lead: "Growth works best when positioning, demand, search, conversion and measurement operate as one system. Pixelette can lead the full programme or deploy the specialist capability the business actually needs.",
-  // 13 Nov fix pass: titles are the 12 Nov brief groups. Bodies and scope
-  // lists cleared — the PDF did not supply replacement sublines, and leaving
-  // the old five's copy under new names read as a rename, not a regrouping.
+  // Service Offer and Website Plan §9.2 — cadence lines and scope lists.
   // Service links still come from capabilityGroups / ROUTES_BY_CAPABILITY.
   items: [
     {
       index: "01",
       title: "Brand and Strategy",
-      body: "",
-      capabilities: []
+      body: "Know who you are. Know where you win.",
+      capabilities: [
+        "Positioning",
+        "identity direction",
+        "brand narrative",
+        "audience research",
+        "launch planning"
+      ]
     },
     {
       index: "02",
       title: "Creative and Campaigns",
-      body: "",
-      capabilities: []
+      body: "Ideas people notice and remember",
+      capabilities: [
+        "Campaign concepts",
+        "creative assets",
+        "product and service launches",
+        "content production"
+      ]
     },
     {
       index: "03",
       title: "Communications and Engagement",
-      body: "",
-      capabilities: []
+      body: "Keep the right people with you",
+      capabilities: [
+        "Corporate and stakeholder communications",
+        "thought leadership",
+        "social and community",
+        "customer lifecycle"
+      ]
     },
     {
       index: "04",
       title: "Digital Visibility and Growth",
-      body: "",
-      capabilities: []
+      body: "Be found. Be chosen. Be measured.",
+      capabilities: [
+        "SEO and AI discovery",
+        "websites and landing pages",
+        "paid activation",
+        "lead and conversion services"
+      ]
     },
     {
       index: "05",
       title: "Measurement and Insight",
-      body: "",
-      capabilities: []
+      body: "Know what worked. Know what next.",
+      capabilities: [
+        "Marketing audits",
+        "analytics",
+        "reporting",
+        "research",
+        "testing and evaluation"
+      ]
     }
   ],
   cta: { label: "Explore what we do", to: "/services" }

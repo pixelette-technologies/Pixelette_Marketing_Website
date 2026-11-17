@@ -109,10 +109,10 @@ export default function Navbar() {
               <Link href={"/industries"} className='flink'>
                 Industries
               </Link>
-              <Link href={"/blog-list"} className='flink'>
+              <Link href={"/insights"} className='flink'>
                 Insights
               </Link>
-              <Link href={"/aboutus"} className='flink'>
+              <Link href={"/about"} className='flink'>
                 About
               </Link>
               <Link href={"/contactus"} className='flink'>
@@ -152,14 +152,14 @@ export default function Navbar() {
                   Industries
                 </Link>
                 <Link
-                  href='/blog-list'
+                  href='/insights'
                   className='navDrawer__link'
                   onClick={closeDrawer}
                 >
                   Insights
                 </Link>
                 <Link
-                  href='/aboutus'
+                  href='/about'
                   className='navDrawer__link'
                   onClick={closeDrawer}
                 >

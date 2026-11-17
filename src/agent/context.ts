@@ -12,16 +12,8 @@ import type { PixContext } from "@/lib/pix";
  *   - registration in England and Wales
  *   - the enquiries address, sales@pixelettemarketing.com
  *
- * WHAT STAYS NULL, ON INSTRUCTION, AND WHY. `legalName`, `incorporated` and
- * `crn` are left unset rather than filled from Pixelette Technologies Ltd's
- * own company number (17508478), which the Marketing footer and privacy page
- * also print today with a comment that it has not been confirmed as
- * Marketing's own number rather than a shared/trading-name arrangement. The
- * build brief is explicit: do not invent a legal name, an incorporation year
- * or a company number for this site, and do not copy Pixelette Technologies'
- * own figures onto it. If a verified legal name, incorporation year or
- * company number is supplied for Pixelette Marketing specifically, fill
- * these in then — not before.
+ * Entity facts verified in the Service Offer and Website Plan (12 Nov 2026):
+ * legal name, company number 17508478, incorporated 8 October 2026.
  *
  * `clutch` IS `null`. Pixelette Marketing has no published Clutch rating.
  * Copying Pixelette Technologies' 4.8-from-24-reviews figure onto this site
@@ -39,10 +31,10 @@ export function pixContext(): PixContext {
     contactEmail: "sales@pixelettemarketing.com",
     company: {
       name: "Pixelette Marketing",
-      legalName: null,
-      incorporated: null,
+      legalName: "Pixelette Marketing Ltd",
+      incorporated: 2026,
       registeredIn: "England and Wales",
-      crn: null,
+      crn: "17508478",
     },
     clutch: null,
     publishable: [],

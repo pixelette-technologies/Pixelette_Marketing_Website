@@ -130,6 +130,8 @@ export interface SpecialistPageConfig {
     body: string;
     label?: string;
     href?: string;
+    /** Optional text link under the primary CTA (e.g. cross-market page). */
+    secondary?: { label: string; href: string };
   };
 
   faqs: SpecialistSectionHead & {

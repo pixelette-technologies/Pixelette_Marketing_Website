@@ -1,4 +1,5 @@
 import blogsData from "@/data/blogs/blogsData";
+import { blogHref } from "@/data/blogs/slugs";
 import {
   DIAGNOSTIC_ANCHOR,
   DIAGNOSTIC_HREF,
@@ -118,7 +119,7 @@ export const insights: Insight[] = posts
     const words = text.split(/\s+/).filter(Boolean).length;
     return {
       id: post.id,
-      href: `/blog/${post.id}`,
+      href: blogHref(post.id),
       title: post.heading,
       deck: post.description,
       summary: meta.summary,
@@ -185,19 +186,15 @@ export const radar = {
       href: byId(4).href
     },
     {
-      title: "Why attribution certainty is often overstated",
-      summary:
-        "Until channel data meets the CRM, the report credits the last touch, not what persuaded.",
-      category: "Measurement and Insight" as InsightFilter,
-      href: byId(5).href
-    },
-    {
       title: "More activity is not always the answer",
       summary:
         "Volume stopped signalling commitment when text became free. Fewer, deeper pieces win.",
       category: "Creative and Campaigns" as InsightFilter,
       href: byId(5).href
     }
+    // "Why attribution certainty is often overstated" had no matching article
+    // among the five — removed rather than pointed at the wrong URL or given
+    // a new article (Plan §8).
   ]
 };
 

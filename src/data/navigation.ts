@@ -21,7 +21,7 @@ export const whatWeDoGroups: NavGroup[] = [
     label: "Creative and Campaigns",
     items: [
       {
-        href: "/services/influencer_marketing",
+        href: "/services/influencer-marketing",
         title: "Influencer & Partnerships"
       }
     ]
@@ -30,29 +30,29 @@ export const whatWeDoGroups: NavGroup[] = [
     label: "Communications and Engagement",
     items: [
       {
-        href: "/services/social_media_marketing",
+        href: "/services/social-media-marketing",
         title: "Social & Community"
       },
       { href: "/services/pr", title: "PR & Earned Media" },
-      { href: "/services/email_marketing", title: "Email Marketing" }
+      { href: "/services/email-marketing", title: "Email Marketing" }
     ]
   },
   {
     label: "Digital Visibility and Growth",
     items: [
       {
-        href: "/services/seo_and_content_marketing",
+        href: "/services/seo-and-content-marketing",
         title: "SEO, Content & AI Visibility"
       },
-      { href: "/services/ads_ppc", title: "Paid Media & PPC" },
-      { href: "/services/lead_generation", title: "Lead Generation" }
+      { href: "/services/ads-ppc", title: "Paid Media & PPC" },
+      { href: "/services/lead-generation", title: "Lead Generation" }
     ]
   },
   {
     label: "Measurement and Insight",
     items: [
       {
-        href: "/services/marketing_analytics_and_reporting",
+        href: "/services/marketing-analytics",
         title: "Marketing Analytics & Measurement"
       }
     ]
@@ -101,11 +101,7 @@ export const publicSectorGroups: NavGroup[] = [
         href: "/public-sector/education-marketing",
         title: "Education marketing"
       },
-      { href: "/public-sector/how-to-buy", title: "How to buy from us" },
-      {
-        href: "/public-sector/demonstrations",
-        title: "Demonstration work"
-      }
+      { href: "/public-sector/how-to-buy", title: "How to buy from us" }
     ]
   }
 ];

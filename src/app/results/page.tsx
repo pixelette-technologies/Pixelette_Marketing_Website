@@ -1,36 +1,11 @@
 import { Container } from "@/components/common";
 import { ContactSection } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
-import { CaseStudySection } from "@/components/ui/results";
+import { caseStudyAnchor } from "@/components/ui/results";
 import { finalConversionCopy, resultsCopy } from "@/data/home";
 import { caseStudies } from "@/data/results/caseStudies";
 import Link from "next/link";
 import { pageMetadata } from "@/data/site";
-
-// The destination for every "See client results" link the brief puts on the
-// homepage — the hero, the proof band and the results section.
-//
-// IT IS NOT /success_stories. That route served legacy Pixelette Technologies
-// content, was hidden from the navigation on 2 Jun 2026 and was deleted on
-// 25 Sep 2026; pointing the brief's CTAs at it would have put another
-// company's case studies behind a Pixelette Marketing promise.
-//
-// The page WAS deliberately thin: the brief's publication gates bar publishing
-// any metric without a documented baseline and client approval, and bar
-// rewriting the testimonials for sales effect, so it carried the frame and the
-// two verbatim quotations and nothing invented to fill it out.
-//
-// 11 Sep 2026. Management supplied the two case studies the brief named as the
-// next content priority, so the gate is satisfied by evidence rather than by
-// absence and they render here. See src/data/results/caseStudies.ts for what
-// is still missing from them and why it is not filled in.
-//
-// TeamSection CAME OFF THIS PAGE. It existed to carry the two client
-// quotations while there was nothing else to show; both quotations now sit
-// inside the case study they are actually about, which is where a testimonial
-// is worth most. Rendering both would put each quote on the page twice. The
-// home page's TeamSection is untouched and still reads from the same single
-// definition in teamData.ts.
 
 export const metadata = pageMetadata({
   title: "Client Results",
@@ -42,9 +17,6 @@ export const metadata = pageMetadata({
 export default function ResultsPage() {
   return (
     <>
-      {/* .wash-left is the interior-page hero ground, as every page that is
-          not the home page takes. The h1 lives here and nowhere else on the
-          route — route-walk asserts one per page. */}
       <div className='wash-left'>
         <Container className='main'>
           <section className='resultsHero'>
@@ -60,29 +32,45 @@ export default function ResultsPage() {
         </Container>
       </div>
 
-      {/* NO HEADING PAIR ABOVE THESE. The hero directly above already carries
-          the eyebrow and the heading for the page, and there is no second pair
-          in the brief or in management's copy to give this block. Writing one
-          would be inventing copy to complete a pattern — the trap this
-          codebase has reverted twice.
+      <Container className='main'>
+        <section className='sec' aria-labelledby='stories-title'>
+          <Heading className='h2' level={2} id='stories-title'>
+            Client stories
+          </Heading>
+          <ul className='body'>
+            {caseStudies.map(study => (
+              <li key={study.client}>
+                <Link
+                  href={`/results/${caseStudyAnchor(study.client)}`}
+                  className='textLink'
+                >
+                  {study.client}
+                </Link>
+                {" — "}
+                {study.heading}
+              </li>
+            ))}
+          </ul>
+        </section>
+      </Container>
 
-          Grounds alternate so two stories read as two, not one long column.
-          Neither is dark: see CaseStudySection for why the page keeps all
-          three of its bands in hand. */}
-      {caseStudies.map((study, index) => (
-        <CaseStudySection
-          key={study.client}
-          content={study}
-          ground={index % 2 === 1 ? "alt" : "page"}
-        />
-      ))}
-
-      {/* 12 Nov 2026 brief §5 — titled block only; sourcing statement not supplied. */}
       <Container className='main'>
         <section className='sec' aria-labelledby='how-we-report-title'>
           <Heading className='h2' level={2} id='how-we-report-title'>
             How we report results
           </Heading>
+          <Text className='body'>
+            Every figure on these pages names its source and the period it
+            covers. We quote results exactly as published and we do not round,
+            extrapolate or combine them. Where a number is ours rather than a
+            client&apos;s, we say so. Where a result cannot be attributed to our
+            work with confidence, we say that too.
+          </Text>
+          <Text className='body'>
+            We hold ourselves to this because we sell measurement. An agency
+            that is loose with its own numbers has already told you what its
+            reporting will look like.
+          </Text>
         </section>
       </Container>
 

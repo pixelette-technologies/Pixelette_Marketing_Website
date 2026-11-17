@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     template: "%s"
   },
   description:
-    "Marketing that matters to your bottom line — strategy, demand, search, pipeline and growth intelligence working together around commercial outcomes.",
+    "Marketing and communications that build brands, engage audiences and deliver measurable results — strategy, demand, search, pipeline and growth intelligence working together.",
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -86,7 +86,7 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.png`,
       description:
-        "Marketing that matters to your bottom line. Pixelette Marketing brings strategy, demand, search, pipeline and growth intelligence together around commercial outcomes, with deeper experience in technology-led markets.",
+        "Marketing and communications that build brands, engage audiences and deliver measurable results. Pixelette Marketing brings strategy, demand, search, pipeline and growth intelligence together for commercial and public and civic buyers.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",

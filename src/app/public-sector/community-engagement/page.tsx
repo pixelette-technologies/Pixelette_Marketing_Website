@@ -1,12 +1,15 @@
-import PublicSectorServiceTemplate from "@/components/ui/publicSector/PublicSectorServiceTemplate";
+import MarketBServicePage from "@/components/ui/publicSector/MarketBServicePage";
+import { marketBServiceLines } from "@/data/publicSector/serviceLines";
 import { pageMetadata } from "@/data/site";
 
+const line = marketBServiceLines[2]!;
+
 export const metadata = pageMetadata({
-  title: "Community engagement",
-  description: "Community engagement.",
-  path: "/public-sector/community-engagement"
+  title: line.title,
+  description: line.h1,
+  path: line.path
 });
 
 export default function Page() {
-  return <PublicSectorServiceTemplate title='Community engagement' />;
+  return <MarketBServicePage line={line} />;
 }

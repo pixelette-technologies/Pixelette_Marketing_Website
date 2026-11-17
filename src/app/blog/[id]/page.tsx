@@ -1,108 +1,14 @@
-import HeroSingleBlogPage from "@/components/ui/singleBlog/HeroSingleBlogPage";
-import SingleBlogContent from "@/components/ui/singleBlog/SingleBlogContent";
-import { ContactSection } from "@/components/common";
-import { finalConversionCopy } from "@/data/home";
-import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
-import blogsData from "@/data/blogs/blogsData";
-import { pageMetadata, SITE_URL } from "@/data/site";
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { BLOG_SLUGS } from "@/data/blogs/slugs";
+import { redirect, notFound } from "next/navigation";
 
 interface PageProps {
-  params: Promise<{
-    id: string;
-  }>;
+  params: Promise<{ id: string }>;
 }
 
-const SITE = SITE_URL;
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export default async function BlogIdRedirect({ params }: PageProps) {
   const { id } = await params;
-  const blog = blogsData.flatMap(c => c.data).find(item => item.id === parseInt(id, 10));
-  if (!blog) {
-    return pageMetadata({
-      title: "Insights",
-      description:
-        "Points of view, practical playbooks and tools for making better marketing decisions.",
-      path: `/blog/${id}`,
-      index: false
-    });
-  }
-  const desc =
-    typeof blog.description === "string"
-      ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 160)
-      : "";
-  return pageMetadata({
-    title: blog.heading,
-    description:
-      desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,
-    path: `/blog/${id}`,
-    type: "article"
-  });
-}
-
-export default async function SingleBlogPage({ params }: PageProps) {
-  const { id } = await params;
-  const blogId = parseInt(id, 10);
-  const allBlogs = blogsData.flatMap(category => category.data);
-  const blog = allBlogs.find(item => item.id === blogId);
-
-  if (!blog) {
-    notFound();
-  }
-
-  const blogDesc =
-    typeof blog.description === "string"
-      ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 200)
-      : "";
-  const blogImg =
-    typeof blog.image === "string"
-      ? blog.image.startsWith("http")
-        ? blog.image
-        : `${SITE}${blog.image}`
-      : undefined;
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: blog.heading,
-    description: blogDesc || undefined,
-    image: blogImg,
-    author: { "@type": "Organization", name: "Pixelette Marketing", url: SITE },
-    publisher: {
-      "@type": "Organization",
-      name: "Pixelette Marketing",
-      logo: { "@type": "ImageObject", url: `${SITE}/favicon.png` }
-    },
-    mainEntityOfPage: `${SITE}/blog/${id}`
-  };
-
-  return (
-    <div className='band-alt' data-reveal='group'>
-      <script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <HeroSingleBlogPage
-        image={blog.image}
-        imageAlt={blog.imageAlt}
-        profile={blog.authorProfile}
-        name={blog.authorName}
-        lastUpdateDate={blog.updateDate}
-      />
-      <SingleBlogContent
-        heading={blog.heading}
-        description={blog.description}
-        data={blog.dataContent}
-      />
-      <RelatedBlogs data={blog.relatedBlogs} />
-      {/* 25 Sep 2026: was ContactUsHero, the /contactus opening. That is
-          "Start here" as a page heading now, so articles close on the
-          /results close instead. */}
-      <ContactSection
-        heading={finalConversionCopy.heading}
-        text={finalConversionCopy.lead}
-        closing={finalConversionCopy.closing}
-      />
-    </div>
-  );
+  const numeric = parseInt(id, 10);
+  const slug = BLOG_SLUGS[numeric];
+  if (!slug) notFound();
+  redirect(`/insights/${slug}`);
 }

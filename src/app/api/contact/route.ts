@@ -69,6 +69,7 @@ function buildTextMessage(
     `Company: ${submission.company || "not supplied"}`,
     `Website: ${submission.companyWebsite || "not supplied"}`,
     `Trying to improve: ${submission.improve || "not stated"}`,
+    `Indicative budget: ${submission.indicativeBudget || "not stated"}`,
     `Source: ${submission.sourcePage}`,
     `Campaign: ${campaign}`,
     `Privacy notice version: ${submission.noticeVersion}`,
@@ -86,6 +87,7 @@ function buildEmailHtml(opts: {
   company: string;
   companyWebsite: string;
   improve: string;
+  indicativeBudget: string;
   message: string;
   date: string;
   submissionId: string;
@@ -97,6 +99,7 @@ function buildEmailHtml(opts: {
   const company = escapeHtml(opts.company || "not supplied");
   const companyWebsite = escapeHtml(opts.companyWebsite || "not supplied");
   const improve = escapeHtml(opts.improve || "not stated");
+  const indicativeBudget = escapeHtml(opts.indicativeBudget || "not stated");
   const message = escapeHtml(opts.message).replace(/\n/g, "<br/>");
   const date = escapeHtml(opts.date);
   const submissionId = escapeHtml(opts.submissionId);
@@ -123,6 +126,7 @@ function buildEmailHtml(opts: {
             <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Company:</strong> <span style="color:${emailPalette.body};">${company}</span></td></tr>
             <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Website:</strong> <span style="color:${emailPalette.body};">${companyWebsite}</span></td></tr>
             <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Trying to improve:</strong> <span style="color:${emailPalette.body};">${improve}</span></td></tr>
+            <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Indicative budget:</strong> <span style="color:${emailPalette.body};">${indicativeBudget}</span></td></tr>
             <tr><td style="padding:16px 18px; border-bottom:1px solid ${emailPalette.border};"><strong style="color:${emailPalette.heading};">Message:</strong><div style="color:${emailPalette.body}; margin-top:6px;">${message}</div></td></tr>
             <tr><td style="padding:16px 18px; color:${emailPalette.body}; font-size:13px;">Submission ${submissionId}<br/>Source ${sourcePage}<br/>Campaign ${campaign}</td></tr>
           </table>
@@ -238,6 +242,7 @@ export async function POST(req: Request) {
         company: submission.company ?? "",
         companyWebsite: submission.companyWebsite ?? "",
         improve: submission.improve ?? "",
+        indicativeBudget: submission.indicativeBudget ?? "not stated",
         message: submission.description,
         date,
         submissionId,

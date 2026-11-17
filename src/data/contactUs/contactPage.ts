@@ -78,14 +78,14 @@ export const contactRoutes = {
   ] satisfies ContactRoute[]
 };
 
-/** 12 Nov brief §5 — replacement for "Procurement and supplier checks".
- *  Plan §9.3 copy is not in the repo; keep a visible empty slot. */
+/** Plan §9.3 — rendered by ContactProcurementSlot. Kept for callers that
+ *  still import the slot shape. */
 export const contactProcurementSlot = {
-  heading: "",
-  body: ""
+  heading: "Procurement and supplier checks",
+  body: "published"
 };
 
-/** Company number printed on the brief and already on the site. */
+/** Company number — identical to `company.companyNumber`. */
 export const CONTACT_COMPANY_NUMBER = "17508478";
 
 export interface ContactFaqItem {
@@ -117,8 +117,8 @@ export const contactFaqs = {
     },
     {
       question: "We have a supplier questionnaire. Where does it go?",
-      // 12 Nov 2026 brief §5 — question stays; replacement answer not supplied.
-      answer: ""
+      answer:
+        "How to buy from us, Accessibility, Social value and Policies are published, and each page states plainly what is not yet published (including safeguarding and related policies). For a questionnaire, pre-qualification document or framework response, send it to sales@pixelettemarketing.com. We complete what we can evidence and say plainly where we cannot yet evidence something."
     }
   ] satisfies ContactFaqItem[]
 };

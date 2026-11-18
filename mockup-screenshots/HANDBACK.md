@@ -63,7 +63,7 @@ Updated **18 November 2026** to match the tree on `bilal/revamp`.
 
 - Home hero support line and footer brand blurb still use pre-brief vocabulary — PDF supplies new H1 only; no replacement strings where the plan did not.
 - Screenshot pack and menu responsiveness — deferred 18 Nov; reviewer will assess by eye.
-- Review §7’s other five lower-priority items — still need `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo).
+- Review §7 closed 18 Nov (media stems + insight anchor renamed; CDP sentence on how-to-buy; eyebrow and measures kept; Privacy choices already the cookie panel).
 
 ## 4b. Closed 18 Nov (lower-priority + crawlers)
 

@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **18 November 2026** — named snags closed and pushed on `bilal/revamp`; fresh session owns the two pending items below. Phase F history still starts from 1 Sep.
+Last updated: **18 November 2026** — review §7 closed on `bilal/revamp`; screenshot pack still deferred. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip includes `3be2b68` (doc accuracy) on top of snag commits `2f648bc` / `7e8b5d8`. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). |
 | Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026`. |
-| Site code written | Service Offer + must-fixes 1–6 + named lower-priority pass + official-host crawler allowlist. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 lower-priority pass + official-host crawler allowlist. |
 | Pushed? | **Yes — `bilal/revamp` only.** No PR to production. Live domain untouched. |
 | Preview | Open without Vercel login; non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Named snags closed. Two items left for the next session. |
+| Sign-off | **Not signed off.** Review §7 closed. Screenshot pack / menu by-eye still deferred. |
 
 ## Start here — next session, in order
 
@@ -26,8 +26,7 @@ Last updated: **18 November 2026** — named snags closed and pushed on `bilal/r
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Review §7 — other five items** | Leadership review claimed nine lower-priority items; four were named and closed. The other five are only in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf`. Get that PDF, list the five, then fix what code can fix without inventing copy. |
-| 2 | **Screenshot pack / menu responsiveness** | Deferred: reviewer assesses by eye. Brief §8 / §9 expected desktop ~1440 and phone ~390 per route if a pack is still required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 1 | **Screenshot pack / menu responsiveness** | Deferred: reviewer assesses by eye. Brief §8 / §9 expected desktop ~1440 and phone ~390 per route if a pack is still required. Likely break points: mega-menu, capability grid, evaluation table. |
 
 Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[Known bugs and deviations]] under “do not invent” — not this snag list.
 
@@ -45,7 +44,9 @@ Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[K
 
 **Closed later the same day (lower-priority + crawler gate):** logo alts from wordmarks; `/services` “The Diagnostic →”; homepage numbers 02–05; “Quacking good…” kept; brief §2 answers refreshed; crawler allowlist = official domain only; preview open for management review. Independent completeness review: product items **Pass**; two stale doc lines cleared in `3be2b68`.
 
-**Still pending** — see **Pending for the next session** above and [[Known bugs and deviations]].
+**Closed same evening (review §7 remainder from the PDF):** media stems 01–05 renamed to current group names; `#measurement-and-insight-view` anchor; CDP placeholder sentence on how-to-buy; eyebrow kept; public-sector measures kept; Privacy choices confirmed as the cookie-panel button.
+
+**Still pending** — screenshot pack only; see **Pending for the next session** above and [[Known bugs and deviations]].
 
 ## 16–17 November 2026 — Service Offer and Website Plan
 

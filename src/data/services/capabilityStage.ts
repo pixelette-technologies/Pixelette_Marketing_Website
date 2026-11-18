@@ -26,6 +26,9 @@
 // to hold was deleted on the user's instruction, and the supplied set was
 // moved into its place from new-capabilities/.
 //
+// 18 Nov 2026: file stems renamed to the current five capability group names
+// (review §7.3). Artwork unchanged — rename only.
+//
 // A capability without a loop would have `video: false` and show its poster
 // with the stage's own restrained drift. All five have loops today.
 
@@ -54,7 +57,7 @@ export const CAPABILITY_MEDIA = "/services/capabilities";
 export const capabilityStages: readonly CapabilityStage[] = [
   {
     index: "01",
-    slug: "01-strategy-positioning",
+    slug: "01-brand-and-strategy",
     statement: [],
     alt: "A mirrored steel cylinder stands in a gallery strung with dense tangles of red, orange, pink and blue thread. In its reflection the chaos resolves into one clean, flowing band of colour.",
     // Protect: the cylinder, just left of centre.
@@ -63,7 +66,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   },
   {
     index: "02",
-    slug: "02-demand-performance",
+    slug: "02-creative-and-campaigns",
     statement: [],
     alt: "Coloured discs lie scattered across a pale stone surface beneath a brass magnet fixture. A selected stream of discs rises from the field to the magnet while the rest stay where they are.",
     // Protect: the magnet fixture and the rising stream, right of centre.
@@ -72,7 +75,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   },
   {
     index: "03",
-    slug: "03-search-authority",
+    slug: "03-communications-and-engagement",
     statement: [],
     alt: "A red and white lighthouse stands within a field of tall translucent pink and cream slats. A warm beam from its lamp crosses the slats and the tower shows through between them.",
     // Protect: the lighthouse and the column field around it.
@@ -81,7 +84,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   },
   {
     index: "04",
-    slug: "04-pipeline-conversion",
+    slug: "04-digital-visibility-and-growth",
     statement: [],
     alt: "A hand-built desk sculpture of brass tubes, clear acrylic rails and painted wooden posts. Metal spheres wait or rest along the lower routes while a pink sphere travels the upper rail towards a brass bowl.",
     // Protect: the successful route, from the top cup to the brass bowl.
@@ -90,7 +93,7 @@ export const capabilityStages: readonly CapabilityStage[] = [
   },
   {
     index: "05",
-    slug: "05-growth-intelligence",
+    slug: "05-measurement-and-insight",
     statement: [],
     alt: "A wall of hinged mechanical flip tiles in a warm loft. On the left the tiles tilt at random angles; towards the right they lie flat in a coherent coloured pattern, and one pink row runs on past the edge of the wall.",
     // Protect: the resolving field — noise on the left, the pattern and the

@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 18 Nov 2026
 
-**Mock-up named snags closed and pushed on `bilal/revamp`.** Next session owns only: (1) review §7’s other five items — need `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf`; (2) screenshot pack / menu responsiveness (by-eye). Detail: `vault/00 Index.md` “Pending for the next session” and `vault/Known bugs and deviations.md`.
+**Mock-up named snags and review §7 closed on `bilal/revamp`.** Next session owns only: screenshot pack / menu responsiveness (by-eye). Detail: `vault/00 Index.md` “Pending for the next session” and `vault/Known bugs and deviations.md`.
 
 ## Status as of 17 Nov 2026
 

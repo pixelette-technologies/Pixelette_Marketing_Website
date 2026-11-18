@@ -4,12 +4,23 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Named 18 Nov snags are closed and pushed. A fresh session takes only these:
+Review §7 is closed. A fresh session takes only this:
 
 | Item | Notes |
 |---|---|
-| **1. Review §7 — other five items** | Review claimed nine lower-priority items; four were named and closed (logo alts, Strategy label, section numbers, Quacking good). The other five are only in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo/Downloads as of 18 Nov). **First step:** obtain the PDF, extract the five, then fix what the tree can fix without inventing copy. |
-| **2. Screenshot pack / menu responsiveness** | Deferred by instruction for by-eye review. If a pack is still required: brief §8 / §9, desktop ~1440 and phone ~390 per route (`scripts/capture-mockup-screenshots.mjs`, `mockup-screenshots/`). Likely breaks: mega-menu, capability grid, evaluation table. |
+| **Screenshot pack / menu responsiveness** | Deferred by instruction for by-eye review. If a pack is still required: brief §8 / §9, desktop ~1440 and phone ~390 per route (`scripts/capture-mockup-screenshots.mjs`, `mockup-screenshots/`). Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 18 Nov — review §7 remainder (from PDF)
+
+Source: `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` §7. Items 7.1, 7.2, 7.4, 7.5 closed earlier the same day.
+
+| Item | Resolution |
+|---|---|
+| **7.3 Old capability filenames and anchors** | Stems in `public/services/capabilities/` and `capabilityStage.ts` renamed to current group names: `01-brand-and-strategy`, `02-creative-and-campaigns`, `03-communications-and-engagement`, `04-digital-visibility-and-growth`, `05-measurement-and-insight`. Anchor `#growth-intelligence-view` → `#measurement-and-insight-view`. Artwork unchanged. |
+| **7.6 Homepage eyebrow** | **Kept** “Clarity. Momentum. Commercial impact.” (decision 18 Nov). |
+| **7.7 CDP placeholder on how-to-buy** | Sentence added under “Who we are, for your records”: identifier will appear here when issued, and not before. Matches contact procurement pointer. |
+| **7.8 Two commercial measures on public-sector pages** | **Kept** as written (decision 18 Nov): conversion to application; applications per pound spent; cost per person reached and per person who acted. |
+| **7.9 Footer “Privacy choices”** | Already a `ManageCookies` button opening the cookie panel — not a dead label. No change. |
 
 ## Closed 18 Nov — lower-priority snags + crawler gate
 

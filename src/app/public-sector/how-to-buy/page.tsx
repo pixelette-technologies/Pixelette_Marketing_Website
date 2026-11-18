@@ -43,6 +43,10 @@ export default function HowToBuyPage() {
             {company.registeredOffice} · Part of Pixelette Group
           </Text>
           <Text className='body'>
+            A Central Digital Platform supplier identifier will appear here when
+            issued, and not before.
+          </Text>
+          <Text className='body'>
             There is a dissolved company with a similar name — 14925088,
             incorporated 2023 and struck off 24 February 2026. It is not us and
             never was. It tends to surface first in search, so we name it here

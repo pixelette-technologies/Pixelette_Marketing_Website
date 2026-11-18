@@ -7,12 +7,14 @@ import {
 } from "@/components/ui/blog";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Insights",
   description:
     "Points of view, practical playbooks and tools for making better marketing decisions, from the Pixelette Marketing team.",
   path: "/blog-list"
 });
+}
 
 export default function BlogListPage() {
   return (

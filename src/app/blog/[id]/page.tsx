@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const numeric = parseInt(id, 10);
   const blog = blogsData.flatMap(c => c.data).find(item => item.id === numeric);
   if (!blog) {
-    return pageMetadata({
+    return await pageMetadata({
       title: "Insights",
       description:
         "Points of view, practical playbooks and tools for making better marketing decisions.",
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     typeof blog.description === "string"
       ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 160)
       : "";
-  return pageMetadata({
+  return await pageMetadata({
     title: blog.heading,
     description:
       desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,

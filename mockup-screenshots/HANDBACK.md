@@ -6,13 +6,15 @@ Updated **13 November 2026** after the independent review (INCOMPLETE) and the m
 
 ## 1. Answers to §2
 
-1. **Framework and hosting.** Next.js 16.3.0, React 19, App Router (`src/app`). Hosting inferred as Vercel from `pixelette-marketing-website.vercel.app`; no `vercel.json` in the repo.
-2. **Where content lives.** In the repository: TypeScript under `src/data`, blogs under `src/data/blogs`, assistant KB at `src/content/pix-kb.json`. No CMS.
-3. **How navigation is defined.** Top bar: `src/components/common/Navbar.tsx`. What we do / Public sector menus: `src/data/navigation.ts`. Capability regrouping: `src/data/services/capabilityGroups.ts` with titles from `src/data/home/homeContent.ts`. Footer: `src/components/common/Footer.tsx`.
-4. **How the sitemap is generated.** `src/app/sitemap.ts` at build time. One `lastModified: new Date()` for every URL. Sitemap was not changed in this pass.
-5. **Whether `/industries` can take child routes.** Yes. Legacy `src/app/industries/[slug]/page.tsx` already builds five specialist pages. Three new brief routes were added as their own static pages beside that dynamic segment.
+Updated **18 November 2026** to match the tree on `bilal/revamp`.
+
+1. **Framework and hosting.** Next.js 16 (package `^16.3.0`), React 19, App Router under `src/app`. Hosted on Vercel; preview hosts are `*.vercel.app`. No `vercel.json` in the repo.
+2. **Where content lives.** In the repository: TypeScript under `src/data` (home, services, public sector, strategy, company, contact), blogs under `src/data/blogs`, assistant KB at `src/content/pix-kb.json`. No CMS.
+3. **How navigation is defined.** Top bar: `src/components/common/Navbar.tsx`. What we do / Public sector menus: `src/data/navigation.ts`. Capability regrouping: `src/data/services/capabilityGroups.ts` with titles from `src/data/home/homeContent.ts` (`growthSystemData`). Footer: `src/components/common/Footer.tsx` using `footerCapabilityGroups` from `navigation.ts`.
+4. **How the sitemap is generated.** `src/app/sitemap.ts` at build time. Emits the **23 production baseline URLs** only (mock-up routes omitted). One `lastModified: new Date()` for every URL. Canonicals use `SITE_URL` (`https://www.pixelettemarketing.com`).
+5. **Whether `/industries` can take child routes.** Yes. Legacy `src/app/industries/[slug]/page.tsx` still builds five specialist pages (live, unlinked, out of sitemap). Three brief routes sit as their own static pages beside that dynamic segment.
 6. **What “Ask Pix M” is.** Site assistant in `src/agent/`, answers from in-repo KB (`src/content/pix-kb.json`), writes identify/lead to Supabase. Unmounted for this mock-up in `src/app/layout.tsx`. Code left in the repo.
-7. **Capability grid fixed at five?** Homepage has no five-column grid. Section 03 shows a heading, illustration, and the five names from `capabilitiesCopy`. `/services` `CapabilityExplorer` maps whatever `capabilityGroups` supplies; count is data, currently five. Stage media in `capabilityStage.ts` is still the five current assets.
+7. **Capability grid fixed at five?** Homepage has no five-column grid. Section 03 shows a heading, illustration, and the five names from `capabilitiesCopy`. `/services` `CapabilityExplorer` maps whatever `capabilityGroups` supplies; count is data-driven and currently five. Stage media in `capabilityStage.ts` is still the five current assets.
 
 ## 2. Instructions that did not fit the codebase
 
@@ -59,18 +61,23 @@ Updated **13 November 2026** after the independent review (INCOMPLETE) and the m
 
 ## 4. Inherited / deferred (flag only)
 
-- **Brand Logo 0–5** alts — no real brand names supplied.
-- Home hero support line and footer brand blurb still use pre-brief vocabulary — PDF supplies new H1 only; no replacement strings.
-- Empty FAQ answer / procurement **body** / budget options / public-sector bodies — plan MD not in repo.
-- Screenshot pack scroll/capture quality — deferred by instruction.
-- Preview URL protection / `noindex` for `pixelette-marketing-website.vercel.app` — recommended, **not actioned**.
+- Home hero support line and footer brand blurb still use pre-brief vocabulary — PDF supplies new H1 only; no replacement strings where the plan did not.
+- Screenshot pack and menu responsiveness — deferred 18 Nov; reviewer will assess by eye.
+- Review §7’s other five lower-priority items — still need `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo).
+
+## 4b. Closed 18 Nov (lower-priority + crawlers)
+
+- **Brand Logo alts** — names read from the wordmarks: BlockGuard, Fusio, Digital Asset Vault, Big Innovation Centre, Fantasy Fusio, WebBooking Pro.
+- **Homepage section numbers** — visible order 02, 03, 04, 05 (second market was 05 ahead of relevance 04).
+- **“Strategy & Positioning” on `/services`** — Brand and Strategy featured link is now “The Diagnostic →”.
+- **“Quacking good at standing out”** — kept by decision.
+- **Non-official hosts** — middleware + host-aware metadata noindex/Disallow every host except `www.pixelettemarketing.com` and `pixelettemarketing.com` (covers `*.vercel.app` and other subdomains). Deployment Protection turned off so management can open the preview without a Vercel login.
 
 ## 5. Inherited accessibility problems found (§7)
 
-- `TrustedBrands` default logo strip: `alt="Brand Logo ${index}"` on `/services/lead_generation` and every other call site that uses the default logos.
 - `FormInput` labels use `htmlFor={field.name}` without a matching `id` on the input (pre-existing; noted in `FormSelect` comments).
 - Mega-menus support Escape and focus open; other inherited keyboard/contrast issues in the library were not silently redesigned.
-- `/accessibility` conformance claim is `[PENDING AUDIT]` only.
+- `/accessibility` conformance claim is still that conformance is not established (wording kept).
 
 ## 6. Rough estimate split (later work)
 

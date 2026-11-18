@@ -4,13 +4,15 @@ import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Campaign evaluation",
   description:
     "Did the campaign achieve what it was for? Evaluation against public outcomes using the GCS Evaluation Cycle and Magenta Book limits.",
   path: "/public-sector/campaign-evaluation",
   index: false
 });
+}
 
 /** Stages verified against the GCS Evaluation Cycle page (updated 14 Sep 2026).
  *  Impact / Outcomes “what it measures” use the live Cycle wording where the
@@ -239,7 +241,7 @@ export default function CampaignEvaluationPage() {
 
         <section className='sec' aria-labelledby='ways-title'>
           <Heading className='h2' level={2} id='ways-title'>
-            Three ways to buy it
+            Two ways to buy it
           </Heading>
           <ul className='body'>
             <li>
@@ -250,10 +252,6 @@ export default function CampaignEvaluationPage() {
             <li>
               <strong>Evaluation delivery, alongside a campaign</strong> —
               measurement through the six stages, with real-time reporting.
-            </li>
-            <li>
-              <strong>Independent evaluation, after a campaign</strong> —
-              including campaigns someone else ran.
             </li>
           </ul>
           <Text className='body'>

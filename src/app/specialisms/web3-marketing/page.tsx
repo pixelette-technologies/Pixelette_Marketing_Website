@@ -3,12 +3,14 @@ import MockupBanner from "@/components/common/MockupBanner";
 import { Heading } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Web3 marketing",
   description: "Web3 marketing.",
   path: "/specialisms/web3-marketing",
   index: false
 });
+}
 
 export default function Web3MarketingStubPage() {
   return (

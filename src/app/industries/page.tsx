@@ -13,13 +13,15 @@ import { pageMetadata, SITE_URL } from "@/data/site";
 const description =
   "See how Pixelette adapts marketing strategy around different markets, audiences, buying journeys and commercial challenges.";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Industries",
   description,
   path: "/industries",
   keywords:
     "web3 marketing, fintech marketing, saas marketing, ai marketing, technology marketing agency"
 });
+}
 
 // --- 29 Sep 2026: the locked information architecture -------------------------
 // Rebuilt to the master structure correction. FOUR CHAPTERS AND ONLY FOUR:

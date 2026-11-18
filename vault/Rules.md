@@ -14,6 +14,12 @@ For surfaces the **12 Nov developer brief** and the **Service Offer and Website 
 
 **Push / PR / live:** `bilal/revamp` may be pushed when the user asks. **No PR to production and no live deploy** without explicit instruction.
 
+**Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
+
+**Crawler allowlist:** only `www.pixelettemarketing.com` and `pixelettemarketing.com` may be indexed. Every other host — `*.vercel.app`, other subdomains, localhost — gets `X-Robots-Tag: noindex, nofollow`, `/robots.txt` `Disallow: /`, and host-aware HTML robots. Deployment Protection may be off for management review; the code gate stays.
+
+**Evaluation offer (plan §3 / corrected §10.2):** the page sells evaluation design and evaluation delivery only. Do not restore “independent evaluation… campaigns someone else ran” until a named methodological specialist is appointed.
+
 Two corollaries that catch people out:
 
 1. **Layout and alignment may change freely; DOM order of content may not.** Moving an element to match the guide's ordering is a content change. Use ordering utilities to match the guide visually while keeping source order.

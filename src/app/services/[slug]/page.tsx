@@ -44,10 +44,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const specialist = specialistPages[slug];
   if (specialist) {
     const { title, description } = specialist.meta;
-    return pageMetadata({ title, description, path });
+    return await pageMetadata({ title, description, path });
   }
 
-  return pageMetadata({
+  return await pageMetadata({
     title: pageData?.metaTitle || "Services",
     description:
       pageData?.metaDescription || "Explore our professional services",

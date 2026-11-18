@@ -2,25 +2,55 @@
 
 Everything the audit turned up, sorted by what happens to it. See [[Rules]] for why the boundary falls where it does.
 
-## Service Offer plan — status (17 Nov 2026)
+## Pending after 18 Nov lower-priority pass
 
-Independent reviews against `Pixelette_Marketing_Service_Offer_And_Website_Plan_11Nov2026.pdf`: **MOSTLY COMPLETE**. Website first-fortnight deliverables are on `bilal/revamp` (`5e9d858`, `8aadd6c`). Live domain untouched.
+| Item | Notes |
+|---|---|
+| **Review §7 — other five items** | Review claimed nine lower-priority items; only four were named in the chat paste. Full list is in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo/Downloads as of 18 Nov). |
+| **Screenshot pack / menu responsiveness** | Deferred by instruction — reviewer will assess by eye. |
 
-### Still open (do not invent)
+## Closed 18 Nov — lower-priority snags + crawler gate
+
+| Item | Resolution |
+|---|---|
+| **Brand Logo 0–5 alt text** | Names read from the wordmarks: BlockGuard, Fusio, Digital Asset Vault, Big Innovation Centre, Fantasy Fusio, WebBooking Pro. Duplicate marquee group stays `alt=""`. |
+| **“Strategy & Positioning” on `/services`** | Brand and Strategy featured link is now “The Diagnostic →” (same destination as the mega-menu). Diagnostic page wording unchanged. |
+| **Homepage section numbers 02, 03, 05, 04** | Second market eyebrow → `04`; relevance → `05`. Visible order 02, 03, 04, 05. Sections not moved. |
+| **“Quacking good at standing out”** | **Kept** by decision. |
+| **Brief §2 — seven questions** | Answers refreshed in `mockup-screenshots/HANDBACK.md` to match the tree. |
+| **Non-official host crawling** | Allowlist `www.pixelettemarketing.com` + `pixelettemarketing.com` only. Middleware: `X-Robots-Tag: noindex, nofollow` + `/robots.txt` `Disallow: /` on every other host (vercel.app, other subdomains, localhost). Host-aware HTML robots via `pageMetadata` / root `generateMetadata`. |
+| **Vercel Deployment Protection** | **Off** for the preview so management can review without a Vercel login. Crawler block is code, not the password wall. |
+
+## Closed 18 Nov — mock-up snag must-fixes + point 6
+
+| Item | Resolution |
+|---|---|
+| **1. Mock-up banner missing on eight pages** | Banner on five Market B lines (`MarketBServicePage`), campaign evaluation, `/about/people`, `/accessibility`. Demos + Web3 already had it. |
+| **2. Preview crawlable** | Middleware: all `*.vercel.app` → `X-Robots-Tag: noindex, nofollow`; preview `/robots.txt` → `Disallow: /`. |
+| **3. Sitemap advertises dead production URLs** | `sitemap.ts` = 23 baseline production URLs only. New mock-up routes omitted + `index: false`. |
+| **4. URL migration inside the mock-up** | Baseline URLs restored per brief §3; migrated paths redirect back. Single `/results` with hash anchors. |
+| **5. Contact form / budget selector** | Form defaults to notice `1.0` + recorded consent sentence when env empty so the selector can be reviewed. |
+| **6. Independent evaluation third way** | Heading **Two ways to buy it**; third bullet deleted. No replacement copy — returns when a named methodological specialist is appointed (plan §3 / corrected §10.2). |
+
+Commit for must-fixes 1–5: `e6e6af2`. Point 6 applied after that commit (may sit uncommitted until the next vault/code commit).
+
+## Service Offer plan — status (17–18 Nov 2026)
+
+Independent reviews against `Pixelette_Marketing_Service_Offer_And_Website_Plan_11Nov2026.pdf`: **MOSTLY COMPLETE**, then leadership snag list addressed as above. Live domain untouched.
+
+### Still open — business / later phases (do not invent)
 
 | Item | Notes |
 |---|---|
 | **VAT number** | `GB 432 2377 17` removed from `/privacy` and Organization schema — same number publishes on Pixelette Technologies’ site; repo comments flag uncertainty. **Needs management confirm** before republishing. |
-| **Independent evaluation offer** | PDF §3 gates it on a named methodological specialist; §10.2 draft copy sells it. Site follows §10.2. Left unresolved (PDF conflict). |
-| **People bios / founder entry** | `/about/people` shell only; waits on wording, photos, consent. |
-| **Demonstration campaigns** | Shell at `/public-sector/demonstrations`, `noindex`, unlinked. Due in the plan by 6 February. |
+| **Independent evaluation offer** | **Removed from the page 18 Nov.** Re-add only when a named methodological specialist is appointed. |
+| **People bios / founder entry** | `/about/people` shell only (no placeholder names — review preferred that). Waits on wording, photos, consent. Banner on. |
+| **Demonstration campaigns** | Shell at `/public-sector/demonstrations`, `noindex`, unlinked, banner on. Due in the plan by 6 February. |
 | **Own-results pages** | `/results/our-own-*` not built; wait on SEOMate / MarketNerve baselines. |
-| **WCAG audit** | Accessibility page states conformance not established. |
+| **WCAG audit** | Accessibility page states conformance not established (wording the review asked to keep). Banner on. |
 | **Unpublished policies** | Safeguarding, EDI, environmental, modern slavery listed as not yet published on `/policies`. |
 | **CDP supplier ID / RM6124 appointment** | How-to-buy states not appointed; identifier only when issued. |
 | **Directory / LinkedIn / Clutch edits** | Out of code (§15). |
-| **Brand Logo 0–5** | Still in `TrustedBrands`; no real names supplied. |
-| **Screenshot pack quality** | Deferred; `mockup-screenshots/`. |
 | **Mock-up shells return 200** | Demos + Web3 reachable if URL known; `noindex` and unlinked — accepted until real content. |
 
 ### Closed 16–17 Nov (was deferred / soft)

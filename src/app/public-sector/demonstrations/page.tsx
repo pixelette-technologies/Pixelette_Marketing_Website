@@ -3,12 +3,14 @@ import MockupBanner from "@/components/common/MockupBanner";
 import { Heading } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Demonstration work",
   description: "Demonstration work.",
   path: "/public-sector/demonstrations",
   index: false
 });
+}
 
 export default function DemonstrationsPage() {
   return (

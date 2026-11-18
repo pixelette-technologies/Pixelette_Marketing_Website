@@ -10,21 +10,23 @@ import { finalConversionCopy } from "@/data/home";
 
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
-  title:
-    "Pixelette Marketing | Marketing and communications that build brands, engage audiences and deliver measurable results",
-  description:
-    "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
-  path: "",
-  absoluteTitle: true,
-  keywords: [
-    "growth marketing",
-    "digital marketing agency",
-    "marketing strategy",
-    "demand generation",
-    "commercial growth"
-  ]
-});
+export async function generateMetadata() {
+  return await pageMetadata({
+    title:
+      "Pixelette Marketing | Marketing and communications that build brands, engage audiences and deliver measurable results",
+    description:
+      "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
+    path: "",
+    absoluteTitle: true,
+    keywords: [
+      "growth marketing",
+      "digital marketing agency",
+      "marketing strategy",
+      "demand generation",
+      "commercial growth"
+    ]
+  });
+}
 
 export default function Home() {
   return (

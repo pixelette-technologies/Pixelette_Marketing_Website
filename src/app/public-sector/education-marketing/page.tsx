@@ -4,12 +4,14 @@ import { pageMetadata } from "@/data/site";
 
 const line = marketBServiceLines[4]!;
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: line.title,
   description: line.h1,
   path: line.path,
   index: false
 });
+}
 
 export default function Page() {
   return <MarketBServicePage line={line} />;

@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { isOfficialMarketingHost } from "@/lib/officialHost";
 
-/** Every Vercel preview host is a second indexable copy of the site. Block it. */
-function isVercelPreviewHost(host: string): boolean {
-  const hostname = host.split(":")[0] ?? "";
-  return hostname.endsWith(".vercel.app");
-}
-
+/**
+ * Only the official marketing domain may be crawled. Every other host —
+ * *.vercel.app, preview aliases, other subdomains, localhost — is a second
+ * copy and must stay out of the index even when Deployment Protection is off.
+ */
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host") ?? "";
-  if (!isVercelPreviewHost(host)) {
+  if (isOfficialMarketingHost(host)) {
     return NextResponse.next();
   }
 

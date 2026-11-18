@@ -5,13 +5,15 @@ import { company } from "@/data/company";
 import { CONTACT_EMAIL } from "@/data/contactUs";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "How to buy from us",
   description:
     "Routes open to a small new supplier: below-threshold work, three-quote routes, and associate or subcontract delivery. RM6124 status stated as it is.",
   path: "/public-sector/how-to-buy",
   index: false
 });
+}
 
 export default function HowToBuyPage() {
   return (

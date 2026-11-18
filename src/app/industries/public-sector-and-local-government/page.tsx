@@ -2,13 +2,15 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Public sector and local government",
   description:
     "Communications bought under procurement rules, judged on public outcomes and accountable for public money.",
   path: "/industries/public-sector-and-local-government",
   index: false
 });
+}
 
 export default function Page() {
   return (

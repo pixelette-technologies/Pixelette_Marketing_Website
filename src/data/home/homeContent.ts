@@ -182,7 +182,7 @@ export const capabilitiesCopy: EditorialSectionCopy & {
 export const relevanceCopy: EditorialSectionCopy & {
   annotation: readonly string[];
 } = {
-  number: "04",
+  number: "05",
   eyebrow: "A clearer way forward",
   headline: ["Attention is easy to buy"],
   accent: "Relevance isn’t",

@@ -2,13 +2,15 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Education and learning",
   description:
     "Commercial training and edtech, and public education — schools, trusts, colleges and universities.",
   path: "/industries/education-and-learning",
   index: false
 });
+}
 
 export default function Page() {
   return (

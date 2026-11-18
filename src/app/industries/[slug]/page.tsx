@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   // Still indexable for legacy/direct traffic; omitted from sitemap until
   // internal links return. Share images left empty until dedicated assets exist.
-  return pageMetadata({
+  return await pageMetadata({
     title: pageData.metaTitle,
     description: pageData.metaDescription,
     path: `/industries/${slug}`,

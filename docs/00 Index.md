@@ -25,6 +25,10 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 18 Nov 2026
+
+**Mock-up review snags 1–6 and the named lower-priority items closed on `bilal/revamp`.** Logo alts from wordmarks; homepage numbers 02–05; `/services` “The Diagnostic →”; “Quacking good…” kept; brief §2 answers refreshed; crawlers blocked on every host except `www.pixelettemarketing.com` / `pixelettemarketing.com`; Deployment Protection off for management review. Still pending: review §7’s other five (need the PDF), screenshot pack deferred. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 ## Status as of 17 Nov 2026
 
 **Service Offer and Website Plan executed on `bilal/revamp` and pushed** (`5e9d858`, `8aadd6c`). Independent reviews against the PDF source: **MOSTLY COMPLETE**. Soft honesty gaps closed (proposition trailers, procurement overclaim, results/industries provenance, privacy effective date). VAT omitted from public surfaces until management confirms `GB 432 2377 17` is Marketing Ltd’s. Live domain untouched; no production PR. Detail in the revamp vault: `vault/00 Index.md` and `vault/Known bugs and deviations.md`. Also see [[09 Outstanding]].

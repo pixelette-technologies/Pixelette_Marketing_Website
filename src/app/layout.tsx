@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Caveat, IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
 import {
@@ -8,6 +9,7 @@ import {
   ScrollReveal
 } from "@/components/common";
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/data/site";
+import { isOfficialMarketingHost } from "@/lib/officialHost";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -48,29 +50,34 @@ const caveat = Caveat({
   display: "swap"
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: SITE_NAME,
-    template: "%s"
-  },
-  description:
-    "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
-  openGraph: {
-    type: "website",
-    locale: "en_GB",
-    siteName: SITE_NAME,
-    url: SITE_URL
-  },
-  twitter: {
-    card: "summary_large_image",
-    creator: TWITTER_HANDLE
-  },
-  robots: {
-    index: true,
-    follow: true
-  }
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get("host") ?? "";
+  const allowIndex = isOfficialMarketingHost(host);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: SITE_NAME,
+      template: "%s"
+    },
+    description:
+      "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
+    openGraph: {
+      type: "website",
+      locale: "en_GB",
+      siteName: SITE_NAME,
+      url: SITE_URL
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: TWITTER_HANDLE
+    },
+    robots: {
+      index: allowIndex,
+      follow: allowIndex
+    }
+  };
+}
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

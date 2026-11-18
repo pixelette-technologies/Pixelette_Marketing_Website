@@ -2,25 +2,41 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **17 November 2026** — Service Offer and Website Plan executed on `bilal/revamp`; independent reviews **MOSTLY COMPLETE**; soft honesty gaps closed; branch pushed. Phase F history below still starts from 1 Sep.
+Last updated: **18 November 2026** — lower-priority snags closed on `bilal/revamp`; crawler allowlist is official domain only; Deployment Protection off for management review. Phase F history below still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
 | Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Older Phase F work also lived on `revamp/ui`. |
-| Phase | **Service Offer and Website Plan** (PDF dated 12 Nov 2026) filled over the 12 Nov developer-brief scaffolding. Phase F history still below. |
-| Site code written | Market A/B offer, plan copy from the PDF, honesty gates, six verified incompletes closed, then soft-gap honesty pass. |
-| Pushed? | **Yes — `bilal/revamp` only.** Commits include `5e9d858` (Service Offer revision) and `8aadd6c` (proposition / privacy / results honesty). No PR to production. Live domain untouched. |
-| Seen in a browser? | Local `:3460` curls + independent code reviews against the PDF source text. |
-| Sign-off | **Not signed off for live.** Latest independent review: **MOSTLY COMPLETE** — website deliverables in place; remaining items are business dependencies or deliberate PDF conflicts. See [[Known bugs and deviations]]. |
+| Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026` (plus corrected plan §10.2). |
+| Site code written | Service Offer surfaces + must-fix pass + lower-priority pass (logo alts, section numbers, diagnostic link label, host allowlist). |
+| Pushed? | **`bilal/revamp` only.** No PR to production. Live domain untouched. |
+| Seen in a browser? | Local gates after the lower-priority pass; preview open for management (protection off). |
+| Sign-off | **Not signed off.** Must-fixes + named lower-priority items closed. Still open: review §7’s other five (need the PDF), screenshot pack deferred. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (Service Offer / developer-brief honesty rules + traps).
-2. Read [[Known bugs and deviations]] — what is still open vs closed 16–17 Nov.
-3. Await Rana / management on VAT confirmation, people bios, demos, audits, policies — before PR to production or live deploy.
+1. Read [[Rules]] (brief + Service Offer honesty; mock-up stays on baseline URLs).
+2. Read [[Known bugs and deviations]] — **Pending after 18 Nov lower-priority pass** first.
+3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
+
+## 18 November 2026 — mock-up review snag list
+
+**Sources:** 12 Nov developer brief (mock-up scope); Service Offer plan `Pixelette_Marketing_Service_Offer_And_Website_Plan_11Nov2026` (creation date 11 Nov; §10.2 corrected on disk from 17 Nov, heading fix rebuilt 18 Nov 09:32). Leadership snag note summarised in chat 17–18 Nov.
+
+**Closed on the branch (must-fixes 1–5 + point 6):**
+1. Mock-up banner on the eight gated pages that lacked it (five Market B lines via `MarketBServicePage`, campaign evaluation, `/about/people`, `/accessibility`). Demonstrations + Web3 already had it. How-to-buy not in the list.
+2. Preview crawling: non-official hosts get `X-Robots-Tag: noindex, nofollow` and `/robots.txt` `Disallow: /` (later widened to every host except apex + www — see lower-priority pass).
+3. Sitemap emits the **23 production baseline URLs** only; new mock-up routes omitted and `index: false`.
+4. Existing pages back on **6 November baseline URLs** (brief §3): `/aboutus`, `/blog-list`, `/blog/[id]`, underscore service paths, single `/results` with hash anchors. Migrated paths redirect back. New routes keep new URLs.
+5. Contact form reviewable: recorded consent sentence + notice version `1.0` when preview env is empty, so the budget selector shows. API still refuses mail without server config.
+6. Evaluation page: heading **Two ways to buy it**; third bullet (independent evaluation / campaigns someone else ran) **deleted**. No replacement sentence — option returns only when a methodological specialist is appointed. Demonstrations link unchanged.
+
+**Closed later the same day (lower-priority + crawler gate):** logo alts from wordmarks; `/services` “The Diagnostic →”; homepage numbers 02–05; “Quacking good…” kept; brief §2 answers refreshed; crawler allowlist = official domain only; Deployment Protection **off** for management review.
+
+**Still pending** — see [[Known bugs and deviations]] “Pending after 18 Nov lower-priority pass”.
 
 ## 16–17 November 2026 — Service Offer and Website Plan
 
@@ -30,16 +46,16 @@ Last updated: **17 November 2026** — Service Offer and Website Plan executed o
 
 **Honesty rule kept:** no invented periods, bios, policies, demonstration artefacts, WCAG claims, or framework appointments. Where the PDF’s supplied sentence would be false today, omit or narrow until the dependency exists.
 
-**Shipped on the branch (summary):**
-- Market B hub + six lines + campaign evaluation + how-to-buy; Governance footer; hyphenated service URLs + redirects; Insights rename; results index + `/results/[slug]`.
+**Shipped then (summary; URL state later corrected 18 Nov for the mock-up):**
+- Market B hub + six lines + campaign evaluation + how-to-buy; Governance footer; plan copy; Insights / about / results structures (mock-up later restored baseline URLs per brief).
 - Contact procurement block, budget bands through email + `attribution` JSON, FAQ honesty.
 - Results figures require source + period (BlockGuard: “Client case study supplied by management” / “Period not yet recorded” — not invented).
 - Demonstrations and Web3: shells kept, `index: false`, out of nav/sitemap.
-- Soft-gap pass: procurement no longer overclaims; industries provenance + `/results/[slug]` links; thin trading history (RM6364 “talking to several” kept as confirmed true); meta/schema/footer/hero support aligned to two-market proposition; analytics secondary CTA → evaluation; accessibility/social-value version lines; privacy effective date → 8 Oct 2026; VAT omitted from privacy + Organization schema until confirmed.
+- Soft-gap pass: procurement no longer overclaims; industries provenance; thin trading history; meta/schema/footer/hero support aligned to two-market proposition; analytics secondary CTA → evaluation; accessibility/social-value version lines; privacy effective date → 8 Oct 2026; VAT omitted until confirmed.
 
-**Independent reviews (against the PDF source, not Cursor plans):** first **INCOMPLETE** (six real gaps) → closed → **MOSTLY COMPLETE**; soft leftovers then closed except items still listed in [[Known bugs and deviations]].
+**Independent reviews (against the PDF source, not Cursor plans):** first **INCOMPLETE** (six real gaps) → closed → **MOSTLY COMPLETE**; then 17 Nov leadership snag list → five must-fixes + evaluation deletion closed 18 Nov.
 
-**Still out of code / accepted:** people bios; real demos; own-results pages; WCAG audit; unpublished policies; CDP supplier ID; RM6124 appointment; directory/profile edits; independent-evaluation §3 vs §10.2 conflict (left as PDF §10.2 copy); VAT confirmation.
+**Still out of code / accepted (business, not snag):** people bios; real demos; own-results pages; WCAG audit; unpublished policies; CDP supplier ID; RM6124 appointment; directory/profile edits; VAT confirmation.
 
 ---
 

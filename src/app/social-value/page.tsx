@@ -2,13 +2,15 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Social value",
   description:
     "Our social value position, written once so it is the same answer every time you ask for it.",
   path: "/social-value",
   index: false
 });
+}
 
 export default function SocialValuePage() {
   return (

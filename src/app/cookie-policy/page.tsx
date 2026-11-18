@@ -3,12 +3,14 @@ import ManageCookies from "@/components/common/ManageCookies";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Cookie Policy",
   description:
     "How Pixelette Marketing uses cookies, the analytics cookies we set only with your consent, and how to change your choice.",
   path: "/cookie-policy"
 });
+}
 
 // 18 Sep 2026. Taken onto the design system. The page was a bare <article>
 // with an inline style object and unclassed h1/h2/p, so it rendered in the

@@ -3,13 +3,15 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Policies and governance",
   description:
     "Everything a supplier check usually asks for, in one place. Only documents that exist are linked.",
   path: "/policies",
   index: false
 });
+}
 
 /** Plan §10.8 — link only real documents. Empty policy pages are worse than
  *  missing ones. */

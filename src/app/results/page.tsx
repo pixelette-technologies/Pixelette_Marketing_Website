@@ -7,12 +7,14 @@ import { caseStudies } from "@/data/results/caseStudies";
 import Link from "next/link";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Client Results",
   description:
     "What changed after the work started. Client evidence from Pixelette Marketing's growth engagements, with the commercial problem, the work delivered and the outcome.",
   path: "/results"
 });
+}
 
 export default function ResultsPage() {
   return (

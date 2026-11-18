@@ -18,7 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  return pageMetadata({
+  return await pageMetadata({
     title: "Client Results",
     description: "Client evidence from Pixelette Marketing.",
     path: `/results/${slug}`,

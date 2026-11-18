@@ -9,7 +9,7 @@ export default function SecondMarketBand() {
   return (
     <section className='sec' aria-labelledby='second-market-title'>
       <Container className='main'>
-        <Text className='eyebrow'>05 · A second market</Text>
+        <Text className='eyebrow'>04 · A second market</Text>
         <Heading className='h2' level={2} id='second-market-title'>
           Not every objective is a commercial one
         </Heading>

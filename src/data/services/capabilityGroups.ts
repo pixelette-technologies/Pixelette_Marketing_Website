@@ -1,5 +1,5 @@
 import { growthSystemData } from "@/data/home";
-import { DIAGNOSTIC_HREF, DIAGNOSTIC_LINK_LABEL } from "@/data/strategy";
+import { DIAGNOSTIC_HREF } from "@/data/strategy";
 import { servicesData } from "./servicesData";
 
 // 12 Nov 2026 developer brief §4.1 — reparenting.
@@ -13,8 +13,11 @@ const ROUTES_BY_CAPABILITY: Record<string, string[]> = {
   "05": ["marketing_analytics_and_reporting"]
 };
 
+// Same destination as the What we do mega-menu under Brand and Strategy.
+// The diagnostic page keeps its own "Strategy & Positioning" wording; this
+// link must not revive the old capability group name on /services.
 const FEATURED_LINK: Record<string, { label: string; route: string }> = {
-  "01": { label: DIAGNOSTIC_LINK_LABEL, route: DIAGNOSTIC_HREF }
+  "01": { label: "The Diagnostic →", route: DIAGNOSTIC_HREF }
 };
 
 export interface CapabilityGroup {

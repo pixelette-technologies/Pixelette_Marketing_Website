@@ -9,13 +9,15 @@ import {
 import AboutBriefBlocks from "@/components/ui/aboutUs/AboutBriefBlocks";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "About",
   description:
     "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
   path: "/aboutus",
   keywords: ["about Pixelette Marketing", "growth marketing agency", "commercial marketing"]
 });
+}
 
 export default function AboutUsPage() {
   return (

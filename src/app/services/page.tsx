@@ -6,7 +6,8 @@ import { capabilityGroups } from "@/data/services/capabilityGroups";
 import { CapabilityExplorer } from "@/components/ui/services";
 import { pageMetadata, SITE_URL } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "What we do",
   description:
     "Five connected capabilities — brand and strategy, creative and campaigns, communications and engagement, digital visibility and growth, and measurement and insight — for commercial and public buyers.",
@@ -14,6 +15,7 @@ export const metadata = pageMetadata({
   keywords:
     "marketing services, brand strategy, campaigns, communications, SEO, paid media, measurement"
 });
+}
 
 // Added 10 Jun 2026 as an SEO hub and never taken through the design
 // conversion. It carried twenty-odd inline style objects: the h1 hard-coded at

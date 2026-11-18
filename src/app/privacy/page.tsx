@@ -5,12 +5,14 @@ import { Heading, Text } from "@/components/feature";
 import { COOKIE_POLICY_HREF } from "@/data/legal";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Privacy Statement",
   description:
     "How Pixelette Marketing collects, uses, shares and protects personal information, how long we keep it, and the rights you have over it.",
   path: "/privacy"
 });
+}
 
 // --- 23 Sep 2026 ------------------------------------------------------------
 // ADAPTED FROM THE PIXELETTE TECHNOLOGIES PRIVACY STATEMENT (their /privacy,

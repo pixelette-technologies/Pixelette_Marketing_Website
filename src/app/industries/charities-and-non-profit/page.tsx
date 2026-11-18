@@ -2,13 +2,15 @@ import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Charities and non-profit",
   description:
     "Tight budgets, close scrutiny of spend, and audiences who are often beneficiaries rather than customers.",
   path: "/industries/charities-and-non-profit",
   index: false
 });
+}
 
 export default function Page() {
   return (

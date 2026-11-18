@@ -80,13 +80,15 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({
 }) => {
   const stacked = layout === "stacked";
 
+  // Names read from the wordmarks in each asset (18 Nov snag). Filenames stay
+  // as shipped; alts are the printed brand names, not inventable labels.
   const imagesArray = [
-    "/common/blockGold.svg",
-    "/common/fusio.svg",
-    "/common/digitalAssests.svg",
-    "/common/bigInvonation.svg",
-    "/common/fantacyFusio.svg",
-    "/common/webBooking.svg"
+    { src: "/common/blockGold.svg", name: "BlockGuard" },
+    { src: "/common/fusio.svg", name: "Fusio" },
+    { src: "/common/digitalAssests.svg", name: "Digital Asset Vault" },
+    { src: "/common/bigInvonation.svg", name: "Big Innovation Centre" },
+    { src: "/common/fantacyFusio.svg", name: "Fantasy Fusio" },
+    { src: "/common/webBooking.svg", name: "WebBooking Pro" }
   ];
 
   // The marquee needs the row twice: the track slides left by exactly one
@@ -117,11 +119,11 @@ const TrustedBrands: FC<TrustedBrandsProps> = ({
               {item.mark}
             </div>
           ))
-        : imagesArray.map((icon, index) => (
-            <div key={index} className='icon-wrapper'>
+        : imagesArray.map(logo => (
+            <div key={logo.src} className='icon-wrapper'>
               <Image
-                src={icon}
-                alt={duplicate ? "" : `Brand Logo ${index}`}
+                src={logo.src}
+                alt={duplicate ? "" : logo.name}
                 width={200}
                 height={50}
               />

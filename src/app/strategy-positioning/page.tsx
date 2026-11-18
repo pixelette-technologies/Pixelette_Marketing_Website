@@ -34,7 +34,8 @@ import { pageMetadata, SITE_URL } from "@/data/site";
 // it is none of those. The only numbers rendered anywhere are computed from
 // the visitor's own twelve answers. See diagnosticContent.ts.
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Strategy & Positioning Diagnostic",
   description:
     "Assess your market, audience, differentiation, positioning, messaging and growth priorities with Pixelette Marketing's interactive Strategy & Positioning Diagnostic.",
@@ -48,6 +49,7 @@ export const metadata = pageMetadata({
     "messaging strategy"
   ]
 });
+}
 
 export default function StrategyPositioningPage() {
   const breadcrumbSchema = {

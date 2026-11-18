@@ -19,7 +19,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 | **“Quacking good at standing out”** | **Kept** by decision. |
 | **Brief §2 — seven questions** | Answers refreshed in `mockup-screenshots/HANDBACK.md` to match the tree. |
 | **Non-official host crawling** | Allowlist `www.pixelettemarketing.com` + `pixelettemarketing.com` only. Middleware: `X-Robots-Tag: noindex, nofollow` + `/robots.txt` `Disallow: /` on every other host (vercel.app, other subdomains, localhost). Host-aware HTML robots via `pageMetadata` / root `generateMetadata`. |
-| **Vercel Deployment Protection** | **Off** for the preview so management can review without a Vercel login. Crawler block is code, not the password wall. |
+| **Vercel Deployment Protection** | Preview opens without a Vercel login (verified on the `bilal/revamp` deployment). Crawler block is code (`officialHost` allowlist), not the password wall. Project settings were not writable from this session’s Vercel credentials; leave protection off in the dashboard if it is ever re-enabled. |
 
 ## Closed 18 Nov — mock-up snag must-fixes + point 6
 

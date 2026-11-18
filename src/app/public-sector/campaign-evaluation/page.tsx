@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/common";
+import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
@@ -7,7 +8,8 @@ export const metadata = pageMetadata({
   title: "Campaign evaluation",
   description:
     "Did the campaign achieve what it was for? Evaluation against public outcomes using the GCS Evaluation Cycle and Magenta Book limits.",
-  path: "/public-sector/campaign-evaluation"
+  path: "/public-sector/campaign-evaluation",
+  index: false
 });
 
 /** Stages verified against the GCS Evaluation Cycle page (updated 14 Sep 2026).
@@ -55,6 +57,7 @@ const stages = [
 export default function CampaignEvaluationPage() {
   return (
     <>
+      <MockupBanner />
       <div className='wash-left'>
         <Container className='main'>
           <section className='hubHero'>

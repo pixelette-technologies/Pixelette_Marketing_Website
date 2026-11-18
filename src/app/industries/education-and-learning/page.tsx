@@ -6,7 +6,8 @@ export const metadata = pageMetadata({
   title: "Education and learning",
   description:
     "Commercial training and edtech, and public education — schools, trusts, colleges and universities.",
-  path: "/industries/education-and-learning"
+  path: "/industries/education-and-learning",
+  index: false
 });
 
 export default function Page() {

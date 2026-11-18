@@ -2,9 +2,47 @@
 
 Everything the audit turned up, sorted by what happens to it. See [[Rules]] for why the boundary falls where it does.
 
-## 12 Nov 2026 brief mock-up — status (16 Nov evening)
+## Service Offer plan — status (17 Nov 2026)
 
-Independent PDF review: **COMPLETE WITH ACCEPTED GAPS.** Plan document named in the PDF is not in this repo, so page bodies stay empty by rule — that is expected, not a bug.
+Independent reviews against `Pixelette_Marketing_Service_Offer_And_Website_Plan_11Nov2026.pdf`: **MOSTLY COMPLETE**. Website first-fortnight deliverables are on `bilal/revamp` (`5e9d858`, `8aadd6c`). Live domain untouched.
+
+### Still open (do not invent)
+
+| Item | Notes |
+|---|---|
+| **VAT number** | `GB 432 2377 17` removed from `/privacy` and Organization schema — same number publishes on Pixelette Technologies’ site; repo comments flag uncertainty. **Needs management confirm** before republishing. |
+| **Independent evaluation offer** | PDF §3 gates it on a named methodological specialist; §10.2 draft copy sells it. Site follows §10.2. Left unresolved (PDF conflict). |
+| **People bios / founder entry** | `/about/people` shell only; waits on wording, photos, consent. |
+| **Demonstration campaigns** | Shell at `/public-sector/demonstrations`, `noindex`, unlinked. Due in the plan by 6 February. |
+| **Own-results pages** | `/results/our-own-*` not built; wait on SEOMate / MarketNerve baselines. |
+| **WCAG audit** | Accessibility page states conformance not established. |
+| **Unpublished policies** | Safeguarding, EDI, environmental, modern slavery listed as not yet published on `/policies`. |
+| **CDP supplier ID / RM6124 appointment** | How-to-buy states not appointed; identifier only when issued. |
+| **Directory / LinkedIn / Clutch edits** | Out of code (§15). |
+| **Brand Logo 0–5** | Still in `TrustedBrands`; no real names supplied. |
+| **Screenshot pack quality** | Deferred; `mockup-screenshots/`. |
+| **Mock-up shells return 200** | Demos + Web3 reachable if URL known; `noindex` and unlinked — accepted until real content. |
+
+### Closed 16–17 Nov (was deferred / soft)
+
+| Item | Resolution |
+|---|---|
+| **Empty plan-copy slots** | Filled from Service Offer PDF (hub, lines, evaluation, how-to-buy, contact, about blocks, industries, results sourcing). |
+| **Procurement / FAQ overclaim** | Bullets match published vs not-yet; no held supplier identifier. |
+| **Budget bands** | Through form → contract → email → `attribution` JSON. |
+| **Results source/period** | Required on figures; BlockGuard uses management case study + “Period not yet recorded”; index statement allows that. |
+| **Industries Work in practice** | Same provenance; links to `/results/[slug]`. |
+| **Home / meta / schema / footer proposition** | Two-market umbrella; old “strategy, demand, search, pipeline…” trailers removed. |
+| **Privacy effective date** | Was 23 Sep (before incorporation); now **Effective 8 October 2026**. |
+| **Incorporation / company facts** | `company.ts`: 17508478, 8 Oct 2026, Fulham Palace Road, filed employees 3. |
+| **Analytics → evaluation link** | Secondary CTA on marketing-analytics. |
+| **Accessibility / social-value versions** | Last updated 17 November 2026 · Version 1.0. |
+| **RM6124 English** | “We have not yet been appointed.” |
+| **How-to-buy freshness** | “Thin trading history”; “talking to several” kept (confirmed true). |
+
+## 12 Nov 2026 brief mock-up — scaffolding (16 Nov evening)
+
+Independent developer-brief review then: **COMPLETE WITH ACCEPTED GAPS** (empty plan-copy slots). Those gaps were the Service Offer pass above.
 
 ### Blocking / flagged — closed 16 Nov evening (verified by independent review)
 
@@ -14,18 +52,6 @@ Independent PDF review: **COMPLETE WITH ACCEPTED GAPS.** Plan document named in 
 | **Analytics connection nodes** | “Performance needs optimisation” capability → Creative and Campaigns (brief table for Demand & Performance). |
 | **SEO / PPC connection figures** | Full `connections.items` passed for those two routes so the conversion card stays; other specialist pages keep the self-group filter. |
 | **`/blog-list` filters** | `INSIGHT_FILTERS`, editorial tags, and radar categories remapped with the brief §4.1 table; Market signals unchanged; empty Digital Visibility and Growth filter retained. |
-
-### Deferred / accepted gaps (do not block Rana review)
-
-| Item | Notes |
-|---|---|
-| **Brand Logo 0–5** | Still in `TrustedBrands`; brief named the fault, no real names supplied — report only. |
-| **Home support / footer blurb** | Pre-brief vocabulary; PDF supplies new H1 only — no replacement strings. |
-| **Empty FAQ answer / procurement body / budget options** | Question and empty slots kept; replacement text not in PDF. |
-| **Stray preview URL** | `pixelette-marketing-website.vercel.app` — recommend protection/`noindex`, do not action without approval. |
-| **Empty public-sector / About / second-market bodies** | Empty by PDF rule until plan copy lands. |
-| **Screenshot pack quality** | Deferred by user; capture needs scroll for below-the-fold on some routes. |
-| **Incorporation date value** | Label shown; `company.incorporated` null — no year in PDF. |
 
 Hand-back: `mockup-screenshots/HANDBACK.md`.
 

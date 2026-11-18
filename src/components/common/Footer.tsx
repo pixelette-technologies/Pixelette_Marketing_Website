@@ -165,7 +165,7 @@ export default function Footer() {
             </Heading>
             <ul className='footerList'>
               <li>
-                <Link href='/about' className='flink small'>
+                <Link href='/aboutus' className='flink small'>
                   About
                 </Link>
               </li>
@@ -175,7 +175,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='/insights' className='flink small'>
+                <Link href='/blog-list' className='flink small'>
                   Insights
                 </Link>
               </li>

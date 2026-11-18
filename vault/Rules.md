@@ -6,9 +6,13 @@ Standing constraints, settled decisions, and every trap that actually bit. Writt
 
 **Content does not change.** Every heading, paragraph, list item, testimonial, FAQ, statistic, label and call-to-action stays byte-identical. No section is added, removed or reordered. This is a UI conversion only, and it stays in force for every follow-up commit on the branch, not just the first.
 
-### Exception — 12 November 2026 developer brief mock-up
+### Exception — 12 November 2026 developer brief + Service Offer plan
 
-For surfaces the **12 Nov PDF** names, that brief overrides the Phase F freeze (capability regroup, new routes, named blocks, nav/footer). **Still forbidden:** inventing draft copy the PDF did not write. Where the PDF only names a block or control, ship the empty slot. Local only — no push, PR, or live deploy under that brief.
+For surfaces the **12 Nov developer brief** and the **Service Offer and Website Plan** PDFs name, those documents override the Phase F freeze (capability regroup, new routes, named blocks, nav/footer, Market B offer, governance pages, contact/procurement).
+
+**Still forbidden:** inventing draft copy, figures, periods, bios, policies, audits, framework appointments, or demonstration artefacts the PDFs did not supply as facts. Where a PDF sentence would be false today, **omit or narrow** until the dependency exists (same honesty rule the Service Offer PDF uses in §2 / §11).
+
+**Push / PR / live:** `bilal/revamp` may be pushed when the user asks. **No PR to production and no live deploy** without explicit instruction.
 
 Two corollaries that catch people out:
 

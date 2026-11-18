@@ -9,7 +9,8 @@ export const metadata = pageMetadata({
   title: "How to buy from us",
   description:
     "Routes open to a small new supplier: below-threshold work, three-quote routes, and associate or subcontract delivery. RM6124 status stated as it is.",
-  path: "/public-sector/how-to-buy"
+  path: "/public-sector/how-to-buy",
+  index: false
 });
 
 export default function HowToBuyPage() {

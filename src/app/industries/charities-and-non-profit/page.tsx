@@ -6,7 +6,8 @@ export const metadata = pageMetadata({
   title: "Charities and non-profit",
   description:
     "Tight budgets, close scrutiny of spend, and audiences who are often beneficiaries rather than customers.",
-  path: "/industries/charities-and-non-profit"
+  path: "/industries/charities-and-non-profit",
+  index: false
 });
 
 export default function Page() {

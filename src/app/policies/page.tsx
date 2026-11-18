@@ -7,7 +7,8 @@ export const metadata = pageMetadata({
   title: "Policies and governance",
   description:
     "Everything a supplier check usually asks for, in one place. Only documents that exist are linked.",
-  path: "/policies"
+  path: "/policies",
+  index: false
 });
 
 /** Plan §10.8 — link only real documents. Empty policy pages are worse than

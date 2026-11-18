@@ -2,39 +2,54 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **16 November 2026** — independent PDF review **COMPLETE WITH ACCEPTED GAPS**; user authorised push of `bilal/revamp` (not production). Phase F history below still starts from 1 Sep.
+Last updated: **17 November 2026** — Service Offer and Website Plan executed on `bilal/revamp`; independent reviews **MOSTLY COMPLETE**; soft honesty gaps closed; branch pushed. Phase F history below still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`**. Older Phase F work also lived on `revamp/ui`. |
-| Phase | Phase F history below. **12 Nov 2026 developer brief mock-up** — IA regroup, Public sector nav, seventeen new routes, gated banners; blocker + flags closed. |
-| Site code written | Design system + pages as before, plus brief scaffolding and 13–16 Nov fix passes, plus 16 Nov evening closure of the homepage blocker and three flags. |
-| Pushed? | **Yes — `bilal/revamp` only**, on explicit user instruction 16 Nov. No PR to production. Live domain untouched. |
-| Seen in a browser? | Local mock-up + independent Playwright reviews. Screenshot pack at `mockup-screenshots/` (quality deferred by user). |
-| Sign-off | **Not signed off for live.** Independent review (16 Nov evening): **COMPLETE WITH ACCEPTED GAPS** — §10 ready for Rana; empty plan-copy slots and deferred items remain. See [[Known bugs and deviations]]. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Older Phase F work also lived on `revamp/ui`. |
+| Phase | **Service Offer and Website Plan** (PDF dated 12 Nov 2026) filled over the 12 Nov developer-brief scaffolding. Phase F history still below. |
+| Site code written | Market A/B offer, plan copy from the PDF, honesty gates, six verified incompletes closed, then soft-gap honesty pass. |
+| Pushed? | **Yes — `bilal/revamp` only.** Commits include `5e9d858` (Service Offer revision) and `8aadd6c` (proposition / privacy / results honesty). No PR to production. Live domain untouched. |
+| Seen in a browser? | Local `:3460` curls + independent code reviews against the PDF source text. |
+| Sign-off | **Not signed off for live.** Latest independent review: **MOSTLY COMPLETE** — website deliverables in place; remaining items are business dependencies or deliberate PDF conflicts. See [[Known bugs and deviations]]. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (12 Nov brief rule + traps that bit).
-2. Read [[Known bugs and deviations]] — deferred/accepted gaps only.
-3. Await Rana review / plan copy / separate instruction before PR to production or live deploy.
+1. Read [[Rules]] (Service Offer / developer-brief honesty rules + traps).
+2. Read [[Known bugs and deviations]] — what is still open vs closed 16–17 Nov.
+3. Await Rana / management on VAT confirmation, people bios, demos, audits, policies — before PR to production or live deploy.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
 
-## 12 November 2026 — developer brief mock-up
+## 16–17 November 2026 — Service Offer and Website Plan
 
-**Source:** `Pixelette_Marketing_Developer_Brief_v1.0_12Nov2026.pdf`. User ruled the PDF absolute instruction; the three “plan” markdown paths named in §12 are context only and **are not in this repo**, so named blocks without supplied words stay empty (no invented draft copy).
+**Sources (authority order for this pass):**
+1. `Pixelette_Marketing_Service_Offer_And_Website_Plan_11Nov2026.pdf` (extracted text used for independent review).
+2. Earlier scaffolding from `Pixelette_Marketing_Developer_Brief_v1.0_12Nov2026.pdf` (IA, empty shells, nav).
 
-**Stack answers (§2), from the codebase:** Next.js 16.3 App Router; copy in `src/data` / blogs / `pix-kb.json` (no CMS); nav in `Navbar.tsx` + `navigation.ts` + `capabilityGroups.ts`; sitemap `src/app/sitemap.ts` build-time one `Date()`; `/industries/[slug]` already exists; Ask Pix M = in-repo assistant (`src/agent/`), unmounted for mock-up; homepage has no five-column capability grid (names listed under section 03).
+**Honesty rule kept:** no invented periods, bios, policies, demonstration artefacts, WCAG claims, or framework appointments. Where the PDF’s supplied sentence would be false today, omit or narrow until the dependency exists.
 
-**Built locally:** five new capability group labels; §4.1 reparenting; Public sector second in top nav; Governance footer; homepage H1 / capability heading; second-market band slot; seventeen new routes; §6 banners; people placeholders; `[PENDING AUDIT]` on accessibility; Ask Pix M off; `/strategy-positioning` untouched; sitemap/analytics untouched.
+**Shipped on the branch (summary):**
+- Market B hub + six lines + campaign evaluation + how-to-buy; Governance footer; hyphenated service URLs + redirects; Insights rename; results index + `/results/[slug]`.
+- Contact procurement block, budget bands through email + `attribution` JSON, FAQ honesty.
+- Results figures require source + period (BlockGuard: “Client case study supplied by management” / “Period not yet recorded” — not invented).
+- Demonstrations and Web3: shells kept, `index: false`, out of nav/sitemap.
+- Soft-gap pass: procurement no longer overclaims; industries provenance + `/results/[slug]` links; thin trading history (RM6364 “talking to several” kept as confirmed true); meta/schema/footer/hero support aligned to two-market proposition; analytics secondary CTA → evaluation; accessibility/social-value version lines; privacy effective date → 8 Oct 2026; VAT omitted from privacy + Organization schema until confirmed.
 
-**Fix passes (13–16 Nov, local):** contact `indicativeBudget` omit; SecondMarketBand `{null}`; cleared `growthSystemData` + `capabilityStage` leads; Escape/drawer/About/demos; five-column mega-menu + viewport clamp; `IMPROVE_OPTIONS` → §4.1 names; analytics demo heading; connection parent tags + unique keys; industries journey keys; FAQ JSON-LD filter; contact incorporation/procurement slots; home document title.
+**Independent reviews (against the PDF source, not Cursor plans):** first **INCOMPLETE** (six real gaps) → closed → **MOSTLY COMPLETE**; soft leftovers then closed except items still listed in [[Known bugs and deviations]].
 
-**Closed 16 Nov evening (blocker + flags):** homepage names wrapped in `homeScene__copyStack` under the copy; analytics Demand node → Creative and Campaigns; SEO/PPC keep the conversion card (self-group filter waived on those two routes only); `/blog-list` filters remapped with the brief §4.1 table.
+**Still out of code / accepted:** people bios; real demos; own-results pages; WCAG audit; unpublished policies; CDP supplier ID; RM6124 appointment; directory/profile edits; independent-evaluation §3 vs §10.2 conflict (left as PDF §10.2 copy); VAT confirmation.
 
-**Independent review (16 Nov evening):** **COMPLETE WITH ACCEPTED GAPS.** All four formerly open items FIXED in browser; §10 checklist ready for Rana. Accepted gaps = empty plan-copy slots (public-sector bodies, second-market band, procurement body, budget options, FAQ answer, etc.), Brand Logo alts, screenshot polish. User then authorised vault update, commit, and push of `bilal/revamp` only.
+---
+
+## 12 November 2026 — developer brief mock-up (scaffolding)
+
+**Source:** `Pixelette_Marketing_Developer_Brief_v1.0_12Nov2026.pdf`. User ruled the PDF absolute instruction; empty slots where no words were supplied. Superseded for copy by the Service Offer plan pass above; IA and shells remain the base.
+
+**Built then:** five capability groups; Public sector nav; Governance footer; seventeen new routes; mock-up banners; people placeholders; Ask Pix M off.
+
+**Fix passes (13–16 Nov):** contact/budget wiring scaffolding; SecondMarketBand; mega-menu; `IMPROVE_OPTIONS`; homepage blocker + flags. Independent review that evening: **COMPLETE WITH ACCEPTED GAPS** (empty plan-copy slots). Those slots were filled 16–17 Nov from the Service Offer PDF.
 
 Hand-back note: `mockup-screenshots/HANDBACK.md`.
 

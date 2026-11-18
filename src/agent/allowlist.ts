@@ -10,9 +10,9 @@
  * `/industries` and `/blog`.
  *
  * ONLY THE ROUTES THAT EXIST ON THIS SITE TODAY. Pixelette Marketing's
- * information architecture is not the Technologies site's: `/about`, not
+ * information architecture is not the Technologies site's: `/aboutus`, not
  * `/about-us`; `/contactus`, not `/contact`; `/cookie-policy`, not `/cookies`.
- * `/services`, `/results`, `/strategy-positioning`, `/insights`
+ * `/services`, `/results`, `/strategy-positioning`, `/blog-list`
  * have no Technologies equivalent at all. A new top-level section on this
  * site is added here, by Marketing, not by editing the shared package.
  *
@@ -28,7 +28,10 @@
 /** Route families the agent may ground answers in, on pixelettemarketing.com. */
 export const ALLOWED_SOURCE_PREFIXES: readonly string[] = [
   '/', // the homepage itself, matched exactly below
-  '/about',
+  '/aboutus',
+  '/about', // /about/people and temporary /about redirect
+  '/blog-list',
+  '/blog',
   '/contactus',
   '/cookie-policy',
   '/privacy',
@@ -36,7 +39,6 @@ export const ALLOWED_SOURCE_PREFIXES: readonly string[] = [
   '/services',
   '/results',
   '/strategy-positioning',
-  '/insights',
 ];
 
 /**

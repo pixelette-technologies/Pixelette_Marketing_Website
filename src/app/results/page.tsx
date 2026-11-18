@@ -1,7 +1,7 @@
 import { Container } from "@/components/common";
 import { ContactSection } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
-import { caseStudyAnchor } from "@/components/ui/results";
+import { CaseStudySection } from "@/components/ui/results";
 import { finalConversionCopy, resultsCopy } from "@/data/home";
 import { caseStudies } from "@/data/results/caseStudies";
 import Link from "next/link";
@@ -32,27 +32,13 @@ export default function ResultsPage() {
         </Container>
       </div>
 
-      <Container className='main'>
-        <section className='sec' aria-labelledby='stories-title'>
-          <Heading className='h2' level={2} id='stories-title'>
-            Client stories
-          </Heading>
-          <ul className='body'>
-            {caseStudies.map(study => (
-              <li key={study.client}>
-                <Link
-                  href={`/results/${caseStudyAnchor(study.client)}`}
-                  className='textLink'
-                >
-                  {study.client}
-                </Link>
-                {" — "}
-                {study.heading}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </Container>
+      {caseStudies.map((study, index) => (
+        <CaseStudySection
+          key={study.client}
+          content={study}
+          ground={index % 2 === 0 ? "page" : "alt"}
+        />
+      ))}
 
       <Container className='main'>
         <section className='sec' aria-labelledby='how-we-report-title'>

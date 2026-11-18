@@ -21,7 +21,7 @@ export const whatWeDoGroups: NavGroup[] = [
     label: "Creative and Campaigns",
     items: [
       {
-        href: "/services/influencer-marketing",
+        href: "/services/influencer_marketing",
         title: "Influencer & Partnerships"
       }
     ]
@@ -30,29 +30,29 @@ export const whatWeDoGroups: NavGroup[] = [
     label: "Communications and Engagement",
     items: [
       {
-        href: "/services/social-media-marketing",
+        href: "/services/social_media_marketing",
         title: "Social & Community"
       },
       { href: "/services/pr", title: "PR & Earned Media" },
-      { href: "/services/email-marketing", title: "Email Marketing" }
+      { href: "/services/email_marketing", title: "Email Marketing" }
     ]
   },
   {
     label: "Digital Visibility and Growth",
     items: [
       {
-        href: "/services/seo-and-content-marketing",
+        href: "/services/seo_and_content_marketing",
         title: "SEO, Content & AI Visibility"
       },
-      { href: "/services/ads-ppc", title: "Paid Media & PPC" },
-      { href: "/services/lead-generation", title: "Lead Generation" }
+      { href: "/services/ads_ppc", title: "Paid Media & PPC" },
+      { href: "/services/lead_generation", title: "Lead Generation" }
     ]
   },
   {
     label: "Measurement and Insight",
     items: [
       {
-        href: "/services/marketing-analytics",
+        href: "/services/marketing_analytics_and_reporting",
         title: "Marketing Analytics & Measurement"
       }
     ]

@@ -191,8 +191,8 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
               // remapped Pipeline & Conversion onto Digital Visibility and
               // Growth — the same string as their parent group. Other pages
               // still drop a self-group node so the figure stays three others.
-              page.route === "seo-and-content-marketing" ||
-              page.route === "ads-ppc"
+              page.route === "seo_and_content_marketing" ||
+              page.route === "ads_ppc"
                 ? page.connections.items
                 : page.connections.items.filter(
                     item => item.capability !== page.capability

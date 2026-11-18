@@ -94,9 +94,17 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
   // A route on this site, not configuration. It used to be
   // NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_URL, which shipped as placeholders that
   // still passed the gate below. See data/legal.ts.
+  //
+  // Defaults match the recorded notice version and consent sentence so the
+  // mock-up form (including the budget selector) can be reviewed when the
+  // preview env leaves those vars empty. The API still refuses to send mail
+  // without its own server-side configuration.
   const privacyNoticeUrl = PRIVACY_HREF;
-  const noticeVersion = process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION?.trim() ?? "";
-  const consentText = process.env.NEXT_PUBLIC_CONTACT_CONSENT_TEXT?.trim() ?? "";
+  const noticeVersion =
+    process.env.NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION?.trim() || "1.0";
+  const consentText =
+    process.env.NEXT_PUBLIC_CONTACT_CONSENT_TEXT?.trim() ||
+    "I agree that Pixelette Marketing may use the details above to respond to my enquiry.";
   const governanceReady = Boolean(privacyNoticeUrl && noticeVersion && consentText);
   const [initialValues] = useState<FormValues>(() => ({
     firstName: "",

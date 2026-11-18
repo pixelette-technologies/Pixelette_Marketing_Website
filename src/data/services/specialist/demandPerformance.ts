@@ -17,7 +17,7 @@ import type { SpecialistPageConfig } from "./types";
 // on the page, and the FAQ that answers it is the brief's.
 
 export const socialAndCommunity: SpecialistPageConfig = {
-  route: "social-media-marketing",
+  route: "social_media_marketing",
   capability: "Communications and Engagement",
   label: "Social & Community",
   meta: {
@@ -130,7 +130,7 @@ export const socialAndCommunity: SpecialistPageConfig = {
 };
 
 export const paidMediaAndPpc: SpecialistPageConfig = {
-  route: "ads-ppc",
+  route: "ads_ppc",
   capability: "Digital Visibility and Growth",
   label: "Paid Media & PPC",
   meta: {
@@ -243,7 +243,7 @@ export const paidMediaAndPpc: SpecialistPageConfig = {
 };
 
 export const influencerAndPartnerships: SpecialistPageConfig = {
-  route: "influencer-marketing",
+  route: "influencer_marketing",
   capability: "Creative and Campaigns",
   label: "Influencer & Partnerships",
   meta: {

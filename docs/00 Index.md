@@ -25,6 +25,10 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 17 Nov 2026
+
+**Service Offer and Website Plan executed on `bilal/revamp` and pushed** (`5e9d858`, `8aadd6c`). Independent reviews against the PDF source: **MOSTLY COMPLETE**. Soft honesty gaps closed (proposition trailers, procurement overclaim, results/industries provenance, privacy effective date). VAT omitted from public surfaces until management confirms `GB 432 2377 17` is Marketing Ltd’s. Live domain untouched; no production PR. Detail in the revamp vault: `vault/00 Index.md` and `vault/Known bugs and deviations.md`. Also see [[09 Outstanding]].
+
 ## Status as of 29 Sep 2026
 
 Merged to `main` and pushed on 9 Sep: 19 commits, `e68c016..c583c4e`.

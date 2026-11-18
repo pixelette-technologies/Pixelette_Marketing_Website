@@ -1,4 +1,4 @@
-/** Plan §8 — descriptive slugs for the five Insights articles. */
+/** Descriptive slugs exist for the later Insights rename. Mock-up keeps /blog/[id]. */
 
 export const BLOG_SLUGS: Record<number, string> = {
   1: "marketing-uk-fintech-fca-rules",
@@ -9,9 +9,7 @@ export const BLOG_SLUGS: Record<number, string> = {
 };
 
 export function blogHref(id: number): string {
-  const slug = BLOG_SLUGS[id];
-  if (!slug) throw new Error(`No slug for blog id ${id}`);
-  return `/insights/${slug}`;
+  return `/blog/${id}`;
 }
 
 export function blogIdFromSlug(slug: string): number | null {

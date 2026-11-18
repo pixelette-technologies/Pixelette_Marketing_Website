@@ -1,4 +1,5 @@
 import { Container } from "@/components/common";
+import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import { CONTACT_EMAIL } from "@/data/contactUs";
 import { pageMetadata } from "@/data/site";
@@ -7,12 +8,14 @@ export const metadata = pageMetadata({
   title: "Accessibility",
   description:
     "Voluntary accessibility statement for pixelettemarketing.com, and how we work to WCAG 2.2 AA on client work.",
-  path: "/accessibility"
+  path: "/accessibility",
+  index: false
 });
 
 export default function AccessibilityPage() {
   return (
     <>
+      <MockupBanner />
       <div className='wash-left'>
         <Container className='main'>
           <section className='hubHero'>

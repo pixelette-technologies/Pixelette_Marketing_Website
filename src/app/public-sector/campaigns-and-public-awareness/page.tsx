@@ -7,7 +7,8 @@ const line = marketBServiceLines[0]!;
 export const metadata = pageMetadata({
   title: line.title,
   description: line.h1,
-  path: line.path
+  path: line.path,
+  index: false
 });
 
 export default function Page() {

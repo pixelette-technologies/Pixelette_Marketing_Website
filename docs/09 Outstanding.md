@@ -670,12 +670,14 @@ to a hub page rather than to the home page.
 
 Built to a consolidated positioning brief. What it left for a human:
 
-- **The privacy statement's controller.** `/privacy` names Pixelette Marketing
-  with company number 17508478, 77 Fulham Palace Road and VAT GB 432 2377 17 —
-  the footer's details, which are also Pixelette Technologies Ltd's own. If
-  Marketing trades under Technologies Ltd, the controller line must say so.
-  The retention periods (24 months, six years) are the group's, adopted as
-  written. **Needs legal review before launch.**
+- **The privacy statement's controller / VAT.** `/privacy` names Pixelette
+  Marketing Ltd, company number 17508478, incorporated 8 October 2026,
+  77 Fulham Palace Road (effective date aligned 17 Nov). **VAT `GB 432 2377 17`
+  was removed from `/privacy` and Organization schema on 17 Nov** because the
+  same number publishes on Pixelette Technologies’ site and the repo already
+  flagged uncertainty. **Management must confirm** whether Marketing Ltd holds
+  that VAT before it is republished. Retention periods (24 months, six years)
+  remain the group's, adopted as written. **Needs legal review before launch.**
 - **The form still needs its two remaining env vars on Vercel**:
   `NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION` (and the server's
   `CONTACT_PRIVACY_NOTICE_VERSION`, which must match — the page says 1.0) and

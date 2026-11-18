@@ -10,7 +10,7 @@ export const servicesData = [
     metaTitle: "Social & Community | Social Media Marketing | Pixelette Marketing",
     metaDescription: "Social media strategy, content and community management designed to turn social attention into meaningful audience growth, learning and demand.",
     metaKeywords: "social media marketing, social and community, community management, social media strategy",
-    route: "social-media-marketing",
+    route: "social_media_marketing",
     mainHeading: "From starting out to standing out,",
     subHeading: "we’re the social media marketing agency for GROWTH",
     summary:
@@ -293,7 +293,7 @@ export const servicesData = [
   {
     id: 2,
     title: "Email Marketing",
-    route: "email-marketing",
+    route: "email_marketing",
     metaTitle: "Email Marketing Agency | Pixelette Marketing",
     metaDescription: "Email marketing built around strategy, segmentation and automation, from onboarding sequences to lifecycle campaigns, measured against commercial outcomes.",
     metaKeywords: "email marketing agency, email marketing services, email automation, email solutions",
@@ -594,7 +594,7 @@ export const servicesData = [
     metaDescription: "SEO, content and AI-search visibility designed to strengthen organic discovery, topic authority and meaningful search performance.",
     metaKeywords: "seo agency, content strategy, technical seo, ai search visibility",
     
-    route: "seo-and-content-marketing",
+    route: "seo_and_content_marketing",
     mainHeading: "From upticks in traffic to dominating search rankings, ",
     subHeading: "we’re the SEO agency for GROWTH",
     summary:
@@ -1135,7 +1135,7 @@ export const servicesData = [
     title: "Influencer & Partnerships",
     metaTitle: "Influencer & Partnerships | Influencer Marketing | Pixelette Marketing",
     metaDescription: "Find the right creators, build partnerships audiences believe and connect influencer marketing to measurable outcomes.",
-    route: "influencer-marketing",
+    route: "influencer_marketing",
     mainHeading: "From influencer trust to sustained success,",
     subHeading: "we’re the influencer marketing agency for GROWTH",
     summary:
@@ -1346,7 +1346,7 @@ export const servicesData = [
     metaDescription: "Paid search, paid social and performance campaigns across the platforms your audience uses, built to test what works and put budget behind evidence.",
     metaKeywords: "paid social advertising agency, paid ads agency, pay per click agency, ppc agency, paid ads services",
     
-    route: "ads-ppc",
+    route: "ads_ppc",
     mainHeading: "From clicks to conversions, ",
     subHeading: "we’re the Ads & PPC management agency for GROWTH",
     summary:
@@ -1644,7 +1644,7 @@ export const servicesData = [
     metaTitle: "Marketing Analytics & Measurement | Pixelette Marketing",
     metaDescription: "Marketing analytics and measurement designed to connect performance, customer and pipeline data and turn evidence into clearer commercial decisions.",
     metaKeywords: "marketing analytics, marketing measurement, attribution, marketing reporting",
-    route: "marketing-analytics",
+    route: "marketing_analytics_and_reporting",
     mainHeading: "From metrics to momentum,",
     subHeading:
       "we’re the marketing analytics and reporting agency for GROWTH",
@@ -1973,7 +1973,7 @@ export const servicesData = [
     metaTitle: "Lead Generation | Pixelette Marketing",
     metaDescription: "Lead generation built for qualified pipeline rather than volume, with targeting, landing pages, nurture and a clean handoff to sales.",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation, qualified pipeline",
-    route: "lead-generation",
+    route: "lead_generation",
     mainHeading: "From prospects to loyal customers,",
     subHeading: "we’re the lead generation agency for GROWTH",
     // INTERIM COPY, 8 Sep 2026. Lead Generation was the only service with an

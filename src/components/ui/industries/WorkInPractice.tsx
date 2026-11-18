@@ -102,8 +102,8 @@ export default function WorkInPractice() {
   const leadProvenance = lead.impact.find(
     item => item.value && item.source && item.period
   );
-  const leadHref = `/results/${caseStudyAnchor(lead.client)}`;
-  const supportHref = `/results/${caseStudyAnchor(support.client)}`;
+  const leadHref = `/results#${caseStudyAnchor(lead.client)}`;
+  const supportHref = `/results#${caseStudyAnchor(support.client)}`;
 
   return (
     <div className='band-alt' id={WORK_IN_PRACTICE_ID}>

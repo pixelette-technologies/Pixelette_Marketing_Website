@@ -6,7 +6,8 @@ export const metadata = pageMetadata({
   title: "Public sector and local government",
   description:
     "Communications bought under procurement rules, judged on public outcomes and accountable for public money.",
-  path: "/industries/public-sector-and-local-government"
+  path: "/industries/public-sector-and-local-government",
+  index: false
 });
 
 export default function Page() {

@@ -32,7 +32,7 @@ import type { SpecialistPageConfig } from "./types";
 // one of those patterns; Industries owns market context.
 
 export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
-  route: "marketing-analytics",
+  route: "marketing_analytics_and_reporting",
   capability: "Measurement and Insight",
   label: "Marketing Analytics & Measurement",
   meta: {

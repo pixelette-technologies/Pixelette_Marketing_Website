@@ -128,7 +128,7 @@ const TOPIC_ROUTES: readonly TopicRoute[] = [
   {
     id: 'paid',
     test: /\b(paid (media|ads?|advertising)|ppc|pay per click)\b/i,
-    path: '/services/ads-ppc',
+    path: '/services/ads_ppc',
   },
   {
     id: 'demand',

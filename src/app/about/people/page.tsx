@@ -1,4 +1,5 @@
 import { Container } from "@/components/common";
+import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import { company } from "@/data/company";
 import { pageMetadata } from "@/data/site";
@@ -7,12 +8,14 @@ export const metadata = pageMetadata({
   title: "People",
   description:
     "Pixelette Marketing Ltd is accountable for every engagement. These are the people who do the work.",
-  path: "/about/people"
+  path: "/about/people",
+  index: false
 });
 
 export default function PeoplePage() {
   return (
     <>
+      <MockupBanner />
       <div className='wash-left'>
         <Container className='main'>
           <section className='hubHero'>

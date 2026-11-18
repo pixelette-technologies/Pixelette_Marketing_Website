@@ -1,10 +1,12 @@
 import { Container } from "@/components/common";
+import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import type { MarketBServiceLine } from "@/data/publicSector/serviceLines";
 
 export default function MarketBServicePage({ line }: { line: MarketBServiceLine }) {
   return (
     <>
+      <MockupBanner />
       <div className='wash-left'>
         <Container className='main'>
           <section className='hubHero'>

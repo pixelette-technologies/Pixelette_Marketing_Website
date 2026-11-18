@@ -8,7 +8,8 @@ export const metadata = pageMetadata({
   title: "Public and civic communications",
   description:
     "Communications measured in public outcomes, not sales. Campaign evaluation, public awareness, digital, community engagement, change communications and education marketing.",
-  path: "/public-sector"
+  path: "/public-sector",
+  index: false
 });
 
 const deliverLines = [

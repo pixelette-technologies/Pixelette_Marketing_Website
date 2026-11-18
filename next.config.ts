@@ -33,79 +33,81 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Typo that has always pointed at lead generation.
       {
         source: "/services/lead_genration",
-        destination: "/services/lead-generation",
+        destination: "/services/lead_generation",
+        permanent: true
+      },
+      // Mock-up keeps baseline URLs. Migrated paths redirect back.
+      {
+        source: "/about",
+        destination: "/aboutus",
         permanent: true
       },
       {
-        source: "/aboutus",
-        destination: "/about",
+        source: "/insights",
+        destination: "/blog-list",
         permanent: true
       },
       {
-        source: "/blog-list",
-        destination: "/insights",
+        source: "/insights/marketing-uk-fintech-fca-rules",
+        destination: "/blog/1",
         permanent: true
       },
       {
-        source: "/blog/1",
-        destination: "/insights/marketing-uk-fintech-fca-rules",
+        source: "/insights/market-web3-product-ad-platforms",
+        destination: "/blog/2",
         permanent: true
       },
       {
-        source: "/blog/2",
-        destination: "/insights/market-web3-product-ad-platforms",
+        source: "/insights/marketing-metrics-early-stage-saas",
+        destination: "/blog/3",
         permanent: true
       },
       {
-        source: "/blog/3",
-        destination: "/insights/marketing-metrics-early-stage-saas",
+        source: "/insights/buyers-asking-ai-not-search-engine",
+        destination: "/blog/4",
         permanent: true
       },
       {
-        source: "/blog/4",
-        destination: "/insights/buyers-asking-ai-not-search-engine",
+        source: "/insights/five-things-before-increasing-marketing-spend",
+        destination: "/blog/5",
         permanent: true
       },
       {
-        source: "/blog/5",
-        destination: "/insights/five-things-before-increasing-marketing-spend",
+        source: "/services/social-media-marketing",
+        destination: "/services/social_media_marketing",
         permanent: true
       },
       {
-        source: "/services/social_media_marketing",
-        destination: "/services/social-media-marketing",
+        source: "/services/email-marketing",
+        destination: "/services/email_marketing",
         permanent: true
       },
       {
-        source: "/services/email_marketing",
-        destination: "/services/email-marketing",
+        source: "/services/seo-and-content-marketing",
+        destination: "/services/seo_and_content_marketing",
         permanent: true
       },
       {
-        source: "/services/seo_and_content_marketing",
-        destination: "/services/seo-and-content-marketing",
+        source: "/services/influencer-marketing",
+        destination: "/services/influencer_marketing",
         permanent: true
       },
       {
-        source: "/services/influencer_marketing",
-        destination: "/services/influencer-marketing",
+        source: "/services/ads-ppc",
+        destination: "/services/ads_ppc",
         permanent: true
       },
       {
-        source: "/services/ads_ppc",
-        destination: "/services/ads-ppc",
+        source: "/services/lead-generation",
+        destination: "/services/lead_generation",
         permanent: true
       },
       {
-        source: "/services/lead_generation",
-        destination: "/services/lead-generation",
-        permanent: true
-      },
-      {
-        source: "/services/marketing_analytics_and_reporting",
-        destination: "/services/marketing-analytics",
+        source: "/services/marketing-analytics",
+        destination: "/services/marketing_analytics_and_reporting",
         permanent: true
       },
       // 25 Sep 2026. The indexed deeper-experience URLs are /industries/web_3

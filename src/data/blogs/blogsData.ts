@@ -79,7 +79,7 @@ const posts = [
             subheading: "Web3",
             image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
-            link: "/insights/market-web3-product-ad-platforms"
+            link: blogHref(2)
           },
           {
             id: 3,
@@ -87,14 +87,14 @@ const posts = [
             image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
-            link: "/insights/marketing-metrics-early-stage-saas"
+            link: blogHref(3)
           },
           {
             id: 4,
             subheading: "Search",
             image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
-            link: "/insights/buyers-asking-ai-not-search-engine"
+            link: blogHref(4)
           },
           {
             id: 5,
@@ -102,7 +102,7 @@ const posts = [
             image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
-            link: "/insights/five-things-before-increasing-marketing-spend"
+            link: blogHref(5)
           }
         ]
       },
@@ -167,7 +167,7 @@ const posts = [
             subheading: "Fintech",
             image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
-            link: "/insights/marketing-uk-fintech-fca-rules"
+            link: blogHref(1)
           },
           {
             id: 3,
@@ -175,14 +175,14 @@ const posts = [
             image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
-            link: "/insights/marketing-metrics-early-stage-saas"
+            link: blogHref(3)
           },
           {
             id: 4,
             subheading: "Search",
             image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
-            link: "/insights/buyers-asking-ai-not-search-engine"
+            link: blogHref(4)
           },
           {
             id: 5,
@@ -190,7 +190,7 @@ const posts = [
             image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
-            link: "/insights/five-things-before-increasing-marketing-spend"
+            link: blogHref(5)
           }
         ]
       },
@@ -256,21 +256,21 @@ const posts = [
             subheading: "Fintech",
             image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
-            link: "/insights/marketing-uk-fintech-fca-rules"
+            link: blogHref(1)
           },
           {
             id: 2,
             subheading: "Web3",
             image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
-            link: "/insights/market-web3-product-ad-platforms"
+            link: blogHref(2)
           },
           {
             id: 4,
             subheading: "Search",
             image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
-            link: "/insights/buyers-asking-ai-not-search-engine"
+            link: blogHref(4)
           },
           {
             id: 5,
@@ -278,7 +278,7 @@ const posts = [
             image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
-            link: "/insights/five-things-before-increasing-marketing-spend"
+            link: blogHref(5)
           }
         ]
       },
@@ -344,14 +344,14 @@ const posts = [
             subheading: "Fintech",
             image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
-            link: "/insights/marketing-uk-fintech-fca-rules"
+            link: blogHref(1)
           },
           {
             id: 2,
             subheading: "Web3",
             image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
-            link: "/insights/market-web3-product-ad-platforms"
+            link: blogHref(2)
           },
           {
             id: 3,
@@ -359,7 +359,7 @@ const posts = [
             image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
-            link: "/insights/marketing-metrics-early-stage-saas"
+            link: blogHref(3)
           },
           {
             id: 5,
@@ -367,7 +367,7 @@ const posts = [
             image: "/blogs/blog-marketing-spend-banner.webp",
             title:
               "Five things to check before you increase your marketing spend",
-            link: "/insights/five-things-before-increasing-marketing-spend"
+            link: blogHref(5)
           }
         ]
       },
@@ -434,14 +434,14 @@ const posts = [
             subheading: "Fintech",
             image: "/blogs/blog-fintech-banner.webp",
             title: "Marketing a UK fintech without breaching FCA rules",
-            link: "/insights/marketing-uk-fintech-fca-rules"
+            link: blogHref(1)
           },
           {
             id: 2,
             subheading: "Web3",
             image: "/blogs/blog-web3-banner.webp",
             title: "How to market a Web3 product when the ad platforms say no",
-            link: "/insights/market-web3-product-ad-platforms"
+            link: blogHref(2)
           },
           {
             id: 3,
@@ -449,14 +449,14 @@ const posts = [
             image: "/blogs/blog-saas-banner.webp",
             title:
               "The marketing metrics an early-stage SaaS founder should track",
-            link: "/insights/marketing-metrics-early-stage-saas"
+            link: blogHref(3)
           },
           {
             id: 4,
             subheading: "Search",
             image: "/blogs/blog-ai-search-laptop.webp",
             title: "Your buyers are asking an AI, not a search engine",
-            link: "/insights/buyers-asking-ai-not-search-engine"
+            link: blogHref(4)
           }
         ]
       }

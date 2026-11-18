@@ -2,25 +2,34 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **18 November 2026** — lower-priority snags closed on `bilal/revamp`; crawler allowlist is official domain only; Deployment Protection off for management review. Phase F history below still starts from 1 Sep.
+Last updated: **18 November 2026** — named snags closed and pushed on `bilal/revamp`; fresh session owns the two pending items below. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Older Phase F work also lived on `revamp/ui`. |
-| Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026` (plus corrected plan §10.2). |
-| Site code written | Service Offer surfaces + must-fix pass + lower-priority pass (logo alts, section numbers, diagnostic link label, host allowlist). |
-| Pushed? | **`bilal/revamp` only.** No PR to production. Live domain untouched. |
-| Seen in a browser? | Local gates after the lower-priority pass; preview open for management (protection off). |
-| Sign-off | **Not signed off.** Must-fixes + named lower-priority items closed. Still open: review §7’s other five (need the PDF), screenshot pack deferred. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip includes `3be2b68` (doc accuracy) on top of snag commits `2f648bc` / `7e8b5d8`. |
+| Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026`. |
+| Site code written | Service Offer + must-fixes 1–6 + named lower-priority pass + official-host crawler allowlist. |
+| Pushed? | **Yes — `bilal/revamp` only.** No PR to production. Live domain untouched. |
+| Preview | Open without Vercel login; non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
+| Sign-off | **Not signed off.** Named snags closed. Two items left for the next session. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty; mock-up stays on baseline URLs).
-2. Read [[Known bugs and deviations]] — **Pending after 18 Nov lower-priority pass** first.
+1. Read [[Rules]] (brief + Service Offer honesty; mock-up stays on baseline URLs; crawler allowlist).
+2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
+
+## Pending for the next session (take these)
+
+| # | Item | What to do |
+|---|---|---|
+| 1 | **Review §7 — other five items** | Leadership review claimed nine lower-priority items; four were named and closed. The other five are only in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf`. Get that PDF, list the five, then fix what code can fix without inventing copy. |
+| 2 | **Screenshot pack / menu responsiveness** | Deferred: reviewer assesses by eye. Brief §8 / §9 expected desktop ~1440 and phone ~390 per route if a pack is still required. Likely break points: mega-menu, capability grid, evaluation table. |
+
+Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[Known bugs and deviations]] under “do not invent” — not this snag list.
 
 ## 18 November 2026 — mock-up review snag list
 
@@ -34,9 +43,9 @@ Last updated: **18 November 2026** — lower-priority snags closed on `bilal/rev
 5. Contact form reviewable: recorded consent sentence + notice version `1.0` when preview env is empty, so the budget selector shows. API still refuses mail without server config.
 6. Evaluation page: heading **Two ways to buy it**; third bullet (independent evaluation / campaigns someone else ran) **deleted**. No replacement sentence — option returns only when a methodological specialist is appointed. Demonstrations link unchanged.
 
-**Closed later the same day (lower-priority + crawler gate):** logo alts from wordmarks; `/services` “The Diagnostic →”; homepage numbers 02–05; “Quacking good…” kept; brief §2 answers refreshed; crawler allowlist = official domain only; Deployment Protection **off** for management review.
+**Closed later the same day (lower-priority + crawler gate):** logo alts from wordmarks; `/services` “The Diagnostic →”; homepage numbers 02–05; “Quacking good…” kept; brief §2 answers refreshed; crawler allowlist = official domain only; preview open for management review. Independent completeness review: product items **Pass**; two stale doc lines cleared in `3be2b68`.
 
-**Still pending** — see [[Known bugs and deviations]] “Pending after 18 Nov lower-priority pass”.
+**Still pending** — see **Pending for the next session** above and [[Known bugs and deviations]].
 
 ## 16–17 November 2026 — Service Offer and Website Plan
 

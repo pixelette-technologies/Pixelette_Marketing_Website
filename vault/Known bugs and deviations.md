@@ -2,12 +2,14 @@
 
 Everything the audit turned up, sorted by what happens to it. See [[Rules]] for why the boundary falls where it does.
 
-## Pending after 18 Nov lower-priority pass
+## Pending for the next session
+
+Named 18 Nov snags are closed and pushed. A fresh session takes only these:
 
 | Item | Notes |
 |---|---|
-| **Review §7 — other five items** | Review claimed nine lower-priority items; only four were named in the chat paste. Full list is in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo/Downloads as of 18 Nov). |
-| **Screenshot pack / menu responsiveness** | Deferred by instruction — reviewer will assess by eye. |
+| **1. Review §7 — other five items** | Review claimed nine lower-priority items; four were named and closed (logo alts, Strategy label, section numbers, Quacking good). The other five are only in `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` (not in repo/Downloads as of 18 Nov). **First step:** obtain the PDF, extract the five, then fix what the tree can fix without inventing copy. |
+| **2. Screenshot pack / menu responsiveness** | Deferred by instruction for by-eye review. If a pack is still required: brief §8 / §9, desktop ~1440 and phone ~390 per route (`scripts/capture-mockup-screenshots.mjs`, `mockup-screenshots/`). Likely breaks: mega-menu, capability grid, evaluation table. |
 
 ## Closed 18 Nov — lower-priority snags + crawler gate
 

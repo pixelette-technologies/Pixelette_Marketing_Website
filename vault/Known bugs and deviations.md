@@ -32,7 +32,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 | **5. Contact form / budget selector** | Form defaults to notice `1.0` + recorded consent sentence when env empty so the selector can be reviewed. |
 | **6. Independent evaluation third way** | Heading **Two ways to buy it**; third bullet deleted. No replacement copy — returns when a named methodological specialist is appointed (plan §3 / corrected §10.2). |
 
-Commit for must-fixes 1–5: `e6e6af2`. Point 6 applied after that commit (may sit uncommitted until the next vault/code commit).
+Commit for must-fixes 1–5: `e6e6af2`. Point 6 and the lower-priority pass are in later commits on `bilal/revamp` (`2f648bc`, `7e8b5d8`).
 
 ## Service Offer plan — status (17–18 Nov 2026)
 

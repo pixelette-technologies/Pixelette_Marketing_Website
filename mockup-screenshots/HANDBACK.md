@@ -24,7 +24,7 @@ Updated **18 November 2026** to match the tree on `bilal/revamp`.
 - Draft body copy named but not written in the PDF was left empty: second-market band, procurement replacement block, FAQ answer under the supplier-questionnaire question, indicative-budget options, About block bodies, results sourcing statement, public-sector page bodies, industry market blurbs, policies children.
 - **Plan document.** The PDF names a plan document for body copy. That file is **not in this repository**, so named empty slots stay empty by rule — not a build failure.
 - Footer Services column is the five group names with no invented group URLs (plain text).
-- Brand logo strip still uses `Brand Logo 0`–`5` in `TrustedBrands.tsx`; the brief names the fault and does not supply the six names, so names were not invented.
+- Brand logo strip alts were later closed 18 Nov from the wordmarks (see §4b); this bullet is historical for the 13 Nov state.
 
 ## 3. Fix pass (13 Nov) — review must-fixes
 

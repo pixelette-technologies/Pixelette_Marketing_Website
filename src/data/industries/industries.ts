@@ -142,11 +142,11 @@ export const industries: Industry[] = [
     descriptor: "Education, training and learning products",
     journey: ["Need", "Fit", "Confidence", "Commitment", "Outcome"],
     market:
-      "Commercial: training providers, edtech and learning products, where the objective is enrolments, registrations and revenue. Public and civic: schools and multi-academy trusts, sixth forms, colleges and universities, where the objective is admissions, parent and community engagement, participation and staff recruitment — and where procurement, safeguarding and accessibility all apply.",
+      "Training providers, edtech and learning products, where the objective is enrolments, registrations and revenue — and schools, multi-academy trusts, sixth forms, colleges and universities, where the objective is admissions, parent and community engagement, participation and staff recruitment, and where procurement, safeguarding and accessibility all apply.",
     challenge:
-      "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance — and, on the public side, account for public money and duty of care.",
+      "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance — and, where public money or duty of care applies, account for both.",
     approach:
-      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards confident enrolment. One note we would rather state than be asked: a school's own website is partially exempt from the public sector accessibility regulations, except for content people need in order to use its services. We would tell you which of your content falls inside that exception rather than selling you a compliance programme you do not need.",
+      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards a confident next step. One note we would rather state than be asked: a school's own website is partially exempt from the public sector accessibility regulations, except for content people need in order to use its services. We would tell you which of your content falls inside that exception rather than selling you a compliance programme you do not need.",
     href: "/industries/education-and-learning"
   },
   {
@@ -216,7 +216,7 @@ export const industriesPage = {
     eyebrow: "Industries",
     headline: { lead: "Different markets", accent: "Different dynamics" },
     principle: "Understand before we act",
-    lead: "Every market behaves differently. Pixelette adapts the marketing approach around the audience, buying journey, competitive environment and commercial challenge."
+    lead: "Every market behaves differently. Pixelette adapts the marketing and communications approach around the audience, the journey and the objective."
   },
   explorer: {
     eyebrow: "Markets",
@@ -231,7 +231,7 @@ export const industriesPage = {
     // One button. The specification offers "Talk to our team" as a secondary
     // "if appropriate"; it would go to the same /contactus as the primary, so
     // two controls would ask one question twice.
-    cta: { label: "Build my growth plan", to: "/contactus" }
+    cta: { label: "Discuss Your Project", to: "/contactus" }
   }
 };
 

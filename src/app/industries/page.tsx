@@ -11,7 +11,7 @@ import { pageMetadata, SITE_URL } from "@/data/site";
 // how the thinking adapts, with no market names stuffed in and no claim to be
 // a specialist in any of them.
 const description =
-  "See how Pixelette adapts marketing strategy around different markets, audiences, buying journeys and commercial challenges.";
+  "See how Pixelette adapts marketing and communications around different markets, audiences and objectives.";
 
 export async function generateMetadata() {
   return await pageMetadata({

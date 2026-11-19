@@ -71,41 +71,6 @@ if (linkedServices !== servicesData.length) {
   );
 }
 
-// 12 Nov 2026 developer brief §4.3 — Public sector mega-menu.
-export const publicSectorGroups: NavGroup[] = [
-  {
-    label: "",
-    items: [
-      { href: "/public-sector", title: "Public and civic overview" },
-      {
-        href: "/public-sector/campaign-evaluation",
-        title: "Campaign evaluation"
-      },
-      {
-        href: "/public-sector/campaigns-and-public-awareness",
-        title: "Campaigns and public awareness"
-      },
-      {
-        href: "/public-sector/digital-communications",
-        title: "Digital communications"
-      },
-      {
-        href: "/public-sector/community-engagement",
-        title: "Community engagement"
-      },
-      {
-        href: "/public-sector/internal-and-change-communications",
-        title: "Internal and change communications"
-      },
-      {
-        href: "/public-sector/education-marketing",
-        title: "Education marketing"
-      },
-      { href: "/public-sector/how-to-buy", title: "How to buy from us" }
-    ]
-  }
-];
-
 /** The five capability group names for the footer Services column. */
 export const footerCapabilityGroups = [
   "Brand and Strategy",
@@ -115,4 +80,4 @@ export const footerCapabilityGroups = [
   "Measurement and Insight"
 ] as const;
 
-export const navCta = { label: "Build my growth plan", to: "/contactus" };
+export const navCta = { label: "Discuss Your Project", to: "/contactus" };

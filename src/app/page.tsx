@@ -13,17 +13,17 @@ import { pageMetadata } from "@/data/site";
 export async function generateMetadata() {
   return await pageMetadata({
     title:
-      "Pixelette Marketing | Marketing and communications that build brands, engage audiences and deliver measurable results",
+      "Pixelette Marketing | Marketing and communications that deliver measurable impact",
     description:
-      "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
+      "We bring together strategy, creative campaigns, digital marketing, communications and insight to help businesses and public-sector organisations reach their audiences, strengthen engagement and achieve meaningful results.",
     path: "",
     absoluteTitle: true,
     keywords: [
-      "growth marketing",
+      "marketing and communications agency",
       "digital marketing agency",
       "marketing strategy",
-      "demand generation",
-      "commercial growth"
+      "public sector communications",
+      "brand strategy"
     ]
   });
 }

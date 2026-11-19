@@ -42,12 +42,6 @@ export default function MarketBServicePage({ line }: { line: MarketBServiceLine 
           <Text className='body'>{line.conditions}</Text>
           {line.extra ? <Text className='body'>{line.extra}</Text> : null}
         </section>
-        <section className='sec' aria-labelledby='not-yet-title'>
-          <Heading className='h2' level={2} id='not-yet-title'>
-            What we have not yet done
-          </Heading>
-          <Text className='body'>{line.notYetDone}</Text>
-        </section>
       </Container>
     </>
   );

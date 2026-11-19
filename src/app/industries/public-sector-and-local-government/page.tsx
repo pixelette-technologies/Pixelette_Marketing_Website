@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
@@ -60,6 +61,12 @@ export default function Page() {
             start rather than at the end. Report what the evidence supports and
             say clearly what it does not.
           </Text>
+          <p className='sec-sm'>
+            <Link href='/public-sector' className='textLink'>
+              Marketing and communications for public and civic organisations
+              <span aria-hidden='true'> →</span>
+            </Link>
+          </p>
         </section>
       </Container>
     </>

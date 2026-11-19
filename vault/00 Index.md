@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **18 November 2026** — review §7 closed on `bilal/revamp`; screenshot pack still deferred. Phase F history still starts from 1 Sep.
+Last updated: **19 November 2026** — one-agency content pass is in the working tree, not committed and not deployed. Review §7 remains the pushed tip (`6c0b433`). Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`6c0b433`**. |
 | Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026`. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 lower-priority pass + official-host crawler allowlist. |
-| Pushed? | **Yes — `bilal/revamp` only.** No PR to production. Live domain untouched. |
+| Pushed? | **§7 yes** (`6c0b433`). The 19 Nov one-agency copy pass is **local only**. No PR to production. Live domain untouched. |
 | Preview | Open without Vercel login; non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Review §7 closed. Screenshot pack / menu by-eye still deferred. |
+| Sign-off | **Not signed off.** Review §7 closed and independently verified COMPLETE. Screenshot pack / menu by-eye still deferred. |
 
 ## Start here — next session, in order
 
@@ -27,6 +27,7 @@ Last updated: **18 November 2026** — review §7 closed on `bilal/revamp`; scre
 | # | Item | What to do |
 |---|---|---|
 | 1 | **Screenshot pack / menu responsiveness** | Deferred: reviewer assesses by eye. Brief §8 / §9 expected desktop ~1440 and phone ~390 per route if a pack is still required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 2 | **One-agency copy pass** | In the working tree, not committed. Homepage, nav, public-sector hub and contact follow the 19 Nov brief. Leftover audit gaps closed (education explorer, About principle, specialist default CTA, Public Engagement enquiry option, dead public-sector nav data). Preview deploy did not run: Vercel CLI has no valid login. Founder still has to approve the new wording. Mock-up banners stay on the draft public-sector pages. |
 
 Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[Known bugs and deviations]] under “do not invent” — not this snag list.
 
@@ -44,7 +45,7 @@ Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[K
 
 **Closed later the same day (lower-priority + crawler gate):** logo alts from wordmarks; `/services` “The Diagnostic →”; homepage numbers 02–05; “Quacking good…” kept; brief §2 answers refreshed; crawler allowlist = official domain only; preview open for management review. Independent completeness review: product items **Pass**; two stale doc lines cleared in `3be2b68`.
 
-**Closed same evening (review §7 remainder from the PDF):** media stems 01–05 renamed to current group names; `#measurement-and-insight-view` anchor; CDP placeholder sentence on how-to-buy; eyebrow kept; public-sector measures kept; Privacy choices confirmed as the cookie-panel button.
+**Closed same evening (review §7 remainder from the PDF):** media stems 01–05 renamed to current group names; `#measurement-and-insight-view` anchor; CDP placeholder sentence on how-to-buy; eyebrow kept; public-sector measures kept; Privacy choices confirmed as the cookie-panel button. Pushed as `6c0b433`. Independent review against the PDF + owner decisions: **COMPLETE** (all nine §7 items Pass).
 
 **Still pending** — screenshot pack only; see **Pending for the next session** above and [[Known bugs and deviations]].
 
@@ -330,7 +331,7 @@ The five `/industries/[slug]` specialist pages stay live but unlinked and out of
 
 1. **Phase F on the other twelve sections.** The home page is done; everything else is still on the legacy vocabulary and still looks like the version the user rejected. The pass is mechanical now that F2 has made the primitives reachable: re-role `mainHeading` → `.eyebrow`, `subHeading` → `.h2`, standfirst → `.lead`; retire `uppercase` and `font_family_glory` from headings; delete the D8 colour blocks that restate what the primitives already carry. **Do the sections the user can see soonest first, and show one page before repeating it twelve times.**
 2. **The browser walk on everything except the home page.** All static routes plus one of each dynamic template, at 1440px and 390px. The home page has been looked at repeatedly; nothing else has been looked at at all.
-3. **`CONTACT FORM TEMPORARILY UNAVAILABLE` is live on the home page** — `ContactUsForm.tsx:101`. Configuration, not UI, and it is on the most valuable section of the site. Raise it early.
+3. ~~**`CONTACT FORM TEMPORARILY UNAVAILABLE` on the home page**~~ — **Closed 18 Nov (must-fix 5).** Form defaults to notice `1.0` + recorded consent when preview env is empty so the budget selector can be reviewed; API still refuses mail without server config.
 4. **33 inline `style={{…}}` blocks** remain, mostly in page-level files and the two carousels.
 5. **`.small` is 13px; the guide's is 14px.** Appendix E is "fixed, do not vary". Noticed during Phase F, not changed, because it is a site-wide type change and belongs in its own commit with the user warned.
 6. **Raised, not fixed** — see [[Known bugs and deviations]]: the placeholder copy on `/contactus`, the five off-palette pastels on About, `FinalResult`'s permanently hidden icon row, the article table of contents moving below the article on phones.
@@ -343,8 +344,9 @@ Take the look and feel from the pattern guide; keep the substance — content, c
 
 ## Standing instructions from the user
 
-- Commit in logical chunks on `revamp/ui`, one concern per commit.
-- **Stay on `revamp/ui`. Do not touch `main`. Do not create a new branch.** (Restated by the user, 1 Sep 2026.)
+- Current mock-up work is on **`bilal/revamp`**. Older Phase F history also lived on `revamp/ui`.
+- Commit in logical chunks, one concern per commit.
+- **Do not touch `main`. Do not invent a new branch** unless asked.
 - **Do not push, do not open a PR, do not deploy** without being asked.
 - Decisions already taken are in [[Rules]] under "Settled decisions". Do not relitigate them.
 

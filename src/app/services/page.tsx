@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return await pageMetadata({
   title: "What we do",
   description:
-    "Five connected capabilities — brand and strategy, creative and campaigns, communications and engagement, digital visibility and growth, and measurement and insight — for commercial and public buyers.",
+    "Five connected capabilities — brand and strategy, creative and campaigns, communications and engagement, digital visibility and growth, and measurement and insight — applied to the audience and the objective.",
   path: "/services",
   keywords:
     "marketing services, brand strategy, campaigns, communications, SEO, paid media, measurement"
@@ -77,13 +77,12 @@ export default function ServicesIndexPage() {
             </Heading>
             <Text className='lead'>
               The work is organised as five connected capabilities rather than
-              a menu of channels. Not every marketing problem is a
-              lead-generation problem. You may need to define your brand,
-              launch something, tell a stronger story, build an audience,
-              improve how easily you are found, or understand what is actually
-              working. We organise around the objective rather than the
-              channel, and the same five capabilities serve a commercial buyer
-              and a public one.
+              a menu of channels. You may need to define your brand, launch
+              something, tell a stronger story, build an audience, improve how
+              easily you are found, or understand what is actually working. We
+              organise around the objective rather than the channel, and the
+              same five capabilities apply whether the audience is a customer,
+              a community or a public service.
             </Text>
           </section>
         </Container>
@@ -119,7 +118,7 @@ export default function ServicesIndexPage() {
               still reachable from every capability above, so nothing is
               orphaned — they simply stop being the only exit. */}
           <Link href='/contactus' className='btn'>
-            Tell us what needs to grow
+            Discuss Your Project
           </Link>
         </Container>
       </div>

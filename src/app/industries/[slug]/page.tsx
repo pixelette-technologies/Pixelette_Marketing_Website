@@ -130,7 +130,7 @@ export default async function Page({ params }: PageProps) {
         subHeading={pageData.subHeading}
         text={pageData.summary}
         image={pageData.image}
-        cta={{ label: "Tell us what needs to grow", to: "#enquiry" }}
+        cta={{ label: "Discuss Your Project", to: "#enquiry" }}
       />
 
       <Web3Questions
@@ -191,7 +191,7 @@ export default async function Page({ params }: PageProps) {
       <ContactSection
         id='enquiry'
         eyebrow='Start here'
-        heading='Tell us what needs to grow.'
+        heading="Let's discuss your objectives"
         text={pageData.close.lead}
         closing={finalConversionCopy.closing}
         formIntro={false}

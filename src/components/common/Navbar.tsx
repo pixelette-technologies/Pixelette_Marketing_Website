@@ -9,7 +9,6 @@ import { Button, NavbarDropDown } from "../feature";
 import {
   navCta,
   whatWeDoGroups,
-  publicSectorGroups,
   type NavGroup
 } from "@/data/navigation";
 import { IoIosArrowDown } from "react-icons/io";
@@ -27,8 +26,6 @@ function DrawerGroup({
   groups: NavGroup[];
   onNavigate: () => void;
 }) {
-  // Public sector's first menu item is already the overview — skip the
-  // separate hub row so the drawer does not list it twice.
   const firstHref = groups[0]?.items[0]?.href;
   const showHub = firstHref !== hub;
 
@@ -97,14 +94,9 @@ export default function Navbar() {
             </Link>
             <div>
               <NavbarDropDown
-                name='What we do'
+                name='What We Do'
                 mainRoute='services'
                 groups={whatWeDoGroups}
-              />
-              <NavbarDropDown
-                name='Public sector'
-                mainRoute='public-sector'
-                groups={publicSectorGroups}
               />
               <Link href={"/industries"} className='flink'>
                 Industries
@@ -130,17 +122,10 @@ export default function Navbar() {
 
               <div className='navDrawer__panel'>
                 <DrawerGroup
-                  label='What we do'
+                  label='What We Do'
                   hub='/services'
-                  hubLabel='What we do overview'
+                  hubLabel='What We Do overview'
                   groups={whatWeDoGroups}
-                  onNavigate={closeDrawer}
-                />
-                <DrawerGroup
-                  label='Public sector'
-                  hub='/public-sector'
-                  hubLabel='Public and civic overview'
-                  groups={publicSectorGroups}
                   onNavigate={closeDrawer}
                 />
 

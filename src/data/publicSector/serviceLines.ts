@@ -1,4 +1,4 @@
-/** Plan §10.3 — five Market B service lines, same five-part structure. */
+/** Public-sector service lines. Objective, delivery, measurement, conditions. */
 
 export interface MarketBServiceLine {
   path: string;
@@ -8,7 +8,6 @@ export interface MarketBServiceLine {
   whatWeDo: string;
   howMeasured: string;
   conditions: string;
-  notYetDone: string;
   /** Extra paragraph after conditions, when the plan supplies one. */
   extra?: string;
 }
@@ -25,9 +24,7 @@ export const marketBServiceLines: MarketBServiceLine[] = [
     howMeasured:
       "Reach within the specific population that matters rather than reach in general; comprehension and recall; stated intention; the behaviour itself, against a recorded baseline; cost per person reached and per person who acted.",
     conditions:
-      "Accessible creative and content as standard. Where a campaign involves children or young people, our safeguarding position applies.",
-    notYetDone:
-      "We have delivered integrated campaigns commercially, published with sources at /results. We have not yet delivered a public awareness campaign under this company name."
+      "Accessible creative and content as standard. Where a campaign involves children or young people, our safeguarding position applies."
   },
   {
     path: "/public-sector/digital-communications",
@@ -40,9 +37,7 @@ export const marketBServiceLines: MarketBServiceLine[] = [
     howMeasured:
       "Task completion, findability, accessibility conformance, and whether people reach the information they came for.",
     conditions:
-      "We work to WCAG 2.2 AA, which is the standard GOV.UK guidance names for compliance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. Our own position is published at /accessibility.",
-    notYetDone:
-      "No public-sector digital engagement under this name yet. Our own site's conformance position is published rather than asserted, which is the most direct evidence available.",
+      "Accessible content is part of the work. GOV.UK guidance names WCAG 2.2 AA for the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. Our own conformance position is published at /accessibility and is not claimed.",
     extra:
       "HTML is our default output. PDFs are produced accessibly when a PDF is genuinely needed — GOV.UK guidance tells public bodies that new PDFs and documents must be made accessible, and names inaccessible PDF forms that cannot be read out on screen readers among common problems."
   },
@@ -57,9 +52,7 @@ export const marketBServiceLines: MarketBServiceLine[] = [
     howMeasured:
       "Response volume against target, and more importantly response representativeness against the population profile; which groups are under-represented and what was done about it.",
     conditions:
-      "Data protection — lawful basis, processing terms, and a DPIA where personal or special-category data is involved. Accessibility of every material.",
-    notYetDone:
-      "No consultation support delivered under this name. The method is set out above and we will walk through it before you commission anything."
+      "Data protection — lawful basis, processing terms, and a DPIA where personal or special-category data is involved. Accessibility of every material."
   },
   {
     path: "/public-sector/internal-and-change-communications",
@@ -72,9 +65,7 @@ export const marketBServiceLines: MarketBServiceLine[] = [
     howMeasured:
       "Reach across the whole workforce including people without a desk or an email address; understanding, tested rather than assumed; feedback volume and theme; where messages stalled.",
     conditions:
-      "Confidentiality, and care with personal data in staff listening exercises.",
-    notYetDone:
-      "No public-sector internal communications engagement under this name."
+      "Confidentiality, and care with personal data in staff listening exercises."
   },
   {
     path: "/public-sector/education-marketing",
@@ -87,8 +78,6 @@ export const marketBServiceLines: MarketBServiceLine[] = [
     howMeasured:
       "Enquiries, open-event attendance and conversion to application, by catchment and by feeder school; engagement reach across the parent body rather than among the already-engaged; applications per pound spent.",
     conditions:
-      "Safeguarding is a condition of entry, not an afterthought — our position is established before any work involving children or young people, including the DBS position for anyone with access, whether employed or engaged as a specialist. Data protection applies to pupil and parent data. On accessibility, a school's own website is partially exempt from the 2018 regulations except for content people need in order to use its services, and we will tell you which of your content that covers.",
-    notYetDone:
-      "No school, trust or college engagement delivered under this name. Education and training is one of the eight markets we work in commercially; the public education reading is new."
+      "Safeguarding is a condition of entry, not an afterthought — our position is established before any work involving children or young people, including the DBS position for anyone with access, whether employed or engaged as a specialist. Data protection applies to pupil and parent data. On accessibility, a school's own website is partially exempt from the 2018 regulations except for content people need in order to use its services, and we will tell you which of your content that covers."
   }
 ];

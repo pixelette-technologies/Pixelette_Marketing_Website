@@ -161,7 +161,7 @@ export const seoContentAndAiVisibility: SpecialistPageConfig = {
   cta: {
     heading: "Have a visibility problem worth solving?",
     body: "Start with what customers are trying to find — and whether your business deserves to be the answer.",
-    label: "Build my growth plan"
+    label: "Discuss Your Project"
   },
   // No heading: the shared "Useful questions" eyebrow is set as the heading
   // itself, which is the brief's heading. Setting both would print it twice.

@@ -25,9 +25,13 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 19 Nov 2026
+
+**Review §7 pushed on `bilal/revamp` (`6c0b433`).** Independent review against the PDF: **COMPLETE**. A 19 Nov one-agency copy pass is in the working tree and is not committed or deployed. Detail: `vault/00 Index.md` “Pending for the next session” and `vault/Known bugs and deviations.md`.
+
 ## Status as of 18 Nov 2026
 
-**Mock-up named snags and review §7 closed on `bilal/revamp`.** Next session owns only: screenshot pack / menu responsiveness (by-eye). Detail: `vault/00 Index.md` “Pending for the next session” and `vault/Known bugs and deviations.md`.
+**Mock-up named snags and review §7 closed on `bilal/revamp`.** Superseded for tip/push state by 19 Nov above.
 
 ## Status as of 17 Nov 2026
 

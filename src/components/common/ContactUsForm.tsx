@@ -298,7 +298,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               />
             </div>
             <FormSelect
-              label='What are you trying to improve?'
+              label='What do you want to work on?'
               name='improve'
               place='Select one'
               options={IMPROVE_OPTIONS}
@@ -334,7 +334,7 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
                 states in a browser. */}
             <ErrorMessage component='div' name='consent' className='form-error' />
             <Button type='submit' className='primary-full' disabled={isSubmitting}>
-              {isSubmitting ? "Submitting..." : "Request a growth conversation"}
+              {isSubmitting ? "Submitting..." : "Submit Enquiry"}
             </Button>
             {submitState === "error" && (
               <p role='alert' style={{ marginTop: "0.625rem", color: "var(--color-danger)" }}>

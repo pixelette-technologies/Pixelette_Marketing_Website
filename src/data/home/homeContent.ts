@@ -43,30 +43,25 @@ export const RESULTS_HREF = "/results";
 // under `retired`, as approved copy for later reuse.
 
 export const heroCopy = {
-  eyebrow: "Clarity. Momentum. Commercial impact.",
-  // 12 Nov 2026 developer brief §5 — approved umbrella proposition.
+  eyebrow: "Clarity. Momentum. Measurable impact.",
   headline: {
-    lead: "Marketing and communications that build brands, engage audiences and deliver measurable results.",
+    lead: "Marketing and communications that deliver measurable impact",
     tail: ""
   },
-  /**
-   * Desktop break of the home H1. Meta/OG left to existing strings —
-   * SEO is out of this pass per the brief.
-   */
   ogHeadline: [
-    "Marketing and communications that",
-    "build brands, engage audiences",
-    "and deliver measurable results."
+    "Marketing and communications",
+    "that deliver",
+    "measurable impact"
   ] as const,
   support:
-    "One company, two markets: commercial growth and public and civic communications — five capabilities, measured properly.",
-  primaryCta: { label: "Build my growth plan", to: "/contactus" },
+    "We bring together strategy, creative campaigns, digital marketing, communications and insight to help businesses and public-sector organisations reach their audiences, strengthen engagement and achieve meaningful results.",
+  primaryCta: { label: "Let's Talk", to: "/contactus" },
   secondaryCta: { label: "Explore what we do", to: "/services" },
   // The Living Signal's two rail labels and its handwritten line. All three
   // are part of the picture, so the figure that carries them is aria-hidden.
   signalLabels: {
     top: ["Ideas", "Intelligence", "Action", "Growth"],
-    bottom: ["A more", "commercial", "tomorrow"]
+    bottom: ["A clearer", "shared", "tomorrow"]
   },
   annotation: ["From", "insight", "to impact"],
 
@@ -106,7 +101,7 @@ export const activityCopy: EditorialSectionCopy & {
   eyebrow: "A different perspective",
   headline: ["More activity", "isn’t the answer"],
   accent: "Better decisions are",
-  lead: "We help you focus on what will actually move the business — then build the marketing around it.",
+  lead: "We help you focus on what will actually move the objective — then build the marketing and communications around it.",
   cta: { label: "Our approach", to: APPROACH_HREF },
   // The spec's list, in its order, and no others. Stored in sentence case;
   // the notes set them in capitals as the reference does.
@@ -143,7 +138,7 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   headline: ["Five capabilities"],
   // 12 Nov 2026 developer brief §5.
   accent: "Built around your objective",
-  lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
+  lead: "An integrated approach to marketing and communications, focused on the outcome in front of you.",
   cta: { label: "Explore all services", to: "/services" },
   // Kept for hub / content reuse. No longer overlaid on the maquette visual
   // (illustration is unlabelled; the copy carries the proposition).
@@ -186,7 +181,7 @@ export const relevanceCopy: EditorialSectionCopy & {
   eyebrow: "A clearer way forward",
   headline: ["Attention is easy to buy"],
   accent: "Relevance isn’t",
-  lead: "We help you reach the right people, with the right message, at the right time — and turn that into real commercial impact.",
+  lead: "We help you reach the right people, with the right message, at the right time — and turn that into measurable impact.",
   cta: { label: "Our approach", to: APPROACH_HREF },
   annotation: ["Quacking good", "at standing out"]
 };
@@ -401,7 +396,7 @@ export const resultsCopy = {
   // 23 Sep 2026: the second sentence was the brief's instruction to the site
   // ("our results section should show…") published as though it were copy.
   // It now describes what the case studies do, which is what it was asking for.
-  lead: "The strongest marketing case is what changed after the work started. Each case study sets out the commercial problem, the work delivered and the outcome, with client evidence wherever it is available.",
+  lead: "The strongest marketing case is what changed after the work started. Each case study sets out the objective, the work delivered and the outcome, with client evidence wherever it is available.",
   cta: { label: "See client results", to: RESULTS_HREF }
 };
 
@@ -543,12 +538,9 @@ export const widerAdvantageData: ItemsSectionContent = {
 // CTA labels between the two positions is worse than either label alone.
 
 export const finalConversionCopy = {
-  /** The brief pairs "Build my growth plan" with this in the closing block.
-   *  The primary is the form itself, which sits beside this copy, so only the
-   *  secondary needs a link of its own. */
-  secondaryCta: { label: "Talk to Pixelette Marketing", to: "/contactus" },
-  heading: "Let's build your growth plan",
-  lead: "Tell us where growth is stuck or where you want to get to. We will use the first conversation to understand the commercial objective, what you have already tried, what the numbers say and whether Pixelette is the right fit.",
+  secondaryCta: { label: "Discuss Your Project", to: "/contactus" },
+  heading: "Let's discuss your objectives",
+  lead: "Tell us what you want to achieve, whether that is business growth, public engagement or communications. We will use the first conversation to understand your objectives, audiences and challenges, and whether we are the right fit.",
   closing:
-    "No generic proposal. No channel recommendation before we understand the problem."
+    "No generic proposal. No recommendation before we understand what you are trying to achieve."
 };

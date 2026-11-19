@@ -61,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s"
     },
     description:
-      "Marketing and communications that build brands, engage audiences and deliver measurable results — for commercial buyers and for public and civic organisations.",
+      "Marketing and communications that deliver measurable impact for businesses, public-sector organisations and community organisations.",
     openGraph: {
       type: "website",
       locale: "en_GB",
@@ -93,7 +93,7 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.png`,
       description:
-        "Marketing and communications that build brands, engage audiences and deliver measurable results. Pixelette Marketing serves commercial buyers and public and civic organisations with one delivery capability across five groups.",
+        "Pixelette Marketing is one integrated marketing and communications agency. The same five capabilities serve businesses, public-sector organisations and community organisations.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",

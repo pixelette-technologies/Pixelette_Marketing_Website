@@ -46,7 +46,7 @@ export const SPECIALIST_DEFAULTS = {
   process: [
     {
       title: "Diagnose",
-      body: "Understand the commercial problem, evidence and real constraint."
+      body: "Understand the objective, the evidence and the real constraint."
     },
     {
       title: "Prioritise",
@@ -60,8 +60,8 @@ export const SPECIALIST_DEFAULTS = {
   ] as SpecialistItem[],
   goodEyebrow: "What good looks like",
   cta: {
-    heading: "Have a demand problem worth solving?",
-    body: "Start with the commercial problem. We’ll help determine whether this specialist intervention is actually the right place to begin."
+    heading: "Have an objective worth working through?",
+    body: "Start with the objective. We’ll help determine whether this specialist intervention is actually the right place to begin."
   },
   faqEyebrow: "Useful questions"
 };

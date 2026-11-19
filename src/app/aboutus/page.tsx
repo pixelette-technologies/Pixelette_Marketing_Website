@@ -13,9 +13,9 @@ export async function generateMetadata() {
   return await pageMetadata({
   title: "About",
   description:
-    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
+    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the objective in front of us.",
   path: "/aboutus",
-  keywords: ["about Pixelette Marketing", "growth marketing agency", "commercial marketing"]
+  keywords: ["about Pixelette Marketing", "marketing and communications agency", "integrated marketing"]
 });
 }
 

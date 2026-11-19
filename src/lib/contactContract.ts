@@ -15,6 +15,7 @@ export const IMPROVE_OPTIONS = [
   "Brand and Strategy",
   "Creative and Campaigns",
   "Communications and Engagement",
+  "Public Engagement",
   "Digital Visibility and Growth",
   "Measurement and Insight"
 ] as const;

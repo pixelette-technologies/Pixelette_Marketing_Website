@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
@@ -6,7 +7,7 @@ export async function generateMetadata() {
   return await pageMetadata({
   title: "Education and learning",
   description:
-    "Commercial training and edtech, and public education — schools, trusts, colleges and universities.",
+    "Training providers and edtech, and schools, trusts, colleges and universities — admissions, engagement and participation.",
   path: "/industries/education-and-learning",
   index: false
 });
@@ -27,7 +28,7 @@ export default function Page() {
       <Container className='main'>
         <section className='sec' aria-labelledby='commercial-title'>
           <Heading className='h2' level={2} id='commercial-title'>
-            Commercial
+            Training providers and edtech
           </Heading>
           <Text className='body'>
             Training providers, edtech and learning products, where the
@@ -36,7 +37,7 @@ export default function Page() {
         </section>
         <section className='sec' aria-labelledby='public-title'>
           <Heading className='h2' level={2} id='public-title'>
-            Public and civic
+            Schools, trusts and colleges
           </Heading>
           <Text className='body'>
             Schools and multi-academy trusts, sixth forms, colleges and
@@ -57,6 +58,12 @@ export default function Page() {
             exception rather than selling you a compliance programme you do not
             need.
           </Text>
+          <p className='sec-sm'>
+            <Link href='/public-sector/education-marketing' className='textLink'>
+              Education marketing and student recruitment
+              <span aria-hidden='true'> →</span>
+            </Link>
+          </p>
         </section>
       </Container>
     </>

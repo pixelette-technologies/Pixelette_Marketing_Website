@@ -11,7 +11,7 @@ export async function generateMetadata() {
   return await pageMetadata({
   title: "Client Results",
   description:
-    "What changed after the work started. Client evidence from Pixelette Marketing's growth engagements, with the commercial problem, the work delivered and the outcome.",
+    "What changed after the work started. Client evidence from Pixelette Marketing engagements, with the objective, the work delivered and the outcome.",
   path: "/results"
 });
 }
@@ -28,7 +28,7 @@ export default function ResultsPage() {
             </Heading>
             <Text className='lead'>{resultsCopy.lead}</Text>
             <Link href='/contactus'>
-              <Button className='primary'>Build my growth plan</Button>
+              <Button className='primary'>Discuss Your Project</Button>
             </Link>
           </section>
         </Container>

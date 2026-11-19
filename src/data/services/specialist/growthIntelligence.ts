@@ -171,8 +171,8 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   },
   cta: {
     heading: "Have plenty of data but not enough clarity?",
-    body: "Start with the decisions you are trying to make — then work backwards to the evidence required. For public and civic campaign evaluation — the same discipline pointed at public outcomes — see Campaign evaluation under Public sector.",
-    label: "Build my growth plan",
+    body: "Start with the decisions you are trying to make — then work backwards to the evidence required. The same discipline, pointed at a public outcome rather than a sale, is set out on the campaign evaluation page.",
+    label: "Discuss Your Project",
     secondary: {
       label: "Campaign evaluation",
       href: "/public-sector/campaign-evaluation"

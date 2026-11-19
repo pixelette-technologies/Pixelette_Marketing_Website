@@ -15,14 +15,18 @@ import { pageMetadata, SITE_URL } from "@/data/site";
 const PAGE_URL = `${SITE_URL}/contactus`;
 
 const description =
-  "Tell us what needs to grow. Tell us what you know and skip what you do not. One of us replies, not a sequence, and if we are not the right fit we will say so.";
+  "Tell us what you want to achieve. Businesses, public bodies and community organisations start in the same place. One of us replies, not a sequence, and if we are not the right fit we will say so.";
 
 export async function generateMetadata() {
   return await pageMetadata({
   title: "Contact",
   description,
   path: "/contactus",
-  keywords: ["contact Pixelette Marketing", "growth marketing", "growth plan"]
+  keywords: [
+    "contact Pixelette Marketing",
+    "marketing enquiry",
+    "discuss your project"
+  ]
 });
 }
 

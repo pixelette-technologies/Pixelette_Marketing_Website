@@ -41,7 +41,7 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
             The label is the form's own heading, so the button and the page it
             opens say the same thing. */}
         <Link href='/contactus'>
-          <Button className='primary'>Tell us what needs to grow</Button>
+          <Button className='primary'>Discuss Your Project</Button>
         </Link>
       </div>
     </section>

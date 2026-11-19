@@ -44,7 +44,7 @@ const ServicesHero: FC<ServicesHeroProps> = ({
                 now: the form, and the evidence. */}
             <div>
               <Link href='/contactus'>
-                <Button className='primary-full'>Tell us what needs to grow</Button>
+                <Button className='primary-full'>Discuss Your Project</Button>
               </Link>
               <Link href='/results'>
                 <Button className='secondry-full'>See client results</Button>

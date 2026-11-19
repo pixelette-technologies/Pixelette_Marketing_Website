@@ -4,15 +4,16 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7 is closed. A fresh session takes only this:
+Review §7 is closed. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
 | **Screenshot pack / menu responsiveness** | Deferred by instruction for by-eye review. If a pack is still required: brief §8 / §9, desktop ~1440 and phone ~390 per route (`scripts/capture-mockup-screenshots.mjs`, `mockup-screenshots/`). Likely breaks: mega-menu, capability grid, evaluation table. |
+| **One-agency copy pass (19 Nov)** | Working tree only. One proposition, Public Sector removed from the top nav, defensive “what we have not yet done” sections removed from the five Market B pages. Audit leftovers closed: education explorer split, About “Commercially focused”, specialist “demand problem” CTA, Public Engagement enquiry option, unused `publicSectorGroups` / `notYetDone`. Mock-up banners remain. How-to-buy still states what is not yet appointed. Not committed. Preview deploy blocked: no valid Vercel login. |
 
 ## Closed 18 Nov — review §7 remainder (from PDF)
 
-Source: `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` §7. Items 7.1, 7.2, 7.4, 7.5 closed earlier the same day.
+Source: `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` §7. Items 7.1, 7.2, 7.4, 7.5 closed earlier the same day. Remainder pushed as `6c0b433`. Independent review 18–19 Nov against the PDF + owner decisions: **COMPLETE** (7.1–7.9 Pass).
 
 | Item | Resolution |
 |---|---|
@@ -45,7 +46,7 @@ Source: `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026.pdf` §7. Items 7.1, 7
 | **5. Contact form / budget selector** | Form defaults to notice `1.0` + recorded consent sentence when env empty so the selector can be reviewed. |
 | **6. Independent evaluation third way** | Heading **Two ways to buy it**; third bullet deleted. No replacement copy — returns when a named methodological specialist is appointed (plan §3 / corrected §10.2). |
 
-Commit for must-fixes 1–5: `e6e6af2`. Point 6 and the lower-priority pass are in later commits on `bilal/revamp` (`2f648bc`, `7e8b5d8`).
+Commit for must-fixes 1–5: `e6e6af2`. Point 6 and the named lower-priority pass: `2f648bc`, `7e8b5d8`. Review §7 remainder: `6c0b433`.
 
 ## Service Offer plan — status (17–18 Nov 2026)
 
@@ -62,7 +63,7 @@ Independent reviews against `Pixelette_Marketing_Service_Offer_And_Website_Plan_
 | **Own-results pages** | `/results/our-own-*` not built; wait on SEOMate / MarketNerve baselines. |
 | **WCAG audit** | Accessibility page states conformance not established (wording the review asked to keep). Banner on. |
 | **Unpublished policies** | Safeguarding, EDI, environmental, modern slavery listed as not yet published on `/policies`. |
-| **CDP supplier ID / RM6124 appointment** | How-to-buy states not appointed; identifier only when issued. |
+| **CDP supplier ID / RM6124 appointment** | How-to-buy now carries the placeholder sentence (identifier when issued, not before). RM6124 still “not yet appointed”. No real CDP ID until issued. |
 | **Directory / LinkedIn / Clutch edits** | Out of code (§15). |
 | **Mock-up shells return 200** | Demos + Web3 reachable if URL known; `noindex` and unlinked — accepted until real content. |
 
@@ -220,7 +221,7 @@ All three at the user's explicit request, and all three reversing or deviating f
 
 ## Raised in Phase F, still open
 
-**`CONTACT FORM TEMPORARILY UNAVAILABLE` renders on the home page.** `ContactUsForm.tsx:101`. Configuration rather than UI, but it sits on the closing section of the most valuable page on the site and is visible to anyone who opens it. Ask about this early.
+~~**`CONTACT FORM TEMPORARILY UNAVAILABLE` on the home page.**~~ **Closed 18 Nov (must-fix 5).** Defaults to notice `1.0` + recorded consent when preview env is empty so the form and budget selector can be reviewed; API still refuses mail without server config. Historical line reference was `ContactUsForm.tsx` around the old gate.
 
 **`.small` is 13px where the guide's is 14px.** Appendix E is "fixed, do not vary, and do not vary slightly". Left alone deliberately: it is a site-wide type change and belongs in its own commit with the user warned first.
 

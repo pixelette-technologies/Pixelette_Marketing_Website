@@ -13,12 +13,12 @@ const howItWorkData = [
   {
     index: "01",
     heading: "Understand",
-    text: "We start with the commercial objective, what is happening now and what is getting in the way."
+    text: "We start by understanding your objectives, audiences and challenges."
   },
   {
     index: "02",
     heading: "Diagnose",
-    text: "We look at the relevant parts of your positioning, demand, search, pipeline, conversion and measurement to identify where the strongest opportunity sits."
+    text: "We look at the relevant parts of your positioning, communications, channels and measurement to see where the work should start."
   },
   {
     index: "03",

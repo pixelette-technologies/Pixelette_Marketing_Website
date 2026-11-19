@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
@@ -57,6 +58,12 @@ export default function Page() {
             Earned and organic before paid. Measurement that a trustee board
             can read.
           </Text>
+          <p className='sec-sm'>
+            <Link href='/public-sector' className='textLink'>
+              Marketing and communications for public and civic organisations
+              <span aria-hidden='true'> →</span>
+            </Link>
+          </p>
         </section>
       </Container>
     </>

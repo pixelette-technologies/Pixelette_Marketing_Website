@@ -113,9 +113,9 @@ export default function Footer() {
               <Logo />
             </span>
             <Text className='small'>
-              Marketing and communications that build brands, engage audiences
-              and deliver measurable results — for commercial buyers and for
-              public and civic organisations.
+              Marketing and communications that deliver measurable impact for
+              businesses, public-sector organisations and community
+              organisations.
             </Text>
             <div className='footerSocial'>
               <a

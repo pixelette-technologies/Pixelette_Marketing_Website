@@ -8,11 +8,11 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`edd4c12`** (Influencer & Partnerships approved design). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with Influencer visual gap-closure (see latest commit). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `edd4c12` reported **success**. Deployment URL: `https://pixelette-marketing-website-1lme3nycy-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Preview | See latest Vercel Preview after Influencer gap-closure push. Non-official hosts noindex. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships page implemented from approved mock. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
@@ -39,7 +39,7 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 - Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
 - Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
 
-**Limitation:** photographs were recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. Hero/close left copy zones are solid dark fills (not mock UI) so HTML headings/CTAs do not double; card crops stop above mock icon discs. No unrelated stock; no image generation.
+**Limitation:** photographs recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. Hero uses a dark left copy field + collage (annotation stays in the collage only). Close is a split panel: HTML heading/CTA on a solid dark left, camera crop on the right (mock CTA excluded). Card photos cropped above mock icon discs. No unrelated stock; no image generation.
 
 ## 20 November 2026 — homepage presentation correction
 

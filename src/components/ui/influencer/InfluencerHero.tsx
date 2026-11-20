@@ -36,14 +36,8 @@ const InfluencerHero = () => {
             <span aria-hidden='true'> →</span>
           </Link>
         </div>
-
-        <p className='ipHero__annotation' aria-hidden='true'>
-          {hero.annotation.map(line => (
-            <span key={line} className='ipHero__annotationLine'>
-              {line}
-            </span>
-          ))}
-        </p>
+        {/* Annotation ("Creators Content Community") stays in the approved
+            collage asset only — do not redraw it in HTML or it doubles. */}
       </div>
     </section>
   );

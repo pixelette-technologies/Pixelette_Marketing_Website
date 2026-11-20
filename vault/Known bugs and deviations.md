@@ -13,7 +13,7 @@ Review §7, one-agency, homepage correction, Impact Compass, and Influencer & Pa
 
 ## Closed 20 Nov — Influencer & Partnerships approved design
 
-`/services/influencer_marketing` rebuilt from the approved mock: hero, five deliver cards, closing CTA. Specialist template retired on this route only. Screenshots in `mockup-screenshots/influencer-partnerships-2026-11-20/`. Imagery recovered from the 682×1024 approved mock (no separate high-res masters). Hero/close left bands are clean dark fills so baked mock headings/CTAs cannot double under live HTML; card photos cropped above mock icon discs. No generated or unrelated stock substitutes.
+`/services/influencer_marketing` rebuilt from the approved mock: hero, five deliver cards, closing CTA. Specialist template retired on this route only. Screenshots in `mockup-screenshots/influencer-partnerships-2026-11-20/`. Imagery from the 682×1024 approved mock. Hero: dark left copy field + collage (annotation in collage only, not redrawn in HTML). Close: split layout — solid dark copy/CTA panel | camera crop with mock CTA excluded. Card photos cropped above mock icon discs. No generated or unrelated stock.
 
 ## Closed 20 Nov — homepage presentation correction
 

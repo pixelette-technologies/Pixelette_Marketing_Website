@@ -1,59 +1,54 @@
 import { Container } from "@/components/common";
-import { capabilitiesCopy } from "@/data/home";
+import { capabilitiesCopy, capabilityBandCopy } from "@/data/home";
+import { capabilityGroups } from "@/data/services/capabilityGroups";
+import { capabilityStages } from "@/data/services/capabilityStage";
+import CapabilityBand from "./CapabilityBand";
 import EditorialCopy from "./EditorialCopy";
-import MaquetteScene, { SCENE } from "./MaquetteScene";
-import MaquetteSceneMotion from "./MaquetteSceneMotion";
-import RoomBackdrop from "./RoomBackdrop";
 
-// 03 — "Five capabilities / One commercial objective".
-// Layered transparent cutouts (Option 1) replace the schematic SVG maquette.
-// Section shell, copy, CTA, room backdrop and layout are unchanged.
-// First view: layered fade-in (forms → props → people). Then desktop hover
-// runs a coordinated one-shot sequence; touch plays once after the entrance;
-// reduced motion shows the settled pose. Decorative (aria-hidden).
+// 03 — Five capabilities as alternating editorial bands.
+// Replaces the single maquette + stacked name list with one visual row per
+// capability (Social Change–style image/copy split). Hero, nav and footer
+// are untouched. Copy is composed from existing cadence, scope and lead only.
 
 export default function CapabilitiesSection() {
-  return (
-    <section
-      className='homeScene homeScene--capabilities'
-      aria-labelledby='capabilities-title'
-    >
-      <div className='homeScene__art'>
-        <RoomBackdrop id='maquetteRoom' />
-        <div className='maquetteScene'>
-          <MaquetteSceneMotion
-            className='maquetteScene__frame'
-            style={{ aspectRatio: `${SCENE.w} / ${SCENE.h}` }}
-          >
-            <MaquetteScene />
-          </MaquetteSceneMotion>
-        </div>
-      </div>
+  const bands = capabilityBandCopy.map((band, index) => {
+    const group = capabilityGroups.find(item => item.index === band.index);
+    const stage = capabilityStages.find(item => item.index === band.index);
+    if (!group || !stage) {
+      throw new Error(
+        `Homepage capability band ${band.index} is missing group or stage media.`
+      );
+    }
+    return {
+      ...band,
+      title: group.title,
+      stage,
+      imageOnLeft: index % 2 === 0
+    };
+  });
 
-      <div className='homeScene__body'>
+  return (
+    <section className='capabilityBands' aria-labelledby='capabilities-title'>
+      <header className='capabilityBands__intro sec'>
         <Container className='main'>
-          <div className='homeScene__inner'>
-            <div className='homeScene__copyStack'>
-              <EditorialCopy
-                copy={capabilitiesCopy}
-                titleId='capabilities-title'
-              />
-              <ul className='capabilitiesNames'>
-                {capabilitiesCopy.capabilities.map(capability => (
-                  <li key={capability.name}>
-                    <span className='capabilitiesNames__name'>
-                      {capability.name}
-                    </span>
-                    <span className='capabilitiesNames__cadence'>
-                      {capability.cadence}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <EditorialCopy
+            copy={capabilitiesCopy}
+            titleId='capabilities-title'
+          />
         </Container>
-      </div>
+      </header>
+
+      {bands.map(band => (
+        <CapabilityBand
+          key={band.index}
+          title={band.title}
+          description={band.description}
+          href={band.href}
+          ctaLabel={band.ctaLabel}
+          stage={band.stage}
+          imageOnLeft={band.imageOnLeft}
+        />
+      ))}
     </section>
   );
 }

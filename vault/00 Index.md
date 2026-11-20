@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **19 November 2026** — one-agency content pass is in the working tree, not committed and not deployed. Review §7 remains the pushed tip (`6c0b433`). Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — homepage capability presentation pass (alternating bands + scroll entrances); hero/nav/footer unchanged. Built on one-agency tip `af38481`. Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`6c0b433`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, with Service Offer plan copy. Leadership snag list `Pixelette_Marketing_Mockup_Review_v1.0_17Nov2026`. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 lower-priority pass + official-host crawler allowlist. |
-| Pushed? | **§7 yes** (`6c0b433`). The 19 Nov one-agency copy pass is **local only**. No PR to production. Live domain untouched. |
-| Preview | Open without Vercel login; non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Review §7 closed and independently verified COMPLETE. Screenshot pack / menu by-eye still deferred. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, then **20 Nov homepage presentation** refinement. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage capability bands (Social Change–style alternating image/copy). |
+| Pushed? | **`bilal/revamp` only**. No PR to production. Live domain untouched. |
+| Preview | Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation pass local/preview. Founder still owns wording approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,10 +26,35 @@ Last updated: **19 November 2026** — one-agency content pass is in the working
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Screenshot pack / menu responsiveness** | Deferred: reviewer assesses by eye. Brief §8 / §9 expected desktop ~1440 and phone ~390 per route if a pack is still required. Likely break points: mega-menu, capability grid, evaluation table. |
-| 2 | **One-agency copy pass** | In the working tree, not committed. Homepage, nav, public-sector hub and contact follow the 19 Nov brief. Leftover audit gaps closed (education explorer, About principle, specialist default CTA, Public Engagement enquiry option, dead public-sector nav data). Preview deploy did not run: Vercel CLI has no valid login. Founder still has to approve the new wording. Mock-up banners stay on the draft public-sector pages. |
+| 1 | **Screenshot pack / menu responsiveness** | Partial pack for the homepage bands is in `mockup-screenshots/homepage-redesign-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 2 | **Founder sign-off on one-agency wording + homepage presentation** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+
+## 20 November 2026 — homepage capability presentation
+
+**Instruction:** refine homepage presentation below the hero only — Social Change–style alternating image/copy for the five capabilities, scroll entrances, less text-heavy; do not change hero, nav, footer, or other pages; preview only.
+
+**Shipped on `bilal/revamp`:**
+- Replaced the maquette + stacked name list with five alternating capability bands using existing `/services/capabilities/` media.
+- Descriptions composed from existing cadence + scope + section lead (no new service claims).
+- Directional one-shot entrance via `useInView` / CSS; respects `prefers-reduced-motion`; content visible without JS.
+- Activity, one-approach, relevance and contact bands unchanged. SEO metadata unchanged.
 
 Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[Known bugs and deviations]] under “do not invent” — not this snag list.
+
+## 19 November 2026 — one-agency content and navigation pass
+
+**Source:** Founder instruction to present Pixelette Marketing as one integrated marketing and communications agency for private, public and community organisations — content and navigation refinement, not a rebuild.
+
+**Shipped on `bilal/revamp` as `af38481`:**
+- Homepage: new H1 and support; second-market band replaced with one-approach copy + “Explore our industries”; commercial-only rails softened.
+- Nav: What We Do, Industries, Insights, About, Contact, Discuss Your Project. Public Sector removed as a top-level item; public-sector routes remain reachable via Industries and `/public-sector`.
+- Public-sector hub: new intro; “Where we are, stated plainly” and “Conditions of entry” removed; evaluation is one service among others, not the lead offer.
+- Specialist Market B pages: “What we have not yet done” removed; mock-up banners kept; how-to-buy honesty kept.
+- Exact CTAs: Discuss Your Project, Let's Talk, Let's discuss your objectives, Tell us what you want to achieve, Submit Enquiry, first step “We start by understanding your objectives, audiences and challenges.”
+- Contact procurement block reduced to “Supplier and procurement information”; enquiry options include Public Engagement.
+- Leftover audit closures in the same commit: education explorer split, About “Objective focused”, specialist default CTA, dead `publicSectorGroups` / `notYetDone`.
+
+**Independent re-audit against the instruction: COMPLETE.** Live domain untouched; no production PR.
 
 ## 18 November 2026 — mock-up review snag list
 
@@ -47,7 +72,7 @@ Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[K
 
 **Closed same evening (review §7 remainder from the PDF):** media stems 01–05 renamed to current group names; `#measurement-and-insight-view` anchor; CDP placeholder sentence on how-to-buy; eyebrow kept; public-sector measures kept; Privacy choices confirmed as the cookie-panel button. Pushed as `6c0b433`. Independent review against the PDF + owner decisions: **COMPLETE** (all nine §7 items Pass).
 
-**Still pending** — screenshot pack only; see **Pending for the next session** above and [[Known bugs and deviations]].
+**Still pending after §7** — screenshot pack, then superseded in part by the 19 Nov one-agency pass above. See **Pending for the next session**.
 
 ## 16–17 November 2026 — Service Offer and Website Plan
 

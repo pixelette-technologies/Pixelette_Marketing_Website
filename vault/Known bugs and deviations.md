@@ -4,12 +4,32 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7 is closed. A fresh session takes these:
+Review §7 and the one-agency pass are closed on the branch. Homepage capability bands shipped 20 Nov (hero unchanged). A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Screenshot pack / menu responsiveness** | Deferred by instruction for by-eye review. If a pack is still required: brief §8 / §9, desktop ~1440 and phone ~390 per route (`scripts/capture-mockup-screenshots.mjs`, `mockup-screenshots/`). Likely breaks: mega-menu, capability grid, evaluation table. |
-| **One-agency copy pass (19 Nov)** | Working tree only. One proposition, Public Sector removed from the top nav, defensive “what we have not yet done” sections removed from the five Market B pages. Audit leftovers closed: education explorer split, About “Commercially focused”, specialist “demand problem” CTA, Public Engagement enquiry option, unused `publicSectorGroups` / `notYetDone`. Mock-up banners remain. How-to-buy still states what is not yet appointed. Not committed. Preview deploy blocked: no valid Vercel login. |
+| **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+| **Founder sign-off on one-agency wording + homepage presentation** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+
+## Closed 20 Nov — homepage capability presentation
+
+| Item | Resolution |
+|---|---|
+| **Capabilities section text-heavy** | Replaced maquette + name list with five alternating image/copy bands using existing capability media. Descriptions from cadence + scope + lead only. |
+| **Scroll entrances** | Directional one-shot slide/fade via `CapabilityBand` + `useInView`; reduced-motion / no-JS stay visible. |
+| **Hero / nav / footer / other pages** | Untouched. |
+
+## Closed 19 Nov — one-agency content and navigation
+
+Pushed as `af38481`. Independent re-audit against the Founder instruction: **COMPLETE**.
+
+| Item | Resolution |
+|---|---|
+| **Homepage proposition** | Two-markets line removed. H1 “Marketing and communications that deliver measurable impact”; one-approach band + Industries link; commercial-only rails softened. |
+| **Navigation** | Public Sector top-level removed. CTA “Discuss Your Project”. Public-sector content via Industries / `/public-sector`. |
+| **Public-sector hub and lines** | Defensive “where we are” / “conditions of entry” / “what we have not yet done” removed. Evaluation not the lead offer. Mock-up banners kept. How-to-buy honesty kept. |
+| **CTAs and contact** | Exact replacements applied. Procurement block → “Supplier and procurement information”. `IMPROVE_OPTIONS` includes Public Engagement. Form consent / submit path unchanged. |
+| **Leftover sweep** | Education explorer split closed; About “Objective focused”; specialist default CTA retitled; unused `publicSectorGroups` / `notYetDone` removed. |
 
 ## Closed 18 Nov — review §7 remainder (from PDF)
 

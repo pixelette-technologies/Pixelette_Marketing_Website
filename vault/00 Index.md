@@ -8,11 +8,11 @@ Last updated: **20 November 2026** — Impact Compass visual correction against 
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip pending Impact Compass correction push. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4d08c39`** (Impact Compass visual correction). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** (corrected), **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass (corrected) + Influencer approved design. |
-| Pushed? | **Pending** Impact Compass correction on `bilal/revamp` only. No PR to production. Live domain untouched. |
-| Preview | Pending new Vercel Preview after push. Prior tip `9d31259`: `https://pixelette-marketing-website-cy58paj59-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
+| Preview | Vercel Preview for `4d08c39` reported **success**. Deployment URL: `https://pixelette-marketing-website-lflcgn724-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass corrected. Influencer COMPLETE. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order

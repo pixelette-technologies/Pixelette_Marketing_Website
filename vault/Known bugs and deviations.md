@@ -13,7 +13,7 @@ Review §7, one-agency, homepage correction, Impact Compass (corrected), and Inf
 
 ## Closed 20 Nov — Impact Compass visual correction
 
-First Option 3 pass corrected against the approved reference. Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`.
+First Option 3 pass corrected against the approved reference as `4d08c39`. Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Preview: `https://pixelette-marketing-website-lflcgn724-pixelette-technologies.vercel.app`.
 
 | Item | Resolution |
 |---|---|

@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — homepage capability presentation pushed on `bilal/revamp` (`d4d5815`); independent instruction audit **COMPLETE**; Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — Impact Compass diagnostic redesign pushed on `bilal/revamp` (`3ea31db`); independent instruction audit **COMPLETE**; Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`d4d5815`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, then **20 Nov homepage presentation** refinement. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage capability bands (Social Change–style alternating image/copy). |
-| Pushed? | **Yes — `bilal/revamp` only**, including homepage bands (`d4d5815`). No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `d4d5815` reported **success**. Deployment URL: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation audit COMPLETE. Founder still owns wording approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`3ea31db`**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation**, then **20 Nov Impact Compass** diagnostic redesign. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage capability bands + `/strategy-positioning` Impact Compass (intro → tiles → results radar). |
+| Pushed? | **Yes — `bilal/revamp` only**, including Impact Compass (`3ea31db`). No PR to production. Live domain untouched. |
+| Preview | Vercel Preview for `3ea31db` reported **success**. Deployment URL: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app`. Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation audit COMPLETE. Impact Compass audit COMPLETE. Founder still owns wording approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass exception; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,8 +26,20 @@ Last updated: **20 November 2026** — homepage capability presentation pushed o
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Screenshot pack / menu responsiveness** | Partial pack for the homepage bands is in `mockup-screenshots/homepage-redesign-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
-| 2 | **Founder sign-off on one-agency wording + homepage presentation** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 1 | **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 2 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+
+## 20 November 2026 — Impact Compass diagnostic redesign
+
+**Instruction:** redesign `/strategy-positioning` to approved Higgsfield Option 3 — The Impact Compass; remove old narrative hero sections; one seamless intro → 12-question tiles → results dashboard; preserve questions, dimensions, scoring; Discuss / Retake; no registration; compass in code not an embedded mock-up; preview only; do not change the homepage or other pages.
+
+**Shipped on `bilal/revamp` as `3ea31db`:**
+- Intro: “Find your next move.” + coded six-point SVG compass (`ImpactCompass`); Clarity Bridge and “Know where to compete / Know why you win” removed.
+- Questionnaire: one question at a time, selectable answer tiles, dimension progress + percent bar.
+- Results: clarity compass radar from real scores, per-dimension list, three-focus Impact Roadmap, Discuss your results → / Retake diagnostic; no registration gate.
+- `src/lib/strategyDiagnostic.ts` scoring unchanged (byte-identical to parent); same twelve questions and six dimensions. Screenshots: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`.
+
+**Independent audit against the instruction: COMPLETE.** Live domain untouched; no production PR. Preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app/strategy-positioning`.
 
 ## 20 November 2026 — homepage capability presentation
 
@@ -40,7 +52,7 @@ Last updated: **20 November 2026** — homepage capability presentation pushed o
 - Activity, one-approach, relevance and contact bands unchanged. SEO metadata unchanged.
 - Representative screenshots in `mockup-screenshots/homepage-redesign-2026-11-20/`.
 
-**Independent audit against the instruction: COMPLETE.** Live domain untouched; no production PR.
+**Independent audit against the instruction: COMPLETE.** Live domain untouched; no production PR. Superseded for tip/push state by Impact Compass above.
 
 ## 19 November 2026 — one-agency content and navigation pass
 

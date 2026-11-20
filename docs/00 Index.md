@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 20 Nov 2026
 
-**Homepage capability presentation pushed on `bilal/revamp` (`d4d5815`).** Independent audit against the presentation instruction: **COMPLETE**. Preview: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. One-agency pass remains under that tip (`af38481`). Next session owns: Founder wording sign-off; fuller screenshot pack / menu by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Impact Compass diagnostic redesign pushed on `bilal/revamp` (`3ea31db`).** Independent audit against the Option 3 instruction: **COMPLETE**. Preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app`. Homepage presentation (`d4d5815`) and one-agency (`af38481`) remain under that tip. Next session owns: Founder wording sign-off (including Impact Compass); fuller screenshot pack / menu by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 19 Nov 2026
 

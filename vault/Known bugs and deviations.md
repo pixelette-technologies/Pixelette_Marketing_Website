@@ -4,12 +4,24 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7 and the one-agency pass are closed on the branch. Homepage capability bands shipped 20 Nov (hero unchanged). A fresh session takes these:
+Review §7, one-agency, homepage presentation, and Impact Compass are closed on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
-| **Founder sign-off on one-agency wording + homepage presentation** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+
+## Closed 20 Nov — Impact Compass diagnostic redesign
+
+Pushed as `3ea31db`. Independent audit against the Option 3 instruction: **COMPLETE**.
+
+| Item | Resolution |
+|---|---|
+| **Old narrative hero / bridge** | “Know where to compete / Know why you win” and Clarity Bridge removed. Intro is Impact Compass split layout. |
+| **Questionnaire UX** | Clarity Rail replaced with selectable answer tiles; one question at a time; dimension progress + percent bar. |
+| **Results dashboard** | SVG clarity compass from real scores, per-dimension list, three-focus Impact Roadmap, Discuss / Retake; no registration. |
+| **Scoring / questions** | `strategyDiagnostic.ts` unchanged; same twelve questions and six dimensions. Preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app/strategy-positioning`. |
+| **Homepage / other pages** | Untouched for this pass. |
 
 ## Closed 20 Nov — homepage capability presentation
 

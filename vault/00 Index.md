@@ -39,7 +39,7 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 - Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
 - Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
 
-**Limitation:** individual hero/card/close photographs were cropped from the approved full-page mock rather than recovered as separate high-resolution masters; fine detail is softer than layered source files would allow. No unrelated stock substituted; no image generation used.
+**Limitation:** photographs were recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. Hero/close left copy zones are solid dark fills (not mock UI) so HTML headings/CTAs do not double; card crops stop above mock icon discs. No unrelated stock; no image generation.
 
 ## 20 November 2026 — homepage presentation correction
 

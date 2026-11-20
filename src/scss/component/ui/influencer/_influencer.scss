@@ -29,7 +29,7 @@
 
 .ipHero__image {
   object-fit: cover;
-  object-position: center right;
+  object-position: 70% center;
 }
 
 .ipHero__shade {
@@ -37,17 +37,18 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  // Heavy left wash so any residual mock glyphs under the copy column stay hidden.
   background:
     linear-gradient(
       90deg,
-      rgba(28, 4, 18, 0.78) 0%,
-      rgba(28, 4, 18, 0.55) 34%,
-      rgba(28, 4, 18, 0.12) 58%,
-      rgba(28, 4, 18, 0.05) 100%
+      rgba(22, 3, 14, 0.94) 0%,
+      rgba(22, 3, 14, 0.82) 28%,
+      rgba(22, 3, 14, 0.35) 46%,
+      rgba(22, 3, 14, 0.08) 62%,
+      transparent 78%
     ),
-    linear-gradient(180deg, rgba(28, 4, 18, 0.2) 0%, transparent 28%);
+    linear-gradient(180deg, rgba(22, 3, 14, 0.22) 0%, transparent 30%);
 }
-
 .ipHero__inner {
   position: relative;
   z-index: 2;
@@ -306,7 +307,7 @@
 
 .ipClose__image {
   object-fit: cover;
-  object-position: center right;
+  object-position: right center;
 }
 
 .ipClose__shade {
@@ -314,16 +315,17 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  // Keep the HTML heading/CTA on an opaque field; photo only peeks at the far right.
   background:
     linear-gradient(
       90deg,
-      rgba(32, 6, 22, 0.82) 0%,
-      rgba(32, 6, 22, 0.55) 48%,
-      rgba(32, 6, 22, 0.35) 100%
+      rgba(22, 3, 14, 0.98) 0%,
+      rgba(22, 3, 14, 0.95) 55%,
+      rgba(22, 3, 14, 0.7) 72%,
+      rgba(22, 3, 14, 0.35) 100%
     ),
-    linear-gradient(0deg, rgba(225, 29, 116, 0.18), transparent 55%);
+    linear-gradient(0deg, rgba(225, 29, 116, 0.14), transparent 55%);
 }
-
 .ipClose__inner {
   position: relative;
   z-index: 2;

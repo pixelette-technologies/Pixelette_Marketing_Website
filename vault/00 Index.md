@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — Impact Compass visual correction against the approved reference; Influencer COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — Impact Compass correction gap-closure COMPLETE (star-rose intro, filled tiles, denser copy); Influencer COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4d08c39`** (Impact Compass visual correction). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** (corrected), **20 Nov Influencer & Partnerships** approved design. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip pending Impact Compass gap-closure push. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** (corrected + gap-closed), **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass (corrected) + Influencer approved design. |
-| Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `4d08c39` reported **success**. Deployment URL: `https://pixelette-marketing-website-lflcgn724-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass corrected. Influencer COMPLETE. Founder still owns wording / production approval. |
+| Pushed? | **Pending** Impact Compass gap-closure on `bilal/revamp` only. No PR to production. Live domain untouched. |
+| Preview | Pending new Vercel Preview after push. Prior `4d08c39`: `https://pixelette-marketing-website-lflcgn724-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass correction COMPLETE. Influencer COMPLETE. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -33,12 +33,13 @@ Last updated: **20 November 2026** — Impact Compass visual correction against 
 
 **Instruction:** the first Option 3 pass did not adequately reproduce the approved Higgsfield design. Correct intro (less empty space; larger headline + compass), strengthen the coded compass, and match all three states (intro / questionnaire / results). Preserve questions, scoring, saved progress, and site branding. Preview only; no other pages; no image generation / Higgsfield.
 
-**Shipped on `bilal/revamp` (this tip):**
-- Intro tightened: denser copy stack, signal CTA, diagonal dark field, larger glowing SVG compass.
-- Questionnaire: connected dimension stepper; question lives in the dark header; wave into answer tiles; signal Continue.
-- Results: larger compass, swoop ground, stronger dashboard cards. Scoring / storage unchanged.
-- Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/` (desktop-1440 + phone-390 × intro / questionnaire / results).
-- Approved reference saved beside pack: `approved-reference-correction.png`.
+**Shipped on `bilal/revamp` as `4d08c39`, gap-closed on this tip:**
+- Intro: denser copy stack, signal CTA, diagonal dark field; **star-rose** SVG (radar plot reserved for results).
+- Questionnaire: connected stepper; question in dark header; **filled answer cards** with clear selected wash; signal Continue.
+- Results: scored radar + six scores + three roadmap items. Scoring / storage unchanged.
+- Screenshots refreshed: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/` (desktop-1440 + phone-390 × intro / questionnaire with selected tile / results).
+- Independent audit gaps closed: rose vs radar, copy density, filled tiles, selected-tile pack frame.
+- Approved reference: `approved-reference-correction.png`.
 
 ## 20 November 2026 — Influencer & Partnerships approved design
 

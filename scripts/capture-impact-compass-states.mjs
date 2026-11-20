@@ -108,6 +108,19 @@ async function captureViewport(browser, label, width, height) {
     await resume.first().click();
   }
   await page.waitForSelector(".dxQuestion, .dxTiles", { timeout: 10000 });
+  // Native change path selects without auto-advance — show filled selected card.
+  const radio = page.getByRole("radio").nth(2);
+  await radio.check({ force: true });
+  await page.waitForFunction(
+    () => document.querySelectorAll(".dxTile.is-on").length === 1
+  );
+  const nextBtn = page.locator(".dxNav__next");
+  await nextBtn.waitFor({ state: "visible" });
+  // Continue enables only when an answer is selected.
+  await page.waitForFunction(
+    el => el instanceof HTMLButtonElement && !el.disabled,
+    await nextBtn.elementHandle()
+  );
   await shot(page, `${label}-02-questionnaire`);
 
   // Results

@@ -13,13 +13,14 @@ Review §7, one-agency, homepage correction, Impact Compass (corrected), and Inf
 
 ## Closed 20 Nov — Impact Compass visual correction
 
-First Option 3 pass corrected against the approved reference as `4d08c39`. Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Preview: `https://pixelette-marketing-website-lflcgn724-pixelette-technologies.vercel.app`.
+First Option 3 pass corrected as `4d08c39`, then gap-closed against the audit (star-rose intro, denser copy, filled selected tiles, pack shows selection). Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`.
 
 | Item | Resolution |
 |---|---|
-| **Sparse intro** | Min-height cut; denser copy; coral Start CTA; diagonal dark visual field. |
-| **Weak compass** | Larger SVG rose with glow, outer ring, cross-hairs; brand signal nodes. |
-| **Questionnaire** | Question + meta in dark header; connected stepper; wave into tiles; signal Continue. |
+| **Sparse intro** | Min-height cut further; denser copy stack; coral Start CTA; diagonal dark visual field. |
+| **Radar-looking intro** | Intro SVG is a dominant star-rose; scored radar polygon only on results. |
+| **Weak tiles** | Larger filled answer cards; selected wash + signal border/check; pack includes selected state. |
+| **Questionnaire shell** | Question + meta in dark header; connected stepper; wave into tiles; signal Continue. |
 | **Results** | Larger radar, swoop ground, stronger cards; Discuss / Retake preserved. |
 
 ## Closed 20 Nov — Influencer & Partnerships approved design

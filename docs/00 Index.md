@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 20 Nov 2026
 
-**Impact Compass correction COMPLETE on `bilal/revamp` for `/strategy-positioning`.** Star-rose intro, filled answer cards, denser copy; questions and scoring unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer page, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Impact Compass instruction COMPLETE on `bilal/revamp` (`720e4d7`) for `/strategy-positioning`.** Star-rose intro, filled answer cards, denser copy; questions and scoring unchanged. Preview: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer page, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 19 Nov 2026
 

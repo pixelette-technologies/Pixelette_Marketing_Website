@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass (corrected), and Influencer & Partnerships are closed on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass (instruction COMPLETE), and Influencer & Partnerships are closed on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|

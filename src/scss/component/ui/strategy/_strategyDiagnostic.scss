@@ -1,4 +1,5 @@
-// Impact Compass diagnostic — question tiles + results dashboard (20 Nov 2026).
+// Impact Compass diagnostic — question tiles + results dashboard.
+// Corrected 20 Nov 2026 against approved Option 3 reference.
 
 .dx-sr {
   position: absolute;
@@ -13,36 +14,70 @@
 }
 
 .dxGround {
+  position: relative;
+  overflow: hidden;
   background:
     radial-gradient(
-      80% 50% at 100% 0%,
-      color-mix(in srgb, var(--color-brand-wash) 55%, transparent),
+      70% 45% at 100% 0%,
+      color-mix(in srgb, var(--color-brand-wash) 70%, transparent),
       transparent 60%
     ),
+    radial-gradient(
+      55% 40% at 0% 100%,
+      color-mix(in srgb, var(--color-brand-tint) 90%, transparent),
+      transparent 55%
+    ),
     var(--color-band);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    filter: blur(2px);
+  }
+
+  &::before {
+    top: -12%;
+    right: -8%;
+    width: min(42vw, 28rem);
+    height: min(42vw, 28rem);
+    background: color-mix(in srgb, var(--color-burgundy) 14%, transparent);
+  }
+
+  &::after {
+    bottom: -18%;
+    left: -10%;
+    width: min(48vw, 32rem);
+    height: min(36vw, 24rem);
+    background: color-mix(in srgb, var(--color-brand-signal) 10%, transparent);
+  }
 }
 
 .dxStage {
   --dx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   position: relative;
+  z-index: 1;
   padding-block: var(--sec-y-sm) var(--sec-y);
 }
 
 .dxShell {
   display: grid;
-  gap: 1.5rem;
-  border-radius: 1.25rem;
+  gap: 0;
+  border-radius: 1.35rem;
   overflow: hidden;
   background: var(--color-page);
   border: 1px solid var(--color-line-card);
-  box-shadow: 0 18px 50px color-mix(in srgb, var(--color-burgundy) 8%, transparent);
+  box-shadow: 0 22px 55px color-mix(in srgb, var(--color-burgundy) 12%, transparent);
 }
 
 // --- Progress (burgundy header) ---------------------------------------------
 
 .dxProgress {
+  position: relative;
   display: grid;
-  gap: 1.25rem;
+  gap: 1.15rem;
   padding: 1.35rem 1.5rem 1.5rem;
   color: var(--color-page);
   background:
@@ -53,23 +88,53 @@
     ),
     linear-gradient(160deg, var(--color-burgundy), #2a0c1c);
 
+  &--question {
+    padding-bottom: 1.85rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 1.35rem;
+      background: var(--color-page);
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transform: scaleX(1.02);
+    }
+  }
+
   &__dimensions {
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 0.75rem 0.5rem;
+    gap: 0.35rem;
     margin: 0;
-    padding: 0;
+    padding: 0.35rem 0.15rem 0;
     list-style: none;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: calc(0.35rem + 0.425rem);
+      height: 1px;
+      background: color-mix(in srgb, var(--color-page) 28%, transparent);
+      pointer-events: none;
+    }
   }
 
   &__dimension {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.45rem;
     flex: 1 1 0;
-    min-width: 4.5rem;
+    min-width: 0;
     font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 600;
@@ -85,12 +150,13 @@
     height: 0.85rem;
     border-radius: 50%;
     border: 1.5px solid color-mix(in srgb, var(--color-page) 40%, transparent);
+    background: color-mix(in srgb, var(--color-burgundy) 80%, #000);
     font-size: 0.55rem;
     line-height: 1;
   }
 
   &__dimension.is-todo &__mark {
-    background: transparent;
+    background: color-mix(in srgb, var(--color-burgundy) 80%, #000);
   }
 
   &__dimension.is-current {
@@ -99,7 +165,9 @@
     .dxProgress__mark {
       border-color: var(--color-brand-signal);
       background: var(--color-brand-signal);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-signal) 35%, transparent);
+      box-shadow:
+        0 0 0 5px color-mix(in srgb, var(--color-brand-signal) 32%, transparent),
+        0 0 18px color-mix(in srgb, var(--color-brand-signal) 55%, transparent);
     }
   }
 
@@ -144,7 +212,7 @@
     background: linear-gradient(
       90deg,
       var(--color-brand-signal),
-      var(--color-brand)
+      var(--color-pink)
     );
     transition: width 280ms var(--dx-ease);
   }
@@ -159,7 +227,7 @@
 // --- Question body ----------------------------------------------------------
 
 .dxBody {
-  padding: 1.75rem 1.5rem 1.75rem;
+  padding: 1.35rem 1.5rem 1.5rem;
   transition:
     opacity 180ms var(--dx-ease),
     transform 180ms var(--dx-ease);
@@ -206,6 +274,11 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-brand);
+
+    &--onDark {
+      margin: 0.35rem 0 0.65rem;
+      color: color-mix(in srgb, var(--color-page) 88%, transparent);
+    }
   }
 
   &__metaMark {
@@ -222,13 +295,21 @@
     font-weight: 400;
     line-height: 1.25;
     color: var(--color-plum-ink);
+
+    &--onDark {
+      margin: 0;
+      max-width: 38rem;
+      font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+      line-height: 1.28;
+      color: var(--color-page);
+    }
   }
 }
 
 .dxTiles {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.75rem;
+  gap: 0.7rem;
 }
 
 .dxTile {
@@ -236,9 +317,9 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
-  min-height: 4.25rem;
-  padding: 1rem 1rem 1rem 0.95rem;
-  border-radius: 0.9rem;
+  min-height: 3.85rem;
+  padding: 0.95rem 1rem 0.95rem 0.95rem;
+  border-radius: 0.95rem;
   border: 1.5px solid var(--color-line-strong);
   background: var(--color-page);
   cursor: pointer;
@@ -249,18 +330,18 @@
     box-shadow 180ms var(--dx-ease);
 
   &:hover {
-    border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-line-strong));
+    border-color: color-mix(in srgb, var(--color-brand-signal) 45%, var(--color-line-strong));
   }
 
   &.is-on {
-    border-color: var(--color-brand);
-    background: var(--color-brand-tint);
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand) 25%, transparent);
+    border-color: var(--color-brand-signal);
+    background: color-mix(in srgb, var(--color-brand-tint) 70%, var(--color-page));
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, var(--color-brand-signal) 35%, transparent),
+      0 8px 22px color-mix(in srgb, var(--color-brand-signal) 16%, transparent);
   }
 
   &__input {
-    // Visually hidden but still the hit target — keeps keyboard and
-    // assistive tech on a real radio without pointer-events: none.
     position: absolute;
     inset: 0;
     width: 100%;
@@ -286,8 +367,8 @@
   }
 
   &.is-on &__check {
-    border-color: var(--color-brand);
-    background: var(--color-brand);
+    border-color: var(--color-brand-signal);
+    background: var(--color-brand-signal);
   }
 
   &__text {
@@ -299,7 +380,7 @@
   }
 
   &:focus-within {
-    outline: 2px solid var(--color-brand);
+    outline: 2px solid var(--color-brand-signal);
     outline-offset: 2px;
   }
 }
@@ -310,7 +391,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
 }
 
 .dxNav__back {
@@ -337,17 +418,23 @@
   font: inherit;
   font-weight: 600;
   color: var(--color-page);
-  background: var(--color-brand);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-signal),
+    var(--color-brand)
+  );
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-brand-signal) 28%, transparent);
   cursor: pointer;
-  transition: background 160ms var(--dx-ease);
+  transition: filter 160ms var(--dx-ease), transform 160ms var(--dx-ease);
 
   &:hover:not(:disabled) {
-    background: var(--color-brand-hover);
+    filter: brightness(1.05);
   }
 
   &:disabled {
     opacity: 0.45;
     cursor: not-allowed;
+    box-shadow: none;
   }
 }
 
@@ -382,7 +469,7 @@
 
 .dxResults {
   display: grid;
-  gap: 1.75rem;
+  gap: 1.5rem;
 }
 
 .dxResults__header {
@@ -392,53 +479,67 @@
 .dxResults__heading {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.15rem, 4.2vw, 3.15rem);
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1.08;
   color: var(--color-burgundy);
 }
 
 .dxResults__lead {
-  margin: 0.65rem 0 0;
+  margin: 0.55rem 0 0;
   font-size: 1.0625rem;
   color: var(--color-body);
 }
 
 .dxResults__band {
-  margin: 0.85rem 0 0;
+  margin: 0.7rem 0 0;
   font-size: 0.9375rem;
   color: var(--color-muted);
 }
 
 .dxResults__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: clamp(1.5rem, 4vw, 2.75rem);
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(1.25rem, 3.5vw, 2.25rem);
   align-items: start;
 }
 
 .dxResults__compass {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1rem 1.25rem;
+  gap: 0.75rem 1rem;
   align-items: center;
-  padding: 1.25rem;
+  padding: 1.15rem 1.15rem 1.25rem;
   border-radius: 1.25rem;
-  background: color-mix(in srgb, var(--color-page) 80%, var(--color-brand-tint));
+  background:
+    radial-gradient(
+      80% 70% at 30% 40%,
+      color-mix(in srgb, var(--color-brand-tint) 80%, transparent),
+      transparent 70%
+    ),
+    color-mix(in srgb, var(--color-page) 88%, var(--color-brand-tint));
   border: 1px solid var(--color-line-card);
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--color-burgundy) 8%, transparent);
 }
 
 .impactCompass--results {
-  width: min(100%, 22rem);
+  width: min(100%, 26rem);
   height: auto;
   justify-self: center;
   color: color-mix(in srgb, var(--color-burgundy) 35%, transparent);
+
+  .impactCompass__outer {
+    stroke: color-mix(in srgb, var(--color-burgundy) 16%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 2 6;
+  }
 
   .impactCompass__ring {
     stroke: color-mix(in srgb, var(--color-burgundy) 18%, transparent);
     stroke-width: 1;
   }
 
+  .impactCompass__cross,
   .impactCompass__axis {
     stroke: color-mix(in srgb, var(--color-burgundy) 22%, transparent);
     stroke-width: 1;
@@ -451,15 +552,15 @@
   .impactCompass__label {
     fill: var(--color-burgundy);
     font-family: var(--font-body);
-    font-size: 8.5px;
+    font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.1em;
   }
 
   .impactCompass__plot {
-    fill: color-mix(in srgb, var(--color-brand) 28%, transparent);
+    fill: color-mix(in srgb, var(--color-brand) 30%, transparent);
     stroke: var(--color-brand);
-    stroke-width: 1.75;
+    stroke-width: 2;
   }
 
   .impactCompass__plotNode {
@@ -475,20 +576,24 @@
   .impactCompass__score {
     fill: var(--color-page);
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
   }
 
   .impactCompass__outOf {
-    font-size: 11px;
+    font-size: 12px;
     fill: color-mix(in srgb, var(--color-page) 75%, transparent);
   }
 
   .impactCompass__caption {
     fill: color-mix(in srgb, var(--color-page) 70%, transparent);
     font-family: var(--font-body);
-    font-size: 6.5px;
+    font-size: 7px;
     font-style: italic;
+  }
+
+  .impactCompass__rose {
+    color: color-mix(in srgb, var(--color-burgundy) 40%, transparent);
   }
 }
 
@@ -498,7 +603,7 @@
   list-style: none;
   display: grid;
   gap: 0.55rem;
-  min-width: 8.5rem;
+  min-width: 8.75rem;
 
   &__item {
     display: grid;
@@ -531,6 +636,7 @@
   border-radius: 1.25rem;
   background: var(--color-page);
   border: 1px solid var(--color-line-card);
+  box-shadow: 0 14px 36px color-mix(in srgb, var(--color-burgundy) 8%, transparent);
 
   &__heading {
     margin: 0 0 1.25rem;
@@ -622,6 +728,13 @@
 
   &__discuss {
     display: inline-flex;
+    background: var(--color-burgundy);
+    border-color: var(--color-burgundy);
+
+    &:hover {
+      background: color-mix(in srgb, var(--color-burgundy) 88%, #000);
+      border-color: color-mix(in srgb, var(--color-burgundy) 88%, #000);
+    }
   }
 
   &__retake {
@@ -679,6 +792,10 @@
   .dxScoreList {
     width: min(100%, 16rem);
   }
+
+  .impactCompass--results {
+    width: min(100%, 22rem);
+  }
 }
 
 @media (max-width: 640px) {
@@ -687,19 +804,33 @@
   }
 
   .dxProgress__dimensions {
-    gap: 0.65rem 0.25rem;
+    gap: 0.35rem 0.15rem;
+
+    &::before {
+      left: 6%;
+      right: 6%;
+    }
   }
 
   .dxProgress__name {
-    font-size: 0.625rem;
+    font-size: 0.5625rem;
+    letter-spacing: 0.06em;
+  }
+
+  .dxProgress--question {
+    padding: 1.15rem 1rem 1.65rem;
+  }
+
+  .dxQuestion__prompt--onDark {
+    font-size: clamp(1.2rem, 5.5vw, 1.5rem);
   }
 
   .dxShell {
-    border-radius: 0.9rem;
+    border-radius: 0.95rem;
   }
 
   .dxBody {
-    padding: 1.25rem 1rem 1.35rem;
+    padding: 1.15rem 1rem 1.25rem;
   }
 }
 

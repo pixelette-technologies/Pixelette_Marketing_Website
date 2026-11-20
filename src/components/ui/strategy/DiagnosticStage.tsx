@@ -14,6 +14,7 @@ import type { KeyboardEvent, MouseEvent, RefObject } from "react";
 // Five real radios — restyled as tiles — so focus, arrows and checked state
 // stay native. Pointer advances after the lock; keyboard selects only until
 // Enter / Continue. State lives in StrategyExperience.
+// Corrected 20 Nov 2026: question lives in the dark header band (approved mock).
 
 type Phase = "idle" | "running" | "halfway" | "results";
 type Motion = "still" | "locking" | "leaving";
@@ -25,7 +26,7 @@ interface DiagnosticStageProps {
   motion: Motion;
   animate: boolean;
   returning: boolean;
-  questionRef: RefObject<HTMLLegendElement | null>;
+  questionRef: RefObject<HTMLParagraphElement | null>;
   halfwayRef: RefObject<HTMLDivElement | null>;
   onChoose: (index: number, viaPointer: boolean) => void;
   onNext: () => void;
@@ -152,25 +153,81 @@ const DiagnosticStage = ({
 
   return (
     <div className='dxShell'>
-      {progress}
+      <div className='dxProgress dxProgress--question'>
+        <ol className='dxProgress__dimensions'>
+          {dimensions.map(dimension => {
+            const indices = diagnosticQuestions
+              .map((q, i) => (q.dimension === dimension.id ? i : -1))
+              .filter(i => i !== -1);
+            const done = indices.every(i => answers[i] !== null);
+            const isCurrent = dimension.id === current;
+            const state = isCurrent ? "current" : done ? "done" : "todo";
+            return (
+              <li
+                key={dimension.id}
+                className={`dxProgress__dimension is-${state}`}
+                aria-current={isCurrent ? "step" : undefined}
+              >
+                <span className='dxProgress__mark' aria-hidden='true'>
+                  {state === "done" ? "✓" : ""}
+                </span>
+                <span className='dxProgress__name'>{dimension.name}</span>
+                <span className='dx-sr'>
+                  {state === "done"
+                    ? " (complete)"
+                    : state === "current"
+                      ? " (current)"
+                      : " (not started)"}
+                </span>
+              </li>
+            );
+          })}
+        </ol>
 
-      <div key={`q-${step}`} className={bodyClass}>
-        <p className='dxQuestion__meta'>
+        <div className='dxProgress__meter'>
+          <p className='dxProgress__count'>
+            Question {pad(position)} / {pad(TOTAL_QUESTIONS)}
+          </p>
+          <div
+            className='dxProgress__bar'
+            role='progressbar'
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={percent}
+            aria-label={`${percent} percent complete`}
+          >
+            <span
+              className='dxProgress__fill'
+              style={{ width: `${percent}%` }}
+            />
+          </div>
+          <span className='dxProgress__pct' aria-hidden='true'>
+            {percent}%
+          </span>
+        </div>
+
+        <p className='dxQuestion__meta dxQuestion__meta--onDark'>
           <span className='dxQuestion__metaMark' aria-hidden='true' />
           {dimensionsById[current].name}
         </p>
 
+        <p
+          className='dxQuestion__prompt dxQuestion__prompt--onDark'
+          ref={questionRef}
+          tabIndex={-1}
+          id={`dx-prompt-${step}`}
+        >
+          {question.prompt}
+        </p>
+      </div>
+
+      <div key={`q-${step}`} className={bodyClass}>
         <fieldset
           className={selected === null ? "dxQuestion" : "dxQuestion has-answer"}
           aria-describedby='dx-tile-help'
+          aria-labelledby={`dx-prompt-${step}`}
         >
-          <legend
-            className='dxQuestion__prompt'
-            ref={questionRef}
-            tabIndex={-1}
-          >
-            {question.prompt}
-          </legend>
+          <legend className='dx-sr'>{question.prompt}</legend>
 
           <p id='dx-tile-help' className='dx-sr'>
             {diagnosticIntro.tileHelp}
@@ -180,9 +237,7 @@ const DiagnosticStage = ({
             {question.options.map((option, index) => (
               <label
                 key={option}
-                className={
-                  selected === index ? "dxTile is-on" : "dxTile"
-                }
+                className={selected === index ? "dxTile is-on" : "dxTile"}
                 onClick={onPointerChoice(index)}
               >
                 <input

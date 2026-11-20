@@ -3,17 +3,19 @@ import type { DimensionScore } from "@/lib/strategyDiagnostic";
 
 // SVG Impact Compass — decorative on the intro, scored on the results.
 // Six axes match DIMENSIONS order. Built in code (not the mock-up PNG).
+// Corrected 20 Nov 2026: larger rose, stronger glow, denser graphic.
 
-const SIZE = 360;
+const SIZE = 420;
 const CX = SIZE / 2;
 const CY = SIZE / 2;
-const RINGS = [0.28, 0.46, 0.64, 0.82, 1];
-const AXIS_R = 118;
-const LABEL_R = 148;
+const RINGS = [0.22, 0.4, 0.58, 0.76, 0.94];
+const AXIS_R = 132;
+const LABEL_R = 168;
+const OUTER_R = 148;
 
 const polar = (index: number, radius: number) => {
   // Start at top, clockwise — matches the approved Option 3 layout.
-  const angle = (-Math.PI / 2) + (index * 2 * Math.PI) / dimensions.length;
+  const angle = -Math.PI / 2 + (index * 2 * Math.PI) / dimensions.length;
   return {
     x: CX + radius * Math.cos(angle),
     y: CY + radius * Math.sin(angle)
@@ -27,6 +29,18 @@ const polygonPoints = (radii: number[]) =>
       return `${x.toFixed(1)},${y.toFixed(1)}`;
     })
     .join(" ");
+
+const rosePoints = (inner: number, outer: number, tips: number) => {
+  const pts: string[] = [];
+  for (let i = 0; i < tips * 2; i++) {
+    const angle = -Math.PI / 2 + (i * Math.PI) / tips;
+    const r = i % 2 === 0 ? outer : inner;
+    pts.push(
+      `${(CX + r * Math.cos(angle)).toFixed(1)},${(CY + r * Math.sin(angle)).toFixed(1)}`
+    );
+  }
+  return pts.join(" ");
+};
 
 interface ImpactCompassProps {
   /** When set, plot the visitor's six dimension percentages. */
@@ -53,10 +67,11 @@ const ImpactCompass = ({
         s => (AXIS_R * Math.min(Math.max(s.percentage, 0), 100)) / 100
       )
     : // Decorative intro plot — a balanced hexagon, not sample scores.
-      dimensions.map(() => AXIS_R * 0.72);
+      dimensions.map((_, i) => AXIS_R * (0.62 + (i % 3) * 0.06));
 
   const plot = polygonPoints(values);
   const isResults = variant === "results";
+  const uid = isResults ? "icr" : "ici";
 
   return (
     <svg
@@ -71,13 +86,33 @@ const ImpactCompass = ({
       }
     >
       <defs>
-        <radialGradient id='ic-glow' cx='50%' cy='50%' r='50%'>
-          <stop offset='0%' stopColor='var(--color-brand-signal)' stopOpacity='0.35' />
-          <stop offset='70%' stopColor='var(--color-brand)' stopOpacity='0.08' />
+        <radialGradient id={`${uid}-glow`} cx='50%' cy='45%' r='55%'>
+          <stop
+            offset='0%'
+            stopColor='var(--color-brand-signal)'
+            stopOpacity='0.55'
+          />
+          <stop
+            offset='45%'
+            stopColor='var(--color-brand)'
+            stopOpacity='0.18'
+          />
           <stop offset='100%' stopColor='transparent' stopOpacity='0' />
         </radialGradient>
-        <filter id='ic-soft' x='-20%' y='-20%' width='140%' height='140%'>
-          <feGaussianBlur stdDeviation='2.5' result='b' />
+        <radialGradient id={`${uid}-hub`} cx='50%' cy='50%' r='50%'>
+          <stop offset='0%' stopColor='var(--color-brand-signal)' stopOpacity='0.9' />
+          <stop offset='55%' stopColor='var(--color-brand)' stopOpacity='0.55' />
+          <stop offset='100%' stopColor='transparent' stopOpacity='0' />
+        </radialGradient>
+        <filter id={`${uid}-soft`} x='-40%' y='-40%' width='180%' height='180%'>
+          <feGaussianBlur stdDeviation='3.2' result='b' />
+          <feMerge>
+            <feMergeNode in='b' />
+            <feMergeNode in='SourceGraphic' />
+          </feMerge>
+        </filter>
+        <filter id={`${uid}-bloom`} x='-50%' y='-50%' width='200%' height='200%'>
+          <feGaussianBlur stdDeviation='5' result='b' />
           <feMerge>
             <feMergeNode in='b' />
             <feMergeNode in='SourceGraphic' />
@@ -85,18 +120,34 @@ const ImpactCompass = ({
         </filter>
       </defs>
 
-      <circle cx={CX} cy={CY} r={AXIS_R + 28} fill='url(#ic-glow)' />
+      <circle cx={CX} cy={CY} r={OUTER_R + 36} fill={`url(#${uid}-glow)`} />
+
+      {/* Outer decorative ring */}
+      <circle
+        className='impactCompass__outer'
+        cx={CX}
+        cy={CY}
+        r={OUTER_R}
+        fill='none'
+      />
 
       {/* Compass rose behind the rings */}
-      <g className='impactCompass__rose' opacity={isResults ? 0.2 : 0.45}>
-        {[0, 45, 90, 135].map(deg => (
-          <polygon
-            key={deg}
-            points={`${CX},${CY - 42} ${CX + 10},${CY} ${CX},${CY + 42} ${CX - 10},${CY}`}
-            transform={`rotate(${deg} ${CX} ${CY})`}
-            fill='currentColor'
+      <g className='impactCompass__rose' opacity={isResults ? 0.22 : 0.55}>
+        <polygon
+          points={rosePoints(14, 48, 8)}
+          fill='currentColor'
+          filter={isResults ? undefined : `url(#${uid}-bloom)`}
+        />
+        <polygon points={rosePoints(8, 28, 4)} fill='currentColor' />
+        {!isResults && (
+          <circle
+            cx={CX}
+            cy={CY}
+            r={22}
+            fill={`url(#${uid}-hub)`}
+            opacity={0.85}
           />
-        ))}
+        )}
       </g>
 
       {RINGS.map(scale => (
@@ -109,6 +160,22 @@ const ImpactCompass = ({
           fill='none'
         />
       ))}
+
+      {/* Cross hairs */}
+      <line
+        className='impactCompass__cross'
+        x1={CX}
+        y1={CY - AXIS_R}
+        x2={CX}
+        y2={CY + AXIS_R}
+      />
+      <line
+        className='impactCompass__cross'
+        x1={CX - AXIS_R}
+        y1={CY}
+        x2={CX + AXIS_R}
+        y2={CY}
+      />
 
       {dimensions.map((dimension, i) => {
         const tip = polar(i, AXIS_R);
@@ -126,8 +193,8 @@ const ImpactCompass = ({
               className='impactCompass__node'
               cx={tip.x}
               cy={tip.y}
-              r={isResults ? 4.5 : 6}
-              filter={isResults ? undefined : "url(#ic-soft)"}
+              r={isResults ? 5 : 7}
+              filter={isResults ? undefined : `url(#${uid}-soft)`}
             />
             <text
               className='impactCompass__label'
@@ -151,14 +218,15 @@ const ImpactCompass = ({
             className='impactCompass__plotNode'
             cx={p.x}
             cy={p.y}
-            r={4}
+            r={isResults ? 4.5 : 5.5}
+            filter={isResults ? undefined : `url(#${uid}-soft)`}
           />
         );
       })}
 
       {isResults && overall !== undefined && (
         <g className='impactCompass__hub'>
-          <circle cx={CX} cy={CY} r={42} />
+          <circle cx={CX} cy={CY} r={48} />
           <text
             className='impactCompass__score'
             x={CX}
@@ -173,7 +241,7 @@ const ImpactCompass = ({
             <text
               className='impactCompass__caption'
               x={CX}
-              y={CY + 18}
+              y={CY + 20}
               textAnchor='middle'
             >
               {overallCaption}

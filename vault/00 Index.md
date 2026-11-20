@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — Influencer & Partnerships approved design **COMPLETE** (gaps closed); homepage correction and Impact Compass remain COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — Impact Compass visual correction against the approved reference; Influencer COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9d31259`** (Influencer & Partnerships instruction COMPLETE in vault; page code `8346312`). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
-| Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `9d31259` reported **success**. Deployment URL: `https://pixelette-marketing-website-cy58paj59-pixelette-technologies.vercel.app`. Non-official hosts noindex. Page preview for `8346312`: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships COMPLETE. Founder still owns wording / production approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip pending Impact Compass correction push. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** (corrected), **20 Nov Influencer & Partnerships** approved design. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass (corrected) + Influencer approved design. |
+| Pushed? | **Pending** Impact Compass correction on `bilal/revamp` only. No PR to production. Live domain untouched. |
+| Preview | Pending new Vercel Preview after push. Prior tip `9d31259`: `https://pixelette-marketing-website-cy58paj59-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass corrected. Influencer COMPLETE. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -27,7 +27,18 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 | # | Item | What to do |
 |---|---|---|
 | 1 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
-| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Influencer pack: `mockup-screenshots/influencer-partnerships-2026-11-20/`. |
+| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic correction pack: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer pack: `mockup-screenshots/influencer-partnerships-2026-11-20/`. |
+
+## 20 November 2026 — Impact Compass visual correction
+
+**Instruction:** the first Option 3 pass did not adequately reproduce the approved Higgsfield design. Correct intro (less empty space; larger headline + compass), strengthen the coded compass, and match all three states (intro / questionnaire / results). Preserve questions, scoring, saved progress, and site branding. Preview only; no other pages; no image generation / Higgsfield.
+
+**Shipped on `bilal/revamp` (this tip):**
+- Intro tightened: denser copy stack, signal CTA, diagonal dark field, larger glowing SVG compass.
+- Questionnaire: connected dimension stepper; question lives in the dark header; wave into answer tiles; signal Continue.
+- Results: larger compass, swoop ground, stronger dashboard cards. Scoring / storage unchanged.
+- Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/` (desktop-1440 + phone-390 × intro / questionnaire / results).
+- Approved reference saved beside pack: `approved-reference-correction.png`.
 
 ## 20 November 2026 — Influencer & Partnerships approved design
 

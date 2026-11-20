@@ -1,53 +1,65 @@
-// Impact Compass intro — approved Option 3 (20 Nov 2026).
-// Split composition: copy on a brand wash, coded compass on burgundy.
+// Impact Compass intro — corrected against approved Option 3 (20 Nov 2026).
+// Tighter split: larger headline + compass, less empty space, signal CTA.
 
 .impactIntro {
   --ii-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  min-height: min(88vh, 52rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  min-height: min(78vh, 42rem);
   background: var(--color-brand-tint);
 }
 
 .impactIntro__copy {
   display: flex;
   align-items: center;
-  padding-block: clamp(3rem, 8vw, 5.5rem);
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+  padding-inline-end: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 .impactIntro__copyInner {
   width: 100%;
-  max-width: 34rem;
+  max-width: 32rem;
 }
 
 .impactIntro__eyebrow {
-  margin-bottom: 1rem;
+  margin: 0 0 0.85rem;
+}
+
+.impactIntro__eyebrowText {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--color-brand);
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid var(--color-brand-signal);
 }
 
 .impactIntro__heading {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  font-size: clamp(2.75rem, 6vw, 4.35rem);
   font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   color: var(--color-burgundy);
 }
 
 .impactIntro__lead {
-  margin: 1.35rem 0 0;
+  margin: 1.1rem 0 0;
   max-width: 28rem;
   font-size: 1.0625rem;
-  line-height: 1.55;
+  line-height: 1.5;
   color: var(--color-body);
 }
 
 .impactIntro__process {
-  margin: 1.25rem 0 0;
+  margin: 1rem 0 0;
   font-family: var(--font-hand);
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   line-height: 1.3;
   color: var(--color-brand);
 }
@@ -60,11 +72,11 @@
   display: inline-flex;
   flex-wrap: wrap;
   gap: 0.35rem 0;
-  margin: 1.5rem 0 0;
-  padding: 0.55rem 1rem;
+  margin: 1.15rem 0 0;
+  padding: 0.5rem 1rem;
   list-style: none;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-page) 78%, transparent);
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
   border: 1px solid var(--color-line-pill);
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -82,12 +94,24 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-top: 1.75rem;
+  margin-top: 1.35rem;
+}
+
+.impactIntro__cta {
+  background: var(--color-brand-signal);
+  border-color: var(--color-brand-signal);
+  color: var(--color-page);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-brand-signal) 35%, transparent);
+
+  &:hover {
+    background: var(--color-brand);
+    border-color: var(--color-brand);
+  }
 }
 
 .impactIntro__assurance,
 .impactIntro__resumeText {
-  margin: 1rem 0 0;
+  margin: 0.85rem 0 0;
   max-width: 26rem;
   font-size: 0.875rem;
   line-height: 1.45;
@@ -95,7 +119,7 @@
 }
 
 .impactIntro__resume {
-  margin-top: 1.5rem;
+  margin-top: 1.15rem;
 }
 
 .impactIntro__visual {
@@ -103,53 +127,73 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: clamp(2rem, 5vw, 3.5rem);
+  padding: clamp(1.25rem, 3.5vw, 2.25rem);
   color: color-mix(in srgb, var(--color-page) 55%, transparent);
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
   background:
     radial-gradient(
-      120% 80% at 70% 20%,
-      color-mix(in srgb, var(--color-brand) 35%, transparent),
+      110% 70% at 72% 18%,
+      color-mix(in srgb, var(--color-brand) 42%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      70% 50% at 20% 90%,
+      color-mix(in srgb, var(--color-brand-signal) 16%, transparent),
       transparent 55%
     ),
     linear-gradient(
-      160deg,
+      155deg,
       var(--color-burgundy) 0%,
-      #2a0c1c 55%,
-      #1a0712 100%
+      #2a0c1c 52%,
+      #16050f 100%
     );
 }
 
 .impactIntro__orbits {
   position: absolute;
-  inset: -20%;
+  inset: -18%;
   background:
     radial-gradient(
-      circle at 30% 70%,
-      color-mix(in srgb, var(--color-brand-signal) 18%, transparent),
-      transparent 42%
+      circle at 28% 72%,
+      color-mix(in srgb, var(--color-brand-signal) 22%, transparent),
+      transparent 40%
     ),
     radial-gradient(
-      circle at 80% 30%,
-      color-mix(in srgb, var(--color-brand-wash) 22%, transparent),
-      transparent 45%
+      circle at 82% 28%,
+      color-mix(in srgb, var(--color-brand-wash) 26%, transparent),
+      transparent 44%
+    ),
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0 18px,
+      color-mix(in srgb, var(--color-page) 4%, transparent) 18px 19px
     );
   pointer-events: none;
+  opacity: 0.9;
 }
 
 .impactCompass--intro {
   position: relative;
   z-index: 1;
-  width: min(100%, 26rem);
+  width: min(100%, 34rem);
   height: auto;
-  color: color-mix(in srgb, var(--color-page) 70%, transparent);
+  color: color-mix(in srgb, var(--color-page) 72%, transparent);
+  filter: drop-shadow(0 0 28px color-mix(in srgb, var(--color-brand-signal) 28%, transparent));
 
-  .impactCompass__ring {
-    stroke: color-mix(in srgb, var(--color-page) 28%, transparent);
-    stroke-width: 1;
+  .impactCompass__outer {
+    stroke: color-mix(in srgb, var(--color-page) 22%, transparent);
+    stroke-width: 1.25;
+    stroke-dasharray: 3 7;
   }
 
+  .impactCompass__ring {
+    stroke: color-mix(in srgb, var(--color-page) 30%, transparent);
+    stroke-width: 1.1;
+  }
+
+  .impactCompass__cross,
   .impactCompass__axis {
-    stroke: color-mix(in srgb, var(--color-page) 35%, transparent);
+    stroke: color-mix(in srgb, var(--color-page) 32%, transparent);
     stroke-width: 1;
   }
 
@@ -158,27 +202,27 @@
   }
 
   .impactCompass__label {
-    fill: color-mix(in srgb, var(--color-page) 88%, transparent);
+    fill: color-mix(in srgb, var(--color-page) 92%, transparent);
     font-family: var(--font-body);
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
   }
 
   .impactCompass__plot {
-    fill: color-mix(in srgb, var(--color-brand-signal) 28%, transparent);
+    fill: color-mix(in srgb, var(--color-brand-signal) 32%, transparent);
     stroke: var(--color-brand-signal);
-    stroke-width: 1.5;
+    stroke-width: 2;
   }
 
   .impactCompass__plotNode {
     fill: var(--color-page);
     stroke: var(--color-brand-signal);
-    stroke-width: 1.5;
+    stroke-width: 1.75;
   }
 
   .impactCompass__rose {
-    color: color-mix(in srgb, var(--color-page) 40%, transparent);
+    color: color-mix(in srgb, var(--color-page) 55%, transparent);
   }
 }
 
@@ -188,18 +232,33 @@
     min-height: 0;
   }
 
+  .impactIntro__copy {
+    padding-block: 1.75rem 2.25rem;
+    padding-inline-end: 0;
+  }
+
+  .impactIntro__heading {
+    font-size: clamp(2.35rem, 10vw, 3.25rem);
+  }
+
   .impactIntro__visual {
-    min-height: 18rem;
+    min-height: 20rem;
     order: -1;
+    clip-path: none;
+    padding-block: 1.5rem;
   }
 
   .impactCompass--intro {
-    width: min(100%, 20rem);
+    width: min(100%, 22rem);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .impactIntro {
     scroll-behavior: auto;
+  }
+
+  .impactCompass--intro {
+    filter: none;
   }
 }

@@ -118,7 +118,7 @@ const StrategyExperience = () => {
   const pending = useRef<number | null>(null);
   const focusTarget = useRef<FocusTarget>(null);
 
-  const questionRef = useRef<HTMLLegendElement | null>(null);
+  const questionRef = useRef<HTMLParagraphElement | null>(null);
   const halfwayRef = useRef<HTMLDivElement | null>(null);
   const resultsRef = useRef<HTMLHeadingElement | null>(null);
   const stageRef = useRef<HTMLElement | null>(null);

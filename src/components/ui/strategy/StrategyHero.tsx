@@ -1,5 +1,4 @@
 import { Container } from "@/components/common";
-import { Text } from "@/components/feature";
 import { diagnosticIntro, strategyHero } from "@/data/strategy";
 import type { MouseEvent } from "react";
 import ImpactCompass from "./ImpactCompass";
@@ -33,7 +32,9 @@ const StrategyHero = ({
     <section className='impactIntro' aria-labelledby='impact-intro-heading'>
       <div className='impactIntro__copy'>
         <Container className='main impactIntro__copyInner'>
-          <Text className='eyebrow impactIntro__eyebrow'>{eyebrow}</Text>
+          <p className='impactIntro__eyebrow'>
+            <span className='impactIntro__eyebrowText'>{eyebrow}</span>
+          </p>
 
           <h1 id='impact-intro-heading' className='impactIntro__heading'>
             {heading}
@@ -75,7 +76,11 @@ const StrategyHero = ({
             </div>
           ) : (
             <div className='impactIntro__actions'>
-              <a href={primaryCta.to} className='btn' onClick={start}>
+              <a
+                href={primaryCta.to}
+                className='btn impactIntro__cta'
+                onClick={start}
+              >
                 {primaryCta.label}
               </a>
             </div>

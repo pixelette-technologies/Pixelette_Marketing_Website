@@ -4,12 +4,23 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, and Influencer & Partnerships are closed on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass (corrected), and Influencer & Partnerships are closed on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 20 Nov — Impact Compass visual correction
+
+First Option 3 pass corrected against the approved reference. Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`.
+
+| Item | Resolution |
+|---|---|
+| **Sparse intro** | Min-height cut; denser copy; coral Start CTA; diagonal dark visual field. |
+| **Weak compass** | Larger SVG rose with glow, outer ring, cross-hairs; brand signal nodes. |
+| **Questionnaire** | Question + meta in dark header; connected stepper; wave into tiles; signal Continue. |
+| **Results** | Larger radar, swoop ground, stronger cards; Discuss / Retake preserved. |
 
 ## Closed 20 Nov — Influencer & Partnerships approved design
 

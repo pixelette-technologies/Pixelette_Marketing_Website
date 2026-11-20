@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 20 Nov 2026
 
-**Influencer & Partnerships approved design implemented on `bilal/revamp` for `/services/influencer_marketing`.** Hero + What we deliver + closing only; imagery recovered from the approved mock. Homepage presentation correction (`bcec022` + `4959ff0`), Impact Compass (`3ea31db`) and one-agency (`af38481`) remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Impact Compass visual correction on `bilal/revamp` for `/strategy-positioning`.** Intro / questionnaire / results tightened against the approved reference; questions and scoring unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer page, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 19 Nov 2026
 

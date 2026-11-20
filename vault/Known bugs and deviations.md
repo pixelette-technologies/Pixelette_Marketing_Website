@@ -13,7 +13,7 @@ Review §7, one-agency, homepage correction, Impact Compass (corrected), and Inf
 
 ## Closed 20 Nov — Impact Compass visual correction
 
-First Option 3 pass corrected as `4d08c39`, then gap-closed against the audit (star-rose intro, denser copy, filled selected tiles, pack shows selection). Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`.
+First Option 3 pass corrected as `4d08c39`, then gap-closed as `720e4d7` (star-rose intro, denser copy, filled selected tiles, pack shows selection). Questions, six dimensions, scoring, and localStorage progress unchanged. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Preview: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`.
 
 | Item | Resolution |
 |---|---|

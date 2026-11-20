@@ -8,7 +8,7 @@ Last updated: **20 November 2026** — Impact Compass instruction COMPLETE end-t
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9987a17`** (vault record; code tip `720e4d7` Impact Compass COMPLETE). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4da382e`** (Impact Compass COMPLETE vault record; code tip `720e4d7`). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass (star-rose intro / filled tiles / results radar) + Influencer approved design. |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |

@@ -1,20 +1,4 @@
-// The diagnostic, from the first question to the burgundy close (30 Sep 2026,
-// the final diagnostic brief).
-//
-// COLOUR ROLES, which the brief makes a checklist item:
-//   --color-pink       selected states, markers, large result headings
-//   --color-pink-text  small pink labels (the same hue, deep enough for 4.5)
-//   --color-burgundy   the score, the diagnosis, priority headings, numbers
-//   --color-plum-ink   every explanatory paragraph that carries meaning
-//   --color-muted      genuinely secondary UI only: counts, rail ends, notes
-//
-// ON THE LIGHT GROUND, with no card behind the question: the stage is the
-// page, the way the brief asks ("no dashboard card clutter").
-//
-// MOTION is short and deliberate: a 320ms lock on the chosen answer, the
-// question leaving up 20px in 180ms, the next entering in 220ms; a count-up
-// and staggered arrivals for the result. No bounce, no spring. Under reduced
-// motion all of it goes and every state is still reached.
+// Impact Compass diagnostic — question tiles + results dashboard (20 Nov 2026).
 
 .dx-sr {
   position: absolute;
@@ -28,981 +12,728 @@
   border: 0;
 }
 
-// White and full-bleed on the warm page ground, with a hairline where it
-// meets the compact hero (also white) once the bridge has folded.
 .dxGround {
-  background: var(--color-page);
-  border-top: 1px solid var(--color-line);
+  background:
+    radial-gradient(
+      80% 50% at 100% 0%,
+      color-mix(in srgb, var(--color-brand-wash) 55%, transparent),
+      transparent 60%
+    ),
+    var(--color-band);
 }
 
 .dxStage {
   --dx-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-
   position: relative;
   padding-block: var(--sec-y-sm) var(--sec-y);
 }
 
-// --- Progress ---------------------------------------------------------------
+.dxShell {
+  display: grid;
+  gap: 1.5rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: var(--color-page);
+  border: 1px solid var(--color-line-card);
+  box-shadow: 0 18px 50px color-mix(in srgb, var(--color-burgundy) 8%, transparent);
+}
+
+// --- Progress (burgundy header) ---------------------------------------------
 
 .dxProgress {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem 1.5rem;
+  display: grid;
+  gap: 1.25rem;
+  padding: 1.35rem 1.5rem 1.5rem;
+  color: var(--color-page);
+  background:
+    radial-gradient(
+      90% 120% at 80% -20%,
+      color-mix(in srgb, var(--color-brand) 45%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(160deg, var(--color-burgundy), #2a0c1c);
 
   &__dimensions {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
+    justify-content: space-between;
+    gap: 0.75rem 0.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   &__dimension {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.375rem;
-    font-size: 0.9375rem;
-    transition: color 240ms var(--dx-ease);
-
-    &.is-done {
-      color: var(--color-burgundy);
-    }
-
-    &.is-current {
-      color: var(--color-pink-text);
-      font-weight: 600;
-    }
-
-    &.is-todo {
-      color: var(--color-muted);
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.45rem;
+    flex: 1 1 0;
+    min-width: 4.5rem;
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-page) 55%, transparent);
   }
 
   &__mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    width: 0.625rem;
-    height: 0.625rem;
-    font-size: 0.8125rem;
-    font-weight: 600;
+    display: grid;
+    place-items: center;
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    border: 1.5px solid color-mix(in srgb, var(--color-page) 40%, transparent);
+    font-size: 0.55rem;
     line-height: 1;
   }
 
-  // Current: a filled pink dot. Not started: a neutral ring.
-  &__dimension.is-current &__mark {
-    border-radius: 50%;
-    background: var(--color-pink);
+  &__dimension.is-todo &__mark {
+    background: transparent;
   }
 
-  &__dimension.is-todo &__mark {
-    border: 1.5px solid var(--color-muted);
-    border-radius: 50%;
+  &__dimension.is-current {
+    color: var(--color-page);
+
+    .dxProgress__mark {
+      border-color: var(--color-brand-signal);
+      background: var(--color-brand-signal);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-brand-signal) 35%, transparent);
+    }
+  }
+
+  &__dimension.is-done {
+    color: color-mix(in srgb, var(--color-page) 88%, transparent);
+
+    .dxProgress__mark {
+      border-color: var(--color-brand-signal);
+      background: var(--color-brand-signal);
+      color: var(--color-page);
+    }
+  }
+
+  &__meter {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.45rem 1rem;
+    align-items: center;
   }
 
   &__count {
+    margin: 0;
+    grid-column: 1 / -1;
     font-family: var(--font-mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 0.8125rem;
-    letter-spacing: 0.06em;
-    color: var(--color-muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-page) 78%, transparent);
   }
 
-  // A hairline under the row: how much of the twelve is answered.
-  &__track {
-    flex: 1 1 100%;
-    height: 2px;
-    margin-top: 0.25rem;
-    background: var(--color-line);
+  &__bar {
+    height: 0.4rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--color-page) 18%, transparent);
     overflow: hidden;
   }
 
   &__fill {
     display: block;
     height: 100%;
-    background: var(--color-burgundy);
-    transition: width 420ms var(--dx-ease);
+    border-radius: inherit;
+    background: linear-gradient(
+      90deg,
+      var(--color-brand-signal),
+      var(--color-brand)
+    );
+    transition: width 280ms var(--dx-ease);
+  }
+
+  &__pct {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--color-page) 78%, transparent);
   }
 }
 
-// --- The question body and its transitions -----------------------------------
+// --- Question body ----------------------------------------------------------
 
 .dxBody {
-  // Holds the stage's height steady from question to question, so the rail
-  // does not jump when a prompt runs to one line or three.
-  min-height: 26rem;
-  padding-top: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+  padding: 1.75rem 1.5rem 1.75rem;
+  transition:
+    opacity 180ms var(--dx-ease),
+    transform 180ms var(--dx-ease);
 
   &.is-entering {
-    animation: dxEnter 220ms var(--dx-ease) both;
+    animation: dx-enter 220ms var(--dx-ease) both;
   }
 
   &.is-leaving {
     opacity: 0;
-    transform: translateY(-20px);
-    transition:
-      opacity 180ms var(--dx-ease),
-      transform 180ms var(--dx-ease);
+    transform: translateY(-12px);
   }
 
-  &__assurance {
-    margin-top: 2rem;
-    max-width: 46ch;
-    font-size: 0.875rem;
-    color: var(--color-muted);
+  &.is-locking .dxTile.is-on {
+    transform: scale(1.01);
   }
 }
 
-@keyframes dxEnter {
+@keyframes dx-enter {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .dxQuestion {
-  min-width: 0; // a fieldset otherwise refuses to narrow
   margin: 0;
   padding: 0;
   border: 0;
+  min-width: 0;
 
   &__meta {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0 0 0.85rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-pink-text);
+    color: var(--color-brand);
+  }
+
+  &__metaMark {
+    width: 2px;
+    height: 0.9rem;
+    background: var(--color-brand-signal);
   }
 
   &__prompt {
-    display: block;
+    margin: 0 0 1.35rem;
     padding: 0;
-    margin-top: 1rem;
-    max-width: 36ch;
     font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.6vw, 2rem);
     font-weight: 400;
-    font-size: clamp(1.625rem, 1.3rem + 1.4vw, 2.5rem);
-    line-height: 1.15;
+    line-height: 1.25;
     color: var(--color-plum-ink);
-
-    &:focus {
-      outline: none;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-pink);
-      outline-offset: 6px;
-    }
   }
 }
 
-// --- The Clarity Rail -------------------------------------------------------
-// Desktop: "Less clear" ● — ● — ● — ● — ● "More clear", each statement under
-// its point. The line runs through the five points' centres (10% to 90% of
-// the stops), and a pink run fills it up to the chosen point.
-
-.dxRail {
-  --dx-dot: 1.5rem;
-
+.dxTiles {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 0 1.25rem;
-  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
 
-  &__end {
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    line-height: var(--dx-dot);
-    white-space: nowrap;
-    color: var(--color-muted);
+.dxTile {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  min-height: 4.25rem;
+  padding: 1rem 1rem 1rem 0.95rem;
+  border-radius: 0.9rem;
+  border: 1.5px solid var(--color-line-strong);
+  background: var(--color-page);
+  cursor: pointer;
+  transition:
+    border-color 180ms var(--dx-ease),
+    background 180ms var(--dx-ease),
+    transform 180ms var(--dx-ease),
+    box-shadow 180ms var(--dx-ease);
+
+  &:hover {
+    border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-line-strong));
   }
 
-  &__stops {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      top: calc(var(--dx-dot) / 2 - 1px);
-      left: 10%;
-      height: 2px;
-      pointer-events: none;
-    }
-
-    &::before {
-      right: 10%;
-      background: var(--color-line-strong);
-    }
-
-    // The run up to the chosen point, 0-80% of the width in fifths.
-    &::after {
-      width: calc(80% * var(--dx-sel) / 4);
-      background: var(--color-pink);
-      opacity: 0;
-      transition:
-        width 240ms var(--dx-ease),
-        opacity 160ms var(--dx-ease);
-    }
+  &.is-on {
+    border-color: var(--color-brand);
+    background: var(--color-brand-tint);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--color-brand) 25%, transparent);
   }
 
-  &__stop {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.875rem;
-    padding: 0 0.5rem 0.5rem;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  // The point IS the input: appearance: none, so the browser's focus, arrow
-  // keys and checked state are untouched.
   &__input {
-    appearance: none;
-    flex: 0 0 auto;
-    width: var(--dx-dot);
-    height: var(--dx-dot);
+    // Visually hidden but still the hit target — keeps keyboard and
+    // assistive tech on a real radio without pointer-events: none.
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    border: 2px solid var(--color-muted);
-    border-radius: 50%;
-    background: var(--color-page);
+    opacity: 0;
     cursor: pointer;
-    transition:
-      transform 160ms var(--dx-ease),
-      border-color 160ms var(--dx-ease),
-      background-color 160ms var(--dx-ease),
-      box-shadow 160ms var(--dx-ease);
-
-    &:focus-visible {
-      outline: 2px solid var(--color-pink);
-      outline-offset: 3px;
-    }
-
-    // Selected: filled pink with a soft halo — and larger, so the state is
-    // shape as well as colour.
-    &:checked {
-      border-color: var(--color-pink);
-      background: var(--color-pink);
-      box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-pink) 16%, transparent);
-      transform: scale(1.2);
-    }
   }
 
-  // Hover and focus grow the point slightly and turn it toward pink: the
-  // brief's rail, and a registered exception to the hover rule — see
-  // _surfaces.scss.
-  &__stop:hover &__input:not(:checked),
-  &__input:focus-visible:not(:checked) {
-    border-color: var(--color-pink);
-    transform: scale(1.15);
+  &__check {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.1rem;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-line-strong);
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-page);
+    background: transparent;
+  }
+
+  &.is-on &__check {
+    border-color: var(--color-brand);
+    background: var(--color-brand);
   }
 
   &__text {
-    max-width: 14rem;
-    font-size: 0.9375rem;
-    line-height: 1.45;
-    color: var(--color-body);
-    transition: color 160ms var(--dx-ease);
-  }
-
-  &__stop:hover &__text {
+    flex: 1 1 auto;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    line-height: 1.35;
     color: var(--color-plum-ink);
   }
 
-  &__stop.is-on &__text {
-    font-weight: 500;
-    color: var(--color-plum-ink);
+  &:focus-within {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
   }
 }
-
-.has-answer .dxRail__stops::after {
-  opacity: 1;
-}
-
-// The lock: the chosen point holds, the others step back.
-.is-locking .dxRail__stop:not(.is-on) {
-  opacity: 0.55;
-  transition: opacity 200ms var(--dx-ease);
-}
-
-// Phone: five stacked rows, each a full-width target. No line, no run.
-@media (max-width: 767px) {
-  .dxRail {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0.625rem;
-
-    &__stops {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 0.5rem;
-
-      &::before,
-      &::after {
-        display: none;
-      }
-    }
-
-    &__stop {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 0.875rem;
-      padding: 0.875rem 1rem;
-      text-align: left;
-      border: 1px solid var(--color-line-pill);
-      border-radius: var(--radius-btn);
-      background: var(--color-page);
-      transition: border-color 160ms var(--dx-ease);
-
-      &.is-on {
-        border-color: var(--color-pink);
-      }
-    }
-
-    &__input {
-      --dx-dot: 1.25rem;
-      margin-top: 0.0625rem;
-    }
-
-    &__text {
-      max-width: none;
-    }
-  }
-}
-
-// --- Back / Next ------------------------------------------------------------
 
 .dxNav {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.25rem 1.75rem;
-  margin-top: 2rem;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
 
-  &__action {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 0;
-    background: none;
-    border: 0;
-    font-family: var(--font-body);
-    font-size: 0.9375rem;
-    color: var(--color-muted);
-    cursor: pointer;
+.dxNav__back {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 0.5rem 0;
+  font: inherit;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+  cursor: pointer;
 
-    &:hover:not(:disabled) {
-      color: var(--color-plum-ink);
-      text-decoration: underline;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-pink);
-      outline-offset: 3px;
-    }
-
-    &--next {
-      margin-left: auto;
-      font-weight: 500;
-      color: var(--color-burgundy);
-
-      &:disabled {
-        color: var(--color-muted);
-        cursor: default;
-        opacity: 0.7;
-      }
-    }
+  &:hover {
+    color: var(--color-burgundy);
   }
 }
 
-// --- Resume -----------------------------------------------------------------
+.dxNav__next {
+  margin-left: auto;
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-page);
+  background: var(--color-brand);
+  cursor: pointer;
+  transition: background 160ms var(--dx-ease);
 
-.dxResume {
-  min-height: 0;
-
-  &__text {
-    max-width: 46ch;
-    font-size: var(--fs-lead);
-    color: var(--color-plum-ink);
+  &:hover:not(:disabled) {
+    background: var(--color-brand-hover);
   }
 
-  &__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 1.75rem;
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
   }
 }
-
-// --- Halfway ----------------------------------------------------------------
 
 .dxHalfway {
-  &:focus {
-    outline: none;
-  }
+  text-align: center;
+  padding-block: 2.5rem;
 
   &__eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-pink-text);
-  }
-
-  &__heading {
-    margin-top: 1rem;
-    max-width: 24ch;
-    font-family: var(--font-display);
-    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-    line-height: 1.12;
-    color: var(--color-burgundy);
-  }
-
-  &__body {
-    margin-top: 1.25rem;
-    max-width: 52ch;
-    font-size: var(--fs-lead);
-    line-height: 1.55;
-    color: var(--color-plum-ink);
-  }
-}
-
-// --- The result reveal --------------------------------------------------------
-// .dxR elements arrive on their own --d delay. Without .is-revealing (a
-// restored result, or reduced motion) nothing animates at all.
-
-.is-revealing .dxR {
-  animation: dxRise 520ms var(--dx-ease, ease-out) both;
-  animation-delay: var(--d, 0ms);
-}
-
-@keyframes dxRise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-}
-
-.dxResults {
-  padding-top: clamp(2rem, 1.2rem + 3vw, 3.5rem);
-}
-
-.dxVerdict {
-  max-width: 48rem;
-
-  &__eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.8125rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-pink-text);
-  }
-
-  &__score {
-    display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-    font-family: var(--font-display);
-    line-height: 1;
-  }
-
-  &__number {
-    font-size: clamp(4.5rem, 3.4rem + 4.6vw, 7.5rem);
-    letter-spacing: -0.03em;
-    font-variant-numeric: tabular-nums;
-    color: var(--color-burgundy);
-  }
-
-  &__outOf {
-    font-size: clamp(1.5rem, 1.25rem + 1vw, 2.25rem);
-    color: var(--color-muted);
-  }
-
-  &__band {
-    display: inline-block;
-    margin-top: 1.5rem;
-    padding: 0.375rem 0.75rem;
-    border: 1px solid var(--color-pink);
-    border-radius: 999px;
+    margin: 0 0 0.75rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-pink-text);
+    color: var(--color-brand);
   }
 
-  &__headline {
-    margin-top: 1.25rem;
-    max-width: 26ch;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
-    line-height: 1.12;
-    color: var(--color-burgundy);
-
-    &:focus {
-      outline: none;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-pink);
-      outline-offset: 6px;
-    }
-  }
-
-  &__narrative {
-    margin-top: 1.25rem;
-    max-width: 60ch;
-    font-size: var(--fs-lead);
-    line-height: 1.6;
-    color: var(--color-plum-ink);
-  }
-}
-
-// Shared by the three result sections. Pink at 24px and over, where 4.36
-// clears the large-text threshold.
-.dxSection {
   &__heading {
+    margin: 0;
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem);
-    line-height: 1.15;
-    color: var(--color-pink);
-  }
-
-  &__lead {
-    margin-top: 0.75rem;
-    max-width: 60ch;
-    line-height: 1.6;
+    font-size: clamp(1.4rem, 2.4vw, 1.85rem);
     color: var(--color-plum-ink);
   }
-}
 
-// --- Your clarity profile ---------------------------------------------------
-
-.dxProfile {
-  margin-top: var(--sec-y-sm);
-  padding-top: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
-
-  &__list {
-    margin: 1.75rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__note {
-    margin-top: 1.25rem;
-    max-width: 62ch;
-    font-size: 0.875rem;
-    color: var(--color-muted);
+  &__body {
+    margin: 0.85rem auto 0;
+    max-width: 34rem;
+    color: var(--color-body);
   }
 }
 
-// One row: name, "Unclear", the line with its marker, "Clear", the score.
-.dxSpectrum {
+// --- Results ----------------------------------------------------------------
+
+.dxResults {
   display: grid;
-  grid-template-columns: 8.5rem auto minmax(0, 1fr) auto 3rem;
-  align-items: center;
-  gap: 0 1rem;
-  padding-block: 1rem;
-  border-top: 1px solid var(--color-line);
+  gap: 1.75rem;
+}
 
-  &:first-child {
-    border-top: 0;
+.dxResults__header {
+  max-width: 40rem;
+}
+
+.dxResults__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--color-burgundy);
+}
+
+.dxResults__lead {
+  margin: 0.65rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--color-body);
+}
+
+.dxResults__band {
+  margin: 0.85rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--color-muted);
+}
+
+.dxResults__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(1.5rem, 4vw, 2.75rem);
+  align-items: start;
+}
+
+.dxResults__compass {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  padding: 1.25rem;
+  border-radius: 1.25rem;
+  background: color-mix(in srgb, var(--color-page) 80%, var(--color-brand-tint));
+  border: 1px solid var(--color-line-card);
+}
+
+.impactCompass--results {
+  width: min(100%, 22rem);
+  height: auto;
+  justify-self: center;
+  color: color-mix(in srgb, var(--color-burgundy) 35%, transparent);
+
+  .impactCompass__ring {
+    stroke: color-mix(in srgb, var(--color-burgundy) 18%, transparent);
+    stroke-width: 1;
+  }
+
+  .impactCompass__axis {
+    stroke: color-mix(in srgb, var(--color-burgundy) 22%, transparent);
+    stroke-width: 1;
+  }
+
+  .impactCompass__node {
+    fill: var(--color-pink);
+  }
+
+  .impactCompass__label {
+    fill: var(--color-burgundy);
+    font-family: var(--font-body);
+    font-size: 8.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
+  .impactCompass__plot {
+    fill: color-mix(in srgb, var(--color-brand) 28%, transparent);
+    stroke: var(--color-brand);
+    stroke-width: 1.75;
+  }
+
+  .impactCompass__plotNode {
+    fill: var(--color-page);
+    stroke: var(--color-brand);
+    stroke-width: 1.5;
+  }
+
+  .impactCompass__hub circle {
+    fill: var(--color-burgundy);
+  }
+
+  .impactCompass__score {
+    fill: var(--color-page);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .impactCompass__outOf {
+    font-size: 11px;
+    fill: color-mix(in srgb, var(--color-page) 75%, transparent);
+  }
+
+  .impactCompass__caption {
+    fill: color-mix(in srgb, var(--color-page) 70%, transparent);
+    font-family: var(--font-body);
+    font-size: 6.5px;
+    font-style: italic;
+  }
+}
+
+.dxScoreList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+  min-width: 8.5rem;
+
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.55rem;
+    align-items: center;
+    font-size: 0.875rem;
+  }
+
+  &__dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-pink);
   }
 
   &__name {
-    font-weight: 500;
-    color: var(--color-burgundy);
-  }
-
-  &__end {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--color-muted);
-  }
-
-  &__track {
-    position: relative;
-    height: 2px;
-    background: var(--color-line-strong);
-  }
-
-  &__marker {
-    position: absolute;
-    top: 50%;
-    left: var(--pos);
-    width: 0.875rem;
-    height: 0.875rem;
-    border: 2px solid var(--color-page);
-    border-radius: 50%;
-    background: var(--color-pink);
-    box-shadow: 0 0 0 1px var(--color-pink);
-    transform: translate(-50%, -50%);
+    color: var(--color-body);
   }
 
   &__value {
-    text-align: right;
-    font-family: var(--font-display);
-    font-size: 1.375rem;
-    font-variant-numeric: tabular-nums;
+    font-family: var(--font-mono);
+    font-weight: 600;
     color: var(--color-burgundy);
   }
 }
 
-// Markers travel from "Unclear" to their place, staggered by row.
-.is-revealing .dxSpectrum__marker {
-  animation: dxMark 800ms var(--dx-ease) both;
-  animation-delay: var(--d, 0ms);
-}
-
-@keyframes dxMark {
-  from {
-    left: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .dxSpectrum {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas:
-      "name name value"
-      "lo track hi";
-    gap: 0.625rem 0.75rem;
-
-    &__name {
-      grid-area: name;
-    }
-
-    &__value {
-      grid-area: value;
-    }
-
-    &__end--lo {
-      grid-area: lo;
-    }
-
-    &__track {
-      grid-area: track;
-    }
-
-    &__end--hi {
-      grid-area: hi;
-    }
-  }
-}
-
-// --- What this could mean commercially ----------------------------------------
-
-.dxCommercial {
-  margin-top: var(--sec-y-sm);
-  padding-top: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
-
-  &__list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
-    margin: 2rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-}
-
-// White, a thin edge, no shadow, one narrow pink accent on the top.
-.dxReading {
-  position: relative;
-  padding: 1.75rem 1.5rem 1.75rem;
+.dxRoadmap {
+  padding: 1.35rem 1.35rem 1.5rem;
+  border-radius: 1.25rem;
   background: var(--color-page);
   border: 1px solid var(--color-line-card);
-  border-radius: var(--radius-card);
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: -1px;
-    left: 1.5rem;
-    width: 2.5rem;
-    height: 3px;
-    background: var(--color-pink);
-  }
-
-  &__eyebrow {
-    font-family: var(--font-mono);
+  &__heading {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-body);
     font-size: 0.75rem;
-    letter-spacing: 0.1em;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-pink-text);
-  }
-
-  &__headline {
-    margin-top: 0.75rem;
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: 1.375rem;
-    line-height: 1.2;
     color: var(--color-burgundy);
+
+    &::after {
+      content: "";
+      display: block;
+      width: 2.5rem;
+      height: 2px;
+      margin-top: 0.55rem;
+      background: var(--color-brand-signal);
+    }
   }
 
-  &__body {
-    margin-top: 0.75rem;
-    line-height: 1.6;
-    color: var(--color-plum-ink);
+  &__note {
+    margin: -0.5rem 0 1rem;
+    font-size: 0.875rem;
+    color: var(--color-muted);
   }
-}
-
-@media (max-width: 767px) {
-  .dxCommercial__list {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-// --- Your three highest-leverage moves ----------------------------------------
-// Editorial rows, not cards: a pink numeral, the dimension, a burgundy title.
-
-.dxMoves {
-  margin-top: var(--sec-y-sm);
-  padding-top: var(--sec-y-sm);
-  border-top: 1px solid var(--color-line);
 
   &__list {
-    margin: 1.5rem 0 0;
+    margin: 0;
     padding: 0;
     list-style: none;
+    display: grid;
+    gap: 1.15rem;
   }
-}
 
-.dxMove {
-  display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr);
-  gap: 0.5rem 2rem;
-  padding-block: 1.75rem;
-  border-top: 1px solid var(--color-line);
-
-  &:first-child {
-    border-top: 0;
+  &__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.85rem;
+    align-items: start;
   }
 
   &__index {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    line-height: 1.1;
-    font-variant-numeric: tabular-nums;
-    color: var(--color-pink);
-  }
-
-  &__dimension {
-    display: block;
-    margin-top: 0.375rem;
+    display: grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-pink-text);
+    font-weight: 600;
+    color: var(--color-page);
+    background: var(--color-burgundy);
   }
 
   &__title {
+    margin: 0.15rem 0 0;
     font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);
-    line-height: 1.15;
-    color: var(--color-burgundy);
-  }
-
-  &__body {
-    margin-top: 0.75rem;
-    max-width: 60ch;
-    line-height: 1.6;
+    font-size: 1.125rem;
+    font-weight: 500;
     color: var(--color-plum-ink);
   }
 
-  &__revisit {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    margin-top: 0.25rem;
-    padding: 0;
-    background: none;
-    border: 0;
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    color: var(--color-muted);
-    cursor: pointer;
-
-    &:hover {
-      color: var(--color-plum-ink);
-      text-decoration: underline;
-    }
-
-    &:focus-visible {
-      outline: 2px solid var(--color-pink);
-      outline-offset: 3px;
-    }
-  }
-}
-
-.dxResults__print {
-  margin-top: 1rem;
-}
-
-@media (max-width: 767px) {
-  .dxMove {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-// --- A score is only the starting point ---------------------------------------
-// Full-bleed burgundy. Its own class, not .band-dark (see ResultsClose.tsx).
-// Text on it: --color-page 14.33, --color-brand-wash 9.30.
-
-.dxClose {
-  background: var(--color-burgundy);
-
   &__body {
-    padding-block: var(--sec-y);
-    max-width: 44rem;
+    margin: 0.35rem 0 0;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    color: var(--color-body);
   }
 
-  &__heading {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--fs-h2);
-    line-height: 1.1;
-    color: var(--color-page);
-  }
-
-  &__text {
-    margin-top: 1.25rem;
-    font-size: var(--fs-lead);
-    line-height: 1.6;
-    color: var(--color-brand-wash);
+  &__revisit {
+    appearance: none;
+    margin-top: 0.45rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 0.8125rem;
+    color: var(--color-brand);
+    text-decoration: underline;
+    cursor: pointer;
   }
 
   &__actions {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.75rem 1rem;
-    margin-top: 2.25rem;
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+    justify-items: start;
   }
 
-  &__primary,
-  &__secondary {
+  &__discuss {
     display: inline-flex;
-    align-items: center;
-    min-height: 48px;
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius-btn);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition:
-      background-color 160ms ease,
-      border-color 160ms ease,
-      color 160ms ease;
-
-    &:focus-visible {
-      outline: 2px solid var(--color-page);
-      outline-offset: 3px;
-    }
   }
 
-  &__primary {
-    border: 1px solid var(--color-page);
-    background: var(--color-page);
+  &__retake {
+    appearance: none;
+    border: 0;
+    background: none;
+    padding: 0;
+    font: inherit;
+    font-size: 0.9375rem;
     color: var(--color-burgundy);
-
-    &:hover {
-      background: var(--color-brand-tint);
-      color: var(--color-burgundy);
-    }
-  }
-
-  &__secondary {
-    border: 1px solid var(--color-brand-wash);
-    background: transparent;
-    color: var(--color-page);
-
-    &:hover {
-      border-color: var(--color-page);
-    }
+    text-decoration: underline;
+    cursor: pointer;
   }
 }
 
-// --- Reduced motion -----------------------------------------------------------
+.dxResults__note {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.dxResults__print {
+  appearance: none;
+  justify-self: start;
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.dxR {
+  animation: none;
+}
+
+.is-revealing .dxR {
+  animation: dx-enter 420ms var(--dx-ease) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@media (max-width: 900px) {
+  .dxResults__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dxResults__compass {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .dxScoreList {
+    width: min(100%, 16rem);
+  }
+}
+
+@media (max-width: 640px) {
+  .dxTiles {
+    grid-template-columns: 1fr;
+  }
+
+  .dxProgress__dimensions {
+    gap: 0.65rem 0.25rem;
+  }
+
+  .dxProgress__name {
+    font-size: 0.625rem;
+  }
+
+  .dxShell {
+    border-radius: 0.9rem;
+  }
+
+  .dxBody {
+    padding: 1.25rem 1rem 1.35rem;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .dxBody.is-entering,
-  .is-revealing .dxR,
-  .is-revealing .dxSpectrum__marker {
+  .is-revealing .dxR {
     animation: none;
   }
 
-  .dxBody.is-leaving,
-  .dxRail__input,
-  .dxRail__stops::after,
-  .dxRail__text,
-  .dxProgress__dimension,
-  .dxProgress__fill,
-  .is-locking .dxRail__stop:not(.is-on) {
-    transition: none;
+  .dxBody.is-leaving {
+    transform: none;
   }
 
-  .dxRail__stop:hover .dxRail__input:not(:checked),
-  .dxRail__input:focus-visible:not(:checked),
-  .dxRail__input:checked {
-    transform: none;
+  .dxProgress__fill {
+    transition: none;
   }
 }
 
-// --- Print --------------------------------------------------------------------
-// The result is worth keeping: the score, the diagnosis, the profile, the
-// reading and the moves, without the navigation or the controls.
-//
-// .cookie-banner is the one rule not scoped to this page, and deliberately:
-// it is position: fixed and printed as a bar across the result. This is the
-// only print stylesheet the site has.
 @media print {
-  .cookie-banner,
-  .site-header,
-  .footer,
-  .strategyHero,
-  .clarityBridge,
+  .impactIntro,
   .dxProgress,
-  .dxClose,
-  .dxMove__revisit {
+  .dxNav,
+  .dxRoadmap__actions,
+  .dxResults__print,
+  .dxRoadmap__revisit {
     display: none !important;
   }
 
-  .dxStage,
-  .dxResults {
-    padding-block: 0;
-  }
-
-  .dxR,
-  .dxSpectrum__marker {
-    animation: none !important;
-  }
-
-  .dxSpectrum__track,
-  .dxSpectrum__marker {
-    print-color-adjust: exact;
-    -webkit-print-color-adjust: exact;
+  .dxGround,
+  .dxShell,
+  .dxResults__compass,
+  .dxRoadmap {
+    background: white !important;
+    box-shadow: none !important;
+    border-color: #ccc !important;
   }
 }

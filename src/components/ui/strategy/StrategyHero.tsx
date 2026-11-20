@@ -1,37 +1,28 @@
 import { Container } from "@/components/common";
 import { Text } from "@/components/feature";
-import { strategyHero } from "@/data/strategy";
+import { diagnosticIntro, strategyHero } from "@/data/strategy";
 import type { MouseEvent } from "react";
+import ImpactCompass from "./ImpactCompass";
 
-// The interior hero, and the first state of the diagnostic.
-//
-// NO FIGURE, NO ART, deliberately. The final brief (30 Sep 2026) bars hero
-// artwork of any kind: the typography and the interaction carry the page.
-//
-// TWO LINES OF EQUAL AUTHORITY: the same size and weight, told apart by
-// colour only — plum ink, then burgundy, both at full opacity. When the
-// diagnostic starts the hero goes COMPACT: the heading gets smaller and the
-// lead, facts and controls fold away. It never fades; see _strategyHero.scss.
-//
-// "Start the diagnostic" is a real link to #diagnostic, so it works before
-// hydration and with JavaScript off; with JavaScript it starts the diagnostic
-// in place instead of jumping.
+// Impact Compass intro — approved Option 3 (20 Nov 2026).
+// Split composition: copy left, coded compass on a dark burgundy field.
+// "Start diagnostic" is a real #diagnostic link (works without JS) and
+// starts the in-page experience when hydrated.
 
 interface StrategyHeroProps {
-  compact: boolean;
   onStart: () => void;
+  resumable?: boolean;
+  onResume?: () => void;
+  onRestart?: () => void;
 }
 
-const StrategyHero = ({ compact, onStart }: StrategyHeroProps) => {
-  const {
-    eyebrow,
-    headingLead,
-    headingAccent,
-    lead,
-    facts,
-    primaryCta,
-    secondaryCta
-  } = strategyHero;
+const StrategyHero = ({
+  onStart,
+  resumable = false,
+  onResume,
+  onRestart
+}: StrategyHeroProps) => {
+  const { eyebrow, heading, lead, process, facts, primaryCta } = strategyHero;
 
   const start = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -39,45 +30,66 @@ const StrategyHero = ({ compact, onStart }: StrategyHeroProps) => {
   };
 
   return (
-    <div className='wash-left'>
-      <Container className='main'>
-        <section className='strategyHero'>
-          <Text className='eyebrow'>{eyebrow}</Text>
+    <section className='impactIntro' aria-labelledby='impact-intro-heading'>
+      <div className='impactIntro__copy'>
+        <Container className='main impactIntro__copyInner'>
+          <Text className='eyebrow impactIntro__eyebrow'>{eyebrow}</Text>
 
-          <h1 className='h1p strategyHero__heading'>
-            <span className='strategyHero__line strategyHero__line--lead'>
-              {headingLead}
-            </span>{" "}
-            <span className='strategyHero__line strategyHero__line--accent'>
-              {headingAccent}
-            </span>
+          <h1 id='impact-intro-heading' className='impactIntro__heading'>
+            {heading}
           </h1>
 
-          {/* Folds away when compact. `inert` takes the two controls out of
-              the tab order while they are folded. */}
-          <div className='strategyHero__more' inert={compact}>
-            <div className='strategyHero__moreInner'>
-              <Text className='lead strategyHero__lead'>{lead}</Text>
+          <p className='impactIntro__lead'>{lead}</p>
 
-              <ul className='strategyHero__facts'>
-                {facts.map(fact => (
-                  <li key={fact}>{fact}</li>
-                ))}
-              </ul>
+          <p className='impactIntro__process' aria-label={process.join(", then ")}>
+            {process.map((step, i) => (
+              <span key={step}>
+                {i > 0 && (
+                  <span className='impactIntro__processArrow' aria-hidden='true'>
+                    {" "}
+                    →{" "}
+                  </span>
+                )}
+                <span>{step}</span>
+              </span>
+            ))}
+          </p>
 
-              <div className='strategyHero__actions'>
-                <a href={primaryCta.to} className='btn' onClick={start}>
-                  {primaryCta.label}
-                </a>
-                <a href={secondaryCta.to} className='btn2'>
-                  {secondaryCta.label}
-                </a>
+          <ul className='impactIntro__facts'>
+            {facts.map(fact => (
+              <li key={fact}>{fact}</li>
+            ))}
+          </ul>
+
+          {resumable ? (
+            <div className='impactIntro__resume'>
+              <p className='impactIntro__resumeText'>{diagnosticIntro.resume}</p>
+              <div className='impactIntro__actions'>
+                <button type='button' className='btn' onClick={onResume}>
+                  {diagnosticIntro.resumeAction}
+                </button>
+                <button type='button' className='btn2' onClick={onRestart}>
+                  {diagnosticIntro.restartAction}
+                </button>
               </div>
             </div>
-          </div>
-        </section>
-      </Container>
-    </div>
+          ) : (
+            <div className='impactIntro__actions'>
+              <a href={primaryCta.to} className='btn' onClick={start}>
+                {primaryCta.label}
+              </a>
+            </div>
+          )}
+
+          <p className='impactIntro__assurance'>{diagnosticIntro.assurance}</p>
+        </Container>
+      </div>
+
+      <div className='impactIntro__visual' aria-hidden='true'>
+        <div className='impactIntro__orbits' />
+        <ImpactCompass variant='intro' className='impactCompass impactCompass--intro' />
+      </div>
+    </section>
   );
 };
 

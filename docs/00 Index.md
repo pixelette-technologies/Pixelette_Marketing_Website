@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 20 Nov 2026
 
-**Homepage presentation correction COMPLETE on `bilal/revamp` (`bcec022` + screenshot pack `4959ff0`).** The earlier `d4d5815` pass was withdrawn; original homepage graphics restored in rectangular Social Change–style panels. Preview: `https://pixelette-marketing-website-jo84q057u-pixelette-technologies.vercel.app`. Impact Compass (`3ea31db`) and one-agency (`af38481`) remain under that tip. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Influencer & Partnerships approved design implemented on `bilal/revamp` for `/services/influencer_marketing`.** Hero + What we deliver + closing only; imagery recovered from the approved mock. Homepage presentation correction (`bcec022` + `4959ff0`), Impact Compass (`3ea31db`) and one-agency (`af38481`) remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 19 Nov 2026
 

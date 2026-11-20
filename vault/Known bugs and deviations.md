@@ -4,12 +4,16 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, and Impact Compass are closed on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, and Influencer & Partnerships are closed on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 20 Nov — Influencer & Partnerships approved design
+
+`/services/influencer_marketing` rebuilt from the approved mock: hero, five deliver cards, closing CTA. Specialist template retired on this route only. Screenshots in `mockup-screenshots/influencer-partnerships-2026-11-20/`. Imagery cropped from the 682×1024 approved mock (no separate high-res masters; no generated or unrelated stock substitutes).
 
 ## Closed 20 Nov — homepage presentation correction
 

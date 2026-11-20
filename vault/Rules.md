@@ -6,9 +6,9 @@ Standing constraints, settled decisions, and every trap that actually bit. Writt
 
 **Content does not change.** Every heading, paragraph, list item, testimonial, FAQ, statistic, label and call-to-action stays byte-identical. No section is added, removed or reordered. This is a UI conversion only, and it stays in force for every follow-up commit on the branch, not just the first.
 
-### Exception — 12 November 2026 developer brief + Service Offer plan + 19 Nov one-agency pass + 20 Nov homepage presentation + Impact Compass
+### Exception — 12 November 2026 developer brief + Service Offer plan + 19 Nov one-agency pass + 20 Nov homepage presentation + Impact Compass + Influencer & Partnerships
 
-For surfaces the **12 Nov developer brief**, the **Service Offer and Website Plan** PDFs, the **19 Nov one-agency content/navigation instruction**, the **20 Nov homepage presentation instruction**, and the **20 Nov Impact Compass (Option 3) diagnostic instruction** name, those documents override the Phase F freeze (capability regroup, new routes, named blocks, nav/footer, Market B offer, governance pages, contact/procurement, unified agency proposition, homepage capability band layout below the hero, `/strategy-positioning` Impact Compass presentation).
+For surfaces the **12 Nov developer brief**, the **Service Offer and Website Plan** PDFs, the **19 Nov one-agency content/navigation instruction**, the **20 Nov homepage presentation instruction**, the **20 Nov Impact Compass (Option 3) diagnostic instruction**, and the **20 Nov approved Influencer & Partnerships design** name, those documents override the Phase F freeze (capability regroup, new routes, named blocks, nav/footer, Market B offer, governance pages, contact/procurement, unified agency proposition, homepage capability band layout below the hero, `/strategy-positioning` Impact Compass presentation, `/services/influencer_marketing` approved design).
 
 **Still forbidden:** inventing draft copy, figures, periods, bios, policies, audits, framework appointments, or demonstration artefacts the PDFs did not supply as facts. Where a PDF sentence would be false today, **omit or narrow** until the dependency exists (same honesty rule the Service Offer PDF uses in §2 / §11).
 
@@ -19,6 +19,8 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 **Homepage presentation (20 Nov, corrected):** below-hero sections may use Social Change–style rectangular image/copy layout and scroll entrances. Keep the original homepage graphics (Post-its, maquette, duck pond) and narrative. Do not import What We Do / capability-stage media onto the homepage. Do not create five new capability service bands. Do not change the existing hero, header, navigation or footer.
 
 **Impact Compass diagnostic (20 Nov):** `/strategy-positioning` may use the Option 3 intro → tile questionnaire → results radar layout. Preserve the existing twelve questions, six dimensions, and `strategyDiagnostic` scoring. Build the compass in code (SVG); do not embed the mock-up PNG as the UI. Do not restore the old “Know where to compete / Know why you win” hero or Clarity Bridge. Do not change the homepage or other pages for this pass.
+
+**Influencer & Partnerships (20 Nov):** `/services/influencer_marketing` may use the approved hero + What we deliver + closing layout only. Do not add Our Approach, campaign examples, case studies or the previous specialist FAQ/measure/process stack on this route. Reuse imagery recovered from the approved mock; do not generate replacements or substitute unrelated stock. Do not change other service pages for this pass.
 
 **Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
 

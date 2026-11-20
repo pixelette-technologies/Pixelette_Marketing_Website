@@ -11,7 +11,9 @@ import {
   ServicesHero,
   ServicesSection
 } from "@/components/ui/services";
+import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
 import { SpecialistServicePage } from "@/components/ui/specialist";
+import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
 import { servicesData } from "@/data/services/servicesData";
 import { specialistPages } from "@/data/services/specialist";
 import { proofCopy } from "@/data/home";
@@ -38,6 +40,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const pageData = servicesData.find(item => item.route === slug);
   const path = `/services/${slug}`;
 
+  // 20 Nov 2026: Influencer & Partnerships uses the approved design page and
+  // its own meta. Other specialist pages keep their config metadata.
+  if (slug === "influencer_marketing") {
+    return await pageMetadata({
+      title: influencerPartnershipsMeta.title,
+      description: influencerPartnershipsMeta.description,
+      path
+    });
+  }
+
   // 30 Sep 2026: a specialist page takes its title and description from its
   // own config. Share image defaults to `/opengraph-image` via pageMetadata;
   // pass ogImage when a page-specific asset is cleared for public use.
@@ -58,6 +70,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+
+  // 20 Nov 2026: approved Influencer & Partnerships design replaces the
+  // shared specialist template on this route only.
+  if (slug === "influencer_marketing") {
+    return <InfluencerPartnershipsPage />;
+  }
 
   // 30 Sep 2026: the specialist service pages (the four Demand & Performance
   // routes, and Search & Authority's) render one shared structure from their

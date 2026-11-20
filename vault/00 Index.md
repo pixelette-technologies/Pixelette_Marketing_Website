@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — homepage presentation correction **COMPLETE** (code `bcec022`, screenshot pack `4959ff0`); independent instruction audit closed after pack refresh; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — Influencer & Partnerships approved design implemented on `/services/influencer_marketing`; homepage correction and Impact Compass remain COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`6040ffd`** (homepage correction `bcec022`; screenshot pack `4959ff0`). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** diagnostic redesign. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands (original Post-its / maquette / duck pond) + `/strategy-positioning` Impact Compass. |
-| Pushed? | **Yes — `bilal/revamp` only**, including homepage correction and screenshot pack. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `bcec022` reported **success**. Deployment URL: `https://pixelette-marketing-website-jo84q057u-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage presentation correction COMPLETE (supersedes `d4d5815`). Impact Compass COMPLETE. Founder still owns wording approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with Influencer & Partnerships page (see latest commit). |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
+| Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
+| Preview | See latest Vercel Preview URL after the Influencer push. Non-official hosts noindex. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships page implemented from approved mock. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass exception; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,8 +26,20 @@ Last updated: **20 November 2026** — homepage presentation correction **COMPLE
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
-| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. |
+| 1 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Influencer pack: `mockup-screenshots/influencer-partnerships-2026-11-20/`. |
+
+## 20 November 2026 — Influencer & Partnerships approved design
+
+**Instruction:** implement the final approved Influencer & Partnerships mock on `/services/influencer_marketing` exactly — hero (“Real voices. Stronger brands.”), What we deliver (five illustrated cards), closing (“Let's build your next campaign.”). No Our Approach, campaign examples or case studies. Reuse approved imagery; do not generate replacements. Preview only; do not change other pages.
+
+**Shipped on `bilal/revamp`:**
+- Dedicated `InfluencerPartnershipsPage` (hero / deliver / close) replacing the shared specialist template on this route only.
+- Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (source mock was 682×1024 — cropped assets are resolution-limited).
+- Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
+- Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
+
+**Limitation:** individual hero/card/close photographs were cropped from the approved full-page mock rather than recovered as separate high-resolution masters; fine detail is softer than layered source files would allow. No unrelated stock substituted; no image generation used.
 
 ## 20 November 2026 — homepage presentation correction
 

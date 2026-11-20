@@ -8,19 +8,21 @@ Review §7, one-agency, homepage correction, and Impact Compass are closed on th
 
 | Item | Notes |
 |---|---|
-| **Screenshot pack / menu responsiveness** | Correction pack: `mockup-screenshots/homepage-correction-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 
 ## Closed 20 Nov — homepage presentation correction
 
-Supersedes `d4d5815`. Original homepage graphics restored; What We Do stage media removed from the homepage.
+Supersedes `d4d5815`. Original homepage graphics restored; What We Do stage media removed from the homepage. Instruction audit **COMPLETE** after screenshot pack refresh (`4959ff0`).
 
 | Item | Resolution |
 |---|---|
 | **What We Do imports on homepage** | Removed five capability-stage bands, `CapabilityBand`, and `capabilityBandCopy`. |
 | **Original visuals** | Post-its, maquette + name/cadence list, duck pond restored under the unchanged hero. |
 | **Presentation** | Rectangular alternating image/copy panels with fade-and-slide entrance; reduced-motion safe. |
+| **Screenshot pack** | `mockup-screenshots/homepage-correction-2026-11-20/` — desktop hero/activity/maquette/relevance + mobile activity/capabilities/relevance. |
 | **What We Do page** | Untouched. |
+| **Preview** | `https://pixelette-marketing-website-jo84q057u-pixelette-technologies.vercel.app` (`bcec022`). |
 
 ## Closed 20 Nov — Impact Compass diagnostic redesign
 

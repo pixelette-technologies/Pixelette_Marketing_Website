@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — homepage presentation **corrected** and pushed (`bcec022`); original graphics restored; What We Do stage media removed; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — homepage presentation correction **COMPLETE** (code `bcec022`, screenshot pack `4959ff0`); independent instruction audit closed after pack refresh; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4959ff0`** (homepage correction `bcec022`). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with this vault record. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** diagnostic redesign. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands (original Post-its / maquette / duck pond) + `/strategy-positioning` Impact Compass. |
-| Pushed? | **Yes — `bilal/revamp` only**, including homepage correction (`bcec022`). No PR to production. Live domain untouched. |
+| Pushed? | **Yes — `bilal/revamp` only**, including homepage correction and screenshot pack. No PR to production. Live domain untouched. |
 | Preview | Vercel Preview for `bcec022` reported **success**. Deployment URL: `https://pixelette-marketing-website-jo84q057u-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage presentation **corrected** (supersedes `d4d5815`). Impact Compass COMPLETE. Founder still owns wording approval. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage presentation correction COMPLETE (supersedes `d4d5815`). Impact Compass COMPLETE. Founder still owns wording approval. |
 
 ## Start here — next session, in order
 
@@ -26,8 +26,8 @@ Last updated: **20 November 2026** — homepage presentation **corrected** and p
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Screenshot pack / menu responsiveness** | Correction pack refreshed: `mockup-screenshots/homepage-correction-2026-11-20/` (desktop hero/activity/maquette/relevance + mobile activity/capabilities/relevance). Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
-| 2 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 1 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. |
 
 ## 20 November 2026 — homepage presentation correction
 
@@ -37,10 +37,10 @@ Last updated: **20 November 2026** — homepage presentation **corrected** and p
 - Restored Post-it field, architectural maquette + original capability name list, and duck pond.
 - Removed `CapabilityBand`, `_capabilityBands.scss`, and `capabilityBandCopy`.
 - Rectangular split panels via `HomeSceneReveal` + rewritten `_homeScene.scss`; capabilities flips (art left); activity and relevance keep copy left.
-- Screenshots: `mockup-screenshots/homepage-correction-2026-11-20/`.
+- Screenshots: `mockup-screenshots/homepage-correction-2026-11-20/` (desktop hero / activity / maquette / relevance; mobile activity / capabilities / relevance) — pack refreshed `4959ff0` after audit found mis-captures.
 - Preview: `https://pixelette-marketing-website-jo84q057u-pixelette-technologies.vercel.app`.
 
-**Verification:** hero unchanged vs `af38481`; `src/components/ui/services` and `/services` routes untouched; `tsc` + `test:contact` green.
+**Verification:** hero unchanged vs `af38481`; `src/components/ui/services` and `/services` routes untouched; `tsc` + `test:contact` green. Independent instruction audit: **COMPLETE** after screenshot refresh (code was already PASS).
 
 ## 20 November 2026 — Impact Compass diagnostic redesign
 

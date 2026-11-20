@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — homepage capability presentation pass (alternating bands + scroll entrances); hero/nav/footer unchanged. Built on one-agency tip `af38481`. Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — homepage capability presentation pushed on `bilal/revamp` (`d4d5815`); independent instruction audit **COMPLETE**; Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`d4d5815`**. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, then **20 Nov homepage presentation** refinement. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage capability bands (Social Change–style alternating image/copy). |
-| Pushed? | **`bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation pass local/preview. Founder still owns wording approval. |
+| Pushed? | **Yes — `bilal/revamp` only**, including homepage bands (`d4d5815`). No PR to production. Live domain untouched. |
+| Preview | Vercel Preview for `d4d5815` reported **success**. Deployment URL: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation audit COMPLETE. Founder still owns wording approval. |
 
 ## Start here — next session, in order
 
@@ -33,13 +33,14 @@ Last updated: **20 November 2026** — homepage capability presentation pass (al
 
 **Instruction:** refine homepage presentation below the hero only — Social Change–style alternating image/copy for the five capabilities, scroll entrances, less text-heavy; do not change hero, nav, footer, or other pages; preview only.
 
-**Shipped on `bilal/revamp`:**
+**Shipped on `bilal/revamp` as `d4d5815`:**
 - Replaced the maquette + stacked name list with five alternating capability bands using existing `/services/capabilities/` media.
-- Descriptions composed from existing cadence + scope + section lead (no new service claims).
+- Descriptions composed from existing cadence + scope + section lead (no new service claims); ~25–27 words each; links to existing service destinations.
 - Directional one-shot entrance via `useInView` / CSS; respects `prefers-reduced-motion`; content visible without JS.
 - Activity, one-approach, relevance and contact bands unchanged. SEO metadata unchanged.
+- Representative screenshots in `mockup-screenshots/homepage-redesign-2026-11-20/`.
 
-Business / later-phase gaps (VAT, bios, demos, policies, frameworks) stay in [[Known bugs and deviations]] under “do not invent” — not this snag list.
+**Independent audit against the instruction: COMPLETE.** Live domain untouched; no production PR.
 
 ## 19 November 2026 — one-agency content and navigation pass
 

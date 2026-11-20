@@ -6,19 +6,23 @@ Standing constraints, settled decisions, and every trap that actually bit. Writt
 
 **Content does not change.** Every heading, paragraph, list item, testimonial, FAQ, statistic, label and call-to-action stays byte-identical. No section is added, removed or reordered. This is a UI conversion only, and it stays in force for every follow-up commit on the branch, not just the first.
 
-### Exception — 12 November 2026 developer brief + Service Offer plan
+### Exception — 12 November 2026 developer brief + Service Offer plan + 19 Nov one-agency pass + 20 Nov homepage presentation
 
-For surfaces the **12 Nov developer brief** and the **Service Offer and Website Plan** PDFs name, those documents override the Phase F freeze (capability regroup, new routes, named blocks, nav/footer, Market B offer, governance pages, contact/procurement).
+For surfaces the **12 Nov developer brief**, the **Service Offer and Website Plan** PDFs, the **19 Nov one-agency content/navigation instruction**, and the **20 Nov homepage presentation instruction** name, those documents override the Phase F freeze (capability regroup, new routes, named blocks, nav/footer, Market B offer, governance pages, contact/procurement, unified agency proposition, homepage capability band layout below the hero).
 
 **Still forbidden:** inventing draft copy, figures, periods, bios, policies, audits, framework appointments, or demonstration artefacts the PDFs did not supply as facts. Where a PDF sentence would be false today, **omit or narrow** until the dependency exists (same honesty rule the Service Offer PDF uses in §2 / §11).
 
 **Push / PR / live:** `bilal/revamp` may be pushed when the user asks. **No PR to production and no live deploy** without explicit instruction.
 
+**One-agency framing (19 Nov):** present one integrated marketing and communications agency. Do not restore a top-level Public Sector mega-menu, a homepage “two markets” proposition, or defensive “what we have not yet done” blocks on the Market B service pages. Keep mock-up banners until Founder approval. Keep how-to-buy / policy honesty.
+
+**Homepage presentation (20 Nov):** below-hero capability bands may use alternating image/copy layout and scroll entrances. Do not change the existing hero, header, navigation or footer. Reuse existing capability media; do not invent new service categories.
+
 **Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
 
 **Crawler allowlist:** only `www.pixelettemarketing.com` and `pixelettemarketing.com` may be indexed. Every other host — `*.vercel.app`, other subdomains, localhost — gets `X-Robots-Tag: noindex, nofollow`, `/robots.txt` `Disallow: /`, and host-aware HTML robots. Deployment Protection may be off for management review; the code gate stays.
 
-**Evaluation offer (plan §3 / corrected §10.2):** the page sells evaluation design and evaluation delivery only. Do not restore “independent evaluation… campaigns someone else ran” until a named methodological specialist is appointed.
+**Evaluation offer (plan §3 / corrected §10.2):** the page sells evaluation design and evaluation delivery only. Do not restore “independent evaluation… campaigns someone else ran” until a named methodological specialist is appointed. Do not make evaluation the agency’s primary public-sector offer.
 
 Two corollaries that catch people out:
 

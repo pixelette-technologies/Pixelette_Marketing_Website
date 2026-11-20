@@ -25,13 +25,17 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 20 Nov 2026
+
+**Homepage capability presentation pushed on `bilal/revamp` (`d4d5815`).** Independent audit against the presentation instruction: **COMPLETE**. Preview: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. One-agency pass remains under that tip (`af38481`). Next session owns: Founder wording sign-off; fuller screenshot pack / menu by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 ## Status as of 19 Nov 2026
 
-**Review §7 pushed on `bilal/revamp` (`6c0b433`).** Independent review against the PDF: **COMPLETE**. A 19 Nov one-agency copy pass is in the working tree and is not committed or deployed. Detail: `vault/00 Index.md` “Pending for the next session” and `vault/Known bugs and deviations.md`.
+**Review §7 pushed on `bilal/revamp` (`6c0b433`).** Independent review against the PDF: **COMPLETE**. Superseded for tip/push state by 20 Nov above.
 
 ## Status as of 18 Nov 2026
 
-**Mock-up named snags and review §7 closed on `bilal/revamp`.** Superseded for tip/push state by 19 Nov above.
+**Mock-up named snags and review §7 closed on `bilal/revamp`.** Superseded for tip/push state by 20 Nov above.
 
 ## Status as of 17 Nov 2026
 

@@ -13,11 +13,13 @@ Review §7 and the one-agency pass are closed on the branch. Homepage capability
 
 ## Closed 20 Nov — homepage capability presentation
 
+Pushed as `d4d5815`. Independent audit against the presentation instruction: **COMPLETE**.
+
 | Item | Resolution |
 |---|---|
-| **Capabilities section text-heavy** | Replaced maquette + name list with five alternating image/copy bands using existing capability media. Descriptions from cadence + scope + lead only. |
+| **Capabilities section text-heavy** | Replaced maquette + name list with five alternating image/copy bands using existing capability media. Descriptions from cadence + scope + lead only (~25–27 words). |
 | **Scroll entrances** | Directional one-shot slide/fade via `CapabilityBand` + `useInView`; reduced-motion / no-JS stay visible. |
-| **Hero / nav / footer / other pages** | Untouched. |
+| **Hero / nav / footer / other pages** | Untouched. Preview only: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. |
 
 ## Closed 19 Nov — one-agency content and navigation
 

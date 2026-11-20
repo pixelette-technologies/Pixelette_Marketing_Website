@@ -8,7 +8,7 @@ Last updated: **20 November 2026** — homepage presentation correction **COMPLE
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with this vault record. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`6040ffd`** (homepage correction `bcec022`; screenshot pack `4959ff0`). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** diagnostic redesign. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands (original Post-its / maquette / duck pond) + `/strategy-positioning` Impact Compass. |
 | Pushed? | **Yes — `bilal/revamp` only**, including homepage correction and screenshot pack. No PR to production. Live domain untouched. |

@@ -8,7 +8,7 @@ Last updated: **20 November 2026** — homepage presentation **corrected** and p
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`bcec022`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4959ff0`** (homepage correction `bcec022`). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** diagnostic redesign. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands (original Post-its / maquette / duck pond) + `/strategy-positioning` Impact Compass. |
 | Pushed? | **Yes — `bilal/revamp` only**, including homepage correction (`bcec022`). No PR to production. Live domain untouched. |
@@ -26,7 +26,7 @@ Last updated: **20 November 2026** — homepage presentation **corrected** and p
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Screenshot pack / menu responsiveness** | Correction pack: `mockup-screenshots/homepage-correction-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 1 | **Screenshot pack / menu responsiveness** | Correction pack refreshed: `mockup-screenshots/homepage-correction-2026-11-20/` (desktop hero/activity/maquette/relevance + mobile activity/capabilities/relevance). Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
 | 2 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
 
 ## 20 November 2026 — homepage presentation correction

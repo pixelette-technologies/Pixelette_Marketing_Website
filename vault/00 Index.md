@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — Influencer & Partnerships approved design implemented on `/services/influencer_marketing`; homepage correction and Impact Compass remain COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — Influencer & Partnerships approved design **COMPLETE** (gaps closed); homepage correction and Impact Compass remain COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`8346312`** (Influencer hero/close gap-closure). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`8346312`** (Influencer hero/close gap-closure; vault COMPLETE note follows). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
 | Preview | Vercel Preview for `8346312` reported **success**. Deployment URL: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships page implemented from approved mock. Founder still owns wording / production approval. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships COMPLETE. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -33,13 +33,16 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 
 **Instruction:** implement the final approved Influencer & Partnerships mock on `/services/influencer_marketing` exactly — hero (“Real voices. Stronger brands.”), What we deliver (five illustrated cards), closing (“Let's build your next campaign.”). No Our Approach, campaign examples or case studies. Reuse approved imagery; do not generate replacements. Preview only; do not change other pages.
 
-**Shipped on `bilal/revamp`:**
+**Shipped on `bilal/revamp` as `8346312` (gap-closure; implementation `edd4c12`):**
 - Dedicated `InfluencerPartnershipsPage` (hero / deliver / close) replacing the shared specialist template on this route only.
 - Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (source mock was 682×1024 — cropped assets are resolution-limited).
 - Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
 - Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
+- Preview: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`.
 
-**Limitation:** photographs recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. Hero uses a dark left copy field + collage (annotation stays in the collage only — not redrawn in HTML). Close is one continuous band: camera as CSS background, solid left wash for the HTML heading/CTA (mock CTA excluded from the crop). Card photos cropped above mock icon discs. No unrelated stock; no image generation.
+**Verification:** structure matches the approved mock (hero → five deliver cards → close only; no Approach / examples / case studies). Hero: one HTML CTA; collage annotation in the asset only. Close: continuous band, one HTML CTA, mock CTA excluded from the crop. Visual gap-closure after MOSTLY COMPLETE audits: `8346312`. Instruction gaps **COMPLETE**. Live domain untouched; no production PR.
+
+**Limitation:** photographs recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. No unrelated stock; no image generation.
 
 ## 20 November 2026 — homepage presentation correction
 

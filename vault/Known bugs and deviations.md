@@ -13,7 +13,16 @@ Review §7, one-agency, homepage correction, Impact Compass, and Influencer & Pa
 
 ## Closed 20 Nov — Influencer & Partnerships approved design
 
-`/services/influencer_marketing` rebuilt from the approved mock: hero, five deliver cards, closing CTA. Specialist template retired on this route only. Screenshots in `mockup-screenshots/influencer-partnerships-2026-11-20/`. Imagery from the 682×1024 approved mock. Hero: dark left copy field + collage (annotation in collage only, not redrawn in HTML). Close: continuous band — camera CSS background + solid left wash for HTML heading/CTA (mock CTA excluded). Card photos cropped above mock icon discs. No generated or unrelated stock.
+Pushed as `8346312` (gap-closure on `edd4c12`). Instruction gaps **COMPLETE** after visual doubles / face blur / over-scrubbed close were closed.
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero → five What we deliver cards → closing CTA only. Specialist template retired on this route. No Approach / examples / case studies. |
+| **Hero** | Dark left copy field + collage; annotation in collage only (not redrawn in HTML); one live CTA. |
+| **Close** | Continuous band — camera CSS background + solid left wash; one live CTA; mock CTA excluded from crop. |
+| **Imagery** | From the 682×1024 approved mock; card photos cropped above mock icon discs. No generated or unrelated stock. |
+| **Screenshots** | `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390). |
+| **Preview** | `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app` (`8346312`). |
 
 ## Closed 20 Nov — homepage presentation correction
 

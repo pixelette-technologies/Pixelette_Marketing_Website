@@ -172,52 +172,6 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   payoff: "Real growth builds here"
 };
 
-// Homepage capability bands (presentation pass, 20 Nov 2026).
-// Descriptions are composed only from the existing cadence, scope list and
-// section lead — no new service claims. Links reuse the What we do destinations.
-export const capabilityBandCopy: readonly {
-  index: string;
-  description: string;
-  href: string;
-  ctaLabel: string;
-}[] = [
-  {
-    index: "01",
-    description:
-      "Know who you are. Know where you win. Positioning, identity direction, brand narrative, audience research and launch planning — part of an integrated approach to marketing and communications.",
-    href: "/strategy-positioning",
-    ctaLabel: "The Diagnostic"
-  },
-  {
-    index: "02",
-    description:
-      "Ideas people notice and remember. Campaign concepts, creative assets, product and service launches and content production — creative and campaigns focused on the outcome in front of you.",
-    href: "/services/influencer_marketing",
-    ctaLabel: "Explore Creative and Campaigns"
-  },
-  {
-    index: "03",
-    description:
-      "Keep the right people with you. Corporate and stakeholder communications, thought leadership, social and community, and customer lifecycle — communications and engagement as one integrated approach.",
-    href: "/services/social_media_marketing",
-    ctaLabel: "Explore Communications and Engagement"
-  },
-  {
-    index: "04",
-    description:
-      "Be found. Be chosen. Be measured. SEO and AI discovery, websites and landing pages, paid activation, and lead and conversion services for digital visibility and growth.",
-    href: "/services/seo_and_content_marketing",
-    ctaLabel: "Explore Digital Visibility and Growth"
-  },
-  {
-    index: "05",
-    description:
-      "Know what worked. Know what next. Marketing audits, analytics, reporting, research, testing and evaluation — measurement and insight within an integrated approach to marketing and communications.",
-    href: "/services/marketing_analytics_and_reporting",
-    ctaLabel: "Explore Measurement and Insight"
-  }
-];
-
 // --- 04 Attention is easy to buy ---------------------------------------------
 
 export const relevanceCopy: EditorialSectionCopy & {

@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — Impact Compass diagnostic redesign pushed on `bilal/revamp` (`3ea31db`); independent instruction audit **COMPLETE**; Founder sign-off and full screenshot pack still open. Phase F history still starts from 1 Sep.
+Last updated: **20 November 2026** — homepage presentation **corrected** (original graphics restored; What We Do stage media removed); Impact Compass remains on the branch; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`3ea31db`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation**, then **20 Nov Impact Compass** diagnostic redesign. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage capability bands + `/strategy-positioning` Impact Compass (intro → tiles → results radar). |
-| Pushed? | **Yes — `bilal/revamp` only**, including Impact Compass (`3ea31db`). No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `3ea31db` reported **success**. Deployment URL: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app`. Non-official hosts noindex. Dashboard: leave Deployment Protection off if it is re-enabled. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency re-audit COMPLETE. Homepage presentation audit COMPLETE. Impact Compass audit COMPLETE. Founder still owns wording approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip pending push of homepage correction. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** diagnostic redesign. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands (original Post-its / maquette / duck pond) + `/strategy-positioning` Impact Compass. |
+| Pushed? | **Pending** this correction on `bilal/revamp` only. No PR to production. Live domain untouched. |
+| Preview | Pending new Vercel Preview after push. Prior Impact Compass preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage presentation **corrected** (supersedes `d4d5815` audit). Impact Compass COMPLETE. Founder still owns wording approval. |
 
 ## Start here — next session, in order
 
@@ -26,8 +26,20 @@ Last updated: **20 November 2026** — Impact Compass diagnostic redesign pushed
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
+| 1 | **Screenshot pack / menu responsiveness** | Correction pack: `mockup-screenshots/homepage-correction-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. |
 | 2 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+
+## 20 November 2026 — homepage presentation correction
+
+**Instruction:** the `d4d5815` pass was wrong — it imported What We Do capability-stage media and five new service bands. Correct by restoring original homepage visuals below the hero, then presenting those original sections as Social Change–style rectangular image/copy layouts with alternating sides and scroll entrances. Do not change the hero or What We Do. Preview only.
+
+**Shipped on `bilal/revamp` (this tip):**
+- Restored Post-it field, architectural maquette + original capability name list, and duck pond.
+- Removed `CapabilityBand`, `_capabilityBands.scss`, and `capabilityBandCopy`.
+- Rectangular split panels via `HomeSceneReveal` + rewritten `_homeScene.scss`; capabilities flips (art left); activity and relevance keep copy left.
+- Screenshots: `mockup-screenshots/homepage-correction-2026-11-20/`.
+
+**Verification:** hero unchanged vs `af38481`; `src/components/ui/services` and `/services` routes untouched; `tsc` + `test:contact` green.
 
 ## 20 November 2026 — Impact Compass diagnostic redesign
 

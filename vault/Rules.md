@@ -16,7 +16,7 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **One-agency framing (19 Nov):** present one integrated marketing and communications agency. Do not restore a top-level Public Sector mega-menu, a homepage “two markets” proposition, or defensive “what we have not yet done” blocks on the Market B service pages. Keep mock-up banners until Founder approval. Keep how-to-buy / policy honesty.
 
-**Homepage presentation (20 Nov):** below-hero capability bands may use alternating image/copy layout and scroll entrances. Do not change the existing hero, header, navigation or footer. Reuse existing capability media; do not invent new service categories.
+**Homepage presentation (20 Nov, corrected):** below-hero sections may use Social Change–style rectangular image/copy layout and scroll entrances. Keep the original homepage graphics (Post-its, maquette, duck pond) and narrative. Do not import What We Do / capability-stage media onto the homepage. Do not create five new capability service bands. Do not change the existing hero, header, navigation or footer.
 
 **Impact Compass diagnostic (20 Nov):** `/strategy-positioning` may use the Option 3 intro → tile questionnaire → results radar layout. Preserve the existing twelve questions, six dimensions, and `strategyDiagnostic` scoring. Build the compass in code (SVG); do not embed the mock-up PNG as the UI. Do not restore the old “Know where to compete / Know why you win” hero or Clarity Bridge. Do not change the homepage or other pages for this pass.
 

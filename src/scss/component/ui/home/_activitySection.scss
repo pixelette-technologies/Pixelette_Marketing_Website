@@ -13,10 +13,7 @@
 // can never reach the words.
 .postitField__stage {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: var(--scene-stage-left);
+  inset: 0;
   // The notes are sized, and on a narrow stage thinned, by the STAGE width,
   // not the viewport: at 900px the stage is under 400px wide while the
   // viewport still reads as desktop, and eleven desktop-sized notes buried
@@ -321,15 +318,11 @@
   }
 }
 
-// --- Phone: the picture is its own row beneath the copy ------------------------------
+// --- Phone: art row height for the Post-it field ------------------------------------
 
-@media (max-width: 767px) {
+@media (max-width: 899px) {
   .homeScene--activity .homeScene__art {
-    min-height: 21rem;
-  }
-
-  .postitField__stage {
-    left: 0;
+    min-height: 18rem;
   }
 }
 

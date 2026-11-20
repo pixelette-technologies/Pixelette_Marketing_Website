@@ -1,54 +1,57 @@
 import { Container } from "@/components/common";
-import { capabilitiesCopy, capabilityBandCopy } from "@/data/home";
-import { capabilityGroups } from "@/data/services/capabilityGroups";
-import { capabilityStages } from "@/data/services/capabilityStage";
-import CapabilityBand from "./CapabilityBand";
+import { capabilitiesCopy } from "@/data/home";
 import EditorialCopy from "./EditorialCopy";
+import HomeSceneReveal from "./HomeSceneReveal";
+import MaquetteScene, { SCENE } from "./MaquetteScene";
+import MaquetteSceneMotion from "./MaquetteSceneMotion";
+import RoomBackdrop from "./RoomBackdrop";
 
-// 03 — Five capabilities as alternating editorial bands.
-// Replaces the single maquette + stacked name list with one visual row per
-// capability (Social Change–style image/copy split). Hero, nav and footer
-// are untouched. Copy is composed from existing cadence, scope and lead only.
+// 03 — "Five capabilities / Built around your objective".
+// Original homepage maquette + name list, presented as a rectangular
+// image/copy band (visual left, copy right). No What We Do stage media.
 
 export default function CapabilitiesSection() {
-  const bands = capabilityBandCopy.map((band, index) => {
-    const group = capabilityGroups.find(item => item.index === band.index);
-    const stage = capabilityStages.find(item => item.index === band.index);
-    if (!group || !stage) {
-      throw new Error(
-        `Homepage capability band ${band.index} is missing group or stage media.`
-      );
-    }
-    return {
-      ...band,
-      title: group.title,
-      stage,
-      imageOnLeft: index % 2 === 0
-    };
-  });
-
   return (
-    <section className='capabilityBands' aria-labelledby='capabilities-title'>
-      <header className='capabilityBands__intro sec'>
-        <Container className='main'>
-          <EditorialCopy
-            copy={capabilitiesCopy}
-            titleId='capabilities-title'
-          />
-        </Container>
-      </header>
+    <HomeSceneReveal
+      className='homeScene homeScene--capabilities homeScene--flip'
+      labelledBy='capabilities-title'
+    >
+      <div className='homeScene__art'>
+        <RoomBackdrop id='maquetteRoom' />
+        <div className='maquetteScene'>
+          <MaquetteSceneMotion
+            className='maquetteScene__frame'
+            style={{ aspectRatio: `${SCENE.w} / ${SCENE.h}` }}
+          >
+            <MaquetteScene />
+          </MaquetteSceneMotion>
+        </div>
+      </div>
 
-      {bands.map(band => (
-        <CapabilityBand
-          key={band.index}
-          title={band.title}
-          description={band.description}
-          href={band.href}
-          ctaLabel={band.ctaLabel}
-          stage={band.stage}
-          imageOnLeft={band.imageOnLeft}
-        />
-      ))}
-    </section>
+      <div className='homeScene__body'>
+        <Container className='main'>
+          <div className='homeScene__inner'>
+            <div className='homeScene__copyStack'>
+              <EditorialCopy
+                copy={capabilitiesCopy}
+                titleId='capabilities-title'
+              />
+              <ul className='capabilitiesNames'>
+                {capabilitiesCopy.capabilities.map(capability => (
+                  <li key={capability.name}>
+                    <span className='capabilitiesNames__name'>
+                      {capability.name}
+                    </span>
+                    <span className='capabilitiesNames__cadence'>
+                      {capability.cadence}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </div>
+    </HomeSceneReveal>
   );
 }

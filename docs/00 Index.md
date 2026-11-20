@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 20 Nov 2026
 
-**Impact Compass diagnostic redesign pushed on `bilal/revamp` (`3ea31db`).** Independent audit against the Option 3 instruction: **COMPLETE**. Preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app`. Homepage presentation (`d4d5815`) and one-agency (`af38481`) remain under that tip. Next session owns: Founder wording sign-off (including Impact Compass); fuller screenshot pack / menu by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Homepage presentation corrected on `bilal/revamp`.** The earlier `d4d5815` pass (What We Do stage media / five capability bands) was withdrawn; original homepage graphics restored in rectangular Social Change–style panels. Impact Compass (`3ea31db`) and one-agency (`af38481`) remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; fuller screenshot pack / menu by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 19 Nov 2026
 

@@ -2,16 +2,16 @@ import { Container } from "@/components/common";
 import { relevanceCopy } from "@/data/home";
 import DuckPond from "./DuckPond";
 import EditorialCopy from "./EditorialCopy";
+import HomeSceneReveal from "./HomeSceneReveal";
 
-// 04 — "Attention is easy to buy / Relevance isn't". Locked implementation
-// specification, 28 Sep 2026. The playful section of the four: the ducks bob.
-// The copy is server-rendered; the pond owns its client boundary.
+// 04 — "Attention is easy to buy / Relevance isn't".
+// Original duck pond + copy, as a rectangular band (copy left, art right).
 
 export default function RelevanceSection() {
   return (
-    <section
+    <HomeSceneReveal
       className='homeScene homeScene--relevance'
-      aria-labelledby='relevance-title'
+      labelledBy='relevance-title'
     >
       <div className='homeScene__art'>
         <DuckPond annotation={relevanceCopy.annotation} />
@@ -23,6 +23,6 @@ export default function RelevanceSection() {
           </div>
         </Container>
       </div>
-    </section>
+    </HomeSceneReveal>
   );
 }

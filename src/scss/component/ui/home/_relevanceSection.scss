@@ -39,8 +39,8 @@
   pointer-events: none;
 }
 
-// The copy sits on the left, on a clear ground: the day fades to the room's
-// light behind it. Over the video, under the note.
+// Soft edge only — copy now lives in its own rectangular panel, so the old
+// full fade-to-room-light under the words is no longer required.
 .duckPond::after {
   content: "";
   position: absolute;
@@ -48,11 +48,11 @@
   z-index: 1;
   background: linear-gradient(
     90deg,
-    var(--room-light) 0%,
-    color-mix(in srgb, var(--room-light) 92%, transparent) 22%,
-    transparent 46%
+    color-mix(in srgb, var(--room-light) 35%, transparent) 0%,
+    transparent 28%
   );
   pointer-events: none;
+  opacity: 0.35;
 }
 
 // Waiting for the section to arrive: the note is written in once it has.
@@ -101,21 +101,15 @@
   }
 
   .duckPond::after {
-    background: linear-gradient(
-      90deg,
-      var(--room-light) 0%,
-      color-mix(in srgb, var(--room-light) 92%, transparent) 40%,
-      transparent 62%
-    );
+    opacity: 0.2;
   }
 }
 
-// --- Phone: the pond is its own row under the copy, so no fade, and the crop
-// keeps the pink duck -----------------------------------------------------------------
+// --- Phone: the pond is its own row; crop keeps the pink duck --------------------
 
-@media (max-width: 767px) {
+@media (max-width: 899px) {
   .homeScene--relevance .homeScene__art {
-    min-height: 18rem;
+    min-height: 16rem;
   }
 
   .duckPond::after {

@@ -4,12 +4,23 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage presentation, and Impact Compass are closed on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, and Impact Compass are closed on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Screenshot pack / menu responsiveness** | Homepage band pack: `mockup-screenshots/homepage-redesign-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+| **Screenshot pack / menu responsiveness** | Correction pack: `mockup-screenshots/homepage-correction-2026-11-20/`. Diagnostic pack: `mockup-screenshots/diagnostic-impact-compass-2026-11-20/`. Full brief §8 / §9 pack across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+
+## Closed 20 Nov — homepage presentation correction
+
+Supersedes `d4d5815`. Original homepage graphics restored; What We Do stage media removed from the homepage.
+
+| Item | Resolution |
+|---|---|
+| **What We Do imports on homepage** | Removed five capability-stage bands, `CapabilityBand`, and `capabilityBandCopy`. |
+| **Original visuals** | Post-its, maquette + name/cadence list, duck pond restored under the unchanged hero. |
+| **Presentation** | Rectangular alternating image/copy panels with fade-and-slide entrance; reduced-motion safe. |
+| **What We Do page** | Untouched. |
 
 ## Closed 20 Nov — Impact Compass diagnostic redesign
 
@@ -23,15 +34,9 @@ Pushed as `3ea31db`. Independent audit against the Option 3 instruction: **COMPL
 | **Scoring / questions** | `strategyDiagnostic.ts` unchanged; same twelve questions and six dimensions. Preview: `https://pixelette-marketing-website-ijc20en7i-pixelette-technologies.vercel.app/strategy-positioning`. |
 | **Homepage / other pages** | Untouched for this pass. |
 
-## Closed 20 Nov — homepage capability presentation
+## Superseded 20 Nov — homepage capability presentation (`d4d5815`)
 
-Pushed as `d4d5815`. Independent audit against the presentation instruction: **COMPLETE**.
-
-| Item | Resolution |
-|---|---|
-| **Capabilities section text-heavy** | Replaced maquette + name list with five alternating image/copy bands using existing capability media. Descriptions from cadence + scope + lead only (~25–27 words). |
-| **Scroll entrances** | Directional one-shot slide/fade via `CapabilityBand` + `useInView`; reduced-motion / no-JS stay visible. |
-| **Hero / nav / footer / other pages** | Untouched. Preview only: `https://pixelette-marketing-website-4zpmsuego-pixelette-technologies.vercel.app`. |
+Pushed as `d4d5815`, then **withdrawn by correction** the same day: imported What We Do stage media and five new service bands, which the Founder instruction did not ask for. See **Closed 20 Nov — homepage presentation correction** above.
 
 ## Closed 19 Nov — one-agency content and navigation
 

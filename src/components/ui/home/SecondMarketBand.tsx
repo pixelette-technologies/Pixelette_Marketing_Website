@@ -6,7 +6,10 @@ import { Heading, Text } from "@/components/feature";
 
 export default function SecondMarketBand() {
   return (
-    <section className='sec' aria-labelledby='one-approach-title'>
+    <section
+      className='sec homeOneApproach'
+      aria-labelledby='one-approach-title'
+    >
       <Container className='main'>
         <Text className='eyebrow'>04 · One approach</Text>
         <Heading className='h2' level={2} id='one-approach-title'>

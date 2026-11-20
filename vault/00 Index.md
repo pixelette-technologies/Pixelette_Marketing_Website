@@ -8,11 +8,11 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with Influencer & Partnerships page (see latest commit). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`edd4c12`** (Influencer & Partnerships approved design). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | See latest Vercel Preview URL after the Influencer push. Non-official hosts noindex. |
+| Preview | Vercel Preview for `edd4c12` reported **success**. Deployment URL: `https://pixelette-marketing-website-1lme3nycy-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships page implemented from approved mock. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order

@@ -8,11 +8,11 @@ Last updated: **20 November 2026** — Influencer & Partnerships approved design
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`8346312`** (Influencer hero/close gap-closure; vault COMPLETE note follows). |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9d31259`** (Influencer & Partnerships instruction COMPLETE in vault; page code `8346312`). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass**, **20 Nov Influencer & Partnerships** approved design. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency proposition + homepage rectangular bands + Impact Compass + `/services/influencer_marketing` approved design (hero / deliver / close). |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `8346312` reported **success**. Deployment URL: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Preview | Vercel Preview for `9d31259` reported **success**. Deployment URL: `https://pixelette-marketing-website-cy58paj59-pixelette-technologies.vercel.app`. Non-official hosts noindex. Page preview for `8346312`: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer & Partnerships COMPLETE. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order

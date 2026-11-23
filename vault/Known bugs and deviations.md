@@ -18,7 +18,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 23 Nov — Lead Generation locked design (COMPLETE)
 
-Independent instruction audit: **COMPLETE** (no gaps). Pushed to `bilal/revamp` only. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`.
+Pushed as `5c8ce0d`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`.
 
 Allowed and recorded: the meta description now names audience acquisition and the four response types. The previous description promised a handoff to sales, which this page does not claim. Title, keywords and canonical stay. The measure line is a paragraph inside the offer, so the page does not gain a second results section. Page buttons use a right arrow, matching the other locked pages. FAQ answers stay inside the homepage's businesses and public-sector scope and the locked outcome types. They do not state a conversion rate, a client, or a guarantee.
 

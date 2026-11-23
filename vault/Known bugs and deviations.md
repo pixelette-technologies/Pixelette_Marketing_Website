@@ -16,7 +16,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 20–23 Nov — Social & Community locked design (MOSTLY COMPLETE)
 
-Dedicated page on `/services/social_media_marketing`. Independent instruction audit: **MOSTLY COMPLETE**. Live domain untouched; no production PR. Rights blockers remain open (see Pending).
+Pushed as `9f11958`. Independent instruction audit: **MOSTLY COMPLETE**. Preview: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. Live domain untouched; no production PR. Rights blockers remain open (see Pending).
 
 | Item | Resolution |
 |---|---|
@@ -26,6 +26,7 @@ Dedicated page on `/services/social_media_marketing`. Independent instruction au
 | **Imagery** | User Manchester plate + people recovered from locked composite; showcase crops from approved lower mock. No Higgsfield / unapproved stock. |
 | **SEO** | Meta title/description preserved. Removed on-route: earns-its-place, connections, how we work, what good looks like, FAQs — meaning kept in meta + deliver/measure copy. |
 | **Screenshots** | `mockup-screenshots/social-community-2026-11-20/` (desktop-1440, tablet-768, phone-390). |
+| **Preview** | `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app` (`9f11958`). |
 | **Deviations kept open** | Commenter display names; softer people composite seam vs flattened mock; plum swoop lighter than reference. |
 
 ## Closed 20 Nov — Impact Compass visual correction

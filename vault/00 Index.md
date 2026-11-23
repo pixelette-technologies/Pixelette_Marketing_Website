@@ -8,11 +8,11 @@ Last updated: **23 November 2026** — Social & Community locked design **MOSTLY
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with this Social & Community push. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9f11958`** (Social & Community MOSTLY COMPLETE). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page. |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Social page preview set after this push (Vercel). Prior Impact Compass: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Preview | Vercel Preview for `9f11958` reported **success**. Deployment URL: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. Social route: `/services/social_media_marketing`. Non-official hosts noindex. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
@@ -35,12 +35,13 @@ Last updated: **23 November 2026** — Social & Community locked design **MOSTLY
 
 **Instruction:** locked handoff `PIXELETTE_SOCIAL_COMMUNITY_LOCKED_HANDOFF_20NOV2026` supersedes prior Social hero concepts. Implement `/services/social_media_marketing` only — cream/crimson/plum two-column hero with Manchester campaign concept (HTML overlays; no phones), then What we deliver → From content to community → What we measure → closing CTA. Preview only; no production deploy; no unapproved image generation/purchase.
 
-**Shipped on `bilal/revamp` — independent audit MOSTLY COMPLETE:**
+**Shipped on `bilal/revamp` as `9f11958` — independent audit MOSTLY COMPLETE:**
 - Dedicated `SocialCommunityPage` (hero / deliver / community / measure / close) replacing the shared specialist template on this route only.
 - Hero: locked H1 + lead + Discuss Your Project; campaign eyebrow / question / location; three illustrative responses + disclaimer as live HTML; Manchester plate + recovered people composite in `public/services/social-community/`.
 - Lower sections: icon-led four capabilities (no photo row); asymmetric two-image showcase + four lines; six measure labels (no fake stats); plum/crimson closing band.
 - Screenshots: `mockup-screenshots/social-community-2026-11-20/` (desktop-1440, tablet-768, phone-390).
 - SEO meta title/description preserved. Specialist body removed on this route (earns-its-place, connections, how we work, what good looks like, FAQs) — themes retained in meta + deliver/measure copy.
+- Preview: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`.
 - Live domain untouched; no production PR.
 
 **Open before live:** Manchester photo rights; clean people cutout (optional); commenter-name deviation decision.

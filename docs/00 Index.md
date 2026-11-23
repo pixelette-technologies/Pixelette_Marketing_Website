@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 23 Nov 2026
 
-**Social & Community locked design MOSTLY COMPLETE on `bilal/revamp` for `/services/social_media_marketing`.** Hero campaign concept + four lower sections; Manchester photo rights still a publication blocker. Screenshots: `mockup-screenshots/social-community-2026-11-20/`. Impact Compass, Influencer, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: photo rights / people cutout; Founder wording sign-off; optional commenter-name decision. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Social & Community locked design MOSTLY COMPLETE on `bilal/revamp` (`9f11958`) for `/services/social_media_marketing`.** Hero campaign concept + four lower sections; Manchester photo rights still a publication blocker. Preview: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. Screenshots: `mockup-screenshots/social-community-2026-11-20/`. Impact Compass, Influencer, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: photo rights / people cutout; Founder wording sign-off; optional commenter-name decision. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 20 Nov 2026
 

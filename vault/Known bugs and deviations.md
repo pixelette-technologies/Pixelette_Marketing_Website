@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), and Email Marketing (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), and SEO, Content & AI Visibility (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -12,8 +12,24 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 23 Nov — SEO, Content & AI Visibility locked design (COMPLETE)
+
+Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/seo-ai-visibility-2026-11-23/`.
+
+Allowed and recorded: the comparison is a CSS screen rather than the mockup's iMac; measurement hints stack under the labels; "Illustrative architecture" and "Illustrative framework" captions are visible; below 700px the comparison uses tabs and the disclaimer stays visible; the architecture sits beside the capability list only when the card is wide enough; page CTAs use locked sentence case while the shared header stays "Discuss Your Project".
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero comparison → What we deliver beside What we measure → whole-system sequence → light closing CTA → three FAQs. The old specialist stack is off this route. |
+| **Hero** | Locked headline and every word of the comparison, including the disclaimer. Source labels are text, not links. |
+| **Interactions** | Desktop shows both panels, with hover and focus emphasis. A capability highlights its architecture connection. A measure row reveals a short definition with no figures. The four short measure lines are visible before a click. |
+| **Imagery** | Original CSS and SVG. No handoff PNG, no laptop photograph, no Higgsfield. |
+| **SEO** | Existing title, description and canonical kept. |
+| **FAQ** | The three locked questions. Answers stay modest: no fixed ranking date and no guaranteed place in AI answers. |
+| **CTA** | Page buttons go to `/contactus`. |
 
 ## Closed 23 Nov — Email Marketing locked design (COMPLETE)
 

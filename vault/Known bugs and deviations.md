@@ -17,7 +17,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 23 Nov — Paid Media & PPC locked design (COMPLETE)
 
-Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/paid-media-ppc-2026-11-23/`.
+Pushed as `8057281`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/paid-media-ppc-2026-11-23/`.
 
 Allowed and recorded: the measure notes Efficiency, Response, Spend and Improvement, plus the `01`–`04` and `01 / 02` indices, are on the approved mockup and not in the copy lock. They are labels, not results. The supplied abstract artwork is the Creative A background only. Below 900px the treatments switch instead of overlapping, with a visible Creative A / Creative B control. Page CTAs use locked sentence case while the shared header stays "Discuss Your Project".
 

@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Paid Media & PPC locked design **COMPLETE** on `bilal/revamp` (instruction audit, no gaps). Pushed for review only. SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Paid Media & PPC locked design **COMPLETE** on `bilal/revamp` (`8057281`; instruction audit, no gaps). Pushed for review only. SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Paid Media & PPC instruction audit COMPLETE. SEO page code remains **`c190220`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`8057281`**. Paid Media & PPC instruction audit COMPLETE. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
@@ -36,7 +36,7 @@ Last updated: **23 November 2026** — Paid Media & PPC locked design **COMPLETE
 
 **Instruction:** `PIXELETTE_PPC_CURSOR_LOCKED_HANDOFF_22NOV2026`. `/services/ads_ppc` only. The copy lock wins on wording. The revised desktop mockup is the visual authority. No production deploy. No Higgsfield.
 
-**Shipped on `bilal/revamp` — independent instruction audit COMPLETE (no gaps):**
+**Shipped on `bilal/revamp` as `8057281` — independent instruction audit COMPLETE (no gaps):**
 - Dedicated `PaidMediaPage` replaces the specialist template on this route only. Existing meta title, description and canonical kept.
 - Hero: locked headline, with `not clicks` emphasised. Creative A uses the supplied abstract artwork and HTML type. Creative B is CSS in coral, yellow and cobalt. Both use `Great teams` / `Greater possibilities`.
 - Desktop: Creative A is large by default. Selecting Creative B brings the coral treatment forward. Below 900px a Creative A / Creative B switch selects the visible treatment.

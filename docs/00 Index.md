@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 23 Nov 2026
 
-**Paid Media & PPC instruction COMPLETE on `bilal/revamp` for `/services/ads_ppc`.** Independent audit found no gaps. Two campaign treatments, four capabilities, four measurement areas, existing SEO and navigation. Below 900px a Creative A / Creative B switch selects the visible treatment. Review deploy only; live domain untouched. SEO, Content & AI Visibility remains COMPLETE (`c190220`). Email Marketing remains COMPLETE (`dbad31d`). PR & Earned Media remains COMPLETE (`7127aaa`). Social & Community remains MOSTLY COMPLETE; Manchester photo rights are still a publication blocker. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Paid Media & PPC instruction COMPLETE on `bilal/revamp` (`8057281`) for `/services/ads_ppc`.** Independent audit found no gaps. Two campaign treatments, four capabilities, four measurement areas, existing SEO and navigation. Below 900px a Creative A / Creative B switch selects the visible treatment. Review deploy only; live domain untouched. SEO, Content & AI Visibility remains COMPLETE (`c190220`). Email Marketing remains COMPLETE (`dbad31d`). PR & Earned Media remains COMPLETE (`7127aaa`). Social & Community remains MOSTLY COMPLETE; Manchester photo rights are still a publication blocker. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 20 Nov 2026
 

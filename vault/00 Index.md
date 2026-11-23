@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Measurement & Insight approved design on `bilal/revamp`. Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Measurement & Insight approved design on `bilal/revamp` (`510f14e`). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Measurement & Insight is on this branch. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`510f14e`**. Measurement & Insight awaits review. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** approved design on the branch. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |

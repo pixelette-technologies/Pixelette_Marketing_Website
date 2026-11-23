@@ -18,7 +18,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## 23 Nov — Measurement & Insight approved design (local)
 
-On `bilal/revamp`. Live domain untouched; no production PR.
+On `bilal/revamp` as `510f14e`. Live domain untouched; no production PR.
 
 Allowed and recorded: the chart uses the handoff’s local demonstration figures. `Paid Media +28% vs previous period` is the supplied example annotation on Understand performance. It is not calculated from the bars and it is not a client result. It does not appear on the other two views. FAQ questions are the approved set. Answers are existing Measurement sentences. Page buttons use a right arrow and sentence case. The shared header stays “Discuss Your Project”. Fully transparent pixels in the supplied collage held leftover headline colour; that colour was cleared so it does not paint. The visible collage is the supplied artwork.
 

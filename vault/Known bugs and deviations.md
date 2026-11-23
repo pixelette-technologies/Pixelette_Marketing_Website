@@ -17,7 +17,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 23 Nov — SEO, Content & AI Visibility locked design (COMPLETE)
 
-Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/seo-ai-visibility-2026-11-23/`.
+Pushed as `c190220`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/seo-ai-visibility-2026-11-23/`.
 
 Allowed and recorded: the comparison is a CSS screen rather than the mockup's iMac; measurement hints stack under the labels; "Illustrative architecture" and "Illustrative framework" captions are visible; below 700px the comparison uses tabs and the disclaimer stays visible; the architecture sits beside the capability list only when the card is wide enough; page CTAs use locked sentence case while the shared header stays "Discuss Your Project".
 

@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — SEO, Content & AI Visibility locked design **COMPLETE** on `bilal/revamp` (instruction audit, no gaps). Pushed for review only. Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — SEO, Content & AI Visibility locked design **COMPLETE** on `bilal/revamp` (`c190220`; instruction audit, no gaps). Pushed for review only. Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). SEO page code is this implementation commit. Email Marketing remains **`dbad31d`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`c190220`**. SEO, Content & AI Visibility instruction audit COMPLETE. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
@@ -36,7 +36,7 @@ Last updated: **23 November 2026** — SEO, Content & AI Visibility locked desig
 
 **Instruction:** `PIXELETTE_SEO_AI_VISIBILITY_CURSOR_HANDOFF_22NOV2026`. `/services/seo_and_content_marketing` only. The approved full-page mockup and the exact hero comparison text are the authorities. No production deploy. No Higgsfield.
 
-**Shipped on `bilal/revamp` — independent instruction audit COMPLETE (no gaps):**
+**Shipped on `bilal/revamp` as `c190220` — independent instruction audit COMPLETE (no gaps):**
 - Dedicated `SeoVisibilityPage` replaces the specialist template on this route only. Existing meta title, description and canonical kept.
 - Hero: locked headline, live HTML search-versus-AI comparison inside a CSS screen, disclaimer included. Source labels are not links.
 - Middle: What we deliver beside What we measure. Architecture diagram and measurement framework are HTML/CSS. No chart, numbers, or dark measure band.

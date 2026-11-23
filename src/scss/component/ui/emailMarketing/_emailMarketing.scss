@@ -1,0 +1,747 @@
+// Email Marketing — locked design (22 Nov 2026).
+// Page-local surface. Does not change navigation, footer or other routes.
+// Hero art is CSS. The email frame is one upright card; stages swap its copy.
+
+.emPage {
+  --em-cream: #fffaf7;
+  --em-crimson: #b3063c;
+  --em-crimson-deep: #8c0430;
+  --em-plum: #361023;
+  --em-ink: #251725;
+  --em-body: #5c4149;
+  --em-muted: #7d5d67;
+  --em-line: #e8d6dc;
+  --em-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  background: var(--em-cream);
+  color: var(--em-ink);
+  overflow-x: clip;
+}
+
+.emSectionTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(1.9rem, 1.35rem + 1.5vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--em-plum);
+  text-wrap: balance;
+}
+
+// --- Hero ------------------------------------------------------------------
+
+.emHero {
+  padding-block: clamp(2.25rem, 1.2rem + 2.6vw, 4.25rem)
+    clamp(1.25rem, 0.6rem + 1.6vw, 2.25rem);
+}
+
+.emHero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  align-items: center;
+  padding-block: 0.75rem 0.35rem;
+}
+
+.emHero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 0 1.05rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--em-crimson);
+}
+
+.emHero__eyebrow::after {
+  content: "";
+  width: 4.5rem;
+  height: 2px;
+  background: var(--em-crimson);
+}
+
+.emHero__heading {
+  margin: 0;
+  max-width: 11em;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(2.15rem, 1.15rem + 2.35vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  color: var(--em-plum);
+}
+
+.emHero__heading em {
+  display: block;
+  font-style: italic;
+  font-weight: 520;
+  color: var(--em-crimson);
+}
+
+.emHero__lead {
+  margin: 1.15rem 0 0;
+  max-width: 36ch;
+  font-family: var(--font-body);
+  font-size: clamp(0.98rem, 0.92rem + 0.18vw, 1.08rem);
+  line-height: 1.55;
+  color: var(--em-body);
+}
+
+.emHero__cta,
+.emClose__cta,
+.emMail__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  min-height: 48px;
+  font-family: var(--font-body);
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.emHero__cta {
+  margin-top: 1.55rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: 0.55rem;
+  background: var(--em-crimson);
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.emHero__cta:hover {
+  background: var(--em-crimson-deep);
+  color: #fff;
+}
+
+.emHero__cta:focus-visible,
+.emClose__cta:focus-visible,
+.emMail__cta:focus-visible,
+.emRail__step:focus-visible,
+.emFaq__question:focus-visible {
+  outline: 2px solid var(--em-crimson);
+  outline-offset: 3px;
+}
+
+// --- Email preview ---------------------------------------------------------
+
+.emPreview {
+  display: grid;
+  grid-template-columns: minmax(0, 22.5rem) auto;
+  gap: 0.35rem 0.85rem;
+  align-items: center;
+  justify-content: end;
+  min-width: 0;
+}
+
+.emPreview__note {
+  margin: 0.55rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--em-muted);
+}
+
+.emMail {
+  border-radius: 1.65rem;
+  background: #fff;
+  box-shadow:
+    0 18px 40px rgba(54, 16, 35, 0.08),
+    0 2px 8px rgba(54, 16, 35, 0.04);
+  overflow: hidden;
+}
+
+.emMail__chrome {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.05rem 1.15rem 0.35rem;
+}
+
+.emMail__logo {
+  display: block;
+  width: 10.25rem;
+}
+
+.emMail__logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.emMail__dots {
+  display: flex;
+  gap: 0.28rem;
+  padding-top: 0.35rem;
+}
+
+.emMail__dots span {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: #ddd4d0;
+}
+
+.emMail__live {
+  opacity: 1;
+  transition: opacity 220ms var(--em-ease);
+}
+
+.emMail__live.is-fading {
+  opacity: 0;
+}
+
+.emMail__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.55rem;
+  row-gap: 0.1rem;
+  align-items: center;
+  margin: 0;
+  padding: 0.35rem 1.15rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: var(--em-ink);
+}
+
+.emMail__env {
+  grid-row: span 2;
+  width: 1.05rem;
+  height: 1.05rem;
+  color: var(--em-crimson);
+}
+
+.emMail__panel {
+  position: relative;
+  margin-inline: 0.85rem;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  color: #fff;
+  background: #2a0b22;
+}
+
+.emMail__art {
+  position: absolute;
+  inset: 0;
+}
+
+.emMail__art span {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.emMail__art span:nth-child(1) {
+  width: 17.5rem;
+  height: 17.5rem;
+  right: -6.2rem;
+  top: -5.4rem;
+  background: #d01258;
+}
+
+.emMail__art span:nth-child(2) {
+  width: 15.5rem;
+  height: 15.5rem;
+  right: -1.4rem;
+  bottom: -7.6rem;
+  background: #6d2d78;
+  opacity: 0.92;
+}
+
+.emMail__art span:nth-child(3) {
+  width: 13rem;
+  height: 13rem;
+  right: 2.2rem;
+  top: 1.6rem;
+  background: #9a1848;
+  opacity: 0.72;
+}
+
+.emMail__panelCopy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 15.5rem;
+  padding: 1.35rem 1.15rem 1.2rem;
+}
+
+.emMail__headline {
+  margin: 0;
+  max-width: 12ch;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(1.55rem, 1.3rem + 0.6vw, 1.85rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.emMail__headline::before {
+  content: "";
+  display: block;
+  width: 2.4rem;
+  height: 2px;
+  margin-bottom: 0.75rem;
+  background: #e11d6a;
+}
+
+.emMail__body {
+  margin: 0.75rem 0 0;
+  max-width: 28ch;
+  min-height: 5.6rem;
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.emMail__cta {
+  margin-top: auto;
+  padding: 0.55rem 0.95rem;
+  border-radius: 0.45rem;
+  background: var(--em-crimson);
+  color: #fff;
+  font-size: 0.84rem;
+}
+
+.emMail__cta:hover {
+  background: #fff;
+  color: var(--em-crimson);
+}
+
+.emMail__bars {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.95rem 1.35rem 1.2rem;
+}
+
+.emMail__bars span {
+  display: block;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #ece6e3;
+}
+
+.emMail__bars span:first-child {
+  width: 92%;
+}
+
+.emMail__bars span:last-child {
+  width: 68%;
+}
+
+// --- Lifecycle rail --------------------------------------------------------
+
+.emRail {
+  position: relative;
+  display: grid;
+  gap: 0.72rem;
+  align-content: center;
+  margin: 0;
+  padding: 0.2rem 0 0.2rem 0.15rem;
+}
+
+.emRail::before {
+  content: "";
+  position: absolute;
+  left: 0.42rem;
+  top: 1.35rem;
+  bottom: 1.35rem;
+  width: 2px;
+  background: #f0c3d0;
+}
+
+.emRail__step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+}
+
+.emRail__node {
+  flex: none;
+  width: 0.72rem;
+  height: 0.72rem;
+  border: 2px solid #e7b0c2;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.emRail__step[aria-checked="true"] .emRail__node {
+  border-color: var(--em-crimson);
+  background: var(--em-crimson);
+}
+
+.emRail__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 46px;
+  min-width: 8.4rem;
+  padding: 0.4rem 0.95rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 8px 18px rgba(54, 16, 35, 0.06);
+  color: var(--em-ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 650;
+  transition:
+    background-color 220ms var(--em-ease),
+    color 220ms var(--em-ease);
+}
+
+.emRail__step[aria-checked="true"] .emRail__pill {
+  background: #fde7ee;
+  color: var(--em-crimson);
+}
+
+.emRail__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--em-crimson);
+}
+
+// --- What we deliver + measure --------------------------------------------
+
+.emDeliver {
+  padding-block: clamp(1.5rem, 0.8rem + 2vw, 2.75rem) 0.25rem;
+}
+
+.emDeliver__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(2rem, 1rem + 4vw, 5rem);
+  row-gap: 1.65rem;
+  margin: clamp(1.35rem, 1rem + 1vw, 1.85rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.emDeliver__item {
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.35rem 0.85rem;
+  min-width: 0;
+}
+
+.emDeliver__number {
+  padding-top: 0.2rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--em-crimson);
+}
+
+.emDeliver__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(1.15rem, 1.02rem + 0.35vw, 1.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--em-plum);
+}
+
+.emDeliver__body {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--em-body);
+}
+
+.emMeasure {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 0.8rem + 2vw, 2.75rem);
+  margin-top: clamp(1.35rem, 1rem + 1vw, 1.85rem);
+  padding-block: 1.15rem;
+  border-top: 1px solid var(--em-line);
+  border-bottom: 1px solid var(--em-line);
+}
+
+.emMeasure__label {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--em-crimson);
+  white-space: nowrap;
+}
+
+.emMeasure__items {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  color: var(--em-ink);
+}
+
+// --- Feedback --------------------------------------------------------------
+
+.emFeedback {
+  padding-block: clamp(2rem, 1.2rem + 2vw, 2.75rem);
+}
+
+.emFeedback__inner {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: clamp(1.5rem, 1rem + 2vw, 3.25rem);
+  align-items: start;
+}
+
+.emFeedback .emSectionTitle {
+  white-space: nowrap;
+}
+
+.emFeedback__quote {
+  margin: 0;
+  padding-left: 1.45rem;
+  border-left: 2px solid var(--em-crimson);
+}
+
+.emFeedback__quote p {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.05rem + 0.6vw, 1.6rem);
+  line-height: 1.35;
+  color: var(--em-plum);
+}
+
+.emFeedback__quote figcaption {
+  margin-top: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--em-plum);
+}
+
+.emFeedback__quote figcaption span {
+  font-weight: 450;
+  color: #60505a;
+}
+
+// --- Close -----------------------------------------------------------------
+
+.emClose {
+  padding-block: 0 0.4rem;
+}
+
+.emClose__banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  min-height: 8.4rem;
+  padding: 1.55rem 2.4rem;
+  border-radius: 0.65rem;
+  background: linear-gradient(110deg, #390a25 0%, #720b37 74%, #bb084e 100%);
+  color: #fff;
+}
+
+.emClose__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.55rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.emClose__lead {
+  margin: 0.45rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.45;
+  color: #fff0f6;
+}
+
+.emClose__cta {
+  flex: none;
+  min-width: 13.5rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: 0.45rem;
+  background: var(--em-cream);
+  color: var(--em-plum);
+  font-size: 0.95rem;
+  justify-content: space-between;
+}
+
+.emClose__cta:hover {
+  background: #fff;
+  color: var(--em-plum);
+}
+
+// --- FAQ -------------------------------------------------------------------
+
+.emFaq {
+  padding-block: clamp(1.75rem, 1rem + 2vw, 2.5rem)
+    clamp(3rem, 2rem + 3vw, 4.5rem);
+}
+
+.emFaq__list {
+  margin-top: 1.35rem;
+  border-top: 1px solid #d8c6ca;
+}
+
+.emFaq__item {
+  border-bottom: 1px solid #d8c6ca;
+}
+
+.emFaq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 48px;
+  padding: 0.95rem 0.35rem 0.95rem 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--em-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.emFaq__question::-webkit-details-marker {
+  display: none;
+}
+
+.emFaq__mark {
+  position: relative;
+  flex: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: var(--em-crimson);
+}
+
+.emFaq__mark::before,
+.emFaq__mark::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1.5px;
+  margin-top: -1px;
+  background: currentColor;
+}
+
+.emFaq__mark::after {
+  transform: rotate(90deg);
+}
+
+.emFaq__item[open] .emFaq__mark {
+  transform: rotate(45deg);
+}
+
+.emFaq__answer {
+  max-width: 68ch;
+  margin: 0;
+  padding: 0 2rem 1.15rem 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--em-body);
+}
+
+@media (max-width: 1040px) {
+  .emHero__inner,
+  .emFeedback__inner,
+  .emClose__banner {
+    grid-template-columns: 1fr;
+  }
+
+  .emClose__banner {
+    display: grid;
+  }
+
+  .emPreview {
+    justify-content: start;
+  }
+
+  .emHero__heading {
+    max-width: 14em;
+  }
+}
+
+@media (max-width: 760px) {
+  .emPreview {
+    grid-template-columns: 1fr;
+    justify-items: stretch;
+  }
+
+  .emMail {
+    max-width: 24rem;
+  }
+
+  .emRail {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    padding-left: 0;
+  }
+
+  .emRail::before {
+    display: none;
+  }
+
+  .emRail__node {
+    display: none;
+  }
+
+  .emRail__pill {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .emDeliver__grid,
+  .emFeedback__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .emMeasure {
+    display: block;
+  }
+
+  .emMeasure__items {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.7rem 1.4rem;
+    margin-top: 0.85rem;
+  }
+
+  .emClose__cta {
+    justify-self: start;
+    min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .emMail__live,
+  .emRail__pill,
+  .emFaq__mark {
+    transition: none;
+  }
+}

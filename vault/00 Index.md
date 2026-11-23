@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — PR & Earned Media locked design **COMPLETE** on `bilal/revamp` (`7127aaa`; instruction audit, no gaps). Hero remains original drawn panels until licensed photos are supplied. Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Email Marketing locked design **COMPLETE** on `bilal/revamp` for `/services/email_marketing` (instruction audit, no gaps). Pushed for review only. PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`7127aaa`**. Instruction audit COMPLETE recorded in this note. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page. |
-| Pushed? | **Yes — `bilal/revamp` only** (`7127aaa`). No production PR. Live domain untouched. |
-| Preview | PR route: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. Social & Community remains `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). PR & Earned Media instruction **COMPLETE** (`7127aaa`); drawn hero is the allowed stand-in until licensed photos arrive. Founder still owns wording / production approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Email Marketing instruction audit COMPLETE is on this push. Prior pushed page code was **`7127aaa`**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page. |
+| Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
+| Preview | Email Marketing review follows the `bilal/revamp` deployment of `/services/email_marketing`. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
+| Sign-off | **Not signed off.** Email Marketing instruction **COMPLETE** (audit, no gaps). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -29,8 +29,21 @@ Last updated: **23 November 2026** — PR & Earned Media locked design **COMPLET
 | 1 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
 | 2 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
 | 3 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| 4 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 4 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
 | 5 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 23 November 2026 — Email Marketing locked design
+
+**Instruction:** `PIXELETTE_EMAIL_MARKETING_CURSOR_HANDOFF_22NOV2026`. `/services/email_marketing` only. Option 1 Welcome email is the hero authority. No production deploy. No Higgsfield.
+
+**Shipped on `bilal/revamp` — independent instruction audit COMPLETE (no gaps):**
+- Dedicated `EmailMarketingPage` replaces the legacy template on this route only. Existing meta title, description and keywords kept. Hyphen alias still redirects here.
+- Hero copy, single upright email, four stages (Welcome, Nurture, Convert, Re-engage). Convert uses a target icon. Email copy crossfades inside the same frame.
+- Lower page: 2×2 capabilities, one measure line, WebBookingPro quotation, closing CTA, two FAQs. BlockGuard removed from this route only.
+- Hero art is original CSS. No handoff PNG embedded. No Higgsfield. Autoplay omitted (optional).
+- Screenshots: `mockup-screenshots/email-marketing-2026-11-23/` (desktop-1440, phone-390).
+- Page CTAs use locked sentence case. Shared header label unchanged.
+- Live domain untouched; no production PR.
 
 ## 23 November 2026 — PR & Earned Media locked design
 

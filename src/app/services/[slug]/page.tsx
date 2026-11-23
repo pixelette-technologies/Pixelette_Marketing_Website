@@ -11,10 +11,12 @@ import {
   ServicesHero,
   ServicesSection
 } from "@/components/ui/services";
+import { EmailMarketingPage } from "@/components/ui/emailMarketing";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
 import { PrEarnedMediaPage } from "@/components/ui/prEarnedMedia";
 import { SocialCommunityPage } from "@/components/ui/socialCommunity";
 import { SpecialistServicePage } from "@/components/ui/specialist";
+import { emailMarketingMeta } from "@/data/services/emailMarketing";
 import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
 import { prEarnedMediaMeta } from "@/data/services/prEarnedMedia";
 import { socialCommunityMeta } from "@/data/services/socialCommunity";
@@ -60,6 +62,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: socialCommunityMeta.title,
       description: socialCommunityMeta.description,
       path
+    });
+  }
+
+  // 23 Nov 2026: locked Email Marketing design — keep the existing route meta.
+  if (slug === "email_marketing") {
+    return await pageMetadata({
+      title: emailMarketingMeta.title,
+      description: emailMarketingMeta.description,
+      path,
+      keywords: emailMarketingMeta.keywords
     });
   }
 
@@ -109,6 +121,12 @@ export default async function Page({ params }: PageProps) {
   // specialist template on this route only.
   if (slug === "pr") {
     return <PrEarnedMediaPage />;
+  }
+
+  // 23 Nov 2026: locked Email Marketing design replaces the legacy template
+  // on this route only. The hyphen alias still redirects here.
+  if (slug === "email_marketing") {
+    return <EmailMarketingPage />;
   }
 
   // 30 Sep 2026: the specialist service pages (the four Demand & Performance

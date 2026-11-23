@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), and PR & Earned Media (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), and Email Marketing (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -12,8 +12,22 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 23 Nov — Email Marketing locked design (COMPLETE)
+
+Pushed on `bilal/revamp`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/email-marketing-2026-11-23/`.
+
+Allowed and recorded: autoplay omitted; page CTAs use locked sentence case while the shared header stays "Discuss Your Project"; attribution prints `CEO, WebBookingPro` (the stored role string has no space after the comma).
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero with one upright email → What we deliver (2×2, no icons) → one measure line → WebBookingPro quotation → closing CTA → two FAQs. Legacy catalogue, BlockGuard and the old six FAQs are off this route. |
+| **Stages** | Welcome, Nurture, Convert, Re-engage. Click and arrow keys swap sender subject, headline, body and CTA inside the same frame. Convert uses a target icon. Default is Welcome. |
+| **Imagery** | Original CSS circles and the repository logo. No handoff PNG, no Higgsfield. |
+| **SEO** | Existing title, description, keywords and canonical kept. |
+| **CTA** | Page buttons go to `/contactus`. Illustrative email links go to `/blog-list` or `/contactus`. |
 
 ## Closed 23 Nov — PR & Earned Media locked design (COMPLETE)
 

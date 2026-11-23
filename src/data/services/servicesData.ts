@@ -1635,11 +1635,10 @@ export const servicesData = [
 
   {
     id: 7,
-    // 30 Sep 2026: the Growth Intelligence specialist page. The display name
-    // changed from "Marketing Analytics & Reporting"; the route did not. The
-    // page renders from data/services/specialist/growthIntelligence.ts — the
-    // legacy fields below no longer render and stay only until the route is
-    // fully migrated. Nav, /services and the footer read this title.
+    // 23 Nov 2026: /services/marketing_analytics_and_reporting renders
+    // MeasurementInsightPage. Title, meta and the nav label stay on this
+    // record. The sections below are the previous long page and are not
+    // rendered on the route.
     title: "Marketing Analytics & Measurement",
     metaTitle: "Marketing Analytics & Measurement | Pixelette Marketing",
     metaDescription: "Marketing analytics and measurement designed to connect performance, customer and pipeline data and turn evidence into clearer commercial decisions.",

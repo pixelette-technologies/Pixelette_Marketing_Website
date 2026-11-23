@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), and Lead Generation (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), and Measurement & Insight are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -13,8 +13,23 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
 | **Lead Generation — hero artwork resolution and rights** | Supplied PNG is 585×431 and is used unaltered at `public/services/lead_generation/action-triptych.png`. The full triptych stays visible at 320–1440. It will look soft on a retina desktop. The handoff says an earlier external exclamation image must not be treated as cleared, and the prepared asset still needs the owner's rights check before live. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## 23 Nov — Measurement & Insight approved design (local)
+
+On `bilal/revamp`. Live domain untouched; no production PR.
+
+Allowed and recorded: the chart uses the handoff’s local demonstration figures. `Paid Media +28% vs previous period` is the supplied example annotation on Understand performance. It is not calculated from the bars and it is not a client result. It does not appear on the other two views. FAQ questions are the approved set. Answers are existing Measurement sentences. Page buttons use a right arrow and sentence case. The shared header stays “Discuss Your Project”. Fully transparent pixels in the supplied collage held leftover headline colour; that colour was cleared so it does not paint. The visible collage is the supplied artwork.
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero collage → three chart views → four capabilities → light close → four FAQs. The specialist stack is off this route. |
+| **Hero** | Locked headline and supporting copy. Circular “A clearer picture” graphic kept. No dashboard in the hero. |
+| **Chart** | Understand performance, Spot opportunities, Make smarter decisions. 30 days, 90 days, 12 months. Keyboard tabs and radios. A text alternative carries the figures. |
+| **SEO** | Existing title, description and canonical kept. Route unchanged. |
+| **FAQ** | The four approved questions. Native `details` accordion. |
+| **CTA** | Page buttons go to `/contactus`. |
 
 ## Closed 23 Nov — Lead Generation locked design (COMPLETE)
 

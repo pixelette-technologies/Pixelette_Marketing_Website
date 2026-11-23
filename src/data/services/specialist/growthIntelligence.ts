@@ -1,6 +1,11 @@
 import { growthIntelligenceDemo } from "./growthIntelligenceDemo";
 import type { SpecialistPageConfig } from "./types";
 
+// 23 Nov 2026: /services/marketing_analytics_and_reporting renders
+// MeasurementInsightPage. This config still supplies the route's title and
+// description. The sections below are the previous specialist page and are
+// not rendered.
+//
 // THE GROWTH INTELLIGENCE SPECIALIST PAGE (30 Sep 2026, the Marketing
 // Analytics & Measurement final implementation brief).
 //

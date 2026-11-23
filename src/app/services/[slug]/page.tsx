@@ -15,6 +15,7 @@ import { EmailMarketingPage } from "@/components/ui/emailMarketing";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
 import { PrEarnedMediaPage } from "@/components/ui/prEarnedMedia";
 import { LeadGenerationPage } from "@/components/ui/leadGeneration";
+import { MeasurementInsightPage } from "@/components/ui/measurementInsight";
 import { PaidMediaPage } from "@/components/ui/paidMedia";
 import { SeoVisibilityPage } from "@/components/ui/seoVisibility";
 import { SocialCommunityPage } from "@/components/ui/socialCommunity";
@@ -180,6 +181,13 @@ export default async function Page({ params }: PageProps) {
   // on this route only. The hyphen alias still redirects here.
   if (slug === "email_marketing") {
     return <EmailMarketingPage />;
+  }
+
+  // 23 Nov 2026: approved Measurement & Insight design replaces the
+  // specialist template on this route only. Existing meta stays on the
+  // specialist config. The hyphen alias still redirects here.
+  if (slug === "marketing_analytics_and_reporting") {
+    return <MeasurementInsightPage />;
   }
 
   // 30 Sep 2026: the specialist service pages (the four Demand & Performance

@@ -1,0 +1,721 @@
+// Measurement & Insight — approved design (22 Nov 2026).
+// Page-local surface. Header, footer and other routes stay as they are.
+// Hero artwork is the supplied collage. The chart is a local demonstration.
+
+.miPage {
+  --mi-ink: #3c1634;
+  --mi-cream: #fff8f4;
+  --mi-rose: #c90c51;
+  background: var(--mi-cream);
+  color: var(--mi-ink);
+  overflow-x: clip;
+}
+
+.miPage .container_main {
+  overflow: visible;
+}
+
+.miSr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.miCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 48px;
+  padding: 0.85rem 1.3rem;
+  border-radius: 8px;
+  background: var(--color-brand);
+  color: var(--color-page);
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.miCta:hover {
+  background: var(--color-brand-hover);
+}
+
+.miCta:focus-visible,
+.miSteps__item:focus-visible,
+.miRange__item:focus-visible,
+.miChart__group:focus-visible,
+.miFaq__question:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.miEyebrow,
+.miHero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #711741;
+}
+
+.miEyebrow::after,
+.miHero__eyebrow::after {
+  content: "";
+  width: 2.4rem;
+  height: 3px;
+  border-radius: 4px;
+  background: var(--mi-rose);
+}
+
+.miTitle {
+  margin: 0.85rem 0 0;
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.15rem, 1.2rem + 2.4vw, 3.15rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  color: var(--mi-ink);
+}
+
+.miLead {
+  margin: 1rem 0 0;
+  max-width: 42rem;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #392034;
+}
+
+// --- Hero ------------------------------------------------------------------
+
+.miHero {
+  position: relative;
+  padding-top: clamp(2.2rem, 1rem + 2.4vw, 3.4rem);
+  background:
+    radial-gradient(circle at 78% 28%, rgba(255, 186, 140, 0.28), transparent 32%),
+    linear-gradient(180deg, #fff6f2 0%, var(--mi-cream) 70%);
+}
+
+.miHero__grid {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.84fr) minmax(0, 1.16fr);
+  gap: clamp(0.75rem, 0.3rem + 1vw, 1.5rem);
+  align-items: center;
+}
+
+.miHero__heading {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.35rem, 1.05rem + 2vw, 3.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: var(--mi-ink);
+}
+
+.miHero__line {
+  display: block;
+}
+
+.miHero__lead {
+  margin: 1.15rem 0 0;
+  max-width: 34ch;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #392034;
+}
+
+.miHero__copy .miCta {
+  margin-top: 1.5rem;
+}
+
+.miHero__art {
+  min-width: 0;
+  overflow: hidden;
+  aspect-ratio: 709 / 470;
+}
+
+.miHero__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.miHero__waveWrap {
+  height: 3.6rem;
+  margin-top: -1.4rem;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.miHero__waves {
+  display: block;
+  width: 100%;
+  height: 7.2rem;
+  margin-top: -3.4rem;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+// --- Explore ---------------------------------------------------------------
+
+.miExplore {
+  position: relative;
+  padding-block: clamp(1.2rem, 0.4rem + 1.5vw, 2.2rem) clamp(3rem, 2rem + 2vw, 4.2rem);
+  background: linear-gradient(180deg, #fff4ee 0%, #fff7f4 88%, #fff5f4 100%);
+}
+
+.miSteps {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.8rem;
+}
+
+.miSteps__item {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 52px;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #eed2db;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.55);
+  color: #591642;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.miSteps__item.is-selected {
+  border-color: var(--mi-rose);
+  background: var(--mi-rose);
+  color: #fff;
+  box-shadow: 0 7px 20px rgba(204, 20, 96, 0.12);
+}
+
+.miSteps__num {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.miPanel {
+  position: relative;
+  margin-top: 1.4rem;
+  padding: 1.8rem 1.7rem 1.3rem;
+  border: 1px solid #edd5dc;
+  border-radius: 23px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 12px 45px rgba(73, 19, 51, 0.06);
+}
+
+.miPanel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.miPanel__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 1.2rem + 0.8vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: var(--mi-ink);
+}
+
+.miPanel__subtitle {
+  margin: 0.4rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #5e4759;
+}
+
+.miRange {
+  display: flex;
+  flex: none;
+  gap: 0.25rem;
+  padding: 0.28rem;
+  border: 1px solid #efd3dc;
+  border-radius: 999px;
+  background: #fff;
+}
+
+.miRange__item {
+  min-height: 36px;
+  padding: 0.4rem 0.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #5d244b;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.miRange__item.is-selected {
+  background: #c70b51;
+  color: #fff;
+}
+
+.miChart {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2rem repeat(5, minmax(0, 1fr));
+  height: 21.5rem;
+  margin-top: 0.6rem;
+  padding-top: 3.1rem;
+}
+
+.miChart__axis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 2.3rem);
+  padding-bottom: 0.2rem;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  color: #98798b;
+}
+
+.miChart__group {
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.miChart__bars {
+  position: absolute;
+  inset: 0 0 2.3rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.4rem;
+  background: repeating-linear-gradient(
+    to top,
+    transparent 0,
+    transparent 3.15rem,
+    rgba(125, 68, 93, 0.12) 3.2rem,
+    transparent 3.28rem
+  );
+  border-bottom: 1px solid #cdb3bf;
+}
+
+.miChart__bar {
+  display: block;
+  width: 32%;
+  max-width: 3.1rem;
+  min-height: 8px;
+  border-radius: 8px 8px 0 0;
+  transition: height 0.45s ease;
+}
+
+.miChart__bar--previous {
+  background: color-mix(in srgb, var(--mi-bar) 32%, white);
+  box-shadow: none;
+}
+
+.miChart__bar--current {
+  background: linear-gradient(
+    to top,
+    var(--mi-bar),
+    color-mix(in srgb, var(--mi-bar), white 16%)
+  );
+}
+
+.miChart__label {
+  position: absolute;
+  right: 0;
+  bottom: 0.15rem;
+  left: 0;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #5b284d;
+  text-align: center;
+}
+
+.miChart__example {
+  position: absolute;
+  z-index: 2;
+  top: 0.15rem;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #e6aac1;
+  border-radius: 10px;
+  background: #fff4f6;
+  color: #c51356;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: center;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.miChart__tip {
+  position: absolute;
+  z-index: 3;
+  bottom: calc(100% - 4.6rem);
+  left: 50%;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  background: var(--mi-ink);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.miChart__group:hover .miChart__tip,
+.miChart__group:focus-visible .miChart__tip {
+  opacity: 1;
+}
+
+.miLegend {
+  display: flex;
+  justify-content: center;
+  gap: 1.4rem;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: #6c5163;
+}
+
+.miLegend li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.miLegend__swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+}
+
+.miLegend__swatch--previous {
+  background: #ecd5e0;
+}
+
+.miLegend__swatch--current {
+  background: #bf1657;
+}
+
+.miPanel__foot {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px solid #eed2dc;
+}
+
+.miPanel__conclusion {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--mi-ink);
+}
+
+.miPanel__description {
+  max-width: 34rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #65445a;
+}
+
+// --- Capabilities ----------------------------------------------------------
+
+.miCaps {
+  padding-block: clamp(3rem, 2rem + 2vw, 4.2rem);
+  background:
+    radial-gradient(ellipse at 92% 0%, rgba(249, 210, 221, 0.45), transparent 42%),
+    #fff7f3;
+}
+
+.miCaps .miTitle {
+  max-width: 14ch;
+}
+
+.miCaps__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.4rem;
+  margin: 2.2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.miCaps__item {
+  padding-top: 1rem;
+  border-top: 2px solid #ce6d8e;
+}
+
+.miCaps__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--mi-ink);
+}
+
+.miCaps__body {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #5e4255;
+}
+
+// --- Close -----------------------------------------------------------------
+
+.miClose {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(4rem, 3rem + 2vw, 5.4rem);
+  background: linear-gradient(155deg, #fff7f5, #ffe0e0 58%, #fab6b6 120%);
+}
+
+.miClose::before,
+.miClose::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.miClose::before {
+  right: -6rem;
+  bottom: -3rem;
+  width: min(46rem, 80vw);
+  height: 18rem;
+  border-radius: 60% 40% 0 0;
+  background: linear-gradient(30deg, rgba(157, 45, 105, 0.75), rgba(234, 123, 157, 0.45), rgba(244, 155, 101, 0.45));
+  transform: rotate(-12deg);
+}
+
+.miClose::after {
+  bottom: -5rem;
+  left: -4rem;
+  width: min(54rem, 90vw);
+  height: 12rem;
+  border-radius: 50% 50% 0 0;
+  background: linear-gradient(90deg, rgba(104, 32, 73, 0.8), rgba(195, 51, 118, 0.65), rgba(238, 151, 108, 0.5));
+  transform: rotate(8deg);
+}
+
+.miClose .miTitle {
+  max-width: 12ch;
+  font-size: clamp(2.4rem, 1.4rem + 2.6vw, 3.4rem);
+}
+
+.miClose__lead {
+  max-width: 32rem;
+  margin: 1rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #392034;
+}
+
+.miClose .miCta {
+  margin-top: 1.4rem;
+}
+
+// --- FAQ -------------------------------------------------------------------
+
+.miFaq {
+  padding-block: clamp(2.8rem, 1.8rem + 2vw, 4rem) clamp(3.4rem, 2rem + 2.2vw, 4.6rem);
+  background: #fff9f5;
+}
+
+.miTitle--faq {
+  max-width: 16ch;
+  font-size: clamp(1.8rem, 1.2rem + 1.4vw, 2.3rem);
+}
+
+.miFaq__list {
+  margin-top: 0.4rem;
+}
+
+.miFaq__item {
+  border-bottom: 1px solid #e7cbd5;
+}
+
+.miFaq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 48px;
+  padding: 1.05rem 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--mi-ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.miFaq__question::-webkit-details-marker {
+  display: none;
+}
+
+.miFaq__mark {
+  position: relative;
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--mi-rose);
+}
+
+.miFaq__mark::before,
+.miFaq__mark::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+}
+
+.miFaq__mark::after {
+  transform: rotate(90deg);
+}
+
+.miFaq__item[open] .miFaq__mark {
+  transform: rotate(45deg);
+}
+
+.miFaq__answer {
+  max-width: 68ch;
+  margin: 0;
+  padding: 0 0 1.15rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #392034;
+}
+
+@media (max-width: 1024px) {
+  .miHero__heading {
+    font-size: clamp(2.3rem, 1.2rem + 3.2vw, 3.3rem);
+  }
+
+  .miCaps__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .miHero__grid,
+  .miPanel__head,
+  .miPanel__foot {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .miHero__art {
+    aspect-ratio: 709 / 430;
+  }
+
+  .miHero__image {
+    object-position: center;
+  }
+
+  .miRange {
+    width: max-content;
+    margin-top: 0.85rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .miSteps {
+    flex-direction: column;
+  }
+
+  .miChart {
+    height: 18.5rem;
+    padding-top: 3.4rem;
+  }
+
+  .miChart__label {
+    font-size: 0.62rem;
+  }
+
+  .miChart__example {
+    font-size: 0.62rem;
+    white-space: normal;
+    width: max-content;
+    max-width: 7.5rem;
+  }
+
+  .miPanel {
+    padding: 1.15rem 0.9rem 1rem;
+  }
+
+  .miCaps__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .miChart__bar,
+  .miFaq__mark,
+  .miCta {
+    transition: none;
+  }
+}

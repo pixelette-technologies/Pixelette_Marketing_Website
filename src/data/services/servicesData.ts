@@ -1973,6 +1973,9 @@ export const servicesData = [
     metaTitle: "Lead Generation | Pixelette Marketing",
     metaDescription: "Lead generation built for qualified pipeline rather than volume, with targeting, landing pages, nurture and a clean handoff to sales.",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation, qualified pipeline",
+    // 23 Nov 2026: /services/lead_generation renders LeadGenerationPage.
+    // Meta title and keywords still come from this record. The sections
+    // below are the previous long page and are not rendered on the route.
     route: "lead_generation",
     mainHeading: "From prospects to loyal customers,",
     subHeading: "we’re the lead generation agency for GROWTH",

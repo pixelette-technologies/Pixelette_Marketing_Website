@@ -14,6 +14,7 @@ import {
 import { EmailMarketingPage } from "@/components/ui/emailMarketing";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
 import { PrEarnedMediaPage } from "@/components/ui/prEarnedMedia";
+import { LeadGenerationPage } from "@/components/ui/leadGeneration";
 import { PaidMediaPage } from "@/components/ui/paidMedia";
 import { SeoVisibilityPage } from "@/components/ui/seoVisibility";
 import { SocialCommunityPage } from "@/components/ui/socialCommunity";
@@ -21,6 +22,7 @@ import { SpecialistServicePage } from "@/components/ui/specialist";
 import { emailMarketingMeta } from "@/data/services/emailMarketing";
 import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
 import { prEarnedMediaMeta } from "@/data/services/prEarnedMedia";
+import { leadGenerationMeta } from "@/data/services/leadGeneration";
 import { paidMediaMeta } from "@/data/services/paidMedia";
 import { seoVisibilityMeta } from "@/data/services/seoVisibility";
 import { socialCommunityMeta } from "@/data/services/socialCommunity";
@@ -97,6 +99,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
 
+  // 23 Nov 2026: locked Lead Generation. Title kept. Description widened
+  // so the snippet no longer promises a handoff to sales.
+  if (slug === "lead_generation") {
+    return await pageMetadata({
+      title: leadGenerationMeta.title,
+      description: leadGenerationMeta.description,
+      path,
+      keywords: leadGenerationMeta.keywords
+    });
+  }
+
   // 23 Nov 2026: locked PR & Earned Media design — keep the specialist meta.
   if (slug === "pr") {
     return await pageMetadata({
@@ -149,6 +162,12 @@ export default async function Page({ params }: PageProps) {
   // template on this route only.
   if (slug === "ads_ppc") {
     return <PaidMediaPage />;
+  }
+
+  // 23 Nov 2026: locked Lead Generation replaces the legacy template
+  // on this route only. The hyphen alias still redirects here.
+  if (slug === "lead_generation") {
+    return <LeadGenerationPage />;
   }
 
   // 23 Nov 2026: locked PR & Earned Media design replaces the shared

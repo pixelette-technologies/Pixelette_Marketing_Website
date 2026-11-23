@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), and Paid Media & PPC (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), and Lead Generation (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -12,8 +12,25 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Lead Generation — hero artwork resolution and rights** | Supplied PNG is 585×431 and is used unaltered at `public/services/lead_generation/action-triptych.png`. The full triptych stays visible at 320–1440. It will look soft on a retina desktop. The handoff says an earlier external exclamation image must not be treated as cleared, and the prepared asset still needs the owner's rights check before live. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 23 Nov — Lead Generation locked design (COMPLETE)
+
+Independent instruction audit: **COMPLETE** (no gaps). Pushed to `bilal/revamp` only. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`.
+
+Allowed and recorded: the meta description now names audience acquisition and the four response types. The previous description promised a handoff to sales, which this page does not claim. Title, keywords and canonical stay. The measure line is a paragraph inside the offer, so the page does not gain a second results section. Page buttons use a right arrow, matching the other locked pages. FAQ answers stay inside the homepage's businesses and public-sector scope and the locked outcome types. They do not state a conversion rate, a client, or a guarantee.
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero with triptych → three outcomes → one offer → measure line → light closing CTA → three FAQs. The old long template is off this route. |
+| **Hero** | Locked headline, with `meaningful action` emphasised. Artwork is the supplied file, `object-fit: contain`, no crop. |
+| **Outcomes** | Qualified enquiries, Applications, Participation. No numbers, no icons. |
+| **Offer** | Four capabilities in rows. No cards, numbers, or icons. |
+| **SEO** | Title `Lead Generation \| Pixelette Marketing`. Canonical `/services/lead_generation`. Description widened, as above. |
+| **FAQ** | The three locked questions. Native `details` accordion. |
+| **CTA** | Page buttons go to `/contactus`. |
 
 ## Closed 23 Nov — Paid Media & PPC locked design (COMPLETE)
 

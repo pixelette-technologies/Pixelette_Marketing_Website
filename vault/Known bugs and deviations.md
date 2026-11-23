@@ -17,7 +17,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 23 Nov — Email Marketing locked design (COMPLETE)
 
-Pushed on `bilal/revamp`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/email-marketing-2026-11-23/`.
+Pushed as `dbad31d`. Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/email-marketing-2026-11-23/`.
 
 Allowed and recorded: autoplay omitted; page CTAs use locked sentence case while the shared header stays "Discuss Your Project"; attribution prints `CEO, WebBookingPro` (the stored role string has no space after the comma).
 

@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Email Marketing locked design **COMPLETE** on `bilal/revamp` for `/services/email_marketing` (instruction audit, no gaps). Pushed for review only. PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Email Marketing locked design **COMPLETE** on `bilal/revamp` (`dbad31d`; instruction audit, no gaps). Pushed for review only. PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Email Marketing instruction audit COMPLETE is on this push. Prior pushed page code was **`7127aaa`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`dbad31d`**. Email Marketing instruction audit COMPLETE. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
@@ -36,7 +36,7 @@ Last updated: **23 November 2026** — Email Marketing locked design **COMPLETE*
 
 **Instruction:** `PIXELETTE_EMAIL_MARKETING_CURSOR_HANDOFF_22NOV2026`. `/services/email_marketing` only. Option 1 Welcome email is the hero authority. No production deploy. No Higgsfield.
 
-**Shipped on `bilal/revamp` — independent instruction audit COMPLETE (no gaps):**
+**Shipped on `bilal/revamp` as `dbad31d` — independent instruction audit COMPLETE (no gaps):**
 - Dedicated `EmailMarketingPage` replaces the legacy template on this route only. Existing meta title, description and keywords kept. Hyphen alias still redirects here.
 - Hero copy, single upright email, four stages (Welcome, Nurture, Convert, Re-engage). Convert uses a target icon. Email copy crossfades inside the same frame.
 - Lower page: 2×2 capabilities, one measure line, WebBookingPro quotation, closing CTA, two FAQs. BlockGuard removed from this route only.

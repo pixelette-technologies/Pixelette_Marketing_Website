@@ -14,12 +14,14 @@ import {
 import { EmailMarketingPage } from "@/components/ui/emailMarketing";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
 import { PrEarnedMediaPage } from "@/components/ui/prEarnedMedia";
+import { PaidMediaPage } from "@/components/ui/paidMedia";
 import { SeoVisibilityPage } from "@/components/ui/seoVisibility";
 import { SocialCommunityPage } from "@/components/ui/socialCommunity";
 import { SpecialistServicePage } from "@/components/ui/specialist";
 import { emailMarketingMeta } from "@/data/services/emailMarketing";
 import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
 import { prEarnedMediaMeta } from "@/data/services/prEarnedMedia";
+import { paidMediaMeta } from "@/data/services/paidMedia";
 import { seoVisibilityMeta } from "@/data/services/seoVisibility";
 import { socialCommunityMeta } from "@/data/services/socialCommunity";
 import { servicesData } from "@/data/services/servicesData";
@@ -86,6 +88,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
 
+  // 23 Nov 2026: locked Paid Media & PPC — keep specialist meta.
+  if (slug === "ads_ppc") {
+    return await pageMetadata({
+      title: paidMediaMeta.title,
+      description: paidMediaMeta.description,
+      path
+    });
+  }
+
   // 23 Nov 2026: locked PR & Earned Media design — keep the specialist meta.
   if (slug === "pr") {
     return await pageMetadata({
@@ -132,6 +143,12 @@ export default async function Page({ params }: PageProps) {
   // specialist template on this route only.
   if (slug === "seo_and_content_marketing") {
     return <SeoVisibilityPage />;
+  }
+
+  // 23 Nov 2026: locked Paid Media & PPC replaces the shared specialist
+  // template on this route only.
+  if (slug === "ads_ppc") {
+    return <PaidMediaPage />;
   }
 
   // 23 Nov 2026: locked PR & Earned Media design replaces the shared

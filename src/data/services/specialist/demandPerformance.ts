@@ -129,6 +129,9 @@ export const socialAndCommunity: SpecialistPageConfig = {
   }
 };
 
+// 23 Nov 2026: /services/ads_ppc renders PaidMediaPage. This config still
+// supplies the route's meta title and description. The sections below are
+// the previous specialist stack and are not on the route.
 export const paidMediaAndPpc: SpecialistPageConfig = {
   route: "ads_ppc",
   capability: "Digital Visibility and Growth",

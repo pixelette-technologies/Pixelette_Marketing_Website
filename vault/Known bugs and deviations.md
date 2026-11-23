@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), and SEO, Content & AI Visibility (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), and Paid Media & PPC (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -12,8 +12,24 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 23 Nov — Paid Media & PPC locked design (COMPLETE)
+
+Independent instruction audit: **COMPLETE** (no gaps). Live domain untouched; no production PR. Screenshots: `mockup-screenshots/paid-media-ppc-2026-11-23/`.
+
+Allowed and recorded: the measure notes Efficiency, Response, Spend and Improvement, plus the `01`–`04` and `01 / 02` indices, are on the approved mockup and not in the copy lock. They are labels, not results. The supplied abstract artwork is the Creative A background only. Below 900px the treatments switch instead of overlapping, with a visible Creative A / Creative B control. Page CTAs use locked sentence case while the shared header stays "Discuss Your Project".
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero with two treatments → What we deliver → What we measure → light closing CTA → three FAQs. The old specialist stack is off this route. |
+| **Hero** | Locked headline, with `not clicks` emphasised. Both treatments use `Great teams` / `Greater possibilities`. |
+| **Interaction** | Creative A is featured on load. Selecting Creative B brings the coral treatment forward. Keyboard arrows move between them. Reduced motion drops the transition. |
+| **Imagery** | Supplied abstract artwork on Creative A. Creative B is CSS. No laptop, phone, chart, or Higgsfield. The campaign is a hypothetical sample, not a client result. |
+| **SEO** | Existing title, description and canonical kept. |
+| **FAQ** | The three locked questions. Answers are shortened from the previous specialist page and do not promise a result. |
+| **CTA** | Page buttons go to `/contactus`. "Explore the possibilities" is sample text and is not a link. |
 
 ## Closed 23 Nov — SEO, Content & AI Visibility locked design (COMPLETE)
 

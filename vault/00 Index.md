@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — SEO, Content & AI Visibility locked design **COMPLETE** on `bilal/revamp` (`c190220`; instruction audit, no gaps). Pushed for review only. Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Paid Media & PPC locked design **COMPLETE** on `bilal/revamp` (instruction audit, no gaps). Pushed for review only. SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`c190220`**. SEO, Content & AI Visibility instruction audit COMPLETE. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Paid Media & PPC instruction audit COMPLETE. SEO page code remains **`c190220`**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
-| Preview | SEO review follows the `bilal/revamp` deployment of `/services/seo_and_content_marketing`. Email Marketing review follows the same branch. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
-| Sign-off | **Not signed off.** SEO, Content & AI Visibility instruction **COMPLETE** (audit, no gaps). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Preview | Paid Media review follows the `bilal/revamp` deployment of `/services/ads_ppc`. SEO and Email Marketing review follow the same branch. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
+| Sign-off | **Not signed off.** Paid Media & PPC instruction **COMPLETE** (audit, no gaps). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility + Paid Media & PPC exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -29,8 +29,22 @@ Last updated: **23 November 2026** — SEO, Content & AI Visibility locked desig
 | 1 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
 | 2 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
 | 3 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| 4 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 4 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
 | 5 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 23 November 2026 — Paid Media & PPC locked design
+
+**Instruction:** `PIXELETTE_PPC_CURSOR_LOCKED_HANDOFF_22NOV2026`. `/services/ads_ppc` only. The copy lock wins on wording. The revised desktop mockup is the visual authority. No production deploy. No Higgsfield.
+
+**Shipped on `bilal/revamp` — independent instruction audit COMPLETE (no gaps):**
+- Dedicated `PaidMediaPage` replaces the specialist template on this route only. Existing meta title, description and canonical kept.
+- Hero: locked headline, with `not clicks` emphasised. Creative A uses the supplied abstract artwork and HTML type. Creative B is CSS in coral, yellow and cobalt. Both use `Great teams` / `Greater possibilities`.
+- Desktop: Creative A is large by default. Selecting Creative B brings the coral treatment forward. Below 900px a Creative A / Creative B switch selects the visible treatment.
+- What we deliver (four items, no icons), What we measure (four areas, no figures), light closing CTA, three FAQs, existing footer.
+- Screenshots: `mockup-screenshots/paid-media-ppc-2026-11-23/` (desktop-1440, creative-b, tablet-1024, tablet-768, phone-390, phone-320).
+- Page CTAs use locked sentence case. Shared header label unchanged.
+- The campaign is an in-house hypothetical sample, not a client result. The sample line "Explore the possibilities" is not a link.
+- Live domain untouched; no production PR.
 
 ## 23 November 2026 — SEO, Content & AI Visibility locked design
 

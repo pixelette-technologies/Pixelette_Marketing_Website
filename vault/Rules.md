@@ -22,6 +22,8 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **Influencer & Partnerships (20 Nov):** `/services/influencer_marketing` may use the approved hero + What we deliver + closing layout only. Do not add Our Approach, campaign examples, case studies or the previous specialist FAQ/measure/process stack on this route. Reuse imagery recovered from the approved mock; do not generate replacements or substitute unrelated stock. Do not change other service pages for this pass.
 
+**Social & Community (20 Nov):** `/services/social_media_marketing` may use the locked handoff layout only — hero campaign concept + What we deliver + From content to community + What we measure + closing. Do not reintroduce phones, alternate cities, photo galleries under What we deliver, fabricated metrics, or the previous specialist FAQ / earns-its-place / connections stack on this route. Manchester photograph rights remain unverified — review-only until cleared. Do not generate or buy replacement people imagery without approval.
+
 **Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
 
 **Crawler allowlist:** only `www.pixelettemarketing.com` and `pixelettemarketing.com` may be indexed. Every other host — `*.vercel.app`, other subdomains, localhost — gets `X-Robots-Tag: noindex, nofollow`, `/robots.txt` `Disallow: /`, and host-aware HTML robots. Deployment Protection may be off for management review; the code gate stays.

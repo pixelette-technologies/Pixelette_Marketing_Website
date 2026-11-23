@@ -51,6 +51,9 @@ temp_interactive_push.bat
 /pmw_*
 config.bat
 
+# Locked design handoff packages (local extract; do not commit)
+/PIXELETTE_SOCIAL_COMMUNITY_LOCKED_HANDOFF_20NOV2026/
+
 # obsidian vault. The notes in docs/ are committed -- they are the decision
 # record. The editor's own per-user layout state is not. /vault was the vault's
 # path before 9 Sep 2026 and that directory no longer exists.

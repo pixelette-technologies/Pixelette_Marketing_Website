@@ -4,12 +4,29 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass (instruction COMPLETE), and Influencer & Partnerships are closed on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, and Social & Community (MOSTLY COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
+| **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
+| **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 20–23 Nov — Social & Community locked design (MOSTLY COMPLETE)
+
+Dedicated page on `/services/social_media_marketing`. Independent instruction audit: **MOSTLY COMPLETE**. Live domain untouched; no production PR. Rights blockers remain open (see Pending).
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero → What we deliver → From content to community → What we measure → closing CTA. Specialist template retired on this route. |
+| **Hero** | Locked H1/lead/CTA; Manchester campaign artwork; THE CITY WE SHARE + question + location; three responses + illustrative disclaimer as live HTML. |
+| **Lower sections** | Four icon capabilities (no photo row); two-image showcase + four lines; six measure labels (no fake stats); plum/crimson close. |
+| **Imagery** | User Manchester plate + people recovered from locked composite; showcase crops from approved lower mock. No Higgsfield / unapproved stock. |
+| **SEO** | Meta title/description preserved. Removed on-route: earns-its-place, connections, how we work, what good looks like, FAQs — meaning kept in meta + deliver/measure copy. |
+| **Screenshots** | `mockup-screenshots/social-community-2026-11-20/` (desktop-1440, tablet-768, phone-390). |
+| **Deviations kept open** | Commenter display names; softer people composite seam vs flattened mock; plum swoop lighter than reference. |
 
 ## Closed 20 Nov — Impact Compass visual correction
 

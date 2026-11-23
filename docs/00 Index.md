@@ -25,9 +25,13 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 23 Nov 2026
+
+**Social & Community locked design MOSTLY COMPLETE on `bilal/revamp` for `/services/social_media_marketing`.** Hero campaign concept + four lower sections; Manchester photo rights still a publication blocker. Screenshots: `mockup-screenshots/social-community-2026-11-20/`. Impact Compass, Influencer, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: photo rights / people cutout; Founder wording sign-off; optional commenter-name decision. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 ## Status as of 20 Nov 2026
 
-**Impact Compass instruction COMPLETE on `bilal/revamp` (`720e4d7`) for `/strategy-positioning`.** Star-rose intro, filled answer cards, denser copy; questions and scoring unchanged. Preview: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer page, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Next session owns: Founder wording sign-off; broader menu / route by-eye if still required. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Impact Compass instruction COMPLETE on `bilal/revamp` (`720e4d7`) for `/strategy-positioning`.** Star-rose intro, filled answer cards, denser copy; questions and scoring unchanged. Preview: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Screenshots: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer page, homepage correction, and one-agency remain on the branch. Live domain untouched; no production PR. Superseded for tip/push state by 23 Nov above.
 
 ## Status as of 19 Nov 2026
 

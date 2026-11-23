@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **20 November 2026** — Impact Compass instruction COMPLETE end-to-end (correction + audit gap-closure); Influencer COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Social & Community locked design **MOSTLY COMPLETE** on `bilal/revamp` (review-only until photo rights clear); Impact Compass / Influencer / homepage correction COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`4da382e`** (Impact Compass COMPLETE vault record; code tip `720e4d7`). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass (star-rose intro / filled tiles / results radar) + Influencer approved design. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip updated with this Social & Community push. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page. |
 | Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for code tip `720e4d7` reported **success**. Deployment URL: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Founder still owns wording / production approval. |
+| Preview | Social page preview set after this push (Vercel). Prior Impact Compass: `https://pixelette-marketing-website-gl1n8iguh-pixelette-technologies.vercel.app`. Non-official hosts noindex. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,8 +26,24 @@ Last updated: **20 November 2026** — Impact Compass instruction COMPLETE end-t
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
-| 2 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Diagnostic correction pack: `mockup-screenshots/diagnostic-impact-compass-correction-2026-11-20/`. Influencer pack: `mockup-screenshots/influencer-partnerships-2026-11-20/`. |
+| 1 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
+| 2 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
+| 3 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 4 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 20–23 November 2026 — Social & Community locked design
+
+**Instruction:** locked handoff `PIXELETTE_SOCIAL_COMMUNITY_LOCKED_HANDOFF_20NOV2026` supersedes prior Social hero concepts. Implement `/services/social_media_marketing` only — cream/crimson/plum two-column hero with Manchester campaign concept (HTML overlays; no phones), then What we deliver → From content to community → What we measure → closing CTA. Preview only; no production deploy; no unapproved image generation/purchase.
+
+**Shipped on `bilal/revamp` — independent audit MOSTLY COMPLETE:**
+- Dedicated `SocialCommunityPage` (hero / deliver / community / measure / close) replacing the shared specialist template on this route only.
+- Hero: locked H1 + lead + Discuss Your Project; campaign eyebrow / question / location; three illustrative responses + disclaimer as live HTML; Manchester plate + recovered people composite in `public/services/social-community/`.
+- Lower sections: icon-led four capabilities (no photo row); asymmetric two-image showcase + four lines; six measure labels (no fake stats); plum/crimson closing band.
+- Screenshots: `mockup-screenshots/social-community-2026-11-20/` (desktop-1440, tablet-768, phone-390).
+- SEO meta title/description preserved. Specialist body removed on this route (earns-its-place, connections, how we work, what good looks like, FAQs) — themes retained in meta + deliver/measure copy.
+- Live domain untouched; no production PR.
+
+**Open before live:** Manchester photo rights; clean people cutout (optional); commenter-name deviation decision.
 
 ## 20 November 2026 — Impact Compass visual correction
 

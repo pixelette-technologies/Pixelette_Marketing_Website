@@ -12,8 +12,10 @@ import {
   ServicesSection
 } from "@/components/ui/services";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
+import { SocialCommunityPage } from "@/components/ui/socialCommunity";
 import { SpecialistServicePage } from "@/components/ui/specialist";
 import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
+import { socialCommunityMeta } from "@/data/services/socialCommunity";
 import { servicesData } from "@/data/services/servicesData";
 import { specialistPages } from "@/data/services/specialist";
 import { proofCopy } from "@/data/home";
@@ -50,6 +52,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
 
+  // 20 Nov 2026: Social & Community locked design — preserve existing SEO meta.
+  if (slug === "social_media_marketing") {
+    return await pageMetadata({
+      title: socialCommunityMeta.title,
+      description: socialCommunityMeta.description,
+      path
+    });
+  }
+
   // 30 Sep 2026: a specialist page takes its title and description from its
   // own config. Share image defaults to `/opengraph-image` via pageMetadata;
   // pass ogImage when a page-specific asset is cleared for public use.
@@ -75,6 +86,12 @@ export default async function Page({ params }: PageProps) {
   // shared specialist template on this route only.
   if (slug === "influencer_marketing") {
     return <InfluencerPartnershipsPage />;
+  }
+
+  // 20 Nov 2026: locked Social & Community design replaces the shared
+  // specialist template on this route only.
+  if (slug === "social_media_marketing") {
+    return <SocialCommunityPage />;
   }
 
   // 30 Sep 2026: the specialist service pages (the four Demand & Performance

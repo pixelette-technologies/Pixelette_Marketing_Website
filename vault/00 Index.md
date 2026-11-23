@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Measurement & Insight instruction **COMPLETE** on `bilal/revamp` (`510f14e`; audit, no gaps). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Influencer & Partnerships imagery upgraded to the approved **4096×6144** master (`c0243d1`; layout unchanged). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`510f14e`**. Measurement & Insight instruction audit COMPLETE. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`c0243d1`** (Influencer 4K imagery swap; layout unchanged). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
-| Preview | Measurement & Insight: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Lead Generation, Paid Media, SEO, and Email Marketing review follow `bilal/revamp`. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
-| Sign-off | **Not signed off.** Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Preview | Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). Measurement & Insight: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Lead Generation, Paid Media, SEO, and Email Marketing review follow `bilal/revamp`. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
+| Sign-off | **Not signed off.** Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -148,14 +148,14 @@ Last updated: **23 November 2026** — Measurement & Insight instruction **COMPL
 
 **Instruction:** implement the final approved Influencer & Partnerships mock on `/services/influencer_marketing` exactly — hero (“Real voices. Stronger brands.”), What we deliver (five illustrated cards), closing (“Let's build your next campaign.”). No Our Approach, campaign examples or case studies. Reuse approved imagery; do not generate replacements. Preview only; do not change other pages.
 
-**Shipped on `bilal/revamp` as `8346312` (gap-closure; implementation `edd4c12`):**
+**Shipped on `bilal/revamp` as `8346312` (gap-closure; implementation `edd4c12`); imagery upgraded `c0243d1`:**
 - Dedicated `InfluencerPartnershipsPage` (hero / deliver / close) replacing the shared specialist template on this route only.
-- Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (`*-4k.jpg` crops from the native **4096×6144** master; earlier 682×1024 preview retired).
+- Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (`*-4k.jpg` crops from the native **4096×6144** master; earlier 682×1024 preview retired). Layout/copy unchanged in the 4K swap.
 - Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
 - Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
-- Preview: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`.
+- Preview: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`).
 
-**Verification:** structure matches the approved mock (hero → five deliver cards → close only; no Approach / examples / case studies). Hero: one HTML CTA; collage annotation in the asset only. Close: continuous band, one HTML CTA, mock CTA excluded from the crop. Visual gap-closure after MOSTLY COMPLETE audits: `8346312`. Imagery upgraded to 4K master. Instruction gaps **COMPLETE**. Live domain untouched; no production PR.
+**Verification:** structure matches the approved mock (hero → five deliver cards → close only; no Approach / examples / case studies). Hero: one HTML CTA; collage annotation in the asset only. Close: continuous band, one HTML CTA, mock CTA excluded from the crop. Visual gap-closure after MOSTLY COMPLETE audits: `8346312`. Imagery upgraded to 4K master (`c0243d1`). Instruction gaps **COMPLETE**. Live domain untouched; no production PR.
 
 **Limitation:** crops come from the approved full-page 4K mock (not separate per-shot masters). No unrelated stock; no image generation.
 

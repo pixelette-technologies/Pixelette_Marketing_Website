@@ -297,6 +297,15 @@
   padding-block: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
   background: var(--color-page);
 
+  .editorialCopy__title {
+    margin-bottom: clamp(0.85rem, 0.6rem + 0.6vw, 1.25rem);
+  }
+
+  // The setup line is a full sentence, so it wraps. The accent stays its own line.
+  .editorialCopy__line {
+    white-space: normal;
+  }
+
   .body {
     max-width: 40rem;
   }

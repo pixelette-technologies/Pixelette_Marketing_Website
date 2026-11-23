@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { Container } from "@/components/common";
-import { Heading, Text } from "@/components/feature";
+import { Text } from "@/components/feature";
 
 // One approach for every kind of organisation. Sits below capabilities.
+// Index and title use the same device as sections 02, 03 and 05: number,
+// hairline, eyebrow, then an ink headline with the last line in the brand tone.
 
 export default function SecondMarketBand() {
   return (
@@ -11,10 +13,20 @@ export default function SecondMarketBand() {
       aria-labelledby='one-approach-title'
     >
       <Container className='main'>
-        <Text className='eyebrow'>04 · One approach</Text>
-        <Heading className='h2' level={2} id='one-approach-title'>
-          Different organisations. Different objectives. One integrated approach
-        </Heading>
+        <p className='editorialCopy__mark'>
+          <span className='editorialCopy__number'>04</span>
+          <span className='editorialCopy__rule' aria-hidden='true' />
+          <span className='editorialCopy__eyebrow'>One approach</span>
+        </p>
+        <h2 className='editorialCopy__title' id='one-approach-title'>
+          <span className='editorialCopy__line'>
+            Different organisations. Different objectives.
+          </span>
+          <span className='editorialCopy__line editorialCopy__line--accent'>
+            {" "}
+            One integrated approach
+          </span>
+        </h2>
         <Text className='body'>
           Whether the objective is business growth, brand awareness, customer
           acquisition, public engagement, service uptake or effective

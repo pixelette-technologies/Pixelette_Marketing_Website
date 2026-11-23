@@ -8,11 +8,11 @@ Last updated: **23 November 2026** — PR & Earned Media locked design implement
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). PR page replaces the specialist template on `/services/pr` only. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`7127aaa`** (PR & Earned Media locked page for review). |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** locked design implemented for review. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page. |
-| Pushed? | **`bilal/revamp` only** after this review commit. No production PR. Live domain untouched. |
-| Preview | Social & Community: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. PR route preview follows the review push. |
+| Pushed? | **Yes — `bilal/revamp` only** (`7127aaa`). No production PR. Live domain untouched. |
+| Preview | PR route: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. Social & Community remains `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. |
 | Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). PR & Earned Media implemented for review; hero uses original drawn panels because licensed photo layers were not in the handoff. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
@@ -40,7 +40,8 @@ Last updated: **23 November 2026** — PR & Earned Media locked design implement
 - Dedicated `PrEarnedMediaPage` replaces the specialist template on this route only. Existing specialist meta title and description kept.
 - Hero copy, four text-only audience labels in order, torn-paper statement, four typography columns, one measure line, plum/crimson close, two FAQs.
 - Removed earns-its-place, connections chart, how we work, what good looks like, and communications-in-action from this route.
-- Hero art is original SVG/CSS. No handoff photograph is embedded. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`.
+- Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`.
+- Preview: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr` (`7127aaa`).
 - Discuss Your Project links to `/contactus`.
 
 ## 20–23 November 2026 — Social & Community locked design

@@ -144,7 +144,7 @@ Pushed as `8346312` (gap-closure on `edd4c12`). Instruction gaps **COMPLETE** af
 | **Page structure** | Hero → five What we deliver cards → closing CTA only. Specialist template retired on this route. No Approach / examples / case studies. |
 | **Hero** | Dark left copy field + collage; annotation in collage only (not redrawn in HTML); one live CTA. |
 | **Close** | Continuous band — camera CSS background + solid left wash; one live CTA; mock CTA excluded from crop. |
-| **Imagery** | From the 682×1024 approved mock; card photos cropped above mock icon discs. No generated or unrelated stock. |
+| **Imagery** | From the approved **4096×6144** mock (`*-4k.jpg`); card photos cropped above mock icon discs. No generated or unrelated stock. |
 | **Screenshots** | `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390). |
 | **Preview** | `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app` (`8346312`). |
 

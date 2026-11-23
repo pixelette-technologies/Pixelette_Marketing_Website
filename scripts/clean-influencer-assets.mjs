@@ -1,28 +1,33 @@
 /**
- * Rebuild Influencer & Partnerships imagery from the approved mock.
+ * Rebuild Influencer & Partnerships imagery from the approved 4K mock.
  *
- * Rules for this pass:
- * - Hero: dark left copy field + collage right. Scrub baked scribble/glyphs only —
- *   never blur faces. HTML redraws the annotation.
- * - Close: camera crop that ends BEFORE the mock CTA pill. Page layout puts the
- *   photo in a right column so HTML CTA cannot sit over baked UI.
- * - Cards: photo interiors only (stop above mock icon discs).
+ * Source: native 4096×6144 PNG (6× the earlier 682×1024 preview).
+ * Hero: dark left copy field + collage right. Keep "Creators Content
+ * Community" annotation in the collage — do not redraw in HTML, do not
+ * scrub it. Scrub only baked heading glyphs that bleed into the collage
+ * left edge. Never blur faces.
+ * Close: camera crop that ends BEFORE the mock CTA pill.
+ * Cards: photo interiors only (stop above mock icon discs).
  */
 import sharp from "sharp";
 import fs from "node:fs";
 import path from "node:path";
 
 const SRC =
-  "C:/Users/Bilal/.cursor/projects/d-Projects-pixelette-marketing/assets/a_clean_modern_marketing_website_landing_page_u-af2f9f23-985d-4a54-9579-98174c5d9d1f.jpg";
+  "C:/Users/Bilal/.cursor/projects/d-Projects-pixelette-marketing/assets/pixelette_influencer_marketing_4K.png";
 const OUT = "public/services/influencer-partnerships";
 const WORK = path.join(OUT, "_work");
 fs.mkdirSync(WORK, { recursive: true });
 
-const fullPath = path.join(WORK, "full4.png");
-await sharp(SRC)
-  .resize({ width: 2728, kernel: sharp.kernel.lanczos3 })
-  .png()
-  .toFile(fullPath);
+// Native 4K — no upscale. Prior crops were authored on a 2728-wide canvas
+// (4× of 682); this PNG is 4096 wide (6× of 682) → scale = 1.5.
+const SCALE = 4096 / 2728;
+const s = (n) => Math.round(n * SCALE);
+
+const fullPath = path.join(WORK, "full.png");
+await sharp(SRC).png().toFile(fullPath);
+const fullMeta = await sharp(fullPath).metadata();
+console.log(`source ${fullMeta.width}x${fullMeta.height}`);
 
 async function replaceFile(dest, tmp) {
   if (fs.existsSync(dest)) fs.unlinkSync(dest);
@@ -49,44 +54,31 @@ async function coverZones(inputBuf, zones) {
 }
 
 // ---------- HERO ----------
-// Collage only (creators / phone / polaroids). No left copy column from the mock.
-const heroTop = 240;
-const heroH = 1000;
-const collageL = 980;
-const collageW = 2728 - collageL;
+const heroTop = s(240);
+const heroH = s(1000);
+const collageL = s(980);
+const collageW = fullMeta.width - collageL;
 
 let collage = await sharp(fullPath)
   .extract({ left: collageL, top: heroTop, width: collageW, height: heroH })
   .toBuffer();
 
-// Scrub baked "Creators Content Community" + arrow (above the woman, not on face).
-// Sample from magenta brush / urban bg to the LEFT of the woman, not forehead.
+// Scrub leftover heading glyphs that bleed into collage left edge only.
+// Do NOT scrub the Creators Content Community annotation.
 collage = await coverZones(collage, [
   {
-    // scribble block
-    l: 420,
-    t: 10,
-    w: 620,
-    h: 200,
-    sample: [120, 220, 180, 140],
-    blur: 42,
-    brightness: 0.82,
-    saturation: 1.05
-  },
-  {
-    // leftover heading glyphs that bleed into collage left edge ("ands.")
     l: 0,
-    t: 160,
-    w: 220,
-    h: 380,
-    sample: [240, 400, 140, 160],
+    t: s(160),
+    w: s(220),
+    h: s(380),
+    sample: [s(240), s(400), s(140), s(160)],
     blur: 30,
     brightness: 0.55
   }
 ]);
 
-const leftW = 1000;
-const heroW = leftW + collageW - 60;
+const leftW = s(1000);
+const heroW = leftW + collageW - s(60);
 const heroTmp = path.join(WORK, "hero-out.jpg");
 
 await sharp({
@@ -97,16 +89,15 @@ await sharp({
     background: { r: 26, g: 4, b: 18 }
   }
 })
-  .composite([{ input: collage, left: leftW - 60, top: 0 }])
-  .jpeg({ quality: 92 })
+  .composite([{ input: collage, left: leftW - s(60), top: 0 }])
+  .jpeg({ quality: 94 })
   .toFile(heroTmp);
 
-// Hard opaque left copy field — HTML owns all type/CTA here
 {
   const hm = await sharp(heroTmp).metadata();
   const cover = await sharp({
     create: {
-      width: 920,
+      width: s(920),
       height: hm.height,
       channels: 3,
       background: { r: 26, g: 4, b: 18 }
@@ -115,7 +106,7 @@ await sharp({
     .jpeg()
     .toBuffer();
   const blend = await sharp(heroTmp)
-    .extract({ left: 880, top: 0, width: 140, height: hm.height })
+    .extract({ left: s(880), top: 0, width: s(140), height: hm.height })
     .blur(18)
     .modulate({ brightness: 0.5, saturation: 1.08 })
     .toBuffer();
@@ -123,89 +114,57 @@ await sharp({
   await sharp(heroTmp)
     .composite([
       { input: cover, left: 0, top: 0 },
-      { input: blend, left: 860, top: 0 }
+      { input: blend, left: s(860), top: 0 }
     ])
-    .jpeg({ quality: 92 })
+    .jpeg({ quality: 94 })
     .toFile(heroTmp2);
-  await replaceFile(path.join(OUT, "hero.jpg"), heroTmp2);
+  await replaceFile(path.join(OUT, "hero-collage-4k.jpg"), heroTmp2);
 }
 
-// ---------- CLOSE (camera only, ends before CTA pill ~x 1985 in band) ----------
-// close-band sits at y 3300 in full4; CTA starts ~x 1985 within that band.
-const closeTop = 3330;
-const closeH = 500;
-const cam = await sharp(fullPath)
-  .extract({ left: 1100, top: closeTop, width: 850, height: closeH })
-  .jpeg({ quality: 93 })
-  .toBuffer();
-
-// Verify / scrub any CTA bleed at the right edge of this crop
-let camClean = cam;
-{
-  const { data, info } = await sharp(cam).raw().toBuffer({ resolveWithObject: true });
-  let hits = 0;
-  for (let y = 250; y < info.height - 40; y += 1) {
-    for (let x = info.width - 120; x < info.width; x += 1) {
-      const i = (y * info.width + x) * 3;
-      const r = data[i],
-        g = data[i + 1],
-        b = data[i + 2];
-      if (r > 185 && g < 110 && b > 60 && r - g > 100) hits++;
-    }
-  }
-  if (hits > 80) {
-    camClean = await coverZones(cam, [
-      {
-        l: info.width - 140,
-        t: 250,
-        w: 140,
-        h: 180,
-        sample: [info.width - 280, 120, 100, 100],
-        blur: 28,
-        brightness: 0.55
-      }
-    ]);
-  }
-  console.log("close crop CTA-edge magenta hits:", hits);
-}
-
+// ---------- CLOSE (camera only — crop ends before mock CTA, no scrub) ----------
+const closeTop = s(3330);
+const closeH = s(500);
+const camLeft = s(1180);
+const camW = s(720);
 const closeTmp = path.join(WORK, "close-out.jpg");
-await sharp(camClean).jpeg({ quality: 93 }).toFile(closeTmp);
-await replaceFile(path.join(OUT, "close.jpg"), closeTmp);
+await sharp(fullPath)
+  .extract({ left: camLeft, top: closeTop, width: camW, height: closeH })
+  .jpeg({ quality: 94 })
+  .toFile(closeTmp);
+await replaceFile(path.join(OUT, "close-camera-4k.jpg"), closeTmp);
 
 // ---------- CARDS ----------
 const cards = [
-  { name: "deliver-sourcing", left: 180, top: 1580, width: 700, height: 340 },
-  { name: "deliver-strategy", left: 1020, top: 1580, width: 700, height: 340 },
-  { name: "deliver-content", left: 1860, top: 1580, width: 700, height: 340 },
-  { name: "deliver-performance", left: 580, top: 2600, width: 700, height: 340 },
-  { name: "deliver-amplification", left: 1460, top: 2600, width: 700, height: 340 }
+  { name: "deliver-sourcing", left: s(180), top: s(1580), width: s(700), height: s(340) },
+  { name: "deliver-strategy", left: s(1020), top: s(1580), width: s(700), height: s(340) },
+  { name: "deliver-content", left: s(1860), top: s(1580), width: s(700), height: s(340) },
+  { name: "deliver-performance", left: s(580), top: s(2600), width: s(700), height: s(340) },
+  { name: "deliver-amplification", left: s(1460), top: s(2600), width: s(700), height: s(340) }
 ];
 
 for (const c of cards) {
   const tmp = path.join(WORK, `${c.name}.jpg`);
   let buf = await sharp(fullPath)
     .extract({ left: c.left, top: c.top, width: c.width, height: c.height })
-    .jpeg({ quality: 93 })
+    .jpeg({ quality: 94 })
     .toBuffer();
-  // Cover residual icon disc / cream strip at bottom-left if present
   buf = await coverZones(buf, [
     {
       l: 0,
-      t: c.height - 56,
-      w: 72,
-      h: 56,
-      sample: [90, c.height - 110, 60, 40],
+      t: c.height - s(56),
+      w: s(72),
+      h: s(56),
+      sample: [s(90), c.height - s(110), s(60), s(40)],
       blur: 20,
       brightness: 1
     }
   ]);
-  await sharp(buf).jpeg({ quality: 93 }).toFile(tmp);
-  await replaceFile(path.join(OUT, `${c.name}.jpg`), tmp);
+  await sharp(buf).jpeg({ quality: 94 }).toFile(tmp);
+  await replaceFile(path.join(OUT, `${c.name}-4k.jpg`), tmp);
 }
 
 console.log("assets rewritten:");
-for (const f of fs.readdirSync(OUT).filter(x => x.endsWith(".jpg"))) {
+for (const f of fs.readdirSync(OUT).filter((x) => x.endsWith(".jpg"))) {
   const m = await sharp(path.join(OUT, f)).metadata();
   console.log(`  ${f} ${m.width}x${m.height}`);
 }

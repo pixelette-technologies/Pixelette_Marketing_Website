@@ -16,7 +16,7 @@ export const influencerPartnershipsContent = {
     lead: "Connect with the right creators and partners to build awareness, credibility and measurable growth.",
     cta: { label: "Discuss Your Campaign", href: "/contactus" },
     image: {
-      src: "/services/influencer-partnerships/hero-collage.jpg",
+      src: "/services/influencer-partnerships/hero-collage-4k.jpg",
       alt: "Creators filming and reviewing content in an urban setting"
     }
   },
@@ -29,7 +29,7 @@ export const influencerPartnershipsContent = {
         title: "Creator & partner sourcing",
         body: "Identify and engage the right creators and partners who align with your brand and values.",
         image: {
-          src: "/services/influencer-partnerships/deliver-sourcing.jpg",
+          src: "/services/influencer-partnerships/deliver-sourcing-4k.jpg",
           alt: "Creator filming a partner on a camera set"
         },
         icon: "people" as const
@@ -38,7 +38,7 @@ export const influencerPartnershipsContent = {
         title: "Campaign strategy & management",
         body: "Plan, coordinate and deliver campaigns end to end, from briefing to content deployment.",
         image: {
-          src: "/services/influencer-partnerships/deliver-strategy.jpg",
+          src: "/services/influencer-partnerships/deliver-strategy-4k.jpg",
           alt: "Smartphone showing a creator speaking to camera"
         },
         icon: "megaphone" as const
@@ -47,7 +47,7 @@ export const influencerPartnershipsContent = {
         title: "Content collaboration",
         body: "Work with creators to produce authentic, high-quality content that captures attention and builds trust.",
         image: {
-          src: "/services/influencer-partnerships/deliver-content.jpg",
+          src: "/services/influencer-partnerships/deliver-content-4k.jpg",
           alt: "Creator reviewing content on a phone under studio lights"
         },
         icon: "clapper" as const
@@ -56,7 +56,7 @@ export const influencerPartnershipsContent = {
         title: "Performance & insight",
         body: "Track results and turn engagement into meaningful insights and business growth.",
         image: {
-          src: "/services/influencer-partnerships/deliver-performance.jpg",
+          src: "/services/influencer-partnerships/deliver-performance-4k.jpg",
           alt: "Laptop showing campaign analytics dashboards"
         },
         icon: "chart" as const
@@ -65,7 +65,7 @@ export const influencerPartnershipsContent = {
         title: "Brand amplification",
         body: "Extend your reach through multi-channel distribution and strategic partnerships.",
         image: {
-          src: "/services/influencer-partnerships/deliver-amplification.jpg",
+          src: "/services/influencer-partnerships/deliver-amplification-4k.jpg",
           alt: "Collage of creator content across devices"
         },
         icon: "star" as const
@@ -77,7 +77,7 @@ export const influencerPartnershipsContent = {
     headingAccent: "next campaign.",
     cta: { label: "Discuss Your Project", href: "/contactus" },
     image: {
-      src: "/services/influencer-partnerships/close-camera.jpg",
+      src: "/services/influencer-partnerships/close-camera-4k.jpg",
       alt: "Camera on a content set lit with magenta studio light"
     }
   }

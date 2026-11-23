@@ -150,14 +150,14 @@ Last updated: **23 November 2026** — Measurement & Insight instruction **COMPL
 
 **Shipped on `bilal/revamp` as `8346312` (gap-closure; implementation `edd4c12`):**
 - Dedicated `InfluencerPartnershipsPage` (hero / deliver / close) replacing the shared specialist template on this route only.
-- Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (source mock was 682×1024 — cropped assets are resolution-limited).
+- Imagery recovered from the approved mock into `public/services/influencer-partnerships/` (`*-4k.jpg` crops from the native **4096×6144** master; earlier 682×1024 preview retired).
 - Existing site header, navigation and footer retained. SEO metadata preserved/aligned to the new lead.
 - Screenshots: `mockup-screenshots/influencer-partnerships-2026-11-20/` (desktop-1440, phone-390).
 - Preview: `https://pixelette-marketing-website-rn1zv63a9-pixelette-technologies.vercel.app`.
 
-**Verification:** structure matches the approved mock (hero → five deliver cards → close only; no Approach / examples / case studies). Hero: one HTML CTA; collage annotation in the asset only. Close: continuous band, one HTML CTA, mock CTA excluded from the crop. Visual gap-closure after MOSTLY COMPLETE audits: `8346312`. Instruction gaps **COMPLETE**. Live domain untouched; no production PR.
+**Verification:** structure matches the approved mock (hero → five deliver cards → close only; no Approach / examples / case studies). Hero: one HTML CTA; collage annotation in the asset only. Close: continuous band, one HTML CTA, mock CTA excluded from the crop. Visual gap-closure after MOSTLY COMPLETE audits: `8346312`. Imagery upgraded to 4K master. Instruction gaps **COMPLETE**. Live domain untouched; no production PR.
 
-**Limitation:** photographs recovered from the approved full-page mock (682×1024), not separate high-res masters — fine detail is softer. No unrelated stock; no image generation.
+**Limitation:** crops come from the approved full-page 4K mock (not separate per-shot masters). No unrelated stock; no image generation.
 
 ## 20 November 2026 — homepage presentation correction
 

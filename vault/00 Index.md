@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Social & Community locked design **MOSTLY COMPLETE** on `bilal/revamp` (review-only until photo rights clear); Impact Compass / Influencer / homepage correction COMPLETE; Founder sign-off still open. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — PR & Earned Media locked design implemented on `bilal/revamp` for `/services/pr` (review-only; hero photography not supplied). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9f11958`** (Social & Community MOSTLY COMPLETE). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page. |
-| Pushed? | **Yes — `bilal/revamp` only**. No PR to production. Live domain untouched. |
-| Preview | Vercel Preview for `9f11958` reported **success**. Deployment URL: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. Social route: `/services/social_media_marketing`. Non-official hosts noindex. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). PR page replaces the specialist template on `/services/pr` only. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** locked design implemented for review. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page. |
+| Pushed? | **`bilal/revamp` only** after this review commit. No production PR. Live domain untouched. |
+| Preview | Social & Community: `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. PR route preview follows the review push. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). PR & Earned Media implemented for review; hero uses original drawn panels because licensed photo layers were not in the handoff. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,10 +26,22 @@ Last updated: **23 November 2026** — Social & Community locked design **MOSTLY
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
-| 2 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| 3 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
-| 4 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+| 1 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
+| 2 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
+| 3 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
+| 4 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 5 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 23 November 2026 — PR & Earned Media locked design
+
+**Instruction:** `PIXELETTE_PR_EARNED_MEDIA_CURSOR_HANDOFF_20NOV2026`. `/services/pr` only. Original editorial collage is the hero authority. Written lock wins where the later mock adds icons or descriptions. No production deploy. No Higgsfield.
+
+**Implemented for review:**
+- Dedicated `PrEarnedMediaPage` replaces the specialist template on this route only. Existing specialist meta title and description kept.
+- Hero copy, four text-only audience labels in order, torn-paper statement, four typography columns, one measure line, plum/crimson close, two FAQs.
+- Removed earns-its-place, connections chart, how we work, what good looks like, and communications-in-action from this route.
+- Hero art is original SVG/CSS. No handoff photograph is embedded. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`.
+- Discuss Your Project links to `/contactus`.
 
 ## 20–23 November 2026 — Social & Community locked design
 

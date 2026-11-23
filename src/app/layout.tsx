@@ -22,6 +22,7 @@ import { isOfficialMarketingHost } from "@/lib/officialHost";
 // IBM Plex Mono has static cuts only and must name its weights.
 const newsreader = Newsreader({
   subsets: ["latin"],
+  style: ["normal", "italic"],
   variable: "--font-newsreader",
   display: "swap"
 });

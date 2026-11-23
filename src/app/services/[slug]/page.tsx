@@ -12,9 +12,11 @@ import {
   ServicesSection
 } from "@/components/ui/services";
 import { InfluencerPartnershipsPage } from "@/components/ui/influencer";
+import { PrEarnedMediaPage } from "@/components/ui/prEarnedMedia";
 import { SocialCommunityPage } from "@/components/ui/socialCommunity";
 import { SpecialistServicePage } from "@/components/ui/specialist";
 import { influencerPartnershipsMeta } from "@/data/services/influencerPartnerships";
+import { prEarnedMediaMeta } from "@/data/services/prEarnedMedia";
 import { socialCommunityMeta } from "@/data/services/socialCommunity";
 import { servicesData } from "@/data/services/servicesData";
 import { specialistPages } from "@/data/services/specialist";
@@ -61,6 +63,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     });
   }
 
+  // 23 Nov 2026: locked PR & Earned Media design — keep the specialist meta.
+  if (slug === "pr") {
+    return await pageMetadata({
+      title: prEarnedMediaMeta.title,
+      description: prEarnedMediaMeta.description,
+      path
+    });
+  }
+
   // 30 Sep 2026: a specialist page takes its title and description from its
   // own config. Share image defaults to `/opengraph-image` via pageMetadata;
   // pass ogImage when a page-specific asset is cleared for public use.
@@ -92,6 +103,12 @@ export default async function Page({ params }: PageProps) {
   // specialist template on this route only.
   if (slug === "social_media_marketing") {
     return <SocialCommunityPage />;
+  }
+
+  // 23 Nov 2026: locked PR & Earned Media design replaces the shared
+  // specialist template on this route only.
+  if (slug === "pr") {
+    return <PrEarnedMediaPage />;
   }
 
   // 30 Sep 2026: the specialist service pages (the four Demand & Performance

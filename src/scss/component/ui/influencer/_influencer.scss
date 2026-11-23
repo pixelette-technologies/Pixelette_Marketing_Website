@@ -214,6 +214,8 @@
 }
 
 .ipDeliver__icon {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Measurement & Insight approved design on `bilal/revamp` (`510f14e`). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — Measurement & Insight instruction **COMPLETE** on `bilal/revamp` (`510f14e`; audit, no gaps). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`510f14e`**. Measurement & Insight awaits review. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** approved design on the branch. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`510f14e`**. Measurement & Insight instruction audit COMPLETE. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
 | Preview | Measurement & Insight: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Lead Generation, Paid Media, SEO, and Email Marketing review follow `bilal/revamp`. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
-| Sign-off | **Not signed off.** Measurement & Insight awaits review. Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Sign-off | **Not signed off.** Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -37,7 +37,7 @@ Last updated: **23 November 2026** — Measurement & Insight approved design on 
 
 **Instruction:** `pixelette_measurement_cursor_handoff`. `/services/marketing_analytics_and_reporting` only. The approved full-page screenshot is the visual authority. The existing route, title and description stay. No production deploy.
 
-**On `bilal/revamp`:**
+**Shipped on `bilal/revamp` as `510f14e` — independent instruction audit COMPLETE (no gaps):**
 - Dedicated `MeasurementInsightPage` replaces the specialist template on this route only. Existing title, description and canonical kept.
 - Hero: locked two-line headline and supporting copy. Supplied collage on the right, including the diverse audience and the circular “A clearer picture” graphic. Text and navigation are live.
 - Three views: Understand performance, Spot opportunities, Make smarter decisions. Date ranges: 30 days, 90 days, 12 months. Each control updates the chart and the accompanying copy.

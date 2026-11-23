@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), and Measurement & Insight are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), and Measurement & Insight (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -16,9 +16,9 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 
-## 23 Nov — Measurement & Insight approved design (local)
+## Closed 23 Nov — Measurement & Insight approved design (COMPLETE)
 
-On `bilal/revamp` as `510f14e`. Live domain untouched; no production PR.
+Pushed as `510f14e`. Independent instruction audit: **COMPLETE** (no gaps). Preview: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Live domain untouched; no production PR.
 
 Allowed and recorded: the chart uses the handoff’s local demonstration figures. `Paid Media +28% vs previous period` is the supplied example annotation on Understand performance. It is not calculated from the bars and it is not a client result. It does not appear on the other two views. FAQ questions are the approved set. Answers are existing Measurement sentences. Page buttons use a right arrow and sentence case. The shared header stays “Discuss Your Project”. Fully transparent pixels in the supplied collage held leftover headline colour; that colour was cleared so it does not paint. The visible collage is the supplied artwork.
 

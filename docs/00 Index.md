@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 23 Nov 2026
 
-**Social & Community locked design MOSTLY COMPLETE on `bilal/revamp` for `/services/social_media_marketing`.** PR & Earned Media locked design is now also on the branch for `/services/pr` (original drawn hero; licensed photo layers were not in the handoff). Manchester photo rights remain a publication blocker on Social. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**PR & Earned Media instruction COMPLETE on `bilal/revamp` (`7127aaa`) for `/services/pr`.** Independent audit found no gaps. Hero is original drawn panels until licensed photos are supplied. Preview: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. Social & Community remains MOSTLY COMPLETE; Manchester photo rights are still a publication blocker. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 20 Nov 2026
 

@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — PR & Earned Media locked design implemented on `bilal/revamp` for `/services/pr` (review-only; hero photography not supplied). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **23 November 2026** — PR & Earned Media locked design **COMPLETE** on `bilal/revamp` (`7127aaa`; instruction audit, no gaps). Hero remains original drawn panels until licensed photos are supplied. Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`7127aaa`** (PR & Earned Media locked page for review). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** locked design implemented for review. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Page code **`7127aaa`**. Instruction audit COMPLETE recorded in this note. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page. |
 | Pushed? | **Yes — `bilal/revamp` only** (`7127aaa`). No production PR. Live domain untouched. |
 | Preview | PR route: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. Social & Community remains `https://pixelette-marketing-website-lxh1prjyv-pixelette-technologies.vercel.app`. |
-| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). PR & Earned Media implemented for review; hero uses original drawn panels because licensed photo layers were not in the handoff. Founder still owns wording / production approval. |
+| Sign-off | **Not signed off.** Review §7 COMPLETE. One-agency COMPLETE. Homepage correction COMPLETE. Impact Compass COMPLETE. Influencer COMPLETE. Social & Community MOSTLY COMPLETE (rights blockers open). PR & Earned Media instruction **COMPLETE** (`7127aaa`); drawn hero is the allowed stand-in until licensed photos arrive. Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -36,13 +36,17 @@ Last updated: **23 November 2026** — PR & Earned Media locked design implement
 
 **Instruction:** `PIXELETTE_PR_EARNED_MEDIA_CURSOR_HANDOFF_20NOV2026`. `/services/pr` only. Original editorial collage is the hero authority. Written lock wins where the later mock adds icons or descriptions. No production deploy. No Higgsfield.
 
-**Implemented for review:**
+**Shipped on `bilal/revamp` as `7127aaa` — independent instruction audit COMPLETE (no gaps):**
 - Dedicated `PrEarnedMediaPage` replaces the specialist template on this route only. Existing specialist meta title and description kept.
 - Hero copy, four text-only audience labels in order, torn-paper statement, four typography columns, one measure line, plum/crimson close, two FAQs.
 - Removed earns-its-place, connections chart, how we work, what good looks like, and communications-in-action from this route.
-- Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`.
+- Hero art is original SVG/CSS. No handoff photograph is embedded.
+- Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/` (desktop-1440, phone-390).
 - Preview: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr` (`7127aaa`).
 - Discuss Your Project links to `/contactus`.
+- Live domain untouched; no production PR.
+
+**Allowed limitation:** rights-cleared photographic strips were not in the handoff. The drawn collage is the permitted stand-in. See Pending.
 
 ## 20–23 November 2026 — Social & Community locked design
 

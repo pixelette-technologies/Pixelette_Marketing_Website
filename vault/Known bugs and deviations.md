@@ -4,16 +4,31 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), and PR & Earned Media (locked page, drawn hero) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), and PR & Earned Media (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| 1 | **PR & Earned Media — licensed hero photography** | Handoff references are flattened mockups, not production layers, and the collage is another studio's artwork. The page uses original drawn editorial panels (lens, silhouettes, facade grid, crowd marks). Supply rights-cleared photos if the Founder wants photographic strips: camera/lens, employee silhouettes, architecture, public/community. |
-| 2 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
-| 3 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
-| 4 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| 5 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
-| 6 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+| **PR & Earned Media — licensed hero photography** | Instruction audit COMPLETE without this. Handoff references are flattened mockups, not production layers. The page uses original drawn editorial panels. Supply rights-cleared photos only if the Founder wants photographic strips: camera/lens, employee silhouettes, architecture, public/community. |
+| **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
+| **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
+| **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 23 Nov — PR & Earned Media locked design (COMPLETE)
+
+Pushed as `7127aaa`. Independent instruction audit: **COMPLETE** (17 checks, no gaps). Preview: `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. Live domain untouched; no production PR. Photographic strips remain an allowed limitation (see Pending).
+
+| Item | Resolution |
+|---|---|
+| **Page structure** | Hero → What we deliver → What we measure → closing CTA → two FAQs. Specialist stack removed on this route. |
+| **Hero** | Locked eyebrow, headline, lead, CTA; statement `One story. Different audiences. Clear messages.`; four text-only labels in order. |
+| **Lower sections** | Four text columns, locked copy, no icons or cards. One measure line, no charts or figures. Plum/crimson close. |
+| **FAQs** | Locked questions. Answers keep the existing non-guarantee: earned media is not guaranteed; measure conditions, not a pipeline. |
+| **Imagery** | Original SVG/CSS panels. No handoff PNG embedded. No Higgsfield. |
+| **SEO** | Specialist meta title and description preserved. |
+| **Screenshots** | `mockup-screenshots/pr-earned-media-2026-11-23/` (desktop-1440, phone-390). |
+| **Preview** | `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr` (`7127aaa`). |
 
 ## Closed 20–23 Nov — Social & Community locked design (MOSTLY COMPLETE)
 

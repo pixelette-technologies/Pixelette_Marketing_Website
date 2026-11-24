@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), and Measurement & Insight (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), and Sectors (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -16,6 +16,19 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Sectors — supplied photography is 680×384** | Eight JPEGs extracted from the interactive prototype, used unaltered at `public/sectors/`. They are not high-resolution masters. The panel will look soft on a retina desktop. Confirm rights and supply production masters before live. |
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 24 Nov — Sectors overview (COMPLETE)
+
+Pushed as `9903bdc`. Independent instruction audit: **COMPLETE** (no gaps). Preview: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries`. Live domain untouched; no production PR.
+
+Allowed and recorded: the old explorer, Work in practice and the closing band are off `/industries`. The homepage “See the work” link goes to `/results`. The homepage teaser still says Industries; the instruction only renamed the nav and footer. The eight photographs stay the supplied 680×384 extracts. Specialist industry routes are unchanged. Nav and footer say Sectors and still link to `/industries`.
+
+| Item | Resolution |
+|---|---|
+| **Page** | Editorial headline, staggered mosaic, blush connectors, detail panel. Technology and digital products on load, `1 of 8`. |
+| **Interaction** | Hover and keyboard focus preview. Click and the arrows commit. Leaving a preview returns to the committed sector. Arrows wrap. Phone tap selects. |
+| **Copy** | `sectors-content-v1.json`, verbatim. |
+| **SEO** | Title Sectors. Canonical stays `/industries`. |
 
 ## Closed 23 Nov — Measurement & Insight approved design (COMPLETE)
 

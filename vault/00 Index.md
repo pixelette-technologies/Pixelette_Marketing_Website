@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **24 November 2026** — Sectors overview implemented on `/industries` (`9903bdc`). Visible name is Sectors. URL unchanged. Influencer 4K imagery remains `c0243d1`. Measurement & Insight remains instruction **COMPLETE** (`510f14e`). Lead Generation, Paid Media & PPC, SEO, Email Marketing and PR remain instruction **COMPLETE**. Social & Community remains MOSTLY COMPLETE.
+Last updated: **24 November 2026** — Sectors overview instruction **COMPLETE** (`9903bdc`). Independent audit found no gaps. Visible name is Sectors. URL unchanged. Photography remains 680×384 until production masters are supplied. Influencer 4K imagery remains `c0243d1`. Measurement & Insight remains instruction **COMPLETE** (`510f14e`). Lead Generation, Paid Media & PPC, SEO, Email Marketing and PR remain instruction **COMPLETE**. Social & Community remains MOSTLY COMPLETE.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9903bdc`** (Sectors mosaic on `/industries`). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** overview implemented. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Sectors code **`9903bdc`**. This note records the instruction audit as **COMPLETE**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
 | Preview | Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
-| Sign-off | **Not signed off.** Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Sign-off | **Not signed off.** Sectors instruction **COMPLETE** (`9903bdc`); 680×384 photography stays open before live. Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
@@ -38,7 +38,7 @@ Last updated: **24 November 2026** — Sectors overview implemented on `/industr
 
 **Instruction:** final Sectors handoff. `/industries` only. The visible name is Sectors. The URL stays `/industries`. Copy is `sectors-content-v1.json`, verbatim. No production deploy.
 
-**Shipped on `bilal/revamp` as `9903bdc`:**
+**Shipped on `bilal/revamp` as `9903bdc` — independent instruction audit COMPLETE (no gaps):**
 - The old market explorer, Work in practice and closing band are off this route. Specialist `/industries/[slug]` pages are unchanged.
 - Editorial headline, eight-tile staggered mosaic, blush connector lines, and a detail panel. Technology and digital products is selected on load, `1 of 8`.
 - Hover and keyboard focus preview. Click and the arrows commit. Leaving a preview returns to the committed sector. Previous from the first sector wraps to charities.
@@ -48,6 +48,7 @@ Last updated: **24 November 2026** — Sectors overview implemented on `/industr
 - Preview: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries`.
 - Live domain untouched; no production PR.
 - The eight photographs are 680×384 prototype extracts. Soft on a retina desktop until production masters are supplied.
+- The homepage teaser still says Industries / Explore industries. The instruction required the nav and footer label only. That teaser was left as it was.
 
 ## 23 November 2026 — Measurement & Insight approved design
 

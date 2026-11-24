@@ -8,7 +8,7 @@ Last updated: **24 November 2026** — Social value instruction **COMPLETE** on 
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Social value instruction audit **COMPLETE**. Sectors code **`9903bdc`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Social value **`75df61c`**. Sectors code **`9903bdc`**. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
@@ -39,6 +39,8 @@ Last updated: **24 November 2026** — Social value instruction **COMPLETE** on 
 ## 24 November 2026 — Social value approved page
 
 **Instruction:** `PIXELETTE-SOCIAL-VALUE-EXACT-CURSOR-PACK`. `/social-value` only. The approved screenshot is the layout. The supplied mosaic crop is the hero. Copy is verbatim. No production deploy.
+
+**Preview:** https://pixelette-marketing-website-n9ocunxqv-pixelette-technologies.vercel.app/social-value (`75df61c`, READY). Live domain untouched.
 
 **Independent re-audit: COMPLETE.** No instruction misses.
 - The previous “What we will not claim” page is replaced.

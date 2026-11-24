@@ -21,7 +21,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 24 Nov — Social value approved page (COMPLETE)
 
-Independent re-audit: **COMPLETE**. No instruction misses. The previous honesty statement is off `/social-value`. Split hero, three cards, two columns, concave close. Mosaic is the supplied 1035×435 crop, byte-identical. At 1440 about 13px of page colour remains above and below the mosaic. Around 1024 the two-column hero letterboxes it by about 57px. The wave has two rises. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/social-value-2026-11-24/`.
+Pushed as `75df61c`. Preview: https://pixelette-marketing-website-n9ocunxqv-pixelette-technologies.vercel.app/social-value (READY). Independent re-audit: **COMPLETE**. No instruction misses. The previous honesty statement is off `/social-value`. Split hero, three cards, two columns, concave close. Mosaic is the supplied 1035×435 crop, byte-identical. At 1440 about 13px of page colour remains above and below the mosaic. Around 1024 the two-column hero letterboxes it by about 57px. The wave has two rises. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/social-value-2026-11-24/`.
 
 ## Closed 24 Nov — Sectors overview (COMPLETE)
 

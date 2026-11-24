@@ -1,0 +1,332 @@
+// /social-value — approved page, 24 Nov 2026.
+// Page-local layout. Shared brand tokens only. Does not restyle other routes.
+
+.svPage {
+  --sv-cream: color-mix(in srgb, var(--color-brand-wash) 20%, var(--room-light));
+  --sv-card: color-mix(in srgb, var(--color-brand-tint) 58%, var(--room-light));
+  background: var(--sv-cream);
+  color: var(--color-plum-ink);
+  overflow-x: clip;
+}
+
+.svWrap {
+  width: min(var(--container-wrap), 100% - 40px);
+  margin-inline: auto;
+}
+
+.svHero {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.72fr) minmax(0, 1.28fr);
+  align-items: center;
+  column-gap: clamp(0.75rem, 1.2vw, 1.5rem);
+}
+
+.svHero__copy {
+  width: 100%;
+  padding-block: clamp(1rem, 0.4rem + 1.1vw, 1.55rem);
+  padding-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  padding-right: 0.35rem;
+}
+
+.svHero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.svHero__eyebrow span {
+  width: 1.65rem;
+  height: 2px;
+  background: var(--color-brand);
+}
+
+.svHero__heading {
+  margin: 0.6rem 0 0;
+  max-width: 10.4em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.95rem, 1.15rem + 1.65vw, 2.65rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+}
+
+.svHero__text {
+  margin: 0.7rem 0 0;
+  max-width: 42ch;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.svHero__text + .svHero__text {
+  margin-top: 0.55rem;
+}
+
+.svHero__art {
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+
+.svHero__art picture {
+  display: block;
+  width: 100%;
+}
+
+.svHero__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center right;
+}
+
+.svPrinciples {
+  padding-top: clamp(1.75rem, 1rem + 1.5vw, 2.5rem);
+}
+
+.svPrinciples__heading,
+.svFocus__col h2,
+.svClose__inner h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.svPrinciples__heading {
+  font-size: clamp(1.85rem, 1.45rem + 1.15vw, 2.45rem);
+  line-height: 1.12;
+}
+
+.svPrinciples__intro {
+  margin: 0.75rem 0 0;
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.svCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin: 1.45rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.svCard {
+  display: grid;
+  grid-template-columns: auto 2px minmax(0, 1fr);
+  column-gap: 0.85rem;
+  align-items: center;
+  min-height: 7.5rem;
+  padding: 1rem 1rem 1.05rem 0.9rem;
+  border-radius: 1.15rem;
+  background: var(--sv-card);
+}
+
+.svCard__icon {
+  display: grid;
+  place-items: center;
+  width: 3.15rem;
+  height: 3.15rem;
+  border: 1.5px solid var(--color-brand);
+  border-radius: 50%;
+  color: var(--color-brand);
+}
+
+.svCard__icon svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.svCard__rule {
+  width: 2px;
+  height: 3.35rem;
+  border-radius: 1px;
+  background: var(--color-brand);
+}
+
+.svCard__copy h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--color-plum-ink);
+}
+
+.svCard__copy p {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.svFocus {
+  padding-block: clamp(2.25rem, 1.6rem + 1.8vw, 3.25rem) clamp(2.5rem, 1.5rem + 2vw, 3.5rem);
+}
+
+.svFocus__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.svFocus__col h2 {
+  font-size: clamp(1.55rem, 1.3rem + 0.7vw, 1.9rem);
+  line-height: 1.15;
+}
+
+.svFocus__col p {
+  margin: 0.7rem 0 0;
+  max-width: 46ch;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.svFocus__col + .svFocus__col {
+  border-left: 1px solid var(--color-line-strong);
+  padding-left: clamp(1.5rem, 2vw, 2.75rem);
+  margin-left: clamp(0.25rem, 1vw, 0.75rem);
+}
+
+.svClose {
+  position: relative;
+  margin-top: 1.25rem;
+  color: var(--color-burgundy);
+}
+
+.svClose__wave {
+  display: block;
+  width: 100%;
+  height: 6.5rem;
+  margin-bottom: -1px;
+}
+
+.svClose__band {
+  background: var(--color-burgundy);
+  color: var(--color-page);
+  padding-block: 0.35rem clamp(1.65rem, 1.2rem + 1.2vw, 2.15rem);
+}
+
+.svClose__inner {
+  display: grid;
+  grid-template-columns: minmax(14rem, 1.05fr) minmax(0, 1.2fr) auto;
+  gap: 1rem 1.75rem;
+  align-items: center;
+}
+
+.svClose__inner h2 {
+  color: var(--color-page);
+  font-size: clamp(1.7rem, 1.35rem + 1vw, 2.15rem);
+  line-height: 1.12;
+  max-width: 12em;
+  text-wrap: wrap;
+}
+
+.svClose__inner p {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--color-page) 88%, transparent);
+}
+
+.svClose__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 3.15rem;
+  padding: 0.8rem 1.35rem;
+  border-radius: 999px;
+  background: var(--color-page);
+  color: var(--color-burgundy);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.svClose__cta:hover {
+  color: var(--color-brand-hover);
+}
+
+.svClose__cta:focus-visible {
+  outline: 2px solid var(--color-page);
+  outline-offset: 3px;
+}
+
+@media (max-width: 980px) {
+  .svCards {
+    grid-template-columns: 1fr;
+  }
+
+  .svClose__inner {
+    grid-template-columns: 1fr;
+    justify-items: start;
+  }
+
+  .svClose__inner h2,
+  .svClose__inner p {
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .svHero {
+    grid-template-columns: 1fr;
+  }
+
+  .svHero__copy {
+    max-width: none;
+    padding-right: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  }
+
+  .svHero__heading {
+    max-width: 12em;
+  }
+
+  .svHero__art {
+    padding-inline: 0;
+  }
+
+  .svFocus__grid {
+    grid-template-columns: 1fr;
+    row-gap: 1.75rem;
+  }
+
+  .svFocus__col + .svFocus__col {
+    border-left: 0;
+    margin-left: 0;
+    padding-left: 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--color-line-strong);
+  }
+}

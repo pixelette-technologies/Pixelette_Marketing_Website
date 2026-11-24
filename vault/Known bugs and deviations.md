@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), and Sectors (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), and Social value (instruction COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -14,8 +14,14 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Social & Community — commenter names** | Locked mock: initials + three sentences. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
 | **Lead Generation — hero artwork resolution and rights** | Supplied PNG is 585×431 and is used unaltered at `public/services/lead_generation/action-triptych.png`. The full triptych stays visible at 320–1440. It will look soft on a retina desktop. The handoff says an earlier external exclamation image must not be treated as cleared, and the prepared asset still needs the owner's rights check before live. |
 | **Sectors — supplied photography is 680×384** | Eight JPEGs extracted from the interactive prototype, used unaltered at `public/sectors/`. They are not high-resolution masters. The panel will look soft on a retina desktop. Confirm rights and supply production masters before live. |
-| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page + Social value page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
+| **Social value mosaic is 1035×435** | Supplied crop used unaltered at `public/social-value/mosaic-hero.png`. It will soften above that width. |
+| **Contact page still describes the retired social-value statement** | `contactPage.ts` says each published governance page states what is not yet published. `/social-value` no longer does. Not edited in this pass. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 24 Nov — Social value approved page (COMPLETE)
+
+Independent re-audit: **COMPLETE**. No instruction misses. The previous honesty statement is off `/social-value`. Split hero, three cards, two columns, concave close. Mosaic is the supplied 1035×435 crop, byte-identical. At 1440 about 13px of page colour remains above and below the mosaic. Around 1024 the two-column hero letterboxes it by about 57px. The wave has two rises. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/social-value-2026-11-24/`.
 
 ## Closed 24 Nov — Sectors overview (COMPLETE)
 

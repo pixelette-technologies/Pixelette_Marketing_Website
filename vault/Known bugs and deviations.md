@@ -23,7 +23,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 24 Nov — Accessibility approved page (COMPLETE)
 
-Local on `bilal/revamp`. Not pushed. No preview deploy. Independent re-audit: **COMPLETE**. No instruction misses. The previous voluntary statement and mock-up banner are off `/accessibility`. Split hero, four cards, help panel, two-column work section, curved close. Both page buttons say Contact Us and go to `/contactus`. The header stays Discuss Your Project. Mosaic is the supplied 675×405 crop, byte-identical, shown at 840×504 on a 1440 desktop. `npx tsc --noEmit` passed. ESLint is clean on this page. `npm run build` succeeded. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/accessibility-2026-11-24/`.
+Local on `bilal/revamp` as `88cbe32`. Not pushed. No preview deploy. Independent re-audit: **COMPLETE**. No instruction misses. The previous voluntary statement and mock-up banner are off `/accessibility`. Split hero, four cards, help panel, two-column work section, curved close. Both page buttons say Contact Us and go to `/contactus`. The header stays Discuss Your Project. Mosaic is the supplied 675×405 crop, byte-identical, shown at 840×504 on a 1440 desktop. `npx tsc --noEmit` passed. ESLint is clean on this page. `npm run build` succeeded. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/accessibility-2026-11-24/`.
 
 ## Closed 24 Nov — Social value approved page (COMPLETE)
 

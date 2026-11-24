@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 24 Nov 2026
 
-**Accessibility instruction COMPLETE on `bilal/revamp` for `/accessibility`.** Independent re-audit found no instruction misses. Supplied mosaic is 675×405, shown up to 840px wide. Both page buttons say Contact Us and go to `/contactus`. No preview deploy. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Accessibility instruction COMPLETE on `bilal/revamp` (`88cbe32`) for `/accessibility`.** Independent re-audit found no instruction misses. Supplied mosaic is 675×405, shown up to 840px wide. Both page buttons say Contact Us and go to `/contactus`. No preview deploy. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 **Social value instruction COMPLETE on `bilal/revamp` (`75df61c`) for `/social-value`.** Independent re-audit found no instruction misses. Supplied mosaic is 1035×435. Other routes unchanged. Preview: https://pixelette-marketing-website-n9ocunxqv-pixelette-technologies.vercel.app/social-value (READY). Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 

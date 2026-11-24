@@ -1,0 +1,414 @@
+// /accessibility — approved page, 24 Nov 2026.
+// Page-local layout. Shared brand tokens only. Does not restyle other routes.
+// The mosaic is the supplied 675×405 crop. Desktop shows it up to 840px wide
+// so the right column matches the approved composition without a hard crop.
+
+.axPage {
+  --ax-cream: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
+  --ax-blush: var(--color-brand-tint);
+  background: var(--ax-cream);
+  color: var(--color-plum-ink);
+  overflow-x: clip;
+}
+
+.axWrap {
+  width: min(var(--container-wrap), 100% - 40px);
+  margin-inline: auto;
+}
+
+.axHero {
+  display: grid;
+  grid-template-columns: minmax(17rem, 32rem) minmax(0, 1fr);
+  align-items: center;
+  column-gap: clamp(0.75rem, 2vw, 2rem);
+}
+
+.axHero__copy {
+  width: 100%;
+  padding-block: clamp(1.35rem, 0.6rem + 1.4vw, 2.15rem);
+  padding-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  padding-right: 0.25rem;
+}
+
+.axHero__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+.axHero__eyebrow span {
+  width: 1.65rem;
+  height: 2px;
+  background: var(--color-brand);
+}
+
+.axHero__heading {
+  margin: 0.65rem 0 0;
+  max-width: 11em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.15rem, 1.25rem + 1.8vw, 3.15rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: var(--color-burgundy);
+}
+
+.axHero__heading span {
+  display: block;
+}
+
+.axHero__text {
+  margin: 0.85rem 0 0;
+  max-width: 42ch;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.axHero__text + .axHero__text {
+  margin-top: 0.7rem;
+}
+
+.axHero__art {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.axHero__art picture {
+  display: block;
+  width: min(100%, 840px);
+}
+
+.axHero__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.axMatters {
+  padding-top: clamp(1.5rem, 0.8rem + 1.4vw, 2.4rem);
+}
+
+.axMatters__heading,
+.axWork__lead h2,
+.axClose__inner h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.axMatters__heading {
+  font-size: clamp(1.9rem, 1.4rem + 1.2vw, 2.55rem);
+  line-height: 1.1;
+}
+
+.axMatters__intro {
+  margin: 0.75rem 0 0;
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.axCards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axCard {
+  display: grid;
+  grid-template-columns: auto 2px minmax(0, 1fr);
+  column-gap: 0.85rem;
+  align-items: center;
+  height: 100%;
+  min-height: 8.4rem;
+  padding: 1.05rem 1rem 1.1rem 0.9rem;
+  border-radius: 1.2rem;
+  background: var(--ax-blush);
+}
+
+.axCard__icon,
+.axHelp__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3.7rem;
+  height: 3.7rem;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-page);
+}
+
+.axCard__icon svg,
+.axHelp__icon svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.axCard__icon text {
+  font-family: var(--font-body), sans-serif;
+}
+
+.axCard__rule,
+.axHelp__rule {
+  width: 2px;
+  align-self: center;
+  height: 3.6rem;
+  border-radius: 1px;
+  background: var(--color-brand);
+}
+
+.axCard__copy h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--color-plum-ink);
+}
+
+.axCard__copy p {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.axHelp {
+  padding-top: clamp(1.15rem, 0.6rem + 1vw, 1.6rem);
+}
+
+.axHelp__panel {
+  display: grid;
+  grid-template-columns: auto 2px minmax(0, 1fr) auto;
+  column-gap: 0.95rem;
+  align-items: center;
+  padding: 1.15rem 1.15rem 1.15rem 1rem;
+  border-radius: 1.25rem;
+  background: var(--ax-blush);
+}
+
+.axHelp__copy h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.25rem, 1.05rem + 0.5vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.axHelp__copy p {
+  margin: 0.4rem 0 0;
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.axCta {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.axCta:hover {
+  color: var(--color-page);
+  text-decoration: none;
+}
+
+.axWork {
+  padding-block: clamp(2.4rem, 1.6rem + 2vw, 3.6rem);
+}
+
+.axWork__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) 2px minmax(0, 1.08fr);
+  column-gap: clamp(1.5rem, 3vw, 3.25rem);
+  align-items: stretch;
+}
+
+.axWork__lead h2 {
+  font-size: clamp(1.85rem, 1.4rem + 1.1vw, 2.45rem);
+  line-height: 1.12;
+  max-width: 12em;
+}
+
+.axWork__lead p,
+.axWork__aside {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.axWork__lead p {
+  margin-top: 0.85rem;
+  max-width: 36ch;
+}
+
+.axWork__aside {
+  max-width: 46ch;
+  align-self: start;
+}
+
+.axWork__rule {
+  width: 2px;
+  align-self: stretch;
+  border-radius: 1px;
+  background: var(--color-brand);
+}
+
+.axClose {
+  position: relative;
+  color: color-mix(in srgb, var(--color-brand) 42%, var(--color-footer-bg));
+}
+
+.axClose__wave {
+  display: block;
+  width: 100%;
+  height: clamp(4.5rem, 7vw, 6.75rem);
+  margin-bottom: -1px;
+}
+
+.axClose__band {
+  background: color-mix(in srgb, var(--color-brand) 42%, var(--color-footer-bg));
+  color: var(--color-page);
+  padding-block: 0.4rem clamp(2rem, 1.4rem + 1.4vw, 2.75rem);
+}
+
+.axClose__inner {
+  display: grid;
+  grid-template-columns: minmax(13rem, 0.95fr) minmax(0, 1.15fr) auto;
+  gap: 1rem 1.75rem;
+  align-items: center;
+}
+
+.axClose__inner h2 {
+  color: var(--color-page);
+  font-size: clamp(1.75rem, 1.3rem + 1.1vw, 2.35rem);
+  line-height: 1.12;
+  max-width: 11em;
+}
+
+.axClose__inner p {
+  margin: 0;
+  max-width: 42ch;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-page);
+}
+
+.axClose__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 52px;
+  padding: 0.8rem 1.45rem;
+  border-radius: 999px;
+  background: var(--color-page);
+  color: var(--color-burgundy);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.axClose__cta:hover {
+  color: var(--color-brand-hover);
+}
+
+.axClose :focus-visible {
+  outline-color: var(--color-brand-signal);
+}
+
+@media (max-width: 1100px) {
+  .axCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .axHero {
+    grid-template-columns: 1fr;
+  }
+
+  .axHero__copy {
+    padding-right: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  }
+
+  .axHero__art {
+    justify-content: center;
+    padding: 0 1.25rem 0.5rem;
+  }
+
+  .axHelp__panel,
+  .axClose__inner {
+    grid-template-columns: 1fr;
+    justify-items: start;
+    row-gap: 0.9rem;
+  }
+
+  .axHelp__panel {
+    grid-template-columns: auto 2px minmax(0, 1fr);
+  }
+
+  .axHelp__panel .axCta {
+    grid-column: 1 / -1;
+  }
+
+  .axWork__grid {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    align-items: start;
+  }
+
+  .axWork__rule {
+    width: 4.25rem;
+    height: 2px;
+    align-self: start;
+  }
+
+  .axClose__inner h2,
+  .axClose__inner p,
+  .axWork__aside,
+  .axWork__lead p {
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .axCards {
+    grid-template-columns: 1fr;
+  }
+}

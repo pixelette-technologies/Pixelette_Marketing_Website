@@ -27,6 +27,8 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 24 Nov 2026
 
+**Accessibility instruction COMPLETE on `bilal/revamp` for `/accessibility`.** Independent re-audit found no instruction misses. Supplied mosaic is 675×405, shown up to 840px wide. Both page buttons say Contact Us and go to `/contactus`. No preview deploy. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 **Social value instruction COMPLETE on `bilal/revamp` (`75df61c`) for `/social-value`.** Independent re-audit found no instruction misses. Supplied mosaic is 1035×435. Other routes unchanged. Preview: https://pixelette-marketing-website-n9ocunxqv-pixelette-technologies.vercel.app/social-value (READY). Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 **Sectors instruction COMPLETE on `bilal/revamp` (`9903bdc`) for `/industries`.** Independent audit found no gaps. Visible name is Sectors. The route is unchanged. Eight-sector mosaic and detail panel replace the old explorer. Specialist industry routes are untouched. Supplied photography is 680×384 until production masters are supplied. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.

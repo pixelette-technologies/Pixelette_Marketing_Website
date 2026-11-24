@@ -40,6 +40,8 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **Social value (24 Nov, instruction audit COMPLETE):** `/social-value` may use the approved exact handoff only. Headline is `Connecting people to what matters`. Use `SOCIAL-VALUE-EXACT-MOSAIC-HERO` unaltered. Do not restore the previous “What we will not claim” page, embed the full-page screenshot, or generate a replacement mosaic. Do not change other routes for this pass.
 
+**Accessibility (24 Nov, instruction audit COMPLETE):** `/accessibility` may use the approved exact handoff only. Headline is `Making our website easier to use`. Use the supplied mosaic unaltered. Both page buttons say Contact Us and go to `/contactus`. Do not restore the previous voluntary statement, add an audit disclaimer, or claim WCAG conformance. Do not change other routes for this pass.
+
 **Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
 
 **Crawler allowlist:** only `www.pixelettemarketing.com` and `pixelettemarketing.com` may be indexed. Every other host — `*.vercel.app`, other subdomains, localhost — gets `X-Robots-Tag: noindex, nofollow`, `/robots.txt` `Disallow: /`, and host-aware HTML robots. Deployment Protection may be off for management review; the code gate stays.

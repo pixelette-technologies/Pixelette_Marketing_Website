@@ -373,14 +373,15 @@ export const aiTechnologyData: AiTechnologyContent = {
 // --- 06 Proof before promises — 29 Sep 2026 ---------------------------------
 // The locked information architecture makes this a COMPACT teaser, and moves
 // the fuller evidence to Work in practice on /industries. The heading and
-// supporting line are the specification's; the CTA goes to Work in practice,
-// which is the architecture's next step (home → Industries → case study).
+// supporting line are the specification's. 24 Nov 2026: the Sectors handoff
+// replaces that chapter on /industries, so this CTA now opens /results, where
+// the same two stories are told in full.
 // See ProofTeaser for why only two of BlockGuard's figures appear here.
 
 export const proofTeaserCopy = {
   heading: "Proof before promises",
   lead: "Good marketing should leave evidence behind",
-  cta: { label: "See the work", to: "/industries#work-in-practice" }
+  cta: { label: "See the work", to: "/results" }
 };
 
 // --- 08 Results -------------------------------------------------------------

@@ -1,0 +1,412 @@
+// /industries — approved Sectors mosaic, 24 Nov 2026.
+// Positions are the prototype's 710×775 stage, stored as percentages so the
+// arrangement scales with the column. Connector lines are decorative and
+// drop out below the desktop composition. The site header and footer stay
+// the shared components; this file only draws the page.
+
+.sectors__canvas {
+  padding-block: clamp(1.75rem, 1rem + 2vw, 3rem) clamp(2.5rem, 1.5rem + 2vw, 4.5rem);
+}
+
+.sectorsHero__eyebrow,
+.sectorsPanel__name {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 650;
+  color: var(--color-footer-bg);
+}
+
+.sectorsHero__eyebrow::before,
+.sectorsPanel__name::before {
+  content: "";
+  flex-shrink: 0;
+  width: 2.375rem;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--color-brand);
+}
+
+.sectorsHero__eyebrow {
+  margin-bottom: 1.05rem;
+  font-size: 1.125rem;
+}
+
+.sectorsHero__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.35rem, 1.4rem + 2.1vw, 3.15rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  color: var(--color-footer-bg);
+}
+
+.sectorsHero__title span,
+.sectorsHero__title em {
+  display: block;
+}
+
+.sectorsHero__title em,
+.sectorsPanel__title em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--color-brand);
+}
+
+.sectorsHero__lead {
+  max-width: 17.75rem;
+  margin: 0.85rem 0 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--color-footer-bg);
+}
+
+.sectorsMosaic {
+  position: relative;
+  margin-top: 1.75rem;
+}
+
+.sectorsMosaic__links {
+  display: none;
+}
+
+.sectorsMosaic__tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 0.75rem;
+}
+
+.sectorsTile {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-footer-bg);
+  font-family: var(--font-body);
+  text-align: left;
+  cursor: pointer;
+}
+
+.sectorsTile__frame {
+  display: block;
+  height: 6.875rem;
+  overflow: hidden;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  background: var(--color-page);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.sectorsTile__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sectorsTile__label {
+  position: relative;
+  display: block;
+  max-width: 13rem;
+  margin: 0.45rem 0 0 0.35rem;
+  padding-left: 0.55rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.sectorsTile__label::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  min-height: 1.9rem;
+  background: var(--color-brand);
+}
+
+.sectorsTile[aria-pressed="true"] .sectorsTile__frame {
+  border-color: var(--color-brand);
+  box-shadow:
+    0 0 0 3px var(--color-band),
+    0 0 0 5px var(--color-brand-signal);
+}
+
+.sectorsTile:focus-visible {
+  outline: none;
+}
+
+.sectorsTile:focus-visible .sectorsTile__frame {
+  outline: 3px solid var(--color-brand-signal);
+  outline-offset: 3px;
+}
+
+.sectorsPanel {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  padding: 1.75rem 1.35rem 1.15rem;
+  border: 1.5px solid var(--color-brand-wash);
+  border-radius: 24px;
+  background: var(--color-band);
+}
+
+.sectorsPanel__state {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.sectorsPanel__name {
+  align-items: flex-start;
+  min-height: 2.6rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+}
+
+.sectorsPanel__name::before {
+  margin-top: 0.4rem;
+}
+
+.sectorsPanel__image {
+  display: block;
+  width: 100%;
+  height: 12.125rem;
+  margin: 0.35rem 0 1rem;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.sectorsPanel__title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.4rem + 1.5vw, 2.5625rem);
+  line-height: 1.02;
+  letter-spacing: -0.015em;
+  color: var(--color-footer-bg);
+}
+
+.sectorsPanel__desc {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  color: var(--color-footer-bg);
+}
+
+.sectorsPanel__caps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 1.5rem 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sectorsCap {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 3.25rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 16px;
+  background: var(--color-brand-tint);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-footer-bg);
+}
+
+.sectorsCap svg {
+  flex-shrink: 0;
+  width: 1.7rem;
+  height: 1.7rem;
+  fill: none;
+  stroke: var(--color-footer-bg);
+  stroke-width: 1.7;
+}
+
+.sectorsPanel__pager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.15rem;
+  border-top: 1px solid var(--color-brand-wash);
+}
+
+.sectorsPanel__arrow {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 1.4px solid var(--color-brand-wash);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-footer-bg);
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.sectorsPanel__arrow:hover {
+  background: var(--color-brand-tint);
+}
+
+.sectorsPanel__arrow:focus-visible {
+  outline: 3px solid var(--color-brand-signal);
+  outline-offset: 3px;
+}
+
+.sectorsPanel__count {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-footer-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sectorsTile:hover .sectorsTile__frame {
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sectorsTile__frame {
+    transition: none;
+  }
+
+  .sectorsTile:hover .sectorsTile__frame {
+    transform: none;
+  }
+}
+
+// Desktop composition: headline at the left, mosaic beneath and beside it,
+// panel occupying the right column for the full height of the stage.
+@media (min-width: 68rem) {
+  .sectors__canvas {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 24.625rem);
+    column-gap: clamp(1.25rem, 2vw, 2.5rem);
+    align-items: stretch;
+    min-height: 52rem;
+  }
+
+  .sectorsHero {
+    position: relative;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    max-width: 28rem;
+    padding-top: 0.35rem;
+    pointer-events: none;
+  }
+
+  .sectorsHero__title span,
+  .sectorsHero__title em {
+    white-space: nowrap;
+  }
+
+  .sectorsMosaic {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    width: 100%;
+    max-width: 44.375rem;
+    margin-top: 10.25rem;
+    aspect-ratio: 710 / 775;
+  }
+
+  .sectorsMosaic__links {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .sectorsMosaic__links path {
+    fill: none;
+    stroke: var(--color-brand-wash);
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .sectorsMosaic__tiles {
+    position: absolute;
+    inset: 0;
+    display: block;
+  }
+
+  .sectorsTile {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .sectorsTile--0 { top: 0; left: 43.66%; width: 27.46%; }
+  .sectorsTile--1 { top: 23.35%; left: 6.48%; width: 28.87%; }
+  .sectorsTile--2 { top: 26.97%; left: 65.49%; width: 30.28%; }
+  .sectorsTile--3 { top: 44.52%; left: 33.1%; width: 29.58%; }
+  .sectorsTile--4 { top: 56.77%; left: 0; width: 30.28%; }
+  .sectorsTile--5 { top: 60.77%; left: 66.48%; width: 30.28%; }
+  .sectorsTile--6 { top: 78.71%; left: 3.38%; width: 30.7%; }
+  .sectorsTile--7 { top: 80.77%; left: 43.66%; width: 30.99%; }
+
+  .sectorsTile__frame {
+    height: 7.4cqh;
+  }
+
+  .sectorsMosaic {
+    container-type: size;
+  }
+
+  .sectorsTile--0 .sectorsTile__frame {
+    height: 17.03cqh;
+  }
+
+  .sectorsTile--1 .sectorsTile__frame,
+  .sectorsTile--2 .sectorsTile__frame,
+  .sectorsTile--3 .sectorsTile__frame,
+  .sectorsTile--4 .sectorsTile__frame,
+  .sectorsTile--5 .sectorsTile__frame,
+  .sectorsTile--6 .sectorsTile__frame,
+  .sectorsTile--7 .sectorsTile__frame {
+    height: 14.32cqh;
+  }
+
+  .sectorsTile__label {
+    font-size: clamp(0.8rem, 0.55rem + 0.55vw, 1.0625rem);
+  }
+
+  .sectorsPanel {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 48rem;
+    margin-top: 0;
+    padding: 1.85rem 1.35rem 1.15rem;
+  }
+
+  .sectorsPanel__caps {
+    margin-top: auto;
+  }
+
+  .sectorsPanel__desc {
+    min-height: 9rem;
+  }
+}

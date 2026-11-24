@@ -171,7 +171,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href='/industries' className='flink small'>
-                  Industries
+                  Sectors
                 </Link>
               </li>
               <li>

@@ -99,7 +99,7 @@ export default function Navbar() {
                 groups={whatWeDoGroups}
               />
               <Link href={"/industries"} className='flink'>
-                Industries
+                Sectors
               </Link>
               <Link href={"/blog-list"} className='flink'>
                 Insights
@@ -134,7 +134,7 @@ export default function Navbar() {
                   className='navDrawer__link'
                   onClick={closeDrawer}
                 >
-                  Industries
+                  Sectors
                 </Link>
                 <Link
                   href='/blog-list'

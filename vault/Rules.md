@@ -36,6 +36,8 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **Measurement & Insight (22 Nov, instruction audit COMPLETE 23 Nov):** `/services/marketing_analytics_and_reporting` may use the approved handoff only — diverse-audience collage, circular “A clearer picture” graphic, three chart views, four capabilities, light close, four FAQs. Use the supplied collage. Do not embed the full-page screenshot, add a dashboard to the hero, or present the chart figures or `Paid Media +28%` as a client result. Do not change other service pages for this pass.
 
+**Sectors (24 Nov):** `/industries` may use the approved eight-sector mosaic and detail panel only. The visible name is Sectors. The URL stays `/industries`. Use `sectors-content-v1.json` verbatim. Do not delete specialist industry routes, invent results, or replace the supplied photographs. Nav and footer say Sectors. The homepage proof link goes to `/results` because Work in practice is no longer on this route.
+
 **Mock-up URL freeze (12 Nov brief §3, reinforced by 17 Nov snag):** existing pages stay on the 6 November baseline paths (`/aboutus`, `/blog-list`, `/blog/[id]`, underscore service URLs, single `/results`). Do not re-introduce the hyphen / Insights / about rename / results-index migration inside this mock-up. New pages keep new URLs.
 
 **Crawler allowlist:** only `www.pixelettemarketing.com` and `pixelettemarketing.com` may be indexed. Every other host — `*.vercel.app`, other subdomains, localhost — gets `X-Robots-Tag: noindex, nofollow`, `/robots.txt` `Disallow: /`, and host-aware HTML robots. Deployment Protection may be off for management review; the code gate stays.

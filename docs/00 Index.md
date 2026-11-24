@@ -25,6 +25,10 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 24 Nov 2026
+
+**Sectors overview implemented on `bilal/revamp` (`9903bdc`) for `/industries`.** Visible name is Sectors. The route is unchanged. Eight-sector mosaic and detail panel replace the old explorer. Specialist industry routes are untouched. Live domain untouched. Detail: `vault/00 Index.md`.
+
 ## Status as of 23 Nov 2026
 
 **Paid Media & PPC instruction COMPLETE on `bilal/revamp` (`8057281`) for `/services/ads_ppc`.** Independent audit found no gaps. Two campaign treatments, four capabilities, four measurement areas, existing SEO and navigation. Below 900px a Creative A / Creative B switch selects the visible treatment. Review deploy only; live domain untouched. SEO, Content & AI Visibility remains COMPLETE (`c190220`). Email Marketing remains COMPLETE (`dbad31d`). PR & Earned Media remains COMPLETE (`7127aaa`). Social & Community remains MOSTLY COMPLETE; Manchester photo rights are still a publication blocker. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.

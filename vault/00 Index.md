@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **23 November 2026** — Influencer & Partnerships imagery upgraded to the approved **4096×6144** master (`c0243d1`; layout unchanged). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation remains instruction **COMPLETE** (`5c8ce0d`). Paid Media & PPC remains instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility remains instruction **COMPLETE** (`c190220`). Email Marketing remains instruction **COMPLETE** (`dbad31d`). PR & Earned Media remains instruction **COMPLETE** (`7127aaa`). Social & Community remains MOSTLY COMPLETE. Phase F history still starts from 1 Sep.
+Last updated: **24 November 2026** — Sectors overview implemented on `/industries` (`9903bdc`). Visible name is Sectors. URL unchanged. Influencer 4K imagery remains `c0243d1`. Measurement & Insight remains instruction **COMPLETE** (`510f14e`). Lead Generation, Paid Media & PPC, SEO, Email Marketing and PR remain instruction **COMPLETE**. Social & Community remains MOSTLY COMPLETE.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`c0243d1`** (Influencer 4K imagery swap; layout unchanged). |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Tip **`9903bdc`** (Sectors mosaic on `/industries`). |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** overview implemented. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page. |
 | Pushed? | **Yes — `bilal/revamp` only.** No production PR. Live domain untouched. |
-| Preview | Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). Measurement & Insight: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Lead Generation, Paid Media, SEO, and Email Marketing review follow `bilal/revamp`. PR route remains `https://pixelette-marketing-website-bol7fly48-pixelette-technologies.vercel.app/services/pr`. |
+| Preview | Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
 | Sign-off | **Not signed off.** Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility + Paid Media & PPC + Lead Generation + Measurement & Insight exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility + Paid Media & PPC + Lead Generation + Measurement & Insight + Sectors exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -26,12 +26,28 @@ Last updated: **23 November 2026** — Influencer & Partnerships imagery upgrade
 
 | # | Item | What to do |
 |---|---|---|
-| 1 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
-| 2 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
-| 3 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
-| 4 | **Lead Generation hero artwork** | Supplied triptych is 585×431 and is used unaltered. It stays fully visible, and it will look soft on a retina desktop. Confirm publication rights and supply a higher-resolution master before live. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`. |
-| 5 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
-| 6 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+| 1 | **Sectors photography** | The eight files in `public/sectors/` are 680×384 extracts from the prototype, not production masters. They will look soft on a retina desktop. Confirm rights and supply higher-resolution masters before live. Screenshots: `mockup-screenshots/sectors-2026-11-24/`. |
+| 2 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
+| 3 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |
+| 4 | **Social & Community commenter names (optional)** | Locked mock shows initials + sentences only. Implementation also shows Alex / Jordan / Sam. Strip to match lock, or keep as documented deviation. |
+| 5 | **Lead Generation hero artwork** | Supplied triptych is 585×431 and is used unaltered. It stays fully visible, and it will look soft on a retina desktop. Confirm publication rights and supply a higher-resolution master before live. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`. |
+| 6 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
+| 7 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 24 November 2026 — Sectors overview
+
+**Instruction:** final Sectors handoff. `/industries` only. The visible name is Sectors. The URL stays `/industries`. Copy is `sectors-content-v1.json`, verbatim. No production deploy.
+
+**Shipped on `bilal/revamp` as `9903bdc`:**
+- The old market explorer, Work in practice and closing band are off this route. Specialist `/industries/[slug]` pages are unchanged.
+- Editorial headline, eight-tile staggered mosaic, blush connector lines, and a detail panel. Technology and digital products is selected on load, `1 of 8`.
+- Hover and keyboard focus preview. Click and the arrows commit. Leaving a preview returns to the committed sector. Previous from the first sector wraps to charities.
+- Nav and footer say Sectors and still link to `/industries`.
+- The homepage “See the work” link now goes to `/results`, where the case studies remain.
+- Screenshots: `mockup-screenshots/sectors-2026-11-24/`.
+- Preview: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries`.
+- Live domain untouched; no production PR.
+- The eight photographs are 680×384 prototype extracts. Soft on a retina desktop until production masters are supplied.
 
 ## 23 November 2026 — Measurement & Insight approved design
 

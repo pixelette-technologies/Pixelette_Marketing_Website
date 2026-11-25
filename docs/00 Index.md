@@ -27,6 +27,8 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 25 Nov 2026
 
+**Living Signal 2.5D MOSTLY COMPLETE on `bilal/revamp` (`cac5869`).** Independent audit: all four stages in code; preview READY at https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots and interaction recording left as-is; Founder reviews cursor on the preview. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 **Footer consolidation COMPLETE on `bilal/revamp` (`a6b692d`).** `/policies` and `/public-sector/how-to-buy` return 410. Governance footer column removed. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Header still says Sectors. Privacy, Cookies, Accessibility, and Social Value pages remain. No production PR. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 24 Nov 2026

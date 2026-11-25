@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), Social value (instruction COMPLETE), Accessibility (instruction COMPLETE), the 25 Nov footer consolidation (COMPLETE), and the 25 Nov Living Signal 2.5D enhancement are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), Social value (instruction COMPLETE), Accessibility (instruction COMPLETE), the 25 Nov footer consolidation (COMPLETE), and the 25 Nov Living Signal 2.5D enhancement (MOSTLY COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -20,9 +20,9 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **`serviceLines.ts` still describes a published accessibility conformance position** | `/policies` and `/public-sector/how-to-buy` return 410. The contact FAQ names Accessibility and Social value only. `src/data/publicSector/serviceLines.ts` was left unchanged. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 
-## Closed 25 Nov — Living Signal 2.5D enhancement
+## Closed 25 Nov — Living Signal 2.5D enhancement (MOSTLY COMPLETE)
 
-Homepage hero only (`LivingSignal.tsx`), `cac5869`. Composition, colours, labels and annotation preserved. Threads gain depth/weight/shadow; balls are smaller shaded spheres; cursor pull is depth-scaled with coordinated string-riding; soft key light added. Reduced-motion and touch behaviour unchanged. `tsc` silent; 37 contact tests pass. Preview: https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots: `mockup-screenshots/living-signal-2.5d-2026-11-25/`. Live domain untouched.
+Independent audit against the instruction: **MOSTLY COMPLETE**. Homepage hero only (`LivingSignal.tsx`), `cac5869`. Composition, colours, labels and annotation preserved. Threads gain depth/weight/shadow; balls are smaller shaded spheres; cursor pull is depth-scaled with coordinated string-riding; soft key light added. Reduced-motion and touch behaviour unchanged. `tsc` silent; 37 contact tests pass (re-run confirmed). Preview: https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots and interaction recording left as-is — Founder reviews cursor motion on the preview. Live domain untouched.
 
 ## Closed 25 Nov — Footer consolidation (COMPLETE)
 

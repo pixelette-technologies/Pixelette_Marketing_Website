@@ -139,7 +139,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-ink);
-  animation: livingSignalLabel 900ms ease 2.6s both;
+  // D4 — labels arrive with the resolved first paint, not after the old 3.5s resolve.
+  animation: livingSignalLabel 700ms ease 0.15s both;
 
   & > span {
     margin-right: -0.14em;
@@ -163,7 +164,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  animation: livingSignalLabel 900ms ease 2.9s both;
+  // D4 — annotation arrives with the resolved first paint.
+  animation: livingSignalLabel 700ms ease 0.35s both;
 }
 
 .livingSignal__noteText {

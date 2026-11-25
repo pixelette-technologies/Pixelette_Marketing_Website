@@ -39,7 +39,7 @@
 
   & > .lead {
     margin-top: 1.5rem;
-    max-width: 46rem;
+    // D3 — measure comes from the `.lead` primitive (62ch).
     color: var(--color-plum-ink);
   }
 

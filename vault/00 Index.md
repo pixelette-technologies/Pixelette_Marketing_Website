@@ -2,18 +2,18 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A+B **COMPLETE** on `bilal/revamp` (`b5e2324`; gap-closure + E4 included; independent re-audit MOSTLY COMPLETE — §9 evidence and F1/F2 still open). Living Signal 2.5D remains **MOSTLY COMPLETE** (`cac5869`). Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
+Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A–D **COMPLETE** on `bilal/revamp` (A+B `b5e2324` signed off; C verified leave-alone; D shipped this session). Independent audit: MOSTLY COMPLETE — F1/F2 and §9 evidence still open. Living Signal 2.5D + D4 first paint included. Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Website correction v2.0 A+B **`b5e2324`**. Living Signal 2.5D **`cac5869`**. Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**, **25 Nov footer consolidation** **COMPLETE**, **25 Nov Living Signal 2.5D** MOSTLY COMPLETE, **25 Nov website correction v2.0 A+B** COMPLETE (awaiting management sign-off before Section D; F1/F2 open). |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page + Accessibility approved page + Living Signal 2.5D + website correction v2.0 A+B (incl. E4 form errors, Slick focus override, dead `/results` CTAs removed). Policies, How to buy, and Results are removed (410). |
-| Pushed? | **`bilal/revamp` only**, including website correction v2.0 A+B. No production PR. Live domain untouched. |
-| Preview | Living Signal 2.5D: `https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app` (`cac5869`). Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
-| Sign-off | **Not signed off.** Living Signal 2.5D **MOSTLY COMPLETE** (`cac5869`) — Founder reviews cursor on the preview. Footer consolidation **COMPLETE**. Accessibility instruction **COMPLETE**. Social value instruction **COMPLETE**. Sectors instruction **COMPLETE** (`9903bdc`); 680×384 photography stays open before live. Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Website correction v2.0 A+B **`b5e2324`**; C+D tip recorded after this push. Living Signal 2.5D **`cac5869`** (+ D4 in C+D commit). Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
+| Phase | Mock-up under the **12 Nov developer brief** through **25 Nov Living Signal 2.5D** as before; **25 Nov website correction v2.0 A–D** COMPLETE (A+B signed off; C leave-alone; D typography / CTAs / measures / Living Signal first paint). F1/F2 open. |
+| Site code written | Prior locked pages + Living Signal 2.5D + website correction v2.0 A–D (D: shared button primitive, form type, measures, Living Signal resolved first paint). Policies, How to buy, and Results are removed (410). |
+| Pushed? | **`bilal/revamp` only**, including website correction v2.0 A–D. No production PR. Live domain untouched. |
+| Preview | Prior Living Signal preview is pre-D4 (`cac5869`). Fresh preview after this push if requested. Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
+| Sign-off | **A+B signed off.** Section C leave-alone verified. Section D code COMPLETE (evidence pack still open). Living Signal 2.5D **MOSTLY COMPLETE** — Founder reviews cursor + D4 first paint. Footer / Accessibility / Social value / Sectors instruction **COMPLETE**. Founder still owns wording / production approval and F1/F2. |
 
 ## Start here — next session, in order
 
@@ -22,11 +22,17 @@ Last updated: **25 November 2026** — Website correction instructions v2.0 Sect
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
 
+## 25 November 2026 — Website correction instructions v2.0 (C + D)
+
+**Instruction:** `Pixelette_Marketing_Website_Correction_Instructions_v2.0_25Nov2026.pdf`. A+B signed off. Section C is “verified correct, do not change” — re-checked in code, no edits. Section D controlled refinements shipped on `bilal/revamp`.
+
+**Independent audit (cursor-grok): MOSTLY COMPLETE — code COMPLETE for C (leave-alone) and D1–D4.** D2 unifies primary buttons on the `.btn` primitive; D1/D3 harmonise shared type and measures without rewriting locked service creatives; D4 paints Living Signal resolved on first frame. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open: F1/F2; E1 at go-live; §9 evidence (incl. D before/after). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
+
 ## 25 November 2026 — Website correction instructions v2.0 (A + B)
 
-**Instruction:** `Pixelette_Marketing_Website_Correction_Instructions_v2.0_25Nov2026.pdf`. Implementation-quality only. Section D not started. F1/F2 not acted on.
+**Instruction:** same PDF. Implementation-quality only. **Signed off** by management; Section D authorised.
 
-**Independent re-audit: MOSTLY COMPLETE (code COMPLETE for A1–A9 and B1–B6).** Shipped as `b5e2324`. Gap-closure closed the Slick focus cascade, live `/results` CTAs, and E4 form error association. B5 was already correct. B7 waits on F1. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open from the same PDF: management A/B sign-off before Section D; F1/F2; E1 at go-live; §9 evidence (screenshots, keyboard recording, Lighthouse/axe). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
+**Independent re-audit: MOSTLY COMPLETE (code COMPLETE for A1–A9 and B1–B6).** Shipped as `b5e2324`. Gap-closure closed the Slick focus cascade, live `/results` CTAs, and E4 form error association. B5 was already correct. B7 waits on F1. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open from the same PDF: F1/F2; E1 at go-live; §9 evidence. Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
 
 ## 25 November 2026 — Living Signal 2.5D
 
@@ -46,9 +52,8 @@ Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass (re-run confirm
 
 | # | Item | What to do |
 |---|---|---|
-| 0a | **Website correction — A/B sign-off** | Management sign-off required before Section D. |
-| 0b | **Website correction — F1 / F2** | `/public-sector` disposition; Ltd vs Limited. Do not act unilaterally. |
-| 0c | **Website correction — §9 evidence** | Before/after screenshots, keyboard recording, Lighthouse/axe. E1 only at production go-live. |
+| 0a | **Website correction — F1 / F2** | `/public-sector` disposition; Ltd vs Limited. Do not act unilaterally. |
+| 0b | **Website correction — §9 evidence** | Before/after screenshots (incl. D), keyboard recording, Lighthouse/axe. E1 only at production go-live. |
 | 1 | **Sectors photography** | The eight files in `public/sectors/` are 680×384 extracts from the prototype, not production masters. They will look soft on a retina desktop. Confirm rights and supply higher-resolution masters before live. Screenshots: `mockup-screenshots/sectors-2026-11-24/`. |
 | 2 | **PR & Earned Media hero photography** | Locked references are flattened mockups, not licensed layers. Page uses original drawn panels. Supply rights-cleared camera, people, architecture and public photos if a photographic collage is required. Screenshots: `mockup-screenshots/pr-earned-media-2026-11-23/`. |
 | 3 | **Social & Community photography rights + production people asset** | Manchester St Peter's Square photo provenance/licence unverified — **publication blocker**. Foreground group is illustrative composite recovered from locked mock, not a separate rights-cleared cutout. Clear rights (or approved replacement) before live. |

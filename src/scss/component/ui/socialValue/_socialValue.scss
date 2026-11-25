@@ -51,7 +51,7 @@
   margin: 0.6rem 0 0;
   max-width: 10.4em;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   font-size: clamp(1.95rem, 1.15rem + 1.65vw, 2.65rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -100,7 +100,7 @@
 .svClose__inner h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.02em;
   color: var(--color-burgundy);
   text-wrap: balance;
@@ -256,20 +256,22 @@
   color: color-mix(in srgb, var(--color-page) 88%, transparent);
 }
 
+// D2 — shared button dimensions; inverted colours and pill keep the approved
+// close-band treatment.
 .svClose__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  min-height: 3.15rem;
-  padding: 0.8rem 1.35rem;
+  gap: 0.625rem;
+  min-height: 52px;
+  padding: 0.8125rem 1.625rem;
   border-radius: 999px;
   background: var(--color-page);
   color: var(--color-burgundy);
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 650;
-  line-height: 1;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
   text-decoration: none;
   white-space: nowrap;
 }

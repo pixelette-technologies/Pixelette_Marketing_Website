@@ -311,7 +311,11 @@ details[open] > .navDrawer__groupSummary > .navDrawer__chev {
 // so the page never offers two names for the same action.
 //
 // Single interactive element (B2) — the Button renders the link itself.
+// Rectangular header CTA retained (D2). Extra inline padding keeps the
+// previous visual width after the shared `.btn` padding took over from the
+// legacy `_primary` rules.
 .site-nav__cta {
   display: inline-flex;
   white-space: nowrap;
+  padding-inline: 1.625rem;
 }

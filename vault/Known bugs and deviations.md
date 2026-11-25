@@ -4,14 +4,13 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7 through Living Signal, footer consolidation, and website correction v2.0 Sections A+B are on the branch. A fresh session takes these:
+Review §7 through Living Signal, footer consolidation, and website correction v2.0 A–D are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
-| **Website correction v2.0 — Section D** | Typography / CTA / spacing / Living Signal first-paint refinements. Authorised only after A and B are signed off. |
 | **Website correction v2.0 — F1 / F2** | Management: disposition of `/public-sector`; Ltd vs Limited wording. Do not act unilaterally. |
 | **Website correction v2.0 — E1 at go-live** | Remove robots `Disallow: /` and page-level `noindex` on the production domain only, and confirm in writing. |
-| **Website correction v2.0 — §9 evidence** | Before/after screenshots (A2, A5, A6, A8, B6), keyboard walkthrough recording, Lighthouse/axe before-and-after per route. Code gaps from the audit (Slick cascade, dead `/results` CTAs, E4 form errors) are closed. |
+| **Website correction v2.0 — §9 evidence** | Before/after screenshots (A2, A5, A6, A8, B6, D1–D4), keyboard walkthrough recording, Lighthouse/axe before-and-after per route. Code for A–D is in; evidence pack still open. |
 | **PR & Earned Media — licensed hero photography** | Instruction audit COMPLETE without this. Handoff references are flattened mockups, not production layers. The page uses original drawn editorial panels. Supply rights-cleared photos only if the Founder wants photographic strips: camera/lens, employee silhouettes, architecture, public/community. |
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
@@ -24,9 +23,23 @@ Review §7 through Living Signal, footer consolidation, and website correction v
 | **`serviceLines.ts` still describes a published accessibility conformance position** | `/policies` and `/public-sector/how-to-buy` return 410. The contact FAQ names Accessibility and Social value only. `src/data/publicSector/serviceLines.ts` was left unchanged. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 
+## Closed 25 Nov — Website correction instructions v2.0 (Sections C + D)
+
+Management signed off A+B. Section C re-verified in code and left unchanged. Section D shipped on `bilal/revamp`. Independent audit (cursor-grok): **code COMPLETE** for C leave-alone and D1–D4; delivery **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5.
+
+| Item | Notes |
+|---|---|
+| **C1–C9** | Verified present and correct. Consent Mode v2 defaults denied; honeypot off-screen; footer/JSON-LD company details consistent (F2 still open); focus contrast tokens untouched; reduced-motion blocks left alone; Measurement tab/radio semantics left alone; no new nesting; Living Signal treated under D4 not as a bug; routes otherwise 200. |
+| **D1** | Display weight 400 on Accessibility/Social value headings; form controls on `--fs-body` / `--radius-btn` / 46px min-height; footer `groupband__here` to label size; capability / industries hub heading clamps mapped to `--fs-h2` / `--fs-h3`. Locked service creative sizes and Sectors mosaic left alone. |
+| **D2** | Legacy `.btn_primary` overrides removed so all primaries use the `.btn` primitive. Header CTA keeps rectangular radius + extra inline padding. Start diagnostic glow/hover-lock removed. Cookie Reject/Accept match `.btn` dimensions (dark-panel colours kept). Accessibility/Social value close CTAs aligned to shared sizing; pill + invert retained. |
+| **D3** | Cookie inner width on `--container-wrap`. Lead measure overrides removed on About / Contact / industries hub (use `.lead` 62ch). Blog article column `46rem`. Body measure override removed on sector help. |
+| **D4** | Living Signal first paint is the resolved composition; scatter resolve removed. Label/annotation delays shortened to match. Ambient breath and cursor response unchanged. |
+
+Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Locked service page artwork, homepage Post-its/maquette/duck, and Sectors mosaic untouched. F1/F2, E1, §9 evidence still open. Live domain untouched.
+
 ## Closed 25 Nov — Website correction instructions v2.0 (Sections A + B)
 
-On `bilal/revamp` as `b5e2324`. Independent re-audit against the PDF: **code COMPLETE** for A1–A9 and B1–B6 (incl. gap-closure). B5 was already satisfied. B7 not acted on (waits F1). Section D not started. Delivery still **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5 passes exist. E1 waits for production go-live.
+On `bilal/revamp` as `b5e2324`. Independent re-audit against the PDF: **code COMPLETE** for A1–A9 and B1–B6 (incl. gap-closure). B5 was already satisfied. B7 not acted on (waits F1). A+B **signed off** by management; Section D authorised. Delivery still **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5 passes exist. E1 waits for production go-live.
 
 | Item | Notes |
 |---|---|

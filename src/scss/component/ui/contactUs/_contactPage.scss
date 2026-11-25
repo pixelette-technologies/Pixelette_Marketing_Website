@@ -27,13 +27,13 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   & > .lead {
-    max-width: 46rem;
     margin-top: 1.5rem;
+    // D3 — measure comes from the `.lead` primitive (62ch).
     color: var(--color-plum-ink);
   }
 
   & > .small {
-    max-width: 46rem;
+    max-width: 66ch;
     margin-top: 1rem;
     color: var(--color-muted);
   }

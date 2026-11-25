@@ -98,18 +98,8 @@
   margin-top: 1.05rem;
 }
 
-.impactIntro__cta {
-  // B6 — light-background primary CTA; use brand (passes) not signal.
-  background: var(--color-brand);
-  border-color: var(--color-brand);
-  color: var(--color-page);
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-brand) 35%, transparent);
-
-  &:hover {
-    background: var(--color-brand);
-    border-color: var(--color-brand);
-  }
-}
+// D2 — Start diagnostic uses the shared `.btn` primitive (B6 already put it
+// on --color-brand). No local glow or hover lock; hover is --color-brand-hover.
 
 .impactIntro__assurance,
 .impactIntro__resumeText {

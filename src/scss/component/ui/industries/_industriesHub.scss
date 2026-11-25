@@ -32,7 +32,7 @@
 
   & > .lead {
     margin-top: 1.5rem;
-    max-width: 40rem;
+    // D3 — measure comes from the `.lead` primitive (62ch).
   }
 }
 
@@ -266,9 +266,9 @@
 .marketPanel__name {
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  font-size: var(--fs-h2);
+  line-height: 1.14;
+  letter-spacing: -0.014em;
   color: var(--color-plum-ink);
 }
 
@@ -794,10 +794,8 @@
   gap: 2.25rem;
 
   & > .h2 {
+    // D1 — keep the `.h2` scale; the previous clamp promoted it to h1 size.
     max-width: 48rem;
-    font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
   }
 }
 

@@ -204,7 +204,8 @@ a.groupband__name:hover {
 
 .groupband__here {
   font-family: var(--font-mono);
-  font-size: 0.59375rem;
+  // D1 — align small labels to the `.label` size (was 9.5px).
+  font-size: 0.65625rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;

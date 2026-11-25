@@ -41,8 +41,10 @@ import { useEffect, useRef } from "react";
 // draws, the glow and a few travelling signals.
 //
 // MOTION POLICY
-//   - The resolve plays ONCE per page view and never restarts: points drift
-//     in from a looser scatter and the lines find their way to the point.
+//   - D4 (25 Nov correction): first paint is the resolved composition. The
+//     multi-second scatter-to-point resolve was dropped so an early screenshot
+//     or first glance is never part-built (C8). Ambient breath and cursor
+//     response still run after that.
 //   - Afterwards: the point's light breathes by a few per cent and a few
 //     signals travel inwards, at half frame rate.
 //   - Nothing runs while the figure is off screen or the tab is hidden.
@@ -139,7 +141,6 @@ interface Signal {
 // --- Timing -----------------------------------------------------------------
 
 const SETTLED = 3.5;
-const GLOW_AT = 2.2;
 
 // --- The pointer ------------------------------------------------------------
 
@@ -1367,22 +1368,6 @@ export default function LivingSignal({
       drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
     };
 
-    // During the resolve, the whole scene is drawn live anyway, so the
-    // strings' and the points' physics already work on it.
-    const drawResolving = (t: number, dt = 0) => {
-      stepStrings(dt);
-      const live = linesAwake;
-      const moving = live || dotPull > 0 || dotsAwake || pointer.inZone;
-      if (moving) stepDots(t, dt);
-      wipe(ctx);
-      drawHaze(ctx, ease((t - 0.2) / 2));
-      drawLines(ctx, t, live);
-      drawBloom(ctx, t);
-      drawDots(ctx, t, false, moving);
-      drawDots(ctx, t, true, moving);
-      drawGlow(ctx, ease((t - GLOW_AT) / 1), hover);
-    };
-
     // Reduced motion: the resolved composition, drawn once and left.
     if (reduce) {
       const still = () => {
@@ -1403,7 +1388,11 @@ export default function LivingSignal({
 
     layout();
 
-    let t = 0;
+    // D4 — paint the resolved scene immediately so first paint is complete.
+    let t = SETTLED;
+    cache();
+    drawSettled(t, 0);
+
     let last = 0;
     let raf = 0;
     let frame = 0;
@@ -1414,10 +1403,7 @@ export default function LivingSignal({
       last = now;
       frame++;
       updatePointer(dt);
-      if (t < SETTLED) {
-        t += dt;
-        drawResolving(t, dt);
-      } else if (engaged()) {
+      if (engaged()) {
         t += dt;
         drawLive(t, dt);
       } else if (frame % 2 === 0) {
@@ -1451,8 +1437,7 @@ export default function LivingSignal({
     // A resize rebuilds the scene; once settled it stays settled.
     const ro = new ResizeObserver(() => {
       layout();
-      if (t < SETTLED) drawResolving(t);
-      else if (engaged()) drawLive(t, 0);
+      if (engaged()) drawLive(t, 0);
       else drawSettled(t, 0);
     });
     ro.observe(canvas);
@@ -1477,8 +1462,6 @@ export default function LivingSignal({
       window.addEventListener("pointerout", onOut);
       window.addEventListener("blur", onBlur);
     }
-
-    drawResolving(0);
 
     return () => {
       stop();

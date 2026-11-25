@@ -26,7 +26,7 @@ Review §7 through Living Signal, footer consolidation, and website correction v
 
 ## Closed 25 Nov — Website correction instructions v2.0 (Sections A + B)
 
-Independent re-audit against the PDF: **code COMPLETE** for A1–A9 and B1–B6 (incl. gap-closure). B5 was already satisfied. B7 not acted on (waits F1). Section D not started. Delivery still **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5 passes exist. E1 waits for production go-live.
+On `bilal/revamp` as `b5e2324`. Independent re-audit against the PDF: **code COMPLETE** for A1–A9 and B1–B6 (incl. gap-closure). B5 was already satisfied. B7 not acted on (waits F1). Section D not started. Delivery still **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5 passes exist. E1 waits for production go-live.
 
 | Item | Notes |
 |---|---|

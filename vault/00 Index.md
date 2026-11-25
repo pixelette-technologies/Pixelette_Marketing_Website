@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A+B **COMPLETE** on `bilal/revamp` (gap-closure + E4 included; independent re-audit MOSTLY COMPLETE — §9 evidence and F1/F2 still open). Living Signal 2.5D remains **MOSTLY COMPLETE** (`cac5869`). Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
+Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A+B **COMPLETE** on `bilal/revamp` (`b5e2324`; gap-closure + E4 included; independent re-audit MOSTLY COMPLETE — §9 evidence and F1/F2 still open). Living Signal 2.5D remains **MOSTLY COMPLETE** (`cac5869`). Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Living Signal 2.5D **`cac5869`**. Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Website correction v2.0 A+B **`b5e2324`**. Living Signal 2.5D **`cac5869`**. Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
 | Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**, **25 Nov footer consolidation** **COMPLETE**, **25 Nov Living Signal 2.5D** MOSTLY COMPLETE, **25 Nov website correction v2.0 A+B** COMPLETE (awaiting management sign-off before Section D; F1/F2 open). |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page + Accessibility approved page + Living Signal 2.5D + website correction v2.0 A+B (incl. E4 form errors, Slick focus override, dead `/results` CTAs removed). Policies, How to buy, and Results are removed (410). |
 | Pushed? | **`bilal/revamp` only**, including website correction v2.0 A+B. No production PR. Live domain untouched. |
@@ -26,7 +26,7 @@ Last updated: **25 November 2026** — Website correction instructions v2.0 Sect
 
 **Instruction:** `Pixelette_Marketing_Website_Correction_Instructions_v2.0_25Nov2026.pdf`. Implementation-quality only. Section D not started. F1/F2 not acted on.
 
-**Independent re-audit: MOSTLY COMPLETE (code COMPLETE for A1–A9 and B1–B6).** Gap-closure closed the Slick focus cascade, live `/results` CTAs, and E4 form error association. B5 was already correct. B7 waits on F1. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open from the same PDF: management A/B sign-off before Section D; F1/F2; E1 at go-live; §9 evidence (screenshots, keyboard recording, Lighthouse/axe). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
+**Independent re-audit: MOSTLY COMPLETE (code COMPLETE for A1–A9 and B1–B6).** Shipped as `b5e2324`. Gap-closure closed the Slick focus cascade, live `/results` CTAs, and E4 form error association. B5 was already correct. B7 waits on F1. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open from the same PDF: management A/B sign-off before Section D; F1/F2; E1 at go-live; §9 evidence (screenshots, keyboard recording, Lighthouse/axe). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
 
 ## 25 November 2026 — Living Signal 2.5D
 

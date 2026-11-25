@@ -22,7 +22,7 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 
 ## Closed 25 Nov — Living Signal 2.5D enhancement
 
-Homepage hero only (`LivingSignal.tsx`). Composition, colours, labels and annotation preserved. Threads gain depth/weight/shadow; balls are smaller shaded spheres; cursor pull is depth-scaled with coordinated string-riding; soft key light added. Reduced-motion and touch behaviour unchanged. `tsc` silent; 37 contact tests pass. Preview deploy only; live domain untouched.
+Homepage hero only (`LivingSignal.tsx`), `cac5869`. Composition, colours, labels and annotation preserved. Threads gain depth/weight/shadow; balls are smaller shaded spheres; cursor pull is depth-scaled with coordinated string-riding; soft key light added. Reduced-motion and touch behaviour unchanged. `tsc` silent; 37 contact tests pass. Preview: https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots: `mockup-screenshots/living-signal-2.5d-2026-11-25/`. Live domain untouched.
 
 ## Closed 25 Nov — Footer consolidation (COMPLETE)
 

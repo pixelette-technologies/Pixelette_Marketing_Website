@@ -1,0 +1,61 @@
+// Cookie consent banner. Layout, position and brand colours match the previous
+// inline styles; type moves onto the design-system small body size (A5).
+.cookie-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: var(--color-panel-a);
+  color: var(--color-band);
+  padding: 16px 20px;
+  box-shadow: 0 -2px 16px rgb(var(--shadow-tint) / 0.25);
+}
+
+.cookie-banner__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cookie-banner__text {
+  margin: 0;
+  flex: 1 1 280px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.cookie-banner__btn {
+  padding: 10px 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.cookie-banner__btn--reject {
+  background: transparent;
+  border: 1px solid var(--color-band);
+  color: var(--color-band);
+}
+
+.cookie-banner__btn--accept {
+  background: var(--color-brand);
+  border: 1px solid var(--color-brand);
+  color: var(--color-page);
+}
+
+.cookie-banner__link {
+  color: var(--color-page);
+  text-decoration: underline;
+}

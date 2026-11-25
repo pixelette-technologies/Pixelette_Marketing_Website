@@ -4,10 +4,14 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), Social value (instruction COMPLETE), Accessibility (instruction COMPLETE), the 25 Nov footer consolidation (COMPLETE), and the 25 Nov Living Signal 2.5D enhancement (MOSTLY COMPLETE) are on the branch. A fresh session takes these:
+Review §7 through Living Signal, footer consolidation, and website correction v2.0 Sections A+B are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
+| **Website correction v2.0 — Section D** | Typography / CTA / spacing / Living Signal first-paint refinements. Authorised only after A and B are signed off. |
+| **Website correction v2.0 — F1 / F2** | Management: disposition of `/public-sector`; Ltd vs Limited wording. Do not act unilaterally. |
+| **Website correction v2.0 — E1 at go-live** | Remove robots `Disallow: /` and page-level `noindex` on the production domain only, and confirm in writing. |
+| **Website correction v2.0 — §9 evidence** | Before/after screenshots (A2, A5, A6, A8, B6), keyboard walkthrough recording, Lighthouse/axe before-and-after per route. Code gaps from the audit (Slick cascade, dead `/results` CTAs, E4 form errors) are closed. |
 | **PR & Earned Media — licensed hero photography** | Instruction audit COMPLETE without this. Handoff references are flattened mockups, not production layers. The page uses original drawn editorial panels. Supply rights-cleared photos only if the Founder wants photographic strips: camera/lens, employee silhouettes, architecture, public/community. |
 | **Social & Community — Manchester photo rights** | User-supplied St Peter's Square photograph has no photographer / source URL / licence in the handoff. **Publication blocker** until commercial reuse is confirmed or an approved rights-cleared equivalent is supplied. |
 | **Social & Community — foreground people production asset** | Three people exist only inside the locked composite reference. Recovered soft-composite used for review; not a clean cutout. Do not present as documentary photography. Obtain approved people asset only with explicit approval (no unapproved generation/purchase). |
@@ -20,13 +24,36 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **`serviceLines.ts` still describes a published accessibility conformance position** | `/policies` and `/public-sector/how-to-buy` return 410. The contact FAQ names Accessibility and Social value only. `src/data/publicSector/serviceLines.ts` was left unchanged. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
 
+## Closed 25 Nov — Website correction instructions v2.0 (Sections A + B)
+
+Independent re-audit against the PDF: **code COMPLETE** for A1–A9 and B1–B6 (incl. gap-closure). B5 was already satisfied. B7 not acted on (waits F1). Section D not started. Delivery still **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5 passes exist. E1 waits for production go-live.
+
+| Item | Notes |
+|---|---|
+| **A1** | `/results` and `/results/[slug]` return 410. Removed from `sitemap.xml`. Shared case-study components kept (still used by industry specialist pages). Follow-up: removed live CTAs that still pointed at `/results` (ServicesHero secondary, industry evidence “more”, TrustedBrands proof CTA). |
+| **A2** | Deleted site `outline: none` overrides on form input/textarea, sectors tiles, and insights stretch links. Slick vendor `outline: none` overridden in `slick-focus-override.scss`, imported after slick CSS in `layout.tsx` so the cascade wins. |
+| **A3** | `id` on the six contact controls matching existing `for` / `htmlFor` values. |
+| **A4** | Skip link + single `<main id="main-content">` in the root layout. |
+| **A5** | Cookie banner styling moved to stylesheet; body/buttons at `0.875rem`. Copy and equal Reject/Accept prominence unchanged. Consent logic untouched. |
+| **A6** | Form control border `1px` at `--color-control-border` (#8f5f70, 5.20:1 on white). Inherited `--color-line-strong` left alone. |
+| **A7** | Homepage “Pause animations” / “Play animations” control; session-persisted; pauses Post-its and CSS marquees. Reduced-motion support unchanged. |
+| **A8** | Visible annotation and aria-label use +33%. Visible “Illustrative example” caption added. Chart data unchanged. |
+| **A9** | Chart bars are non-focusable `role="img"` with the same aria-label text. |
+| **B1** | Autocomplete tokens on name/email/company/website; honeypot stays `off`. |
+| **B2** | Nested link+button CTAs resolved to a single element (header, drawer, services hero, Q&A). |
+| **B3** | Footer label “Sectors”; `/industries` route unchanged. |
+| **B4** | Consent checkbox hit area 24×24. |
+| **B5** | Already correct — single panel `aria-labelledby` follows the selected tab. |
+| **B6** | Chart High/Low darkened; Impact Compass CTA and process arrows use `--color-brand` on light grounds. Signal on dark panels unchanged. |
+| **E4** | Contact fields expose `aria-describedby` / `aria-invalid` on error; consent too. `FocusFirstError` moves focus to the first invalid control after submit. |
+
 ## Closed 25 Nov — Living Signal 2.5D enhancement (MOSTLY COMPLETE)
 
 Independent audit against the instruction: **MOSTLY COMPLETE**. Homepage hero only (`LivingSignal.tsx`), `cac5869`. Composition, colours, labels and annotation preserved. Threads gain depth/weight/shadow; balls are smaller shaded spheres; cursor pull is depth-scaled with coordinated string-riding; soft key light added. Reduced-motion and touch behaviour unchanged. `tsc` silent; 37 contact tests pass (re-run confirmed). Preview: https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots and interaction recording left as-is — Founder reviews cursor motion on the preview. Live domain untouched.
 
 ## Closed 25 Nov — Footer consolidation (COMPLETE)
 
-On `bilal/revamp` as `a6b692d`. `/policies` and `/public-sector/how-to-buy` return 410 Gone. No redirect. Not in the sitemap. Governance footer column removed. Company order: About, Industries (`/industries`), Insights (`/blog-list`), Social Value (`/social-value`), Accessibility (`/accessibility`), Contact (`/contactus`). Header still says Sectors. Privacy, Cookies & analytics, and Privacy choices stay in the legal row. Public-sector hub link and the contact procurement slot are gone. Supplier-questionnaire answer names Accessibility and Social value only. Accessibility and Social Value page content were not edited. `tsc`, 37 contact tests, ESLint on the edited files, and `npm run build` passed. Production check: 410 on both removed routes, 200 on Privacy, Cookies, Accessibility, and Social Value. Live domain untouched; no production PR.
+On `bilal/revamp` as `a6b692d`. `/policies` and `/public-sector/how-to-buy` return 410 Gone. No redirect. Not in the sitemap. Governance footer column removed. Company order: About, Sectors (`/industries` — label corrected from Industries by B3), Insights (`/blog-list`), Social Value (`/social-value`), Accessibility (`/accessibility`), Contact (`/contactus`). Header and footer say Sectors. Privacy, Cookies & analytics, and Privacy choices stay in the legal row. Public-sector hub link and the contact procurement slot are gone. Supplier-questionnaire answer names Accessibility and Social value only. Accessibility and Social Value page content were not edited. `tsc`, 37 contact tests, ESLint on the edited files, and `npm run build` passed. Production check: 410 on both removed routes, 200 on Privacy, Cookies, Accessibility, and Social Value. Live domain untouched; no production PR.
 
 ## Closed 24 Nov — Accessibility approved page (COMPLETE)
 
@@ -40,7 +67,7 @@ Pushed as `75df61c`. Preview: https://pixelette-marketing-website-n9ocunxqv-pixe
 
 Pushed as `9903bdc`. Independent instruction audit: **COMPLETE** (no gaps). Preview: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries`. Live domain untouched; no production PR.
 
-Allowed and recorded: the old explorer, Work in practice and the closing band are off `/industries`. The homepage “See the work” link goes to `/results`. The homepage teaser still says Industries; the Sectors instruction only renamed the nav and footer. The eight photographs stay the supplied 680×384 extracts. Specialist industry routes are unchanged. Nav says Sectors. The 25 Nov footer consolidation sets the Company label back to Industries. Both still link to `/industries`.
+Allowed and recorded: the old explorer, Work in practice and the closing band are off `/industries`. The homepage “See the work” link still points at `/results`, which now returns 410 (A1). The homepage teaser still says Industries; the Sectors instruction only renamed the nav and footer. The eight photographs stay the supplied 680×384 extracts. Specialist industry routes are unchanged. Nav and footer say Sectors (B3). Both still link to `/industries`.
 
 | Item | Resolution |
 |---|---|
@@ -53,7 +80,7 @@ Allowed and recorded: the old explorer, Work in practice and the closing band ar
 
 Pushed as `510f14e`. Independent instruction audit: **COMPLETE** (no gaps). Preview: `https://pixelette-marketing-website-p914og4ey-pixelette-technologies.vercel.app/services/marketing_analytics_and_reporting`. Live domain untouched; no production PR.
 
-Allowed and recorded: the chart uses the handoff’s local demonstration figures. `Paid Media +28% vs previous period` is the supplied example annotation on Understand performance. It is not calculated from the bars and it is not a client result. It does not appear on the other two views. FAQ questions are the approved set. Answers are existing Measurement sentences. Page buttons use a right arrow and sentence case. The shared header stays “Discuss Your Project”. Fully transparent pixels in the supplied collage held leftover headline colour; that colour was cleared so it does not paint. The visible collage is the supplied artwork.
+Allowed and recorded: the chart uses the handoff’s local demonstration figures. Annotation corrected to `Paid Media +33%` (A8) to match the demonstration series; visible “Illustrative example” caption added. It is not a client result. It does not appear on the other two views. FAQ questions are the approved set. Answers are existing Measurement sentences. Page buttons use a right arrow and sentence case. The shared header stays “Discuss Your Project”. Fully transparent pixels in the supplied collage held leftover headline colour; that colour was cleared so it does not paint. The visible collage is the supplied artwork.
 
 | Item | Resolution |
 |---|---|

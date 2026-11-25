@@ -5,6 +5,7 @@ import "../scss/main.scss";
 import {
   CookieConsent,
   Footer,
+  MotionPauseBootstrap,
   Navbar,
   ScrollReveal
 } from "@/components/common";
@@ -82,6 +83,8 @@ export async function generateMetadata(): Promise<Metadata> {
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// After slick so A2 focus overrides win the cascade.
+import "../scss/slick-focus-override.scss";
 import Script from "next/script";
 
 const structuredData = {
@@ -188,14 +191,20 @@ try { if (localStorage.getItem('pmw-consent') === 'granted') { gtag('consent', '
 gtag('js', new Date());
 gtag('config', 'G-1HGJEBFGRW');`}
         </Script>
+        <a href='#main-content' className='skip-to-content'>
+          Skip to main content
+        </a>
         <Navbar />
         {/* .page-flow is the scroll reveal's only structural dependency: a
             page is a list of blocks and these are them. See ScrollReveal and
             _reveal.scss. The class carries no styling of its own. */}
-        <div className='page-flow'>{children}</div>
+        <main id='main-content' className='page-flow'>
+          {children}
+        </main>
         <Footer />
         <ScrollReveal />
         <CookieConsent />
+        <MotionPauseBootstrap />
         {/* Ask Pix M unmounted for the 12 Nov 2026 mock-up. Code remains in
             src/agent/. */}
       </body>

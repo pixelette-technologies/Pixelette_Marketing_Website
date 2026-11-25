@@ -27,9 +27,11 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 25 Nov 2026
 
+**Website correction instructions v2.0 Sections A+B COMPLETE on `bilal/revamp`.** Independent re-audit: code COMPLETE (A1–A9, B1–B6, E4, Slick focus override, dead `/results` CTAs removed). `/results` returns 410. Section D waits on A/B sign-off. F1/F2 and §9 evidence still open. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 **Living Signal 2.5D MOSTLY COMPLETE on `bilal/revamp` (`cac5869`).** Independent audit: all four stages in code; preview READY at https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots and interaction recording left as-is; Founder reviews cursor on the preview. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
-**Footer consolidation COMPLETE on `bilal/revamp` (`a6b692d`).** `/policies` and `/public-sector/how-to-buy` return 410. Governance footer column removed. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Header still says Sectors. Privacy, Cookies, Accessibility, and Social Value pages remain. No production PR. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Footer consolidation COMPLETE on `bilal/revamp` (`a6b692d`).** `/policies` and `/public-sector/how-to-buy` return 410. Governance footer column removed. Company order is About, Sectors, Insights, Social Value, Accessibility, Contact (B3). Header and footer say Sectors. Privacy, Cookies, Accessibility, and Social Value pages remain. No production PR. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 ## Status as of 24 Nov 2026
 

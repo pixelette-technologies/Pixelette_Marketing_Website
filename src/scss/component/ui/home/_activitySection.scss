@@ -199,7 +199,11 @@
 .postitField[data-running="false"] .postit--fg,
 .postitField[data-running="false"] .postit--bg,
 .postitField[data-running="false"] .postit__sway,
-.postitField[data-running="false"] .postit--path .postit__word {
+.postitField[data-running="false"] .postit--path .postit__word,
+html[data-motion-paused="true"] .postitField .postit--fg,
+html[data-motion-paused="true"] .postitField .postit--bg,
+html[data-motion-paused="true"] .postitField .postit__sway,
+html[data-motion-paused="true"] .postitField .postit--path .postit__word {
   animation-play-state: paused;
 }
 

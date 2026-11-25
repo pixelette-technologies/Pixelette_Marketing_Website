@@ -300,7 +300,8 @@
   padding-bottom: 0.2rem;
   font-family: var(--font-body);
   font-size: 0.68rem;
-  color: #98798b;
+  // B6 — was #98798b at 3.86:1 on white; darkened to ≥4.5:1.
+  color: #6b4558;
 }
 
 .miChart__group {
@@ -388,6 +389,15 @@
   white-space: nowrap;
 }
 
+.miChart__caption {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--color-muted);
+  text-align: center;
+}
+
 .miChart__tip {
   position: absolute;
   z-index: 3;
@@ -408,8 +418,7 @@
   transform: translateX(-50%);
 }
 
-.miChart__group:hover .miChart__tip,
-.miChart__group:focus-visible .miChart__tip {
+.miChart__group:hover .miChart__tip {
   opacity: 1;
 }
 

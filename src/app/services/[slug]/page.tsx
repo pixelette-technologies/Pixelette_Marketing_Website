@@ -282,7 +282,6 @@ export default async function Page({ params }: PageProps) {
         eyebrow={proofCopy.eyebrow}
         heading={proofCopy.heading}
         standfirst={proofCopy.standfirst}
-        cta={proofCopy.cta}
       />
 
       {/* 25 Sep 2026: THREE BLOCKS AND THEIR DATA ARE GONE, not hidden.

@@ -1,7 +1,8 @@
 // Measurement & Insight — approved design (22 Nov 2026 handoff).
 // Rendered only on /services/marketing_analytics_and_reporting.
 // Chart figures are a local demonstration. They are not client results.
-// "Paid Media +28% vs previous period" is the supplied example annotation
+// "Paid Media +33% vs previous period" is the chart annotation (A8 corrected
+// from the handoff's +28%, which did not match the demonstration series)
 // in the performance view. It is not calculated from the bars.
 
 export const measurementInsightMeta = {
@@ -120,8 +121,9 @@ export const measurementInsightContent = {
     eyebrow: "Explore the insight",
     heading: "See what the data is telling you",
     lead: "Explore performance across your marketing channels, identify opportunities and make more informed decisions",
-    example: "Paid Media +28%",
-    exampleNote: "vs previous period"
+    example: "Paid Media +33%",
+    exampleNote: "vs previous period",
+    illustrativeCaption: "Illustrative example"
   },
   capabilities: {
     eyebrow: "What we bring together",

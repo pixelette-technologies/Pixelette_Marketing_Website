@@ -176,11 +176,11 @@ const MeasurementExplore = () => {
               <span>Low</span>
             </div>
             {rows.map((row, index) => (
-              <button
+              <div
                 key={row.name}
-                type='button'
                 className='miChart__group'
                 style={{ "--mi-bar": row.color } as CSSProperties}
+                role='img'
                 aria-label={`${row.name}. Previous period ${row.previous}. Current period ${row.current}${
                   stage.id === "performance" && index === 0
                     ? `. Example: ${explore.example} ${explore.exampleNote}`
@@ -211,9 +211,11 @@ const MeasurementExplore = () => {
                   <br />
                   Current {row.current}
                 </span>
-              </button>
+              </div>
             ))}
           </div>
+
+          <p className='miChart__caption'>{explore.illustrativeCaption}</p>
 
           <ul className='miLegend'>
             <li>

@@ -84,6 +84,38 @@ const EnquirySeed: React.FC = () => {
   return null;
 };
 
+// E4 — after a failed submit, move focus to the first invalid field so the
+// error is announced and the visitor is not left on the submit button.
+const FIELD_ORDER: (keyof FormValues)[] = [
+  "firstName",
+  "lastName",
+  "email",
+  "company",
+  "companyWebsite",
+  "improve",
+  "indicativeBudget",
+  "description",
+  "consent"
+];
+
+const FocusFirstError: React.FC = () => {
+  const { errors, isSubmitting, isValidating, submitCount } =
+    useFormikContext<FormValues>();
+
+  useEffect(() => {
+    if (isSubmitting || isValidating || submitCount < 1) return;
+    const first = FIELD_ORDER.find(name => errors[name]);
+    if (!first) return;
+    const node = document.getElementById(first);
+    if (node) {
+      node.focus();
+      node.scrollIntoView({ block: "center", behavior: "smooth" });
+    }
+  }, [errors, isSubmitting, isValidating, submitCount]);
+
+  return null;
+};
+
 interface ContactUsFormProps {
   /** The eyebrow, heading and standfirst above the fields. Off where the
    *  section around the form already carries them — see ContactSection. */
@@ -254,9 +286,12 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
         validationSchema={contactUSvalidationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
-          <Form>
+        {({ isSubmitting, errors, touched }) => {
+          const consentInvalid = Boolean(touched.consent && errors.consent);
+          return (
+          <Form noValidate>
             <EnquirySeed />
+            <FocusFirstError />
             <Field type='hidden' name='noticeVersion' />
             <Field type='hidden' name='formStartedAt' />
             <Field type='hidden' name='sourcePage' />
@@ -272,11 +307,13 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
                 label='First name'
                 name='firstName'
                 place='Enter your first name'
+                autoComplete='given-name'
               />
               <FormInput
                 label='Last name'
                 name='lastName'
                 place='Enter your last name'
+                autoComplete='family-name'
               />
             </div>
             <FormInput
@@ -284,17 +321,20 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               name='email'
               place='Enter your email'
               type='email'
+              autoComplete='email'
             />
             <div className='contactUsFormFlex'>
               <FormInput
                 label='Company'
                 name='company'
                 place='Enter your company name'
+                autoComplete='organization'
               />
               <FormInput
                 label='Website'
                 name='companyWebsite'
                 place='Enter your website'
+                autoComplete='url'
               />
             </div>
             <FormSelect
@@ -314,8 +354,13 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               name='description'
               place='Tell us what you are trying to achieve, what is getting in the way and anything we should know before we speak.'
             />
-            <label className='contactUsFormConsent'>
-              <Field type='checkbox' name='consent' />
+            <label className='contactUsFormConsent' htmlFor='consent'>
+              <Field
+                type='checkbox' name='consent'
+                id='consent'
+                aria-invalid={consentInvalid || undefined}
+                aria-describedby={consentInvalid ? "consent-error" : undefined}
+              />
               <span>
                 {consentText}{" "}
                 <a
@@ -332,7 +377,13 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
                 visitor who filled everything but the box pressed the button
                 and nothing happened. Found by testing the empty and filled
                 states in a browser. */}
-            <ErrorMessage component='div' name='consent' className='form-error' />
+            <ErrorMessage name='consent'>
+              {msg => (
+                <div id='consent-error' className='form-error' role='alert'>
+                  {msg}
+                </div>
+              )}
+            </ErrorMessage>
             <Button type='submit' className='primary-full' disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Submit Enquiry"}
             </Button>
@@ -342,7 +393,8 @@ const ContactUsForm: React.FC<ContactUsFormProps> = ({ showIntro = true }) => {
               </p>
             )}
           </Form>
-        )}
+          );
+        }}
       </Formik>
     </div>
   );

@@ -19,8 +19,8 @@ import { aboutExperience } from "@/data/aboutus";
 // wording below is the brief's own and is what those gates were written
 // against.
 
-/** Every "See client results" link on the page. One constant, so they move
- *  together if the results route ever moves. */
+/** Retired with A1 (25 Nov 2026). `/results` returns 410. Kept only so
+ *  historical copy objects still type-check; do not link here from live UI. */
 export const RESULTS_HREF = "/results";
 
 // --- 01 Hero ----------------------------------------------------------------
@@ -228,7 +228,8 @@ export const proofCopy = {
   eyebrow: aboutExperience.eyebrow,
   heading: "Experience across the Pixelette ecosystem",
   standfirst: aboutExperience.standfirst,
-  cta: { label: "See client results", to: RESULTS_HREF }
+  // CTA removed from TrustedBrands after `/results` retirement (A1).
+  cta: { label: "Discuss Your Project", to: "/contactus" }
 };
 
 // --- 04 Why Pixelette Marketing — CONSOLIDATED 23 SEP 2026 ------------------
@@ -373,15 +374,15 @@ export const aiTechnologyData: AiTechnologyContent = {
 // --- 06 Proof before promises — 29 Sep 2026 ---------------------------------
 // The locked information architecture makes this a COMPACT teaser, and moves
 // the fuller evidence to Work in practice on /industries. The heading and
-// supporting line are the specification's. 24 Nov 2026: the Sectors handoff
-// replaces that chapter on /industries, so this CTA now opens /results, where
-// the same two stories are told in full.
+// supporting line are the specification's. 25 Nov 2026: `/results` retired
+// (A1). ProofTeaser is not mounted on the live home page; do not reintroduce
+// a CTA to `/results`.
 // See ProofTeaser for why only two of BlockGuard's figures appear here.
 
 export const proofTeaserCopy = {
   heading: "Proof before promises",
   lead: "Good marketing should leave evidence behind",
-  cta: { label: "See the work", to: "/results" }
+  cta: { label: "Discuss Your Project", to: "/contactus" }
 };
 
 // --- 08 Results -------------------------------------------------------------

@@ -110,9 +110,9 @@ export default function Navbar() {
               <Link href={"/contactus"} className='flink'>
                 Contact
               </Link>
-              <Link href={navCta.to} className='site-nav__cta'>
-                <Button className='primary'>{navCta.label}</Button>
-              </Link>
+              <Button to={navCta.to} className='primary site-nav__cta'>
+                {navCta.label}
+              </Button>
             </div>
             <details className='navDrawer' ref={drawer}>
               <summary className='navDrawer__toggle'>
@@ -158,13 +158,13 @@ export default function Navbar() {
                   Contact
                 </Link>
 
-                <Link
-                  href={navCta.to}
-                  className='navDrawer__cta'
+                <Button
+                  to={navCta.to}
+                  className='primary navDrawer__cta'
                   onClick={closeDrawer}
                 >
-                  <Button className='primary'>{navCta.label}</Button>
-                </Link>
+                  {navCta.label}
+                </Button>
               </div>
             </details>
           </nav>

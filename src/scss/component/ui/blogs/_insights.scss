@@ -36,14 +36,6 @@
     border-radius: inherit;
   }
 
-  &:focus-visible {
-    outline: none;
-  }
-
-  &:focus-visible::after {
-    outline: 2px solid var(--color-brand);
-    outline-offset: 2px;
-  }
 }
 
 // --- Shared labels ------------------------------------------------------------

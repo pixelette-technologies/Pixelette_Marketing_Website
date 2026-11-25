@@ -1,4 +1,4 @@
-import { Container } from "@/components/common";
+import { Container, MotionPauseControl } from "@/components/common";
 import { activityCopy } from "@/data/home";
 import EditorialCopy from "./EditorialCopy";
 import HomeSceneReveal from "./HomeSceneReveal";
@@ -23,6 +23,7 @@ export default function ActivitySection() {
         <Container className='main'>
           <div className='homeScene__inner'>
             <EditorialCopy copy={activityCopy} titleId='activity-title' />
+            <MotionPauseControl />
           </div>
         </Container>
       </div>

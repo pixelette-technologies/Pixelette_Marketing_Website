@@ -8,7 +8,6 @@ import { caseStudies } from "@/data/results/caseStudies";
 import { finalConversionCopy } from "@/data/home";
 import { pageMetadata, SITE_URL } from "@/data/site";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type PageProps = {
@@ -174,11 +173,6 @@ export default async function Page({ params }: PageProps) {
             </header>
           </Container>
           <CaseStudySection content={evidence} />
-          <Container className='main'>
-            <Link href='/results' className='btn2 sectorEvidence__more'>
-              See client results
-            </Link>
-          </Container>
         </div>
       )}
 

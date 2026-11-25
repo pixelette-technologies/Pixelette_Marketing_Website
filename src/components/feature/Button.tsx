@@ -22,6 +22,7 @@ const Button: FC<ButtonProps> = ({
     <Link
       href={to}
       className={`btn btn_${className}`}
+      onClick={onClick}
     >
       {children}
     </Link>

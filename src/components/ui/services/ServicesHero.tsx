@@ -1,7 +1,6 @@
 import { Container } from "@/components/common";
 import { Button, Heading, Text } from "@/components/feature";
 import Image from "next/image";
-import Link from "next/link";
 import { FC } from "react";
 
 interface ServicesHeroProps {
@@ -43,12 +42,9 @@ const ServicesHero: FC<ServicesHeroProps> = ({
                 buttons to the same /contactus. The pair is the home hero's
                 now: the form, and the evidence. */}
             <div>
-              <Link href='/contactus'>
-                <Button className='primary-full'>Discuss Your Project</Button>
-              </Link>
-              <Link href='/results'>
-                <Button className='secondry-full'>See client results</Button>
-              </Link>
+              <Button to='/contactus' className='primary-full'>
+                Discuss Your Project
+              </Button>
             </div>
           </div>
         </section>

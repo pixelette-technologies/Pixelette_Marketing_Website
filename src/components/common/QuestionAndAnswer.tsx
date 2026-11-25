@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Text, Button } from "../feature";
-import Link from "next/link";
 
 interface QuestionAndAnswerProps {
   heading?: string;
@@ -40,9 +39,9 @@ const QuestionAndAnswer: FC<QuestionAndAnswerProps> = ({
             and it was the legacy agency CTA the rest of the site has dropped.
             The label is the form's own heading, so the button and the page it
             opens say the same thing. */}
-        <Link href='/contactus'>
-          <Button className='primary'>Discuss Your Project</Button>
-        </Link>
+        <Button to='/contactus' className='primary'>
+          Discuss Your Project
+        </Button>
       </div>
     </section>
   );

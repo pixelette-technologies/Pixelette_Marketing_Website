@@ -75,6 +75,11 @@
   // across every group site. Do not fix it here: fixing it on one site forks
   // the group design system. It is raised with the guide's author as a
   // shared-layer change and badged as inherited on the comparison page.
+  //
+  // Form controls (A6, 25 Nov 2026): a darkened brand-family border for
+  // inputs/selects/textarea only. ≥3:1 on white; ≥1px. Does not retoken the
+  // inherited --color-line-strong used elsewhere.
+  --color-control-border: #8f5f70;
 
   // --- Dark families ----------------------------------------------------
   // Footer and panel shift together. Both were lightened where the rotation

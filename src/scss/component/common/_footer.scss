@@ -240,6 +240,15 @@ a.groupband__name:hover {
   gap: 0.75rem 1.5rem;
 }
 
+// Legal links stay in this utility row. They are not a footer column.
+.footerLegal__links {
+  flex: 1 0 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 1.625rem;
+}
+
 // The identity, matched to the Technologies footer on 22 Sep 2026. It was one
 // prose sentence ranged right beside a copyright line. Theirs is FIVE DISCRETE
 // ITEMS across two blocks — entity, jurisdiction, company number on the left;

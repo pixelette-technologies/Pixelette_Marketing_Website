@@ -6,7 +6,6 @@ export {
   offices,
   contactForm,
   contactRoutes,
-  contactProcurementSlot,
   contactFaqs
 } from "./contactPage";
 export type { Office, ContactRoute, ContactFaqItem } from "./contactPage";

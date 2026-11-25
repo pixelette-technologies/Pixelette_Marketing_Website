@@ -25,6 +25,10 @@ was built, what was decided, and what is still open. It replaces the earlier
 - [[08 Design system constraints]] — the rules the code enforces on itself
 - [[10 Verification]] — what the gates prove, and what they cannot
 
+## Status as of 25 Nov 2026
+
+**Footer consolidation COMPLETE on `bilal/revamp`.** `/policies` and `/public-sector/how-to-buy` return 410. Governance footer column removed. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Header still says Sectors. Privacy, Cookies, Accessibility, and Social Value pages remain. No production PR. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+
 ## Status as of 24 Nov 2026
 
 **Accessibility instruction COMPLETE on `bilal/revamp` (`88cbe32`) for `/accessibility`.** Independent re-audit found no instruction misses. Supplied mosaic is 675×405, shown up to 840px wide. Both page buttons say Contact Us and go to `/contactus`. No preview deploy. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.

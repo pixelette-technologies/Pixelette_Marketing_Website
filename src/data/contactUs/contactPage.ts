@@ -76,13 +76,6 @@ export const contactRoutes = {
   ] satisfies ContactRoute[]
 };
 
-/** Plan §9.3 — rendered by ContactProcurementSlot. Kept for callers that
- *  still import the slot shape. */
-export const contactProcurementSlot = {
-  heading: "Procurement and supplier checks",
-  body: "published"
-};
-
 /** Company number — identical to `company.companyNumber`. */
 export const CONTACT_COMPANY_NUMBER = "17508478";
 
@@ -116,7 +109,7 @@ export const contactFaqs = {
     {
       question: "We have a supplier questionnaire. Where does it go?",
       answer:
-        "How to buy from us, Accessibility, Social value and Policies are published, and each page states plainly what is not yet published (including safeguarding and related policies). For a questionnaire, pre-qualification document or framework response, send it to sales@pixelettemarketing.com. We complete what we can evidence and say plainly where we cannot yet evidence something."
+        "Accessibility and Social value are published. For a questionnaire, pre-qualification document or framework response, send it to sales@pixelettemarketing.com. We complete what we can evidence and say plainly where we cannot yet evidence something."
     }
   ] satisfies ContactFaqItem[]
 };

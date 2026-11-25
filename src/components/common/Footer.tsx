@@ -171,7 +171,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href='/industries' className='flink small'>
-                  Sectors
+                  Industries
                 </Link>
               </li>
               <li>
@@ -180,52 +180,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href='/contactus' className='flink small'>
-                  Contact
+                <Link href='/social-value' className='flink small'>
+                  Social Value
                 </Link>
               </li>
-              <li>
-                <Link href={PRIVACY_HREF} className='flink small'>
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link href={COOKIE_POLICY_HREF} className='flink small'>
-                  Cookies &amp; analytics
-                </Link>
-              </li>
-              <li>
-                <ManageCookies
-                  label='Privacy choices'
-                  className='flink small footerList__button'
-                />
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <Heading className='eyebrow' level={2}>
-              Governance
-            </Heading>
-            <ul className='footerList'>
               <li>
                 <Link href='/accessibility' className='flink small'>
                   Accessibility
                 </Link>
               </li>
               <li>
-                <Link href='/social-value' className='flink small'>
-                  Social value
-                </Link>
-              </li>
-              <li>
-                <Link href='/policies' className='flink small'>
-                  Policies
-                </Link>
-              </li>
-              <li>
-                <Link href='/public-sector/how-to-buy' className='flink small'>
-                  How to buy from us
+                <Link href='/contactus' className='flink small'>
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -292,6 +258,24 @@ export default function Footer() {
             the name is written as the rest of the site writes it, with no
             suffix, until someone confirms which. See [[09 Outstanding]]. */}
         <div className='footerLegal'>
+          <ul className='footerList footerLegal__links'>
+            <li>
+              <Link href={PRIVACY_HREF} className='flink small'>
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link href={COOKIE_POLICY_HREF} className='flink small'>
+                Cookies &amp; analytics
+              </Link>
+            </li>
+            <li>
+              <ManageCookies
+                label='Privacy choices'
+                className='flink small footerList__button'
+              />
+            </li>
+          </ul>
           <p className='legal footerId'>
             <span>{company.legalName}</span>{" "}
             <span>Registered in England and Wales</span>{" "}

@@ -2,22 +2,22 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **24 November 2026** — Accessibility instruction **COMPLETE** on `/accessibility`. Independent re-audit found no instruction misses. Supplied mosaic is 675×405 and is shown up to 840px wide. Social value remains instruction **COMPLETE** (`75df61c`). Sectors overview remains instruction **COMPLETE** (`9903bdc`). Influencer 4K imagery remains `c0243d1`. Measurement & Insight remains instruction **COMPLETE** (`510f14e`). Lead Generation, Paid Media & PPC, SEO, Email Marketing and PR remain instruction **COMPLETE**. Social & Community remains MOSTLY COMPLETE.
+Last updated: **25 November 2026** — Footer consolidation **COMPLETE**. `/policies` and `/public-sector/how-to-buy` return 410. The Governance footer column is gone. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Accessibility remains instruction **COMPLETE** (`88cbe32`). Social value remains instruction **COMPLETE** (`75df61c`). Sectors overview remains instruction **COMPLETE** (`9903bdc`).
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Accessibility **`88cbe32`**, local, not pushed. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**. |
-| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page + Accessibility approved page. |
-| Pushed? | **Through social value (`421d6ec`) only.** The accessibility commit is local until asked. No production PR. Live domain untouched. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Footer consolidation on this branch. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**, **25 Nov footer consolidation** **COMPLETE**. |
+| Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page + Accessibility approved page. Policies and How to buy are removed. |
+| Pushed? | **`bilal/revamp` only**, including Accessibility and the footer consolidation. No production PR. Live domain untouched. |
 | Preview | Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
-| Sign-off | **Not signed off.** Accessibility instruction **COMPLETE**. Social value instruction **COMPLETE**. Sectors instruction **COMPLETE** (`9903bdc`); 680×384 photography stays open before live. | Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
+| Sign-off | **Not signed off.** Footer consolidation **COMPLETE**. Accessibility instruction **COMPLETE**. Social value instruction **COMPLETE**. Sectors instruction **COMPLETE** (`9903bdc`); 680×384 photography stays open before live. Influencer & Partnerships COMPLETE (4K imagery `c0243d1`). Measurement & Insight instruction **COMPLETE** (`510f14e`). Lead Generation instruction **COMPLETE** (`5c8ce0d`). Artwork resolution and rights stay open before live. Paid Media & PPC instruction **COMPLETE** (`8057281`). SEO, Content & AI Visibility instruction **COMPLETE** (`c190220`). Email Marketing instruction **COMPLETE** (`dbad31d`). PR & Earned Media instruction **COMPLETE** (`7127aaa`). Social & Community MOSTLY COMPLETE (rights blockers open). Founder still owns wording / production approval. |
 
 ## Start here — next session, in order
 
-1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility + Paid Media & PPC + Lead Generation + Measurement & Insight + Sectors + Social value + Accessibility exceptions; mock-up stays on baseline URLs; crawler allowlist).
+1. Read [[Rules]] (brief + Service Offer honesty + one-agency framing + Impact Compass + Influencer + Social & Community + PR & Earned Media + Email Marketing + SEO, Content & AI Visibility + Paid Media & PPC + Lead Generation + Measurement & Insight + Sectors + Social value + Accessibility + footer consolidation exceptions; mock-up stays on baseline URLs; crawler allowlist).
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
@@ -33,10 +33,24 @@ Last updated: **24 November 2026** — Accessibility instruction **COMPLETE** on
 | 5 | **Lead Generation hero artwork** | Supplied triptych is 585×431 and is used unaltered. It stays fully visible, and it will look soft on a retina desktop. Confirm publication rights and supply a higher-resolution master before live. Screenshots: `mockup-screenshots/lead-generation-2026-11-23/`. |
 | 6 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page + Social value page + Accessibility page** | Approve or amend before any production PR. Mock-up banners stay on draft public-sector pages until approved. |
 | 7 | **Social value mosaic resolution** | The supplied hero is 1035×435. It is used unaltered. It will soften if displayed wider than that. At 1024 the two-column hero letterboxes it by about 57px. |
-| 8 | **Contact page still describes the old social-value page** | `src/data/contactUs/contactPage.ts` still says each published governance page states what is not yet published. `/social-value` no longer does. Left unchanged: this pass was `/social-value` only. |
-| 9 | **Accessibility mosaic resolution** | The supplied hero is 675×405. At 1440 it is shown at 840×504 so the right column matches the approved composition. It will soften on a retina desktop. |
-| 10 | **Other pages still describe the retired accessibility statement** | `/policies`, `serviceLines.ts`, the contact FAQ, and how-to-buy still describe a voluntary WCAG statement or a published conformance position. Left unchanged: the instruction was `/accessibility` only. |
-| 11 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+| 8 | **Accessibility mosaic resolution** | The supplied hero is 675×405. At 1440 it is shown at 840×504 so the right column matches the approved composition. It will soften on a retina desktop. |
+| 9 | **`serviceLines.ts` still describes a published accessibility conformance position** | `/policies` and `/public-sector/how-to-buy` return 410. The contact FAQ names Accessibility and Social value only. `src/data/publicSector/serviceLines.ts` was left unchanged. |
+| 10 | **Broader menu / route by-eye (if still required)** | Homepage correction pack is done. Full brief §8 / §9 pack across routes still deferred if required. Likely break points: mega-menu, capability grid, evaluation table. Social pack: `mockup-screenshots/social-community-2026-11-20/`. |
+
+## 25 November 2026 — Footer consolidation
+
+**Instruction:** Footer Consolidation and Page Removal. Remove `/policies` and `/public-sector/how-to-buy`. Remove the Governance footer column. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Keep Privacy, Cookies & analytics, and Privacy choices in the legal row. Do not change the Accessibility or Social Value pages. No production deploy.
+
+**Independent audit: COMPLETE.** No instruction misses.
+- Both removed routes return 410 Gone. `next.config.ts` does not redirect them. They are not in the sitemap.
+- Governance heading and column are gone. The grid is brand, Services, and Company.
+- Company links: `/aboutus`, `/industries` (label Industries), `/blog-list`, `/social-value`, `/accessibility`, `/contactus`. The header still says Sectors.
+- Privacy (`/privacy`), Cookies & analytics (`/cookie-policy`), and Privacy choices stay in `.footerLegal`.
+- The public-sector hub no longer links to How to buy. The contact procurement slot is gone. The supplier-questionnaire answer names Accessibility and Social value only.
+- `/accessibility` and `/social-value` page content, mosaics, and layouts were not edited.
+- `npx tsc --noEmit` passed. Contact tests: 37 passed. ESLint on the edited files was clean. `npm run build` succeeded. Production responses confirmed 410 for the two removed routes and 200 for Privacy, Cookies, Accessibility, and Social Value.
+- Desktop 1440, tablet 1024, and phone 390 footers were checked. No empty Governance column.
+- Live domain untouched; no production PR.
 
 ## 24 November 2026 — Accessibility approved page
 

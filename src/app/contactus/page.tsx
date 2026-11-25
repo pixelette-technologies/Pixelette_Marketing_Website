@@ -1,7 +1,6 @@
 import {
   ContactFaq,
   ContactGetInTouch,
-  ContactProcurementSlot,
   ContactRoutes,
   ContactUsHero,
   HowItWork
@@ -71,7 +70,6 @@ export default function ContactUs() {
       <ContactUsHero />
       <ContactGetInTouch />
       <HowItWork />
-      <ContactProcurementSlot />
       <ContactRoutes />
       <ContactFaq />
     </>

@@ -85,12 +85,6 @@ export default function PublicSectorPage() {
               </li>
             ))}
           </ul>
-          <p className='sec-sm'>
-            <Link href='/public-sector/how-to-buy' className='textLink'>
-              Supplier and procurement information
-              <span aria-hidden='true'> →</span>
-            </Link>
-          </p>
         </section>
       </Container>
     </>

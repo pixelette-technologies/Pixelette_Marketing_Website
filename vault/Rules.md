@@ -14,7 +14,9 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **Push / PR / live:** `bilal/revamp` may be pushed when the user asks. **No PR to production and no live deploy** without explicit instruction.
 
-**One-agency framing (19 Nov):** present one integrated marketing and communications agency. Do not restore a top-level Public Sector mega-menu, a homepage “two markets” proposition, or defensive “what we have not yet done” blocks on the Market B service pages. Keep mock-up banners until Founder approval. Keep how-to-buy / policy honesty.
+**One-agency framing (19 Nov):** present one integrated marketing and communications agency. Do not restore a top-level Public Sector mega-menu, a homepage “two markets” proposition, or defensive “what we have not yet done” blocks on the Market B service pages. Keep mock-up banners until Founder approval.
+
+**Footer consolidation (25 Nov, instruction audit COMPLETE):** `/policies` and `/public-sector/how-to-buy` are removed and return 410. Do not restore them, redirect them, or restore the Governance footer column. Company column order is About, Industries, Insights, Social Value, Accessibility, Contact. Nav still says Sectors. Privacy, Cookies & analytics and Privacy choices stay in the footer legal row. Do not change `/accessibility` or `/social-value` page content for this pass.
 
 **Homepage presentation (20 Nov, corrected):** below-hero sections may use Social Change–style rectangular image/copy layout and scroll entrances. Keep the original homepage graphics (Post-its, maquette, duck pond) and narrative. Do not import What We Do / capability-stage media onto the homepage. Do not create five new capability service bands. Do not change the existing hero, header, navigation or footer.
 
@@ -36,7 +38,7 @@ For surfaces the **12 Nov developer brief**, the **Service Offer and Website Pla
 
 **Measurement & Insight (22 Nov, instruction audit COMPLETE 23 Nov):** `/services/marketing_analytics_and_reporting` may use the approved handoff only — diverse-audience collage, circular “A clearer picture” graphic, three chart views, four capabilities, light close, four FAQs. Use the supplied collage. Do not embed the full-page screenshot, add a dashboard to the hero, or present the chart figures or `Paid Media +28%` as a client result. Do not change other service pages for this pass.
 
-**Sectors (24 Nov, instruction audit COMPLETE):** `/industries` may use the approved eight-sector mosaic and detail panel only. The visible name is Sectors. The URL stays `/industries`. Use `sectors-content-v1.json` verbatim. Do not delete specialist industry routes, invent results, or replace the supplied photographs. Nav and footer say Sectors. The homepage proof link goes to `/results` because Work in practice is no longer on this route.
+**Sectors (24 Nov, instruction audit COMPLETE):** `/industries` may use the approved eight-sector mosaic and detail panel only. The visible name on the page and in the nav is Sectors. The URL stays `/industries`. Use `sectors-content-v1.json` verbatim. Do not delete specialist industry routes, invent results, or replace the supplied photographs. The Company footer link says Industries and still goes to `/industries`. The homepage proof link goes to `/results` because Work in practice is no longer on this route.
 
 **Social value (24 Nov, instruction audit COMPLETE):** `/social-value` may use the approved exact handoff only. Headline is `Connecting people to what matters`. Use `SOCIAL-VALUE-EXACT-MOSAIC-HERO` unaltered. Do not restore the previous “What we will not claim” page, embed the full-page screenshot, or generate a replacement mosaic. Do not change other routes for this pass.
 

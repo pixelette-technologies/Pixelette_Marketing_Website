@@ -4,7 +4,7 @@ Everything the audit turned up, sorted by what happens to it. See [[Rules]] for 
 
 ## Pending for the next session
 
-Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), Social value (instruction COMPLETE), and Accessibility (instruction COMPLETE) are on the branch. A fresh session takes these:
+Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partnerships, Social & Community (MOSTLY COMPLETE), PR & Earned Media (instruction COMPLETE), Email Marketing (instruction COMPLETE), SEO, Content & AI Visibility (instruction COMPLETE), Paid Media & PPC (instruction COMPLETE), Lead Generation (instruction COMPLETE), Measurement & Insight (instruction COMPLETE), Sectors (instruction COMPLETE), Social value (instruction COMPLETE), Accessibility (instruction COMPLETE), and the 25 Nov footer consolidation (COMPLETE) are on the branch. A fresh session takes these:
 
 | Item | Notes |
 |---|---|
@@ -16,14 +16,17 @@ Review §7, one-agency, homepage correction, Impact Compass, Influencer & Partne
 | **Sectors — supplied photography is 680×384** | Eight JPEGs extracted from the interactive prototype, used unaltered at `public/sectors/`. They are not high-resolution masters. The panel will look soft on a retina desktop. Confirm rights and supply production masters before live. |
 | **Founder sign-off on one-agency wording + homepage presentation + Impact Compass + Influencer + Social page + PR page + Email page + SEO page + PPC page + Lead page + Measurement page + Sectors page + Social value page + Accessibility page** | Approve or amend before any production PR. Mock-up banners stay until pages are approved. |
 | **Social value mosaic is 1035×435** | Supplied crop used unaltered at `public/social-value/mosaic-hero.png`. It will soften above that width. |
-| **Contact page still describes the retired social-value statement** | `contactPage.ts` says each published governance page states what is not yet published. `/social-value` no longer does. Not edited in this pass. |
 | **Accessibility mosaic is 675×405** | Supplied crop used at `public/accessibility/mosaic-hero.png`. At 1440 it is shown at 840×504. It will soften on a retina desktop. |
-| **Other pages still describe the retired accessibility statement** | `/policies`, `serviceLines.ts`, the contact FAQ, and how-to-buy still describe a voluntary WCAG statement or a published conformance position. Not edited: the instruction was `/accessibility` only. |
+| **`serviceLines.ts` still describes a published accessibility conformance position** | `/policies` and `/public-sector/how-to-buy` return 410. The contact FAQ names Accessibility and Social value only. `src/data/publicSector/serviceLines.ts` was left unchanged. |
 | **Broader menu / route by-eye (if still required)** | Homepage correction pack done. Full brief §8 / §9 across routes still deferred if required. Likely breaks: mega-menu, capability grid, evaluation table. |
+
+## Closed 25 Nov — Footer consolidation (COMPLETE)
+
+`/policies` and `/public-sector/how-to-buy` return 410 Gone. No redirect. Not in the sitemap. Governance footer column removed. Company order: About, Industries (`/industries`), Insights (`/blog-list`), Social Value (`/social-value`), Accessibility (`/accessibility`), Contact (`/contactus`). Header still says Sectors. Privacy, Cookies & analytics, and Privacy choices stay in the legal row. Public-sector hub link and the contact procurement slot are gone. Supplier-questionnaire answer names Accessibility and Social value only. Accessibility and Social Value page content were not edited. `tsc`, 37 contact tests, ESLint on the edited files, and `npm run build` passed. Production check: 410 on both removed routes, 200 on Privacy, Cookies, Accessibility, and Social Value. Live domain untouched; no production PR.
 
 ## Closed 24 Nov — Accessibility approved page (COMPLETE)
 
-Local on `bilal/revamp` as `88cbe32`. Not pushed. No preview deploy. Independent re-audit: **COMPLETE**. No instruction misses. The previous voluntary statement and mock-up banner are off `/accessibility`. Split hero, four cards, help panel, two-column work section, curved close. Both page buttons say Contact Us and go to `/contactus`. The header stays Discuss Your Project. Mosaic is the supplied 675×405 crop, byte-identical, shown at 840×504 on a 1440 desktop. `npx tsc --noEmit` passed. ESLint is clean on this page. `npm run build` succeeded. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/accessibility-2026-11-24/`.
+On `bilal/revamp` as `88cbe32`, pushed with the 25 Nov footer consolidation. No preview deploy. Independent re-audit: **COMPLETE**. No instruction misses. The previous voluntary statement and mock-up banner are off `/accessibility`. Split hero, four cards, help panel, two-column work section, curved close. Both page buttons say Contact Us and go to `/contactus`. The header stays Discuss Your Project. Mosaic is the supplied 675×405 crop, byte-identical, shown at 840×504 on a 1440 desktop. `npx tsc --noEmit` passed. ESLint is clean on this page. `npm run build` succeeded. Live domain untouched; no production PR. Screenshots: `mockup-screenshots/accessibility-2026-11-24/`.
 
 ## Closed 24 Nov — Social value approved page (COMPLETE)
 
@@ -33,7 +36,7 @@ Pushed as `75df61c`. Preview: https://pixelette-marketing-website-n9ocunxqv-pixe
 
 Pushed as `9903bdc`. Independent instruction audit: **COMPLETE** (no gaps). Preview: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries`. Live domain untouched; no production PR.
 
-Allowed and recorded: the old explorer, Work in practice and the closing band are off `/industries`. The homepage “See the work” link goes to `/results`. The homepage teaser still says Industries; the instruction only renamed the nav and footer. The eight photographs stay the supplied 680×384 extracts. Specialist industry routes are unchanged. Nav and footer say Sectors and still link to `/industries`.
+Allowed and recorded: the old explorer, Work in practice and the closing band are off `/industries`. The homepage “See the work” link goes to `/results`. The homepage teaser still says Industries; the Sectors instruction only renamed the nav and footer. The eight photographs stay the supplied 680×384 extracts. Specialist industry routes are unchanged. Nav says Sectors. The 25 Nov footer consolidation sets the Company label back to Industries. Both still link to `/industries`.
 
 | Item | Resolution |
 |---|---|

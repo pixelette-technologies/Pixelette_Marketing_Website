@@ -2,13 +2,13 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A–D **COMPLETE** on `bilal/revamp` (A+B `b5e2324` signed off; C verified leave-alone; D shipped this session). Independent audit: MOSTLY COMPLETE — F1/F2 and §9 evidence still open. Living Signal 2.5D + D4 first paint included. Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
+Last updated: **25 November 2026** — Website correction instructions v2.0 Sections A–D **COMPLETE** on `bilal/revamp` (`431e7ed`; A+B signed off at `b5e2324`; C leave-alone; D shipped). Independent audit: MOSTLY COMPLETE — F1/F2 and §9 evidence still open. Living Signal 2.5D + D4 first paint included. Footer consolidation remains **COMPLETE**. Accessibility / Social value / Sectors remain instruction **COMPLETE**.
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Website correction v2.0 A+B **`b5e2324`**; C+D tip recorded after this push. Living Signal 2.5D **`cac5869`** (+ D4 in C+D commit). Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Website correction v2.0 A–D **`431e7ed`** (A+B base **`b5e2324`**). Living Signal 2.5D **`cac5869`** (+ D4 in `431e7ed`). Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
 | Phase | Mock-up under the **12 Nov developer brief** through **25 Nov Living Signal 2.5D** as before; **25 Nov website correction v2.0 A–D** COMPLETE (A+B signed off; C leave-alone; D typography / CTAs / measures / Living Signal first paint). F1/F2 open. |
 | Site code written | Prior locked pages + Living Signal 2.5D + website correction v2.0 A–D (D: shared button primitive, form type, measures, Living Signal resolved first paint). Policies, How to buy, and Results are removed (410). |
 | Pushed? | **`bilal/revamp` only**, including website correction v2.0 A–D. No production PR. Live domain untouched. |
@@ -26,7 +26,7 @@ Last updated: **25 November 2026** — Website correction instructions v2.0 Sect
 
 **Instruction:** `Pixelette_Marketing_Website_Correction_Instructions_v2.0_25Nov2026.pdf`. A+B signed off. Section C is “verified correct, do not change” — re-checked in code, no edits. Section D controlled refinements shipped on `bilal/revamp`.
 
-**Independent audit (cursor-grok): MOSTLY COMPLETE — code COMPLETE for C (leave-alone) and D1–D4.** D2 unifies primary buttons on the `.btn` primitive; D1/D3 harmonise shared type and measures without rewriting locked service creatives; D4 paints Living Signal resolved on first frame. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open: F1/F2; E1 at go-live; §9 evidence (incl. D before/after). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
+**Independent audit (cursor-grok): MOSTLY COMPLETE — code COMPLETE for C (leave-alone) and D1–D4.** Shipped as `431e7ed`. D2 unifies primary buttons on the `.btn` primitive; D1/D3 harmonise shared type and measures without rewriting locked service creatives; D4 paints Living Signal resolved on first frame. Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Still open: F1/F2; E1 at go-live; §9 evidence (incl. D before/after). Live domain untouched; no production PR. Detail: [[Known bugs and deviations]].
 
 ## 25 November 2026 — Website correction instructions v2.0 (A + B)
 

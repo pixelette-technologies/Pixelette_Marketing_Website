@@ -27,7 +27,7 @@ was built, what was decided, and what is still open. It replaces the earlier
 
 ## Status as of 25 Nov 2026
 
-**Website correction instructions v2.0 A–D COMPLETE on `bilal/revamp`.** A+B signed off (`b5e2324`); C verified leave-alone; D shipped (typography / CTAs / measures / Living Signal first paint). Independent audit MOSTLY COMPLETE — F1/F2 and §9 evidence still open. `/results` returns 410. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
+**Website correction instructions v2.0 A–D COMPLETE on `bilal/revamp` (`431e7ed`).** A+B signed off (`b5e2324`); C verified leave-alone; D shipped (typography / CTAs / measures / Living Signal first paint). Independent audit MOSTLY COMPLETE — F1/F2 and §9 evidence still open. `/results` returns 410. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 
 **Living Signal 2.5D MOSTLY COMPLETE on `bilal/revamp` (`cac5869`).** Independent audit: all four stages in code; preview READY at https://pixelette-marketing-website-cpptr4dg8-pixelette-technologies.vercel.app. Screenshots and interaction recording left as-is; Founder reviews cursor on the preview. Live domain untouched. Detail: `vault/00 Index.md` and `vault/Known bugs and deviations.md`.
 

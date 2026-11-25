@@ -25,7 +25,7 @@ Review §7 through Living Signal, footer consolidation, and website correction v
 
 ## Closed 25 Nov — Website correction instructions v2.0 (Sections C + D)
 
-Management signed off A+B. Section C re-verified in code and left unchanged. Section D shipped on `bilal/revamp`. Independent audit (cursor-grok): **code COMPLETE** for C leave-alone and D1–D4; delivery **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5.
+Management signed off A+B. Section C re-verified in code and left unchanged. Section D shipped on `bilal/revamp` as `431e7ed`. Independent audit (cursor-grok): **code COMPLETE** for C leave-alone and D1–D4; delivery **MOSTLY COMPLETE** until §9 evidence and E2/E3/E5.
 
 | Item | Notes |
 |---|---|

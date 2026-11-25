@@ -2,14 +2,14 @@
 
 The note a fresh session reads first. Keep it accurate about what has and has not been verified.
 
-Last updated: **25 November 2026** — Footer consolidation **COMPLETE**. `/policies` and `/public-sector/how-to-buy` return 410. The Governance footer column is gone. Company order is About, Industries, Insights, Social Value, Accessibility, Contact. Accessibility remains instruction **COMPLETE** (`88cbe32`). Social value remains instruction **COMPLETE** (`75df61c`). Sectors overview remains instruction **COMPLETE** (`9903bdc`).
+Last updated: **25 November 2026** — Living Signal 2.5D enhancement on the homepage hero (threads, spheres, depth-scaled cursor, lighting). Footer consolidation remains **COMPLETE**. Accessibility remains instruction **COMPLETE** (`88cbe32`). Social value remains instruction **COMPLETE** (`75df61c`). Sectors overview remains instruction **COMPLETE** (`9903bdc`).
 
 ## Where things stand
 
 | | |
 |---|---|
-| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
-| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**, **25 Nov footer consolidation** **COMPLETE**. |
+| Branch | **`bilal/revamp`** (tracking `origin/bilal/revamp`). Living Signal 2.5D on this tip. Footer consolidation **`a6b692d`**. Accessibility **`88cbe32`**. Social value **`75df61c`**. Sectors code **`9903bdc`**. |
+| Phase | Mock-up under the **12 Nov developer brief**, Service Offer plan copy, **19 Nov one-agency** pass, **20 Nov homepage presentation corrected**, **20 Nov Impact Compass** COMPLETE, **20 Nov Influencer & Partnerships** COMPLETE, **20–23 Nov Social & Community** locked design MOSTLY COMPLETE, **23 Nov PR & Earned Media** instruction **COMPLETE**, **23 Nov Email Marketing** instruction **COMPLETE**, **23 Nov SEO, Content & AI Visibility** instruction **COMPLETE**, **23 Nov Paid Media & PPC** instruction **COMPLETE**, **23 Nov Lead Generation** instruction **COMPLETE**, **23 Nov Measurement & Insight** instruction **COMPLETE**, **24 Nov Sectors** instruction **COMPLETE**, **24 Nov Social value** instruction **COMPLETE**, **24 Nov Accessibility** instruction **COMPLETE**, **25 Nov footer consolidation** **COMPLETE**, **25 Nov Living Signal 2.5D** enhancement. |
 | Site code written | Service Offer + must-fixes 1–6 + §7 + one-agency + homepage rectangular bands + Impact Compass + Influencer + Social & Community locked page + PR & Earned Media locked page + Email Marketing locked page + SEO, Content & AI Visibility locked page + Paid Media & PPC locked page + Lead Generation locked page + Measurement & Insight approved page + Sectors overview + Social value approved page + Accessibility approved page. Policies and How to buy are removed. |
 | Pushed? | **`bilal/revamp` only**, including Accessibility and the footer consolidation. No production PR. Live domain untouched. |
 | Preview | Sectors: `https://pixelette-marketing-website-l3s2irmrr-pixelette-technologies.vercel.app/industries` (`9903bdc`). Influencer 4K: `https://pixelette-marketing-website-r47044m0h-pixelette-technologies.vercel.app/services/influencer_marketing` (`c0243d1`). |
@@ -21,6 +21,18 @@ Last updated: **25 November 2026** — Footer consolidation **COMPLETE**. `/poli
 2. Read [[Known bugs and deviations]] — **Pending for the next session** first. That is the whole remaining snag list.
 3. Do not invent copy. Do not deploy live. Push only if asked.
 4. Gates: `npx tsc --noEmit && npm run test:contact` — see [[Build and verification]].
+
+## 25 November 2026 — Living Signal 2.5D
+
+**Instruction:** complete Living Signal enhancement — 2.5D threads and spheres, depth-responsive cursor, lighting/performance/a11y. Preserve artwork, composition, colours, annotations and homepage content. Preview only; no production.
+
+Four stages shipped in one pass on `LivingSignal.tsx`:
+1. Threads: per-ribbon depth/weight, soft under-shadow, far→near draw order.
+2. Balls: smaller radii; shade, contact shadow and specular highlight.
+3. Cursor: pull and pluck scale with depth; shared depth parallax; balls still ride their strings.
+4. Soft upper-left key light in the haze; idle cache + half-rate ambient kept; reduced-motion still; fine pointer only; off-screen/hidden pause unchanged.
+
+Gates: `npx tsc --noEmit` silent; `npm run test:contact` 37 pass. Live domain untouched; no production PR.
 
 ## Pending for the next session (take these)
 

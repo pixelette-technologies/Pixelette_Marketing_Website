@@ -67,7 +67,6 @@ export const emailMarketingContent = {
     headingLead: "Turn every email into an opportunity to connect, engage",
     headingEmphasis: "and convert",
     lead: "Email campaigns, intelligent automation and lifecycle marketing that build relationships and drive measurable business outcomes.",
-    cta: { label: "Discuss your project", href: navCta.to },
     note: "Illustrative email sequence"
   },
   deliver: {

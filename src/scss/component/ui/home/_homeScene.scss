@@ -78,6 +78,13 @@
   padding-inline: clamp(1.5rem, 1rem + 3vw, 3.5rem);
 }
 
+// 02 Activity + 05 Relevance: left copy was flush to the viewport — inset
+// to the site container edge. Art / backgrounds stay full-bleed in-column.
+.homeScene--activity .homeScene__body > .container_main,
+.homeScene--relevance .homeScene__body > .container_main {
+  padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+}
+
 .homeScene__inner {
   display: flex;
   align-items: center;

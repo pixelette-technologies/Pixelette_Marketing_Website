@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { seoVisibilityContent } from "@/data/services/seoVisibility";
 
 const { hero, search, ai } = seoVisibilityContent;
@@ -23,10 +22,6 @@ const SeoHero = () => {
             </span>
           </h1>
           <p className='seoHero__lead'>{hero.lead}</p>
-          <Link href={hero.cta.href} className='seoCta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
         </div>
 
         <div className='seoMonitor'>

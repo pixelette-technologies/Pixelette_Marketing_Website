@@ -1,4 +1,3 @@
-import { Container } from "@/components/common";
 import { diagnosticIntro, strategyHero } from "@/data/strategy";
 import type { MouseEvent } from "react";
 import ImpactCompass from "./ImpactCompass";
@@ -31,7 +30,7 @@ const StrategyHero = ({
   return (
     <section className='impactIntro' aria-labelledby='impact-intro-heading'>
       <div className='impactIntro__copy'>
-        <Container className='main impactIntro__copyInner'>
+        <div className='impactIntro__copyInner'>
           <p className='impactIntro__eyebrow'>
             <span className='impactIntro__eyebrowText'>{eyebrow}</span>
           </p>
@@ -87,7 +86,7 @@ const StrategyHero = ({
           )}
 
           <p className='impactIntro__assurance'>{diagnosticIntro.assurance}</p>
-        </Container>
+        </div>
       </div>
 
       <div className='impactIntro__visual' aria-hidden='true'>

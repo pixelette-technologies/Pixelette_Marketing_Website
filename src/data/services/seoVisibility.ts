@@ -18,7 +18,6 @@ export const seoVisibilityContent = {
     headingRest: "in search and",
     headingEmphasis: "AI answers",
     lead: "Technical SEO, useful content and trusted authority that improves discovery, builds trust and generates enquiries.",
-    cta: { label: "Discuss your project", href: navCta.to },
     query: "How do I choose the right technology partner?",
     disclaimer:
       "Illustrative discovery experiences · No ranking or citation claims"

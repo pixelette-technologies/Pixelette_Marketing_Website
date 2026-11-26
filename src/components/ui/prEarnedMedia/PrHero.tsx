@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { prEarnedMediaContent } from "@/data/services/prEarnedMedia";
 import PrCollage from "./PrCollage";
 
@@ -19,10 +18,6 @@ const PrHero = () => {
             </span>
           </h1>
           <p className='prHero__lead'>{hero.lead}</p>
-          <Link href={hero.cta.href} className='prHero__cta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
         </div>
         <PrCollage />
       </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   useEffect,
   useLayoutEffect,
@@ -84,10 +83,6 @@ const PaidMediaHero = () => {
             {hero.headingLead} <em>{hero.headingEmphasis}</em>
           </h1>
           <p className='ppcHero__lead'>{hero.lead}</p>
-          <Link href={hero.cta.href} className='ppcCta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
         </div>
 
         <div className='ppcStage'>

@@ -64,7 +64,7 @@ export const strategyHero = {
   eyebrow: "Diagnostics",
   heading: "Find your next move",
   lead: "A short marketing diagnostic to reveal what is working, what needs attention and where to focus.",
-  /** Script line under the lead — Caveat / --font-hand. */
+  /** Process line under the lead — Newsreader / --font-display italic. */
   process: ["Assess", "Understand", "Act"] as const,
   facts: ["12 questions", "6 focus areas", "5 minutes"],
   primaryCta: { label: "Start diagnostic →", to: `#${DIAGNOSTIC_ANCHOR}` },

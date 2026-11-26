@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { emailMarketingContent } from "@/data/services/emailMarketing";
 import EmailPreview from "./EmailPreview";
 
@@ -16,10 +15,6 @@ const EmailHero = () => {
               <em>{hero.headingEmphasis}</em>
             </h1>
             <p className='emHero__lead'>{hero.lead}</p>
-            <Link href={hero.cta.href} className='emHero__cta'>
-              {hero.cta.label}
-              <span aria-hidden='true'> →</span>
-            </Link>
           </div>
           <EmailPreview />
         </div>

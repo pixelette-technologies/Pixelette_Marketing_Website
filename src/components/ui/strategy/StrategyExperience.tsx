@@ -117,6 +117,9 @@ const StrategyExperience = () => {
   const timers = useRef<number[]>([]);
   const pending = useRef<number | null>(null);
   const focusTarget = useRef<FocusTarget>(null);
+  // Browser-back: one history entry while in questions/results so Back
+  // returns to the intro banner (same URL); a second Back leaves the page.
+  const diagnosticHistory = useRef(false);
 
   const questionRef = useRef<HTMLParagraphElement | null>(null);
   const halfwayRef = useRef<HTMLDivElement | null>(null);
@@ -139,9 +142,8 @@ const StrategyExperience = () => {
 
   useEffect(() => {
     if (!working) return;
-    if (working.phase === "idle" && working.answers.every(a => a === null)) {
-      return;
-    }
+    // Idle is intro-only (incl. browser-back to banner) — don't rewrite storage.
+    if (working.phase === "idle") return;
     saveState(working.answers, working.phase === "results");
   }, [working]);
 
@@ -157,6 +159,48 @@ const StrategyExperience = () => {
           : questionRef.current;
     node?.focus({ preventScroll: true });
   }, [step, phase, motion]);
+
+  useEffect(() => {
+    if (phase === "idle") return;
+    if (diagnosticHistory.current) return;
+    if (window.history.state?.pmDiagnostic === "in") {
+      diagnosticHistory.current = true;
+      return;
+    }
+    window.history.pushState(
+      { ...(window.history.state ?? {}), pmDiagnostic: "in" },
+      "",
+      window.location.href
+    );
+    diagnosticHistory.current = true;
+  }, [phase]);
+
+  useEffect(() => {
+    const onPopState = () => {
+      diagnosticHistory.current = window.history.state?.pmDiagnostic === "in";
+      clearTimers();
+      setMotion("still");
+      setReturning(false);
+      setReveal(false);
+      setWorking(prev => {
+        const current = prev ?? restore(readStoredRaw());
+        if (current.phase === "idle") return prev;
+        const complete = current.answers.every(answer => answer !== null);
+        const partial =
+          current.answers.some(answer => answer !== null) && !complete;
+        return {
+          ...current,
+          step: 0,
+          phase: "idle",
+          resumable: partial
+        };
+      });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [clearTimers]);
 
   const score = useMemo(
     () => scoreDiagnostic(answers, diagnosticQuestions),

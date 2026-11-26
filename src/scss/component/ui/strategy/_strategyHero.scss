@@ -14,7 +14,9 @@
   display: flex;
   align-items: center;
   padding-block: clamp(1.5rem, 4vw, 2.75rem);
-  padding-inline-end: clamp(0.5rem, 2vw, 1.25rem);
+  // Align copy to the site container edge; column background stays full-bleed.
+  padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  padding-inline-end: clamp(1rem, 2.5vw, 2rem);
 }
 
 .impactIntro__copyInner {
@@ -58,9 +60,12 @@
 
 .impactIntro__process {
   margin: 0.75rem 0 0;
-  font-family: var(--font-hand);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.25;
+  letter-spacing: -0.02em;
   color: var(--color-brand);
 }
 
@@ -119,7 +124,10 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: clamp(1.25rem, 3.5vw, 2.25rem);
+  padding-block: clamp(1.25rem, 3.5vw, 2.25rem);
+  padding-inline-start: clamp(1.25rem, 3vw, 2rem);
+  // Align compass to the site container edge; dark field stays full-bleed.
+  padding-inline-end: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
   color: color-mix(in srgb, var(--color-page) 55%, transparent);
   clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
   background:
@@ -216,7 +224,8 @@
 
   .impactIntro__copy {
     padding-block: 1.75rem 2.25rem;
-    padding-inline-end: 0;
+    padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+    padding-inline-end: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
   }
 
   .impactIntro__heading {
@@ -228,6 +237,7 @@
     order: -1;
     clip-path: none;
     padding-block: 1.5rem;
+    padding-inline: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
   }
 
   .impactCompass--intro {

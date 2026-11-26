@@ -19,7 +19,6 @@ export const paidMediaContent = {
     headingLead: "Make paid media accountable to commercial outcomes,",
     headingEmphasis: "not clicks",
     lead: "Paid search, paid social and creative testing to reach the right audiences and invest in what works.",
-    cta: { label: "Discuss your project", href: navCta.to },
     campaignLabel: "Collaboration campaign",
     campaignNote: "One campaign · Two creative treatments · Designed for testing",
     lineOne: "Great teams",

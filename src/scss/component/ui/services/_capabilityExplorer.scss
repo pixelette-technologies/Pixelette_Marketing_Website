@@ -259,6 +259,8 @@
   overflow: hidden;
   aspect-ratio: 3 / 2;
   margin-block: 0.25rem 1.5rem;
+  // Deep-link scroll target: keep the stage top clear of the sticky header.
+  scroll-margin-top: calc(var(--header-h) + 1rem);
   // Each layer's frame sizes itself against this box.
   container-type: size;
 }

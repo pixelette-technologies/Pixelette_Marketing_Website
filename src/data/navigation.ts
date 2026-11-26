@@ -1,3 +1,4 @@
+import { capabilityGroups } from "@/data/services/capabilityGroups";
 import { servicesData } from "@/data/services/servicesData";
 
 export interface NavItem {
@@ -71,13 +72,10 @@ if (linkedServices !== servicesData.length) {
   );
 }
 
-/** The five capability group names for the footer Services column. */
-export const footerCapabilityGroups = [
-  "Brand and Strategy",
-  "Creative and Campaigns",
-  "Communications and Engagement",
-  "Digital Visibility and Growth",
-  "Measurement and Insight"
-] as const;
+/** Footer Services column → /services accordion panel for that capability. */
+export const footerCapabilityGroups = capabilityGroups.map(group => ({
+  name: group.title,
+  href: `/services#capability-${group.index}`
+}));
 
 export const navCta = { label: "Discuss Your Project", to: "/contactus" };

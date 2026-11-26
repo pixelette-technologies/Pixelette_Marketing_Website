@@ -76,7 +76,7 @@ const ContactSection: FC<ContactSectionProps> = ({
             </div>
             ) : null}
             {cta && (
-              <Link href={cta.to} className='btn2 contactUsSection__cta'>
+              <Link href={cta.to} className='btn contactUsSection__cta'>
                 {cta.label}
               </Link>
             )}

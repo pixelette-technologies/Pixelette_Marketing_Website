@@ -13,7 +13,7 @@ import RoomBackdrop from "./RoomBackdrop";
 export default function CapabilitiesSection() {
   return (
     <HomeSceneReveal
-      className='homeScene homeScene--capabilities homeScene--flip'
+      className='homeScene homeScene--capabilities homeScene--flip homeScene--visual'
       labelledBy='capabilities-title'
     >
       <div className='homeScene__art'>

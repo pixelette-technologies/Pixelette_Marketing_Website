@@ -3,6 +3,7 @@
 import Link from "next/link";
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type CSSProperties,
@@ -64,6 +65,18 @@ import { useFinePointer, useInView, useMotionAllowed } from "@/lib/useInView";
 /** How long a mouse rests on a row before its artwork previews. */
 const PREVIEW_DELAY = 160;
 
+function indexFromHash(groups: readonly CapabilityGroup[]): number | null {
+  if (typeof window === "undefined") return null;
+  const hash = window.location.hash.replace(/^#/, "");
+  if (!hash) return null;
+  const match = groups.findIndex(
+    group =>
+      hash === `capability-${group.index}` ||
+      hash === `capability-${group.index}-panel`
+  );
+  return match >= 0 ? match : null;
+}
+
 export default function CapabilityExplorer({
   groups
 }: {
@@ -99,6 +112,44 @@ export default function CapabilityExplorer({
     setSelected(index);
     setPreview(null);
   };
+
+  // Footer / deep links: /services#capability-0N opens that accordion panel.
+  // Land at the top of the page, wait one second, then scroll so the top of
+  // the right-hand stage image is in view (under the sticky header).
+  useLayoutEffect(() => {
+    let scrollTimer: number | undefined;
+
+    const applyHash = () => {
+      const index = indexFromHash(groups);
+      if (index === null) return;
+
+      window.clearTimeout(previewTimer.current);
+      window.clearTimeout(scrollTimer);
+
+      setSelected(index);
+      setPreview(null);
+      setWarm(current =>
+        current.has(index) ? current : new Set(current).add(index)
+      );
+
+      // Cancel the browser's native jump to #capability-0N; start at top.
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+      scrollTimer = window.setTimeout(() => {
+        stageRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 1000);
+    };
+
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => {
+      window.clearTimeout(scrollTimer);
+      window.removeEventListener("hashchange", applyHash);
+    };
+  }, [groups]);
 
   const onKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
     const count = groups.length;

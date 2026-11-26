@@ -105,7 +105,9 @@
       display: none;
     }
 
-    & > a {
+    // Exclude `.btn` — the Discuss Your Project CTA is also an <a>, and this
+    // rule was overriding `.btn`'s light text with ink on the brand fill.
+    & > a:not(.btn) {
       // .flink carries the 44px tap target; this is the type role.
       //
       // Phase F. Up 2px, from 14 to 16. This also brings the desktop bar onto
@@ -115,7 +117,7 @@
       color: var(--color-ink);
     }
 
-    & > a:hover {
+    & > a:not(.btn):hover {
       color: var(--color-brand);
     }
   }

@@ -78,7 +78,7 @@ export const heroCopy = {
 
 /** Where both "Our approach" links in sections 02 and 04 go. There is no
  *  approach page; the diagnostic was chosen on 28 Sep as the nearest thing. */
-export const APPROACH_HREF = "/strategy-positioning";
+export const APPROACH_HREF = "/services";
 
 export interface EditorialSectionCopy {
   number: string;

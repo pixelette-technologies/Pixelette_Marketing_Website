@@ -150,10 +150,12 @@ export default function Footer() {
               Services
             </Heading>
             <ul className='footerList'>
-              {/* 12 Nov 2026 brief §4.4 — five group names only. No group URLs. */}
-              {footerCapabilityGroups.map(name => (
-                <li key={name}>
-                  <span className='flink small'>{name}</span>
+              {/* Five capability groups → /services, opening that accordion panel. */}
+              {footerCapabilityGroups.map(group => (
+                <li key={group.href}>
+                  <Link href={group.href} scroll={false} className='flink small'>
+                    {group.name}
+                  </Link>
                 </li>
               ))}
             </ul>

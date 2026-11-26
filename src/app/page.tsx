@@ -39,8 +39,6 @@ export default function Home() {
       <ContactSection
         heading={finalConversionCopy.heading}
         text={finalConversionCopy.lead}
-        closing={finalConversionCopy.closing}
-        cta={finalConversionCopy.secondaryCta}
       />
     </>
   );

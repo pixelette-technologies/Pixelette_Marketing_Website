@@ -14,6 +14,7 @@ export default function ActivitySection() {
       labelledBy='activity-title'
     >
       <div className='homeScene__art'>
+        <MotionPauseControl />
         <PostitField
           words={activityCopy.notes}
           clearerPath={activityCopy.clearerPath}
@@ -23,7 +24,6 @@ export default function ActivitySection() {
         <Container className='main'>
           <div className='homeScene__inner'>
             <EditorialCopy copy={activityCopy} titleId='activity-title' />
-            <MotionPauseControl />
           </div>
         </Container>
       </div>

@@ -1,7 +1,10 @@
-// Shared shell for homepage sections 02, 03 and 04.
+// Shared shell for homepage sections 02, 03 and 05 (+ text-only 04).
 // Correction 20 Nov 2026: rectangular image/copy panels inspired by Social
 // Change — not overlay, not What We Do stage media. Alternating flip; one-shot
 // scroll entrance. Original graphics and narrative retained.
+// 26 Nov 2026: left copy matches locked-service hero typography; index/rule gone.
+
+@use "../serviceHeroCopy" as heroCopy;
 
 .homeScene {
   --scene-reveal-dur: 720ms;
@@ -162,42 +165,12 @@
   max-width: 27rem;
 }
 
-.editorialCopy__mark {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 0 1.25rem;
-}
-
-.editorialCopy__number {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
-.editorialCopy__rule {
-  width: 2.75rem;
-  height: 1px;
-  background: var(--color-ink);
-}
-
 .editorialCopy__eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-ink);
+  @include heroCopy.service-hero-eyebrow;
 }
 
 .editorialCopy__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(1.85rem, 1.2rem + 1.8vw, 2.75rem);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  @include heroCopy.service-hero-heading;
 }
 
 .editorialCopy__line {
@@ -211,16 +184,16 @@
 }
 
 .editorialCopy__line--accent {
-  color: var(--color-brand);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .editorialCopy__lead {
-  max-width: 24rem;
-  margin: clamp(0.85rem, 0.6rem + 0.6vw, 1.25rem) 0 0.85rem;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--color-body);
-  text-wrap: pretty;
+  @include heroCopy.service-hero-lead;
+  margin-bottom: 0.85rem;
+}
+
+.editorialCopy .textLink {
+  margin-top: 0.85rem;
 }
 
 .homeScene__copyStack {
@@ -305,13 +278,17 @@
   }
 }
 
-// Text-only bridge between illustrated bands — keep original copy, tighter pad.
+// Text-only bridge between illustrated bands — same left-copy type, tighter pad.
 .homeOneApproach {
   padding-block: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
   background: var(--color-page);
 
+  .editorialCopy {
+    max-width: 40rem;
+  }
+
   .editorialCopy__title {
-    margin-bottom: clamp(0.85rem, 0.6rem + 0.6vw, 1.25rem);
+    max-width: 18em;
   }
 
   // The setup line is a full sentence, so it wraps. The accent stays its own line.
@@ -319,7 +296,7 @@
     white-space: normal;
   }
 
-  .body {
+  .editorialCopy__lead {
     max-width: 40rem;
   }
 }

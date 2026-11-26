@@ -56,7 +56,9 @@ const PrEarnedMediaPage = () => {
       <PrHero />
       <PrDeliver />
       <PrMeasure />
-      <PrClose />
+      <div className='prCloseWrap'>
+        <PrClose />
+      </div>
       <PrFaq />
     </div>
   );

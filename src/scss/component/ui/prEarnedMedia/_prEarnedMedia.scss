@@ -2,6 +2,8 @@
 // Page-local surface. Does not change specialist templates or other routes.
 // Hero art is original CSS/SVG. No icons on labels, capabilities or measures.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .prPage {
   --pr-cream: #fbf7f2;
   --pr-paper: #f7f1e6;
@@ -52,34 +54,12 @@
 }
 
 .prHero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin: 0 0 1.1rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pr-crimson);
-}
-
-.prHero__eyebrow::after {
-  content: "";
-  width: 4.5rem;
-  height: 2px;
-  background: var(--pr-crimson);
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
 }
 
 .prHero__heading {
-  margin: 0;
-  max-width: 18em;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.95rem, 1.2rem + 1.6vw, 2.7rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  color: var(--pr-plum);
+  @include heroCopy.service-hero-heading;
 }
 
 .prHero__heading span {
@@ -87,22 +67,14 @@
 }
 
 .prHero__heading em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--pr-crimson);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .prHero__lead {
-  margin: 1.15rem 0 0;
-  max-width: 38ch;
-  font-family: var(--font-body);
-  font-size: clamp(0.98rem, 0.92rem + 0.2vw, 1.08rem);
-  line-height: 1.55;
-  color: var(--pr-body);
+  @include heroCopy.service-hero-lead;
 }
 
-.prHero__cta,
-.prClose__cta {
+.prHero__cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +100,6 @@
 }
 
 .prHero__cta:focus-visible,
-.prClose__cta:focus-visible,
 .prFaq__question:focus-visible {
   outline: 2px solid var(--pr-crimson);
   outline-offset: 3px;
@@ -386,50 +357,10 @@
 
 // --- Close -----------------------------------------------------------------
 
-.prClose {
-  padding-block: 0.5rem clamp(2rem, 1rem + 2vw, 3rem);
-}
+// Close CTA → shared ServiceCloseBand; page wrap mirrors .prMeasure bottom space.
 
-.prClose__banner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: clamp(1rem, 0.5rem + 2vw, 2.5rem);
-  align-items: center;
-  padding: clamp(1.5rem, 1rem + 1.5vw, 2.15rem) clamp(1.25rem, 1rem + 1.5vw, 2.25rem);
-  border-radius: 1.15rem;
-  background:
-    radial-gradient(70% 140% at 100% 0%, rgba(214, 61, 124, 0.38), transparent 58%),
-    linear-gradient(105deg, #3a1028 0%, #4b1635 46%, #8c0430 100%);
-  color: #fff;
-}
-
-.prClose__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.7rem, 1.3rem + 1.2vw, 2.35rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #fff;
-  text-wrap: balance;
-}
-
-.prClose__lead {
-  margin: 0.55rem 0 0;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.82);
-}
-
-.prClose__cta {
-  background: #fff;
-  color: var(--pr-plum);
-}
-
-.prClose__cta:hover {
-  background: #f7f1e6;
-  color: var(--pr-plum);
+.prCloseWrap {
+  margin-bottom: clamp(2rem, 1rem + 2vw, 3rem);
 }
 
 // --- FAQ -------------------------------------------------------------------
@@ -506,13 +437,12 @@
 
 @media (max-width: 980px) {
   .prHero__inner,
-  .prCollage,
-  .prClose__banner {
+  .prCollage {
     grid-template-columns: 1fr;
   }
 
   .prHero__heading {
-    max-width: 18ch;
+    max-width: 16ch;
   }
 
   .prCollage__sheet {

@@ -22,11 +22,11 @@ export type MeasurementChannel = {
 };
 
 export const measurementChannels: MeasurementChannel[] = [
-  { name: "Paid media", color: "#cf1765" },
-  { name: "Organic", color: "#ee952f" },
-  { name: "Social", color: "#ad5298" },
-  { name: "Email", color: "#6576c8" },
-  { name: "Web", color: "#529e9c" }
+  { name: "Paid media", color: "#b3063c" },
+  { name: "Organic", color: "#8c0430" },
+  { name: "Social", color: "#4b1635" },
+  { name: "Email", color: "#c43a5c" },
+  { name: "Web", color: "#6e0a2e" }
 ];
 
 export const measurementRanges: {

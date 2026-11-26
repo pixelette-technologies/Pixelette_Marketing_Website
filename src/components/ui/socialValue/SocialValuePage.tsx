@@ -1,4 +1,4 @@
-import { CloseWaveBand } from "@/components/common";
+import { ServiceCloseBand } from "@/components/common";
 import { socialValueContent as copy } from "@/data/socialValue";
 import SocialValueIcon from "./SocialValueIcons";
 
@@ -23,15 +23,13 @@ const SocialValuePage = () => {
           </picture>
         </div>
         <div className='svHero__copy'>
-          <p className='svHero__eyebrow'>
-            <span aria-hidden='true' />
-            {copy.eyebrow}
-          </p>
+          <p className='svHero__eyebrow'>{copy.eyebrow}</p>
           <h1 id='sv-hero-heading' className='svHero__heading'>
-            {copy.hero.heading}
+            <span className='svHero__headingLead'>{copy.hero.headingLead}</span>{" "}
+            <span className='svHero__headingAccent'>{copy.hero.headingAccent}</span>
           </h1>
           {copy.hero.paragraphs.map(paragraph => (
-            <p key={paragraph} className='svHero__text'>
+            <p key={paragraph} className='svHero__lead'>
               {paragraph}
             </p>
           ))}
@@ -72,12 +70,14 @@ const SocialValuePage = () => {
         </div>
       </section>
 
-      <CloseWaveBand
-        headingId='sv-close-heading'
-        heading={copy.close.heading}
-        copy={copy.close.copy}
-        cta={copy.close.cta}
-      />
+      <div className='svCloseWrap'>
+        <ServiceCloseBand
+          headingId='sv-close-heading'
+          heading={copy.close.heading}
+          lead={copy.close.copy}
+          cta={copy.close.cta}
+        />
+      </div>
     </div>
   );
 };

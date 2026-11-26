@@ -81,11 +81,10 @@ export const heroCopy = {
 export const APPROACH_HREF = "/services";
 
 export interface EditorialSectionCopy {
-  number: string;
   eyebrow: string;
   /** Headline lines in ink, one per line. */
   headline: readonly string[];
-  /** An optional last line in the brand tone. */
+  /** An optional last line in the brand tone (italic). */
   accent?: string;
   lead: string;
   cta: { label: string; to: string };
@@ -97,7 +96,6 @@ export const activityCopy: EditorialSectionCopy & {
   notes: readonly string[];
   clearerPath: string;
 } = {
-  number: "02",
   eyebrow: "A different perspective",
   headline: ["More activity", "isn’t the answer"],
   accent: "Better decisions are",
@@ -133,7 +131,6 @@ export const capabilitiesCopy: EditorialSectionCopy & {
   }[];
   payoff: string;
 } = {
-  number: "03",
   eyebrow: "What we do",
   headline: ["Five capabilities"],
   // 12 Nov 2026 developer brief §5.
@@ -177,7 +174,6 @@ export const capabilitiesCopy: EditorialSectionCopy & {
 export const relevanceCopy: EditorialSectionCopy & {
   annotation: readonly string[];
 } = {
-  number: "05",
   eyebrow: "A clearer way forward",
   headline: ["Attention is easy to buy"],
   accent: "Relevance isn’t",

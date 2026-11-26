@@ -115,7 +115,6 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
         eyebrow={page.hero.eyebrow ?? `${page.capability} / ${page.label}`}
         heading={page.hero.heading}
         lead={page.hero.lead}
-        cta={{ label: cta.label, href: cta.href }}
         aside={page.demo ? <GrowthPreview demo={page.demo} /> : undefined}
       />
 

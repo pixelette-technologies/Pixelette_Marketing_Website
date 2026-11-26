@@ -38,7 +38,9 @@ const InfluencerPartnershipsPage = () => {
       />
       <InfluencerHero />
       <InfluencerDeliver />
-      <InfluencerClose />
+      <div className='ipCloseWrap'>
+        <InfluencerClose />
+      </div>
     </div>
   );
 };

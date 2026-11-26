@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CloseWaveBand } from "@/components/common";
+import { ServiceCloseBand } from "@/components/common";
 import { accessibilityContent as copy } from "@/data/accessibility";
 import AccessibilityIcon from "./AccessibilityIcons";
 
@@ -95,12 +95,14 @@ const AccessibilityPage = () => {
         </div>
       </section>
 
-      <CloseWaveBand
-        headingId='ax-close-heading'
-        heading={copy.close.heading}
-        copy={copy.close.copy}
-        cta={copy.close.cta}
-      />
+      <div className='axCloseWrap'>
+        <ServiceCloseBand
+          headingId='ax-close-heading'
+          heading={copy.close.heading}
+          lead={copy.close.copy}
+          cta={copy.close.cta}
+        />
+      </div>
     </div>
   );
 };

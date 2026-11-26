@@ -2,6 +2,8 @@
 // Page-local surface. Header, footer and other service routes stay as they are.
 // Hero comparison, architecture and measurement framework are live text.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .seoPage {
   --seo-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   background: var(--color-band);
@@ -89,35 +91,12 @@
 }
 
 .seoHero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin: 0 0 1rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-brand);
-}
-
-.seoHero__eyebrow::after {
-  content: "";
-  width: 4.25rem;
-  height: 2px;
-  background: var(--color-brand);
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
 }
 
 .seoHero__heading {
-  margin: 0;
-  max-width: 11em;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.05rem, 1.15rem + 2.15vw, 3.35rem);
-  line-height: 1.04;
-  letter-spacing: -0.03em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
+  @include heroCopy.service-hero-heading;
 }
 
 .seoHero__heading span {
@@ -125,18 +104,11 @@
 }
 
 .seoHero__heading em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--color-brand);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .seoHero__lead {
-  margin: 1.1rem 0 0;
-  max-width: 36ch;
-  font-family: var(--font-body);
-  font-size: var(--fs-lead);
-  line-height: 1.5;
-  color: var(--color-body);
+  @include heroCopy.service-hero-lead;
 }
 
 .seoHero__copy .seoCta {
@@ -832,65 +804,7 @@
   outline-offset: 2px;
 }
 
-// --- Close -----------------------------------------------------------------
-
-.seoClose {
-  padding-block: 0.35rem 0.5rem;
-}
-
-.seoClose__banner {
-  position: relative;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 1.15rem 1.5rem;
-  align-items: center;
-  padding: clamp(1.2rem, 0.9rem + 1vw, 1.75rem) clamp(1.15rem, 0.8rem + 1.2vw, 2rem);
-  border-radius: 1.7rem;
-  background: linear-gradient(
-    105deg,
-    var(--color-brand-tint) 0%,
-    color-mix(in srgb, var(--color-brand-wash) 58%, var(--color-page)) 100%
-  );
-}
-
-.seoClose__banner::after {
-  content: "";
-  position: absolute;
-  right: -8%;
-  top: -55%;
-  width: 36%;
-  height: 210%;
-  background: color-mix(in srgb, var(--color-brand) 14%, transparent);
-  transform: rotate(22deg);
-  pointer-events: none;
-}
-
-.seoClose__copy,
-.seoClose .seoCta {
-  position: relative;
-  z-index: 1;
-}
-
-.seoClose__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.7rem, 1.3rem + 1.1vw, 2.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
-}
-
-.seoClose__lead {
-  margin: 0.4rem 0 0;
-  max-width: 42ch;
-  color: var(--color-body);
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.45;
-}
+// Close CTA → shared ServiceCloseBand (.serviceCloseBand)
 
 // --- FAQ -------------------------------------------------------------------
 
@@ -984,21 +898,15 @@
     grid-template-columns: 1fr;
   }
 
-  .seoHero__heading,
-  .seoHero__lead {
-    max-width: 22em;
+  .seoHero__heading {
+    max-width: 16ch;
   }
 }
 
 @media (max-width: 859px) {
   .seoWork__grid,
-  .seoSystem__grid,
-  .seoClose__banner {
+  .seoSystem__grid {
     grid-template-columns: 1fr;
-  }
-
-  .seoClose .seoCta {
-    justify-self: start;
   }
 }
 

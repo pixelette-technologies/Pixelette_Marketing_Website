@@ -1,0 +1,104 @@
+// Shared service-page close CTA (SEO locked treatment).
+// Tint banner, diagonal wash, brand pill — used across What We Do closes.
+
+.serviceCloseBand {
+  padding-block: 0.35rem 0.5rem;
+}
+
+.serviceCloseBand__banner {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.15rem 1.5rem;
+  align-items: center;
+  padding: clamp(1.2rem, 0.9rem + 1vw, 1.75rem) clamp(1.15rem, 0.8rem + 1.2vw, 2rem);
+  border-radius: 1.7rem;
+  background: linear-gradient(
+    105deg,
+    var(--color-brand-tint) 0%,
+    color-mix(in srgb, var(--color-brand-wash) 58%, var(--color-page)) 100%
+  );
+}
+
+.serviceCloseBand__banner::after {
+  content: "";
+  position: absolute;
+  right: -8%;
+  top: -55%;
+  width: 36%;
+  height: 210%;
+  background: color-mix(in srgb, var(--color-brand) 14%, transparent);
+  transform: rotate(22deg);
+  pointer-events: none;
+}
+
+.serviceCloseBand__copy,
+.serviceCloseBand__cta {
+  position: relative;
+  z-index: 1;
+}
+
+.serviceCloseBand__heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 1.3rem + 1.1vw, 2.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.serviceCloseBand__lead {
+  margin: 0.4rem 0 0;
+  max-width: 42ch;
+  color: var(--color-body);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.serviceCloseBand__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: var(--color-page);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: background-color 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  white-space: nowrap;
+}
+
+.serviceCloseBand__cta:hover {
+  background: var(--color-brand-hover);
+}
+
+.serviceCloseBand__cta:focus-visible {
+  outline: 2px solid var(--color-brand-hover);
+  outline-offset: 3px;
+}
+
+@media (max-width: 859px) {
+  .serviceCloseBand__banner {
+    grid-template-columns: 1fr;
+  }
+
+  .serviceCloseBand__cta {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .serviceCloseBand__cta {
+    transition: none;
+  }
+}

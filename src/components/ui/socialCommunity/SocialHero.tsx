@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { socialCommunityContent } from "@/data/services/socialCommunity";
 
 const { hero } = socialCommunityContent;
@@ -34,13 +33,9 @@ const SocialHero = () => {
         <div className='scHero__copy'>
           <p className='scHero__breadcrumb'>{hero.breadcrumb}</p>
           <h1 id='sc-hero-heading' className='scHero__heading'>
-            {hero.heading}
+            {hero.headingLead} <em>{hero.headingEmphasis}</em>
           </h1>
           <p className='scHero__lead'>{hero.lead}</p>
-          <Link href={hero.cta.href} className='scHero__cta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
         </div>
 
         <div className='scHero__visual'>

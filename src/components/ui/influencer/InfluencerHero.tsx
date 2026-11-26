@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { influencerPartnershipsContent } from "@/data/services/influencerPartnerships";
 
 const { hero } = influencerPartnershipsContent;
@@ -18,26 +17,15 @@ const InfluencerHero = () => {
         />
       </div>
 
-      <div className='ipHero__shade' aria-hidden='true' />
+      <div className='ipHero__copy'>
+        <p className='ipHero__eyebrow'>{hero.eyebrow}</p>
 
-      <div className='container_main ipHero__inner'>
-        <div className='ipHero__copy'>
-          <p className='ipHero__eyebrow'>{hero.eyebrow}</p>
+        <h1 id='ip-hero-heading' className='ipHero__heading'>
+          <span className='ipHero__headingLead'>{hero.headingLead}</span>{" "}
+          <span className='ipHero__headingAccent'>{hero.headingAccent}</span>
+        </h1>
 
-          <h1 id='ip-hero-heading' className='ipHero__heading'>
-            <span className='ipHero__headingLead'>{hero.headingLead}</span>{" "}
-            <span className='ipHero__headingAccent'>{hero.headingAccent}</span>
-          </h1>
-
-          <p className='ipHero__lead'>{hero.lead}</p>
-
-          <Link href={hero.cta.href} className='ipHero__cta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
-        </div>
-        {/* Annotation ("Creators Content Community") stays in the approved
-            collage asset only — do not redraw it in HTML or it doubles. */}
+        <p className='ipHero__lead'>{hero.lead}</p>
       </div>
     </section>
   );

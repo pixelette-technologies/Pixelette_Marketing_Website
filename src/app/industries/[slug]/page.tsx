@@ -129,7 +129,6 @@ export default async function Page({ params }: PageProps) {
         subHeading={pageData.subHeading}
         text={pageData.summary}
         image={pageData.image}
-        cta={{ label: "Discuss Your Project", to: "#enquiry" }}
       />
 
       <Web3Questions

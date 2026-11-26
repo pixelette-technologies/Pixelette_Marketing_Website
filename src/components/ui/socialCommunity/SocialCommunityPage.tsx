@@ -42,7 +42,9 @@ const SocialCommunityPage = () => {
       <SocialDeliver />
       <SocialCommunityBand />
       <SocialMeasure />
-      <SocialClose />
+      <div className='scCloseWrap'>
+        <SocialClose />
+      </div>
     </div>
   );
 };

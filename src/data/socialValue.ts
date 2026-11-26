@@ -3,7 +3,8 @@
 export const socialValueContent = {
   eyebrow: "Social value",
   hero: {
-    heading: "Connecting people to what matters",
+    headingLead: "Connecting people to",
+    headingAccent: "what matters",
     paragraphs: [
       "Marketing and communications can do more than raise awareness. They can help people understand services, find opportunities, take part in programmes and engage with the things that matter to them.",
       "At Pixelette Marketing, we take a practical and responsible approach to social value — thinking carefully about who communication reaches, how accessible it is and whether it helps create a meaningful response."

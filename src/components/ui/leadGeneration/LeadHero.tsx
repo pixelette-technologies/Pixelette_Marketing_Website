@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { leadGenerationContent } from "@/data/services/leadGeneration";
 
 const { hero, outcomes } = leadGenerationContent;
@@ -15,10 +14,6 @@ const LeadHero = () => {
               {hero.headingLead} <em>{hero.headingEmphasis}</em>
             </h1>
             <p className='lgHero__lead'>{hero.lead}</p>
-            <Link href={hero.cta.href} className='lgCta'>
-              {hero.cta.label}
-              <span aria-hidden='true'> →</span>
-            </Link>
             <p className='lgHero__strap'>{hero.strap}</p>
           </div>
           <div className='lgHero__art'>

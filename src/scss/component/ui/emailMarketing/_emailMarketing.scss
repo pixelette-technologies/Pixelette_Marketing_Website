@@ -2,6 +2,8 @@
 // Page-local surface. Does not change navigation, footer or other routes.
 // Hero art is CSS. The email frame is one upright card; stages swap its copy.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .emPage {
   --em-cream: #fffaf7;
   --em-crimson: #b3063c;
@@ -44,54 +46,23 @@
 }
 
 .emHero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin: 0 0 1.05rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--em-crimson);
-}
-
-.emHero__eyebrow::after {
-  content: "";
-  width: 4.5rem;
-  height: 2px;
-  background: var(--em-crimson);
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
 }
 
 .emHero__heading {
-  margin: 0;
-  max-width: 11em;
-  font-family: var(--font-display);
-  font-weight: 560;
-  font-size: clamp(2.15rem, 1.15rem + 2.35vw, 3.35rem);
-  line-height: 1.02;
-  letter-spacing: -0.03em;
-  color: var(--em-plum);
+  @include heroCopy.service-hero-heading;
 }
 
 .emHero__heading em {
-  display: block;
-  font-style: italic;
-  font-weight: 520;
-  color: var(--em-crimson);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .emHero__lead {
-  margin: 1.15rem 0 0;
-  max-width: 36ch;
-  font-family: var(--font-body);
-  font-size: clamp(0.98rem, 0.92rem + 0.18vw, 1.08rem);
-  line-height: 1.55;
-  color: var(--em-body);
+  @include heroCopy.service-hero-lead;
 }
 
 .emHero__cta,
-.emClose__cta,
 .emMail__cta {
   display: inline-flex;
   align-items: center;
@@ -118,7 +89,6 @@
 }
 
 .emHero__cta:focus-visible,
-.emClose__cta:focus-visible,
 .emMail__cta:focus-visible,
 .emRail__step:focus-visible,
 .emFaq__question:focus-visible {
@@ -545,55 +515,7 @@
 
 // --- Close -----------------------------------------------------------------
 
-.emClose {
-  padding-block: 0 0.4rem;
-}
-
-.emClose__banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  min-height: 8.4rem;
-  padding: 1.55rem 2.4rem;
-  border-radius: 0.65rem;
-  background: linear-gradient(110deg, #390a25 0%, #720b37 74%, #bb084e 100%);
-  color: #fff;
-}
-
-.emClose__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 560;
-  font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.55rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: #fff;
-}
-
-.emClose__lead {
-  margin: 0.45rem 0 0;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.45;
-  color: #fff0f6;
-}
-
-.emClose__cta {
-  flex: none;
-  min-width: 13.5rem;
-  padding: 0.95rem 1.15rem;
-  border-radius: 0.45rem;
-  background: var(--em-cream);
-  color: var(--em-plum);
-  font-size: 0.95rem;
-  justify-content: space-between;
-}
-
-.emClose__cta:hover {
-  background: #fff;
-  color: var(--em-plum);
-}
+// Close CTA → shared ServiceCloseBand (.serviceCloseBand)
 
 // --- FAQ -------------------------------------------------------------------
 
@@ -669,13 +591,8 @@
 
 @media (max-width: 1040px) {
   .emHero__inner,
-  .emFeedback__inner,
-  .emClose__banner {
+  .emFeedback__inner {
     grid-template-columns: 1fr;
-  }
-
-  .emClose__banner {
-    display: grid;
   }
 
   .emPreview {
@@ -683,7 +600,7 @@
   }
 
   .emHero__heading {
-    max-width: 14em;
+    max-width: 16ch;
   }
 }
 
@@ -730,11 +647,6 @@
     justify-content: flex-start;
     gap: 0.7rem 1.4rem;
     margin-top: 0.85rem;
-  }
-
-  .emClose__cta {
-    justify-self: start;
-    min-width: 0;
   }
 }
 

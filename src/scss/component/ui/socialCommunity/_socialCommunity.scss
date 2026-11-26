@@ -1,6 +1,8 @@
 // Social & Community — locked design (20 Nov 2026).
 // Page-local surface. Does not change specialist templates or other routes.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .scPage {
   --sc-cream: #fbf7f2;
   --sc-crimson: #b3063c;
@@ -38,34 +40,19 @@
 }
 
 .scHero__breadcrumb {
-  margin: 0 0 1rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--sc-crimson);
+  @include heroCopy.service-hero-eyebrow;
 }
 
 .scHero__heading {
-  margin: 0;
-  max-width: 14ch;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.15rem, 1.4rem + 2.4vw, 3.35rem);
-  line-height: 1.08;
-  letter-spacing: -0.02em;
-  color: var(--sc-crimson);
-  text-wrap: balance;
+  @include heroCopy.service-hero-heading;
+}
+
+.scHero__heading em {
+  @include heroCopy.service-hero-heading-em;
 }
 
 .scHero__lead {
-  margin: 1.15rem 0 0;
-  max-width: 36ch;
-  font-family: var(--font-body);
-  font-size: clamp(0.98rem, 0.92rem + 0.25vw, 1.1rem);
-  line-height: 1.55;
-  color: var(--sc-body);
+  @include heroCopy.service-hero-lead;
 }
 
 .scHero__cta {
@@ -73,7 +60,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  margin-top: 1.6rem;
+  margin-top: 1.7rem;
   min-height: 52px;
   padding: 0.85rem 1.55rem;
   border-radius: 999px;
@@ -258,7 +245,7 @@
   }
 
   .scHero__heading {
-    max-width: 18ch;
+    max-width: 16ch;
   }
 
   .scHero__campaign {
@@ -597,79 +584,8 @@
   }
 }
 
-// --- Closing CTA -----------------------------------------------------------
+// Close CTA → shared ServiceCloseBand; page wrap mirrors .scMeasure bottom space.
 
-.scClose {
-  position: relative;
-  overflow: hidden;
-  padding-block: clamp(3rem, 2rem + 3vw, 4.75rem);
-  background:
-    radial-gradient(80% 120% at 85% 20%, rgba(225, 29, 116, 0.35), transparent 55%),
-    radial-gradient(70% 100% at 10% 90%, rgba(179, 6, 60, 0.45), transparent 50%),
-    linear-gradient(115deg, #3a0f2a 0%, #6b1844 48%, #a10e4a 100%);
-  color: #fff;
-}
-
-.scClose__inner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) auto;
-  gap: clamp(1.25rem, 1rem + 2vw, 3rem);
-  align-items: center;
-}
-
-.scClose__heading {
-  margin: 0;
-  max-width: 18ch;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.85rem, 1.3rem + 1.6vw, 2.65rem);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
-  color: #fff;
-  text-wrap: balance;
-}
-
-.scClose__lead {
-  margin: 0.9rem 0 0;
-  max-width: 48ch;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.55;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.scClose__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  min-height: 54px;
-  padding: 0.9rem 1.6rem;
-  border-radius: 999px;
-  background: #fff;
-  color: var(--sc-crimson);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 700;
-  text-decoration: none;
-  white-space: nowrap;
-  transition: transform 180ms var(--sc-ease), box-shadow 180ms var(--sc-ease);
-}
-
-.scClose__cta:hover {
-  color: var(--sc-crimson-deep);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-}
-
-@media (max-width: 767px) {
-  .scClose__inner {
-    grid-template-columns: 1fr;
-  }
-
-  .scClose__cta {
-    justify-self: start;
-  }
+.scCloseWrap {
+  margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
 }

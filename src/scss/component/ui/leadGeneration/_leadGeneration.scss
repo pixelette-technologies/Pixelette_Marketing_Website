@@ -2,6 +2,8 @@
 // Page-local surface. Header, footer and other service routes stay as they are.
 // The hero image is the supplied triptych. Do not crop it.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .lgPage {
   background: var(--color-band);
   color: var(--color-plum-ink);
@@ -62,11 +64,14 @@
   align-items: center;
 }
 
-.lgHero__eyebrow,
+.lgHero__eyebrow {
+  @include heroCopy.service-hero-eyebrow;
+}
+
 .lgOffer__label {
   margin: 0 0 1.05rem;
   font-family: var(--font-body);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -74,33 +79,19 @@
 }
 
 .lgHero__heading {
-  margin: 0;
-  max-width: 11em;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.35rem, 1.2rem + 2.5vw, 3.55rem);
-  line-height: 1.04;
-  letter-spacing: -0.035em;
-  color: var(--color-plum-ink);
+  @include heroCopy.service-hero-heading;
 }
 
 .lgHero__heading em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--color-brand);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .lgHero__lead {
-  margin: 1.15rem 0 0;
-  max-width: 38ch;
-  font-family: var(--font-body);
-  font-size: 1.02rem;
-  line-height: 1.55;
-  color: var(--color-body);
+  @include heroCopy.service-hero-lead;
 }
 
 .lgHero__copy .lgCta {
-  margin-top: 1.55rem;
+  margin-top: 1.7rem;
 }
 
 .lgHero__strap {
@@ -254,32 +245,7 @@
   color: var(--color-brand);
 }
 
-// --- Close -----------------------------------------------------------------
-
-.lgClose {
-  background: var(--color-brand-tint);
-  padding-block: clamp(1.6rem, 1rem + 1.4vw, 2.35rem);
-}
-
-.lgClose__row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.25rem 2rem;
-}
-
-.lgClose__lead {
-  margin: 0.45rem 0 0;
-  max-width: 42ch;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--color-body);
-}
-
-.lgClose .lgTitle {
-  font-size: clamp(1.7rem, 1.2rem + 1.2vw, 2.25rem);
-}
+// Close CTA → shared ServiceCloseBand (.serviceCloseBand)
 
 // --- FAQ -------------------------------------------------------------------
 
@@ -362,19 +328,15 @@
 
 @media (max-width: 900px) {
   .lgHero__split,
-  .lgOffer__grid,
-  .lgClose__row {
+  .lgOffer__grid {
     grid-template-columns: 1fr;
     display: grid;
   }
 
-  .lgClose__row {
-    align-items: start;
-    justify-items: start;
+  .lgHero__heading {
+    max-width: 16ch;
   }
 
-  .lgHero__heading,
-  .lgHero__lead,
   .lgOffer__lead {
     max-width: 36rem;
   }

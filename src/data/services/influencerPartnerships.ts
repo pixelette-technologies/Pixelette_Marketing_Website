@@ -14,7 +14,6 @@ export const influencerPartnershipsContent = {
     headingLead: "Real voices.",
     headingAccent: "Stronger brands.",
     lead: "Connect with the right creators and partners to build awareness, credibility and measurable growth.",
-    cta: { label: "Discuss Your Campaign", href: "/contactus" },
     image: {
       src: "/services/influencer-partnerships/hero-collage-4k.jpg",
       alt: "Creators filming and reviewing content in an urban setting"
@@ -73,12 +72,7 @@ export const influencerPartnershipsContent = {
     ]
   },
   close: {
-    headingLead: "Let's build your",
-    headingAccent: "next campaign.",
-    cta: { label: "Discuss Your Project", href: "/contactus" },
-    image: {
-      src: "/services/influencer-partnerships/close-camera-4k.jpg",
-      alt: "Camera on a content set lit with magenta studio light"
-    }
+    heading: "Let's build your next campaign.",
+    cta: { label: "Discuss Your Project", href: "/contactus" }
   }
 };

@@ -2,10 +2,12 @@
 // Page-local surface. Header, footer and other routes stay as they are.
 // Hero artwork is the supplied collage. The chart is a local demonstration.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .miPage {
   --mi-ink: #3c1634;
   --mi-cream: #fff8f4;
-  --mi-rose: #c90c51;
+  --mi-rose: var(--color-brand);
   background: var(--mi-cream);
   color: var(--mi-ink);
   overflow-x: clip;
@@ -57,8 +59,7 @@
   outline-offset: 3px;
 }
 
-.miEyebrow,
-.miHero__eyebrow {
+.miEyebrow {
   display: flex;
   align-items: center;
   gap: 0.85rem;
@@ -71,13 +72,17 @@
   color: #711741;
 }
 
-.miEyebrow::after,
-.miHero__eyebrow::after {
+.miEyebrow::after {
   content: "";
   width: 2.4rem;
   height: 3px;
   border-radius: 4px;
   background: var(--mi-rose);
+}
+
+.miHero__eyebrow {
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
 }
 
 .miTitle {
@@ -117,14 +122,17 @@
   align-items: center;
 }
 
+.miHero__copy {
+  padding: clamp(1.15rem, 1.5vw, 1.75rem) clamp(1.15rem, 1.8vw, 1.85rem);
+  background: rgb(255 255 255 / 90%);
+}
+
 .miHero__heading {
-  margin: 0.85rem 0 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.35rem, 1.05rem + 2vw, 3.2rem);
-  line-height: 0.98;
-  letter-spacing: -0.04em;
-  color: var(--mi-ink);
+  @include heroCopy.service-hero-heading;
+}
+
+.miHero__accent {
+  @include heroCopy.service-hero-heading-em;
 }
 
 .miHero__line {
@@ -132,16 +140,11 @@
 }
 
 .miHero__lead {
-  margin: 1.15rem 0 0;
-  max-width: 34ch;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: #392034;
+  @include heroCopy.service-hero-lead;
 }
 
 .miHero__copy .miCta {
-  margin-top: 1.5rem;
+  margin-top: 1.7rem;
 }
 
 .miHero__art {
@@ -197,10 +200,10 @@
   gap: 0.6rem;
   min-height: 52px;
   padding: 0.8rem 0.9rem;
-  border: 1px solid #eed2db;
+  border: 1px solid var(--color-brand);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.55);
-  color: #591642;
+  background: var(--color-brand);
+  color: #fff;
   font-family: var(--font-body);
   font-size: 0.95rem;
   font-weight: 700;
@@ -209,10 +212,10 @@
 }
 
 .miSteps__item.is-selected {
-  border-color: var(--mi-rose);
-  background: var(--mi-rose);
+  border-color: var(--color-brand-hover);
+  background: var(--color-brand-hover);
   color: #fff;
-  box-shadow: 0 7px 20px rgba(204, 20, 96, 0.12);
+  box-shadow: 0 7px 20px color-mix(in srgb, var(--color-brand) 22%, transparent);
 }
 
 .miSteps__num {
@@ -279,7 +282,7 @@
 }
 
 .miRange__item.is-selected {
-  background: #c70b51;
+  background: var(--color-brand);
   color: #fff;
 }
 
@@ -451,7 +454,7 @@
 }
 
 .miLegend__swatch--current {
-  background: #bf1657;
+  background: var(--color-brand);
 }
 
 .miPanel__foot {
@@ -526,61 +529,7 @@
   color: #5e4255;
 }
 
-// --- Close -----------------------------------------------------------------
-
-.miClose {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  padding-block: clamp(4rem, 3rem + 2vw, 5.4rem);
-  background: linear-gradient(155deg, #fff7f5, #ffe0e0 58%, #fab6b6 120%);
-}
-
-.miClose::before,
-.miClose::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.miClose::before {
-  right: -6rem;
-  bottom: -3rem;
-  width: min(46rem, 80vw);
-  height: 18rem;
-  border-radius: 60% 40% 0 0;
-  background: linear-gradient(30deg, rgba(157, 45, 105, 0.75), rgba(234, 123, 157, 0.45), rgba(244, 155, 101, 0.45));
-  transform: rotate(-12deg);
-}
-
-.miClose::after {
-  bottom: -5rem;
-  left: -4rem;
-  width: min(54rem, 90vw);
-  height: 12rem;
-  border-radius: 50% 50% 0 0;
-  background: linear-gradient(90deg, rgba(104, 32, 73, 0.8), rgba(195, 51, 118, 0.65), rgba(238, 151, 108, 0.5));
-  transform: rotate(8deg);
-}
-
-.miClose .miTitle {
-  max-width: 12ch;
-  font-size: clamp(2.4rem, 1.4rem + 2.6vw, 3.4rem);
-}
-
-.miClose__lead {
-  max-width: 32rem;
-  margin: 1rem 0 0;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  line-height: 1.55;
-  color: #392034;
-}
-
-.miClose .miCta {
-  margin-top: 1.4rem;
-}
+// Close CTA → shared ServiceCloseBand (.serviceCloseBand)
 
 // --- FAQ -------------------------------------------------------------------
 
@@ -660,7 +609,7 @@
 
 @media (max-width: 1024px) {
   .miHero__heading {
-    font-size: clamp(2.3rem, 1.2rem + 3.2vw, 3.3rem);
+    max-width: 14ch;
   }
 
   .miCaps__grid {
@@ -675,6 +624,10 @@
   .miPanel__foot {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .miHero__heading {
+    max-width: 16ch;
   }
 
   .miHero__art {

@@ -286,6 +286,11 @@
   background: var(--color-brand);
 }
 
+// Close CTA → shared ServiceCloseBand; page wrap keeps even bottom space.
+.axCloseWrap {
+  margin-bottom: clamp(2rem, 1.2rem + 2vw, 3rem);
+}
+
 @media (max-width: 1100px) {
   .axCards {
     grid-template-columns: repeat(2, minmax(0, 1fr));

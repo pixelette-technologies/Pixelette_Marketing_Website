@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { measurementInsightContent } from "@/data/services/measurementInsight";
 
 const { hero } = measurementInsightContent;
@@ -12,13 +11,11 @@ const MeasurementHero = () => {
           <p className='miHero__eyebrow'>{hero.eyebrow}</p>
           <h1 id='mi-hero-heading' className='miHero__heading'>
             <span className='miHero__line'>{hero.lineOne}</span>
-            <span className='miHero__line'>{hero.lineTwo}</span>
+            <span className='miHero__line'>
+              <em className='miHero__accent'>{hero.lineTwo}</em>
+            </span>
           </h1>
           <p className='miHero__lead'>{hero.lead}</p>
-          <Link href={hero.cta.href} className='miCta'>
-            {hero.cta.label}
-            <span aria-hidden='true'> →</span>
-          </Link>
         </div>
         <div className='miHero__art'>
           <Image
@@ -31,16 +28,6 @@ const MeasurementHero = () => {
             sizes='(max-width: 900px) 100vw, 46rem'
           />
         </div>
-      </div>
-      <div className='miHero__waveWrap' aria-hidden='true'>
-        <Image
-          className='miHero__waves'
-          src='/services/measurement/hero-waves.png'
-          alt=''
-          width={1024}
-          height={110}
-          sizes='100vw'
-        />
       </div>
     </section>
   );

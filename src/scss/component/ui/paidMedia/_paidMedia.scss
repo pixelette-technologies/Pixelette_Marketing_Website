@@ -2,6 +2,8 @@
 // Page-local surface. Header, footer and other service routes stay as they are.
 // Cobalt, coral and yellow appear only inside the hypothetical campaign ads.
 
+@use "../serviceHeroCopy" as heroCopy;
+
 .ppcPage {
   --ppc-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   background: var(--color-band);
@@ -78,39 +80,19 @@
 }
 
 .ppcHero__eyebrow {
-  margin: 0 0 1.15rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-brand);
+  @include heroCopy.service-hero-eyebrow;
 }
 
 .ppcHero__heading {
-  margin: 0;
-  max-width: 8.6em;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.15rem, 1.2rem + 2.3vw, 3.45rem);
-  line-height: 1.02;
-  letter-spacing: -0.04em;
-  color: var(--color-plum-ink);
+  @include heroCopy.service-hero-heading;
 }
 
 .ppcHero__heading em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--color-brand);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .ppcHero__lead {
-  margin: 1.25rem 0 0;
-  max-width: 34ch;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--color-body);
+  @include heroCopy.service-hero-lead;
 }
 
 .ppcHero__copy .ppcCta {
@@ -341,8 +323,7 @@
   padding-block: clamp(2.4rem, 1.4rem + 2vw, 3.4rem);
 }
 
-.ppcDeliver__intro,
-.ppcClose__row {
+.ppcDeliver__intro {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -458,26 +439,7 @@
   color: var(--color-muted);
 }
 
-// --- Close -----------------------------------------------------------------
-
-.ppcClose {
-  border-top: 1px solid var(--color-line);
-  border-bottom: 1px solid var(--color-line);
-  padding-block: clamp(2rem, 1.2rem + 1.8vw, 2.8rem);
-}
-
-.ppcClose__row {
-  align-items: center;
-}
-
-.ppcClose__lead {
-  margin: 0.65rem 0 0;
-  max-width: 46ch;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--color-body);
-}
+// Close CTA → shared ServiceCloseBand (.serviceCloseBand)
 
 // --- FAQ -------------------------------------------------------------------
 
@@ -567,14 +529,12 @@
 @media (max-width: 900px) {
   .ppcHero__inner,
   .ppcMeasure__grid,
-  .ppcClose__row,
   .ppcDeliver__intro {
     grid-template-columns: 1fr;
     display: grid;
   }
 
-  .ppcDeliver__intro,
-  .ppcClose__row {
+  .ppcDeliver__intro {
     align-items: start;
   }
 

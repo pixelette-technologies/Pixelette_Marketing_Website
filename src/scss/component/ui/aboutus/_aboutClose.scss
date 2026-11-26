@@ -1,1 +1,5 @@
-// About close now uses the shared CloseWaveBand (.closeWave).
+// About close → shared ServiceCloseBand; page wrap keeps even bottom space.
+
+.aboutCloseWrap {
+  margin-bottom: clamp(2rem, 1.2rem + 2vw, 3rem);
+}

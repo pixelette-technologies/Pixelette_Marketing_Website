@@ -12,14 +12,6 @@ Master log for session context. Newest first. Full detail lives in day files und
 - **serviceLines.ts accessibility conformance wording** — still describes a published position; `/policies` and how-to-buy are 410. → [sessions/2026-11-25.md](sessions/2026-11-25.md)
 - **Branch tip** — `bilal/revamp` at website correction A–D (`431e7ed` / vault note `77921cb`). Live domain untouched; no production PR.
 
-## Project docs map
-
-| Doc | Role |
-|---|---|
-| [`RULES.md`](../RULES.md) | Standing constraints, traps, settled decisions, locked-page exceptions |
-| [`KNOWN-BUGS.md`](../KNOWN-BUGS.md) | Audit findings, closed items, remaining snags |
-| [`BUILD.md`](../BUILD.md) | Gates, verification commands, what the gates prove |
-
 ## Log
 
 - **2026-11-26** — Restructured vault to pix-vault layout (index + day sessions); removed parallel `vault/` and HTML dumps. → [sessions/2026-11-26.md](sessions/2026-11-26.md)

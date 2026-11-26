@@ -14,17 +14,6 @@ docs/
     YYYY-MM-DD.md        ← one file per calendar day (local date)
 ```
 
-## Project planning docs (repo root — not session logs)
-
-These live at the **repository root**. They are the durable product brain; session files only record what changed in a chat.
-
-| File | Purpose | When to read / update |
-|---|---|---|
-| [`../RULES.md`](../RULES.md) | Standing constraints, traps, settled decisions | Start of every build session |
-| [`../KNOWN-BUGS.md`](../KNOWN-BUGS.md) | Pending snags + closed audit items | After index; before picking work |
-| [`../BUILD.md`](../BUILD.md) | Gates and verification | Before claiming done |
-
-**Do not** duplicate full rules into session notes—link and summarize deltas only.
 **Do not** invent copy, deploy live, or open a production PR without explicit approval.
 
 ## When the user says “update the vault”
@@ -106,8 +95,8 @@ Exclude:
 ## Tips for agents
 
 - Read `index.md` first when the user asks for continuity (“get the latest from the vault”); open the linked day file(s) as needed.
-- For build work: skim `RULES.md` → `KNOWN-BUGS.md` pending → current day / Active threads.
-- Gates: `npx tsc --noEmit && npm run test:contact` — see `BUILD.md`.
+- For build work: use Active threads + the relevant day file.
+- Gates: `npx tsc --noEmit && npm run test:contact`.
 - One day file can hold multiple sessions; separate them with `## Session — …` headings.
 - Prefer absolute clarity over length. A tight half-page beats a vague essay.
 - Do not deploy to the live domain or open a production PR unless the user explicitly asks.

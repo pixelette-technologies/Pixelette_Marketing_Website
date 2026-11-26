@@ -57,7 +57,6 @@ config.bat
 
 # Session vault lives in docs/ (README + index.md + sessions/YYYY-MM-DD.md).
 # Committed as the decision/session record. Obsidian editor state is not.
-# Durable brain (RULES.md, KNOWN-BUGS.md, BUILD.md) lives at repo root.
 # The old parallel vault/ folder (and its HTML dumps) was removed 26 Nov 2026.
 docs/.obsidian/
 

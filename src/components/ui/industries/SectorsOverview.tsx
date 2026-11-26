@@ -104,13 +104,26 @@ export default function SectorsOverview() {
           preserveAspectRatio='none'
           aria-hidden='true'
         >
-          <path d='M340 90H300Q285 90 285 110V180H82Q30 180 30 215V400H245Q265 400 265 382V320H505Q535 320 535 348V405H700' />
-          <path d='M375 110H305Q285 110 285 140V245H60Q10 245 10 275V485H260Q300 485 300 450V330H665' />
-          <path d='M395 130H330Q310 130 310 155V340H60Q20 340 20 370V500H235Q267 500 267 520V675H565' />
-          <path d='M390 145H325Q300 145 300 160V278H108Q32 278 32 310V530H530Q565 530 565 545V635H708' />
-          <path d='M45 560H300Q325 560 325 580V695H540Q570 695 570 668V590H700' />
-          <path d='M55 580H350Q370 580 370 604V725H560Q590 725 590 700V630H706' />
-          <path d='M80 720H250Q285 720 285 695V670H558Q600 670 600 640V610H706' />
+          {/* Clean orthogonal traces between neighbouring tile frames.
+              Coordinates match the 710×775 stage; tile positions unchanged. */}
+          {/* Tech → Fin (shared drop from tech centre, then left) */}
+          <path d='M408 132V156H149V181' />
+          {/* Tech → Health (joins the shared drop, then right) */}
+          <path d='M408 156H573V209' />
+          {/* Fin → Retail (spine down into retail top centre) */}
+          <path d='M251 237H340V345' />
+          {/* Health → Retail (joins the Fin→Retail spine) */}
+          <path d='M465 265H340' />
+          {/* Retail → Property */}
+          <path d='M235 401H225V496H215' />
+          {/* Retail → Education */}
+          <path d='M445 401H458V527H472' />
+          {/* Property → Public */}
+          <path d='M108 551V580H133V610' />
+          {/* Education → Charities */}
+          <path d='M520 582V605H420V626' />
+          {/* Public → Charities */}
+          <path d='M242 666H310' />
         </svg>
         <div className='sectorsMosaic__tiles'>
           {sectorsOverview.map((item, index) => (

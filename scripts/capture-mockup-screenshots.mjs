@@ -37,7 +37,6 @@ const ROUTES = [
   "/public-sector/internal-and-change-communications",
   "/public-sector/education-marketing",
   "/public-sector/demonstrations",
-  "/about/people",
   "/accessibility",
   "/social-value",
   "/industries/public-sector-and-local-government",

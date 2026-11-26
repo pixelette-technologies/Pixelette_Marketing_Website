@@ -23,8 +23,8 @@ const posts = [
         category: "Market & regulatory developments",
         image: "/blogs/blog-fintech-banner.webp",
         imageAlt: "A banner for the fintech financial promotions article.",
-        authorProfile: "/blogs/authorImage.png",
-        authorName: "Rana Khan",
+        authorProfile: "/blogs/author-placeholder.svg",
+        authorName: "Gulnaz Akhter",
         updateDate: "2 June 2026",
         heading: "Marketing a UK fintech without breaching FCA rules",
         description:
@@ -111,8 +111,8 @@ const posts = [
         category: "Demand",
         image: "/blogs/blog-web3-banner.webp",
         imageAlt: "A banner for the Web3 advertising article.",
-        authorProfile: "/blogs/authorImage.png",
-        authorName: "Temur Khan",
+        authorProfile: "/blogs/author-placeholder.svg",
+        authorName: "Gulnaz Akhter",
         updateDate: "2 June 2026",
         heading: "How to market a Web3 product when the ad platforms say no",
         description:
@@ -199,8 +199,8 @@ const posts = [
         category: "Measurement",
         image: "/blogs/blog-saas-banner.webp",
         imageAlt: "A banner for the SaaS metrics article.",
-        authorProfile: "/blogs/authorImage.png",
-        authorName: "Rana Khan",
+        authorProfile: "/blogs/author-placeholder.svg",
+        authorName: "Gulnaz Akhter",
         updateDate: "2 June 2026",
         heading:
           "The marketing metrics an early-stage SaaS founder should track",
@@ -288,8 +288,8 @@ const posts = [
         image: "/blogs/blog-ai-search-laptop.webp",
         imageAlt:
           "A laptop showing an AI search assistant asking what do you want to know.",
-        authorProfile: "/blogs/authorImage.png",
-        authorName: "Rana Khan",
+        authorProfile: "/blogs/author-placeholder.svg",
+        authorName: "Gulnaz Akhter",
         updateDate: "22 September 2026",
         heading: "Your buyers are asking an AI, not a search engine",
         description:
@@ -377,8 +377,8 @@ const posts = [
         image: "/blogs/blog-marketing-spend-banner.webp",
         imageAlt:
           "Two colleagues reviewing printed charts and a laptop graph together.",
-        authorProfile: "/blogs/authorImage.png",
-        authorName: "Temur Khan",
+        authorProfile: "/blogs/author-placeholder.svg",
+        authorName: "Gulnaz Akhter",
         updateDate: "22 September 2026",
         heading:
           "Five things to check before you increase your marketing spend",

@@ -1,7 +1,6 @@
 import {
   AboutBuilt,
   AboutClose,
-  AboutGroup,
   AboutUsHero,
   AboutWhy,
   Principles
@@ -27,7 +26,6 @@ export default function AboutUsPage() {
       <AboutBuilt />
       <Principles />
       <AboutBriefBlocks />
-      <AboutGroup />
       <AboutClose />
     </>
   );

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CloseWaveBand } from "@/components/common";
 import { socialValueContent as copy } from "@/data/socialValue";
 import SocialValueIcon from "./SocialValueIcons";
 
@@ -9,6 +9,19 @@ const SocialValuePage = () => {
   return (
     <div className='svPage'>
       <section className='svHero' aria-labelledby='sv-hero-heading'>
+        <div className='svHero__art'>
+          <picture>
+            <source srcSet='/social-value/mosaic-hero.webp' type='image/webp' />
+            <img
+              src='/social-value/mosaic-hero.png'
+              alt={copy.image.alt}
+              width={copy.image.width}
+              height={copy.image.height}
+              fetchPriority='high'
+              decoding='async'
+            />
+          </picture>
+        </div>
         <div className='svHero__copy'>
           <p className='svHero__eyebrow'>
             <span aria-hidden='true' />
@@ -22,19 +35,6 @@ const SocialValuePage = () => {
               {paragraph}
             </p>
           ))}
-        </div>
-        <div className='svHero__art'>
-          <picture>
-            <source srcSet='/social-value/mosaic-hero.webp' type='image/webp' />
-            <img
-              src='/social-value/mosaic-hero.png'
-              alt={copy.image.alt}
-              width={copy.image.width}
-              height={copy.image.height}
-              fetchPriority='high'
-              decoding='async'
-            />
-          </picture>
         </div>
       </section>
 
@@ -72,29 +72,12 @@ const SocialValuePage = () => {
         </div>
       </section>
 
-      <section className='svClose' aria-labelledby='sv-close-heading'>
-        <svg
-          className='svClose__wave'
-          viewBox='0 0 1440 96'
-          preserveAspectRatio='none'
-          aria-hidden='true'
-        >
-          <path
-            fill='currentColor'
-            d='M0 96V58C160 22 340 8 560 28C760 46 900 78 1080 52C1240 28 1360 10 1440 18V96H0Z'
-          />
-        </svg>
-        <div className='svClose__band'>
-          <div className='svWrap svClose__inner'>
-            <h2 id='sv-close-heading'>{copy.close.heading}</h2>
-            <p>{copy.close.copy}</p>
-            <Link href={copy.close.cta.href} className='svClose__cta'>
-              {copy.close.cta.label}
-              <span aria-hidden='true'> →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CloseWaveBand
+        headingId='sv-close-heading'
+        heading={copy.close.heading}
+        copy={copy.close.copy}
+        cta={copy.close.cta}
+      />
     </div>
   );
 };

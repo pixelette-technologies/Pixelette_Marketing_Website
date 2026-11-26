@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
 
@@ -18,16 +17,6 @@ export default function AboutBriefBlocks() {
           specialists, and remain accountable for the client relationship, the
           contract and delivery standards.
         </Text>
-        <Text className='body'>
-          We tell you who is working on your assignment rather than imply that
-          every speciality sits in a permanent internal department.
-        </Text>
-        <p className='sec-sm'>
-          <Link href='/about/people' className='textLink'>
-            The people doing the work
-            <span aria-hidden='true'> →</span>
-          </Link>
-        </p>
       </section>
     </Container>
   );

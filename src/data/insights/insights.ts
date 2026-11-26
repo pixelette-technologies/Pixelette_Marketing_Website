@@ -266,5 +266,4 @@ export const briefing = {
   headline: "Three things worth knowing. No filler",
   copy: "A concise weekly view on the market shifts, ideas and decisions worth paying attention to.",
   cta: { label: "Get the briefing", href: "/contactus" },
-  note: "Email sign-up is not open yet. The button goes to our contact form; mention the briefing and we will add you."
 };

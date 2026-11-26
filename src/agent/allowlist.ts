@@ -29,7 +29,7 @@
 export const ALLOWED_SOURCE_PREFIXES: readonly string[] = [
   '/', // the homepage itself, matched exactly below
   '/aboutus',
-  '/about', // /about/people and temporary /about redirect
+  '/about', // temporary /about → /aboutus redirect
   '/blog-list',
   '/blog',
   '/contactus',

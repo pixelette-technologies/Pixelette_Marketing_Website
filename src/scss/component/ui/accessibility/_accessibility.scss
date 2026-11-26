@@ -1,7 +1,6 @@
 // /accessibility — approved page, 24 Nov 2026.
 // Page-local layout. Shared brand tokens only. Does not restyle other routes.
-// The mosaic is the supplied 675×405 crop. Desktop shows it up to 840px wide
-// so the right column matches the approved composition without a hard crop.
+// Hero matches /social-value: mosaic as full-bleed cover, copy in a light box.
 
 .axPage {
   --ax-cream: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
@@ -17,17 +16,38 @@
 }
 
 .axHero {
-  display: grid;
-  grid-template-columns: minmax(17rem, 32rem) minmax(0, 1fr);
+  position: relative;
+  display: flex;
   align-items: center;
-  column-gap: clamp(0.75rem, 2vw, 2rem);
+  min-height: clamp(22rem, 42vw, 35rem);
+  overflow: hidden;
+}
+
+.axHero__art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.axHero__art picture,
+.axHero__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .axHero__copy {
-  width: 100%;
-  padding-block: clamp(1.35rem, 0.6rem + 1.4vw, 2.15rem);
-  padding-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
-  padding-right: 0.25rem;
+  position: relative;
+  z-index: 1;
+  width: min(28rem, calc(100% - 2.5rem));
+  margin-block: clamp(1.5rem, 3vw, 2.75rem);
+  margin-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  margin-right: 1.25rem;
+  padding: clamp(1.15rem, 1.5vw, 1.75rem) clamp(1.15rem, 1.8vw, 1.85rem);
+  background: rgb(255 255 255 / 90%);
 }
 
 .axHero__eyebrow {
@@ -77,31 +97,12 @@
   margin-top: 0.7rem;
 }
 
-.axHero__art {
-  min-width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.axHero__art picture {
-  display: block;
-  width: min(100%, 840px);
-}
-
-.axHero__art img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .axMatters {
   padding-top: clamp(1.5rem, 0.8rem + 1.4vw, 2.4rem);
 }
 
 .axMatters__heading,
-.axWork__lead h2,
-.axClose__inner h2 {
+.axWork__lead h2 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 400;
@@ -285,75 +286,6 @@
   background: var(--color-brand);
 }
 
-.axClose {
-  position: relative;
-  color: color-mix(in srgb, var(--color-brand) 42%, var(--color-footer-bg));
-}
-
-.axClose__wave {
-  display: block;
-  width: 100%;
-  height: clamp(4.5rem, 7vw, 6.75rem);
-  margin-bottom: -1px;
-}
-
-.axClose__band {
-  background: color-mix(in srgb, var(--color-brand) 42%, var(--color-footer-bg));
-  color: var(--color-page);
-  padding-block: 0.4rem clamp(2rem, 1.4rem + 1.4vw, 2.75rem);
-}
-
-.axClose__inner {
-  display: grid;
-  grid-template-columns: minmax(13rem, 0.95fr) minmax(0, 1.15fr) auto;
-  gap: 1rem 1.75rem;
-  align-items: center;
-}
-
-.axClose__inner h2 {
-  color: var(--color-page);
-  font-size: clamp(1.75rem, 1.3rem + 1.1vw, 2.35rem);
-  line-height: 1.12;
-  max-width: 11em;
-}
-
-.axClose__inner p {
-  margin: 0;
-  max-width: 42ch;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--color-page);
-}
-
-// D2 — shared button dimensions; inverted colours and pill keep the approved
-// close-band treatment.
-.axClose__cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.625rem;
-  min-height: 52px;
-  padding: 0.8125rem 1.625rem;
-  border-radius: 999px;
-  background: var(--color-page);
-  color: var(--color-burgundy);
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  line-height: 1.2;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.axClose__cta:hover {
-  color: var(--color-brand-hover);
-}
-
-.axClose :focus-visible {
-  outline-color: var(--color-brand-signal);
-}
-
 @media (max-width: 1100px) {
   .axCards {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -362,27 +294,21 @@
 
 @media (max-width: 860px) {
   .axHero {
-    grid-template-columns: 1fr;
+    min-height: clamp(24rem, 88vw, 32rem);
   }
 
   .axHero__copy {
-    padding-right: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+    width: min(36rem, calc(100% - 2.5rem));
   }
 
-  .axHero__art {
-    justify-content: center;
-    padding: 0 1.25rem 0.5rem;
-  }
-
-  .axHelp__panel,
-  .axClose__inner {
-    grid-template-columns: 1fr;
-    justify-items: start;
-    row-gap: 0.9rem;
+  .axHero__heading {
+    max-width: 12em;
   }
 
   .axHelp__panel {
     grid-template-columns: auto 2px minmax(0, 1fr);
+    justify-items: start;
+    row-gap: 0.9rem;
   }
 
   .axHelp__panel .axCta {
@@ -401,8 +327,6 @@
     align-self: start;
   }
 
-  .axClose__inner h2,
-  .axClose__inner p,
   .axWork__aside,
   .axWork__lead p {
     max-width: 40rem;

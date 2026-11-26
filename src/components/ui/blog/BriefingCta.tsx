@@ -20,7 +20,7 @@ export default function BriefingCta() {
             {briefing.headline}
           </h2>
           <p className='ixBrief__copy'>{briefing.copy}</p>
-          <Link href={briefing.cta.href} className='ixBrief__cta'>
+          <Link href={briefing.cta.href} className='btn ixBrief__cta'>
             {briefing.cta.label}
             <span aria-hidden='true'>→</span>
           </Link>

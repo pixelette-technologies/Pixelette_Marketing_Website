@@ -35,7 +35,7 @@ export default function CookiePolicyPage() {
             <Heading className='h1p' level={1}>
               Cookie Policy
             </Heading>
-            <Text className='small'>Last updated: 2 June 2026</Text>
+            <Text className='small'>Last updated: 26 Nov 2026</Text>
           </header>
         </Container>
       </div>

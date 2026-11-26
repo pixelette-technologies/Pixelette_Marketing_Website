@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CloseWaveBand } from "@/components/common";
 import { accessibilityContent as copy } from "@/data/accessibility";
 import AccessibilityIcon from "./AccessibilityIcons";
 
@@ -10,6 +11,19 @@ const AccessibilityPage = () => {
   return (
     <div className='axPage'>
       <section className='axHero' aria-labelledby='ax-hero-heading'>
+        <div className='axHero__art'>
+          <picture>
+            <source srcSet='/accessibility/mosaic-hero.webp' type='image/webp' />
+            <img
+              src='/accessibility/mosaic-hero.png'
+              alt={copy.image.alt}
+              width={copy.image.width}
+              height={copy.image.height}
+              fetchPriority='high'
+              decoding='async'
+            />
+          </picture>
+        </div>
         <div className='axHero__copy'>
           <p className='axHero__eyebrow'>
             <span aria-hidden='true' />
@@ -25,19 +39,6 @@ const AccessibilityPage = () => {
               {paragraph}
             </p>
           ))}
-        </div>
-        <div className='axHero__art'>
-          <picture>
-            <source srcSet='/accessibility/mosaic-hero.webp' type='image/webp' />
-            <img
-              src='/accessibility/mosaic-hero.png'
-              alt={copy.image.alt}
-              width={copy.image.width}
-              height={copy.image.height}
-              fetchPriority='high'
-              decoding='async'
-            />
-          </picture>
         </div>
       </section>
 
@@ -94,29 +95,12 @@ const AccessibilityPage = () => {
         </div>
       </section>
 
-      <section className='axClose' aria-labelledby='ax-close-heading'>
-        <svg
-          className='axClose__wave'
-          viewBox='0 0 1440 128'
-          preserveAspectRatio='none'
-          aria-hidden='true'
-        >
-          <path
-            fill='currentColor'
-            d='M0 128V22C140 18 210 96 380 102C540 108 620 58 760 52C900 46 980 104 1140 92C1280 82 1360 36 1440 24V128H0Z'
-          />
-        </svg>
-        <div className='axClose__band'>
-          <div className='axWrap axClose__inner'>
-            <h2 id='ax-close-heading'>{copy.close.heading}</h2>
-            <p>{copy.close.copy}</p>
-            <Link href={copy.close.cta.href} className='axClose__cta'>
-              {copy.close.cta.label}
-              <span aria-hidden='true'> →</span>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CloseWaveBand
+        headingId='ax-close-heading'
+        heading={copy.close.heading}
+        copy={copy.close.copy}
+        cta={copy.close.cta}
+      />
     </div>
   );
 };

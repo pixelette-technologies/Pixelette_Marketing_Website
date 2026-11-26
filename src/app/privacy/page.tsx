@@ -69,7 +69,7 @@ export default function PrivacyPage() {
             <Heading className='h1p' level={1}>
               Privacy Statement
             </Heading>
-            <Text className='small'>Effective 8 October 2026 · Version 1.0</Text>
+            <Text className='small'>Effective 8 October 2026</Text>
           </header>
         </Container>
       </div>

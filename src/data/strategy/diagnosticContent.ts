@@ -61,8 +61,8 @@ export const ASSESS_ANCHOR = "what-we-assess";
 // unchanged; only the framing and presentation move.
 
 export const strategyHero = {
-  eyebrow: "The Impact Compass",
-  heading: "Find your next move.",
+  eyebrow: "Diagnostics",
+  heading: "Find your next move",
   lead: "A short marketing diagnostic to reveal what is working, what needs attention and where to focus.",
   /** Script line under the lead — Caveat / --font-hand. */
   process: ["Assess", "Understand", "Act"] as const,
@@ -170,7 +170,7 @@ export const clarityBridge = {
 export const diagnosticIntro = {
   /** The stage's heading. Visually hidden: the progress row and the question
    *  are what a sighted visitor reads, but the outline needs a heading here. */
-  heading: "The Impact Compass diagnostic",
+  heading: "Diagnostics",
   /** For assistive technology only: how the answer tiles are operated. */
   tileHelp:
     "Choose one answer. Use the arrow keys to move between options, then press Enter to continue.",

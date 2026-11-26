@@ -24,6 +24,7 @@ const HowItWork = () => {
                 <span className='howItworks__index' aria-hidden='true'>
                   {el.index}
                 </span>
+                <span className='howItworks__rule' aria-hidden='true' />
                 <div>
                   <Heading className='h4' level={3}>
                     {el.heading}

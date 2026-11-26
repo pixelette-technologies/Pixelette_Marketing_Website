@@ -61,14 +61,14 @@ Two corollaries that catch people out:
 
 **If the copy is not already in the file, it does not go on the page.** Where the guide demands a label you cannot supply, ship the pattern without it.
 
-The single approved exception is the footer columns — see [[Known bugs and deviations]], "Deviations from the playbook".
+The single approved exception is the footer columns — see [KNOWN-BUGS.md](./KNOWN-BUGS.md), "Deviations from the playbook".
 
 ## No regression in SEO or structured data
 
 **Updated 14 Oct 2026.** Metadata and the sitemap were deliberately rewritten (shared `pageMetadata` in `src/data/site.ts`, linked-only sitemap, titles/descriptions aligned with current page voice). The old conversion rule — “emit exactly what it emits today” — no longer applies to those files as a freeze. What still holds:
 
 1. **Do not silently change** titles, descriptions, canonicals, JSON-LD or sitemap membership without an instruction.
-2. **Verify by reading the emitting code** (`src/data/site.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, page `metadata` / `generateMetadata`, inline JSON-LD), not by eyeballing rendered `<head>` alone. Command shape in [[Build and verification]].
+2. **Verify by reading the emitting code** (`src/data/site.ts`, `src/app/sitemap.ts`, `src/app/robots.ts`, page `metadata` / `generateMetadata`, inline JSON-LD), not by eyeballing rendered `<head>` alone. Command shape in [BUILD.md](./BUILD.md).
 3. **Sitemap membership = internally linked.** Orphan routes that stay live for legacy traffic (the five `/industries/[slug]` specialist pages) stay out of the sitemap until they are linked again.
 
 ## Also forbidden without explicit instruction
@@ -77,7 +77,7 @@ Pushing the branch. Opening a pull request. Deploying. Committing in logical chu
 
 ## What is fixed, free and forbidden
 
-**Fixed** — the family resemblance. Container, fluid type scale, type roles, geometry, section anatomy, the flat and static register, accessibility floors. Group property, taken verbatim from Appendix E. Do not vary them, and do not vary them "slightly". See [[Design system]].
+**Fixed** — the family resemblance. Container, fluid type scale, type roles, geometry, section anatomy, the flat and static register, accessibility floors. Group property, taken verbatim from Appendix E. Do not vary them, and do not vary them "slightly". See design-system notes (retired).
 
 **Free** — five levers, in descending order of leverage: value structure, neutral rotation, dark family temperature, one signature device, hero ground and widget. See [[Brand layer]].
 
@@ -138,7 +138,7 @@ Pushing the branch. Opening a pull request. Deploying. Committing in logical chu
 
 **Connection nodes keyed only on `capability` break when two cards share a group after regroup.** Use `` `${capability}-${title}` `` (or index). Self-parent cards filtered out can leave a two-node figure — flag rather than inventing a third connection.
 
-**Count from the routes, not from the data file.** The audit recorded 27 blog posts and 50 dynamic pages by counting `id:` occurrences in `blogsData.ts`. Most of those were nested `dataContent` SECTION ids inside each post. That count was wrong then and is wrong again now: there are **five** Insights posts (`/blog/1`–`/blog/5`), eight service pages, and the sitemap lists only **internally linked** URLs (~23). `/success_stories` and `/story/[id]` were deleted 25 Sep 2026. The route walk discovers routes from `/sitemap.xml` rather than trusting a hand count — which is the whole argument for discovering them. See [[Build and verification]].
+**Count from the routes, not from the data file.** The audit recorded 27 blog posts and 50 dynamic pages by counting `id:` occurrences in `blogsData.ts`. Most of those were nested `dataContent` SECTION ids inside each post. That count was wrong then and is wrong again now: there are **five** Insights posts (`/blog/1`–`/blog/5`), eight service pages, and the sitemap lists only **internally linked** URLs (~23). `/success_stories` and `/story/[id]` were deleted 25 Sep 2026. The route walk discovers routes from `/sitemap.xml` rather than trusting a hand count — which is the whole argument for discovering them. See [BUILD.md](./BUILD.md).
 
 **The shell-quoting hazard is real, and it bites more than once.** An apostrophe inside a `node -e` script wrapped in a single-quoted shell invocation terminates the quoting. It happened again in the D-phase work: a `node -e` carrying backticks and `${...}` was expanded by the shell before node ever saw it, and silently corrupted two component files — recovered with `git checkout`, but only because the tree was clean.
 
@@ -162,7 +162,7 @@ Also: **Python is not on the PATH** here — use node for text surgery.
 
 **Render the open question, do not describe it.** The dark-family call sat in prose in this vault as "decide by eye on the page, not in the abstract" while the page rendered only one of the two options. A decision the instrument cannot show is not a decision anybody can make.
 
-**A gate that cannot run is worse than no gate.** `npm run lint` runs `eslint --fix`, so it mutates the tree and cannot be a gate. And the config it loads had been failing since 11 August without anyone noticing — which is exactly the silence a working payload would have depended on. See [[Security incident 2026-08-11]].
+**A gate that cannot run is worse than no gate.** `npm run lint` runs `eslint --fix`, so it mutates the tree and cannot be a gate. And the config it loads had been failing since 11 August without anyone noticing — which is exactly the silence a working payload would have depended on. See [docs/sessions/2026-09-01.md](./docs/sessions/2026-09-01.md).
 
 **Read the whole file before trusting a `--stat`.** `git show --stat` rendered a 29,980-character malicious payload as `eslint.config.mjs | 23 +-`.
 
@@ -183,7 +183,7 @@ Also: **Python is not on the PATH** here — use node for text surgery.
 
 **A class that does nothing is invisible in review but not on the page.** `.btn_secondry-full` had a size and no background and no border, so it fell through to the `.btn` primitive every button also carries and rendered identically to the filled button beside it. The "action pair" on eight service heroes was two identical filled buttons. **Grep a class's definition for whether it actually distinguishes anything, not just whether it exists.**
 
-**When a decision is reversed, grep the vault and the stylesheets for what was justified by it.** Making the header sticky invalidated two written statements — one in [[Design system]] and one in `_navbar.scss` — that both said `scroll-padding-top` was unnecessary *because* the header did not stick. Neither was revisited, so anchor targets landed underneath the bar on every blog route. **A reversed decision has dependents, and they are usually documented as settled facts rather than as consequences.** Found by re-reading the notes while updating them, which is an argument for the update pass being real work rather than bookkeeping.
+**When a decision is reversed, grep the vault and the stylesheets for what was justified by it.** Making the header sticky invalidated two written statements — one in design-system notes (retired) and one in `_navbar.scss` — that both said `scroll-padding-top` was unnecessary *because* the header did not stick. Neither was revisited, so anchor targets landed underneath the bar on every blog route. **A reversed decision has dependents, and they are usually documented as settled facts rather than as consequences.** Found by re-reading the notes while updating them, which is an argument for the update pass being real work rather than bookkeeping.
 
 **`position: relative` with `z-index: auto` does NOT open a stacking context, so "local" z-indexes are not local.** The hero collage box held three images at `z-index` 2, 80 and 80, and because neither it nor any ancestor opened a context, all three were competing in the ROOT stacking context against every positioned element on the page. It looked correct for months purely because nothing above them was positioned. The instant the header became `position: sticky` at `z-index: 60`, two of the five images would have scrolled straight over it.
 

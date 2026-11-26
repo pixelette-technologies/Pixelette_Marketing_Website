@@ -39,7 +39,7 @@ These are the numbers to hold. Any new warning is one you added.
 
 **Re-run after the rem rebase (`87d123e`) — all four still hold**, plus `npx sass src/scss/main.scss` compiles clean and the compiled root emits `html { font-size: 100% }` with none of the three old overrides surviving. The rebase itself was audited separately: every rem literal in the 68 changed files was compared against its pre-rebase value and all 928 satisfy `new = old × 0.625`, with the single count difference being the `_heading.scss` `em` → `rem` fix. **None of it has been looked at in a browser.**
 
-> The lint baseline could not be taken until `eslint.config.mjs` was cleaned — the config had been failing to load since 11 August. See [[Security incident 2026-08-11]].
+> The lint baseline could not be taken until `eslint.config.mjs` was cleaned — the config had been failing to load since 11 August. See [docs/sessions/2026-09-01.md](./docs/sessions/2026-09-01.md).
 
 ## The check that is not a gate, and matters more than the gates
 
@@ -166,7 +166,7 @@ Measured 1 September 2026, after `c9cf171` — the end of the D4/D5 run. Ticked 
 | Distinct breakpoints outside `Importance` | few | **1 — 767px** | ✅ down from 69 |
 | `bg_*` / `color_*` call sites | 0 | **0** | ✅ the utility layer is deleted |
 | `color.$*` references | 0 | **0** | ✅ `_color.scss` deleted in `c9cf171` |
-| Dead heading selectors | 0 | **0 where touched** | ✅ 24 partials repaired; see [[Rules]] |
+| Dead heading selectors | 0 | **0 where touched** | ✅ 24 partials repaired; see [RULES.md](./RULES.md) |
 | Click-only controls | 0 | **0** | ✅ four rebuilt as buttons |
 | Inline `style={{…}}` blocks | 0 | **33** | ◐ mostly page files and the two carousels |
 | Tokens in the built CSS chunk | present | **present** | ✅ verified against the served chunk |

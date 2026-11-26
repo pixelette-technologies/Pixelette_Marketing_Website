@@ -1,6 +1,6 @@
 # Known bugs and deviations
 
-Everything the audit turned up, sorted by what happens to it. See [[Rules]] for why the boundary falls where it does.
+Everything the audit turned up, sorted by what happens to it. See [RULES.md](./RULES.md) for why the boundary falls where it does.
 
 ## Pending for the next session
 
@@ -393,9 +393,9 @@ Hand-back: `mockup-screenshots/HANDBACK.md`.
 
 | | |
 |---|---|
-| **Obfuscated payload in `eslint.config.mjs`** | Removed in `a9c6379`. Full write-up in [[Security incident 2026-08-11]]. |
+| **Obfuscated payload in `eslint.config.mjs`** | Removed in `a9c6379`. Full write-up in [docs/sessions/2026-09-01.md](./docs/sessions/2026-09-01.md). |
 | **`_heading.scss` line-height unit bug** | Fixed in `87d123e`, inside the rem rebase as planned. `2.6em` → `2.6rem`, then rebased to `1.625rem` with its three siblings. |
-| **Palette comparison rendered no component CSS** | Fixed in `99d046b`. It had been comparing almost nothing since it was written. See [[Rules]]. |
+| **Palette comparison rendered no component CSS** | Fixed in `99d046b`. It had been comparing almost nothing since it was written. See [RULES.md](./RULES.md). |
 | **`h1 { z-index: -10 }`** | Deleted in `e3ea8ae`. Check every `h1` during the browser walk. |
 
 ## To fix inside the conversion — ALL FIVE DONE
@@ -433,8 +433,8 @@ Unchanged, as before: three `h2`s inside a section that already has one. Structu
 
 | | |
 |---|---|
-| **Three invisible headings** | `ServicesSection`'s 64px "We manage You grow" and both of `WhoWeAre`'s eyebrows were the same colour as their own grounds. See [[00 Index]]. |
-| **Nine contrast failures on dark grounds** | All the brand anchor used where the marking tone belongs. Table in [[00 Index]]. |
+| **Three invisible headings** | `ServicesSection`'s 64px "We manage You grow" and both of `WhoWeAre`'s eyebrows were the same colour as their own grounds. See [docs/index.md](./docs/index.md). |
+| **Nine contrast failures on dark grounds** | All the brand anchor used where the marking tone belongs. Table in [docs/index.md](./docs/index.md). |
 | **Two hover states that erased their own copy** | `ArrowCard` lightened the card and set the text to white in the same rule: 1.06:1 and 1.55:1. |
 | **24 partials with dead heading selectors** | Retargeted to `:is(h1, h2)` wherever touched. |
 | **Four click-only controls** | `ProcessSection` tabs, the blog dropdown, the article TOC, `ArrowCard`'s hover-only link. |
@@ -448,7 +448,7 @@ Unchanged, as before: three `h2`s inside a section that already has one. Structu
 
 | | |
 |---|---|
-| **`Heading` and `Text` renamed every class** | The whole Appendix E layer was unreachable through them. `237b2fb`. The largest single fault in the conversion — see [[00 Index]]. |
+| **`Heading` and `Text` renamed every class** | The whole Appendix E layer was unreachable through them. `237b2fb`. The largest single fault in the conversion — see [docs/index.md](./docs/index.md). |
 | **The header logo was invisible** | White wordmark on the white header the conversion introduced. Swapped to the `LogoBlack` variant that already existed. |
 | **Nav dropdowns clipped on hover** | `container_main`'s `overflow: hidden`, switched off for the header's container only. |
 | **"Leading Brands" broke mid-phrase** | A hard `width: 12.4375rem` measured against the old sans heading. |
@@ -460,7 +460,7 @@ Unchanged, as before: three `h2`s inside a section that already has one. Structu
 
 ## Behaviour added in Phase F, beyond the guide
 
-All three at the user's explicit request, and all three reversing or deviating from a settled decision. Recorded here as well as in [[Rules]] so they are not mistaken for drift.
+All three at the user's explicit request, and all three reversing or deviating from a settled decision. Recorded here as well as in [RULES.md](./RULES.md) so they are not mistaken for drift.
 
 | | |
 |---|---|
@@ -565,7 +565,7 @@ Also dead: Tailwind-shaped classes in `Footer.tsx` (`py-4 flex justify-between i
 
 **`SingleBlogContent`'s table-of-contents card** is `bg_primary` with light text arriving from SCSS descendant rules and **no `color_white` class**. The most likely thing to go unreadable during the token swap.
 
-**`Navbar` sticky is inert** — `position: sticky` with no `top` value, so the bar scrolls away today. Decision: remove the dead wrapper rather than make it genuinely sticky, which matches both the guide and current behaviour. Recorded as a settled decision in [[Rules]].
+**`Navbar` sticky is inert** — `position: sticky` with no `top` value, so the bar scrolls away today. Decision: remove the dead wrapper rather than make it genuinely sticky, which matches both the guide and current behaviour. Recorded as a settled decision in [RULES.md](./RULES.md).
 
 ## Deviations from the playbook, with reasons
 

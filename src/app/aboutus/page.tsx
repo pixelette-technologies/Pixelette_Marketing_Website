@@ -1,5 +1,6 @@
 import {
   AboutBuilt,
+  AboutCeo,
   AboutClose,
   AboutUsHero,
   AboutWhy,
@@ -23,6 +24,7 @@ export default function AboutUsPage() {
     <>
       <AboutUsHero />
       <AboutWhy />
+      <AboutCeo />
       <AboutBuilt />
       <Principles />
       <AboutBriefBlocks />

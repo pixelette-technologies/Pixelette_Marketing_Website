@@ -7,9 +7,9 @@
 //
 // THE PAGE ANSWERS THREE QUESTIONS AND NO MORE: why Pixelette Marketing
 // exists, how it differs from a channel-led agency, and what working with it
-// feels like. Six sections, locked: hero, why we exist, how we're built, what
-// guides the work, part of the wider group, close. The capability model, the
-// who-we-are / how-we-work pair and the ecosystem logo strip came off.
+// feels like. Sections: hero, why we exist, leadership/CEO, how we're built,
+// what guides the work, how the work is delivered, close. The capability
+// model, the who-we-are / how-we-work pair and the ecosystem logo strip came off.
 //
 // Every string below is the brief's verbatim, except the one line marked
 // under "How we're built".
@@ -50,7 +50,30 @@ export const aboutWhy = {
   link: { label: "See how our capabilities connect →", to: "/services" }
 };
 
-// --- 03 How we're built -----------------------------------------------------
+// --- 03 Leadership / CEO ----------------------------------------------------
+// Portrait + vision, placed after why we exist. Name, role and vision copy
+// live here so the section stays data-driven like the rest of the page.
+
+export const aboutCeo = {
+  eyebrow: "Leadership",
+  name: "Gulnaz Akhtar",
+  role: "Chief Executive Officer",
+  image: {
+    src: "/aboutUs/ceo.jpg",
+    alt: "Portrait of Gulnaz Akhtar, Chief Executive Officer of Pixelette Marketing"
+  },
+  body: [
+    "Curious by nature, strategic by experience and focused on making things happen.",
+    "My background is in leadership, strategy and transformation. I’ve led complex national and regional programmes, transformed organisational performance and brought people together to solve challenging problems.",
+    "I bring a different perspective to marketing - understanding organisations from the inside out, asking the right questions and connecting ideas with measurable outcomes."
+  ],
+  visionTitle: "Vision",
+  vision: [
+    "My vision for Pixelette Marketing is to challenge the way businesses think about marketing - putting understanding before activity, purpose behind creativity and measurable impact at the heart of every strategy."
+  ]
+};
+
+// --- 04 How we're built -----------------------------------------------------
 // The page's one interaction: four stages on a line, with a signal that runs
 // through once. See BuiltFlow.tsx.
 
@@ -71,7 +94,7 @@ export const aboutBuilt = {
   ]
 };
 
-// --- 04 What guides the work ------------------------------------------------
+// --- 05 What guides the work ------------------------------------------------
 
 export const aboutPrinciples = {
   eyebrow: "Our principles",
@@ -96,7 +119,7 @@ export const aboutPrinciples = {
   ]
 };
 
-// --- 05 Part of the wider Pixelette Group ------------------------------------
+// --- 06 Part of the wider Pixelette Group ------------------------------------
 // Text only. No logos: group companies are not client proof.
 //
 // NO "Explore the wider Pixelette Group →" LINK. The brief makes it
@@ -110,7 +133,7 @@ export const aboutGroup = {
   body: "Pixelette Marketing Ltd is one of four companies in Pixelette Group. Where a marketing engagement needs software built, we refer to Pixelette Technologies under a documented referral arrangement. Where it needs assurance or certification work, we refer to Pixelette Certified. We do not deliver either ourselves, and we say so rather than letting a group website imply otherwise."
 };
 
-// --- 06 Close ---------------------------------------------------------------
+// --- 07 Close ---------------------------------------------------------------
 // One call to action, and the site's primary label for it.
 
 export const aboutClose = {

@@ -1,0 +1,114 @@
+// Leadership / CEO. After why we exist.
+//
+// Same rhythm as aboutWhy: top padding only, hairline under the eyebrow,
+// two columns from 60rem (portrait | copy). No card — figure sits on the
+// page ground with a light line frame.
+
+@use "../sectionHead" as sectionHead;
+
+.aboutCeo {
+  padding-block: var(--sec-y-sm) 0;
+
+  &__head {
+    border-top: 1px solid var(--color-line);
+    padding-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    & > .eyebrow {
+      @include sectionHead.section-eyebrow;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1.75rem;
+    align-items: start;
+  }
+
+  &__figure {
+    margin: 0;
+    min-width: 0;
+    max-width: 22rem;
+    overflow: hidden;    
+    background: var(--color-band);
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center top;
+    // border: 2px solid var(--color-brand);
+    border-radius: 0.5rem;
+  }
+
+  &__copy {
+    min-width: 0;
+    max-width: 38rem;
+  }
+
+  &__copy > .h2 {
+    @include sectionHead.section-title;
+  }
+
+  &__role {
+    margin: 0.35rem 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-pink-text);
+  }
+
+  &__body {
+    margin-top: 1.25rem;
+
+    & > .body {
+      max-width: 38rem;
+      color: var(--color-plum-ink);
+    }
+
+    & > .body + .body {
+      margin-top: 0.85rem;
+    }
+  }
+
+  &__visionTitle {
+    margin: 1.75rem 0 0;
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--color-burgundy);
+  }
+
+  &__vision {
+    margin-top: 0.85rem;
+
+    & > .body {
+      max-width: 38rem;
+      color: var(--color-plum-ink);
+    }
+
+    & > .body + .body {
+      margin-top: 0.85rem;
+    }
+  }
+}
+
+@media (min-width: 60rem) {
+  .aboutCeo {
+    &__grid {
+      grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+      column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+      align-items: start;
+    }
+
+    &__figure {
+      max-width: none;
+    }
+  }
+}

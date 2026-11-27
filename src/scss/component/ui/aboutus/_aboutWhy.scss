@@ -10,6 +10,8 @@
 // Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
 // burgundy heading, near-black copy. Nothing important is in pale grey.
 
+@use "../sectionHead" as sectionHead;
+
 .aboutWhy {
   // ONE --sec-y-sm GAP BETWEEN SECTIONS, not two: each section pads its top only and the
   // last before the close pads both. The brief asks for a page 40-50% shorter
@@ -25,13 +27,12 @@
     padding-top: 1.5rem;
 
     & > .eyebrow {
-      margin-bottom: 1.25rem;
-      color: var(--color-pink-text);
+      @include sectionHead.section-eyebrow;
     }
 
     & > .h2 {
+      @include sectionHead.section-title;
       max-width: 34rem;
-      color: var(--color-burgundy);
     }
   }
 

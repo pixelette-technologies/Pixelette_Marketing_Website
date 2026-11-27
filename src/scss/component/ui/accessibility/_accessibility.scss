@@ -4,6 +4,7 @@
 // 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .axPage {
   --ax-cream: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
@@ -87,17 +88,7 @@
 
 .axMatters__heading,
 .axWork__lead h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
-}
-
-.axMatters__heading {
-  font-size: clamp(1.9rem, 1.4rem + 1.2vw, 2.55rem);
-  line-height: 1.1;
+  @include sectionHead.section-title;
 }
 
 .axMatters__intro {

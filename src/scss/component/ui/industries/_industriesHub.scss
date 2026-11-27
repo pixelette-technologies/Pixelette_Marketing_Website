@@ -1,3 +1,5 @@
+@use "../sectionHead" as sectionHead;
+
 // /industries: hero, the eight-market explorer, Work in practice, the close.
 // The locked information architecture's four chapters, 29 Sep 2026; finished
 // to the final Industries brief on 30 Sep.
@@ -597,7 +599,11 @@
   max-width: 44rem;
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
+    @include sectionHead.section-eyebrow;
+  }
+
+  & > .h2 {
+    @include sectionHead.section-title;
   }
 }
 

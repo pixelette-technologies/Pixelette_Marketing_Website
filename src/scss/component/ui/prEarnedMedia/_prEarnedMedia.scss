@@ -3,6 +3,7 @@
 // Hero art is original CSS/SVG. No icons on labels, capabilities or measures.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .prPage {
   --pr-cream: #fbf7f2;
@@ -20,24 +21,8 @@
 }
 
 .prSectionTitle {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.85rem, 1.4rem + 1.4vw, 2.6rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--pr-plum);
-  text-wrap: balance;
-}
-
-.prSectionTitle::after {
-  content: "";
-  flex: 0 0 3.25rem;
-  height: 2px;
-  background: var(--pr-crimson);
+  @include sectionHead.section-title;
+  @include sectionHead.section-title-reset-rule;
 }
 
 // --- Hero ------------------------------------------------------------------
@@ -499,10 +484,6 @@
   .prDeliver__item:first-child {
     padding-top: 0;
     border-top: 0;
-  }
-
-  .prSectionTitle::after {
-    flex-basis: 2rem;
   }
 
   .prCollage__label {

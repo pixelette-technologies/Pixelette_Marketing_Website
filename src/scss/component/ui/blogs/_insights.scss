@@ -6,6 +6,7 @@
 // 27 Nov 2026: hero left copy metrics match locked-service hero (Paid Media).
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .ix-sr {
   position: absolute;
@@ -38,19 +39,13 @@
 // hairline rather than as a headline. --large for the two sections that open
 // a band of their own.
 .ixLabel {
-  margin: 0 0 1.5rem;
+  @include sectionHead.section-title;
+  margin-bottom: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid var(--color-line);
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--color-plum-ink);
 }
 
 .ixLabel--large {
-  font-size: var(--fs-h2);
-  letter-spacing: -0.014em;
   margin-bottom: 2rem;
 }
 

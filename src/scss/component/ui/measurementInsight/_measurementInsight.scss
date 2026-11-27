@@ -3,10 +3,11 @@
 // Hero artwork is the supplied collage. The chart is a local demonstration.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .miPage {
   --mi-ink: #3c1634;
-  --mi-cream: #fff8f4;
+  --mi-cream: #fbf7f2;
   --mi-rose: var(--color-brand);
   background: var(--mi-cream);
   color: var(--mi-ink);
@@ -60,24 +61,8 @@
 }
 
 .miEyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #711741;
-}
-
-.miEyebrow::after {
-  content: "";
-  width: 2.4rem;
-  height: 3px;
-  border-radius: 4px;
-  background: var(--mi-rose);
+  @include sectionHead.section-eyebrow;
+  @include sectionHead.section-eyebrow-reset-rule;
 }
 
 .miHero__eyebrow {
@@ -86,14 +71,9 @@
 }
 
 .miTitle {
-  margin: 0.85rem 0 0;
+  @include sectionHead.section-title;
+  margin-top: 0;
   max-width: 16ch;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2.15rem, 1.2rem + 2.4vw, 3.15rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  color: var(--mi-ink);
 }
 
 .miLead {
@@ -110,9 +90,7 @@
 .miHero {
   position: relative;
   padding-top: clamp(2.2rem, 1rem + 2.4vw, 3.4rem);
-  background:
-    radial-gradient(circle at 78% 28%, rgba(255, 186, 140, 0.28), transparent 32%),
-    linear-gradient(180deg, #fff6f2 0%, var(--mi-cream) 70%);
+  background: var(--mi-cream);
 }
 
 .miHero__grid {
@@ -183,7 +161,7 @@
 .miExplore {
   position: relative;
   padding-block: clamp(1.2rem, 0.4rem + 1.5vw, 2.2rem) clamp(3rem, 2rem + 2vw, 4.2rem);
-  background: linear-gradient(180deg, #fff4ee 0%, #fff7f4 88%, #fff5f4 100%);
+  background: var(--mi-cream);
 }
 
 .miSteps {
@@ -489,9 +467,7 @@
 
 .miCaps {
   padding-block: clamp(3rem, 2rem + 2vw, 4.2rem);
-  background:
-    radial-gradient(ellipse at 92% 0%, rgba(249, 210, 221, 0.45), transparent 42%),
-    #fff7f3;
+  background: var(--mi-cream);
 }
 
 .miCaps .miTitle {
@@ -535,12 +511,11 @@
 
 .miFaq {
   padding-block: clamp(2.8rem, 1.8rem + 2vw, 4rem) clamp(3.4rem, 2rem + 2.2vw, 4.6rem);
-  background: #fff9f5;
+  background: var(--mi-cream);
 }
 
 .miTitle--faq {
   max-width: 16ch;
-  font-size: clamp(1.8rem, 1.2rem + 1.4vw, 2.3rem);
 }
 
 .miFaq__list {

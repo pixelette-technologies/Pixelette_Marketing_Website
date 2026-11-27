@@ -4,6 +4,7 @@
 // 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -235,13 +236,11 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   border-top: 1px solid var(--color-line);
 
   & .eyebrow {
-    display: block;
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include sectionHead.section-eyebrow;
   }
 
   & .h2 {
-    color: var(--color-plum-ink);
+    @include sectionHead.section-title;
   }
 
   &__list {

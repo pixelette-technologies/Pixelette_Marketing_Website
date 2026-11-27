@@ -1,6 +1,8 @@
 // Shared service-page close CTA (SEO locked treatment).
 // Tint banner, diagonal wash, brand pill — used across What We Do closes.
 
+@use "../ui/sectionHead" as sectionHead;
+
 .serviceCloseBand {
   padding-block: 0.35rem 0.5rem;
 }
@@ -40,14 +42,7 @@
 }
 
 .serviceCloseBand__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.7rem, 1.3rem + 1.1vw, 2.25rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
+  @include sectionHead.section-title;
 }
 
 .serviceCloseBand__lead {

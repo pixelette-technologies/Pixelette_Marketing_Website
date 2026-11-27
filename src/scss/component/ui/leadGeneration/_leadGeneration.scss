@@ -3,6 +3,7 @@
 // The hero image is the supplied triptych. Do not crop it.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .lgPage {
   background: var(--color-band);
@@ -39,13 +40,7 @@
 }
 
 .lgTitle {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 1.35rem + 1.6vw, 2.75rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--color-plum-ink);
+  @include sectionHead.section-title;
 }
 
 // --- Hero ------------------------------------------------------------------
@@ -69,13 +64,7 @@
 }
 
 .lgOffer__label {
-  margin: 0 0 1.05rem;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-brand);
+  @include sectionHead.section-eyebrow;
 }
 
 .lgHero__heading {

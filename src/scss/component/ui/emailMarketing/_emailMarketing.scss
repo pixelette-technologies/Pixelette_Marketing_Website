@@ -3,6 +3,7 @@
 // Hero art is CSS. The email frame is one upright card; stages swap its copy.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .emPage {
   --em-cream: #fffaf7;
@@ -20,14 +21,7 @@
 }
 
 .emSectionTitle {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 560;
-  font-size: clamp(1.9rem, 1.35rem + 1.5vw, 2.7rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--em-plum);
-  text-wrap: balance;
+  @include sectionHead.section-title;
 }
 
 // --- Hero ------------------------------------------------------------------

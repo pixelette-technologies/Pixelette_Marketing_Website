@@ -3,6 +3,7 @@
 // Hero comparison, architecture and measurement framework are live text.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .seoPage {
   --seo-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -727,15 +728,8 @@
 }
 
 .seoSystem__heading {
-  margin: 0;
+  @include sectionHead.section-title;
   max-width: 12em;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.85rem, 1.3rem + 1.5vw, 2.7rem);
-  line-height: 1.08;
-  letter-spacing: -0.025em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
 }
 
 .seoSystem__heading em {
@@ -813,13 +807,7 @@
 }
 
 .seoFaq__heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(1.85rem, 1.4rem + 1.3vw, 2.5rem);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--color-burgundy);
+  @include sectionHead.section-title;
 }
 
 .seoFaq__list {

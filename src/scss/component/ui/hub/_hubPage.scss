@@ -18,6 +18,7 @@
 // 27 Nov 2026: title + lead match locked-service hero left copy.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .hubHero {
   padding-block: var(--sec-y);
@@ -67,7 +68,11 @@
   max-width: 44rem;
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
+    @include sectionHead.section-eyebrow;
+  }
+
+  & > .h2 {
+    @include sectionHead.section-title;
   }
 
   & > .lead {

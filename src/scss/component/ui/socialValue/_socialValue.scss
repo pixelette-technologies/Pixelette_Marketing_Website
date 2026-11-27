@@ -2,6 +2,7 @@
 // Page-local layout. Shared brand tokens only. Does not restyle other routes.
 
 @use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 .svPage {
   --sv-cream: color-mix(in srgb, var(--color-brand-wash) 20%, var(--room-light));
@@ -82,17 +83,7 @@
 
 .svPrinciples__heading,
 .svFocus__col h2 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--color-burgundy);
-  text-wrap: balance;
-}
-
-.svPrinciples__heading {
-  font-size: clamp(1.85rem, 1.45rem + 1.15vw, 2.45rem);
-  line-height: 1.12;
+  @include sectionHead.section-title;
 }
 
 .svPrinciples__intro {

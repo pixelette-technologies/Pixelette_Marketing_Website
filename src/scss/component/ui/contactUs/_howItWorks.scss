@@ -1,6 +1,8 @@
 // What happens next — light band, matching the Accessibility matters cards:
 // blush cards on cream, brand-red step marks, dark copy. No dark panel.
 
+@use "../sectionHead" as sectionHead;
+
 .howItworksBand {
   background: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
   color: var(--color-plum-ink);
@@ -13,8 +15,7 @@
     margin-bottom: 1.5rem;
 
     & > :is(h1, h2) {
-      margin: 0;
-      color: var(--color-burgundy);
+      @include sectionHead.section-title;
     }
   }
 

@@ -15,7 +15,7 @@ export const prEarnedMediaContent = {
     headingClose: "Communicate with",
     headingEmphasis: "confidence",
     lead: "Strategic communications that build trust, manage risk and create a lasting positive profile with the audiences that matter most.",
-    statement: ["One story.", "Different audiences.", "Clear messages"]
+    statement: ["One story,", "different audiences,", "clear messages"]
   },
   audiences: [
     { id: "media", label: "Media" },

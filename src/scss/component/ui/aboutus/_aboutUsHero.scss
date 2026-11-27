@@ -1,27 +1,21 @@
 // The interior hero. 30 Sep 2026.
 //
 // A single column, no image. The headline is two authored lines — the
-// statement in near-black, the turn in burgundy — so each line is a block span
-// and the break falls where the brief puts it at every width wide enough to
-// hold it. Below that each line wraps on its own.
-//
-// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
-// near-black and burgundy headline, near-black lead.
-//
-// No media query. The type interpolates, the caps are in rem against a
-// container that is already fluid, and .wash-left is redrawn for narrow
-// screens in _responsive.
+// statement in near-black, the turn in brand italic — so each line is a block
+// span and the break falls where the brief puts it.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
 
 .heroSectionAbout {
   padding-block: var(--sec-y-sm);
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include heroCopy.service-hero-eyebrow;
   }
 
   & > .h1 {
-    max-width: 48rem;
+    @include heroCopy.service-hero-heading;
   }
 
   &__lead,
@@ -34,16 +28,16 @@
   }
 
   &__accent {
-    color: var(--color-burgundy);
+    @include heroCopy.service-hero-heading-em;
+    display: block;
   }
 
   & > .lead {
-    margin-top: 1.5rem;
-    // D3 — measure comes from the `.lead` primitive (62ch).
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
   }
 
   & > .btn {
-    margin-top: 2rem;
+    margin-top: 1.7rem;
   }
 }

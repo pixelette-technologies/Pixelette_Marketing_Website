@@ -62,7 +62,8 @@ export const ASSESS_ANCHOR = "what-we-assess";
 
 export const strategyHero = {
   eyebrow: "Diagnostics",
-  heading: "Find your next move",
+  headingLead: "Find your",
+  headingEmphasis: "next move",
   lead: "A short marketing diagnostic to reveal what is working, what needs attention and where to focus.",
   /** Process line under the lead — Newsreader / --font-display italic. */
   process: ["Assess", "Understand", "Act"] as const,

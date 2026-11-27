@@ -13,7 +13,7 @@ export const prEarnedMediaContent = {
     eyebrow: "PR & Earned Media",
     headingLines: ["Build credibility.", "Strengthen reputation."],
     headingClose: "Communicate with",
-    headingEmphasis: "confidence.",
+    headingEmphasis: "confidence",
     lead: "Strategic communications that build trust, manage risk and create a lasting positive profile with the audiences that matter most.",
     statement: ["One story.", "Different audiences.", "Clear messages."]
   },

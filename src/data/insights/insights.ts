@@ -144,7 +144,8 @@ const byId = (id: number): Insight => {
 
 export const insightsHero = {
   eyebrow: "Insights",
-  headline: "Thinking you can use",
+  headlineLead: "Thinking you",
+  headlineEmphasis: "can use",
   lead: "Points of view, practical playbooks and tools for making better marketing decisions.",
   secondary:
     "Updated regularly with focused thinking on growth, demand, search, conversion and measurement."

@@ -53,7 +53,8 @@ export default function PublicSectorPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Marketing and communications for public and civic organisations
+              Marketing and communications for public and{" "}
+              <em>civic organisations</em>
             </Heading>
             <Text className='lead'>
               We offer integrated marketing, campaigns and communications for

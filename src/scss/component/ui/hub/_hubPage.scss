@@ -15,12 +15,32 @@
 // The interior hero ground, as every page that is not the home page takes.
 // There is no eyebrow: neither page has that copy and writing one would be
 // inventing content. The pattern ships without the missing element.
+// 27 Nov 2026: title + lead match locked-service hero left copy.
+
+@use "../serviceHeroCopy" as heroCopy;
+
 .hubHero {
   padding-block: var(--sec-y);
   max-width: 34rem;
 
+  & > .h1p,
+  & > .h1 {
+    @include heroCopy.service-hero-heading;
+  }
+
+  & > .h1p em,
+  & > .h1 em {
+    @include heroCopy.service-hero-heading-em;
+  }
+
   & > .lead {
-    margin-top: 1.5rem;
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
+  }
+
+  & > .lead + .body {
+    margin-top: 0.85rem;
+    max-width: 42ch;
   }
 }
 

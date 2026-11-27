@@ -73,7 +73,7 @@ export default function ServicesIndexPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              What we do
+              What <em>we do</em>
             </Heading>
             <Text className='lead'>
               The work is organised as five connected capabilities rather than

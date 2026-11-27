@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
+import { HeroEmphasis } from "@/lib/heroEmphasis";
 import { FC } from "react";
 
 interface IndustriesHeroProps {
@@ -38,7 +39,7 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
           <div>
             <Text className='eyebrow'>{eyebrow}</Text>
             <Heading className='h1p' level={1}>
-              {mainHeading}
+              <HeroEmphasis text={mainHeading} lastWordCount={1} />
             </Heading>
             <Text className='industriesHero__sub'>{subHeading}</Text>
             <Text className='lead'>{text}</Text>

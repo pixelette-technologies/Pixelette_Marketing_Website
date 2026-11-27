@@ -20,7 +20,7 @@ export default function Page() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Public sector and local government
+              Public sector and <em>local government</em>
             </Heading>
             <Text className='lead'>
               Councils, NHS bodies, government agencies and public services

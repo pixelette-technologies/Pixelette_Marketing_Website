@@ -20,7 +20,15 @@ const StrategyHero = ({
   onResume,
   onRestart
 }: StrategyHeroProps) => {
-  const { eyebrow, heading, lead, process, facts, primaryCta } = strategyHero;
+  const {
+    eyebrow,
+    headingLead,
+    headingEmphasis,
+    lead,
+    process,
+    facts,
+    primaryCta
+  } = strategyHero;
 
   const start = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
@@ -36,7 +44,7 @@ const StrategyHero = ({
           </p>
 
           <h1 id='impact-intro-heading' className='impactIntro__heading'>
-            {heading}
+            {headingLead} <em>{headingEmphasis}</em>
           </h1>
 
           <p className='impactIntro__lead'>{lead}</p>

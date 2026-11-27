@@ -14,7 +14,7 @@ export const socialCommunityContent = {
   hero: {
     breadcrumb: "Communications & Engagement / Social & Community",
     headingLead: "Build a social presence people actually want to",
-    headingEmphasis: "participate in.",
+    headingEmphasis: "participate in",
     lead: "Strategy, content and community management designed to turn social attention into meaningful audience growth, learning and demand.",
     cta: { label: "Discuss Your Project", href: "/contactus" },
     campaign: {

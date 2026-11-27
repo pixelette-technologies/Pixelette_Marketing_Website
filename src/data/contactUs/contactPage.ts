@@ -12,7 +12,8 @@ export const CONTACT_EMAIL = "sales@pixelettemarketing.com";
 
 export const contactHero = {
   eyebrow: "Contact",
-  heading: "Tell us what you want to achieve",
+  headingLead: "Tell us what you want to",
+  headingEmphasis: "achieve",
   lead: "Businesses, public bodies and community organisations can start in the same place. Tell us the objective, who you need to reach and what is getting in the way. Tell us what you know and skip what you do not. One of us replies, not a sequence.",
   closing:
     "No generic proposal. No recommendation before we understand the objective. If we are not the right fit, we will say so."

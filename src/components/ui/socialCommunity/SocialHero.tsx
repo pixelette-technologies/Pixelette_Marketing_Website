@@ -59,7 +59,6 @@ const SocialHero = () => {
           </div>
 
           <CommentPanel />
-          <div className='scHero__swoop' aria-hidden='true' />
         </div>
       </div>
     </section>

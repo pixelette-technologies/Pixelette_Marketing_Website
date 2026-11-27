@@ -1,6 +1,9 @@
 // /accessibility — approved page, 24 Nov 2026.
 // Page-local layout. Shared brand tokens only. Does not restyle other routes.
 // Hero matches /social-value: mosaic as full-bleed cover, copy in a light box.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
 
 .axPage {
   --ax-cream: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
@@ -51,50 +54,31 @@
 }
 
 .axHero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--color-brand);
-}
-
-.axHero__eyebrow span {
-  width: 1.65rem;
-  height: 2px;
-  background: var(--color-brand);
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
 }
 
 .axHero__heading {
-  margin: 0.65rem 0 0;
-  max-width: 11em;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: clamp(2.15rem, 1.25rem + 1.8vw, 3.15rem);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  color: var(--color-burgundy);
+  @include heroCopy.service-hero-heading;
 }
 
-.axHero__heading span {
+.axHero__heading span,
+.axHero__heading em {
+  display: block;
+}
+
+.axHero__heading em {
+  @include heroCopy.service-hero-heading-em;
   display: block;
 }
 
 .axHero__text {
-  margin: 0.85rem 0 0;
+  @include heroCopy.service-hero-lead;
   max-width: 42ch;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--color-body);
 }
 
 .axHero__text + .axHero__text {
-  margin-top: 0.7rem;
+  margin-top: 0.55rem;
 }
 
 .axMatters {

@@ -34,9 +34,13 @@ export default function HomeHero() {
             <p className='homeHero__eyebrow'>{eyebrow}</p>
 
             <h1 className='h1 homeHero__title'>
-              {headline.tail
-                ? `${headline.lead} ${headline.tail}`
-                : headline.lead}
+              {headline.tail ? (
+                <>
+                  {headline.lead} <em>{headline.tail}</em>
+                </>
+              ) : (
+                headline.lead
+              )}
             </h1>
 
             <p className='lead homeHero__support'>{support}</p>

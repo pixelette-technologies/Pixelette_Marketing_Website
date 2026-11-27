@@ -1,13 +1,9 @@
 // /contactus, 30 Sep 2026, on the Pixelette Technologies contact page:
 // a text hero, offices beside the form, What happens next (_howItWorks),
 // other routes in, and the FAQ.
-//
-// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
-// plum-ink headline and copy, burgundy card headings, the brand crimson for
-// links only.
-//
-// No media query. The split is a wrapping flex pair and the routes are the
-// thirds grid, so both fall to one column on their own.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
 
 $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -17,23 +13,24 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   padding-block: var(--sec-y-sm) 2.5rem;
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include heroCopy.service-hero-eyebrow;
   }
 
   & > .h1 {
-    max-width: 22ch;
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-heading;
+  }
+
+  & > .h1 em {
+    @include heroCopy.service-hero-heading-em;
   }
 
   & > .lead {
-    margin-top: 1.5rem;
-    // D3 — measure comes from the `.lead` primitive (62ch).
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
   }
 
   & > .small {
-    max-width: 66ch;
+    max-width: 42ch;
     margin-top: 1rem;
     color: var(--color-muted);
   }

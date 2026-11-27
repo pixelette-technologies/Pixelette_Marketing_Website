@@ -20,7 +20,7 @@ const ContactUsHero = () => {
         <section className='contactHero'>
           <Text className='eyebrow'>{contactHero.eyebrow}</Text>
           <Heading className='h1' level={1}>
-            {contactHero.heading}
+            {contactHero.headingLead} <em>{contactHero.headingEmphasis}</em>
           </Heading>
           <Text className='lead'>{contactHero.lead}</Text>
           <Text className='small'>{contactHero.closing}</Text>

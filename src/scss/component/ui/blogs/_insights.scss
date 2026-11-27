@@ -3,14 +3,9 @@
 // COLOUR. Insights uses brand red (--color-brand) with plum ink, pink and
 // pink-text. --color-pink is 4.36 on white, so it marks, fills and underlines;
 // small pink words are --color-pink-text. Primary CTAs reuse shared .btn.
-//
-// MOTION. Every transition and animation below sits under
-// prefers-reduced-motion: no-preference. With reduced motion the states still
-// change (a pressed filter, a lit sample answer) and nothing travels.
-//
-// LAYOUT. Flex bases and the thirds grid fold on their own. The one media
-// query is the site's one breakpoint, and it only turns the filter row into a
-// sideways-scrolling strip.
+// 27 Nov 2026: hero left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
 
 .ix-sr {
   position: absolute;
@@ -108,27 +103,29 @@
   flex: 1 1 28rem;
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include heroCopy.service-hero-eyebrow;
   }
 
   & > .h1p {
-    color: var(--color-brand);
-    max-width: 14ch;
+    @include heroCopy.service-hero-heading;
+  }
+
+  & > .h1p em {
+    @include heroCopy.service-hero-heading-em;
   }
 
   & > .lead {
-    margin-top: 1.5rem;
-    max-width: 34rem;
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
   }
 }
 
 .ixHero__secondary {
   margin: 1rem 0 0;
-  max-width: 34rem;
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  max-width: 42ch;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
   color: var(--color-body);
 }
 

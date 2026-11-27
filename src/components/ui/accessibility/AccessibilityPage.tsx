@@ -25,14 +25,15 @@ const AccessibilityPage = () => {
           </picture>
         </div>
         <div className='axHero__copy'>
-          <p className='axHero__eyebrow'>
-            <span aria-hidden='true' />
-            {copy.eyebrow}
-          </p>
+          <p className='axHero__eyebrow'>{copy.eyebrow}</p>
           <h1 id='ax-hero-heading' className='axHero__heading'>
-            {copy.hero.headingLines.map(line => (
-              <span key={line}>{line}</span>
-            ))}
+            {copy.hero.headingLines.map((line, index, lines) =>
+              index === lines.length - 1 ? (
+                <em key={line}>{line}</em>
+              ) : (
+                <span key={line}>{line}</span>
+              )
+            )}
           </h1>
           {copy.hero.paragraphs.map(paragraph => (
             <p key={paragraph} className='axHero__text'>

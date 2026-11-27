@@ -12,7 +12,7 @@ export const influencerPartnershipsContent = {
   hero: {
     eyebrow: "Influencer & Partnerships",
     headingLead: "Real voices.",
-    headingAccent: "Stronger brands.",
+    headingAccent: "Stronger brands",
     lead: "Connect with the right creators and partners to build awareness, credibility and measurable growth.",
     image: {
       src: "/services/influencer-partnerships/hero-collage-4k.jpg",

@@ -64,7 +64,7 @@ export default function CampaignEvaluationPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Did the campaign achieve what it was for?
+              Did the campaign achieve <em>what it was for?</em>
             </Heading>
             <Text className='lead'>
               Reach is easy to report. Whether anything changed is the harder

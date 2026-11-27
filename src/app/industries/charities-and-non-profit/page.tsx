@@ -20,7 +20,7 @@ export default function Page() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Charities and non-profit
+              Charities and <em>non-profit</em>
             </Heading>
             <Text className='lead'>
               Charities, housing associations and community organisations

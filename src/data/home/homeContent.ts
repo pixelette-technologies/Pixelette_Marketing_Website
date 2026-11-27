@@ -45,8 +45,9 @@ export const RESULTS_HREF = "/results";
 export const heroCopy = {
   eyebrow: "Clarity. Momentum. Measurable impact.",
   headline: {
-    lead: "Marketing and communications that deliver measurable impact",
-    tail: ""
+    lead: "Marketing and communications that deliver",
+    // Brand italic turn — matches locked-service hero emphasis.
+    tail: "measurable impact"
   },
   ogHeadline: [
     "Marketing and communications",
@@ -537,6 +538,10 @@ export const widerAdvantageData: ItemsSectionContent = {
 
 export const finalConversionCopy = {
   secondaryCta: { label: "Discuss Your Project", to: "/contactus" },
+  eyebrow: "Start a conversation",
+  headingLead: "Let's discuss your",
+  headingEmphasis: "objectives",
+  /** Full string kept for callers that still pass a plain heading. */
   heading: "Let's discuss your objectives",
   lead: "Tell us what you want to achieve, whether that is business growth, public engagement or communications. We will use the first conversation to understand your objectives, audiences and challenges, and whether we are the right fit.",
   closing:

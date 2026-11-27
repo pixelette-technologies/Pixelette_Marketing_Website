@@ -37,7 +37,9 @@ export default function Home() {
       <SecondMarketBand />
       <RelevanceSection />
       <ContactSection
-        heading={finalConversionCopy.heading}
+        eyebrow={finalConversionCopy.eyebrow}
+        headingLead={finalConversionCopy.headingLead}
+        headingEmphasis={finalConversionCopy.headingEmphasis}
         text={finalConversionCopy.lead}
       />
     </>

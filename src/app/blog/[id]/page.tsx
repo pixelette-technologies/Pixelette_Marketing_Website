@@ -104,7 +104,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
       />
       <RelatedBlogs data={blog.relatedBlogs} />
       <ContactSection
-        heading={finalConversionCopy.heading}
+        eyebrow={finalConversionCopy.eyebrow}
+        headingLead={finalConversionCopy.headingLead}
+        headingEmphasis={finalConversionCopy.headingEmphasis}
         text={finalConversionCopy.lead}
         closing={finalConversionCopy.closing}
       />

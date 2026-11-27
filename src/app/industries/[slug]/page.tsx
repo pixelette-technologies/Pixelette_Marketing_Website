@@ -183,8 +183,9 @@ export default async function Page({ params }: PageProps) {
 
       <ContactSection
         id='enquiry'
-        eyebrow='Start here'
-        heading="Let's discuss your objectives"
+        eyebrow={finalConversionCopy.eyebrow}
+        headingLead={finalConversionCopy.headingLead}
+        headingEmphasis={finalConversionCopy.headingEmphasis}
         text={pageData.close.lead}
         closing={finalConversionCopy.closing}
         formIntro={false}

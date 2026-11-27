@@ -24,10 +24,12 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
 }
 
-.homeScene--visual {
-  min-height: 650px;
-  height: 60dvh;
-  max-height: 800px;
+@media (min-width: 992px) {
+  .homeScene--visual {
+    min-height: 650px;
+    height: 60dvh;
+    max-height: 800px;
+  }
 }
 
 .homeScene--flip .homeScene__art {

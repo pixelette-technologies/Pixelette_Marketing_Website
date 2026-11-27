@@ -55,6 +55,8 @@
 .dxShell {
   display: grid;
   gap: 0;
+  min-width: 0;
+  max-width: 100%;
   border-radius: 1.35rem;
   overflow: hidden;
   background: var(--color-page);
@@ -373,10 +375,13 @@
 
   &__text {
     flex: 1 1 auto;
+    min-width: 0;
     font-family: var(--font-display);
     font-size: 1.0625rem;
     line-height: 1.35;
     color: var(--color-plum-ink);
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
   }
 
   &:focus-within {
@@ -788,46 +793,121 @@
   .impactCompass--results {
     width: min(100%, 22rem);
   }
-}
 
-@media (max-width: 640px) {
-  .dxTiles {
-    grid-template-columns: 1fr;
-  }
-
-  .dxTile {
-    min-height: 4.5rem;
-    padding: 1.05rem 1rem;
-  }
-
+  // Tablet still cannot fit six tracked labels in one row without collision.
   .dxProgress__dimensions {
-    gap: 0.35rem 0.15rem;
+    gap: 0;
+    padding-inline: 0.35rem;
 
     &::before {
-      left: 6%;
-      right: 6%;
+      left: 9%;
+      right: 9%;
     }
   }
 
+  .dxProgress__dimension {
+    gap: 0;
+  }
+
   .dxProgress__name {
-    font-size: 0.5625rem;
-    letter-spacing: 0.06em;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .dxProgress--question {
-    padding: 1.15rem 1rem 1.65rem;
+  .dxTiles {
+    grid-template-columns: 1fr;
   }
+}
 
-  .dxQuestion__prompt--onDark {
-    font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+@media (max-width: 640px) {
+  .dxStage {
+    padding-inline: 0;
   }
 
   .dxShell {
     border-radius: 0.95rem;
   }
 
+  .dxTiles {
+    grid-template-columns: 1fr;
+  }
+
+  .dxTile {
+    min-height: 4.5rem;
+    padding: 1.05rem 0.95rem;
+    gap: 0.7rem;
+  }
+
+  .dxTile__text {
+    font-size: 1rem;
+  }
+
+  // Dots only on narrow viewports — six uppercase labels cannot share one row.
+  // Current dimension is already named under the question meta.
+  .dxProgress__dimensions {
+    gap: 0;
+    padding: 0.2rem 0.5rem 0;
+
+    &::before {
+      left: 10%;
+      right: 10%;
+      top: calc(0.2rem + 0.425rem);
+    }
+  }
+
+  .dxProgress__dimension {
+    gap: 0;
+  }
+
+  .dxProgress__name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .dxProgress,
+  .dxProgress--question {
+    padding: 1.1rem 1rem 1.55rem;
+  }
+
+  .dxProgress--question::after {
+    // scaleX(1.02) was pushing the shell past the viewport and clipping nav.
+    transform: none;
+  }
+
+  .dxQuestion__prompt--onDark {
+    font-size: clamp(1.2rem, 5.5vw, 1.5rem);
+  }
+
   .dxBody {
     padding: 1.15rem 1rem 1.25rem;
+  }
+
+  .dxNav {
+    flex-wrap: nowrap;
+    gap: 0.6rem;
+  }
+
+  .dxNav__back,
+  .dxNav__next {
+    flex: 1 1 0;
+    min-width: 0;
+    margin-left: 0;
+    padding: 0.8rem 0.85rem;
+    text-align: center;
   }
 }
 

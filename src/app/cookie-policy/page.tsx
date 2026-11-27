@@ -32,9 +32,14 @@ export default function CookiePolicyPage() {
       <div className='wash-left'>
         <Container className='main'>
           <header className='legalHero'>
+            <Text className='eyebrow'>Cookies</Text>
             <Heading className='h1p' level={1}>
-              Cookie Policy
+              Cookie <em>Policy</em>
             </Heading>
+            <p className='lead'>
+              This page explains how Pixelette Marketing uses cookies and similar
+              technologies on pixelettemarketing.com.
+            </p>
             <Text className='small'>Last updated: 26 Nov 2026</Text>
           </header>
         </Container>
@@ -42,10 +47,6 @@ export default function CookiePolicyPage() {
 
       <Container className='main'>
         <article className='prose legalBody'>
-          <p className='lead'>
-            This page explains how Pixelette Marketing uses cookies and similar
-            technologies on pixelettemarketing.com.
-          </p>
 
           <h2>What cookies are</h2>
           <p>

@@ -20,7 +20,7 @@ export default function Web3MarketingStubPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Web3 marketing
+              Web3 <em>marketing</em>
             </Heading>
           </section>
         </Container>

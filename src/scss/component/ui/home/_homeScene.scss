@@ -12,7 +12,7 @@
   --scene-reveal-x: 2.25rem;
 
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: stretch;
   min-height: clamp(20rem, 16rem + 16vw, 28rem);
   isolation: isolate;

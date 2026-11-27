@@ -66,9 +66,14 @@ export default function PrivacyPage() {
       <div className='wash-left'>
         <Container className='main'>
           <header className='legalHero'>
+            <Text className='eyebrow'>Privacy</Text>
             <Heading className='h1p' level={1}>
-              Privacy Statement
+              Privacy <em>Statement</em>
             </Heading>
+            <p className='lead'>
+              How Pixelette Marketing uses, protects and manages personal
+              information across this website and our work.
+            </p>
             <Text className='small'>Effective 8 October 2026</Text>
           </header>
         </Container>
@@ -76,10 +81,6 @@ export default function PrivacyPage() {
 
       <Container className='main'>
         <article className='prose legalBody'>
-          <p className='lead'>
-            How Pixelette Marketing uses, protects and manages personal
-            information across this website and our work.
-          </p>
 
           <h2 id='about'>About this statement, and about us</h2>
           <p>

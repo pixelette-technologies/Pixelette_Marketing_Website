@@ -20,7 +20,7 @@ export default function Page() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Education and learning
+              Education and <em>learning</em>
             </Heading>
           </section>
         </Container>

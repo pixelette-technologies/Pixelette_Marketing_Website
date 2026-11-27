@@ -2,6 +2,7 @@ import { Container } from "@/components/common";
 import MockupBanner from "@/components/common/MockupBanner";
 import { Heading, Text } from "@/components/feature";
 import type { MarketBServiceLine } from "@/data/publicSector/serviceLines";
+import { HeroEmphasis } from "@/lib/heroEmphasis";
 
 export default function MarketBServicePage({ line }: { line: MarketBServiceLine }) {
   return (
@@ -11,7 +12,7 @@ export default function MarketBServicePage({ line }: { line: MarketBServiceLine 
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              {line.h1}
+              <HeroEmphasis text={line.h1} lastWordCount={2} />
             </Heading>
           </section>
         </Container>

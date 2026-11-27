@@ -1,18 +1,37 @@
-// Legal pages — /cookie-policy today, and the Privacy, Terms, Modern slavery
-// and Accessibility pages the group footer will link when they exist.
+// Legal pages — /cookie-policy, /privacy, and related.
 //
-// The hero is the interior anatomy (.wash-left, h1p, one supporting line) and
-// the body is .prose. This partial states only what those two do not: the
-// hero's padding and the reading column. Type, colour and link treatment all
-// come from the primitives, so a legal page cannot drift from the rest of the
-// site.
+// The hero is the interior anatomy (.wash-left) and the body is .prose.
+// 27 Nov 2026: left copy matches locked-service hero typography (Paid Media).
+
+@use "../ui/serviceHeroCopy" as heroCopy;
 
 .legalHero {
   padding-block: var(--sec-y-sm);
   max-width: 34rem;
 
+  & > .eyebrow {
+    @include heroCopy.service-hero-eyebrow;
+  }
+
+  & > .h1p,
+  & > .h1 {
+    @include heroCopy.service-hero-heading;
+  }
+
+  & > .h1p em,
+  & > .h1 em {
+    @include heroCopy.service-hero-heading-em;
+  }
+
+  & > .lead {
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
+  }
+
   & > .small {
+    display: block;
     margin-top: 1rem;
+    max-width: 42ch;
   }
 }
 

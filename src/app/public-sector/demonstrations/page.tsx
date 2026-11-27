@@ -20,7 +20,7 @@ export default function DemonstrationsPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              Demonstration work
+              Demonstration <em>work</em>
             </Heading>
           </section>
         </Container>

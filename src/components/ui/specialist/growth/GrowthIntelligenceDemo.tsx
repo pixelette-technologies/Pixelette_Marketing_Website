@@ -43,7 +43,7 @@ const GrowthIntelligenceDemo = ({ demo }: { demo: GrowthDemoConfig }) => {
     <Container className='main'>
       <section
         className='spSection giSection'
-        id='growth-intelligence-view'
+        id='measurement-and-insight-view'
         aria-labelledby='gi-view'
       >
         <header className='spHead giSection__head'>

@@ -6,7 +6,8 @@ import Link from "next/link";
 // Used only by the group band, which is temporarily hidden — see the
 // TEMPORARILY HIDDEN block below. Restore this import with it.
 // import { MdArrowOutward } from "react-icons/md";
-import { servicesData } from "@/data/services/servicesData";
+import { company } from "@/data/company";
+import { footerCapabilityGroups } from "@/data/navigation";
 import { COOKIE_POLICY_HREF, PRIVACY_HREF } from "@/data/legal";
 
 // --- 18 Sep 2026: the group footer ------------------------------------------
@@ -112,9 +113,9 @@ export default function Footer() {
               <Logo />
             </span>
             <Text className='small'>
-              Growth marketing built around commercial outcomes, connecting
-              strategy, demand, search, pipeline, conversion and growth
-              intelligence.
+              Marketing and communications that deliver measurable impact for
+              businesses, public-sector organisations and community
+              organisations.
             </Text>
             <div className='footerSocial'>
               <a
@@ -149,20 +150,11 @@ export default function Footer() {
               Services
             </Heading>
             <ul className='footerList'>
-              {/* Strategy & Positioning leads the column because it is 01 of the
-                  five capabilities on /services and the eight service pages
-                  beneath it all assume it. The href is a literal rather than
-                  DIAGNOSTIC_HREF from @/data/strategy: that module is being
-                  rewritten, and the footer should not wait on it. */}
-              <li>
-                <Link href='/strategy-positioning' className='flink small'>
-                  Strategy & Positioning
-                </Link>
-              </li>
-              {servicesData.map(el => (
-                <li key={el.route}>
-                  <Link href={`/services/${el.route}`} className='flink small'>
-                    {el.title}
+              {/* Five capability groups → /services, opening that accordion panel. */}
+              {footerCapabilityGroups.map(group => (
+                <li key={group.href}>
+                  <Link href={group.href} scroll={false} className='flink small'>
+                    {group.name}
                   </Link>
                 </li>
               ))}
@@ -179,13 +171,9 @@ export default function Footer() {
                   About
                 </Link>
               </li>
-              {/* 29 Sep 2026: Industries in, Results out, matching the locked
-                  primary navigation. /results stays live and is reached from
-                  the evidence itself — the home page's proof teaser and Work
-                  in practice on /industries. */}
               <li>
                 <Link href='/industries' className='flink small'>
-                  Industries
+                  Sectors
                 </Link>
               </li>
               <li>
@@ -194,29 +182,19 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href='/social-value' className='flink small'>
+                  Social Value
+                </Link>
+              </li>
+              <li>
+                <Link href='/accessibility' className='flink small'>
+                  Accessibility
+                </Link>
+              </li>
+              <li>
                 <Link href='/contactus' className='flink small'>
                   Contact
                 </Link>
-              </li>
-              <li>
-                <Link href={PRIVACY_HREF} className='flink small'>
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link href={COOKIE_POLICY_HREF} className='flink small'>
-                  Cookies &amp; analytics
-                </Link>
-              </li>
-              <li>
-                {/* Theirs opens a dialog. Ours reuses the reopen behaviour the
-                    cookie page already has, which brings the consent banner
-                    back — the same choice, asked the way this site already
-                    asks it, rather than a second consent UI. */}
-                <ManageCookies
-                  label='Privacy choices'
-                  className='flink small footerList__button'
-                />
               </li>
             </ul>
           </div>
@@ -282,10 +260,28 @@ export default function Footer() {
             the name is written as the rest of the site writes it, with no
             suffix, until someone confirms which. See [[09 Outstanding]]. */}
         <div className='footerLegal'>
+          <ul className='footerList footerLegal__links'>
+            <li>
+              <Link href={PRIVACY_HREF} className='flink small'>
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link href={COOKIE_POLICY_HREF} className='flink small'>
+                Cookies &amp; analytics
+              </Link>
+            </li>
+            <li>
+              <ManageCookies
+                label='Privacy choices'
+                className='flink small footerList__button'
+              />
+            </li>
+          </ul>
           <p className='legal footerId'>
-            <span>Pixelette Marketing</span>{" "}
+            <span>{company.legalName}</span>{" "}
             <span>Registered in England and Wales</span>{" "}
-            <span>Company number 17508478</span>
+            <span>Company number {company.companyNumber}</span>
           </p>
           <p className='legal footerId footerId--end'>
             <span>Registered office 77 Fulham Palace Road, London W6 8JA</span>{" "}

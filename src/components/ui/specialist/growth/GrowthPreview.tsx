@@ -32,7 +32,7 @@ const GrowthPreview = ({ demo }: { demo: GrowthDemoConfig }) => {
         reduced={reduced}
         compact
       />
-      <a className='giPreview__link' href='#growth-intelligence-view'>
+      <a className='giPreview__link' href='#measurement-and-insight-view'>
         Explore the full view <span aria-hidden='true'>↓</span>
       </a>
     </div>

@@ -1,47 +1,31 @@
 import {
   AboutBuilt,
   AboutClose,
-  AboutGroup,
   AboutUsHero,
   AboutWhy,
   Principles
 } from "@/components/ui/aboutUs";
+import AboutBriefBlocks from "@/components/ui/aboutUs/AboutBriefBlocks";
 import { pageMetadata } from "@/data/site";
 
-// The About page, rebuilt 30 September 2026 to the final About page brief,
-// which supersedes every earlier About instruction (including the 21 Sep
-// rebuild this replaces).
-//
-// SIX SECTIONS, LOCKED: hero, why we exist, how we're built, what guides the
-// work, part of the wider Pixelette Group, close. Nothing else. The page
-// answers three questions — why Pixelette Marketing exists, how it differs
-// from a channel-led agency, what working with it is like — and leaves the
-// five capabilities to /services, which owns them.
-//
-// OFF THE PAGE: the who-we-are / how-we-work pair, the five-capability model
-// (the page's dark band) and the "Experience across the Pixelette ecosystem"
-// logo strip. The strip's copy still lives in aboutContent.ts because the home
-// page reads it; nothing here does.
-//
-// No team, no people, no imagery. The one interaction is the How we're built
-// flow, which runs once. The one .rule-cap is on AboutWhy. No .band-dark.
-
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "About",
   description:
-    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us.",
+    "Built around the challenge, not the channel. Pixelette Marketing brings strategy, creative thinking, technology and performance together around the objective in front of us.",
   path: "/aboutus",
-  keywords: ["about Pixelette Marketing", "growth marketing agency", "commercial marketing"]
+  keywords: ["about Pixelette Marketing", "marketing and communications agency", "integrated marketing"]
 });
+}
 
-export default function AboutUs() {
+export default function AboutUsPage() {
   return (
     <>
       <AboutUsHero />
       <AboutWhy />
       <AboutBuilt />
       <Principles />
-      <AboutGroup />
+      <AboutBriefBlocks />
       <AboutClose />
     </>
   );

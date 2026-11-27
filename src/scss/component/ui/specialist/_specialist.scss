@@ -1,3 +1,5 @@
+@use "../sectionHead" as sectionHead;
+
 // The specialist service pages (30 Sep 2026, the Demand & Performance
 // specialist pages brief; also the Search & Authority specialist page).
 // SpecialistServicePage and its sections.
@@ -43,22 +45,11 @@
   max-width: 44rem;
 
   &__eyebrow {
-    margin-bottom: 1.25rem;
-    font-family: var(--font-mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-pink-text);
+    @include sectionHead.section-eyebrow;
   }
 
   &__heading {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--fs-h2);
-    line-height: 1.14;
-    letter-spacing: -0.014em;
-    text-wrap: balance;
-    color: var(--color-burgundy);
+    @include sectionHead.section-title;
   }
 
   &__intro {
@@ -690,6 +681,19 @@
     &:focus-visible {
       outline: 2px solid var(--color-page);
       outline-offset: 3px;
+    }
+  }
+
+  &__secondary {
+    margin-top: 1rem;
+    margin-bottom: 0;
+
+    .textLink {
+      color: var(--color-brand-wash);
+
+      &:hover {
+        color: var(--color-page);
+      }
     }
   }
 }

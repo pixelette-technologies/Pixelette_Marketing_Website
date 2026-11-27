@@ -23,38 +23,16 @@ import {
   useState,
   useSyncExternalStore
 } from "react";
-import ClarityBridge from "./ClarityBridge";
 import DiagnosticResults from "./DiagnosticResults";
 import DiagnosticStage from "./DiagnosticStage";
-import ResultsClose from "./ResultsClose";
 import StrategyHero from "./StrategyHero";
 
-// /strategy-positioning as ONE experience, 30 Sep 2026 (the final diagnostic
-// brief). The hero, the bridge and the diagnostic share state because the
-// brief makes them one sequence: "Start the diagnostic" compacts the hero,
-// folds the bridge away and brings Question 1 up into the primary position,
-// with no reload and focus on the question.
+// /strategy-positioning — Impact Compass experience (Option 3, 20 Nov 2026).
+// Intro → one-question tiles → results dashboard. Scoring unchanged:
+// scoreDiagnostic + the same twelve questions.
 //
-// EVERYTHING STILL SERVER-RENDERS. This is a client component, but client
-// components render on the server too: the hero, the bridge and Question 1
-// are in the HTML, so a crawler and a no-JS reader get the page's argument.
-// The server always renders the untouched page (idle), because it cannot read
-// localStorage; stored answers arrive through useSyncExternalStore, the same
-// mechanism as before — see `src/lib/strategyDiagnostic.ts`.
-//
-// THE SCORING IS NOT HERE AND DID NOT CHANGE. `scoreDiagnostic` is called
-// exactly as it was, with the same twelve questions.
-//
-// PHASES: idle (Question 1 shown, nothing started), running (one question at
-// a time), halfway (the pacing moment after question six, ~1.3s, no button)
-// and results. `motion` is the transition between questions: the chosen
-// answer LOCKS (320ms, so the visitor sees what they chose), the question
-// LEAVES (up 20px and out, 180ms), and the next one enters by mounting.
-//
-// EVERY TIMED STEP IS PRECOMPUTED AT THE MOMENT OF THE CHOICE, and every
-// other action clears the pending timers first. So a timer never reads stale
-// state: it applies a whole state that was correct when it was scheduled,
-// and if anything happened in between, it never fires.
+// Phases: idle (intro only), running, halfway (~1.3s), results.
+// Server always renders idle (no localStorage); restore via useSyncExternalStore.
 
 type Phase = "idle" | "running" | "halfway" | "results";
 type Motion = "still" | "locking" | "leaving";
@@ -63,7 +41,6 @@ interface Working {
   answers: Answers;
   step: number;
   phase: Phase;
-  /** A stored, unfinished set was found on load. */
   resumable: boolean;
 }
 
@@ -74,19 +51,10 @@ const FRESH: Working = {
   resumable: false
 };
 
-/** After this answer (0-based), the halfway moment. */
 const HALFWAY_AFTER = TOTAL_QUESTIONS / 2 - 1;
 
-const TIMING = {
-  lock: 320,
-  leave: 180,
-  halfway: 1300
-};
-const TIMING_REDUCED = {
-  lock: 180,
-  leave: 0,
-  halfway: 1300
-};
+const TIMING = { lock: 320, leave: 180, halfway: 1300 };
+const TIMING_REDUCED = { lock: 180, leave: 0, halfway: 1300 };
 
 const restore = (raw: string | null): Working => {
   const stored = parseStoredRaw(raw);
@@ -135,31 +103,25 @@ const StrategyExperience = () => {
     readReducedServer
   );
 
-  // `null` until the visitor touches something; then storage is write-only.
   const [working, setWorking] = useState<Working | null>(null);
   const view = working ?? restore(raw);
   const { answers, step, phase, resumable } = view;
 
   const [motion, setMotion] = useState<Motion>("still");
-  /** The hero is compact once the visitor has started in this visit. A
-   *  returning visitor restored straight into their results sees the full
-   *  page, because they have not started anything yet. */
   const [started, setStarted] = useState(false);
-  /** Animate the result reveal. Only for a result the visitor has just
-   *  reached, never for one restored from storage. */
   const [reveal, setReveal] = useState(false);
-  /** Reopened a question from the results: answering it goes straight back. */
   const [returning, setReturning] = useState(false);
 
   const halfwayShown = useRef(false);
   const completionCounted = useRef(false);
   const timers = useRef<number[]>([]);
-  /** The answer a pointer choice has scheduled, so the change event that
-   *  follows the same click does not cancel it. */
   const pending = useRef<number | null>(null);
   const focusTarget = useRef<FocusTarget>(null);
+  // Browser-back: one history entry while in questions/results so Back
+  // returns to the intro banner (same URL); a second Back leaves the page.
+  const diagnosticHistory = useRef(false);
 
-  const questionRef = useRef<HTMLLegendElement | null>(null);
+  const questionRef = useRef<HTMLParagraphElement | null>(null);
   const halfwayRef = useRef<HTMLDivElement | null>(null);
   const resultsRef = useRef<HTMLHeadingElement | null>(null);
   const stageRef = useRef<HTMLElement | null>(null);
@@ -178,18 +140,13 @@ const StrategyExperience = () => {
     timers.current.push(window.setTimeout(run, ms));
   };
 
-  // --- Save -----------------------------------------------------------------
   useEffect(() => {
     if (!working) return;
-    if (working.phase === "idle" && working.answers.every(a => a === null)) {
-      return;
-    }
+    // Idle is intro-only (incl. browser-back to banner) — don't rewrite storage.
+    if (working.phase === "idle") return;
     saveState(working.answers, working.phase === "results");
   }, [working]);
 
-  // --- Focus ----------------------------------------------------------------
-  // Moved only when an action asked for it, and without scrolling: the page
-  // decides where it scrolls, the focus only follows.
   useEffect(() => {
     const target = focusTarget.current;
     if (!target) return;
@@ -203,12 +160,53 @@ const StrategyExperience = () => {
     node?.focus({ preventScroll: true });
   }, [step, phase, motion]);
 
+  useEffect(() => {
+    if (phase === "idle") return;
+    if (diagnosticHistory.current) return;
+    if (window.history.state?.pmDiagnostic === "in") {
+      diagnosticHistory.current = true;
+      return;
+    }
+    window.history.pushState(
+      { ...(window.history.state ?? {}), pmDiagnostic: "in" },
+      "",
+      window.location.href
+    );
+    diagnosticHistory.current = true;
+  }, [phase]);
+
+  useEffect(() => {
+    const onPopState = () => {
+      diagnosticHistory.current = window.history.state?.pmDiagnostic === "in";
+      clearTimers();
+      setMotion("still");
+      setReturning(false);
+      setReveal(false);
+      setWorking(prev => {
+        const current = prev ?? restore(readStoredRaw());
+        if (current.phase === "idle") return prev;
+        const complete = current.answers.every(answer => answer !== null);
+        const partial =
+          current.answers.some(answer => answer !== null) && !complete;
+        return {
+          ...current,
+          step: 0,
+          phase: "idle",
+          resumable: partial
+        };
+      });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [clearTimers]);
+
   const score = useMemo(
     () => scoreDiagnostic(answers, diagnosticQuestions),
     [answers]
   );
 
-  /** Keep the stage's top in view, without moving if it already is. */
   const bringStageIntoView = useCallback(() => {
     const stage = stageRef.current;
     if (!stage) return;
@@ -223,8 +221,6 @@ const StrategyExperience = () => {
       });
     }
   }, [reduced]);
-
-  // --- Actions --------------------------------------------------------------
 
   const markStarted = () => {
     if (!started) setStarted(true);
@@ -243,10 +239,12 @@ const StrategyExperience = () => {
     }
   };
 
-  /** Where an answered question leads. Pure: it returns what to do. */
   const destination = (
     base: Working
-  ): { kind: "question"; step: number } | { kind: "halfway" } | { kind: "results" } => {
+  ):
+    | { kind: "question"; step: number }
+    | { kind: "halfway" }
+    | { kind: "results" } => {
     const complete = base.answers.every(answer => answer !== null);
     if (returning && complete) return { kind: "results" };
     if (base.step === HALFWAY_AFTER && !halfwayShown.current) {
@@ -262,8 +260,6 @@ const StrategyExperience = () => {
     return { kind: "question", step: base.step + 1 };
   };
 
-  /** Lock, leave, arrive. `lock` is 0 for the Next button and Enter, where
-   *  the visitor has already seen their choice. */
   const advance = (base: Working, lock: number) => {
     const to = destination(base);
     setMotion(lock > 0 ? "locking" : "leaving");
@@ -281,7 +277,6 @@ const StrategyExperience = () => {
         focusTarget.current = "question";
         return;
       }
-      // Halfway: shown, held, then question seven — no button.
       halfwayShown.current = true;
       setWorking({ ...base, step: base.step + 1, phase: "halfway" });
       setMotion("still");
@@ -295,14 +290,10 @@ const StrategyExperience = () => {
     });
   };
 
-  /** An answer. `viaPointer` advances by itself after the lock; a keyboard
-   *  choice (arrow keys) only selects, and Enter or Next moves on — otherwise
-   *  arrowing through five options would skip four questions. */
   const choose = (index: number, viaPointer: boolean) => {
     if (!viaPointer && pending.current === index) return;
     clearTimers();
 
-    const beginning = phase === "idle";
     const base: Working = {
       answers: answers.map((answer, i) => (i === step ? index : answer)),
       step,
@@ -310,13 +301,7 @@ const StrategyExperience = () => {
       resumable: false
     };
     setWorking(base);
-    if (beginning) {
-      markStarted();
-      // The hero and the bridge fold away above the stage. Chrome and Firefox
-      // hold the stage still through that with scroll anchoring; this
-      // catches a browser that does not, once the fold has finished.
-      later(480, bringStageIntoView);
-    }
+    markStarted();
 
     if (viaPointer) {
       pending.current = index;
@@ -342,7 +327,6 @@ const StrategyExperience = () => {
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
 
-  /** The hero's control, and the resume panel's two. */
   const start = (fresh: boolean) => {
     clearTimers();
     const fromScratch = fresh || phase === "results" || !resumable;
@@ -353,7 +337,12 @@ const StrategyExperience = () => {
     }
     setWorking(
       fromScratch
-        ? { answers: emptyAnswers(), step: 0, phase: "running", resumable: false }
+        ? {
+            answers: emptyAnswers(),
+            step: 0,
+            phase: "running",
+            resumable: false
+          }
         : { ...view, phase: "running", resumable: false }
     );
     setMotion("still");
@@ -379,74 +368,65 @@ const StrategyExperience = () => {
     bringStageIntoView();
   };
 
-  // --- Render ---------------------------------------------------------------
-
-  const compact = started;
+  const showIntro = phase === "idle";
+  const showStage = phase === "running" || phase === "halfway";
+  const showResultsView = phase === "results";
 
   return (
-    // data-reveal="off": the site's scroll reveal would otherwise hide this
-    // whole block and fade it in, fighting the diagnostic's own motion.
-    <div
-      className={compact ? "strategyExperience is-compact" : "strategyExperience"}
-      data-reveal='off'
-    >
-      <StrategyHero
-        compact={compact}
-        onStart={() => start(false)}
-      />
-
-      <ClarityBridge collapsed={compact} />
-
-      {/* The instrument's own ground: the page colour, full-bleed, on a page whose
-          ground is the warm band. It is what keeps the bridge and the stage
-          from running together, and gives the rail a crisp field. */}
-      <div className='dxGround'>
-      <Container className='main'>
-        <section
-          className='dxStage'
-          id='diagnostic'
-          ref={stageRef}
-          aria-labelledby='dx-stage-heading'
-        >
-          {/* The outline needs a heading here; a sighted visitor reads the
-              progress row and the question instead. */}
-          <h2 id='dx-stage-heading' className='dx-sr'>
-            {diagnosticIntro.heading}
-          </h2>
-
-          {phase === "results" ? (
-            <DiagnosticResults
-              score={score}
-              headingRef={resultsRef}
-              reveal={reveal}
-              onReopen={reopen}
-            />
-          ) : (
-            <DiagnosticStage
-              answers={answers}
-              step={step}
-              phase={phase}
-              resumable={resumable}
-              motion={motion}
-              animate={started && !reduced}
-              returning={returning}
-              questionRef={questionRef}
-              halfwayRef={halfwayRef}
-              onChoose={choose}
-              onNext={next}
-              onBack={back}
-              onBackToResults={backToResults}
-              onResume={() => start(false)}
-              onRestart={() => start(true)}
-            />
-          )}
-        </section>
-      </Container>
-      </div>
-
-      {phase === "results" && (
-        <ResultsClose reveal={reveal} onRetake={() => start(true)} />
+    <div className='strategyExperience' data-reveal='off'>
+      {showIntro && (
+        <StrategyHero
+          onStart={() => start(false)}
+          resumable={resumable}
+          onResume={() => start(false)}
+          onRestart={() => start(true)}
+        />
       )}
+
+      {(showStage || showResultsView) && (
+        <div className='dxGround'>
+          <Container className='main'>
+            <section
+              className='dxStage'
+              id='diagnostic'
+              ref={stageRef}
+              aria-labelledby='dx-stage-heading'
+            >
+              <h2 id='dx-stage-heading' className='dx-sr'>
+                {diagnosticIntro.heading}
+              </h2>
+
+              {showResultsView ? (
+                <DiagnosticResults
+                  score={score}
+                  headingRef={resultsRef}
+                  reveal={reveal}
+                  onReopen={reopen}
+                  onRetake={() => start(true)}
+                />
+              ) : (
+                <DiagnosticStage
+                  answers={answers}
+                  step={step}
+                  phase={phase}
+                  motion={motion}
+                  animate={started && !reduced}
+                  returning={returning}
+                  questionRef={questionRef}
+                  halfwayRef={halfwayRef}
+                  onChoose={choose}
+                  onNext={next}
+                  onBack={back}
+                  onBackToResults={backToResults}
+                />
+              )}
+            </section>
+          </Container>
+        </div>
+      )}
+
+      {/* Anchor target for Start diagnostic before hydration / when idle */}
+      {showIntro && <div id='diagnostic' className='dx-sr' tabIndex={-1} />}
     </div>
   );
 };

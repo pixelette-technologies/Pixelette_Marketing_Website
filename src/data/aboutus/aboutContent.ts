@@ -32,7 +32,7 @@ export const aboutHero = {
   eyebrow: "About Pixelette Marketing",
   headingLead: "Built around the challenge,",
   headingAccent: "not the channel",
-  lead: "Pixelette Marketing brings strategy, creative thinking, technology and performance together around the commercial problem in front of us. We shape the team and the approach around what the work actually needs.",
+  lead: "Pixelette Marketing brings strategy, creative thinking, technology and performance together around the objective in front of us. We shape the team and the approach around what the work actually needs.",
   cta: { label: "Start a conversation", to: CONTACT_HREF }
 };
 
@@ -78,8 +78,8 @@ export const aboutPrinciples = {
   heading: "What guides the work",
   items: [
     {
-      title: "Commercially focused",
-      body: "Marketing should connect to a business objective."
+      title: "Objective focused",
+      body: "Marketing and communications should connect to a clear objective."
     },
     {
       title: "Clear by design",
@@ -105,9 +105,9 @@ export const aboutPrinciples = {
 // would have been the on-site answer is hidden (22 Sep 2026).
 
 export const aboutGroup = {
-  eyebrow: "Part of the wider Pixelette Group",
-  heading: "Marketing that can connect with more than marketing",
-  body: "Pixelette Marketing sits within the wider Pixelette Group. Where the brief genuinely requires it, marketing work can connect with broader product, software, AI and automation or assurance capability across the group."
+  eyebrow: "Part of Pixelette Group",
+  heading: "Part of Pixelette Group",
+  body: "Pixelette Marketing Ltd is one of four companies in Pixelette Group. Where a marketing engagement needs software built, we refer to Pixelette Technologies under a documented referral arrangement. Where it needs assurance or certification work, we refer to Pixelette Certified. We do not deliver either ourselves, and we say so rather than letting a group website imply otherwise."
 };
 
 // --- 06 Close ---------------------------------------------------------------
@@ -116,7 +116,7 @@ export const aboutGroup = {
 export const aboutClose = {
   heading: "Have a challenge worth working through?",
   lead: "Start with the problem. We’ll help work out what needs to move.",
-  cta: { label: "Build my growth plan", to: CONTACT_HREF }
+  cta: { label: "Discuss Your Project", to: CONTACT_HREF }
 };
 
 // --- Not rendered on /aboutus -------------------------------------------------

@@ -10,18 +10,19 @@
 // HOVER CHANGES BORDER COLOUR ONLY, the house rule: under a fine pointer a
 // row's lower hairline turns pink. Nothing lifts or moves.
 
+@use "../sectionHead" as sectionHead;
+
 .principles {
   padding-block: var(--sec-y-sm) 0;
 
   & > header {
     & > .eyebrow {
-      margin-bottom: 1.25rem;
-      color: var(--color-pink-text);
+      @include sectionHead.section-eyebrow;
     }
 
     & > .h2 {
+      @include sectionHead.section-title;
       max-width: 34rem;
-      color: var(--color-burgundy);
     }
   }
 

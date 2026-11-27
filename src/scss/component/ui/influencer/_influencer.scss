@@ -1,0 +1,278 @@
+// Influencer & Partnerships — approved design (20 Nov 2026).
+// Page-local surface. Does not change specialist templates or other routes.
+
+@use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
+
+.ipPage {
+  --ip-cream: #fbf7f2;
+  --ip-burgundy: #4b1635;
+  --ip-magenta: #e11d74;
+  --ip-magenta-deep: #c0105a;
+  --ip-ink: #2a1420;
+  --ip-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  background: var(--ip-cream);
+}
+
+// --- Hero ------------------------------------------------------------------
+// Full-bleed collage + Social Value–style light copy box (no dash, same type).
+
+.ipHero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(28rem, 70vw, 36rem);
+}
+
+.ipHero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ipHero__image {
+  object-fit: cover;
+  object-position: 70% center;
+}
+
+.ipHero__copy {
+  position: relative;
+  z-index: 1;
+  width: min(34rem, calc(100% - 2.5rem));
+  margin-block: clamp(1.5rem, 3vw, 2.75rem);
+  margin-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  margin-right: 1.25rem;
+  padding: clamp(1.15rem, 1.5vw, 1.75rem) clamp(1.15rem, 1.8vw, 1.85rem);
+  background: rgb(255 255 255 / 90%);
+}
+
+.ipHero__eyebrow {
+  @include heroCopy.service-hero-eyebrow;
+}
+
+.ipHero__heading {
+  @include heroCopy.service-hero-heading;
+}
+
+.ipHero__headingLead {
+  color: var(--color-plum-ink);
+}
+
+.ipHero__headingAccent {
+  @include heroCopy.service-hero-heading-em;
+}
+
+.ipHero__lead {
+  @include heroCopy.service-hero-lead;
+}
+
+.ipHero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1.7rem;
+  min-height: 52px;
+  padding: 0.85rem 1.55rem;
+  border-radius: 999px;
+  background: var(--ip-magenta);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 180ms var(--ip-ease);
+}
+
+.ipHero__cta:hover {
+  background: var(--ip-magenta-deep);
+  color: #fff;
+}
+
+// --- What we deliver -------------------------------------------------------
+
+.ipDeliver {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+  background: var(--ip-cream);
+}
+
+.ipDeliver__head {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.85fr) minmax(0, 1.4fr);
+  gap: clamp(1rem, 2vw, 2.5rem);
+  align-items: end;
+  margin-bottom: clamp(1.75rem, 1rem + 2vw, 2.75rem);
+}
+
+.ipDeliver__heading {
+  @include sectionHead.section-title;
+  @include sectionHead.section-title-reset-rule;
+}
+
+.ipDeliver__intro {
+  margin: 0;
+  padding-left: clamp(1rem, 2vw, 1.75rem);
+  border-left: 1px solid var(--color-line-strong);
+  max-width: 46ch;
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  line-height: 1.55;
+  color: var(--ip-ink);
+}
+
+.ipDeliver__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(1rem, 0.75rem + 1vw, 1.5rem);
+}
+
+.ipDeliver__card {
+  position: relative;
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  padding: 0.85rem 0.85rem 1.35rem;
+  border-radius: 1.1rem;
+  background: #fff;
+  box-shadow: 0 10px 28px rgba(75, 22, 53, 0.07);
+  border: 1px solid rgba(75, 22, 53, 0.04);
+}
+
+.ipDeliver__card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.ipDeliver__card:nth-child(5) {
+  grid-column: 4 / span 2;
+}
+
+.ipDeliver__photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: #efe6ea;
+}
+
+.ipDeliver__image {
+  object-fit: cover;
+}
+
+.ipDeliver__icon {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.65rem;
+  height: 2.65rem;
+  margin-top: -1.35rem;
+  margin-left: 0.65rem;
+  border-radius: 999px;
+  background: var(--color-brand);
+  color: #fff;
+  box-shadow: 0 6px 16px color-mix(in srgb, var(--color-brand) 28%, transparent);
+}
+
+.ipIcon {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.ipDeliver__cardTitle {
+  margin: 1rem 0.35rem 0.45rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: var(--ip-burgundy);
+}
+
+.ipDeliver__cardBody {
+  margin: 0 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.ipDeliver[data-motion="ready"][data-entered="false"] .ipDeliver__card {
+  opacity: 0;
+  transform: translateY(1.1rem);
+}
+
+.ipDeliver[data-motion="ready"][data-entered="true"] .ipDeliver__card {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 620ms var(--ip-ease),
+    transform 620ms var(--ip-ease);
+  transition-delay: calc(var(--ip-i, 0) * 70ms);
+}
+
+// --- Closing CTA -----------------------------------------------------------
+// Shared ServiceCloseBand; page wrap mirrors .ipDeliver bottom space below.
+
+.ipCloseWrap {
+  margin-bottom: clamp(3rem, 2rem + 4vw, 5rem);
+}
+
+// --- Responsive ------------------------------------------------------------
+
+@media (max-width: 1100px) {
+  .ipDeliver__card:nth-child(4),
+  .ipDeliver__card:nth-child(5) {
+    grid-column: span 3;
+  }
+
+  .ipDeliver__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .ipDeliver__card:nth-child(-n + 3) {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .ipHero {
+    min-height: 34rem;
+  }
+
+  .ipHero__image {
+    object-position: 72% center;
+  }
+
+  .ipHero__heading {
+    max-width: 16ch;
+  }
+
+  .ipDeliver__head {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .ipDeliver__intro {
+    padding-left: 0;
+    border-left: 0;
+    border-top: 1px solid var(--color-line-strong);
+    padding-top: 1rem;
+  }
+
+  .ipDeliver__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ipDeliver__card,
+  .ipDeliver__card:nth-child(4),
+  .ipDeliver__card:nth-child(5),
+  .ipDeliver__card:nth-child(-n + 3) {
+    grid-column: 1 / -1;
+  }
+}

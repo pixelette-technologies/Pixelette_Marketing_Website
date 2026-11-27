@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { company, companyOgFooter } from "@/data/company";
 import { heroCopy } from "@/data/home";
+import {
+  isOfficialMarketingHost,
+  OFFICIAL_HOSTS
+} from "@/lib/officialHost";
 
 // One origin for canonicals, Open Graph, the sitemap and structured data.
 // Pages used to hard-code the host; a typo in one file is how those drift.
@@ -8,6 +13,8 @@ import { heroCopy } from "@/data/home";
 export const SITE_URL = "https://www.pixelettemarketing.com";
 export const SITE_NAME = company.name;
 export const TWITTER_HANDLE = "@pixelettemarketing";
+
+export { isOfficialMarketingHost, OFFICIAL_HOSTS };
 
 /** Generated default share card — nested routes do not inherit the file. */
 export const DEFAULT_OG_IMAGE = "/opengraph-image";
@@ -75,8 +82,12 @@ function ogImages(ogImage: string): NonNullable<Metadata["openGraph"]>["images"]
 /**
  * Standard page metadata. Every public page must go through this so nested
  * routes name `/opengraph-image` explicitly (the file convention is not inherited).
+ *
+ * Robots are host-aware: only the official marketing domain may be indexed.
+ * Preview, vercel.app and other hosts stay noindex even when a page asks to
+ * be indexed. Call from `generateMetadata` (async).
  */
-export function pageMetadata({
+export async function pageMetadata({
   title,
   description,
   path,
@@ -85,7 +96,7 @@ export function pageMetadata({
   index = true,
   absoluteTitle,
   ogImage = DEFAULT_OG_IMAGE
-}: PageMetaInput): Metadata {
+}: PageMetaInput): Promise<Metadata> {
   const fullTitle = withBrand(title, absoluteTitle);
   const shareTitle = ogTitle(title, absoluteTitle);
   const url =
@@ -93,6 +104,8 @@ export function pageMetadata({
       ? SITE_URL
       : `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
   const images = ogImages(ogImage);
+  const host = (await headers()).get("host") ?? "";
+  const allowIndex = isOfficialMarketingHost(host) && index;
 
   return {
     title: fullTitle,
@@ -116,8 +129,8 @@ export function pageMetadata({
       images: [ogImage]
     },
     robots: {
-      index,
-      follow: true
+      index: allowIndex,
+      follow: allowIndex
     }
   };
 }

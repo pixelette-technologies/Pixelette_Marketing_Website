@@ -1,98 +1,141 @@
-// The shell shared by home sections 02, 03 and 04. Locked implementation
-// specification, 28 Sep 2026.
-//
-// Each is a full-bleed illustrated band, as in the approved reference: the
-// picture fills the band, the copy sits in a column on the left over the
-// picture's pale side. (The small rail label that hung on the right was
-// removed on instruction, 29 Sep 2026.)
-//
-// ONE GRID CELL ON A WIDE SCREEN, TWO ROWS ON A PHONE. The picture and the
-// copy are siblings placed in the same cell, so the copy is in normal flow
-// (the band grows with it) and the picture is layered behind it. At phone
-// width the picture drops into its own row beneath the copy, which is how
-// the spec's "notes never obscure essential copy/CTA" is met by construction
-// rather than by tuning positions.
+// Shared shell for homepage sections 02, 03 and 05 (+ text-only 04).
+// Correction 20 Nov 2026: rectangular image/copy panels inspired by Social
+// Change — not overlay, not What We Do stage media. Alternating flip; one-shot
+// scroll entrance. Original graphics and narrative retained.
+// 26 Nov 2026: left copy matches locked-service hero typography; index/rule gone.
+
+@use "../serviceHeroCopy" as heroCopy;
 
 .homeScene {
-  // Where the moving pictures' stage begins: the container's left edge plus
-  // the copy column. 31rem clears the widest single-line headline at its
-  // largest size ("Attention is easy to buy" at 3.125rem), so no note or duck
-  // can reach the words. The 100% resolves where it is used, against the
-  // full-bleed picture, not here.
-  --scene-stage-left: calc(max(0px, (100% - 1160px) / 2) + 20px + 31rem);
+  --scene-reveal-dur: 720ms;
+  --scene-reveal-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --scene-reveal-x: 2.25rem;
 
-  // 29 Sep, on instruction: each band fills the screen below the sticky
-  // header (--home-band-h: 100dvh less the header), and its
-  // previous height (the inner min-height below, or its content) is the
-  // floor. The grid's single row stretches to the band, and the body passes
-  // that height down so the copy stays centred in it.
-  height: var(--home-band-h);
-  min-height: fit-content;
-  position: relative;
   display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  min-height: clamp(20rem, 16rem + 16vw, 28rem);
   isolation: isolate;
   overflow: hidden;
   background: var(--room-light);
 }
 
+.homeScene--flip {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+}
+
+@media (min-width: 992px) {
+  .homeScene--visual {
+    min-height: 650px;
+    height: 60dvh;
+    max-height: 800px;
+  }
+}
+
+.homeScene--flip .homeScene__art {
+  order: 1;
+}
+
+.homeScene--flip .homeScene__body {
+  order: 2;
+}
+
+// Default: copy left, art right (DOM order is art then body — reorder).
+.homeScene:not(.homeScene--flip) .homeScene__art {
+  order: 2;
+}
+
+.homeScene:not(.homeScene--flip) .homeScene__body {
+  order: 1;
+}
+
+.homeScene--capabilities {
+  background: var(--color-band);
+}
+
 .homeScene__art,
 .homeScene__body {
-  grid-area: 1 / 1;
   min-width: 0;
+  position: relative;
 }
 
 .homeScene__art {
-  position: relative;
   z-index: 0;
+  min-height: clamp(16rem, 12rem + 18vw, 26rem);
+  overflow: hidden;
+  background: var(--room-warm, #f5ede7);
 }
 
 .homeScene__body {
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
-  // Clicks go through to nothing here but the copy, so the empty right-hand
-  // part of the body must not sit over the picture's hover responses.
-  pointer-events: none;
+  justify-content: center;
 }
 
 .homeScene__body > .container_main {
   display: flex;
   flex: 1;
   flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  max-width: none;
+  padding-inline: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+}
+
+// 02 Activity + 05 Relevance: left copy was flush to the viewport — inset
+// to the site container edge. Art / backgrounds stay full-bleed in-column.
+.homeScene--activity .homeScene__body > .container_main,
+.homeScene--relevance .homeScene__body > .container_main {
+  padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
 }
 
 .homeScene__inner {
-  flex: 1;
-  position: relative;
   display: flex;
   align-items: center;
-  min-height: clamp(24rem, 17rem + 17vw, 34rem);
-  padding-block: clamp(2.5rem, 1.75rem + 2.5vw, 4rem);
+  padding-block: clamp(1.75rem, 1.25rem + 2vw, 3rem);
 }
 
-.homeScene__inner > * {
-  pointer-events: auto;
+// --- Scroll entrance ------------------------------------------------------------
+
+.homeScene[data-motion="ready"][data-entered="false"] .homeScene__art,
+.homeScene[data-motion="ready"][data-entered="false"] .homeScene__body {
+  opacity: 0;
+  transition:
+    opacity var(--scene-reveal-dur) var(--scene-reveal-ease),
+    transform var(--scene-reveal-dur) var(--scene-reveal-ease);
 }
 
-@media (max-width: 767px) {
-  // The copy row takes its content height; the picture row takes whatever
-  // the full-height band has left, and never less than its own minimum.
-  .homeScene {
-    grid-template-rows: auto 1fr;
-  }
+.homeScene[data-motion="ready"][data-entered="false"]:not(.homeScene--flip)
+  .homeScene__body {
+  transform: translateX(calc(var(--scene-reveal-x) * -1));
+}
 
+.homeScene[data-motion="ready"][data-entered="false"]:not(.homeScene--flip)
   .homeScene__art {
-    grid-area: 2 / 1;
-  }
-
-  .homeScene__inner {
-    min-height: 0;
-    padding-bottom: 1.5rem;
-  }
+  transform: translateX(var(--scene-reveal-x));
 }
 
-// --- The soft room (RoomBackdrop.tsx), behind sections 02 and 03 -------------------
+.homeScene[data-motion="ready"][data-entered="false"].homeScene--flip
+  .homeScene__art {
+  transform: translateX(calc(var(--scene-reveal-x) * -1));
+}
+
+.homeScene[data-motion="ready"][data-entered="false"].homeScene--flip
+  .homeScene__body {
+  transform: translateX(var(--scene-reveal-x));
+}
+
+.homeScene[data-motion="ready"][data-entered="true"] .homeScene__art,
+.homeScene[data-motion="ready"][data-entered="true"] .homeScene__body {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--scene-reveal-dur) var(--scene-reveal-ease),
+    transform var(--scene-reveal-dur) var(--scene-reveal-ease);
+}
+
+// --- The soft room (RoomBackdrop.tsx), behind section 03 -------------------
 
 .roomBackdrop {
   position: absolute;
@@ -124,50 +167,18 @@
   max-width: 27rem;
 }
 
-.editorialCopy__mark {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin: 0 0 1.5rem;
-}
-
-.editorialCopy__number {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--color-ink);
-}
-
-.editorialCopy__rule {
-  width: 2.75rem;
-  height: 1px;
-  background: var(--color-ink);
-}
-
 .editorialCopy__eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-ink);
+  @include heroCopy.service-hero-eyebrow;
 }
 
 .editorialCopy__title {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 1.25rem + 2.3vw, 3.125rem);
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  color: var(--color-ink);
+  @include heroCopy.service-hero-heading;
 }
 
 .editorialCopy__line {
   display: block;
 }
 
-// The reference's line breaks are the design: each written line holds as a
-// line from tablet width up. On a phone they may wrap.
 @media (min-width: 768px) {
   .editorialCopy__line {
     white-space: nowrap;
@@ -175,14 +186,119 @@
 }
 
 .editorialCopy__line--accent {
-  color: var(--color-brand);
+  @include heroCopy.service-hero-heading-em;
 }
 
 .editorialCopy__lead {
-  max-width: 24rem;
-  margin: clamp(1rem, 0.75rem + 0.8vw, 1.5rem) 0 1rem;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--color-body);
-  text-wrap: pretty;
+  @include heroCopy.service-hero-lead;
+  margin-bottom: 0.85rem;
+}
+
+.editorialCopy .textLink {
+  margin-top: 0.85rem;
+}
+
+.homeScene__copyStack {
+  max-width: 27rem;
+}
+
+.capabilitiesNames {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    font-size: 0.875rem;
+    line-height: 1.35;
+    color: var(--color-body);
+  }
+
+  &__name {
+    font-weight: 600;
+  }
+
+  &__cadence {
+    font-size: 0.8125rem;
+    color: var(--color-muted, var(--color-body));
+  }
+}
+
+@media (max-width: 899px) {
+  .homeScene,
+  .homeScene--flip {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .homeScene__art,
+  .homeScene--flip .homeScene__art,
+  .homeScene:not(.homeScene--flip) .homeScene__art {
+    order: 1;
+    min-height: clamp(14rem, 42vw, 20rem);
+  }
+
+  .homeScene__body,
+  .homeScene--flip .homeScene__body,
+  .homeScene:not(.homeScene--flip) .homeScene__body {
+    order: 2;
+  }
+
+  .homeScene__inner {
+    padding-block: 1.5rem 2rem;
+  }
+
+  .homeScene__body > .container_main {
+    padding-inline: clamp(1.25rem, 4vw, 1.75rem);
+  }
+
+  .homeScene[data-motion="ready"][data-entered="false"] .homeScene__art,
+  .homeScene[data-motion="ready"][data-entered="false"] .homeScene__body,
+  .homeScene[data-motion="ready"][data-entered="false"].homeScene--flip
+    .homeScene__art,
+  .homeScene[data-motion="ready"][data-entered="false"].homeScene--flip
+    .homeScene__body {
+    transform: translateY(1.15rem);
+  }
+
+  .editorialCopy__line {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homeScene[data-motion="ready"][data-entered="false"] .homeScene__art,
+  .homeScene[data-motion="ready"][data-entered="false"] .homeScene__body {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+// Text-only bridge between illustrated bands — same left-copy type, tighter pad.
+.homeOneApproach {
+  padding-block: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
+  background: var(--color-page);
+
+  .editorialCopy {
+    max-width: 40rem;
+  }
+
+  .editorialCopy__title {
+    max-width: 18em;
+  }
+
+  // The setup line is a full sentence, so it wraps. The accent stays its own line.
+  .editorialCopy__line {
+    white-space: normal;
+  }
+
+  .editorialCopy__lead {
+    max-width: 40rem;
+  }
 }

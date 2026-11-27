@@ -42,14 +42,18 @@ test("route binds durable idempotency, receipt storage, rate limiting and bounde
   assert.match(form, /eventId \?\? crypto\.randomUUID\(\)/);
 });
 
-test("form remains unavailable until privacy and consent configuration is complete", () => {
-  assert.match(form, /const governanceReady = Boolean\(privacyNoticeUrl && noticeVersion && consentText\)/);
-  // The notice is a route on this site, not a deploy-time URL that can ship as
-  // a placeholder and still pass the gate.
+test("form renders with recorded privacy defaults so the budget selector can be reviewed", () => {
   assert.match(form, /const privacyNoticeUrl = PRIVACY_HREF;/);
+  assert.match(form, /NEXT_PUBLIC_CONTACT_PRIVACY_NOTICE_VERSION\?\.trim\(\) \|\| "1\.0"/);
+  assert.match(
+    form,
+    /I agree that Pixelette Marketing may use the details above to respond to my enquiry\./
+  );
+  assert.match(form, /const governanceReady = Boolean\(privacyNoticeUrl && noticeVersion && consentText\)/);
   assert.match(form, /if \(!governanceReady\)/);
   assert.match(form, /type='checkbox' name='consent'/);
   assert.match(form, /Read the privacy notice/);
+  assert.match(form, /name='indicativeBudget'/);
 });
 
 test("security headers constrain framing, capabilities and transport", () => {

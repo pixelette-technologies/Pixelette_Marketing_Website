@@ -271,3 +271,7 @@
 .footer :focus-visible {
   outline-color: var(--color-brand-signal);
 }
+
+// A2 slick overrides live in slick-focus-override.scss, imported after the
+// vendor CSS in layout.tsx so they win the cascade.
+

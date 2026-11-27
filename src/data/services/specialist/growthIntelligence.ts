@@ -1,6 +1,11 @@
 import { growthIntelligenceDemo } from "./growthIntelligenceDemo";
 import type { SpecialistPageConfig } from "./types";
 
+// 23 Nov 2026: /services/marketing_analytics_and_reporting renders
+// MeasurementInsightPage. This config still supplies the route's title and
+// description. The sections below are the previous specialist page and are
+// not rendered.
+//
 // THE GROWTH INTELLIGENCE SPECIALIST PAGE (30 Sep 2026, the Marketing
 // Analytics & Measurement final implementation brief).
 //
@@ -33,7 +38,7 @@ import type { SpecialistPageConfig } from "./types";
 
 export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   route: "marketing_analytics_and_reporting",
-  capability: "Growth Intelligence",
+  capability: "Measurement and Insight",
   label: "Marketing Analytics & Measurement",
   meta: {
     title: "Marketing Analytics & Measurement | Pixelette Marketing",
@@ -41,7 +46,7 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
       "Marketing analytics and measurement designed to connect performance, customer and pipeline data and turn evidence into clearer commercial decisions."
   },
   hero: {
-    eyebrow: "Growth Intelligence / Marketing Analytics & Measurement",
+    eyebrow: "Measurement and Insight / Marketing Analytics & Measurement",
     heading: {
       lead: "Know what’s working.",
       accent: "Know what to do next"
@@ -93,7 +98,7 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   measure: {
     eyebrow: "What we measure",
     heading: "Measure what matters to the decision",
-    body: "The right metric depends on the question being asked. Growth Intelligence starts with the decision — then works backwards to the evidence needed to support it.",
+    body: "The right metric depends on the question being asked. Measurement and Insight starts with the decision — then works backwards to the evidence needed to support it.",
     // Examples, not a universal KPI set — which the note says on the page.
     metrics: [
       "Qualified demand",
@@ -112,22 +117,22 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   // practice" renders between measure and connections once there is.
   connections: {
     eyebrow: "How this connects",
-    heading: "Growth Intelligence is the learning layer across the system",
+    heading: "Measurement and Insight is the learning layer across the system",
     centre: "Marketing Analytics & Measurement",
     defaultIndex: 0,
     items: [
       {
-        capability: "Strategy & Positioning",
+        capability: "Brand and Strategy",
         title: "The numbers are moving, but the strategic question is unclear",
         body: "Data does not replace deciding where the business should compete, who matters or what proposition it should own."
       },
       {
-        capability: "Demand & Performance",
+        capability: "Creative and Campaigns",
         title: "Performance needs optimisation",
         body: "Demand specialists use the evidence to decide what should be tested, scaled, reduced or stopped."
       },
       {
-        capability: "Pipeline & Conversion",
+        capability: "Digital Visibility and Growth",
         title: "Activity looks healthy, but opportunity isn’t progressing",
         body: "Connect marketing activity with lead quality, conversion and pipeline behaviour to identify where progress is being lost."
       }
@@ -159,7 +164,7 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   },
   goodLooksLike: {
     eyebrow: "What good looks like",
-    heading: "What good Growth Intelligence should achieve",
+    heading: "What good Measurement and Insight should achieve",
     points: [
       "Teams agree what success means before looking at dashboards.",
       "Important decisions rely on consistent, sufficiently reliable data.",
@@ -171,11 +176,20 @@ export const marketingAnalyticsAndMeasurement: SpecialistPageConfig = {
   },
   cta: {
     heading: "Have plenty of data but not enough clarity?",
-    body: "Start with the decisions you are trying to make — then work backwards to the evidence required.",
-    label: "Build my growth plan"
+    body: "Start with the decisions you are trying to make — then work backwards to the evidence required. The same discipline, pointed at a public outcome rather than a sale, is set out on the campaign evaluation page.",
+    label: "Discuss Your Project",
+    secondary: {
+      label: "Campaign evaluation",
+      href: "/public-sector/campaign-evaluation"
+    }
   },
   faqs: {
     items: [
+      {
+        question: "Do you evaluate public-sector campaigns?",
+        answer:
+          "Yes. Campaign evaluation for public and civic buyers is at /public-sector/campaign-evaluation. It is the same measurement discipline, pointed at whether a campaign achieved its intended public outcome rather than a sale."
+      },
       {
         question: "Can you work with our existing analytics stack?",
         answer:

@@ -49,7 +49,8 @@ export default function InsightsHero() {
           <div className='ixHero__copy'>
             <Text className='eyebrow'>{insightsHero.eyebrow}</Text>
             <Heading className='h1p' level={1}>
-              {insightsHero.headline}
+              {insightsHero.headlineLead}{" "}
+              <em>{insightsHero.headlineEmphasis}</em>
             </Heading>
             <Text className='lead'>{insightsHero.lead}</Text>
             <p className='ixHero__secondary'>{insightsHero.secondary}</p>

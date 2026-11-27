@@ -40,7 +40,7 @@ export default function MarketJourney({ id, stages }: MarketJourneyProps) {
         <ol className='marketJourney__stages' aria-labelledby={labelId}>
           {stages.map((stage, index) => (
             <li
-              key={stage}
+              key={`${id}-${index}`}
               className='marketJourney__stage'
               style={{ "--i": index } as CSSProperties}
             >

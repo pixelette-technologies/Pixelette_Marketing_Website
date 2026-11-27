@@ -1,5 +1,4 @@
 import { Container } from "@/components/common";
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 // 01 Capability context + hero. TYPOGRAPHY ONLY: the brief bars hero art,
@@ -9,18 +8,19 @@ import type { ReactNode } from "react";
 //
 // `aside` is Growth Intelligence's alone (its illustrative preview, by its
 // own brief). Without it the markup is the single-column hero.
+// Hero no longer carries "Discuss Your Project" — that CTA lives in close /
+// contact bands only.
 
 interface SpecialistHeroProps {
   eyebrow: string;
   heading: string | { lead: string; accent: string };
   lead: string;
-  cta: { label: string; href: string };
   /** Growth Intelligence only: a compact preview beside the copy. Absent on
    *  every other specialist page, which stay typography-only. */
   aside?: ReactNode;
 }
 
-const SpecialistHero = ({ eyebrow, heading, lead, cta, aside }: SpecialistHeroProps) => {
+const SpecialistHero = ({ eyebrow, heading, lead, aside }: SpecialistHeroProps) => {
   const copy = (
     <>
       <p className='spHero__eyebrow'>{eyebrow}</p>
@@ -37,11 +37,6 @@ const SpecialistHero = ({ eyebrow, heading, lead, cta, aside }: SpecialistHeroPr
         )}
       </h1>
       <p className='lead spHero__lead'>{lead}</p>
-      <div className='spHero__actions'>
-        <Link href={cta.href} className='btn'>
-          {cta.label}
-        </Link>
-      </div>
     </>
   );
 

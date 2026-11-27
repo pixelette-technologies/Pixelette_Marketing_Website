@@ -1,0 +1,13 @@
+// A2 — loaded after slick-carousel CSS so these beat the vendor outline:none
+// rules. Values match the global :focus-visible token; not a bespoke style.
+.slick-list:focus,
+.slick-list:focus-visible,
+.slick-prev:focus,
+.slick-prev:focus-visible,
+.slick-next:focus,
+.slick-next:focus-visible,
+.slick-dots li button:focus,
+.slick-dots li button:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}

@@ -41,8 +41,10 @@ import { useEffect, useRef } from "react";
 // draws, the glow and a few travelling signals.
 //
 // MOTION POLICY
-//   - The resolve plays ONCE per page view and never restarts: points drift
-//     in from a looser scatter and the lines find their way to the point.
+//   - D4 (25 Nov correction): first paint is the resolved composition. The
+//     multi-second scatter-to-point resolve was dropped so an early screenshot
+//     or first glance is never part-built (C8). Ambient breath and cursor
+//     response still run after that.
 //   - Afterwards: the point's light breathes by a few per cent and a few
 //     signals travel inwards, at half frame rate.
 //   - Nothing runs while the figure is off screen or the tab is hidden.
@@ -68,6 +70,17 @@ import { useEffect, useRef } from "react";
 //     The few large points are heavier: slower, and they travel less.
 //   - Both ease in and out. While the pointer is engaged the scene is drawn
 //     live at full frame rate; otherwise the cached layers are used as before.
+//
+// 2.5D LIVING SIGNAL — 25 Nov 2026, enhancement on instruction (not a
+// redesign). Composition, colours, labels and annotation stay. Four stages:
+//   1. THREADS gain individual depth, weight and a soft under-shadow so the
+//      wings read as layered ribbons rather than a flat hatch.
+//   2. BALLS shrink and take a subtle sphere treatment (shade + specular).
+//   3. Cursor response is depth-scaled: near threads and their balls move
+//      farther and sooner; far layers barely stir. Balls still ride their
+//      strings, so the motion stays coordinated.
+//   4. A soft key light from the upper-left, idle caching kept, reduced-
+//      motion still a single still frame, touch still ignored.
 
 type Pt = [number, number];
 type Rgb = [number, number, number];
@@ -99,6 +112,8 @@ interface Line {
   live: Float32Array; // pts, displaced by the string's own physics
   strong: boolean;
   delay: number;
+  depth: number; // 0 far → 1 near: drives weight, shadow and pull
+  weight: number; // individual stroke character around the family base
 }
 
 interface Dot {
@@ -108,6 +123,7 @@ interface Dot {
   c: number; // palette slot
   a: number; // alpha bucket
   near: boolean; // the nearer depth layer
+  depth: number; // 0 far → 1 near; inherits its string when riding one
   dx: number; // intro displacement, px
   dy: number;
   delay: number;
@@ -125,7 +141,6 @@ interface Signal {
 // --- Timing -----------------------------------------------------------------
 
 const SETTLED = 3.5;
-const GLOW_AT = 2.2;
 
 // --- The pointer ------------------------------------------------------------
 
@@ -136,12 +151,16 @@ const GLOW_AT = 2.2;
 // strings swing far and far ones barely move, each at its own rate. Mass,
 // stiffness, tension and damping differ from string to string.
 const STRING_NODES = 16;
-const STRING_PULL = 0.3; // the pull's strength, × height³
+const STRING_PULL = 0.34; // the pull's strength, × height³
 const STRING_SOFT = 0.2; // its softening length, of height: sets the reach
 const STRING_GIVE = 0.1; // of height: past this a string stiffens sharply
 const STRING_BRUSH = 0.06; // of height: how close the pointer plucks
 const STRING_DRAG = 9; // how hard a brushing pointer drags a string along
 const WARP = 18; // how many times faster the signals run at full hover
+// Depth scales the pointer's pull: far layers barely stir, near ones swing.
+const DEPTH_PULL_FLOOR = 0.28; // minimum pull multiplier at depth 0
+const DEPTH_PULL_SPAN = 0.95; // added at depth 1 (near)
+const DEPTH_PARALLAX = 16; // px: extra shared layer shift at full near + hover
 
 // The points near the pointer, each a small mass on a spring to its place,
 // pulled by a softened inverse-square force (Plummer: strongest a little way
@@ -152,6 +171,8 @@ const DOT_PULL = 1.6e6; // the force's strength
 const DOT_SPRING = 16; // per unit mass: every point rings at ~4 rad/s
 const DOT_DAMPING = 0.3; // of critical, so a flung point overshoots once
 const DOT_GLOW = 110; // px: how near the pointer a point starts to glow
+// Stage 2: balls are smaller than the flat field they replaced.
+const DOT_SIZE = 0.85;
 
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const ease = (x: number) => 1 - Math.pow(1 - clamp01(x), 3);
@@ -414,6 +435,17 @@ export default function LivingSignal({
         crown: 0.7
       };
 
+      // Family depth bias: band and crown sit nearer; framing arcs sit back.
+      // Depth/weight use a separate seed below so the geometry RNG — and the
+      // resting composition — stays the same as the pre-2.5D drawing.
+      const depthOf: Record<Family, [number, number]> = {
+        frame: [0.08, 0.28],
+        upper: [0.22, 0.78],
+        lower: [0.2, 0.76],
+        band: [0.55, 0.95],
+        crown: [0.62, 1]
+      };
+
       lines = [];
       for (const fam of FAMILIES) {
         const [count, next] = shape[fam];
@@ -430,7 +462,9 @@ export default function LivingSignal({
             pts,
             live: pts.slice(),
             strong: fam === "frame" || rand() < 0.3,
-            delay: delayOf[fam] + rand() * 0.45
+            delay: delayOf[fam] + rand() * 0.45,
+            depth: 0.5,
+            weight: 1
           });
         }
       }
@@ -439,7 +473,9 @@ export default function LivingSignal({
       dots = [];
       const add = (x: number, y: number, c: number, line = -1, s = 0) => {
         const big = rand() < 0.03;
-        const r = big ? 1.4 + rand() ** 2 * 1.8 : 0.35 + rand() * 0.85;
+        // Stage 2: smaller balls than the flat field they replaced.
+        const r =
+          (big ? 0.95 + rand() ** 2 * 1.15 : 0.22 + rand() * 0.55) * DOT_SIZE;
         const a = big ? 2 : rand() < 0.45 ? 0 : rand() < 0.65 ? 1 : 2;
         const angle = rand() * Math.PI * 2;
         const drift = (16 + rand() * 50) * (x < w * 0.5 ? 1.3 : 0.8);
@@ -450,6 +486,7 @@ export default function LivingSignal({
           r: r * (narrow ? 0.9 : 1),
           a,
           near: big,
+          depth: 0.45,
           dx: Math.cos(angle) * drift,
           dy: Math.sin(angle) * drift,
           delay: 0.05 + rand() * 0.8,
@@ -515,6 +552,45 @@ export default function LivingSignal({
           rand() * h,
           r < 0.55 ? BODY : r < 0.8 ? SIGNAL : BRAND
         );
+      }
+
+      // Depth and weight: separate seed, then sort far → near. Geometry and
+      // point placement above are unchanged from the pre-2.5D sequence.
+      let ds = 20261125;
+      const drand = () => {
+        ds = (ds * 16807) % 2147483647;
+        return (ds - 1) / 2147483646;
+      };
+      const order = lines.map((_, i) => i);
+      for (const l of lines) {
+        const [d0, d1] = depthOf[l.fam];
+        l.depth = clamp01(
+          d0 + drand() * (d1 - d0) + (l.strong ? 0.06 : 0)
+        );
+        l.weight = (l.strong ? 1.15 : 0.85) * (0.82 + drand() * 0.4);
+      }
+      order.sort((a, b) => lines[a].depth - lines[b].depth);
+      const remap = new Int32Array(lines.length);
+      order.forEach((from, to) => {
+        remap[from] = to;
+      });
+      lines = order.map(i => lines[i]);
+      for (const d of dots) {
+        if (d.line >= 0) {
+          const s = d.s;
+          const newLi = remap[d.line];
+          const parent = lines[newLi];
+          d.line = newLi;
+          d.depth = clamp01(
+            parent.depth * (0.85 + 0.15 * s) + (d.near ? 0.12 : 0)
+          );
+        } else {
+          const nx = d.x / w;
+          d.depth = clamp01(
+            0.18 + nx * 0.7 + (d.near ? 0.12 : 0) + (drand() - 0.5) * 0.08
+          );
+        }
+        if (d.depth > 0.72) d.near = true;
       }
 
       // A rebuilt scene starts at rest. Mass goes with area, so the few
@@ -712,6 +788,9 @@ export default function LivingSignal({
         const ks = lks[li];
         const c = lc[li];
         const b = li * M;
+        // Stage 3: near ribbons answer harder; far ones barely stir.
+        const depthMul =
+          DEPTH_PULL_FLOOR + DEPTH_PULL_SPAN * lines[li].depth;
         for (let s = 0; s < steps; s++) {
           for (let j = 0; j < M - 1; j++) {
             const a = b + j;
@@ -731,12 +810,12 @@ export default function LivingSignal({
               const dy = py - (nry[a] + uy);
               const r2 = dx * dx + dy * dy;
               const soft = r2 + E2;
-              const f = S / (soft * Math.sqrt(soft));
+              const f = (S * depthMul) / (soft * Math.sqrt(soft));
               fx += f * dx;
               fy += f * dy;
               if (r2 < B2) {
                 const q = 1 - Math.sqrt(r2) / B;
-                const drag = STRING_DRAG * m * q * q;
+                const drag = STRING_DRAG * m * q * q * depthMul;
                 fx += drag * (pv.x - vx0);
                 fy += drag * (pv.y - vy0);
               }
@@ -775,13 +854,24 @@ export default function LivingSignal({
       }
       linesAwake = true;
 
-      // Each drawn sample follows the nodes either side of it.
+      // Each drawn sample follows the nodes either side of it. A shared
+      // depth parallax shifts the whole ribbon so near and far layers part
+      // under the pointer without breaking the string's own shape.
+      const panX =
+        active && w
+          ? ((px / w - 0.5) * DEPTH_PARALLAX * mag.k)
+          : 0;
+      const panY =
+        active && h
+          ? ((py / h - FOCUS[1]) * DEPTH_PARALLAX * mag.k)
+          : 0;
       for (let li = 0; li < lines.length; li++) {
         const l = lines[li];
+        const pan = l.depth * l.depth;
         for (let i = 0; i < N; i++) {
           lineOffset(li, i / (N - 1));
-          l.live[i * 2] = l.pts[i * 2] + lox;
-          l.live[i * 2 + 1] = l.pts[i * 2 + 1] + loy;
+          l.live[i * 2] = l.pts[i * 2] + lox + panX * pan;
+          l.live[i * 2 + 1] = l.pts[i * 2 + 1] + loy + panY * pan;
         }
       }
     };
@@ -888,8 +978,11 @@ export default function LivingSignal({
           const k = DOT_SPRING * m;
           const c = 2 * DOT_DAMPING * Math.sqrt(k * m);
           // Pull grows with size, but slower than mass: the big points
-          // answer later and travel less.
-          const q = DOT_PULL * Math.pow(m, 0.7) * dotPull;
+          // answer later and travel less. Depth scales the same way the
+          // strings do, so a ball stays with its ribbon's layer.
+          const depthMul =
+            DEPTH_PULL_FLOOR + DEPTH_PULL_SPAN * d.depth;
+          const q = DOT_PULL * Math.pow(m, 0.7) * dotPull * depthMul;
           for (let s = 0; s < steps; s++) {
             let ax = -k * x - c * u;
             let ay = -k * y - c * v;
@@ -953,8 +1046,15 @@ export default function LivingSignal({
       blot(0.42, 0.3, 0.34, tint, 0.9);
       blot(0.44, 0.66, 0.36, tint, 0.9);
       blot(0.8, FOCUS[1], 0.26, wash, 0.4);
+      // Stage 4: a soft key light from the upper-left, so the ribbons catch
+      // light the way the rest of the page's photography does.
+      blot(0.18, 0.16, 0.42, page, 0.22);
+      blot(0.28, 0.22, 0.2, tint, 0.35);
     };
 
+    // Stage 1: each ribbon keeps its family gradient but reads as its own
+    // strand — depth-scaled weight, a soft under-shadow, and a faint rim on
+    // the nearest strands.
     const drawLines = (
       c: CanvasRenderingContext2D,
       t: number,
@@ -962,37 +1062,61 @@ export default function LivingSignal({
       thick = 1
     ) => {
       if (!grads) return;
-      for (const fam of FAMILIES) {
-        const strong = new Path2D();
-        const faint = new Path2D();
-        for (const l of lines) {
-          if (l.fam !== fam) continue;
-          const reveal = ease((t - l.delay) / 1.9);
-          if (reveal <= 0.01) continue;
-          const upto = Math.floor(reveal * (N - 1));
-          const p = l.strong ? strong : faint;
-          const pts = live ? l.live : l.pts;
-          p.moveTo(pts[0], pts[1]);
-          for (let i = 1; i <= upto; i++) p.lineTo(pts[i * 2], pts[i * 2 + 1]);
+      c.lineCap = "round";
+      c.lineJoin = "round";
+      for (const l of lines) {
+        const reveal = ease((t - l.delay) / 1.9);
+        if (reveal <= 0.01) continue;
+        const upto = Math.floor(reveal * (N - 1));
+        if (upto < 1) continue;
+        const pts = live ? l.live : l.pts;
+        const path = new Path2D();
+        path.moveTo(pts[0], pts[1]);
+        for (let i = 1; i <= upto; i++) path.lineTo(pts[i * 2], pts[i * 2 + 1]);
+
+        const base = (l.fam === "frame" ? 0.6 : l.strong ? 0.72 : 0.42) * thick;
+        const width = base * l.weight * (0.65 + 0.7 * l.depth);
+        const alpha = (l.strong ? 0.95 : 0.52) * (0.48 + 0.52 * l.depth);
+
+        if (l.depth > 0.32) {
+          const ox = 0.7 + 1.6 * l.depth;
+          const oy = 0.9 + 1.8 * l.depth;
+          c.save();
+          c.translate(ox, oy);
+          c.strokeStyle = rgba(pal[DEEP], 0.1 + 0.22 * l.depth);
+          c.lineWidth = width * (1.25 + 0.45 * l.depth);
+          c.globalAlpha = 1;
+          c.stroke(path);
+          c.restore();
         }
-        c.strokeStyle = grads[fam];
-        c.lineWidth = (fam === "frame" ? 0.7 : 0.65) * thick;
-        c.globalAlpha = 1;
-        c.stroke(strong);
-        c.lineWidth = 0.45 * thick;
-        c.globalAlpha = 0.55;
-        c.stroke(faint);
+
+        c.strokeStyle = grads[l.fam];
+        c.lineWidth = width;
+        c.globalAlpha = alpha;
+        c.stroke(path);
+
+        if (l.depth > 0.55) {
+          c.strokeStyle = rgba(page, 0.12 + 0.28 * l.depth);
+          c.lineWidth = Math.max(0.3, width * 0.38);
+          c.globalAlpha = 0.65;
+          c.stroke(path);
+        }
       }
       c.globalAlpha = 1;
     };
 
+    // Stage 2: smaller spheres — a shaded body, a contact shadow, and a
+    // specular from the upper-left key light. Batched into Path2Ds.
     const drawDots = (
       c: CanvasRenderingContext2D,
       t: number,
       which: boolean,
       live = false
     ) => {
-      const paths = pal.map(() => ALPHAS.map(() => new Path2D()));
+      const bodies = pal.map(() => ALPHAS.map(() => new Path2D()));
+      const shades = pal.map(() => new Path2D());
+      const specs = new Path2D();
+      const contacts = new Path2D();
       // Live, the points near the pointer glow: a halo in their own colour,
       // three strengths, and a white-hot centre on the nearest.
       const halos = pal.map(() => HALO_ALPHAS.map(() => new Path2D()));
@@ -1029,9 +1153,28 @@ export default function LivingSignal({
           x = d.x + d.dx * (1 - e);
           y = d.y + d.dy * (1 - e);
         }
-        const p = paths[d.c][a];
-        p.moveTo(x + r, y);
-        p.arc(x, y, r, 0, Math.PI * 2);
+        const body = bodies[d.c][a];
+        body.moveTo(x + r, y);
+        body.arc(x, y, r, 0, Math.PI * 2);
+
+        // Contact shadow and shade only earn their keep above a floor size.
+        if (r >= 0.28) {
+          const sx = x + r * 0.28;
+          const sy = y + r * 0.34;
+          const sr = r * (0.9 + 0.2 * d.depth);
+          contacts.moveTo(sx + sr, sy);
+          contacts.arc(sx, sy, sr, 0, Math.PI * 2);
+          const shx = x + r * 0.22;
+          const shy = y + r * 0.26;
+          const shr = r * 0.78;
+          shades[d.c].moveTo(shx + shr, shy);
+          shades[d.c].arc(shx, shy, shr, 0, Math.PI * 2);
+          const hx = x - r * 0.36;
+          const hy = y - r * 0.38;
+          const hr = Math.max(0.22, r * 0.42);
+          specs.moveTo(hx + hr, hy);
+          specs.arc(hx, hy, hr, 0, Math.PI * 2);
+        }
       }
       // The halos go through a quarter-size layer and a blur, so they are a
       // soft bloom behind the points, not rings round them.
@@ -1046,12 +1189,20 @@ export default function LivingSignal({
         );
         stamp(c, sheen, `blur(${3 * dpr}px)`);
       }
-      paths.forEach((row, ci) =>
+      c.fillStyle = rgba(pal[DEEP], 0.22);
+      c.fill(contacts);
+      shades.forEach((p, ci) => {
+        c.fillStyle = rgba(pal[ci], 0.32);
+        c.fill(p);
+      });
+      bodies.forEach((row, ci) =>
         row.forEach((p, ai) => {
           c.fillStyle = rgba(pal[ci], ALPHAS[ai]);
           c.fill(p);
         })
       );
+      c.fillStyle = rgba(page, 0.72);
+      c.fill(specs);
       if (lit) {
         c.fillStyle = rgba(page, 0.9);
         c.fill(cores);
@@ -1217,22 +1368,6 @@ export default function LivingSignal({
       drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
     };
 
-    // During the resolve, the whole scene is drawn live anyway, so the
-    // strings' and the points' physics already work on it.
-    const drawResolving = (t: number, dt = 0) => {
-      stepStrings(dt);
-      const live = linesAwake;
-      const moving = live || dotPull > 0 || dotsAwake || pointer.inZone;
-      if (moving) stepDots(t, dt);
-      wipe(ctx);
-      drawHaze(ctx, ease((t - 0.2) / 2));
-      drawLines(ctx, t, live);
-      drawBloom(ctx, t);
-      drawDots(ctx, t, false, moving);
-      drawDots(ctx, t, true, moving);
-      drawGlow(ctx, ease((t - GLOW_AT) / 1), hover);
-    };
-
     // Reduced motion: the resolved composition, drawn once and left.
     if (reduce) {
       const still = () => {
@@ -1253,7 +1388,11 @@ export default function LivingSignal({
 
     layout();
 
-    let t = 0;
+    // D4 — paint the resolved scene immediately so first paint is complete.
+    let t = SETTLED;
+    cache();
+    drawSettled(t, 0);
+
     let last = 0;
     let raf = 0;
     let frame = 0;
@@ -1264,10 +1403,7 @@ export default function LivingSignal({
       last = now;
       frame++;
       updatePointer(dt);
-      if (t < SETTLED) {
-        t += dt;
-        drawResolving(t, dt);
-      } else if (engaged()) {
+      if (engaged()) {
         t += dt;
         drawLive(t, dt);
       } else if (frame % 2 === 0) {
@@ -1301,8 +1437,7 @@ export default function LivingSignal({
     // A resize rebuilds the scene; once settled it stays settled.
     const ro = new ResizeObserver(() => {
       layout();
-      if (t < SETTLED) drawResolving(t);
-      else if (engaged()) drawLive(t, 0);
+      if (engaged()) drawLive(t, 0);
       else drawSettled(t, 0);
     });
     ro.observe(canvas);
@@ -1327,8 +1462,6 @@ export default function LivingSignal({
       window.addEventListener("pointerout", onOut);
       window.addEventListener("blur", onBlur);
     }
-
-    drawResolving(0);
 
     return () => {
       stop();

@@ -6,7 +6,7 @@
 //
 //   BRAND LAYER   The colour block and the signature device. The only
 //                 part that differs per company. Signed off by eye on
-//                 vault/palette-compare.html, 1 September 2026: the
+//                 palette compare (retired HTML, 1 September 2026): the
 //                 faithful rotation, not the softened alternative.
 //
 //   COMMON LAYER  Everything else — container, type scale, geometry,
@@ -75,6 +75,11 @@
   // across every group site. Do not fix it here: fixing it on one site forks
   // the group design system. It is raised with the guide's author as a
   // shared-layer change and badged as inherited on the comparison page.
+  //
+  // Form controls (A6, 25 Nov 2026): a darkened brand-family border for
+  // inputs/selects/textarea only. ≥3:1 on white; ≥1px. Does not retoken the
+  // inherited --color-line-strong used elsewhere.
+  --color-control-border: #8f5f70;
 
   // --- Dark families ----------------------------------------------------
   // Footer and panel shift together. Both were lightened where the rotation
@@ -298,6 +303,18 @@
   // beside it (see _growthIntelligence.scss).
   --color-chart-neutral: #a8949b; // 2.77 — warm grey, the ring's third step
   --color-chart-blush: #f0b8cf; //  1.64 — blush, the ring's fourth step
+
+  // --- Paid Media campaign artwork, 23 Nov 2026 -------------------------
+  // Hypothetical Creative A/B ads on /services/ads_ppc only. These hues are
+  // the locked campaign palette and must not be used for website chrome.
+  // The page UI stays on plum, crimson and cream.
+  --color-campaign-blue: #223fc7;
+  --color-campaign-blue-deep: #111c7f;
+  --color-campaign-yellow: #edff73;
+  --color-campaign-coral: #fb896d;
+  --color-campaign-coral-hot: #ff9679;
+  --color-campaign-coral-deep: #ed876a;
+  --color-campaign-coral-soft: #ffb0a0;
 
   // --- Signature device -------------------------------------------------
   // Signal-capped section rules: a short segment of the marking tone on a

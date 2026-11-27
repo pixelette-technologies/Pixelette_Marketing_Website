@@ -55,25 +55,22 @@ export const DIAGNOSTIC_LINK_LABEL =
 export const DIAGNOSTIC_ANCHOR = "diagnostic";
 export const ASSESS_ANCHOR = "what-we-assess";
 
-// --- 01 Hero ----------------------------------------------------------------
-// Two lines of EQUAL AUTHORITY, 30 Sep 2026: the same size and weight, told
-// apart by colour alone — plum ink, then burgundy. Neither is the brand
-// crimson any more and neither is ever greyed; see _strategyHero.scss.
+// --- 01 Hero — Impact Compass intro (approved Option 3, 20 Nov 2026) --------
+// Replaces the two-line "Know where to compete / Know why you win" hero and
+// the horizontal narrative bridge. Questions, dimensions and scoring are
+// unchanged; only the framing and presentation move.
 
 export const strategyHero = {
-  eyebrow: "Strategy & Positioning",
-  // BOTH full stops came off, not just the trailing one. The pair renders as
-  // two lines, so the line break already does the work the first stop was
-  // doing — and leaving one in and taking one out would have read as a typo
-  // rather than as a style.
-  headingLead: "Know where to compete",
-  headingAccent: "Know why you win",
-  lead: "A structured diagnostic to clarify your market, audience, differentiation, message and growth priorities — then turn that clarity into practical marketing direction.",
-  /** The four facts under the lead, set with middots. The time is a range
-   *  now, per the brief; it was "Around 5 minutes". */
-  facts: ["12 questions", "6 dimensions", "Around 3–5 minutes", "Instant result"],
-  primaryCta: { label: "Start the diagnostic", to: `#${DIAGNOSTIC_ANCHOR}` },
-  secondaryCta: { label: "See what we assess", to: `#${ASSESS_ANCHOR}` }
+  eyebrow: "Diagnostics",
+  headingLead: "Find your",
+  headingEmphasis: "next move",
+  lead: "A short marketing diagnostic to reveal what is working, what needs attention and where to focus.",
+  /** Process line under the lead — Newsreader / --font-display italic. */
+  process: ["Assess", "Understand", "Act"] as const,
+  facts: ["12 questions", "6 focus areas", "5 minutes"],
+  primaryCta: { label: "Start diagnostic →", to: `#${DIAGNOSTIC_ANCHOR}` },
+  /** Kept for any inbound deep-link that still points at #what-we-assess. */
+  secondaryCta: { label: "Start diagnostic →", to: `#${DIAGNOSTIC_ANCHOR}` }
 };
 
 // --- The six dimensions -----------------------------------------------------
@@ -174,15 +171,12 @@ export const clarityBridge = {
 export const diagnosticIntro = {
   /** The stage's heading. Visually hidden: the progress row and the question
    *  are what a sighted visitor reads, but the outline needs a heading here. */
-  heading: "The Strategy & Positioning diagnostic",
-  /** The two ends of the Clarity Rail. */
-  railLess: "Less clear",
-  railMore: "More clear",
-  /** For assistive technology only: how the rail is operated by keyboard. */
-  railHelp:
-    "Use the arrow keys to choose an answer, then press Enter to continue.",
-  next: "Next",
-  back: "Back",
+  heading: "Diagnostics",
+  /** For assistive technology only: how the answer tiles are operated. */
+  tileHelp:
+    "Choose one answer. Use the arrow keys to move between options, then press Enter to continue.",
+  next: "Continue →",
+  back: "← Back",
   backToResults: "Back to my results",
   /** Shown beside the start control. Both halves are literally true of the
    *  implementation and both are worth stating before somebody begins: no
@@ -511,25 +505,19 @@ export const dimensionReadings: Record<
 // --- 05 Results -------------------------------------------------------------
 
 export const resultsCopy = {
-  eyebrow: "Your Strategy & Positioning score",
+  heading: "Your clarity compass",
+  lead: "See where you are strong and where to focus next.",
   /** Rendered as "68 / 100"; the denominator is here so it is not a literal
    *  buried in the component. */
   outOf: "100",
-  profileHeading: "Your clarity profile",
-  profileLow: "Unclear",
-  profileHigh: "Clear",
+  scoreCaption: "From your answers",
+  roadmapHeading: "Your Impact Roadmap",
   scaleNote:
     "An indicative assessment, calculated from the twelve answers you gave. It is not a benchmark against other companies.",
   /** Used when all six dimensions scored the same: the three "lowest" are
    *  then simply the first three, and the page says so. */
   uniformNote:
     "All six dimensions scored the same, so the three below are taken in order — the opportunity is to raise the whole picture together.",
-  commercialHeading: "What this could mean commercially",
-  commercialLead:
-    "Your three lowest-scoring dimensions, and what each could mean for how hard your marketing has to work.",
-  movesHeading: "Your three highest-leverage moves",
-  movesLead:
-    "The same three dimensions, turned into the work most likely to move them — taken from your own answers.",
   print: "Print or save results"
 };
 
@@ -574,9 +562,7 @@ export const recommendations: Record<
 // before it asks for anything, so the ask has to come after the value.
 
 export const resultsCta = {
-  heading: "A score is only the starting point",
-  body: "Your diagnostic tells us where to look. The next conversation helps determine why those issues exist, how much they matter commercially and what is genuinely worth fixing first.",
-  cta: { label: "Talk through my results", to: CONTACT_HREF },
+  cta: { label: "Discuss your results →", to: CONTACT_HREF },
   retake: "Retake diagnostic"
 };
 

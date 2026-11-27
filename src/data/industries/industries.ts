@@ -47,6 +47,8 @@ export interface Industry {
   challenge: string;
   /** How Pixelette would approach it. */
   approach: string;
+  /** Optional child route under /industries when the brief gives one. */
+  href?: string;
 }
 
 export const industries: Industry[] = [
@@ -140,11 +142,12 @@ export const industries: Industry[] = [
     descriptor: "Education, training and learning products",
     journey: ["Need", "Fit", "Confidence", "Commitment", "Outcome"],
     market:
-      "Decisions may involve learners, parents, employers or institutions, each with different definitions of value and success.",
+      "Training providers, edtech and learning products, where the objective is enrolments, registrations and revenue — and schools, multi-academy trusts, sixth forms, colleges and universities, where the objective is admissions, parent and community engagement, participation and staff recruitment, and where procurement, safeguarding and accessibility all apply.",
     challenge:
-      "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance.",
+      "Explain fit, credibility and outcomes clearly while reducing uncertainty around commitment, quality and relevance — and, where public money or duty of care applies, account for both.",
     approach:
-      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards confident enrolment."
+      "Clarify the value for each decision-maker, build authority through useful educational content and create journeys that move interest towards a confident next step. One note we would rather state than be asked: a school's own website is partially exempt from the public sector accessibility regulations, except for content people need in order to use its services. We would tell you which of your content falls inside that exception rather than selling you a compliance programme you do not need.",
+    href: "/industries/education-and-learning"
   },
   {
     id: "industrial",
@@ -163,6 +166,33 @@ export const industries: Industry[] = [
       "Make capability easy to verify while supporting both technical evaluation and the commercial case for change.",
     approach:
       "Lead with proof, technical authority and clear commercial value, then support complex buying groups with targeted content, search and demand activity."
+  },
+  // Plan §9.4 — two markets with market / challenge / approach.
+  {
+    id: "public-sector-and-local-government",
+    name: "Public sector and local government",
+    descriptor: "Councils, NHS bodies, government agencies and public services",
+    journey: ["Need", "Evidence", "Scrutiny", "Award", "Outcome"],
+    market:
+      "Communications bought under procurement rules, judged on public outcomes and accountable for public money. Buying decisions involve more people, take longer and are documented.",
+    challenge:
+      "The objective is rarely a sale. It is uptake of a service, attendance at an appointment, response to a consultation, understanding of a change, or confidence that public money achieved something. Activity is easy to report. Outcome is the part that is hard, and the part that is asked about.",
+    approach:
+      "Define the outcome first and the measurement with it, using the frameworks the sector already works to. Plan evaluation at the start rather than at the end. Report what the evidence supports and say clearly what it does not.",
+    href: "/industries/public-sector-and-local-government"
+  },
+  {
+    id: "charities-and-non-profit",
+    name: "Charities and non-profit",
+    descriptor: "Charities, housing associations and community organisations",
+    journey: ["Need", "Trust", "Reach", "Response", "Accountability"],
+    market:
+      "Tight budgets, close scrutiny of spend, and audiences who are often beneficiaries rather than customers.",
+    challenge:
+      "Reaching people who are not looking for you, with limited money and a duty to spend it defensibly. Reputation carries more weight than reach.",
+    approach:
+      "Proportionate to the budget — the Magenta Book's own principle is that evaluation should be \"proportionate in scale\". Earned and organic before paid. Measurement that a trustee board can read.",
+    href: "/industries/charities-and-non-profit"
   }
 ];
 
@@ -186,10 +216,10 @@ export const industriesPage = {
     eyebrow: "Industries",
     headline: { lead: "Different markets", accent: "Different dynamics" },
     principle: "Understand before we act",
-    lead: "Every market behaves differently. Pixelette adapts the marketing approach around the audience, buying journey, competitive environment and commercial challenge."
+    lead: "Every market behaves differently. Pixelette adapts the marketing and communications approach around the audience, the journey and the objective."
   },
   explorer: {
-    eyebrow: "Eight markets",
+    eyebrow: "Markets",
     heading: "Choose a market to see how the thinking changes"
   },
   work: {
@@ -201,7 +231,7 @@ export const industriesPage = {
     // One button. The specification offers "Talk to our team" as a secondary
     // "if appropriate"; it would go to the same /contactus as the primary, so
     // two controls would ask one question twice.
-    cta: { label: "Build my growth plan", to: "/contactus" }
+    cta: { label: "Discuss Your Project", to: "/contactus" }
   }
 };
 

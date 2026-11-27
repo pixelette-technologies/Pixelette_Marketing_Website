@@ -19,8 +19,8 @@ import { aboutExperience } from "@/data/aboutus";
 // wording below is the brief's own and is what those gates were written
 // against.
 
-/** Every "See client results" link on the page. One constant, so they move
- *  together if the results route ever moves. */
+/** Retired with A1 (25 Nov 2026). `/results` returns 410. Kept only so
+ *  historical copy objects still type-check; do not link here from live UI. */
 export const RESULTS_HREF = "/results";
 
 // --- 01 Hero ----------------------------------------------------------------
@@ -43,27 +43,26 @@ export const RESULTS_HREF = "/results";
 // under `retired`, as approved copy for later reuse.
 
 export const heroCopy = {
-  eyebrow: "Clarity. Momentum. Commercial impact.",
-  headline: { lead: "Marketing that matters", tail: "to your bottom line" },
-  /**
-   * Desktop break of the home H1 (see `.homeHero__title` in `_heroHome.scss`):
-   * "Marketing that / matters to your / bottom line". The default OG card
-   * uses this same break so share previews stay in lockstep with the page.
-   */
+  eyebrow: "Clarity. Momentum. Measurable impact.",
+  headline: {
+    lead: "Marketing and communications that deliver",
+    // Brand italic turn — matches locked-service hero emphasis.
+    tail: "measurable impact"
+  },
   ogHeadline: [
-    "Marketing that",
-    "matters to your",
-    "bottom line"
+    "Marketing and communications",
+    "that deliver",
+    "measurable impact"
   ] as const,
   support:
-    "Strategy, demand, search, pipeline and intelligence working together around the commercial outcomes that matter.",
-  primaryCta: { label: "Build my growth plan", to: "/contactus" },
+    "We bring together strategy, creative campaigns, digital marketing, communications and insight to help businesses and public-sector organisations reach their audiences, strengthen engagement and achieve meaningful results.",
+  primaryCta: { label: "Let's Talk", to: "/contactus" },
   secondaryCta: { label: "Explore what we do", to: "/services" },
   // The Living Signal's two rail labels and its handwritten line. All three
   // are part of the picture, so the figure that carries them is aria-hidden.
   signalLabels: {
     top: ["Ideas", "Intelligence", "Action", "Growth"],
-    bottom: ["A more", "commercial", "tomorrow"]
+    bottom: ["A clearer", "shared", "tomorrow"]
   },
   annotation: ["From", "insight", "to impact"],
 
@@ -80,14 +79,13 @@ export const heroCopy = {
 
 /** Where both "Our approach" links in sections 02 and 04 go. There is no
  *  approach page; the diagnostic was chosen on 28 Sep as the nearest thing. */
-export const APPROACH_HREF = "/strategy-positioning";
+export const APPROACH_HREF = "/services";
 
 export interface EditorialSectionCopy {
-  number: string;
   eyebrow: string;
   /** Headline lines in ink, one per line. */
   headline: readonly string[];
-  /** An optional last line in the brand tone. */
+  /** An optional last line in the brand tone (italic). */
   accent?: string;
   lead: string;
   cta: { label: string; to: string };
@@ -99,11 +97,10 @@ export const activityCopy: EditorialSectionCopy & {
   notes: readonly string[];
   clearerPath: string;
 } = {
-  number: "02",
   eyebrow: "A different perspective",
   headline: ["More activity", "isn’t the answer"],
   accent: "Better decisions are",
-  lead: "We help you focus on what will actually move the business — then build the marketing around it.",
+  lead: "We help you focus on what will actually move the objective — then build the marketing and communications around it.",
   cta: { label: "Our approach", to: APPROACH_HREF },
   // The spec's list, in its order, and no others. Stored in sentence case;
   // the notes set them in capitals as the reference does.
@@ -128,24 +125,47 @@ export const activityCopy: EditorialSectionCopy & {
 export type CapabilityIcon = "compass" | "bars" | "search" | "funnel" | "rise";
 
 export const capabilitiesCopy: EditorialSectionCopy & {
-  capabilities: readonly { name: string; icon: CapabilityIcon }[];
+  capabilities: readonly {
+    name: string;
+    cadence: string;
+    icon: CapabilityIcon;
+  }[];
   payoff: string;
 } = {
-  number: "03",
   eyebrow: "What we do",
   headline: ["Five capabilities"],
-  // In the brand tone, as 02 and 04 carry their last line (29 Sep).
-  accent: "One commercial objective",
-  lead: "An integrated approach to marketing and growth, focused on what moves the business forward.",
+  // 12 Nov 2026 developer brief §5.
+  accent: "Built around your objective",
+  lead: "An integrated approach to marketing and communications, focused on the outcome in front of you.",
   cta: { label: "Explore all services", to: "/services" },
   // Kept for hub / content reuse. No longer overlaid on the maquette visual
   // (illustration is unlabelled; the copy carries the proposition).
   capabilities: [
-    { name: "Strategy & Positioning", icon: "compass" },
-    { name: "Demand & Performance", icon: "bars" },
-    { name: "Search & Authority", icon: "search" },
-    { name: "Pipeline & Conversion", icon: "funnel" },
-    { name: "Growth Intelligence", icon: "rise" }
+    {
+      name: "Brand and Strategy",
+      cadence: "Know who you are. Know where you win.",
+      icon: "compass" as const
+    },
+    {
+      name: "Creative and Campaigns",
+      cadence: "Ideas people notice and remember",
+      icon: "bars" as const
+    },
+    {
+      name: "Communications and Engagement",
+      cadence: "Keep the right people with you",
+      icon: "search" as const
+    },
+    {
+      name: "Digital Visibility and Growth",
+      cadence: "Be found. Be chosen. Be measured.",
+      icon: "funnel" as const
+    },
+    {
+      name: "Measurement and Insight",
+      cadence: "Know what worked. Know what next.",
+      icon: "rise" as const
+    }
   ],
   payoff: "Real growth builds here"
 };
@@ -155,11 +175,10 @@ export const capabilitiesCopy: EditorialSectionCopy & {
 export const relevanceCopy: EditorialSectionCopy & {
   annotation: readonly string[];
 } = {
-  number: "04",
   eyebrow: "A clearer way forward",
   headline: ["Attention is easy to buy"],
   accent: "Relevance isn’t",
-  lead: "We help you reach the right people, with the right message, at the right time — and turn that into real commercial impact.",
+  lead: "We help you reach the right people, with the right message, at the right time — and turn that into measurable impact.",
   cta: { label: "Our approach", to: APPROACH_HREF },
   annotation: ["Quacking good", "at standing out"]
 };
@@ -206,7 +225,8 @@ export const proofCopy = {
   eyebrow: aboutExperience.eyebrow,
   heading: "Experience across the Pixelette ecosystem",
   standfirst: aboutExperience.standfirst,
-  cta: { label: "See client results", to: RESULTS_HREF }
+  // CTA removed from TrustedBrands after `/results` retirement (A1).
+  cta: { label: "Discuss Your Project", to: "/contactus" }
 };
 
 // --- 04 Why Pixelette Marketing — CONSOLIDATED 23 SEP 2026 ------------------
@@ -236,87 +256,67 @@ export const proofCopy = {
 
 export const growthSystemData: ItemsSectionContent = {
   eyebrow: "One connected growth system",
-  heading: "Five capabilities. One commercial objective",
+  // 12 Nov 2026 developer brief §5 — capability group titles only.
+  heading: "Five capabilities. Built around your objective",
   lead: "Growth works best when positioning, demand, search, conversion and measurement operate as one system. Pixelette can lead the full programme or deploy the specialist capability the business actually needs.",
+  // Service Offer and Website Plan §9.2 — cadence lines and scope lists.
+  // Service links still come from capabilityGroups / ROUTES_BY_CAPABILITY.
   items: [
     {
       index: "01",
-      title: "Strategy & Positioning",
-      body: "Clarify who you are for, why the market should care and how growth will be won.",
-      // 29 Sep 2026: every list below was revised to the locked information
-      // architecture's service families (its §14–18). Where the specification
-      // and the 8 Sep wording name the same thing, the two were merged; where
-      // they overlap between capabilities, the service sits in one place only
-      // (growth planning here, not also in 05; PR in 02, not also as "digital
-      // PR" in 03). Nothing was added that neither source names.
-      //
-      // Since the same day these lists render on /services, which owns the
-      // service-level detail. The home page no longer shows them.
+      title: "Brand and Strategy",
+      body: "Know who you are. Know where you win.",
       capabilities: [
-        "Brand strategy",
-        "value proposition",
-        "market positioning",
-        "ICP and buyer insight",
-        "market and competitor intelligence",
-        "messaging",
-        "growth planning",
-        "go-to-market strategy"
+        "Positioning",
+        "identity direction",
+        "brand narrative",
+        "audience research",
+        "launch planning"
       ]
     },
     {
       index: "02",
-      title: "Demand & Performance",
-      body: "Create and capture demand across paid, owned, social and partner channels.",
+      title: "Creative and Campaigns",
+      body: "Ideas people notice and remember",
       capabilities: [
-        "Paid media and PPC",
-        "social media",
-        "campaigns",
-        "influencer marketing",
-        "PR and earned visibility",
-        // 25 Sep 2026: back by name — BlockGuard, the lead case, is largely a
-        // community result. 29 Sep 2026: restored in full, on instruction, as
-        // community management AND growth. It is not social posting, and the
-        // line says so; it is not a sixth capability, and it stays here.
-        "community management and growth: strategy, engagement, moderation and activation"
+        "Campaign concepts",
+        "creative assets",
+        "product and service launches",
+        "content production"
       ]
     },
     {
       index: "03",
-      title: "Search & Authority",
-      body: "Make your expertise discoverable, credible and easier to choose.",
+      title: "Communications and Engagement",
+      body: "Keep the right people with you",
       capabilities: [
-        "SEO and organic search",
-        "content marketing",
+        "Corporate and stakeholder communications",
         "thought leadership",
-        "authority building",
-        "AI search visibility"
+        "social and community",
+        "customer lifecycle"
       ]
     },
     {
       index: "04",
-      title: "Pipeline & Conversion",
-      body: "Turn attention into qualified opportunity and improve the path from first touch to sales conversation.",
+      title: "Digital Visibility and Growth",
+      body: "Be found. Be chosen. Be measured.",
       capabilities: [
-        "Lead generation",
-        "email and lifecycle marketing",
-        "nurture",
-        "landing pages and CRO",
-        "conversion journeys",
-        "sales handoff"
+        "SEO and AI discovery",
+        "websites and landing pages",
+        "paid activation",
+        "lead and conversion services"
       ]
     },
     {
       index: "05",
-      title: "Growth Intelligence",
-      body: "Connect channel performance to better commercial decisions.",
+      title: "Measurement and Insight",
+      body: "Know what worked. Know what next.",
       capabilities: [
-        "Analytics and performance tracking",
-        "insight and reporting",
-        "attribution",
-        "dashboards",
-        "experimentation",
-        "strategic optimisation",
-        "workflow automation"
+        "Marketing audits",
+        "analytics",
+        "reporting",
+        "research",
+        "testing and evaluation"
       ]
     }
   ],
@@ -371,14 +371,15 @@ export const aiTechnologyData: AiTechnologyContent = {
 // --- 06 Proof before promises — 29 Sep 2026 ---------------------------------
 // The locked information architecture makes this a COMPACT teaser, and moves
 // the fuller evidence to Work in practice on /industries. The heading and
-// supporting line are the specification's; the CTA goes to Work in practice,
-// which is the architecture's next step (home → Industries → case study).
+// supporting line are the specification's. 25 Nov 2026: `/results` retired
+// (A1). ProofTeaser is not mounted on the live home page; do not reintroduce
+// a CTA to `/results`.
 // See ProofTeaser for why only two of BlockGuard's figures appear here.
 
 export const proofTeaserCopy = {
   heading: "Proof before promises",
   lead: "Good marketing should leave evidence behind",
-  cta: { label: "See the work", to: "/industries#work-in-practice" }
+  cta: { label: "Discuss Your Project", to: "/contactus" }
 };
 
 // --- 08 Results -------------------------------------------------------------
@@ -394,7 +395,7 @@ export const resultsCopy = {
   // 23 Sep 2026: the second sentence was the brief's instruction to the site
   // ("our results section should show…") published as though it were copy.
   // It now describes what the case studies do, which is what it was asking for.
-  lead: "The strongest marketing case is what changed after the work started. Each case study sets out the commercial problem, the work delivered and the outcome, with client evidence wherever it is available.",
+  lead: "The strongest marketing case is what changed after the work started. Each case study sets out the objective, the work delivered and the outcome, with client evidence wherever it is available.",
   cta: { label: "See client results", to: RESULTS_HREF }
 };
 
@@ -536,12 +537,13 @@ export const widerAdvantageData: ItemsSectionContent = {
 // CTA labels between the two positions is worse than either label alone.
 
 export const finalConversionCopy = {
-  /** The brief pairs "Build my growth plan" with this in the closing block.
-   *  The primary is the form itself, which sits beside this copy, so only the
-   *  secondary needs a link of its own. */
-  secondaryCta: { label: "Talk to Pixelette Marketing", to: "/contactus" },
-  heading: "Let's build your growth plan",
-  lead: "Tell us where growth is stuck or where you want to get to. We will use the first conversation to understand the commercial objective, what you have already tried, what the numbers say and whether Pixelette is the right fit.",
+  secondaryCta: { label: "Discuss Your Project", to: "/contactus" },
+  eyebrow: "Start a conversation",
+  headingLead: "Let's discuss your",
+  headingEmphasis: "objectives",
+  /** Full string kept for callers that still pass a plain heading. */
+  heading: "Let's discuss your objectives",
+  lead: "Tell us what you want to achieve, whether that is business growth, public engagement or communications. We will use the first conversation to understand your objectives, audiences and challenges, and whether we are the right fit.",
   closing:
-    "No generic proposal. No channel recommendation before we understand the problem."
+    "No generic proposal. No recommendation before we understand what you are trying to achieve."
 };

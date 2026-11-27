@@ -46,7 +46,7 @@ export const SPECIALIST_DEFAULTS = {
   process: [
     {
       title: "Diagnose",
-      body: "Understand the commercial problem, evidence and real constraint."
+      body: "Understand the objective, the evidence and the real constraint."
     },
     {
       title: "Prioritise",
@@ -60,8 +60,8 @@ export const SPECIALIST_DEFAULTS = {
   ] as SpecialistItem[],
   goodEyebrow: "What good looks like",
   cta: {
-    heading: "Have a demand problem worth solving?",
-    body: "Start with the commercial problem. We’ll help determine whether this specialist intervention is actually the right place to begin."
+    heading: "Have an objective worth working through?",
+    body: "Start with the objective. We’ll help determine whether this specialist intervention is actually the right place to begin."
   },
   faqEyebrow: "Useful questions"
 };
@@ -72,7 +72,8 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
     heading: page.cta?.heading ?? d.cta.heading,
     body: page.cta?.body ?? d.cta.body,
     label: page.cta?.label ?? navCta.label,
-    href: page.cta?.href ?? navCta.to
+    href: page.cta?.href ?? navCta.to,
+    secondary: page.cta?.secondary
   };
   const url = `${BASE_URL}/services/${page.route}`;
 
@@ -114,7 +115,6 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
         eyebrow={page.hero.eyebrow ?? `${page.capability} / ${page.label}`}
         heading={page.hero.heading}
         lead={page.hero.lead}
-        cta={{ label: cta.label, href: cta.href }}
         aside={page.demo ? <GrowthPreview demo={page.demo} /> : undefined}
       />
 
@@ -185,7 +185,18 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
           />
           <CapabilityConnections
             centre={page.connections.centre ?? page.label}
-            items={page.connections.items}
+            items={
+              // SEO and PPC keep their conversion card after the brief table
+              // remapped Pipeline & Conversion onto Digital Visibility and
+              // Growth — the same string as their parent group. Other pages
+              // still drop a self-group node so the figure stays three others.
+              page.route === "seo_and_content_marketing" ||
+              page.route === "ads_ppc"
+                ? page.connections.items
+                : page.connections.items.filter(
+                    item => item.capability !== page.capability
+                  )
+            }
             defaultIndex={page.connections.defaultIndex}
           />
         </section>
@@ -228,6 +239,14 @@ const SpecialistServicePage = ({ page }: { page: SpecialistPageConfig }) => {
             <Link href={cta.href} className='spClose__button'>
               {cta.label}
             </Link>
+            {cta.secondary ? (
+              <p className='spClose__secondary'>
+                <Link href={cta.secondary.href} className='textLink'>
+                  {cta.secondary.label}
+                  <span aria-hidden='true'> →</span>
+                </Link>
+              </p>
+            ) : null}
           </section>
         </div>
       </div>

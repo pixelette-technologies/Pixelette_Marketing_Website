@@ -1,17 +1,10 @@
 import Link from "next/link";
 import type { EditorialSectionCopy } from "@/data/home";
 
-// The copy column shared by home sections 02, 03 and 04 (28 Sep 2026): the
-// section mark (number, hairline, eyebrow), the headline with its optional
-// brand-tone last line, the lead and one text link.
-//
-// A SERVER COMPONENT, deliberately. Each section's picture is the only part
-// that moves, and it owns its own client boundary, so the words are rendered
-// on the server no matter what the illustration beside them does.
-//
-// Every headline line is its own block so the breaks fall exactly where the
-// reference puts them at desktop widths, and the lines are joined by real
-// spaces so a screen reader hears one sentence, not run-together words.
+// The copy column shared by home sections 02, 03 and 05.
+// Left text matches the locked-service hero: brand eyebrow, display heading
+// with italic brand accent, body lead, one text link. Index + hairline removed
+// 26 Nov 2026 for consistency with the approved Paid Media left copy.
 
 export default function EditorialCopy({
   copy,
@@ -25,11 +18,7 @@ export default function EditorialCopy({
 }) {
   return (
     <div className={`editorialCopy ${className}`}>
-      <p className='editorialCopy__mark'>
-        <span className='editorialCopy__number'>{copy.number}</span>
-        <span className='editorialCopy__rule' aria-hidden='true' />
-        <span className='editorialCopy__eyebrow'>{copy.eyebrow}</span>
-      </p>
+      <p className='editorialCopy__eyebrow'>{copy.eyebrow}</p>
 
       <h2 className='editorialCopy__title' id={titleId}>
         {copy.headline.map((line, i) => (

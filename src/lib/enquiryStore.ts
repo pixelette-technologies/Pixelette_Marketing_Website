@@ -93,7 +93,10 @@ export async function saveContactSubmission(
       privacy_policy_version: submission.noticeVersion,
       consent_timestamp: new Date().toISOString(),
       source_page: submission.sourcePage,
-      attribution: submission.attribution ?? {},
+      attribution: {
+        ...(submission.attribution ?? {}),
+        indicativeBudget: submission.indicativeBudget ?? null,
+      },
       resend_message_id: resendMessageId ?? null,
     };
 

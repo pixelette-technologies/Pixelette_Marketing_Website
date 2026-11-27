@@ -1,0 +1,57 @@
+// Section title + eyebrow — approved from About "How we're built" (27 Nov 2026).
+// Pink mono eyebrow (section label / breadcrumb), burgundy Newsreader title.
+// Restyle existing eyebrows and titles only; do not invent eyebrows where none exist.
+// Homepage left untouched — do not apply these mixins under ui/home/.
+
+@mixin section-eyebrow {
+  display: block;
+  margin: 0 0 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-pink-text);
+}
+
+@mixin section-eyebrow-reset-rule {
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+    width: 0;
+    height: 0;
+    background: none;
+  }
+}
+
+@mixin section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1.14;
+  letter-spacing: -0.014em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+@mixin section-title-reset-rule {
+  &::before,
+  &::after {
+    content: none;
+    display: none;
+    width: 0;
+    height: 0;
+    flex: none;
+    background: none;
+  }
+}
+
+// Bare section titles on the shared .sec + .h2 pattern (Market B, public-sector
+// hubs, About brief blocks, industry title-only pages). Homepage does not use
+// this selector for its section titles.
+.sec > .h2 {
+  @include section-title;
+}

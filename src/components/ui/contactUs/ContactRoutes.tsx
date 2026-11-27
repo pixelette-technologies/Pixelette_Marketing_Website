@@ -20,11 +20,11 @@ const ContactRoutes = () => {
               </Heading>
               <Text className='body'>{route.text}</Text>
               {route.link.href.startsWith("/") ? (
-                <Link className='contactRoutes__link' href={route.link.href}>
+                <Link className='btn contactRoutes__link' href={route.link.href}>
                   {route.link.label}
                 </Link>
               ) : (
-                <a className='contactRoutes__link' href={route.link.href}>
+                <a className='btn contactRoutes__link' href={route.link.href}>
                   {route.link.label}
                 </a>
               )}

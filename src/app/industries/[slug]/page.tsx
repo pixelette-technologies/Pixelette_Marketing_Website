@@ -8,7 +8,6 @@ import { caseStudies } from "@/data/results/caseStudies";
 import { finalConversionCopy } from "@/data/home";
 import { pageMetadata, SITE_URL } from "@/data/site";
 import { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 type PageProps = {
@@ -38,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   // Still indexable for legacy/direct traffic; omitted from sitemap until
   // internal links return. Share images left empty until dedicated assets exist.
-  return pageMetadata({
+  return await pageMetadata({
     title: pageData.metaTitle,
     description: pageData.metaDescription,
     path: `/industries/${slug}`,
@@ -130,7 +129,6 @@ export default async function Page({ params }: PageProps) {
         subHeading={pageData.subHeading}
         text={pageData.summary}
         image={pageData.image}
-        cta={{ label: "Tell us what needs to grow", to: "#enquiry" }}
       />
 
       <Web3Questions
@@ -174,11 +172,6 @@ export default async function Page({ params }: PageProps) {
             </header>
           </Container>
           <CaseStudySection content={evidence} />
-          <Container className='main'>
-            <Link href='/results' className='btn2 sectorEvidence__more'>
-              See client results
-            </Link>
-          </Container>
         </div>
       )}
 
@@ -190,8 +183,9 @@ export default async function Page({ params }: PageProps) {
 
       <ContactSection
         id='enquiry'
-        eyebrow='Start here'
-        heading='Tell us what needs to grow.'
+        eyebrow={finalConversionCopy.eyebrow}
+        headingLead={finalConversionCopy.headingLead}
+        headingEmphasis={finalConversionCopy.headingEmphasis}
         text={pageData.close.lead}
         closing={finalConversionCopy.closing}
         formIntro={false}

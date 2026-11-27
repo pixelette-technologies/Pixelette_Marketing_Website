@@ -25,7 +25,7 @@ import type { SpecialistPageConfig } from "./types";
 
 export const seoContentAndAiVisibility: SpecialistPageConfig = {
   route: "seo_and_content_marketing",
-  capability: "Search & Authority",
+  capability: "Digital Visibility and Growth",
   label: "SEO, Content & AI Visibility",
   meta: {
     title: "SEO, Content & AI Visibility | Pixelette Marketing",
@@ -33,7 +33,7 @@ export const seoContentAndAiVisibility: SpecialistPageConfig = {
       "SEO, content and AI-search visibility designed to strengthen organic discovery, topic authority and meaningful search performance."
   },
   hero: {
-    eyebrow: "Search & Authority / SEO, Content & AI Visibility",
+    eyebrow: "Digital Visibility and Growth / SEO, Content & AI Visibility",
     heading: {
       lead: "Build visibility that",
       accent: "becomes authority"
@@ -108,17 +108,17 @@ export const seoContentAndAiVisibility: SpecialistPageConfig = {
     defaultIndex: 0,
     items: [
       {
-        capability: "Strategy & Positioning",
+        capability: "Brand and Strategy",
         title: "People find you, but the proposition is unclear",
         body: "Search cannot compensate for an undifferentiated offer. If the reason to choose you is weak, more visibility may simply expose the problem to more people."
       },
       {
-        capability: "Pipeline & Conversion",
+        capability: "Digital Visibility and Growth",
         title: "Traffic exists, but the journey does not convert",
         body: "The constraint may sit after discovery. Landing pages, offers or conversion journeys may need fixing before more search traffic creates commercial value."
       },
       {
-        capability: "Growth Intelligence",
+        capability: "Measurement and Insight",
         title: "Visibility is increasing, but contribution is unclear",
         body: "Measurement should connect search performance with the wider customer and commercial journey where the available data permits."
       }
@@ -148,7 +148,7 @@ export const seoContentAndAiVisibility: SpecialistPageConfig = {
   },
   goodLooksLike: {
     eyebrow: "What good looks like",
-    heading: "What good Search & Authority should achieve",
+    heading: "What good Digital Visibility and Growth should achieve",
     intro: "A clear standard for the work without pretending it is a case study.",
     points: [
       "Search systems can understand what the business does and where it has genuine expertise.",
@@ -161,7 +161,7 @@ export const seoContentAndAiVisibility: SpecialistPageConfig = {
   cta: {
     heading: "Have a visibility problem worth solving?",
     body: "Start with what customers are trying to find — and whether your business deserves to be the answer.",
-    label: "Build my growth plan"
+    label: "Discuss Your Project"
   },
   // No heading: the shared "Useful questions" eyebrow is set as the heading
   // itself, which is the brief's heading. Setting both would print it twice.

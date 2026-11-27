@@ -4,12 +4,13 @@
 // and the brief asks for it to be concise. An eyebrow over a two-column pair —
 // the heading in burgundy, the one paragraph beside it — on a single hairline.
 
+@use "../sectionHead" as sectionHead;
+
 .aboutGroup {
   padding-block: var(--sec-y-sm);
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include sectionHead.section-eyebrow;
   }
 
   &__grid {
@@ -21,10 +22,10 @@
     padding-top: 1.5rem;
 
     & > .h2 {
+      @include sectionHead.section-title;
       flex: 1 1 22rem;
       min-width: 0;
       max-width: 30rem;
-      color: var(--color-burgundy);
     }
 
     & > .body {

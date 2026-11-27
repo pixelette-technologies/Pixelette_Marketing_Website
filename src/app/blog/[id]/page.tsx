@@ -4,6 +4,7 @@ import { ContactSection } from "@/components/common";
 import { finalConversionCopy } from "@/data/home";
 import RelatedBlogs from "@/components/ui/singleBlog/RelatedBlogs";
 import blogsData from "@/data/blogs/blogsData";
+import { blogHref } from "@/data/blogs/slugs";
 import { pageMetadata, SITE_URL } from "@/data/site";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -16,11 +17,18 @@ interface PageProps {
 
 const SITE = SITE_URL;
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return blogsData.flatMap(c => c.data).map(blog => ({ id: String(blog.id) }));
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
-  const blog = blogsData.flatMap(c => c.data).find(item => item.id === parseInt(id, 10));
+  const numeric = parseInt(id, 10);
+  const blog = blogsData.flatMap(c => c.data).find(item => item.id === numeric);
   if (!blog) {
-    return pageMetadata({
+    return await pageMetadata({
       title: "Insights",
       description:
         "Points of view, practical playbooks and tools for making better marketing decisions.",
@@ -32,25 +40,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     typeof blog.description === "string"
       ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 160)
       : "";
-  return pageMetadata({
+  return await pageMetadata({
     title: blog.heading,
     description:
       desc || `Read "${blog.heading}" in Pixelette Marketing Insights.`,
-    path: `/blog/${id}`,
+    path: blogHref(blog.id),
     type: "article"
   });
 }
 
-export default async function SingleBlogPage({ params }: PageProps) {
+export default async function BlogArticlePage({ params }: PageProps) {
   const { id } = await params;
   const blogId = parseInt(id, 10);
+  if (Number.isNaN(blogId)) notFound();
+
   const allBlogs = blogsData.flatMap(category => category.data);
   const blog = allBlogs.find(item => item.id === blogId);
+  if (!blog) notFound();
 
-  if (!blog) {
-    notFound();
-  }
-
+  const path = blogHref(blog.id);
   const blogDesc =
     typeof blog.description === "string"
       ? blog.description.replace(/<[^>]*>/g, "").trim().slice(0, 200)
@@ -73,7 +81,7 @@ export default async function SingleBlogPage({ params }: PageProps) {
       name: "Pixelette Marketing",
       logo: { "@type": "ImageObject", url: `${SITE}/favicon.png` }
     },
-    mainEntityOfPage: `${SITE}/blog/${id}`
+    mainEntityOfPage: `${SITE}${path}`
   };
 
   return (
@@ -95,11 +103,10 @@ export default async function SingleBlogPage({ params }: PageProps) {
         data={blog.dataContent}
       />
       <RelatedBlogs data={blog.relatedBlogs} />
-      {/* 25 Sep 2026: was ContactUsHero, the /contactus opening. That is
-          "Start here" as a page heading now, so articles close on the
-          /results close instead. */}
       <ContactSection
-        heading={finalConversionCopy.heading}
+        eyebrow={finalConversionCopy.eyebrow}
+        headingLead={finalConversionCopy.headingLead}
+        headingEmphasis={finalConversionCopy.headingEmphasis}
         text={finalConversionCopy.lead}
         closing={finalConversionCopy.closing}
       />

@@ -5,14 +5,9 @@
 // the same ground plus the hairline that separates a closing band from the
 // section above it.
 //
-// Two selector faults. The heading rule was written as `h2`, but this
-// component takes a headingLevel prop and /story/[id] and the service routes
-// render it as `h1` — so on those pages the heading lost its spacing and the
-// brand-coloured <span> inside it lost its colour. And the rule for the
-// contact block's own heading selected `h1` where the markup renders a <p>
-// through Text, so it had never applied anywhere. Both are on :is() now.
-//
-// Four media queries gone: the two columns are a wrapping flex pair.
+// 27 Nov 2026: left copy matches locked-service hero typography (Paid Media).
+
+@use "../ui/serviceHeroCopy" as heroCopy;
 
 .contactUsSection {
   display: flex;
@@ -25,24 +20,35 @@
     flex: 1 1 24rem;
     min-width: 0;
 
-    & > :is(h1, h2) {
-      margin-bottom: 1.25rem;
+    & > .eyebrow {
+      @include heroCopy.service-hero-eyebrow;
+    }
 
+    & > :is(h1, h2) {
+      @include heroCopy.service-hero-heading;
+      margin-bottom: 0;
+
+      & > em,
       & > span {
-        color: var(--color-brand);
+        @include heroCopy.service-hero-heading-em;
       }
     }
 
-    & > p {
-      margin-bottom: 1rem;
+    & > .lead {
+      @include heroCopy.service-hero-lead;
+      max-width: 42ch;
+      margin-bottom: 0;
     }
 
-    & > .eyebrow {
+    & > .small {
       display: block;
-      margin-bottom: 1.25rem;
+      margin-top: 1rem;
+      max-width: 42ch;
     }
 
     & > div {
+      margin-top: 1rem;
+
       & > * {
         &:not(:last-child) {
           margin-bottom: 0.5rem;
@@ -60,8 +66,6 @@
 
         & > section {
           flex: 0 0 auto;
-          // The icons here are currentColor now; this is the colour they had
-          // hard-coded before. was B3063C
           color: var(--color-brand);
 
           & > svg {
@@ -91,5 +95,5 @@
 // beside it, so this is the only control the copy column carries.
 .contactUsSection__cta {
   display: inline-flex;
-  margin-top: 1.5rem;
+  margin-top: 1.7rem;
 }

@@ -1,13 +1,10 @@
 // /contactus, 30 Sep 2026, on the Pixelette Technologies contact page:
 // a text hero, offices beside the form, What happens next (_howItWorks),
 // other routes in, and the FAQ.
-//
-// Colour follows the specialist hierarchy (see _tokens.scss): pink eyebrow,
-// plum-ink headline and copy, burgundy card headings, the brand crimson for
-// links only.
-//
-// No media query. The split is a wrapping flex pair and the routes are the
-// thirds grid, so both fall to one column on their own.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
 
 $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
@@ -17,23 +14,24 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   padding-block: var(--sec-y-sm) 2.5rem;
 
   & > .eyebrow {
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include heroCopy.service-hero-eyebrow;
   }
 
   & > .h1 {
-    max-width: 22ch;
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-heading;
+  }
+
+  & > .h1 em {
+    @include heroCopy.service-hero-heading-em;
   }
 
   & > .lead {
-    max-width: 46rem;
-    margin-top: 1.5rem;
-    color: var(--color-plum-ink);
+    @include heroCopy.service-hero-lead;
+    max-width: 42ch;
   }
 
   & > .small {
-    max-width: 46rem;
+    max-width: 42ch;
     margin-top: 1rem;
     color: var(--color-muted);
   }
@@ -172,13 +170,16 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 // --- Other routes in -----------------------------------------------------------
+// Stronger band so these cards read as a second path in, not a quiet footnote.
 
 .contactRoutes {
   padding-block: var(--sec-y);
+  background: var(--color-brand-tint);
+  border-block: 1px solid var(--color-line);
 
   & .h3 {
     margin-bottom: 1.75rem;
-    color: var(--color-plum-ink);
+    color: var(--color-burgundy);
   }
 
   &__grid {
@@ -191,18 +192,24 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   &__card {
     display: flex;
     flex-direction: column;
-    padding: 1.5rem;
+    padding: 1.65rem 1.5rem 1.5rem;
     background: var(--color-page);
     border: 1px solid var(--color-line-card);
+    border-top: 3px solid var(--color-brand);
     border-radius: var(--radius-card);
-    transition: border-color 200ms $contact-ease;
+    box-shadow: var(--shadow-card);
+    transition:
+      border-color 200ms $contact-ease,
+      transform 280ms $contact-ease;
 
     &:hover {
       border-color: var(--color-line-strong);
+      border-top-color: var(--color-brand);
+      transform: translateY(-2px);
     }
 
     & > .h4 {
-      color: var(--color-burgundy);
+      color: var(--color-plum-ink);
     }
 
     & > .body {
@@ -213,18 +220,9 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   &__link {
-    display: inline-flex;
-    align-items: center;
     align-self: flex-start;
-    min-height: 44px;
-    margin-top: 1rem;
-    font-weight: 500;
-    color: var(--color-brand);
+    margin-top: 1.25rem;
     overflow-wrap: anywhere;
-
-    &:hover {
-      text-decoration: underline;
-    }
   }
 }
 
@@ -238,13 +236,11 @@ $contact-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   border-top: 1px solid var(--color-line);
 
   & .eyebrow {
-    display: block;
-    margin-bottom: 1.25rem;
-    color: var(--color-pink-text);
+    @include sectionHead.section-eyebrow;
   }
 
   & .h2 {
-    color: var(--color-plum-ink);
+    @include sectionHead.section-title;
   }
 
   &__list {

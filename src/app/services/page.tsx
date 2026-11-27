@@ -6,14 +6,16 @@ import { capabilityGroups } from "@/data/services/capabilityGroups";
 import { CapabilityExplorer } from "@/components/ui/services";
 import { pageMetadata, SITE_URL } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "What we do",
   description:
-    "Five connected capabilities — strategy and positioning, demand and performance, search and authority, pipeline and conversion, and growth intelligence — for businesses across established and emerging sectors.",
+    "Five connected capabilities — brand and strategy, creative and campaigns, communications and engagement, digital visibility and growth, and measurement and insight — applied to the audience and the objective.",
   path: "/services",
   keywords:
-    "growth marketing services, marketing strategy, demand generation, SEO, paid media, pipeline, growth intelligence"
+    "marketing services, brand strategy, campaigns, communications, SEO, paid media, measurement"
 });
+}
 
 // Added 10 Jun 2026 as an SEO hub and never taken through the design
 // conversion. It carried twenty-odd inline style objects: the h1 hard-coded at
@@ -71,13 +73,16 @@ export default function ServicesIndexPage() {
         <Container className='main'>
           <section className='hubHero'>
             <Heading className='h1p' level={1}>
-              What we do
+              What <em>we do</em>
             </Heading>
             <Text className='lead'>
-              Pixelette Marketing works with businesses across established and
-              emerging sectors. The work is organised as five connected
-              capabilities rather than a menu of channels — the starting point
-              is what is actually limiting growth, not a predetermined service.
+              The work is organised as five connected capabilities rather than
+              a menu of channels. You may need to define your brand, launch
+              something, tell a stronger story, build an audience, improve how
+              easily you are found, or understand what is actually working. We
+              organise around the objective rather than the channel, and the
+              same five capabilities apply whether the audience is a customer,
+              a community or a public service.
             </Text>
           </section>
         </Container>
@@ -113,7 +118,7 @@ export default function ServicesIndexPage() {
               still reachable from every capability above, so nothing is
               orphaned — they simply stop being the only exit. */}
           <Link href='/contactus' className='btn'>
-            Tell us what needs to grow
+            Discuss Your Project
           </Link>
         </Container>
       </div>

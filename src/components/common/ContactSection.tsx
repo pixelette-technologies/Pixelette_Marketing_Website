@@ -12,6 +12,9 @@ interface ContactData {
 
 interface ContactSectionProps {
   heading?: string;
+  /** Preferred over plain `heading` when the last words take brand italic. */
+  headingLead?: string;
+  headingEmphasis?: string;
   text?: string;
   data?: ContactData[];
   /** Trailing .small line under the copy column. */
@@ -35,6 +38,8 @@ interface ContactSectionProps {
 
 const ContactSection: FC<ContactSectionProps> = ({
   heading,
+  headingLead,
+  headingEmphasis,
   text,
   data,
   closing,
@@ -45,38 +50,45 @@ const ContactSection: FC<ContactSectionProps> = ({
   formIntro = true
 }) => {
   const HeadingTag = headingLevel === 1 ? "h1" : "h2";
+  const titleClass = headingLevel === 1 ? "h1p" : "h2";
+  const emphasized = Boolean(headingLead && headingEmphasis);
+
   return (
     <div className='band-closing' id={id}>
       <Container className='main'>
         <section className='contactUsSection'>
           <section>
             {eyebrow && <Text className='eyebrow'>{eyebrow}</Text>}
-            {heading && (
+            {emphasized ? (
+              <HeadingTag className={titleClass}>
+                {headingLead} <em>{headingEmphasis}</em>
+              </HeadingTag>
+            ) : heading ? (
               <HeadingTag
-                className={headingLevel === 1 ? "h1p" : "h2"}
+                className={titleClass}
                 dangerouslySetInnerHTML={{ __html: heading }}
-              ></HeadingTag>
-            )}
+              />
+            ) : null}
             {text && <Text className='lead'>{text}</Text>}
             {data?.length ? (
-            <div data-reveal='stagger'>
-              {data.map((el, index) => (
-                <blockquote key={index}>
-                  <section>
-                    <el.icon />
-                  </section>
-                  <div>
-                    {el.heading && (
-                      <Text className='text_primary--bolder'>{el.heading}</Text>
-                    )}
-                    <Text className='text_tertiary'>{el.text}</Text>
-                  </div>
-                </blockquote>
-              ))}
-            </div>
+              <div data-reveal='stagger'>
+                {data.map((el, index) => (
+                  <blockquote key={index}>
+                    <section>
+                      <el.icon />
+                    </section>
+                    <div>
+                      {el.heading && (
+                        <Text className='text_primary--bolder'>{el.heading}</Text>
+                      )}
+                      <Text className='text_tertiary'>{el.text}</Text>
+                    </div>
+                  </blockquote>
+                ))}
+              </div>
             ) : null}
             {cta && (
-              <Link href={cta.to} className='btn2 contactUsSection__cta'>
+              <Link href={cta.to} className='btn contactUsSection__cta'>
                 {cta.label}
               </Link>
             )}

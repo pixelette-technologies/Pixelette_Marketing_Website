@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ErrorMessage, useField, FieldHookConfig } from "formik";
+import { useField, FieldHookConfig } from "formik";
 
 type FormTextAreaProps = FieldHookConfig<string> & {
   label: string;
@@ -15,27 +15,31 @@ const FormTextArea: React.FC<FormTextAreaProps> = ({
   ...props
 }) => {
   const [field, meta] = useField(props);
+  const showError = Boolean(meta.touched && meta.error);
+  const errorId = `${field.name}-error`;
 
   return (
-    <div
-      className='formtextArea'
-    >
+    <div className='formtextArea'>
       <label htmlFor={field.name} className='form-label'>
         {label}
       </label>
       <textarea
         placeholder={place}
-        id={field.name}
-        className={`form-text ${meta.touched && meta.error ? "is-invalid" : ""}`}
+        className={`form-text ${showError ? "is-invalid" : ""}`}
         {...field}
-        autoComplete='off'
+        id={field.name}
+        aria-invalid={showError || undefined}
+        aria-describedby={showError ? errorId : undefined}
         rows={4}
         style={{
-          border:
-            meta.touched && meta.error ? "1px solid var(--color-danger)" : "1px solid var(--color-line-strong)"
+          border: showError ? "1px solid var(--color-danger)" : undefined
         }}
       />
-      <ErrorMessage component='div' name={field.name} className='form-error' />
+      {showError ? (
+        <div id={errorId} className='form-error' role='alert'>
+          {meta.error}
+        </div>
+      ) : null}
     </div>
   );
 };

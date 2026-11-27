@@ -1,0 +1,498 @@
+// PR & Earned Media — locked design (20 Nov 2026).
+// Page-local surface. Does not change specialist templates or other routes.
+// Hero art is original CSS/SVG. No icons on labels, capabilities or measures.
+
+@use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
+
+.prPage {
+  --pr-cream: #fbf7f2;
+  --pr-paper: #f7f1e6;
+  --pr-crimson: #b3063c;
+  --pr-crimson-deep: #8c0430;
+  --pr-plum: #4b1635;
+  --pr-ink: #24181f;
+  --pr-body: #5c4149;
+  --pr-line: rgba(75, 22, 53, 0.16);
+  --pr-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  background: var(--pr-cream);
+  color: var(--pr-ink);
+  overflow-x: clip;
+}
+
+.prSectionTitle {
+  @include sectionHead.section-title;
+  @include sectionHead.section-title-reset-rule;
+}
+
+// --- Hero ------------------------------------------------------------------
+
+.prHero {
+  padding-block: clamp(2.25rem, 1.4rem + 2.5vw, 4rem) clamp(1.5rem, 1rem + 2vw, 3rem);
+}
+
+.prHero__inner {
+  display: grid;
+  grid-template-columns: minmax(22rem, 34rem) minmax(0, 1fr);
+  gap: clamp(1.25rem, 1rem + 2vw, 2.75rem);
+  align-items: center;
+}
+
+.prHero__eyebrow {
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
+}
+
+.prHero__heading {
+  @include heroCopy.service-hero-heading;
+}
+
+.prHero__heading span {
+  display: block;
+}
+
+.prHero__heading em {
+  @include heroCopy.service-hero-heading-em;
+}
+
+.prHero__lead {
+  @include heroCopy.service-hero-lead;
+}
+
+.prHero__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  min-height: 48px;
+  padding: 0.8rem 1.35rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.prHero__cta {
+  margin-top: 1.5rem;
+  background: var(--pr-crimson);
+  color: #fff;
+}
+
+.prHero__cta:hover {
+  background: var(--pr-crimson-deep);
+  color: #fff;
+}
+
+.prHero__cta:focus-visible,
+.prFaq__question:focus-visible {
+  outline: 2px solid var(--pr-crimson);
+  outline-offset: 3px;
+}
+
+// --- Editorial collage -----------------------------------------------------
+
+.prCollage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 0.75rem 0.85rem;
+  align-items: stretch;
+  min-width: 0;
+  padding: 1.4rem 0.15rem 0.4rem 0.35rem;
+}
+
+.prCollage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0.15rem;
+  left: 42%;
+  width: 4.25rem;
+  height: 5.75rem;
+  background: #d4532b;
+  transform: rotate(8deg);
+  clip-path: polygon(10% 0, 100% 8%, 88% 100%, 0 86%);
+}
+
+.prCollage::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  right: 4%;
+  bottom: 6%;
+  width: 4.5rem;
+  height: 3.25rem;
+  background-image: radial-gradient(circle, var(--pr-plum) 1px, transparent 1.4px);
+  background-size: 8px 8px;
+  opacity: 0.45;
+}
+
+.prCollage__spark {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 34%;
+  width: 2.35rem;
+  height: 2.35rem;
+  color: var(--pr-crimson);
+}
+
+.prCollage__spark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.prCollage__sheet,
+.prCollage__strips {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.prCollage__sheet {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 20rem;
+  padding: 1.75rem 1.35rem 1.5rem;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.7), transparent 40%),
+    var(--pr-paper);
+  box-shadow: 10px 14px 0 rgba(75, 22, 53, 0.06);
+  transform: rotate(-1.4deg);
+  clip-path: polygon(
+    4% 7%,
+    14% 2%,
+    31% 6%,
+    48% 1%,
+    66% 5%,
+    84% 0%,
+    97% 6%,
+    100% 18%,
+    96% 34%,
+    100% 52%,
+    97% 70%,
+    100% 86%,
+    94% 98%,
+    74% 95%,
+    54% 100%,
+    34% 96%,
+    16% 100%,
+    2% 92%,
+    0% 74%,
+    3% 56%,
+    0% 38%,
+    3% 18%
+  );
+}
+
+.prCollage__statement {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.7rem, 1.2rem + 1.5vw, 2.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--pr-plum);
+}
+
+.prCollage__emphasis {
+  font-style: italic;
+  color: var(--pr-crimson);
+}
+
+.prCollage__scribble {
+  display: block;
+  width: 7.5rem;
+  height: 1rem;
+  margin-top: 0.35rem;
+  margin-left: 0.15rem;
+  color: var(--pr-crimson);
+}
+
+.prCollage__strips {
+  display: grid;
+  grid-template-rows: repeat(4, minmax(4.35rem, 1fr));
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0.2rem 0;
+  list-style: none;
+}
+
+.prCollage__strip {
+  position: relative;
+  overflow: hidden;
+  min-height: 4.35rem;
+  background: var(--pr-plum);
+  clip-path: polygon(0 8%, 100% 0, 100% 92%, 0 100%);
+}
+
+.prCollage__strip--employees {
+  clip-path: polygon(0 0, 100% 7%, 100% 100%, 0 90%);
+}
+
+.prCollage__strip--stakeholders {
+  clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 92%);
+}
+
+.prCollage__strip--public {
+  clip-path: polygon(0 0, 100% 8%, 100% 94%, 0 100%);
+}
+
+.prCollage__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.prCollage__label {
+  position: absolute;
+  z-index: 1;
+  left: 0.65rem;
+  bottom: 0.7rem;
+  max-width: calc(100% - 1.3rem);
+  padding: 0.28rem 0.55rem;
+  background: #fff;
+  color: var(--pr-ink);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.2;
+  box-shadow: 0 1px 0 rgba(36, 24, 31, 0.08);
+}
+
+// --- What we deliver -------------------------------------------------------
+
+.prDeliver {
+  padding-block: clamp(1.5rem, 1rem + 2vw, 3rem) clamp(2rem, 1rem + 2vw, 3.25rem);
+}
+
+.prDeliver__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  margin: clamp(1.5rem, 1rem + 1.5vw, 2.25rem) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.prDeliver__item {
+  min-width: 0;
+  padding: 0 1.15rem;
+  border-left: 1px solid var(--pr-line);
+}
+
+.prDeliver__item:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+
+.prDeliver__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 560;
+  font-size: clamp(1.15rem, 1rem + 0.4vw, 1.35rem);
+  line-height: 1.2;
+  color: var(--pr-plum);
+}
+
+.prDeliver__body {
+  margin: 0.7rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: var(--pr-body);
+}
+
+// --- What we measure -------------------------------------------------------
+
+.prMeasure {
+  padding-block: 0 clamp(2rem, 1rem + 2vw, 3rem);
+}
+
+.prMeasure__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.85rem 1.5rem;
+}
+
+.prMeasure .prSectionTitle {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.prMeasure__line {
+  margin: 0;
+  flex: 1 1 18rem;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.92rem + 0.25vw, 1.125rem);
+  line-height: 1.45;
+  color: var(--pr-ink);
+}
+
+.prMeasure__phrase {
+  white-space: nowrap;
+}
+
+// --- Close -----------------------------------------------------------------
+
+// Close CTA → shared ServiceCloseBand; page wrap mirrors .prMeasure bottom space.
+
+.prCloseWrap {
+  margin-bottom: clamp(2rem, 1rem + 2vw, 3rem);
+}
+
+// --- FAQ -------------------------------------------------------------------
+
+.prFaq {
+  padding-block: 0.25rem clamp(3rem, 2rem + 3vw, 5rem);
+}
+
+.prFaq__list {
+  max-width: 52rem;
+  margin-top: 1.35rem;
+  border-top: 1px solid var(--pr-line);
+}
+
+.prFaq__item {
+  border-bottom: 1px solid var(--pr-line);
+}
+
+.prFaq__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 48px;
+  padding: 1.1rem 0;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--pr-plum);
+  cursor: pointer;
+  list-style: none;
+}
+
+.prFaq__question::-webkit-details-marker {
+  display: none;
+}
+
+.prFaq__mark {
+  position: relative;
+  flex: none;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--pr-crimson);
+}
+
+.prFaq__mark::before,
+.prFaq__mark::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 2px;
+  margin-top: -1px;
+  background: currentColor;
+}
+
+.prFaq__mark::after {
+  transform: rotate(90deg);
+}
+
+.prFaq__item[open] .prFaq__mark {
+  transform: rotate(45deg);
+}
+
+.prFaq__answer {
+  max-width: 68ch;
+  margin: 0;
+  padding: 0 0 1.25rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--pr-body);
+}
+
+@media (max-width: 980px) {
+  .prHero__inner,
+  .prCollage {
+    grid-template-columns: 1fr;
+  }
+
+  .prHero__heading {
+    max-width: 16ch;
+  }
+
+  .prCollage__sheet {
+    min-height: 0;
+    transform: none;
+  }
+
+  .prCollage__strip,
+  .prCollage__strip--employees,
+  .prCollage__strip--stakeholders,
+  .prCollage__strip--public {
+    min-height: 5.5rem;
+    clip-path: none;
+  }
+
+  .prCollage__spark {
+    left: 1.5rem;
+    top: -0.2rem;
+  }
+
+  .prDeliver__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 0;
+  }
+
+  .prDeliver__item:nth-child(odd) {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  .prDeliver__item:nth-child(3),
+  .prDeliver__item:nth-child(4) {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--pr-line);
+  }
+}
+
+@media (max-width: 640px) {
+  .prMeasure .prSectionTitle {
+    white-space: normal;
+  }
+  .prDeliver__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prDeliver__item,
+  .prDeliver__item:nth-child(3),
+  .prDeliver__item:nth-child(4) {
+    padding: 1.15rem 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--pr-line);
+  }
+
+  .prDeliver__item:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .prCollage__label {
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prFaq__mark {
+    transition: none;
+  }
+}

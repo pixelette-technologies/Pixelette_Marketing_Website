@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Caveat, IBM_Plex_Mono, Newsreader, Outfit } from "next/font/google";
 import "../scss/main.scss";
 import {
   CookieConsent,
   Footer,
+  MotionPauseBootstrap,
   Navbar,
   ScrollReveal
 } from "@/components/common";
-import AgentMount from "@/agent/mount";
-import { pixContext } from "@/agent/context";
 import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/data/site";
+import { isOfficialMarketingHost } from "@/lib/officialHost";
 
 // The three type roles, self-hosted. This replaces two render-blocking
 // @import url(...) lines in _base.scss that pulled four overlapping and
@@ -22,6 +23,7 @@ import { SITE_NAME, SITE_URL, TWITTER_HANDLE } from "@/data/site";
 // IBM Plex Mono has static cuts only and must name its weights.
 const newsreader = Newsreader({
   subsets: ["latin"],
+  style: ["normal", "italic"],
   variable: "--font-newsreader",
   display: "swap"
 });
@@ -50,32 +52,39 @@ const caveat = Caveat({
   display: "swap"
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: SITE_NAME,
-    template: "%s"
-  },
-  description:
-    "Marketing that matters to your bottom line — strategy, demand, search, pipeline and growth intelligence working together around commercial outcomes.",
-  openGraph: {
-    type: "website",
-    locale: "en_GB",
-    siteName: SITE_NAME,
-    url: SITE_URL
-  },
-  twitter: {
-    card: "summary_large_image",
-    creator: TWITTER_HANDLE
-  },
-  robots: {
-    index: true,
-    follow: true
-  }
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const host = (await headers()).get("host") ?? "";
+  const allowIndex = isOfficialMarketingHost(host);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: SITE_NAME,
+      template: "%s"
+    },
+    description:
+      "Marketing and communications that deliver measurable impact for businesses, public-sector organisations and community organisations.",
+    openGraph: {
+      type: "website",
+      locale: "en_GB",
+      siteName: SITE_NAME,
+      url: SITE_URL
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: TWITTER_HANDLE
+    },
+    robots: {
+      index: allowIndex,
+      follow: allowIndex
+    }
+  };
+}
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+// After slick so A2 focus overrides win the cascade.
+import "../scss/slick-focus-override.scss";
 import Script from "next/script";
 
 const structuredData = {
@@ -88,7 +97,7 @@ const structuredData = {
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.png`,
       description:
-        "Marketing that matters to your bottom line. Pixelette Marketing brings strategy, demand, search, pipeline and growth intelligence together around commercial outcomes, with deeper experience in technology-led markets.",
+        "Pixelette Marketing is one integrated marketing and communications agency. The same five capabilities serve businesses, public-sector organisations and community organisations.",
       contactPoint: {
         "@type": "ContactPoint",
         contactType: "sales",
@@ -104,7 +113,8 @@ const structuredData = {
         postalCode: "W6 8JA",
         addressCountry: "GB"
       },
-      vatID: "GB 432 2377 17",
+      // VAT omitted until management confirms Marketing Ltd holds GB 432 2377 17
+      // (same number publishes on Pixelette Technologies' site — see privacy comments).
       identifier: {
         "@type": "PropertyValue",
         name: "Companies House company number",
@@ -181,18 +191,22 @@ try { if (localStorage.getItem('pmw-consent') === 'granted') { gtag('consent', '
 gtag('js', new Date());
 gtag('config', 'G-1HGJEBFGRW');`}
         </Script>
+        <a href='#main-content' className='skip-to-content'>
+          Skip to main content
+        </a>
         <Navbar />
         {/* .page-flow is the scroll reveal's only structural dependency: a
             page is a list of blocks and these are them. See ScrollReveal and
             _reveal.scss. The class carries no styling of its own. */}
-        <div className='page-flow'>{children}</div>
+        <main id='main-content' className='page-flow'>
+          {children}
+        </main>
         <Footer />
         <ScrollReveal />
         <CookieConsent />
-        {/* Mounted last and once, on every route, so the launcher sits above
-            the cookie banner (see marketingThemeOptions in src/agent/config.ts)
-            without depending on render order elsewhere on the page. */}
-        <AgentMount context={pixContext()} />
+        <MotionPauseBootstrap />
+        {/* Ask Pix M unmounted for the 12 Nov 2026 mock-up. Code remains in
+            src/agent/. */}
       </body>
     </html>
   );

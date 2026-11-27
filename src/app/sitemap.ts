@@ -1,14 +1,13 @@
 import type { MetadataRoute } from "next";
 import { servicesData } from "@/data/services/servicesData";
 import blogsData from "@/data/blogs/blogsData";
+import { blogHref } from "@/data/blogs/slugs";
 import { SITE_URL } from "@/data/site";
 
 // Generates /sitemap.xml at build time (Next.js App Router metadata route).
 //
-// ONLY ROUTES THAT ARE INTERNALLY LINKED. /industries/[slug] specialist pages
-// (web_3, fintech, tech, saas, ai) stay live for direct/legacy traffic but are
-// not linked from nav, footer or /industries, so they are omitted here.
-// /success_stories and /story/[id] were deleted on 25 Sep 2026.
+// Mock-up keeps the 23 production URLs. New preview-only routes stay out so
+// the live domain is not advertised with paths that 404 there.
 //
 // route-walk discovers its list from this file — a new linked page left out
 // here is a new page nothing checks.
@@ -27,7 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/services", changeFrequency: "weekly", priority: 0.9 },
     { path: "/strategy-positioning", changeFrequency: "weekly", priority: 0.9 },
     { path: "/industries", changeFrequency: "weekly", priority: 0.8 },
-    { path: "/results", changeFrequency: "monthly", priority: 0.8 },
     { path: "/aboutus", changeFrequency: "monthly", priority: 0.7 },
     { path: "/blog-list", changeFrequency: "weekly", priority: 0.7 },
     { path: "/contactus", changeFrequency: "monthly", priority: 0.7 },
@@ -35,16 +33,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/cookie-policy", changeFrequency: "yearly", priority: 0.3 }
   ];
 
-  // Every service page is linked from the What we do nav and the footer.
   const services: Entry[] = servicesData.map(s => ({
     path: `/services/${s.route}`,
     changeFrequency: "monthly" as const,
     priority: 0.8
   }));
 
-  // Every article is linked from /blog-list (Insights).
   const blogs: Entry[] = blogsData.flatMap(c => c.data).map(b => ({
-    path: `/blog/${b.id}`,
+    path: blogHref(b.id),
     changeFrequency: "monthly" as const,
     priority: 0.6
   }));

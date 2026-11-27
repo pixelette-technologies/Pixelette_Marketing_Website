@@ -1,188 +1,246 @@
-// The interior hero, and the bridge beneath it (30 Sep 2026, the final
-// diagnostic brief).
-//
-// TWO LINES OF EQUAL AUTHORITY. Same size, same weight, both at full opacity:
-// "Know where to compete" in plum ink, "Know why you win" in burgundy. The
-// first line was never to look greyed out, and the rule the brief makes
-// mandatory is that COMPACT NEVER TAKES EITHER LINE BELOW 70% OPACITY. This
-// stylesheet does not touch opacity on the heading at all: compact reduces
-// the size, which is what the brief prefers.
-//
-// COMPACT is the state once the diagnostic has started: the heading steps
-// down from --fs-h1p to about 22-30px, the padding tightens, and the lead,
-// facts and controls fold with a 0fr grid row (a height transition that
-// needs no measured height). The bridge folds the same way.
+// Impact Compass intro — corrected against approved Option 3 (20 Nov 2026).
+// Tighter split: larger headline + compass, less empty space, signal CTA.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
 
-.strategyHero {
-  --sh-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --sh-fold: 480ms;
+@use "../serviceHeroCopy" as heroCopy;
 
-  padding-block: var(--sec-y);
-  transition: padding var(--sh-fold) var(--sh-ease);
+.impactIntro {
+  --ii-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
-  & > .eyebrow {
-    margin-bottom: 1.25rem;
-    transition: margin var(--sh-fold) var(--sh-ease);
-  }
-}
-
-.strategyHero__heading {
-  max-width: 40rem;
-  color: var(--color-plum-ink);
-  transition: font-size var(--sh-fold) var(--sh-ease);
-}
-
-// Each line is a block, so the pair always breaks between the two and never
-// inside one. Colour only; nothing here lowers opacity.
-.strategyHero__line {
-  display: block;
-
-  &--lead {
-    color: var(--color-plum-ink);
-  }
-
-  &--accent {
-    color: var(--color-burgundy);
-  }
-}
-
-.strategyHero__more {
   display: grid;
-  grid-template-rows: 1fr;
-  transition:
-    grid-template-rows var(--sh-fold) var(--sh-ease),
-    opacity 280ms var(--sh-ease);
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  min-height: min(68vh, 36rem);
+  background: var(--color-band);
 }
 
-.strategyHero__moreInner {
-  min-height: 0;
-  overflow: hidden;
-}
-
-.strategyHero__lead {
-  margin-top: 1.5rem;
-  color: var(--color-plum-ink);
-}
-
-// "12 questions · 6 dimensions · Around 3–5 minutes · Instant result". The
-// middots are drawn, not typed, so a wrap never strands one at a line end.
-.strategyHero__facts {
+.impactIntro__copy {
   display: flex;
+  align-items: center;
+  padding-block: clamp(1.5rem, 4vw, 2.75rem);
+  // Align copy to the site container edge; column background stays full-bleed.
+  padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  padding-inline-end: clamp(1rem, 2.5vw, 2rem);
+}
+
+.impactIntro__copyInner {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.impactIntro__eyebrow {
+  margin: 0;
+}
+
+.impactIntro__eyebrowText {
+  @include heroCopy.service-hero-eyebrow;
+}
+
+.impactIntro__heading {
+  @include heroCopy.service-hero-heading;
+}
+
+.impactIntro__heading em {
+  @include heroCopy.service-hero-heading-em;
+}
+
+.impactIntro__lead {
+  @include heroCopy.service-hero-lead;
+  max-width: 42ch;
+}
+
+.impactIntro__process {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-brand);
+}
+
+.impactIntro__processArrow {
+  // B6 — light-background usage; signal token fails 4.5:1 here. Brand passes.
+  color: var(--color-brand);
+}
+
+.impactIntro__facts {
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.25rem 0;
-  margin: 1.5rem 0 0;
-  padding: 0;
+  gap: 0.35rem 0;
+  margin: 0.9rem 0 0;
+  padding: 0.45rem 0.95rem;
   list-style: none;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-page) 82%, transparent);
+  border: 1px solid var(--color-line-pill);
   font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
   color: var(--color-muted);
 
-  & > li:not(:last-child)::after {
-    content: "·";
-    margin-inline: 0.625rem;
-    color: var(--color-pink);
+  li:not(:last-child)::after {
+    content: "•";
+    margin-inline: 0.55rem;
+    color: var(--color-soft);
   }
 }
 
-.strategyHero__actions {
+.impactIntro__actions {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  margin-top: 2rem;
-  // Room under the controls inside the folding row, so their focus rings are
-  // not clipped by its overflow.
-  padding-bottom: 0.25rem;
+  gap: 0.75rem;
+  margin-top: 1.05rem;
 }
 
-// --- Compact ----------------------------------------------------------------
+// D2 — Start diagnostic uses the shared `.btn` primitive (B6 already put it
+// on --color-brand). No local glow or hover lock; hover is --color-brand-hover.
 
-.is-compact {
-  .strategyHero {
-    padding-block: 1.5rem 0.75rem;
-
-    & > .eyebrow {
-      margin-bottom: 0.5rem;
-    }
-  }
-
-  .strategyHero__heading {
-    font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
-  }
-
-  .strategyHero__more {
-    grid-template-rows: 0fr;
-    opacity: 0;
-  }
+.impactIntro__assurance,
+.impactIntro__resumeText {
+  margin: 0.7rem 0 0;
+  max-width: 26rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--color-muted);
 }
 
-// --- Clarity before activity ------------------------------------------------
-// About a third of a screen on the warm ground. Folds away once started.
+.impactIntro__resume {
+  margin-top: 0.9rem;
+}
 
-.clarityBridge {
+.impactIntro__visual {
+  position: relative;
   display: grid;
-  grid-template-rows: 1fr;
-  background: var(--color-band);
-  transition:
-    grid-template-rows 480ms cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 280ms ease;
+  place-items: center;
+  overflow: hidden;
+  padding-block: clamp(1.25rem, 3.5vw, 2.25rem);
+  padding-inline-start: clamp(1.25rem, 3vw, 2rem);
+  // Align compass to the site container edge; dark field stays full-bleed.
+  padding-inline-end: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  color: color-mix(in srgb, var(--color-page) 55%, transparent);
+  clip-path: polygon(6% 0, 100% 0, 100% 100%, 0 100%);
+  background:
+    radial-gradient(
+      110% 70% at 72% 18%,
+      color-mix(in srgb, var(--color-brand) 42%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      70% 50% at 20% 90%,
+      color-mix(in srgb, var(--color-brand-signal) 16%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(
+      155deg,
+      var(--color-burgundy) 0%,
+      #2a0c1c 52%,
+      #16050f 100%
+    );
+}
 
-  &__inner {
-    min-height: 0;
-    overflow: hidden;
+.impactIntro__orbits {
+  position: absolute;
+  inset: -18%;
+  background:
+    radial-gradient(
+      circle at 28% 72%,
+      color-mix(in srgb, var(--color-brand-signal) 22%, transparent),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 82% 28%,
+      color-mix(in srgb, var(--color-brand-wash) 26%, transparent),
+      transparent 44%
+    ),
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0 18px,
+      color-mix(in srgb, var(--color-page) 4%, transparent) 18px 19px
+    );
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.impactCompass--intro {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 34rem);
+  height: auto;
+  color: color-mix(in srgb, var(--color-page) 72%, transparent);
+  filter: drop-shadow(0 0 34px color-mix(in srgb, var(--color-brand-signal) 36%, transparent));
+
+  .impactCompass__outer {
+    stroke: color-mix(in srgb, var(--color-page) 26%, transparent);
+    stroke-width: 1.25;
+    stroke-dasharray: 2 8;
   }
 
-  &__body {
-    padding-block: var(--sec-y-sm);
+  .impactCompass__ring {
+    stroke: color-mix(in srgb, var(--color-page) 22%, transparent);
+    stroke-width: 1;
   }
 
-  &__heading {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: var(--fs-h2);
-    line-height: 1.1;
-    color: var(--color-burgundy);
+  .impactCompass__cross,
+  .impactCompass__axis {
+    stroke: color-mix(in srgb, var(--color-page) 28%, transparent);
+    stroke-width: 1;
   }
 
-  &__line {
-    margin-top: 0.875rem;
-    max-width: 40rem;
-    font-size: var(--fs-lead);
-    font-weight: 500;
-    line-height: 1.5;
-    color: var(--color-plum-ink);
+  .impactCompass__node {
+    fill: var(--color-brand-signal);
+    stroke: var(--color-page);
+    stroke-width: 1.5;
   }
 
-  &__dimensions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.375rem 0;
-    margin: 1.5rem 0 0;
-    padding: 0;
-    list-style: none;
-    font-size: 1.0625rem;
-    color: var(--color-plum-ink);
+  .impactCompass__label {
+    fill: color-mix(in srgb, var(--color-page) 94%, transparent);
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+  }
 
-    & > li:not(:last-child)::after {
-      content: "·";
-      margin-inline: 0.75rem;
-      color: var(--color-pink);
-    }
+  .impactCompass__rose {
+    color: color-mix(in srgb, var(--color-page) 70%, transparent);
   }
 }
 
-.is-compact .clarityBridge {
-  grid-template-rows: 0fr;
-  opacity: 0;
+@media (max-width: 900px) {
+  .impactIntro {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .impactIntro__copy {
+    padding-block: 1.75rem 2.25rem;
+    padding-inline-start: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+    padding-inline-end: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  }
+
+  .impactIntro__heading {
+    font-size: clamp(2.35rem, 10vw, 3.25rem);
+  }
+
+  .impactIntro__visual {
+    min-height: 20rem;
+    order: -1;
+    clip-path: none;
+    padding-block: 1.5rem;
+    padding-inline: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  }
+
+  .impactCompass--intro {
+    width: min(100%, 22rem);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .strategyHero,
-  .strategyHero > .eyebrow,
-  .strategyHero__heading,
-  .strategyHero__more,
-  .clarityBridge {
-    transition: none;
+  .impactIntro {
+    scroll-behavior: auto;
+  }
+
+  .impactCompass--intro {
+    filter: none;
   }
 }

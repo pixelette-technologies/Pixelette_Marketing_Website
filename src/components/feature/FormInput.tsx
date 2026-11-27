@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorMessage, useField } from "formik";
+import { useField } from "formik";
 import { FC, InputHTMLAttributes, useState } from "react";
 
 interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -18,11 +18,11 @@ const FormInput: FC<FormInputProps> = ({
 }) => {
   const [field, meta] = useField(props);
   const [value, setValue] = useState<string>("");
+  const showError = Boolean(meta.touched && meta.error);
+  const errorId = `${field.name}-error`;
 
   return (
-    <div
-      className='forminput'
-    >
+    <div className='forminput'>
       <label
         htmlFor={field.name}
         className={`form-label ${value !== "" ? "form-label-input-value" : ""}`}
@@ -32,21 +32,25 @@ const FormInput: FC<FormInputProps> = ({
       <input
         placeholder={place}
         type='text'
-        className={`form-input ${className} ${
-          meta.touched && meta.error ? "is-invalid" : ""
-        }`}
+        className={`form-input ${className} ${showError ? "is-invalid" : ""}`}
         {...field}
         {...props}
-        autoComplete='off'
+        id={field.name}
+        aria-invalid={showError || undefined}
+        aria-describedby={showError ? errorId : undefined}
         onChange={e => {
           setValue(e.target.value);
           field.onChange(e);
         }}
         style={{
-          border: meta.touched && meta.error ? "1px solid var(--color-danger)" : undefined
+          border: showError ? "1px solid var(--color-danger)" : undefined
         }}
       />
-      <ErrorMessage component='div' name={field.name} className='form-error' />
+      {showError ? (
+        <div id={errorId} className='form-error' role='alert'>
+          {meta.error}
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -1,0 +1,320 @@
+// /accessibility — approved page, 24 Nov 2026.
+// Page-local layout. Shared brand tokens only. Does not restyle other routes.
+// Hero matches /social-value: mosaic as full-bleed cover, copy in a light box.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
+@use "../sectionHead" as sectionHead;
+
+.axPage {
+  --ax-cream: color-mix(in srgb, var(--color-brand-wash) 8%, var(--room-light));
+  --ax-blush: var(--color-brand-tint);
+  background: var(--ax-cream);
+  color: var(--color-plum-ink);
+  overflow-x: clip;
+}
+
+.axWrap {
+  width: min(var(--container-wrap), 100% - 40px);
+  margin-inline: auto;
+}
+
+.axHero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(22rem, 42vw, 35rem);
+  overflow: hidden;
+}
+
+.axHero__art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.axHero__art picture,
+.axHero__art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.axHero__copy {
+  position: relative;
+  z-index: 1;
+  width: min(28rem, calc(100% - 2.5rem));
+  margin-block: clamp(1.5rem, 3vw, 2.75rem);
+  margin-left: max(1.25rem, calc((100vw - var(--container-wrap)) / 2));
+  margin-right: 1.25rem;
+  padding: clamp(1.15rem, 1.5vw, 1.75rem) clamp(1.15rem, 1.8vw, 1.85rem);
+  background: rgb(255 255 255 / 90%);
+}
+
+.axHero__eyebrow {
+  @include heroCopy.service-hero-eyebrow;
+  @include heroCopy.service-hero-eyebrow-reset-rule;
+}
+
+.axHero__heading {
+  @include heroCopy.service-hero-heading;
+}
+
+.axHero__heading span,
+.axHero__heading em {
+  display: block;
+}
+
+.axHero__heading em {
+  @include heroCopy.service-hero-heading-em;
+  display: block;
+}
+
+.axHero__text {
+  @include heroCopy.service-hero-lead;
+  max-width: 42ch;
+}
+
+.axHero__text + .axHero__text {
+  margin-top: 0.55rem;
+}
+
+.axMatters {
+  padding-top: clamp(1.5rem, 0.8rem + 1.4vw, 2.4rem);
+}
+
+.axMatters__heading,
+.axWork__lead h2 {
+  @include sectionHead.section-title;
+}
+
+.axMatters__intro {
+  margin: 0.75rem 0 0;
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.axCards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.axCard {
+  display: grid;
+  grid-template-columns: auto 2px minmax(0, 1fr);
+  column-gap: 0.85rem;
+  align-items: center;
+  height: 100%;
+  min-height: 8.4rem;
+  padding: 1.05rem 1rem 1.1rem 0.9rem;
+  border-radius: 1.2rem;
+  background: var(--ax-blush);
+}
+
+.axCard__icon,
+.axHelp__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3.7rem;
+  height: 3.7rem;
+  border-radius: 50%;
+  background: var(--color-brand);
+  color: var(--color-page);
+}
+
+.axCard__icon svg,
+.axHelp__icon svg {
+  width: 1.9rem;
+  height: 1.9rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.axCard__icon text {
+  font-family: var(--font-body), sans-serif;
+}
+
+.axCard__rule,
+.axHelp__rule {
+  width: 2px;
+  align-self: center;
+  height: 3.6rem;
+  border-radius: 1px;
+  background: var(--color-brand);
+}
+
+.axCard__copy h3 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 650;
+  line-height: 1.25;
+  color: var(--color-plum-ink);
+}
+
+.axCard__copy p {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.45;
+  color: var(--color-body);
+}
+
+.axHelp {
+  padding-top: clamp(1.15rem, 0.6rem + 1vw, 1.6rem);
+}
+
+.axHelp__panel {
+  display: grid;
+  grid-template-columns: auto 2px minmax(0, 1fr) auto;
+  column-gap: 0.95rem;
+  align-items: center;
+  padding: 1.15rem 1.15rem 1.15rem 1rem;
+  border-radius: 1.25rem;
+  background: var(--ax-blush);
+}
+
+.axHelp__copy h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.05rem + 0.5vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-burgundy);
+  text-wrap: balance;
+}
+
+.axHelp__copy p {
+  margin: 0.4rem 0 0;
+  max-width: 68ch;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-body);
+}
+
+.axCta {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.axCta:hover {
+  color: var(--color-page);
+  text-decoration: none;
+}
+
+.axWork {
+  padding-block: clamp(2.4rem, 1.6rem + 2vw, 3.6rem);
+}
+
+.axWork__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) 2px minmax(0, 1.08fr);
+  column-gap: clamp(1.5rem, 3vw, 3.25rem);
+  align-items: stretch;
+}
+
+.axWork__lead h2 {
+  font-size: clamp(1.85rem, 1.4rem + 1.1vw, 2.45rem);
+  line-height: 1.12;
+  max-width: 12em;
+}
+
+.axWork__lead p,
+.axWork__aside {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--color-body);
+}
+
+.axWork__lead p {
+  margin-top: 0.85rem;
+  max-width: 36ch;
+}
+
+.axWork__aside {
+  max-width: 46ch;
+  align-self: start;
+}
+
+.axWork__rule {
+  width: 2px;
+  align-self: stretch;
+  border-radius: 1px;
+  background: var(--color-brand);
+}
+
+// Close CTA → shared ServiceCloseBand; page wrap keeps even bottom space.
+.axCloseWrap {
+  margin-bottom: clamp(2rem, 1.2rem + 2vw, 3rem);
+}
+
+@media (max-width: 1100px) {
+  .axCards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 860px) {
+  .axHero {
+    min-height: clamp(24rem, 88vw, 32rem);
+  }
+
+  .axHero__copy {
+    width: min(36rem, calc(100% - 2.5rem));
+  }
+
+  .axHero__heading {
+    max-width: 12em;
+  }
+
+  .axHelp__panel {
+    grid-template-columns: auto 2px minmax(0, 1fr);
+    justify-items: start;
+    row-gap: 0.9rem;
+  }
+
+  .axHelp__panel .axCta {
+    grid-column: 1 / -1;
+  }
+
+  .axWork__grid {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    align-items: start;
+  }
+
+  .axWork__rule {
+    width: 4.25rem;
+    height: 2px;
+    align-self: start;
+  }
+
+  .axWork__aside,
+  .axWork__lead p {
+    max-width: 40rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .axCards {
+    grid-template-columns: 1fr;
+  }
+}

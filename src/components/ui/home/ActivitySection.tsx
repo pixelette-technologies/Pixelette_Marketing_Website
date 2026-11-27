@@ -1,20 +1,20 @@
-import { Container } from "@/components/common";
+import { Container, MotionPauseControl } from "@/components/common";
 import { activityCopy } from "@/data/home";
 import EditorialCopy from "./EditorialCopy";
+import HomeSceneReveal from "./HomeSceneReveal";
 import PostitField from "./PostitField";
 
-// 02 — "More activity isn't the answer / Better decisions are". Locked
-// implementation specification, 28 Sep 2026. The energetic section of the
-// four: the notes fall. The copy is server-rendered; the picture owns
-// its client boundary. See PostitField.tsx for the motion.
+// 02 — "More activity isn't the answer / Better decisions are".
+// Original Post-it field + copy, as a rectangular band (copy left, art right).
 
 export default function ActivitySection() {
   return (
-    <section
+    <HomeSceneReveal
       className='homeScene homeScene--activity'
-      aria-labelledby='activity-title'
+      labelledBy='activity-title'
     >
       <div className='homeScene__art'>
+        <MotionPauseControl />
         <PostitField
           words={activityCopy.notes}
           clearerPath={activityCopy.clearerPath}
@@ -27,6 +27,6 @@ export default function ActivitySection() {
           </div>
         </Container>
       </div>
-    </section>
+    </HomeSceneReveal>
   );
 }

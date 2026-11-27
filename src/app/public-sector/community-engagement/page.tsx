@@ -1,0 +1,18 @@
+import MarketBServicePage from "@/components/ui/publicSector/MarketBServicePage";
+import { marketBServiceLines } from "@/data/publicSector/serviceLines";
+import { pageMetadata } from "@/data/site";
+
+const line = marketBServiceLines[2]!;
+
+export async function generateMetadata() {
+  return await pageMetadata({
+  title: line.title,
+  description: line.h1,
+  path: line.path,
+  index: false
+});
+}
+
+export default function Page() {
+  return <MarketBServicePage line={line} />;
+}

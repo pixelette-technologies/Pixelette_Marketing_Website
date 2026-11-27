@@ -124,12 +124,14 @@ export interface SpecialistPageConfig {
     points: string[];
   };
 
-  /** Defaults to "Have a demand problem worth solving?" → Build my growth plan. */
+  /** Defaults to "Have an objective worth working through?" → Discuss Your Project. */
   cta?: {
     heading: string;
     body: string;
     label?: string;
     href?: string;
+    /** Optional text link under the primary CTA (e.g. cross-market page). */
+    secondary?: { label: string; href: string };
   };
 
   faqs: SpecialistSectionHead & {

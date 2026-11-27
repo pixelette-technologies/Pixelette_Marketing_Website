@@ -9,61 +9,6 @@ import {
   type ConsentChoice
 } from "@/lib/consent";
 
-const wrap: React.CSSProperties = {
-  position: "fixed",
-  left: 0,
-  right: 0,
-  bottom: 0,
-  zIndex: 9999,
-  background: "var(--color-panel-a)",
-  color: "var(--color-band)",
-  padding: "16px 20px",
-  boxShadow: "0 -2px 16px rgb(var(--shadow-tint) / 0.25)"
-};
-const inner: React.CSSProperties = {
-  maxWidth: 1200,
-  margin: "0 auto",
-  display: "flex",
-  flexWrap: "wrap",
-  alignItems: "center",
-  justifyContent: "space-between",
-  gap: 16
-};
-const textStyle: React.CSSProperties = {
-  margin: 0,
-  flex: "1 1 280px",
-  fontSize: "0.5625rem",
-  lineHeight: 1.5
-};
-const actions: React.CSSProperties = {
-  display: "flex",
-  gap: 12,
-  flexShrink: 0
-};
-const btnBase: React.CSSProperties = {
-  padding: "10px 22px",
-  borderRadius: 4,
-  cursor: "pointer",
-  fontSize: "0.5625rem",
-  fontWeight: 600
-};
-const rejectStyle: React.CSSProperties = {
-  ...btnBase,
-  background: "transparent",
-  border: "1px solid var(--color-band)",
-  color: "var(--color-band)"
-};
-const acceptStyle: React.CSSProperties = {
-  ...btnBase,
-  background: "var(--color-brand)",
-  border: "1px solid var(--color-brand)",
-  color: "var(--color-page)"
-};
-const linkStyle: React.CSSProperties = {
-  color: "var(--color-page)",
-  textDecoration: "underline"
-};
-
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
@@ -91,33 +36,34 @@ const CookieConsent = () => {
   if (!visible) return null;
 
   return (
-    // The class carries NO styling and changes nothing on screen — this
-    // component is still entirely inline-styled, which is recorded as an
-    // outstanding item. It exists so that a stylesheet can address the banner
-    // at all, and the first thing that needed to was print: a fixed overlay
-    // printed a black bar across the middle of the diagnostic results, and
-    // there was no selector in the whole codebase that could reach it.
     <div
       className='cookie-banner'
-      style={wrap}
-      role="dialog"
-      aria-label="Cookie consent"
-      aria-live="polite"
+      role='dialog'
+      aria-label='Cookie consent'
+      aria-live='polite'
     >
-      <div style={inner}>
-        <p style={textStyle}>
+      <div className='cookie-banner__inner'>
+        <p className='cookie-banner__text'>
           We use analytics cookies to understand how visitors use our site so we
           can improve it. We only set them with your consent. Read our{" "}
-          <Link href="/cookie-policy" style={linkStyle}>
+          <Link href='/cookie-policy' className='cookie-banner__link'>
             Cookie Policy
           </Link>
           .
         </p>
-        <div style={actions}>
-          <button type="button" style={rejectStyle} onClick={() => decide("denied")}>
+        <div className='cookie-banner__actions'>
+          <button
+            type='button'
+            className='cookie-banner__btn cookie-banner__btn--reject'
+            onClick={() => decide("denied")}
+          >
             Reject
           </button>
-          <button type="button" style={acceptStyle} onClick={() => decide("granted")}>
+          <button
+            type='button'
+            className='cookie-banner__btn cookie-banner__btn--accept'
+            onClick={() => decide("granted")}
+          >
             Accept
           </button>
         </div>

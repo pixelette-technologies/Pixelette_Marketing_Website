@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import {
+  MOTION_PAUSE_EVENT,
+  readMotionPaused
+} from "@/lib/motionPause";
 import { useFinePointer, useInView, useMotionAllowed } from "@/lib/useInView";
 import { spread } from "@/lib/spread";
 import RoomBackdrop from "./RoomBackdrop";
@@ -172,7 +176,13 @@ export default function PostitField({
       "--fall",
       `${root.getBoundingClientRect().height + 160}px`
     );
-    root.dataset.running = visible ? "true" : "false";
+    const sync = () => {
+      const paused = readMotionPaused();
+      root.dataset.running = visible && !paused ? "true" : "false";
+    };
+    sync();
+    window.addEventListener(MOTION_PAUSE_EVENT, sync);
+    return () => window.removeEventListener(MOTION_PAUSE_EVENT, sync);
   }, [motion, visible]);
 
   // --- The pointer: a nudge, never a fling ------------------------------------

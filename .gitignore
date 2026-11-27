@@ -51,9 +51,13 @@ temp_interactive_push.bat
 /pmw_*
 config.bat
 
-# obsidian vault. The notes in docs/ are committed -- they are the decision
-# record. The editor's own per-user layout state is not. /vault was the vault's
-# path before 9 Sep 2026 and that directory no longer exists.
+# Locked design handoff packages (local extract; do not commit)
+/PIXELETTE_SOCIAL_COMMUNITY_LOCKED_HANDOFF_20NOV2026/
+/PIXELETTE_PR_EARNED_MEDIA_CURSOR_HANDOFF_20NOV2026/
+
+# Session vault lives in docs/ (README + index.md + sessions/YYYY-MM-DD.md).
+# Committed as the decision/session record. Obsidian editor state is not.
+# The old parallel vault/ folder (and its HTML dumps) was removed 26 Nov 2026.
 docs/.obsidian/
 
 /.cursor

@@ -98,7 +98,7 @@ const TOPIC_ROUTES: readonly TopicRoute[] = [
   {
     id: 'about',
     test: /\b(about (you|the company|your company|pixelette)|tell me about (your|the) company|who (are|is) (you|pixelette)|what is pixelette marketing)\b/i,
-    path: '/aboutus',
+    path: '/about',
   },
   {
     id: 'privacy',

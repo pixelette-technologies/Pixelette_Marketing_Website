@@ -107,3 +107,8 @@
     display: none;
   }
 }
+
+// A7 — session pause control. Keeps the animation definition; only freezes it.
+html[data-motion-paused="true"] .marquee__track {
+  animation-play-state: paused;
+}

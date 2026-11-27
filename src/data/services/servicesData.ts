@@ -161,7 +161,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for social media solutions,",
+        "When you work with Pixelette Marketing for social media solutions,",
       subHeading: "expect campaigns that connect and convert",
       details: [
         "Grow your brand visibility and engagement across platforms.",
@@ -457,7 +457,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for email marketing services,",
+        "When you work with Pixelette Marketing for email marketing services,",
       subHeading: "expect campaigns that connect and convert",
       details: [
         "Increase open rates and drive higher engagement with campaigns.",
@@ -717,7 +717,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for SEO solutions, ",
+        "When you work with Pixelette Marketing for SEO solutions, ",
       subHeading: "expect campaigns that rank and convert",
       details: [
         "Grow search visibility with strategies suited to your audience only.",
@@ -1005,7 +1005,7 @@ export const servicesData = [
     },
 
     review: {
-      mainHeading: "When you partner with Pixelette Marketing for PR services,",
+      mainHeading: "When you work with Pixelette Marketing for PR services,",
       subHeading:
         "expect strategies that build recognition and deliver headlines",
       details: [
@@ -1216,7 +1216,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for influencer marketing services,",
+        "When you work with Pixelette Marketing for influencer marketing services,",
       subHeading: "expect campaigns that spark connections and drive impact",
       details: [
         "Grow your brand visibility and engagement across platforms.",
@@ -1513,7 +1513,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for ads & PPC services,",
+        "When you work with Pixelette Marketing for ads & PPC services,",
       subHeading: "expect ads that drive conversions and maximise ROI",
       details: [
         "Optimise ad spend with advanced advertising management services.",
@@ -1635,11 +1635,10 @@ export const servicesData = [
 
   {
     id: 7,
-    // 30 Sep 2026: the Growth Intelligence specialist page. The display name
-    // changed from "Marketing Analytics & Reporting"; the route did not. The
-    // page renders from data/services/specialist/growthIntelligence.ts — the
-    // legacy fields below no longer render and stay only until the route is
-    // fully migrated. Nav, /services and the footer read this title.
+    // 23 Nov 2026: /services/marketing_analytics_and_reporting renders
+    // MeasurementInsightPage. Title, meta and the nav label stay on this
+    // record. The sections below are the previous long page and are not
+    // rendered on the route.
     title: "Marketing Analytics & Measurement",
     metaTitle: "Marketing Analytics & Measurement | Pixelette Marketing",
     metaDescription: "Marketing analytics and measurement designed to connect performance, customer and pipeline data and turn evidence into clearer commercial decisions.",
@@ -1847,7 +1846,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for marketing analytics services,",
+        "When you work with Pixelette Marketing for marketing analytics services,",
       subHeading: "expect data that turns into measurable growth",
       details: [
         "Gain deeper insights into campaign performance with advanced digital analytics services.",
@@ -1973,6 +1972,9 @@ export const servicesData = [
     metaTitle: "Lead Generation | Pixelette Marketing",
     metaDescription: "Lead generation built for qualified pipeline rather than volume, with targeting, landing pages, nurture and a clean handoff to sales.",
     metaKeywords: "lead generation services, lead generation agency, b2b lead generation, qualified pipeline",
+    // 23 Nov 2026: /services/lead_generation renders LeadGenerationPage.
+    // Meta title and keywords still come from this record. The sections
+    // below are the previous long page and are not rendered on the route.
     route: "lead_generation",
     mainHeading: "From prospects to loyal customers,",
     subHeading: "we’re the lead generation agency for GROWTH",
@@ -2149,7 +2151,7 @@ export const servicesData = [
 
     review: {
       mainHeading:
-        "When you partner with Pixelette Marketing for lead generation services, ",
+        "When you work with Pixelette Marketing for lead generation services, ",
       subHeading:
         "expect strategies that turn prospects into revenue-driving assets",
       details: [

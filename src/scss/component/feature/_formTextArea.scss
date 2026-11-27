@@ -1,36 +1,36 @@
-
 .formtextArea {
   margin-top: 0.75rem;
   margin-bottom: 0.9375rem;
+
   & > label {
     font-size: 0.875rem;
     font-weight: 500;
+    display: block;
   }
+
   & > textarea {
     margin-top: 0.25rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    padding-left: 0.75rem;
-    padding-top: 0.875rem;
-    padding-bottom: 0.875rem;
-    border: 1px solid var(--color-line-strong);
-    background-color: transparent;
-    border-radius: 0.4375rem;
+    display: block;
     width: 100%;
+    min-height: 8rem;
+    font-size: var(--fs-body);
+    font-weight: 500;
+    line-height: 1.5;
+    padding: 0.75rem 0.875rem;
+    // A6 — control boundary contrast; do not swap for --color-line-pill.
+    border: 1px solid var(--color-control-border);
+    background-color: transparent;
+    border-radius: var(--radius-btn);
     font-family: var(--font-body);
     color: var(--color-ink);
     resize: vertical;
-    &:focus {
-      outline: none;
-    }
-    &::placeholder {
-      font-size: 0.875rem;
-    }
+    box-sizing: border-box;
   }
 
   & > div {
     margin-top: 0.375rem;
     color: var(--color-danger);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    line-height: 1.5;
   }
 }

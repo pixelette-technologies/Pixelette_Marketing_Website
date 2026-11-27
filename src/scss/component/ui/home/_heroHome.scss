@@ -8,6 +8,9 @@
 // "From insight to impact" with its arrow.
 //
 // The ground is the site's own .wash, unchanged.
+// 27 Nov 2026: left copy metrics match locked-service hero (Paid Media).
+
+@use "../serviceHeroCopy" as heroCopy;
 
 // 29 Sep, on instruction: the hero fills the screen below the sticky header
 // (--home-band-h: 100dvh less the header), and the
@@ -56,31 +59,21 @@
 
 // --- Type -------------------------------------------------------------------
 
-// The reference sets the eyebrow in ink, not the brand tone, widely tracked.
 .homeHero__eyebrow {
-  margin: 0 0 1.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.6875rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--color-ink);
+  @include heroCopy.service-hero-eyebrow;
 }
 
-// The whole headline is ink in the reference, and it breaks as the reference
-// breaks it at desktop, "Marketing that / matters to your / bottom line".
-// The measure is held in em so the break survives the clamp.
 .homeHero__title {
-  max-width: 8.6em;
-  font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
-  line-height: 1.02;
-  letter-spacing: -0.024em;
-  text-wrap: balance;
+  @include heroCopy.service-hero-heading;
+}
+
+.homeHero__title em {
+  @include heroCopy.service-hero-heading-em;
 }
 
 .homeHero__support {
-  max-width: 29rem;
-  margin-top: clamp(1.25rem, 1rem + 0.8vw, 1.75rem);
-  text-wrap: pretty;
+  @include heroCopy.service-hero-lead;
+  max-width: 42ch;
 }
 
 // Clean whitespace beneath the actions, by instruction: nothing follows them.
@@ -139,7 +132,8 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-ink);
-  animation: livingSignalLabel 900ms ease 2.6s both;
+  // D4 — labels arrive with the resolved first paint, not after the old 3.5s resolve.
+  animation: livingSignalLabel 700ms ease 0.15s both;
 
   & > span {
     margin-right: -0.14em;
@@ -163,7 +157,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  animation: livingSignalLabel 900ms ease 2.9s both;
+  // D4 — annotation arrives with the resolved first paint.
+  animation: livingSignalLabel 700ms ease 0.35s both;
 }
 
 .livingSignal__noteText {

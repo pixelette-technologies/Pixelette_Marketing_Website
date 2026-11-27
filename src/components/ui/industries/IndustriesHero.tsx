@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/common";
 import { Heading, Text } from "@/components/feature";
+import { HeroEmphasis } from "@/lib/heroEmphasis";
 import { FC } from "react";
 
 interface IndustriesHeroProps {
@@ -10,7 +10,6 @@ interface IndustriesHeroProps {
   subHeading: string;
   text: string;
   image: string;
-  cta: { label: string; to: string };
 }
 
 // The deeper-experience hero. 25 Sep 2026: taken off the legacy type
@@ -18,9 +17,8 @@ interface IndustriesHeroProps {
 // a second h2-sized heading) and onto the roles every current interior hero
 // uses: eyebrow, h1p, a standfirst-sized line and .lead.
 //
-// THE BUTTON NO LONGER SAYS "Book a consultation". It points at the enquiry
-// form at the foot of the same page, which is where the site's primary CTA
-// already lives, so the hero and the close are one action rather than two.
+// Hero no longer carries "Discuss Your Project" — that CTA lives in close /
+// contact bands only.
 //
 // The image is stock photography and says nothing a reader needs, so its alt
 // is empty. It was "Hero Section", which a screen reader announced as content.
@@ -29,8 +27,7 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
   mainHeading,
   subHeading,
   image,
-  text,
-  cta
+  text
 }) => {
   return (
     // .wash-left, the guide's interior hero ground, full-bleed behind the
@@ -42,13 +39,10 @@ const IndustriesHero: FC<IndustriesHeroProps> = ({
           <div>
             <Text className='eyebrow'>{eyebrow}</Text>
             <Heading className='h1p' level={1}>
-              {mainHeading}
+              <HeroEmphasis text={mainHeading} lastWordCount={1} />
             </Heading>
             <Text className='industriesHero__sub'>{subHeading}</Text>
             <Text className='lead'>{text}</Text>
-            <Link href={cta.to} className='btn'>
-              {cta.label}
-            </Link>
           </div>
         </section>
       </Container>

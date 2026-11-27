@@ -5,12 +5,14 @@ import { Heading, Text } from "@/components/feature";
 import { COOKIE_POLICY_HREF } from "@/data/legal";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Privacy Statement",
   description:
     "How Pixelette Marketing collects, uses, shares and protects personal information, how long we keep it, and the rights you have over it.",
   path: "/privacy"
 });
+}
 
 // --- 23 Sep 2026 ------------------------------------------------------------
 // ADAPTED FROM THE PIXELETTE TECHNOLOGIES PRIVACY STATEMENT (their /privacy,
@@ -64,20 +66,21 @@ export default function PrivacyPage() {
       <div className='wash-left'>
         <Container className='main'>
           <header className='legalHero'>
+            <Text className='eyebrow'>Privacy</Text>
             <Heading className='h1p' level={1}>
-              Privacy Statement
+              Privacy <em>Statement</em>
             </Heading>
-            <Text className='small'>Effective 23 September 2026 · Version 1.0</Text>
+            <p className='lead'>
+              How Pixelette Marketing uses, protects and manages personal
+              information across this website and our work.
+            </p>
+            <Text className='small'>Effective 8 October 2026</Text>
           </header>
         </Container>
       </div>
 
       <Container className='main'>
         <article className='prose legalBody'>
-          <p className='lead'>
-            How Pixelette Marketing uses, protects and manages personal
-            information across this website and our work.
-          </p>
 
           <h2 id='about'>About this statement, and about us</h2>
           <p>
@@ -88,10 +91,10 @@ export default function PrivacyPage() {
             with us as a client, supplier or contact.
           </p>
           <p>
-            Pixelette Marketing is the controller for the information described
-            here. We are registered in England and Wales under company number
-            17508478, with our registered office at 77 Fulham Palace Road,
-            London W6 8JA. Our VAT registration number is GB 432 2377 17.
+            Pixelette Marketing Ltd is the controller for the information
+            described here. We are registered in England and Wales under company
+            number 17508478, incorporated 8 October 2026, with our registered
+            office at 77 Fulham Palace Road, London W6 8JA.
           </p>
           <p>
             For anything in this statement, or about your information

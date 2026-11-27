@@ -65,13 +65,13 @@ test("accepts the enquiry fields when supplied", () => {
   const body = valid() as unknown as Record<string, unknown>;
   body.company = "Example Ltd";
   body.companyWebsite = "example.invalid";
-  body.improve = "Pipeline & Conversion";
+  body.improve = "Digital Visibility and Growth";
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, true);
   if (result.ok) {
     assert.equal(result.value.company, "Example Ltd");
     assert.equal(result.value.companyWebsite, "example.invalid");
-    assert.equal(result.value.improve, "Pipeline & Conversion");
+    assert.equal(result.value.improve, "Digital Visibility and Growth");
   }
 });
 
@@ -112,4 +112,29 @@ test("still rejects a field outside the widened allowlist", () => {
   const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
   assert.equal(result.ok, false);
   if (!result.ok) assert.equal(result.code, "UNSUPPORTED_FIELD");
+});
+
+// Plan §9.3 — optional indicative budget bands are allowed on the contract.
+test("accepts empty indicativeBudget as optional", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, true);
+  if (result.ok) assert.equal(result.value.indicativeBudget, undefined);
+});
+
+test("accepts a known indicativeBudget band", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "£5,000–£15,000";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, true);
+  if (result.ok) assert.equal(result.value.indicativeBudget, "£5,000–£15,000");
+});
+
+test("rejects an unknown indicativeBudget band", () => {
+  const body = valid() as unknown as Record<string, unknown>;
+  body.indicativeBudget = "£1,000,000";
+  const result = validateContactPayload(body, "TEST-NOTICE-V1", now);
+  assert.equal(result.ok, false);
+  if (!result.ok) assert.equal(result.code, "INVALID_CONTACT_FIELDS");
 });

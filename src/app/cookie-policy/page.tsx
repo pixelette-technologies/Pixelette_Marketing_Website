@@ -3,12 +3,14 @@ import ManageCookies from "@/components/common/ManageCookies";
 import { Heading, Text } from "@/components/feature";
 import { pageMetadata } from "@/data/site";
 
-export const metadata = pageMetadata({
+export async function generateMetadata() {
+  return await pageMetadata({
   title: "Cookie Policy",
   description:
     "How Pixelette Marketing uses cookies, the analytics cookies we set only with your consent, and how to change your choice.",
   path: "/cookie-policy"
 });
+}
 
 // 18 Sep 2026. Taken onto the design system. The page was a bare <article>
 // with an inline style object and unclassed h1/h2/p, so it rendered in the
@@ -30,20 +32,21 @@ export default function CookiePolicyPage() {
       <div className='wash-left'>
         <Container className='main'>
           <header className='legalHero'>
+            <Text className='eyebrow'>Cookies</Text>
             <Heading className='h1p' level={1}>
-              Cookie Policy
+              Cookie <em>Policy</em>
             </Heading>
-            <Text className='small'>Last updated: 2 June 2026</Text>
+            <p className='lead'>
+              This page explains how Pixelette Marketing uses cookies and similar
+              technologies on pixelettemarketing.com.
+            </p>
+            <Text className='small'>Last updated: 26 Nov 2026</Text>
           </header>
         </Container>
       </div>
 
       <Container className='main'>
         <article className='prose legalBody'>
-          <p className='lead'>
-            This page explains how Pixelette Marketing uses cookies and similar
-            technologies on pixelettemarketing.com.
-          </p>
 
           <h2>What cookies are</h2>
           <p>

@@ -18,6 +18,8 @@
 // Motion surface 12 in _surfaces.scss. Under a reduce preference the script
 // never arms and the rules at the foot stop any animation regardless.
 
+@use "../sectionHead" as sectionHead;
+
 $built-run: 700ms; // keep in step with RUN_MS in BuiltFlow.tsx
 // LINEAR, and that was found by sampling the run rather than chosen: on an
 // eased curve the signal is past stage 03 by 60% of the time, so nodes lit at
@@ -30,13 +32,12 @@ $built-ease: linear;
 
   & > header {
     & > .eyebrow {
-      margin-bottom: 1.25rem;
-      color: var(--color-pink-text);
+      @include sectionHead.section-eyebrow;
     }
 
     & > .h2 {
+      @include sectionHead.section-title;
       max-width: 34rem;
-      color: var(--color-burgundy);
     }
 
     & > .lead {

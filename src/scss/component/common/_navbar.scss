@@ -105,7 +105,9 @@
       display: none;
     }
 
-    & > a {
+    // Exclude `.btn` — the Discuss Your Project CTA is also an <a>, and this
+    // rule was overriding `.btn`'s light text with ink on the brand fill.
+    & > a:not(.btn) {
       // .flink carries the 44px tap target; this is the type role.
       //
       // Phase F. Up 2px, from 14 to 16. This also brings the desktop bar onto
@@ -115,7 +117,7 @@
       color: var(--color-ink);
     }
 
-    & > a:hover {
+    & > a:not(.btn):hover {
       color: var(--color-brand);
     }
   }
@@ -299,12 +301,10 @@ details[open] > .navDrawer__groupSummary > .navDrawer__chev {
 // item here that is not a row in the list.
 .navDrawer__cta {
   display: block;
+  width: 100%;
   margin-top: 1.25rem;
-
-  & > .btn {
-    width: 100%;
-    white-space: nowrap;
-  }
+  white-space: nowrap;
+  text-align: center;
 }
 
 
@@ -312,14 +312,12 @@ details[open] > .navDrawer__groupSummary > .navDrawer__chev {
 // desktop and the last in the drawer on mobile, and it keeps the hero's label
 // so the page never offers two names for the same action.
 //
-// The link wraps the Button rather than the Button taking an href, which is
-// the pattern the heroes already use.
+// Single interactive element (B2) — the Button renders the link itself.
+// Rectangular header CTA retained (D2). Extra inline padding keeps the
+// previous visual width after the shared `.btn` padding took over from the
+// legacy `_primary` rules.
 .site-nav__cta {
   display: inline-flex;
-
-  // The bar carries seven links and a button now. The button is the one item
-  // that must not shrink into the row.
-  & > .btn {
-    white-space: nowrap;
-  }
+  white-space: nowrap;
+  padding-inline: 1.625rem;
 }

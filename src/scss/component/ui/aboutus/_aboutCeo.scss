@@ -75,28 +75,6 @@
       margin-top: 0.85rem;
     }
   }
-
-  &__visionTitle {
-    margin: 1.75rem 0 0;
-    font-family: var(--font-display);
-    font-size: clamp(1.25rem, 1.1rem + 0.4vw, 1.5rem);
-    font-weight: 400;
-    line-height: 1.25;
-    color: var(--color-burgundy);
-  }
-
-  &__vision {
-    margin-top: 0.85rem;
-
-    & > .body {
-      max-width: 38rem;
-      color: var(--color-plum-ink);
-    }
-
-    & > .body + .body {
-      margin-top: 0.85rem;
-    }
-  }
 }
 
 @media (min-width: 60rem) {

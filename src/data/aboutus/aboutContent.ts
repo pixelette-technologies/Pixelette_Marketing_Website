@@ -65,11 +65,8 @@ export const aboutCeo = {
   body: [
     "Curious by nature, strategic by experience and focused on making things happen.",
     "My background is in leadership, strategy and transformation. I’ve led complex national and regional programmes, transformed organisational performance and brought people together to solve challenging problems.",
-    "I bring a different perspective to marketing - understanding organisations from the inside out, asking the right questions and connecting ideas with measurable outcomes."
-  ],
-  visionTitle: "Vision",
-  vision: [
-    "My vision for Pixelette Marketing is to challenge the way businesses think about marketing - putting understanding before activity, purpose behind creativity and measurable impact at the heart of every strategy."
+    "I bring a different perspective to marketing - understanding organisations from the inside out, asking the right questions and connecting ideas with measurable outcomes.",
+    "I believe the best marketing starts with understanding people, businesses and their ambitions. My vision for Pixelette Marketing is to bring that understanding together with creativity and strategic thinking to make a meaningful difference."
   ]
 };
 

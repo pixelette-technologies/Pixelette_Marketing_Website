@@ -3,12 +3,12 @@ import { Heading, Text } from "@/components/feature";
 import { aboutCeo } from "@/data/aboutus";
 import Image from "next/image";
 
-// Leadership / CEO. Placed after why we exist. Portrait + name/role + vision
-// copy, using the same eyebrow / burgundy title / plum body language as the
-// rest of About. No card chrome — figure and copy on the page ground.
+// Leadership / CEO. Placed after why we exist. Portrait + name/role + copy,
+// using the same eyebrow / burgundy title / plum body language as the rest
+// of About. No card chrome — figure and copy on the page ground.
 
 const AboutCeo = () => {
-  const { eyebrow, name, role, image, body, visionTitle, vision } = aboutCeo;
+  const { eyebrow, name, role, image, body } = aboutCeo;
 
   return (
     <Container className='main'>
@@ -40,17 +40,6 @@ const AboutCeo = () => {
 
             <div className='aboutCeo__body'>
               {body.map(paragraph => (
-                <Text key={paragraph} className='body'>
-                  {paragraph}
-                </Text>
-              ))}
-            </div>
-
-            <Heading className='aboutCeo__visionTitle' level={4}>
-              {visionTitle}
-            </Heading>
-            <div className='aboutCeo__vision'>
-              {vision.map(paragraph => (
                 <Text key={paragraph} className='body'>
                   {paragraph}
                 </Text>

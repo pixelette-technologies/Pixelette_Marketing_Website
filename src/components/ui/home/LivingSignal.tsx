@@ -38,15 +38,18 @@ import { useEffect, useRef } from "react";
 // PERFORMANCE: the dense scene (~4,400 points, ~350 lines) is drawn every
 // frame only during the three-and-a-half-second resolve. Once settled it is
 // rendered once into two cached layers, and each ambient frame is two image
-// draws, the glow and a few travelling signals.
+// draws, the glow, soft near/far drift, and travelling signals.
 //
 // MOTION POLICY
 //   - D4 (25 Nov correction): first paint is the resolved composition. The
 //     multi-second scatter-to-point resolve was dropped so an early screenshot
 //     or first glance is never part-built (C8). Ambient breath and cursor
 //     response still run after that.
-//   - Afterwards: the point's light breathes by a few per cent and a few
-//     signals travel inwards, at half frame rate.
+//   - PIX-45 ambient (27 Nov): after settle, idle liveliness ramps in over
+//     ~1.8s — slow closed-form ribbon wave (lines keep moving without
+//     hover), stronger focus breath, denser travellers (a little idle warp).
+//     Idle redraws haze/lines/dots at full frame rate (no string Euler).
+//     Hover remains the clear step-up (full warp, bloom, string physics).
 //   - Nothing runs while the figure is off screen or the tab is hidden.
 //   - prefers-reduced-motion: the resolved composition, drawn once.
 //
@@ -135,7 +138,7 @@ interface Signal {
   line: number;
   s: number;
   speed: number;
-  warp: boolean; // one of the extra travellers seen only on hover
+  warp: boolean; // extra pool: full on hover, a faint share at idle
 }
 
 // --- Timing -----------------------------------------------------------------
@@ -157,6 +160,15 @@ const STRING_GIVE = 0.1; // of height: past this a string stiffens sharply
 const STRING_BRUSH = 0.06; // of height: how close the pointer plucks
 const STRING_DRAG = 9; // how hard a brushing pointer drags a string along
 const WARP = 18; // how many times faster the signals run at full hover
+// PIX-45 idle liveliness — cheap overlays on the cached settle path.
+const AMBIENT_WAKE = 1.8; // seconds after SETTLED to full ambient
+const IDLE_CEIL = 0.38; // max idle energy vs hover = 1
+const IDLE_WARP = 3.2; // traveller speed bump at full ambient
+const IDLE_TRAVELLERS = 75; // non-warp travellers (was 26)
+const IDLE_GLOW_BOOST = 0.28; // max idle boost into drawGlow
+const IDLE_WAVE_AMP = 8.5; // px peak ribbon sway — readable at a glance
+const IDLE_WAVE_SPEED = 2.55; // rad/s — catches the eye without hover
+const IDLE_WAVE_ALONG = 1.35; // phase turns along each strand
 // Depth scales the pointer's pull: far layers barely stir, near ones swing.
 const DEPTH_PULL_FLOOR = 0.28; // minimum pull multiplier at depth 0
 const DEPTH_PULL_SPAN = 0.95; // added at depth 1 (near)
@@ -171,8 +183,10 @@ const DOT_PULL = 1.6e6; // the force's strength
 const DOT_SPRING = 16; // per unit mass: every point rings at ~4 rad/s
 const DOT_DAMPING = 0.3; // of critical, so a flung point overshoots once
 const DOT_GLOW = 110; // px: how near the pointer a point starts to glow
-// Stage 2: balls are smaller than the flat field they replaced.
-const DOT_SIZE = 0.85;
+// PIX-45: balls scaled up for glanceable motion (was 0.85).
+const DOT_SIZE = 1.275;
+const IDLE_BALL_AMP = 10; // px base idle bob at full ambient
+const IDLE_BALL_SPEED = 2.1; // rad/s idle ball drift
 
 const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 const ease = (x: number) => 1 - Math.pow(1 - clamp01(x), 3);
@@ -309,10 +323,12 @@ export default function LivingSignal({
     const stamp = (
       c: CanvasRenderingContext2D,
       src: HTMLCanvasElement,
-      filter?: string
+      filter?: string,
+      dx = 0,
+      dy = 0
     ) => {
       c.save();
-      c.setTransform(1, 0, 0, 1, 0, 0);
+      c.setTransform(1, 0, 0, 1, dx * dpr, dy * dpr);
       if (filter) c.filter = filter;
       c.drawImage(src, 0, 0, c.canvas.width, c.canvas.height);
       c.restore();
@@ -473,7 +489,7 @@ export default function LivingSignal({
       dots = [];
       const add = (x: number, y: number, c: number, line = -1, s = 0) => {
         const big = rand() < 0.03;
-        // Stage 2: smaller balls than the flat field they replaced.
+        // PIX-45: larger balls so idle motion reads at a glance.
         const r =
           (big ? 0.95 + rand() ** 2 * 1.15 : 0.22 + rand() * 0.55) * DOT_SIZE;
         const a = big ? 2 : rand() < 0.45 ? 0 : rand() < 0.65 ? 1 : 2;
@@ -657,9 +673,9 @@ export default function LivingSignal({
       });
       linesAwake = false;
 
-      // --- Signals: a few small travellers, for the settled state ----------
+      // --- Signals: ambient travellers + hover warp pool -------------------
       signals = [];
-      const travellers = Math.round(26 * k);
+      const travellers = Math.round(IDLE_TRAVELLERS * k);
       wings = [];
       lines.forEach((l, i) => {
         if (l.fam !== "frame" && l.fam !== "crown") wings.push(i);
@@ -668,11 +684,11 @@ export default function LivingSignal({
         signals.push({
           line: wings[Math.floor(rand() * wings.length)],
           s: 0.25 + rand() * 0.75,
-          speed: 0.045 + rand() * 0.04,
+          speed: 0.05 + rand() * 0.045,
           warp: false
         });
       }
-      // And a larger pool that only shows while the pointer is on the figure.
+      // Larger pool: full on hover; a faint share also runs at idle (PIX-45).
       const warpers = Math.round(140 * k);
       for (let n = 0; n < warpers; n++) {
         signals.push({
@@ -1248,30 +1264,32 @@ export default function LivingSignal({
       ];
     };
 
-    // The travellers. At rest, a few short orange dashes drifting inwards.
-    // On hover they, and a pool of others, run up to WARP times faster with
+    // The travellers. Idle: denser orange dashes + a faint warp share.
+    // On hover they, and the full warp pool, run up to WARP times faster with
     // a long tail fading to a white-hot head: light at speed.
     const drawSignals = (
       c: CanvasRenderingContext2D,
       dt: number,
-      k: number
+      ambient: number
     ) => {
-      const speedUp = 1 + WARP * hover * hover;
-      const tail = 0.045 + 0.2 * hover;
+      const idle = ambient * (1 - hover);
+      const energy = Math.max(hover, ambient * IDLE_CEIL);
+      const speedUp = 1 + WARP * hover * hover + IDLE_WARP * idle;
+      const tail = 0.045 + 0.2 * hover + 0.05 * idle;
       c.lineCap = "round";
       for (const sg of signals) {
-        const shown = sg.warp ? hover : k;
+        const shown = sg.warp ? energy : ambient;
         if (shown <= 0.01) continue;
         sg.s += sg.speed * speedUp * dt;
         if (sg.s > 1) {
           // At speed, the light starts from the very start of the lines.
-          sg.s = hover > 0.3 ? Math.random() * 0.12 : 0.25;
+          sg.s = energy > 0.3 ? Math.random() * 0.12 : 0.25;
           if (sg.warp)
             sg.line = wings[Math.floor(Math.random() * wings.length)];
         }
         const rest = Math.min(1, (sg.s - 0.25) / 0.15, (1 - sg.s) / 0.1);
         const fast = Math.min(1, (1 - sg.s) / 0.05);
-        const fade = Math.max(0, rest + (fast - rest) * hover);
+        const fade = Math.max(0, rest + (fast - rest) * Math.max(hover, idle * 0.35));
         const alpha = (0.75 + 0.25 * hover) * shown * fade;
         if (alpha <= 0.01) continue;
 
@@ -1339,16 +1357,82 @@ export default function LivingSignal({
       dotsAwake ||
       linesAwake;
 
-    // Settled and left alone: the two cached layers.
+    // Slow, pinned ribbon breath for idle — closed-form, no string Euler.
+    // Focus end stays fixed (taper → 0); near strands sway more than far.
+    const applyIdleWave = (t: number, ambient: number) => {
+      const amp =
+        IDLE_WAVE_AMP * ambient * (w < 520 ? 0.7 : 1);
+      for (let li = 0; li < lines.length; li++) {
+        const l = lines[li];
+        const famMul =
+          l.fam === "frame" ? 0.22 : l.fam === "crown" ? 0.55 : 1;
+        const a = amp * famMul * (0.35 + 0.65 * l.depth);
+        const phase0 = t * IDLE_WAVE_SPEED + li * 0.41;
+        for (let i = 0; i < N; i++) {
+          const s = i / (N - 1);
+          const taper = Math.pow(1 - s, 1.2);
+          const wave =
+            Math.sin(phase0 + s * Math.PI * 2 * IDLE_WAVE_ALONG) +
+            0.32 * Math.sin(phase0 * 0.55 + s * Math.PI * 1.1 + 1.4);
+          const o = wave * a * taper;
+          l.live[i * 2] = l.pts[i * 2] + o * 0.22;
+          l.live[i * 2 + 1] = l.pts[i * 2 + 1] + o;
+        }
+      }
+    };
+
+    // Park dots on waved strands (or rest seats) and give each its own bob.
+    const placeIdleDots = (t: number, ambient: number) => {
+      for (let i = 0; i < dots.length; i++) {
+        const d = dots[i];
+        glow[i] = 0;
+        let x: number;
+        let y: number;
+        if (d.line >= 0) {
+          [x, y] = at(lines[d.line].live, d.s);
+        } else {
+          x = d.x;
+          y = d.y;
+        }
+        const phase = i * 0.73;
+        const bob =
+          ambient *
+          (IDLE_BALL_AMP + d.r * 1.4) *
+          (0.4 + 0.6 * d.depth);
+        dpx[i] = x + Math.sin(t * IDLE_BALL_SPEED + phase) * bob;
+        dpy[i] =
+          y + Math.cos(t * IDLE_BALL_SPEED * 0.82 + phase * 1.3) * bob * 0.9;
+      }
+    };
+
+    // Settled: first paint / zero ambient uses caches; then live idle wave.
     const drawSettled = (t: number, dt: number) => {
-      if (!far || !near) cache();
-      if (!far || !near) return;
+      const ambient = ease((t - SETTLED) / AMBIENT_WAKE);
+      const breath = 0.5 + 0.5 * Math.sin(t * 0.9);
+      const glowK = 0.92 + 0.12 * breath;
+      const idleBoost = IDLE_GLOW_BOOST * breath * ambient;
+      const done = SETTLED + 10;
+
+      if (ambient < 0.02) {
+        if (!far || !near) cache();
+        if (!far || !near) return;
+        wipe(ctx);
+        stamp(ctx, far);
+        stamp(ctx, near);
+        drawGlow(ctx, glowK, idleBoost);
+        drawSignals(ctx, dt, ambient);
+        return;
+      }
+
+      applyIdleWave(t, ambient);
+      placeIdleDots(t, ambient);
       wipe(ctx);
-      stamp(ctx, far);
-      stamp(ctx, near);
-      // The point's light breathes by a few per cent — felt, not seen.
-      drawGlow(ctx, 0.96 + 0.04 * Math.sin(t * 0.6));
-      drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
+      drawHaze(ctx, 1);
+      drawLines(ctx, done, true);
+      drawDots(ctx, done, false, true);
+      drawDots(ctx, done, true, true);
+      drawGlow(ctx, glowK, idleBoost);
+      drawSignals(ctx, dt, ambient);
     };
 
     // Settled, with the pointer in play (or the strings still ringing): the
@@ -1356,6 +1440,10 @@ export default function LivingSignal({
     // glowing as far as the hover goes.
     const drawLive = (t: number, dt: number) => {
       const done = SETTLED + 10;
+      const ambient = ease((t - SETTLED) / AMBIENT_WAKE);
+      const breath = 0.5 + 0.5 * Math.sin(t * 0.9);
+      const glowK = 0.92 + 0.12 * breath;
+      const idleBoost = IDLE_GLOW_BOOST * breath * ambient;
       stepStrings(dt);
       stepDots(done, dt);
       wipe(ctx);
@@ -1364,8 +1452,8 @@ export default function LivingSignal({
       drawBloom(ctx, done);
       drawDots(ctx, done, false, true);
       drawDots(ctx, done, true, true);
-      drawGlow(ctx, 0.96 + 0.04 * Math.sin(t * 0.6), hover);
-      drawSignals(ctx, dt, ease((t - SETTLED) / 1.5));
+      drawGlow(ctx, glowK, hover + idleBoost * (1 - hover));
+      drawSignals(ctx, dt, ambient);
     };
 
     // Reduced motion: the resolved composition, drawn once and left.
@@ -1406,10 +1494,10 @@ export default function LivingSignal({
       if (engaged()) {
         t += dt;
         drawLive(t, dt);
-      } else if (frame % 2 === 0) {
-        // Settled and left alone: every other frame.
-        t += dt * 2;
-        drawSettled(t, dt * 2);
+      } else {
+        // Full rate while idle so the ribbon wave stays smooth.
+        t += dt;
+        drawSettled(t, dt);
       }
       raf = requestAnimationFrame(loop);
     };
